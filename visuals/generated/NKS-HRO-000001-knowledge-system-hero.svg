@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">The Nelson Knowledge System Hero Image</title>
+  <desc id="desc">Executive hero image showing fragmented source streams converging into a structured knowledge core with outgoing publication, visual, career, and feedback paths.</desc>
+  <defs>
+    <linearGradient id="core" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e6f4ef"/></linearGradient>
+    <style>
+      .bg{fill:#ffffff}.grid{stroke:#e5e7eb;stroke-width:1}.stream{stroke:#94a3b8;stroke-width:4;fill:none}.stream2{stroke:#0f2742;stroke-width:5;fill:none}.out{stroke:#047857;stroke-width:5;fill:none}.core{fill:url(#core);stroke:#0f2742;stroke-width:5}.card{fill:#f8fafc;stroke:#cbd5e1;stroke-width:2;rx:12}.title{font:700 48px Arial,Helvetica,sans-serif;fill:#1f2933}.subtitle{font:400 25px Arial,Helvetica,sans-serif;fill:#4b5563}.label{font:700 20px Arial,Helvetica,sans-serif;fill:#1f2933;text-anchor:middle}.small{font:400 15px Arial,Helvetica,sans-serif;fill:#64748b;text-anchor:middle}.footer{font:400 16px Arial,Helvetica,sans-serif;fill:#6b7280}
+    </style>
+  </defs>
+  <rect class="bg" width="1600" height="900"/>
+  <g opacity="0.55">
+    <path class="grid" d="M0 120 H1600M0 240 H1600M0 360 H1600M0 480 H1600M0 600 H1600M0 720 H1600"/>
+    <path class="grid" d="M160 0 V900M320 0 V900M480 0 V900M640 0 V900M800 0 V900M960 0 V900M1120 0 V900M1280 0 V900M1440 0 V900"/>
+  </g>
+  <text x="100" y="115" class="title">The Nelson Knowledge System</text>
+  <text x="100" y="155" class="subtitle">Publishing is an output, not the objective.</text>
+
+  <rect x="130" y="255" width="210" height="86" class="card"/><text x="235" y="291" class="label">Conversations</text><text x="235" y="319" class="small">raw context</text>
+  <rect x="120" y="390" width="210" height="86" class="card"/><text x="225" y="426" class="label">Documents</text><text x="225" y="454" class="small">stored knowledge</text>
+  <rect x="155" y="525" width="210" height="86" class="card"/><text x="260" y="561" class="label">Whitepapers</text><text x="260" y="589" class="small">domain frameworks</text>
+  <rect x="180" y="660" width="210" height="86" class="card"/><text x="285" y="696" class="label">Experience</text><text x="285" y="724" class="small">proof material</text>
+
+  <path d="M340 298 C470 305 560 345 655 405" class="stream"/><path d="M330 433 C470 430 570 435 655 445" class="stream"/><path d="M365 568 C500 545 585 505 655 475" class="stream"/><path d="M390 703 C525 660 600 570 655 505" class="stream"/>
+
+  <circle cx="800" cy="455" r="155" class="core"/>
+  <text x="800" y="425" class="label" style="font-size:30px">Knowledge Core</text>
+  <text x="800" y="464" class="small" style="font-size:18px">source • proof • corpus</text>
+  <text x="800" y="493" class="small" style="font-size:18px">narrative • visual • publication</text>
+
+  <path d="M955 410 C1085 350 1175 285 1300 250" class="out"/><path d="M960 455 C1100 455 1210 455 1340 455" class="out"/><path d="M955 500 C1095 565 1190 630 1305 685" class="out"/>
+
+  <rect x="1300" y="206" width="220" height="88" class="card"/><text x="1410" y="244" class="label">Publication</text><text x="1410" y="272" class="small">Medium + social</text>
+  <rect x="1340" y="411" width="220" height="88" class="card"/><text x="1450" y="449" class="label">Visual Assets</text><text x="1450" y="477" class="small">diagrams + cards</text>
+  <rect x="1305" y="641" width="220" height="88" class="card"/><text x="1415" y="679" class="label">Feedback</text><text x="1415" y="707" class="small">corpus enrichment</text>
+
+  <text x="100" y="835" class="footer">NKS-HRO-000001 • Generated SVG asset • Hero image for NKS-PUB-000001</text>
+</svg>
