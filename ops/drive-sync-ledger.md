@@ -19,8 +19,8 @@ This ledger tracks artifacts created or updated in GitHub that must later be syn
 | SYNC-0003 | Execution Queue | docs/execution-queue.md | 02_Editorial OS | Ready to Sync | Should become queue tab/doc in Drive. |
 | SYNC-0004 | Media Blitz Charter | governance/media-blitz-charter.md | 02_Editorial OS | Ready to Sync | Strategic north-star document. |
 | SYNC-0005 | OS Constitution | governance/os-constitution.md | 02_Editorial OS | Ready to Sync | Assistant operating rules. |
-| SYNC-0006 | Artifact Metadata Schema | schemas/artifact-metadata-schema.md | Media Blitz Editorial OS Sheet | Ready to Sync | Updated with source/proof/arc fields. |
-| SYNC-0007 | Publication Pipeline Schema | schemas/publication-pipeline-schema.md | Media Blitz Editorial OS Sheet | Ready to Sync | Updated with source/proof/arc workflow states. |
+| SYNC-0006 | Artifact Metadata Schema | schemas/artifact-metadata-schema.md | Media Blitz Editorial OS Sheet | Ready to Sync | Updated with source/proof/arc/visual fields. |
+| SYNC-0007 | Publication Pipeline Schema | schemas/publication-pipeline-schema.md | Media Blitz Editorial OS Sheet | Ready to Sync | Updated with source/proof/arc/visual workflow states. |
 | SYNC-0008 | Medium Article Template | templates/medium-article-template.md | 03_Medium Drafts / Templates | Ready to Sync | Updated with narrative arc gates. |
 | SYNC-0009 | LinkedIn Post Template | templates/linkedin-post-template.md | 04_LinkedIn / Templates | Ready to Sync | Updated with proof and arc boundaries. |
 | SYNC-0010 | X Thread Template | templates/x-thread-template.md | 05_X / Templates | Ready to Sync | Updated with proof and arc boundaries. |
@@ -39,8 +39,17 @@ This ledger tracks artifacts created or updated in GitHub that must later be syn
 | SYNC-0023 | Narrative Arc Standard | governance/narrative-arc-standard.md | 02_Editorial OS | Ready to Sync | Governance rule for reader progression. |
 | SYNC-0024 | Proof Ledger | research/proof-ledger.md | 02_Editorial OS / Evidence Library | Ready to Sync | Tracks proof and arc readiness. |
 | SYNC-0025 | Narrative Arc Ledger | publishing/narrative-arc-ledger.md | 02_Editorial OS / Publication Pipeline | Ready to Sync | Tracks arc readiness for all drafts. |
-| SYNC-0026 | Publication Readiness Gate | publishing/publication-readiness-gate.md | 02_Editorial OS / Publication Pipeline | Ready to Sync | Unified release gate. |
+| SYNC-0026 | Publication Readiness Gate | governance/publication-readiness-gate.md | 02_Editorial OS / Publication Pipeline | Ready to Sync | Unified source/proof/arc/visual release gate. |
 | SYNC-0027 | Proof Arc Retrofit Queue | publishing/proof-arc-retrofit-queue.md | 02_Editorial OS / Publication Pipeline | Ready to Sync | Queue for proof and arc retrofits. |
+| SYNC-0028 | Visual Knowledge System Governance | governance/visual-knowledge-system.md | 09_Visual Frameworks / 02_Editorial OS | Ready to Sync | Explains why visuals are first-class artifacts. |
+| SYNC-0029 | Diagram Language Standard | governance/diagram-language-standard.md | 09_Visual Frameworks | Ready to Sync | Visual grammar and style rules. |
+| SYNC-0030 | Visual Artifact Schema | schemas/visual-artifact-schema.md | Media Blitz Editorial OS Sheet / 09_Visual Frameworks | Ready to Sync | Visual metadata standard. |
+| SYNC-0031 | Visual Templates | templates/signature-diagram-template.md; templates/hero-image-brief-template.md; templates/visual-package-template.md; templates/carousel-visual-template.md; templates/proof-graphic-template.md | 09_Visual Frameworks / Templates | Ready to Sync | Visual manufacturing templates. |
+| SYNC-0032 | Visual Package Index | visuals/visual-package-index.md | 09_Visual Frameworks | Ready to Sync | Tracks required visual packages. |
+| SYNC-0033 | First Visual Package | visuals/packages/NKS-VIS-000001.md | 09_Visual Frameworks | Ready to Sync | First visual package for NKS-PUB-000001. |
+| SYNC-0034 | First Signature Diagram Brief | visuals/diagrams/NKS-DGM-000001.md | 09_Visual Frameworks | Ready to Sync | Nelson Knowledge Manufacturing Loop diagram brief. |
+| SYNC-0035 | First Hero Image Brief | visuals/hero/NKS-HRO-000001.md | 09_Visual Frameworks | Ready to Sync | Hero image brief for foundational NKS article. |
+| SYNC-0036 | Visual Generation Queue | visuals/visual-generation-queue.md | 09_Visual Frameworks | Ready to Sync | Visual generation backlog. |
 
 ## Rule
 
