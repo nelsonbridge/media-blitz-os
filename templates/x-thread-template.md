@@ -3,21 +3,32 @@
 ## Metadata
 
 - Artifact ID:
+- Publication ID:
 - Source Asset:
+- Source Record ID:
+- Proof Category:
+- Proof Status:
+- Narrative Arc Status:
 - Pillar:
 - Thread Length Target:
 - Audience:
 - Risk Level:
 
+## Derivative Gate
+
+An X thread inherits proof posture and claim boundaries from its source publication.
+
+It may compress the arc, but it may not make stronger claims than the source artifact supports.
+
 ## Thread Structure
 
-### Post 1: Hook
+### Post 1: Recognition / Hook
 
-Compressed claim, contradiction, or question.
+Compressed claim, contradiction, observable problem, or question.
 
 ### Post 2: Problem
 
-Name the hidden structure or failure mode.
+Name the hidden structure, failure mode, or reader-recognizable pattern.
 
 ### Post 3: Reframe
 
@@ -27,13 +38,13 @@ Offer the better mental model.
 
 Break the idea into numbered components.
 
-### Penultimate Post: Application
+### Penultimate Post: Application / Consequence
 
-Show how the idea appears in the real world.
+Show how the idea appears in the real world and what changes if it is ignored or applied.
 
-### Final Post: Close
+### Final Post: Invitation
 
-Durable principle, link to Medium, or invitation to continue the conversation.
+Durable principle, link to Medium, or invitation to inspect the reader's own system.
 
 ## Rules
 
@@ -42,3 +53,4 @@ Durable principle, link to Medium, or invitation to continue the conversation.
 - Use compression, not oversimplification.
 - Preserve ambiguity when the idea requires it.
 - Do not turn complex ideas into slogans unless the slogan is earned.
+- Do not exceed the proof strength of the source publication.
