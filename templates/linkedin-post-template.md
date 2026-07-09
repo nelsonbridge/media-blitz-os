@@ -3,31 +3,42 @@
 ## Metadata
 
 - Artifact ID:
+- Publication ID:
 - Source Asset:
+- Source Record ID:
+- Proof Category:
+- Proof Status:
+- Narrative Arc Status:
 - Pillar:
 - Audience:
 - Career Alignment:
 - CTA Type:
 
-## Structure
+## Derivative Gate
 
-### Hook
+A LinkedIn derivative inherits proof posture and claim boundaries from its source publication.
 
-A clear professional tension or assertion.
+It may compress the narrative arc, but it may not make stronger claims than the source artifact supports.
 
-### Context
+## Compressed Arc
 
-Why this matters to executives, operators, or technology leaders.
+### Recognition / Hook
 
-### Insight
+A clear professional tension, observable pattern, or reader-recognizable problem.
 
-The reusable principle or framework.
+### Reframe
+
+The sharper interpretation or corrected frame.
+
+### Framework / Insight
+
+The reusable principle, model, or operating logic.
 
 ### Application
 
 How the reader can recognize or apply the idea.
 
-### Close
+### Invitation
 
 A question, reflection, or concise strategic takeaway.
 
@@ -38,6 +49,7 @@ A question, reflection, or concise strategic takeaway.
 - Preserve Nelson's direct, systems-oriented voice.
 - Keep career value implicit unless explicitly appropriate.
 - Prioritize signal over engagement bait.
+- Do not exceed the proof strength of the source publication.
 
 ## Optional CTA Types
 
