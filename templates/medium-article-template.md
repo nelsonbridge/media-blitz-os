@@ -3,6 +3,7 @@
 ## Metadata
 
 - Artifact ID:
+- Publication ID:
 - Working Title:
 - Final Title:
 - Pillar:
@@ -10,9 +11,19 @@
 - Primary Audience:
 - Secondary Audience:
 - Career Alignment:
-- Evidence Requirement:
+- Source Record ID:
+- Source Lineage:
+- Proof Category:
+- Proof Status:
+- Narrative Arc Status:
 - Risk Level:
 - Status:
+
+## Gate Sequence
+
+```text
+Source → Proof → Narrative Arc → Editorial Review → User Approval → Publication
+```
 
 ## Title
 
@@ -22,51 +33,61 @@
 
 [One-sentence promise or tension]
 
-## Opening
+## 1. Recognition
 
-Start with the observable problem, tension, or contradiction.
+Start with the observable problem, tension, contradiction, or familiar pattern.
+
+The reader should recognize the issue before being asked to accept the argument.
 
 Avoid generic throat-clearing.
 
-## Core Claim
+## 2. Reframe
 
-State the central argument plainly.
+Name the common but insufficient interpretation.
 
-## Context
+Then introduce the sharper frame.
 
-Explain why this matters now and who should care.
+## 3. Framework
 
-## Framework
-
-Introduce the model, operating principle, or architecture.
+Introduce the model, operating principle, sequence, or architecture.
 
 Use headings, numbered layers, or explicit components.
 
-## Evidence / Support
+## 4. Proof
 
 Separate:
 
+- Source lineage.
 - Observations.
 - Examples.
 - Data.
+- Public citations.
 - Inferences.
 - Hypotheses.
 
-## Application
+Claim strength must match proof strength.
 
-Show how an executive, operator, or organization would use the idea.
+## 5. Application
 
-## Implications
+Show how an executive, operator, team, or organization would use the idea.
 
-Explain what changes if the reader accepts the argument.
+Include practical questions or behaviors.
+
+## 6. Consequence
+
+Explain what happens if the old frame persists and what improves if the new frame is adopted.
+
+Make the strategic cost or leverage clear.
+
+## 7. Invitation
+
+End with a useful reflection, inspection question, or next operating question.
+
+Avoid engagement bait.
 
 ## Failure Modes
 
 Identify where the idea can be misused, overextended, or misunderstood.
-
-## Closing
-
-End with a durable principle, not a weak motivational summary.
 
 ## Derivative Targets
 
@@ -83,3 +104,11 @@ End with a durable principle, not a weak motivational summary.
 - Related Artifact IDs:
 - Supporting Docs:
 - Prior Medium links:
+
+## Publication Readiness
+
+- [ ] Source lineage recorded.
+- [ ] Proof posture recorded.
+- [ ] Narrative arc complete.
+- [ ] Review checklist complete.
+- [ ] User approval recorded.
