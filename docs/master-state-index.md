@@ -8,7 +8,7 @@ Single authoritative index for Media Blitz OS / Nelson Knowledge System state.
 
 Sprint 2 — Knowledge Extraction & Corpus Construction
 
-Status: Blocked on additional source enumeration; GitHub-only unblocked work completed for NKS-SRC-000001.
+Status: Active. GitHub execution continuing; Drive sync queued due connector intermittency.
 
 ## Sprint 1 Status
 
@@ -30,7 +30,7 @@ Sprint 1 — Infrastructure Hardening: Complete enough to support Sprint 2.
 - Execution Protocol created.
 - Execution Queue created.
 - Master State Index created.
-- Drive Sync Ledger created.
+- Drive Sync Ledger created and updated.
 
 ### Governance
 
@@ -55,31 +55,32 @@ Sprint 1 — Infrastructure Hardening: Complete enough to support Sprint 2.
 - Corpus Construction Workflow created.
 - Source Record Template created.
 - Artifact Record Template created.
-- First source record created: NKS-SRC-000001.
-- First corpus artifacts created: NKS-ART-000001 through NKS-ART-000004.
-- Corpus Index created.
-- Initial Architecture Relationship Map created.
+- Source records created: NKS-SRC-000001 through NKS-SRC-000003.
+- Corpus artifacts created: NKS-ART-000001 through NKS-ART-000012.
+- Corpus Index created and updated.
+- Relationship maps created for architecture, executive value, and AI governance clusters.
 
 ### Publication Layer
 
-- Four publication packages created: NKS-PUB-000001 through NKS-PUB-000004.
-- Four full Medium drafts created: NKS-PUB-000001 through NKS-PUB-000004.
-- Four publication review checklists created.
-- Sixteen derivative packages created across LinkedIn, X, Instagram, and Pinterest.
+- Publication packages created: NKS-PUB-000001 through NKS-PUB-000012.
+- Full Medium drafts created: NKS-PUB-000001 through NKS-PUB-000008.
+- Publication review checklists created: NKS-PUB-000001 through NKS-PUB-000008.
+- Derivative packages created: NKS-DER-000001 through NKS-DER-000032.
 - Publication Index updated.
 
-## Blocked / Deferred
+## Deferred
 
-- Additional source processing requires source enumeration that is not exposed in the current session.
-- Drive synchronization requires Drive write capability in-session.
+- Drive synchronization is queued until Drive connector is available in-session.
 - Public release requires user approval and external platform action.
+- Full technical drafts for NKS-PUB-000009 through NKS-PUB-000012 require current technical verification before expansion.
 
-## Pending When Blockers Clear
+## Pending
 
-- Process additional source material.
+- Verify technical references for NKS-PUB-000009 through NKS-PUB-000012.
+- Expand NKS-PUB-000009 through NKS-PUB-000012 into full drafts after verification.
+- Generate derivatives for NKS-PUB-000009 through NKS-PUB-000012 after verification.
+- Continue processing additional source material as available.
 - Sync GitHub-created artifacts to Google Drive.
-- Perform public-readiness review.
-- Publish approved assets to Medium and derivative platforms.
 
 ## Canonical Stores
 
