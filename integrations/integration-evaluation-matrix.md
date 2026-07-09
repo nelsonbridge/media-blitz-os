@@ -15,7 +15,37 @@ The winning solution is not the one with the prettiest UI. It is the one that ca
 - Free/open-source and self-hostable solutions prioritized.
 - Hosted SaaS free tiers considered only as temporary manual fallback, not architecture.
 
-## Candidate Summary
+## Current Medium POC Decision
+
+For Publication Milestone 1, the immediate Medium automation POC candidate is:
+
+**patnaikd/publish-to-medium**
+
+Reason:
+
+- It publishes local Markdown files to Medium using Playwright browser automation.
+- It does not require a Medium API token.
+- First run opens Chromium and requires manual login.
+- After login, it saves the Medium browser session to `~/.publish-to-medium-profile`.
+- Future runs can publish automatically using that saved session.
+- It extracts the title from the first H1 heading.
+- It converts Markdown to HTML.
+- It publishes as an unlisted Medium post and returns the Medium URL.
+
+Known limitation:
+
+- No LICENSE file was found during inspection, so licensing must be clarified before copying or modifying code. For POC testing, treat the repository as an external reference/tool until license status is resolved.
+
+## Medium Automation Candidate Summary
+
+| Rank | Candidate | Repo / Project | License | Automation Type | Medium API Token Required | Fit | Notes |
+|---:|---|---|---|---|---|---:|---|
+| 1 | publish-to-medium | github.com/patnaikd/publish-to-medium | Not found | Playwright browser automation | No | 9.0 | Best immediate POC path for NKS-PUB-000001. |
+| 2 | medium-publishing-without-api | github.com/iancarson/medium-publishing-without-api | MIT | Documentation / option analysis | No | 7.0 | Useful decision support; points to session-based publishing options. |
+| 3 | aiagent-mcp-medium-publisher | github.com/umes4ever/aiagent-mcp-medium-publisher | MIT | Docker + MCP framing | Unknown / needs deeper inspection | 6.5 | Interesting future MCP candidate, but less direct than Playwright script. |
+| 4 | content-distribution-mcp | github.com/AutomateLab-tech/content-distribution-mcp | MIT | MCP distribution layer | No direct Medium automation | 6.0 | Useful later; Medium channel returns browser fallback rather than full publish automation. |
+
+## Broader Distribution Candidate Summary
 
 | Rank | Candidate | Repo / Project | License | Self-host | API / Automation | Platforms | NKS Fit | Notes |
 |---:|---|---|---|---|---|---|---:|---|
@@ -26,117 +56,48 @@ The winning solution is not the one with the prettiest UI. It is the one that ca
 | 5 | Socioboard 5.0 | github.com/socioboard/Socioboard-5.0 | License present; needs review | Yes | Needs deeper validation | Social management platform | 5.5 | Legacy/known project; lower current fit pending maintenance/security review. |
 | 6 | Buffer Free Tier | buffer.com | Proprietary SaaS free tier | No | Platform APIs hidden behind SaaS | Broad | 4.5 | Useful temporary manual fallback only; not a modular NKS architecture component. |
 
-## Scoring Criteria
+## POC Flow for NKS-PUB-000001
 
-| Criterion | Weight |
-|---|---:|
-| Self-hostable / no subscription dependency | 15 |
-| Open-source license compatibility | 15 |
-| API / automation support | 20 |
-| Platform coverage | 15 |
-| Approval / review workflow potential | 10 |
-| Adapter simplicity | 10 |
-| Maintenance/community signal | 10 |
-| Security boundary fit | 5 |
+```text
+NKS Publication Contract
+    ↓
+Clean Medium Markdown file
+    ↓
+patnaikd/publish-to-medium Playwright script
+    ↓
+Medium authenticated browser session
+    ↓
+Unlisted Medium post URL
+    ↓
+NKS publication record update
+```
 
-## Candidate Notes
+## POC Requirements
 
-### TryPost
+1. Create clean Medium-ready Markdown for NKS-PUB-000001.
+2. Set up local Python virtual environment.
+3. Install requirements from `patnaikd/publish-to-medium`.
+4. Install Playwright Chromium.
+5. Run first publish command locally.
+6. Complete Medium login in the opened Chromium window.
+7. Capture returned Medium URL.
+8. Update NKS publication record with the URL.
 
-Strengths:
-- Self-hostable.
-- AGPL-3.0.
-- Native publishing to 12 networks.
-- REST API and MCP server.
-- AI assistant integration is explicitly part of positioning.
-- Supports brand profiles, carousels, automations, webhooks, asset library, workspaces, and analytics.
+## Security Boundary
 
-Concerns:
-- AGPL obligations must be respected if modified and network-served.
-- Requires deployment validation.
-- Need inspect API docs before adapter prototype.
-
-Recommended role:
-- Primary candidate for Distribution Engine v1.
-
-### Postiz
-
-Strengths:
-- Self-hosted social media scheduling.
-- Public API and Node SDK references.
-- N8N/Make/Zapier integration references.
-- Large repo/community signal.
-- Broad platform support including LinkedIn, Facebook, Instagram, Pinterest, X, Threads, Mastodon, Bluesky, Discord, Slack, YouTube, TikTok, Reddit.
-
-Concerns:
-- AGPL obligations.
-- Need validate approval workflow and API payload coverage.
-- Need assess deployment weight.
-
-Recommended role:
-- Primary alternate / comparative prototype candidate.
-
-### BrightBean Studio
-
-Strengths:
-- Open-source/self-hostable social media management.
-- Supports publish/comment/DM/insights by platform matrix.
-- Includes LinkedIn personal/company, Instagram, Facebook, YouTube, TikTok, Pinterest.
-- Django/Python stack may be accessible for adapter work.
-
-Concerns:
-- Initial scan showed no releases published.
-- Need evaluate maturity and deployment reliability.
-
-Recommended role:
-- Strong evaluation candidate; maybe better for dashboard/inbox than first automation path.
-
-### Mixpost
-
-Strengths:
-- MIT license.
-- Self-hostable.
-- Active releases observed.
-- Server-side content scheduling and publishing.
-
-Concerns:
-- Need validate API automation and platform support in detail.
-- Laravel/PHP stack may be less aligned with current NKS tooling unless self-contained.
-
-Recommended role:
-- Best license posture; evaluate as low-friction/manual dashboard option.
-
-### Socioboard
-
-Strengths:
-- Social management product lineage.
-- Self-host oriented.
-
-Concerns:
-- Needs deeper maintenance, license, and security review before serious consideration.
-- Lower confidence than newer candidates.
-
-Recommended role:
-- Reference candidate only unless other tools fail.
-
-## Recommendation
-
-Proceed with a two-track evaluation:
-
-1. TryPost as the primary API/MCP-aligned candidate.
-2. Postiz as the primary automation/community candidate.
-
-Do not directly couple NKS to either. Build a first `Publishing Adapter Prototype` that accepts Publication Contract v1 and maps to the selected tool.
+- Medium credentials must not be committed to GitHub.
+- Saved session profile remains local to the runner at `~/.publish-to-medium-profile`.
+- Publication requires user approval before live/public publish.
+- For first milestone, unlisted publish is acceptable as a controlled proof-of-concept.
 
 ## Immediate Next Actions
 
-1. Inspect TryPost API/MCP docs.
-2. Inspect Postiz public API docs.
-3. Create adapter mapping sheets for both.
-4. Select first dry-run target.
-5. Build publication contract payload for NKS-PUB-000001.
-6. Execute dry-run validation before any external publishing.
+1. Create clean Medium-ready Markdown from NKS-PUB-000001.
+2. Create adapter mapping note for `publish-to-medium`.
+3. Create local-run instructions for the Medium POC.
+4. Execute on a local machine with Medium login available.
+5. Capture Medium URL and update NKS state.
 
 ## Current Decision
 
-No vendor selected as authoritative. TryPost and Postiz advance to first technical validation.
+For Publication Milestone 1, use `patnaikd/publish-to-medium` as the immediate Medium automation POC path, with TryPost/Postiz remaining broader downstream distribution candidates.
