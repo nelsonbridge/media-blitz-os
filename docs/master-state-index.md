@@ -8,7 +8,7 @@ Single authoritative index for Media Blitz OS / Nelson Knowledge System state.
 
 Sprint 2 — Knowledge Extraction & Corpus Construction
 
-Status: In Progress
+Status: Blocked on additional source enumeration; GitHub-only unblocked work completed for NKS-SRC-000001.
 
 ## Sprint 1 Status
 
@@ -62,35 +62,24 @@ Sprint 1 — Infrastructure Hardening: Complete enough to support Sprint 2.
 
 ### Publication Layer
 
-- NKS-PUB-000001 package created.
-- NKS-PUB-000001 full Medium draft created.
-- NKS-PUB-000001 review checklist created.
-- NKS-PUB-000001 derivative packages created for LinkedIn, X, Instagram, and Pinterest.
-- NKS-PUB-000002 package created.
-- NKS-PUB-000003 package created.
-- NKS-PUB-000004 package created.
+- Four publication packages created: NKS-PUB-000001 through NKS-PUB-000004.
+- Four full Medium drafts created: NKS-PUB-000001 through NKS-PUB-000004.
+- Four publication review checklists created.
+- Sixteen derivative packages created across LinkedIn, X, Instagram, and Pinterest.
 - Publication Index updated.
 
-## In Progress
+## Blocked / Deferred
 
-- Corpus construction from available source material.
-- Knowledge taxonomy population.
-- Drive synchronization when Drive write capability is available.
+- Additional source processing requires source enumeration that is not exposed in the current session.
+- Drive synchronization requires Drive write capability in-session.
+- Public release requires user approval and external platform action.
 
-## Deferred
+## Pending When Blockers Clear
 
-- Additional source processing requiring unavailable source enumeration.
-- Drive synchronization requiring Drive write capability in-session.
-- Public release requiring user approval.
-
-## Pending
-
-- Expand NKS-PUB-000002 into full draft.
-- Expand NKS-PUB-000003 into full draft.
-- Expand NKS-PUB-000004 into full draft.
-- Generate derivative assets for NKS-PUB-000002 through NKS-PUB-000004.
-- Continue source processing when additional source access is available.
+- Process additional source material.
 - Sync GitHub-created artifacts to Google Drive.
+- Perform public-readiness review.
+- Publish approved assets to Medium and derivative platforms.
 
 ## Canonical Stores
 
