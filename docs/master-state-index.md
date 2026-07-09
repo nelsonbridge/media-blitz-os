@@ -8,7 +8,7 @@ Single authoritative index for Media Blitz OS / Nelson Knowledge System state.
 
 Sprint 2 — Knowledge Extraction & Corpus Construction
 
-Status: Active. GitHub execution continuing; Drive sync queued due connector intermittency.
+Status: Active. GitHub execution complete for currently available source summaries. Drive sync queued due connector intermittency.
 
 ## Sprint 1 Status
 
@@ -29,7 +29,7 @@ Sprint 1 — Infrastructure Hardening: Complete enough to support Sprint 2.
 - Project State Ledger created.
 - Execution Protocol created.
 - Execution Queue created.
-- Master State Index created.
+- Master State Index created and updated.
 - Drive Sync Ledger created and updated.
 
 ### Governance
@@ -59,28 +59,28 @@ Sprint 1 — Infrastructure Hardening: Complete enough to support Sprint 2.
 - Corpus artifacts created: NKS-ART-000001 through NKS-ART-000012.
 - Corpus Index created and updated.
 - Relationship maps created for architecture, executive value, and AI governance clusters.
+- Verification note created for AI governance publication cluster.
 
 ### Publication Layer
 
 - Publication packages created: NKS-PUB-000001 through NKS-PUB-000012.
-- Full Medium drafts created: NKS-PUB-000001 through NKS-PUB-000008.
-- Publication review checklists created: NKS-PUB-000001 through NKS-PUB-000008.
-- Derivative packages created: NKS-DER-000001 through NKS-DER-000032.
+- Full Medium drafts created: NKS-PUB-000001 through NKS-PUB-000012.
+- Publication review checklists created: NKS-PUB-000001 through NKS-PUB-000012.
+- Derivative packages created: NKS-DER-000001 through NKS-DER-000048.
 - Publication Index updated.
 
 ## Deferred
 
 - Drive synchronization is queued until Drive connector is available in-session.
 - Public release requires user approval and external platform action.
-- Full technical drafts for NKS-PUB-000009 through NKS-PUB-000012 require current technical verification before expansion.
+- Final public citation insertion remains pending for drafts that require external sources.
 
 ## Pending
 
-- Verify technical references for NKS-PUB-000009 through NKS-PUB-000012.
-- Expand NKS-PUB-000009 through NKS-PUB-000012 into full drafts after verification.
-- Generate derivatives for NKS-PUB-000009 through NKS-PUB-000012 after verification.
+- Perform public-readiness review and citation insertion.
 - Continue processing additional source material as available.
 - Sync GitHub-created artifacts to Google Drive.
+- Publish approved assets to Medium and derivative platforms.
 
 ## Canonical Stores
 
