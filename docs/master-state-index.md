@@ -10,7 +10,7 @@ The project is now governed as a knowledge manufacturing system. Publishing is o
 
 Sprint 2 — Knowledge Extraction & Corpus Construction
 
-Status: Active. Source → Proof → Narrative Arc → Visual Package gates are implemented. Drive sync queued due connector intermittency.
+Status: Active. Publication #1 is now a public-readiness candidate. Source → Proof → Narrative Arc → Visual Package gates are implemented. Drive sync queued due connector intermittency.
 
 ## Why the System Exists
 
@@ -29,10 +29,6 @@ Source
 → Distribution
 → Feedback
 → Corpus Enrichment
-
-## Sprint 1 Status
-
-Sprint 1 — Infrastructure Hardening: Complete enough to support Sprint 2.
 
 ## Completed
 
@@ -63,12 +59,18 @@ Sprint 1 — Infrastructure Hardening: Complete enough to support Sprint 2.
 - Publication Readiness Gate created and updated for visual package requirements.
 - Visual Knowledge System governance created.
 - Diagram Language Standard created.
+- ADR-0001 — Own the Contract Layer created.
+- ADR-0002 — Hybrid Buy, Modular Design created.
 
-### Schemas and Templates
+### Schemas, Contracts, and Templates
 
 - Artifact Metadata Schema created and updated with source/proof/arc/visual fields.
 - Publication Pipeline Schema created and updated with source/proof/arc/visual workflow states.
 - Visual Artifact Schema created.
+- Publication Contract v1 created.
+- Adapter Contract v1 created.
+- Publication Contract payload created for NKS-PUB-000001.
+- Integration Security Boundary v1 created.
 - Medium article template updated with source/proof/arc gate sequence.
 - LinkedIn post template updated with proof and arc boundaries.
 - X thread template updated with proof and arc boundaries.
@@ -91,12 +93,15 @@ Sprint 1 — Infrastructure Hardening: Complete enough to support Sprint 2.
 - Corpus Index created and updated.
 - Relationship maps created for architecture, executive value, and AI governance clusters.
 - Verification note created for AI governance publication cluster.
+- Knowledge Roadmap created.
 
 ### Publication Layer
 
 - Publication packages created: NKS-PUB-000001 through NKS-PUB-000012.
 - Full Medium drafts created: NKS-PUB-000001 through NKS-PUB-000012.
+- NKS-PUB-000001 revised into public-readiness candidate.
 - Publication review checklists created: NKS-PUB-000001 through NKS-PUB-000012.
+- Publication readiness checklist created for NKS-PUB-000001.
 - Derivative packages created: NKS-DER-000001 through NKS-DER-000048.
 - Publication Index updated.
 - Proof Ledger created and updated with narrative arc status.
@@ -115,34 +120,69 @@ Sprint 1 — Infrastructure Hardening: Complete enough to support Sprint 2.
 - First Visual Package created: NKS-VIS-000001.
 - First Signature Diagram Brief created: NKS-DGM-000001.
 - First Hero Image Brief created: NKS-HRO-000001.
+- First Carousel Brief created: NKS-CAR-000001.
+- First Quote Card Brief created: NKS-QTC-000001.
+- First Pinterest Visual Brief created: NKS-PIN-000001.
+
+### Integration Layer
+
+- Integration Evaluation Matrix created.
+- TryPost and Postiz advanced to first technical validation.
+- BrightBean Studio, Mixpost, Socioboard, and Buffer Free Tier recorded as additional candidates/reference options.
+- Technical Backlog created.
 
 ## Current Gate Sequence
 
 Source → Proof → Narrative Arc → Visual Package → Editorial Review → User Approval → Publication → Derivatives.
 
+## Current Publication Milestone 1 State
+
+NKS-PUB-000001 — The Corpus Is Manufactured, Not Found
+
+Status: Public-readiness candidate.
+
+Complete:
+
+- Article revised.
+- Source/proof boundary recorded.
+- Narrative arc completed.
+- Visual package exists.
+- Signature Diagram brief exists.
+- Hero Image brief exists.
+- Carousel brief exists.
+- Quote Card brief exists.
+- Pinterest brief exists.
+- Publication Contract payload exists.
+- Readiness checklist exists.
+
+Remaining before external publication:
+
+- Generate visual assets.
+- Select distribution path / adapter target.
+- User approval.
+- Publish or queue for manual publication.
+
 ## Deferred
 
 - Drive synchronization is queued until Drive connector is available in-session.
 - Public release requires user approval and external platform action.
-- Final citation insertion remains pending for drafts that require external sources.
-- Arc retrofits remain pending for all current internal drafts.
 - Visual package creation remains pending for NKS-PUB-000002 through NKS-PUB-000012.
-- Visual generation requires explicit execution against the image generation workflow and user approval before public use.
+- Visual generation remains pending for NKS-DGM-000001, NKS-HRO-000001, NKS-CAR-000001, NKS-QTC-000001, and NKS-PIN-000001.
 
 ## Pending
 
-- Execute Proof and Arc Retrofit Queue.
+- Generate and review NKS-PUB-000001 visual assets.
+- Inspect TryPost and Postiz API/MCP docs for first adapter dry run.
+- Validate NKS-PUB-000001 Publication Contract against selected path.
+- Execute Proof and Arc Retrofit Queue for remaining drafts.
 - Complete visual packages for NKS-PUB-000002 through NKS-PUB-000012.
-- Generate and review NKS-DGM-000001 and NKS-HRO-000001 when visual generation is authorized.
-- Perform public-readiness review and citation insertion.
-- Continue processing additional source material as available.
 - Sync GitHub-created artifacts to Google Drive.
 - Publish approved assets to Medium and derivative platforms.
 
 ## Canonical Stores
 
 - Drive: editorial workspace and publishing drafts when write capability is available.
-- GitHub: governance, state, schemas, corpus records, visual records, fallback artifacts, and sync ledger.
+- GitHub: governance, state, schemas, contracts, corpus records, visual records, fallback artifacts, and sync ledger.
 
 ## Current Operating Rule
 
