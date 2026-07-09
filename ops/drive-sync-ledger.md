@@ -50,6 +50,15 @@ This ledger tracks artifacts created or updated in GitHub that must later be syn
 | SYNC-0034 | First Signature Diagram Brief | visuals/diagrams/NKS-DGM-000001.md | 09_Visual Frameworks | Ready to Sync | Nelson Knowledge Manufacturing Loop diagram brief. |
 | SYNC-0035 | First Hero Image Brief | visuals/hero/NKS-HRO-000001.md | 09_Visual Frameworks | Ready to Sync | Hero image brief for foundational NKS article. |
 | SYNC-0036 | Visual Generation Queue | visuals/visual-generation-queue.md | 09_Visual Frameworks | Ready to Sync | Visual generation backlog. |
+| SYNC-0037 | Publication One Final Draft | publishing/medium-drafts/NKS-PUB-000001-the-corpus-is-manufactured-not-found-draft.md | 03_Medium Drafts | Ready to Sync | Revised to public-readiness candidate. |
+| SYNC-0038 | Publication One Visual Derivative Briefs | visuals/carousels/NKS-CAR-000001.md; visuals/quote-cards/NKS-QTC-000001.md; visuals/pinterest/NKS-PIN-000001.md | 09_Visual Frameworks | Ready to Sync | Carousel, quote card, and Pinterest briefs. |
+| SYNC-0039 | ADRs | architecture/adr/ | 02_Editorial OS / Architecture | Ready to Sync | Contract ownership and hybrid buy decisions. |
+| SYNC-0040 | Contracts | contracts/publication-contract-v1.md; contracts/adapter-contract-v1.md; contracts/payloads/NKS-PUB-000001-publication-contract.yaml | 02_Editorial OS / Integration Lab | Ready to Sync | Publication and adapter contract runway. |
+| SYNC-0041 | Security Boundary | security/integration-security-boundary-v1.md | 02_Editorial OS / Security | Ready to Sync | Integration security model. |
+| SYNC-0042 | Technical Backlog | engineering/technical-backlog.md | 02_Editorial OS / Engineering | Ready to Sync | Prioritized delivery backlog. |
+| SYNC-0043 | Integration Evaluation Matrix | integrations/integration-evaluation-matrix.md | 02_Editorial OS / Integration Lab | Ready to Sync | TryPost/Postiz/BrightBean/Mixpost/Socioboard evaluation. |
+| SYNC-0044 | Publication One Readiness | publishing/readiness/NKS-PUB-000001-publication-readiness.md | 03_Medium Drafts / Publication Pipeline | Ready to Sync | Gate checklist for first publication. |
+| SYNC-0045 | Knowledge Roadmap | roadmap/knowledge-roadmap.md | 02_Editorial OS / Roadmap | Ready to Sync | Capability-driven extraction roadmap. |
 
 ## Rule
 
