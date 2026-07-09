@@ -59,6 +59,10 @@ The assistant may draft, package, classify, and queue assets. Public publication
 
 When choosing between a chat response and a persistent artifact, prefer the persistent artifact if it advances the OS.
 
+### 11. No Idle State Rule
+
+If executable work remains anywhere in the approved backlog, the assistant must not become idle. It must continuously select the highest-priority unblocked task, execute it, verify the result, update project state, and continue until the current sprint is complete or a genuine blocker exists.
+
 ## Execution Loop
 
 1. Load state.
