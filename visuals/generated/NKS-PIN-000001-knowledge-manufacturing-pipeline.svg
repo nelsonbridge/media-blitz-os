@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1500" viewBox="0 0 1000 1500" role="img" aria-labelledby="title desc">
+  <title id="title">The Knowledge Manufacturing Pipeline</title>
+  <desc id="desc">Vertical infographic showing the source to proof to artifact to corpus to publication to feedback pipeline.</desc>
+  <defs><style>.bg{fill:#fff}.title{font:700 48px Arial,Helvetica,sans-serif;fill:#1f2933;text-anchor:middle}.sub{font:400 24px Arial,Helvetica,sans-serif;fill:#64748b;text-anchor:middle}.box{fill:#f8fafc;stroke:#0f2742;stroke-width:4;rx:20}.text{font:700 28px Arial,Helvetica,sans-serif;fill:#1f2933;text-anchor:middle}.small{font:400 18px Arial,Helvetica,sans-serif;fill:#64748b;text-anchor:middle}.arrow{stroke:#0f2742;stroke-width:5;marker-end:url(#a)}.green{stroke:#047857;stroke-width:6;marker-end:url(#g)}.footer{font:400 18px Arial,Helvetica,sans-serif;fill:#64748b;text-anchor:middle}</style><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f2742"/></marker><marker id="g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#047857"/></marker></defs>
+  <rect class="bg" width="1000" height="1500"/>
+  <text x="500" y="95" class="title">The Knowledge</text><text x="500" y="150" class="title">Manufacturing Pipeline</text>
+  <text x="500" y="205" class="sub">A corpus is manufactured, not found.</text>
+  <g transform="translate(150,280)">
+    <rect class="box" width="700" height="80" rx="20"/><text x="350" y="50" class="text">1. Source Material</text>
+    <line x1="350" y1="90" x2="350" y2="145" class="arrow"/>
+    <rect y="155" class="box" width="700" height="80" rx="20"/><text x="350" y="205" class="text">2. Evidence / Proof</text>
+    <line x1="350" y1="245" x2="350" y2="300" class="arrow"/>
+    <rect y="310" class="box" width="700" height="80" rx="20"/><text x="350" y="360" class="text">3. Canonical Artifact</text>
+    <line x1="350" y1="400" x2="350" y2="455" class="arrow"/>
+    <rect y="465" class="box" width="700" height="80" rx="20"/><text x="350" y="515" class="text">4. Narrative Arc</text>
+    <line x1="350" y1="555" x2="350" y2="610" class="arrow"/>
+    <rect y="620" class="box" width="700" height="80" rx="20"/><text x="350" y="670" class="text">5. Visual Knowledge Package</text>
+    <line x1="350" y1="710" x2="350" y2="765" class="arrow"/>
+    <rect y="775" class="box" width="700" height="80" rx="20"/><text x="350" y="825" class="text">6. Publication Package</text>
+    <line x1="350" y1="865" x2="350" y2="920" class="arrow"/>
+    <rect y="930" class="box" width="700" height="80" rx="20"/><text x="350" y="980" class="text">7. Distribution</text>
+    <line x1="350" y1="1020" x2="350" y2="1075" class="green"/>
+    <rect y="1085" class="box" width="700" height="80" rx="20"/><text x="350" y="1135" class="text">8. Feedback</text>
+    <line x1="350" y1="1175" x2="350" y2="1230" class="green"/>
+    <rect y="1240" class="box" width="700" height="80" rx="20"/><text x="350" y="1290" class="text">9. Corpus Enrichment</text>
+  </g>
+  <text x="500" y="1440" class="footer">NKS-PIN-000001 • Generated SVG asset • Nelson Knowledge System</text>
+</svg>
