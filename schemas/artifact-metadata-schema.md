@@ -8,7 +8,7 @@ Every durable content asset should be tracked with the following metadata.
 |---|---|
 | Artifact ID | Stable identifier, e.g. `NKS-ART-000001`. |
 | Title | Working or final title. |
-| Artifact Type | Article, template, whitepaper, post, carousel, framework, brief, etc. |
+| Artifact Type | Article, template, whitepaper, post, carousel, framework, brief, visual, diagram, proof graphic, etc. |
 | Pillar | Primary content pillar. |
 | Subpillar | More specific thematic category. |
 | Source Record ID | Stable source record identifier. |
@@ -18,6 +18,10 @@ Every durable content asset should be tracked with the following metadata.
 | Proof Category | Experiential, document-derived, repository-derived, publicly verified, quantitative, or unverified. |
 | Proof Status | Proof Needed, Proof Logged, Citation Needed, Ready for Editorial Review, Blocked. |
 | Narrative Arc Status | Arc Needed, Partial Arc, Arc Drafted, Arc Review Needed, Arc Approved. |
+| Visual Package ID | Stable visual package if required. |
+| Signature Diagram ID | Stable signature diagram if required. |
+| Visual Status | Not Required, Planned, Briefed, Generated, Reviewed, Approved, Published, Archived. |
+| Visual Proof Boundary | What visual assets may or may not imply. |
 | Primary Audience | Main intended reader. |
 | Secondary Audience | Additional useful reader group. |
 | Career Alignment | Role/opportunity type the asset supports. |
@@ -31,15 +35,15 @@ Every durable content asset should be tracked with the following metadata.
 | Brand Drag Risk | Low, Medium, High. |
 | Status | Planned, Drafted, Review, Published, Archived, Blocked. |
 | Canonical Location | Drive URL, GitHub path, Medium URL, etc. |
-| Derivatives Required | LinkedIn, X, Facebook, Instagram, Pinterest, PDF, etc. |
+| Derivatives Required | LinkedIn, X, Facebook, Instagram, Pinterest, PDF, visual package, etc. |
 | Related Assets | IDs of related artifacts. |
 | Last Reviewed | Date reviewed. |
 | Next Review | Date for update/relevance review. |
 
 ## Publication Rule
 
-No asset should be published publicly without enough metadata to understand its source lineage, proof posture, narrative arc, audience, strategic value, evidence posture, and career relevance.
+No asset should be published publicly without enough metadata to understand its source lineage, proof posture, narrative arc, visual package status, audience, strategic value, evidence posture, and career relevance.
 
 ## Operating Principle
 
-Source first. Proof second. Narrative arc third. Publication fourth.
+Source first. Proof second. Narrative arc third. Visual package fourth. Publication fifth.
