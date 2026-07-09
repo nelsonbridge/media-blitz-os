@@ -4,11 +4,31 @@
 
 Single authoritative index for Media Blitz OS / Nelson Knowledge System state.
 
+The project is now governed as a knowledge manufacturing system. Publishing is one output, not the objective.
+
 ## Active Sprint
 
 Sprint 2 — Knowledge Extraction & Corpus Construction
 
-Status: Active. Source → Proof → Narrative Arc gates are now implemented. Drive sync queued due connector intermittency.
+Status: Active. Source → Proof → Narrative Arc → Visual Package gates are implemented. Drive sync queued due connector intermittency.
+
+## Why the System Exists
+
+The Nelson Knowledge System exists to convert fragmented source material into reusable intellectual property.
+
+Source material includes conversations, whitepapers, resumes, role analyses, executive profiles, diagrams, proof records, and future public feedback. The system manufactures canonical artifacts, proof posture, narrative structure, visual knowledge packages, publication packages, and derivative assets.
+
+## Current Manufacturing Pipeline
+
+Source
+→ Evidence / Proof
+→ Canonical Artifact
+→ Narrative Arc
+→ Visual Knowledge Package
+→ Publication Package
+→ Distribution
+→ Feedback
+→ Corpus Enrichment
 
 ## Sprint 1 Status
 
@@ -40,17 +60,25 @@ Sprint 1 — Infrastructure Hardening: Complete enough to support Sprint 2.
 - Decision Matrix created.
 - Source → Proof → Publication Rule created.
 - Narrative Arc Standard created.
-- Publication Readiness Gate created.
+- Publication Readiness Gate created and updated for visual package requirements.
+- Visual Knowledge System governance created.
+- Diagram Language Standard created.
 
 ### Schemas and Templates
 
-- Artifact Metadata Schema created and updated with source/proof/arc fields.
-- Publication Pipeline Schema created and updated with source/proof/arc workflow states.
+- Artifact Metadata Schema created and updated with source/proof/arc/visual fields.
+- Publication Pipeline Schema created and updated with source/proof/arc/visual workflow states.
+- Visual Artifact Schema created.
 - Medium article template updated with source/proof/arc gate sequence.
 - LinkedIn post template updated with proof and arc boundaries.
 - X thread template updated with proof and arc boundaries.
 - Instagram carousel template updated with proof and arc boundaries.
 - Pinterest framework pin template updated with proof and arc boundaries.
+- Signature Diagram Template created.
+- Hero Image Brief Template created.
+- Visual Package Template created.
+- Carousel Visual Template created.
+- Proof Graphic Template created.
 
 ### Corpus Construction Layer
 
@@ -76,9 +104,21 @@ Sprint 1 — Infrastructure Hardening: Complete enough to support Sprint 2.
 - Narrative Arc Retrofit Checklist created.
 - Proof and Arc Retrofit Queue created.
 
+### Visual Knowledge Layer
+
+- Visual Knowledge System governance created.
+- Diagram Language Standard created.
+- Visual Artifact Schema created.
+- Visual templates created.
+- Visual Package Index created.
+- Visual Generation Queue created.
+- First Visual Package created: NKS-VIS-000001.
+- First Signature Diagram Brief created: NKS-DGM-000001.
+- First Hero Image Brief created: NKS-HRO-000001.
+
 ## Current Gate Sequence
 
-Source → Proof → Narrative Arc → Editorial Review → User Approval → Publication → Derivatives.
+Source → Proof → Narrative Arc → Visual Package → Editorial Review → User Approval → Publication → Derivatives.
 
 ## Deferred
 
@@ -86,10 +126,14 @@ Source → Proof → Narrative Arc → Editorial Review → User Approval → Pu
 - Public release requires user approval and external platform action.
 - Final citation insertion remains pending for drafts that require external sources.
 - Arc retrofits remain pending for all current internal drafts.
+- Visual package creation remains pending for NKS-PUB-000002 through NKS-PUB-000012.
+- Visual generation requires explicit execution against the image generation workflow and user approval before public use.
 
 ## Pending
 
 - Execute Proof and Arc Retrofit Queue.
+- Complete visual packages for NKS-PUB-000002 through NKS-PUB-000012.
+- Generate and review NKS-DGM-000001 and NKS-HRO-000001 when visual generation is authorized.
 - Perform public-readiness review and citation insertion.
 - Continue processing additional source material as available.
 - Sync GitHub-created artifacts to Google Drive.
@@ -98,7 +142,7 @@ Source → Proof → Narrative Arc → Editorial Review → User Approval → Pu
 ## Canonical Stores
 
 - Drive: editorial workspace and publishing drafts when write capability is available.
-- GitHub: governance, state, schemas, corpus records, fallback artifacts, and sync ledger.
+- GitHub: governance, state, schemas, corpus records, visual records, fallback artifacts, and sync ledger.
 
 ## Current Operating Rule
 
