@@ -60,19 +60,36 @@ Sprint 1 — Infrastructure Hardening: Complete enough to support Sprint 2.
 - Corpus Index created.
 - Initial Architecture Relationship Map created.
 
+### Publication Layer
+
+- NKS-PUB-000001 package created.
+- NKS-PUB-000001 full Medium draft created.
+- NKS-PUB-000001 review checklist created.
+- NKS-PUB-000001 derivative packages created for LinkedIn, X, Instagram, and Pinterest.
+- NKS-PUB-000002 package created.
+- NKS-PUB-000003 package created.
+- NKS-PUB-000004 package created.
+- Publication Index updated.
+
 ## In Progress
 
 - Corpus construction from available source material.
 - Knowledge taxonomy population.
-- Editorial OS dashboard and Drive synchronization when Drive write capability is available.
+- Drive synchronization when Drive write capability is available.
+
+## Deferred
+
+- Additional source processing requiring unavailable source enumeration.
+- Drive synchronization requiring Drive write capability in-session.
+- Public release requiring user approval.
 
 ## Pending
 
-- Process uploaded executive profile documents.
-- Process uploaded AI security whitepapers.
-- Extract flagship article candidates.
-- Build first publication package.
-- Generate derivative assets.
+- Expand NKS-PUB-000002 into full draft.
+- Expand NKS-PUB-000003 into full draft.
+- Expand NKS-PUB-000004 into full draft.
+- Generate derivative assets for NKS-PUB-000002 through NKS-PUB-000004.
+- Continue source processing when additional source access is available.
 - Sync GitHub-created artifacts to Google Drive.
 
 ## Canonical Stores
