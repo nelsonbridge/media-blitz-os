@@ -14,6 +14,7 @@ Provide a traversable index of graph records in the Nelson Knowledge System.
 | NKS-GPH-000004 | Visual Knowledge System | corpus/graph/NKS-GPH-000004-visual-knowledge-system.md | Visual Knowledge | Complete |
 | NKS-GPH-000005 | Interface Architecture | corpus/graph/NKS-GPH-000005-interface-architecture.md | Interface Optionality | Complete |
 | NKS-GPH-000006 | V2 Health / Validation Layer | corpus/graph/NKS-GPH-000006-v2-health-validation-layer.md | V2 Self-Assessment | Complete |
+| NKS-GPH-000007 | Transport Language Layer | corpus/graph/NKS-GPH-000007-transport-language-layer.md | Connector Resilience | Complete |
 
 ## Capability Coverage
 
@@ -30,9 +31,10 @@ Provide a traversable index of graph records in the Nelson Knowledge System.
 | Interface Optionality | NKS-GPH-000005 |
 | Contract Layer | NKS-GPH-000005 |
 | Corpus Health | NKS-GPH-000006 |
-| Validation | NKS-GPH-000006 |
+| Validation | NKS-GPH-000006, NKS-GPH-000007 |
 | Adaptive Prioritization | NKS-GPH-000006 |
 | V2 Self-Assessment | NKS-GPH-000006 |
+| Connector Resilience | NKS-GPH-000007 |
 
 ## Missing Graph Coverage
 
@@ -56,4 +58,4 @@ Start with:
 
 ## Current Status
 
-Six major graph records are indexed. The graph now covers foundational operating model, executive value, AI governance, visual knowledge, interface architecture, and V2 health/validation. Remaining work is expanding graph coverage to career/opportunity, feedback/analytics, and orchestration/automation.
+Seven major graph records are indexed. The graph now covers foundational operating model, executive value, AI governance, visual knowledge, interface architecture, V2 health/validation, and transport language. Remaining work is expanding graph coverage to career/opportunity, feedback/analytics, and orchestration/automation.
