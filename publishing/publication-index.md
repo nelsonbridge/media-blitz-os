@@ -16,10 +16,10 @@ This index tracks publication packages, full drafts, reviews, and derivatives pr
 | NKS-PUB-000006 | Coherence Beats Compliance | NKS-ART-000006 | Internal Draft | publishing/packages/NKS-PUB-000006-coherence-beats-compliance.md | publishing/medium-drafts/NKS-PUB-000006-coherence-beats-compliance-draft.md | publishing/reviews/NKS-PUB-000006-review-checklist.md |
 | NKS-PUB-000007 | How Executives Turn Ambiguity into Capability | NKS-ART-000007 | Internal Draft | publishing/packages/NKS-PUB-000007-capability-from-ambiguity.md | publishing/medium-drafts/NKS-PUB-000007-capability-from-ambiguity-draft.md | publishing/reviews/NKS-PUB-000007-review-checklist.md |
 | NKS-PUB-000008 | The Resume Should Not Be the First Signal | NKS-ART-000008 | Internal Draft | publishing/packages/NKS-PUB-000008-executive-value-before-resume.md | publishing/medium-drafts/NKS-PUB-000008-executive-value-before-resume-draft.md | publishing/reviews/NKS-PUB-000008-review-checklist.md |
-| NKS-PUB-000009 | Agentic AI Requires Human Oversight Architecture | NKS-ART-000009 | Draft Package | publishing/packages/NKS-PUB-000009-agentic-ai-human-oversight.md | Pending | Pending |
-| NKS-PUB-000010 | Security Automation Needs Guardrails | NKS-ART-000010 | Draft Package | publishing/packages/NKS-PUB-000010-security-automation-guardrails.md | Pending | Pending |
-| NKS-PUB-000011 | Agentic DevOps Beyond CI/CD | NKS-ART-000011 | Draft Package | publishing/packages/NKS-PUB-000011-agentic-devops-beyond-cicd.md | Pending | Pending |
-| NKS-PUB-000012 | Self-Healing Systems Need Governance | NKS-ART-000012 | Draft Package | publishing/packages/NKS-PUB-000012-self-healing-systems-governance.md | Pending | Pending |
+| NKS-PUB-000009 | Agentic AI Requires Human Oversight Architecture | NKS-ART-000009 | Internal Draft | publishing/packages/NKS-PUB-000009-agentic-ai-human-oversight.md | publishing/medium-drafts/NKS-PUB-000009-agentic-ai-human-oversight-draft.md | publishing/reviews/NKS-PUB-000009-review-checklist.md |
+| NKS-PUB-000010 | Security Automation Needs Guardrails | NKS-ART-000010 | Internal Draft | publishing/packages/NKS-PUB-000010-security-automation-guardrails.md | publishing/medium-drafts/NKS-PUB-000010-security-automation-guardrails-draft.md | publishing/reviews/NKS-PUB-000010-review-checklist.md |
+| NKS-PUB-000011 | Agentic DevOps Beyond CI/CD | NKS-ART-000011 | Internal Draft | publishing/packages/NKS-PUB-000011-agentic-devops-beyond-cicd.md | publishing/medium-drafts/NKS-PUB-000011-agentic-devops-beyond-cicd-draft.md | publishing/reviews/NKS-PUB-000011-review-checklist.md |
+| NKS-PUB-000012 | Self-Healing Systems Need Governance | NKS-ART-000012 | Internal Draft | publishing/packages/NKS-PUB-000012-self-healing-systems-governance.md | publishing/medium-drafts/NKS-PUB-000012-self-healing-systems-governance-draft.md | publishing/reviews/NKS-PUB-000012-review-checklist.md |
 
 ## Derivatives
 
@@ -57,6 +57,22 @@ This index tracks publication packages, full drafts, reviews, and derivatives pr
 | NKS-DER-000030 | X | NKS-PUB-000008 | Draft Package | publishing/derivatives/NKS-DER-000030-x-thread-executive-value-before-resume.md |
 | NKS-DER-000031 | Instagram | NKS-PUB-000008 | Draft Package | publishing/derivatives/NKS-DER-000031-instagram-carousel-executive-value-before-resume.md |
 | NKS-DER-000032 | Pinterest | NKS-PUB-000008 | Draft Package | publishing/derivatives/NKS-DER-000032-pinterest-framework-executive-value-before-resume.md |
+| NKS-DER-000033 | LinkedIn | NKS-PUB-000009 | Draft Package | publishing/derivatives/NKS-DER-000033-linkedin-agentic-ai-oversight.md |
+| NKS-DER-000034 | X | NKS-PUB-000009 | Draft Package | publishing/derivatives/NKS-DER-000034-x-thread-agentic-ai-oversight.md |
+| NKS-DER-000035 | Instagram | NKS-PUB-000009 | Draft Package | publishing/derivatives/NKS-DER-000035-instagram-carousel-agentic-ai-oversight.md |
+| NKS-DER-000036 | Pinterest | NKS-PUB-000009 | Draft Package | publishing/derivatives/NKS-DER-000036-pinterest-framework-agentic-ai-oversight.md |
+| NKS-DER-000037 | LinkedIn | NKS-PUB-000010 | Draft Package | publishing/derivatives/NKS-DER-000037-linkedin-security-automation-guardrails.md |
+| NKS-DER-000038 | X | NKS-PUB-000010 | Draft Package | publishing/derivatives/NKS-DER-000038-x-thread-security-automation-guardrails.md |
+| NKS-DER-000039 | Instagram | NKS-PUB-000010 | Draft Package | publishing/derivatives/NKS-DER-000039-instagram-carousel-security-automation-guardrails.md |
+| NKS-DER-000040 | Pinterest | NKS-PUB-000010 | Draft Package | publishing/derivatives/NKS-DER-000040-pinterest-framework-security-automation-guardrails.md |
+| NKS-DER-000041 | LinkedIn | NKS-PUB-000011 | Draft Package | publishing/derivatives/NKS-DER-000041-linkedin-agentic-devops.md |
+| NKS-DER-000042 | X | NKS-PUB-000011 | Draft Package | publishing/derivatives/NKS-DER-000042-x-thread-agentic-devops.md |
+| NKS-DER-000043 | Instagram | NKS-PUB-000011 | Draft Package | publishing/derivatives/NKS-DER-000043-instagram-carousel-agentic-devops.md |
+| NKS-DER-000044 | Pinterest | NKS-PUB-000011 | Draft Package | publishing/derivatives/NKS-DER-000044-pinterest-framework-agentic-devops.md |
+| NKS-DER-000045 | LinkedIn | NKS-PUB-000012 | Draft Package | publishing/derivatives/NKS-DER-000045-linkedin-self-healing-systems.md |
+| NKS-DER-000046 | X | NKS-PUB-000012 | Draft Package | publishing/derivatives/NKS-DER-000046-x-thread-self-healing-systems.md |
+| NKS-DER-000047 | Instagram | NKS-PUB-000012 | Draft Package | publishing/derivatives/NKS-DER-000047-instagram-carousel-self-healing-systems.md |
+| NKS-DER-000048 | Pinterest | NKS-PUB-000012 | Draft Package | publishing/derivatives/NKS-DER-000048-pinterest-framework-self-healing-systems.md |
 
 ## Publication Rule
 
@@ -64,6 +80,6 @@ No publication or derivative is public-facing until user approval is recorded.
 
 ## Next Publication Actions
 
-1. Generate full drafts and reviews for NKS-PUB-000009 through NKS-PUB-000012 after technical verification.
-2. Generate derivatives for NKS-PUB-000009 through NKS-PUB-000012 after technical verification.
-3. Sync publication assets to Google Drive when Drive write capability is available.
+1. Perform public-readiness review and citation insertion.
+2. Sync publication assets to Google Drive when Drive write capability is available.
+3. Publish only after user approval.
