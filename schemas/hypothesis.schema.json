@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/nelsonbridge/media-blitz-os/schemas/hypothesis.schema.json",
+  "title": "Hypothesis",
+  "type": "object",
+  "required": ["id", "hypothesis", "origin_observation_ids", "status"],
+  "properties": {
+    "id": {"type": "string"},
+    "hypothesis": {"type": "string"},
+    "origin_observation_ids": {"type": "array", "items": {"type": "string"}},
+    "confidence_at_inception": {"type": "number", "minimum": 0, "maximum": 10},
+    "current_confidence": {"type": "number", "minimum": 0, "maximum": 10},
+    "evidence_for": {"type": "array", "items": {"type": "string"}},
+    "evidence_against": {"type": "array", "items": {"type": "string"}},
+    "descendant_asset_ids": {"type": "array", "items": {"type": "string"}},
+    "status": {
+      "type": "string",
+      "enum": ["active", "strengthened", "revised", "superseded", "rejected", "canonical"]
+    },
+    "last_reviewed": {"type": "string", "format": "date"}
+  }
+}
