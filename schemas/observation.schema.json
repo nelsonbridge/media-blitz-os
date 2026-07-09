@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/nelsonbridge/media-blitz-os/schemas/observation.schema.json",
+  "title": "Observation",
+  "type": "object",
+  "required": ["id", "timestamp", "origin_type", "observation", "status"],
+  "properties": {
+    "id": {"type": "string"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "origin_type": {
+      "type": "string",
+      "enum": ["conversation", "document", "recruiter", "interview", "publication", "project", "external_source", "system_event"]
+    },
+    "origin_reference": {"type": "string"},
+    "observation": {"type": "string"},
+    "initial_confidence": {"type": "number", "minimum": 0, "maximum": 10},
+    "novelty": {"type": "number", "minimum": 0, "maximum": 10},
+    "importance": {"type": "number", "minimum": 0, "maximum": 10},
+    "potential_impact": {"type": "number", "minimum": 0, "maximum": 10},
+    "tags": {"type": "array", "items": {"type": "string"}},
+    "status": {
+      "type": "string",
+      "enum": ["captured", "classified", "promoted_to_signal", "archived", "rejected"]
+    }
+  }
+}
