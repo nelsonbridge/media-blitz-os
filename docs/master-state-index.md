@@ -8,7 +8,7 @@ Single authoritative index for Media Blitz OS / Nelson Knowledge System state.
 
 Sprint 2 — Knowledge Extraction & Corpus Construction
 
-Status: Active. GitHub execution complete for currently available source summaries. Drive sync queued due connector intermittency.
+Status: Active. Source → Proof → Narrative Arc gates are now implemented. Drive sync queued due connector intermittency.
 
 ## Sprint 1 Status
 
@@ -38,16 +38,19 @@ Sprint 1 — Infrastructure Hardening: Complete enough to support Sprint 2.
 - OS Constitution created.
 - No Idle State Rule added to OS Constitution.
 - Decision Matrix created.
+- Source → Proof → Publication Rule created.
+- Narrative Arc Standard created.
+- Publication Readiness Gate created.
 
 ### Schemas and Templates
 
-- Artifact Metadata Schema created.
-- Publication Pipeline Schema created.
-- Medium article template created.
-- LinkedIn post template created.
-- X thread template created.
-- Instagram carousel template created.
-- Pinterest framework pin template created.
+- Artifact Metadata Schema created and updated with source/proof/arc fields.
+- Publication Pipeline Schema created and updated with source/proof/arc workflow states.
+- Medium article template updated with source/proof/arc gate sequence.
+- LinkedIn post template updated with proof and arc boundaries.
+- X thread template updated with proof and arc boundaries.
+- Instagram carousel template updated with proof and arc boundaries.
+- Pinterest framework pin template updated with proof and arc boundaries.
 
 ### Corpus Construction Layer
 
@@ -68,15 +71,25 @@ Sprint 1 — Infrastructure Hardening: Complete enough to support Sprint 2.
 - Publication review checklists created: NKS-PUB-000001 through NKS-PUB-000012.
 - Derivative packages created: NKS-DER-000001 through NKS-DER-000048.
 - Publication Index updated.
+- Proof Ledger created and updated with narrative arc status.
+- Narrative Arc Ledger created.
+- Narrative Arc Retrofit Checklist created.
+- Proof and Arc Retrofit Queue created.
+
+## Current Gate Sequence
+
+Source → Proof → Narrative Arc → Editorial Review → User Approval → Publication → Derivatives.
 
 ## Deferred
 
 - Drive synchronization is queued until Drive connector is available in-session.
 - Public release requires user approval and external platform action.
-- Final public citation insertion remains pending for drafts that require external sources.
+- Final citation insertion remains pending for drafts that require external sources.
+- Arc retrofits remain pending for all current internal drafts.
 
 ## Pending
 
+- Execute Proof and Arc Retrofit Queue.
 - Perform public-readiness review and citation insertion.
 - Continue processing additional source material as available.
 - Sync GitHub-created artifacts to Google Drive.
