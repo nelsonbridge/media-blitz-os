@@ -12,16 +12,20 @@ The publication pipeline tracks how an idea becomes public intellectual property
 6. `Citation Needed`
 7. `Narrative Arc Needed`
 8. `Narrative Arc Drafted`
-9. `Drafting`
-10. `Drafted`
-11. `Editorial Review`
-12. `User Approval Needed`
-13. `Ready for Medium`
-14. `Published on Medium`
-15. `Derivatives Needed`
-16. `Distributed`
-17. `Archived`
-18. `Review Scheduled`
+9. `Visual Package Needed`
+10. `Visual Package Briefed`
+11. `Signature Diagram Needed`
+12. `Signature Diagram Briefed`
+13. `Drafting`
+14. `Drafted`
+15. `Editorial Review`
+16. `User Approval Needed`
+17. `Ready for Medium`
+18. `Published on Medium`
+19. `Derivatives Needed`
+20. `Distributed`
+21. `Archived`
+22. `Review Scheduled`
 
 ## Required Pipeline Fields
 
@@ -35,6 +39,9 @@ The publication pipeline tracks how an idea becomes public intellectual property
 | Proof Category | Experiential, document-derived, repository-derived, publicly verified, quantitative, or unverified. |
 | Proof Status | Current proof posture. |
 | Narrative Arc Status | Arc Needed, Partial Arc, Arc Drafted, Arc Review Needed, or Arc Approved. |
+| Visual Package ID | Links to required visual package. |
+| Signature Diagram ID | Links to required signature diagram for flagship assets. |
+| Visual Status | Planned, Briefed, Generated, Reviewed, Approved, Published, or Archived. |
 | Public Risk | Low, Medium, High. |
 | Owner | Human, assistant, or shared. |
 | Next Action | Concrete next action required. |
@@ -53,13 +60,15 @@ An artifact cannot move to `Ready for Medium` until:
 2. Proof posture is complete.
 3. Required citations or evidence references are identified.
 4. Narrative arc has reached at least `Arc Review Needed`.
-5. Audience, brand-risk, and public-risk fields are complete.
-6. User approval is recorded.
+5. Visual Package is created or explicitly waived.
+6. Signature Diagram is briefed for flagship publications or explicitly waived.
+7. Audience, brand-risk, and public-risk fields are complete.
+8. User approval is recorded.
 
 ## Public Publishing Rule
 
-The assistant may draft, package, proof, and queue assets. The user remains final public-publishing approver until explicitly delegated otherwise.
+The assistant may draft, package, proof, visually brief, and queue assets. The user remains final public-publishing approver until explicitly delegated otherwise.
 
 ## Operating Principle
 
-Source first. Proof second. Narrative arc third. Publication fourth.
+Source first. Proof second. Narrative arc third. Visual package fourth. Publication fifth.
