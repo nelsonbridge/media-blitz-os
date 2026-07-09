@@ -13,6 +13,7 @@ Provide a traversable index of graph records in the Nelson Knowledge System.
 | NKS-GPH-000003 | Agentic AI Governance / Security / DevOps / Resiliency Cluster | corpus/graph/NKS-GPH-000003-ai-governance-cluster.md | AI Governance / Proof System | Complete |
 | NKS-GPH-000004 | Visual Knowledge System | corpus/graph/NKS-GPH-000004-visual-knowledge-system.md | Visual Knowledge | Complete |
 | NKS-GPH-000005 | Interface Architecture | corpus/graph/NKS-GPH-000005-interface-architecture.md | Interface Optionality | Complete |
+| NKS-GPH-000006 | V2 Health / Validation Layer | corpus/graph/NKS-GPH-000006-v2-health-validation-layer.md | V2 Self-Assessment | Complete |
 
 ## Capability Coverage
 
@@ -24,10 +25,14 @@ Provide a traversable index of graph records in the Nelson Knowledge System.
 | Executive Positioning | NKS-GPH-000002 |
 | Opportunity Development | NKS-GPH-000002 |
 | AI Governance Architecture | NKS-GPH-000003 |
-| Proof System | NKS-GPH-000003 |
+| Proof System | NKS-GPH-000003, NKS-GPH-000006 |
 | Security / DevOps / Resiliency | NKS-GPH-000003 |
 | Interface Optionality | NKS-GPH-000005 |
 | Contract Layer | NKS-GPH-000005 |
+| Corpus Health | NKS-GPH-000006 |
+| Validation | NKS-GPH-000006 |
+| Adaptive Prioritization | NKS-GPH-000006 |
+| V2 Self-Assessment | NKS-GPH-000006 |
 
 ## Missing Graph Coverage
 
@@ -36,7 +41,6 @@ Provide a traversable index of graph records in the Nelson Knowledge System.
 | Career / Opportunity Engine cluster | Dedicated graph record. |
 | Feedback / Analytics loop | Graph record after feedback contract exists. |
 | Orchestration / Automation layer | Graph record after orchestrator design exists. |
-| Corpus Health / Validation layer | Graph record after V2 health registers are created. |
 
 ## Traversal Rules
 
@@ -52,4 +56,4 @@ Start with:
 
 ## Current Status
 
-Five major graph records are indexed. The graph now covers foundational operating model, executive value, AI governance, visual knowledge, and interface architecture. Remaining work is expanding graph coverage to career/opportunity, feedback/analytics, orchestration/automation, and V2 health/validation layers.
+Six major graph records are indexed. The graph now covers foundational operating model, executive value, AI governance, visual knowledge, interface architecture, and V2 health/validation. Remaining work is expanding graph coverage to career/opportunity, feedback/analytics, and orchestration/automation.
