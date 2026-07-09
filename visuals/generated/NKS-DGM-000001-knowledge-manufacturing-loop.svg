@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">The Nelson Knowledge Manufacturing Loop</title>
+  <desc id="desc">Executive systems diagram showing source material flowing through knowledge extraction, corpus construction, proof, narrative, visual knowledge, publication, feedback, and corpus enrichment.</desc>
+  <defs>
+    <style>
+      .bg{fill:#ffffff}.title{font:700 44px Arial,Helvetica,sans-serif;fill:#1f2933}.subtitle{font:400 24px Arial,Helvetica,sans-serif;fill:#4b5563}.node{fill:#f8fafc;stroke:#0f2742;stroke-width:3;rx:18}.node2{fill:#ffffff;stroke:#0f2742;stroke-width:5;rx:18}.shield{fill:#f8fafc;stroke:#0f2742;stroke-width:3}.text{font:700 20px Arial,Helvetica,sans-serif;fill:#1f2933;text-anchor:middle}.small{font:400 15px Arial,Helvetica,sans-serif;fill:#4b5563;text-anchor:middle}.arrow{stroke:#0f2742;stroke-width:4;fill:none;marker-end:url(#arrow)}.feed{stroke:#047857;stroke-width:5;fill:none;marker-end:url(#arrowGreen)}.pending{stroke:#b45309;stroke-width:3;stroke-dasharray:10 8;fill:none}.footer{font:400 16px Arial,Helvetica,sans-serif;fill:#6b7280}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0f2742"/></marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#047857"/></marker>
+  </defs>
+  <rect class="bg" width="1600" height="900"/>
+  <text x="800" y="70" class="title" text-anchor="middle">The Nelson Knowledge Manufacturing Loop</text>
+  <text x="800" y="110" class="subtitle" text-anchor="middle">Publishing is an output, not the objective.</text>
+
+  <rect x="70" y="245" width="190" height="110" class="node" rx="18"/>
+  <text x="165" y="292" class="text">Source</text><text x="165" y="320" class="small">Conversations, docs,</text><text x="165" y="342" class="small">whitepapers, notes</text>
+
+  <rect x="305" y="245" width="210" height="110" class="node" rx="18"/>
+  <text x="410" y="292" class="text">Knowledge</text><text x="410" y="318" class="text">Extraction</text><text x="410" y="344" class="small">Durable ideas</text>
+
+  <rect x="560" y="235" width="220" height="130" class="node2" rx="18"/>
+  <text x="670" y="288" class="text">Canonical</text><text x="670" y="316" class="text">Corpus</text><text x="670" y="344" class="small">Stable artifacts</text>
+
+  <path d="M885 236 L980 270 L980 338 L885 372 L790 338 L790 270 Z" class="shield"/>
+  <text x="885" y="296" class="text">Proof</text><text x="885" y="324" class="small">Bounded claims</text>
+
+  <rect x="1035" y="245" width="200" height="110" class="node" rx="18"/>
+  <text x="1135" y="292" class="text">Narrative</text><text x="1135" y="320" class="small">Reader journey</text>
+
+  <rect x="1280" y="245" width="240" height="110" class="node" rx="18"/>
+  <text x="1400" y="292" class="text">Visual Knowledge</text><text x="1400" y="320" class="small">Diagrams, cards,</text><text x="1400" y="342" class="small">carousels</text>
+
+  <rect x="680" y="520" width="240" height="110" class="node" rx="18"/>
+  <text x="800" y="568" class="text">Publication Engine</text><text x="800" y="596" class="small">Medium + derivatives</text>
+
+  <rect x="980" y="520" width="220" height="110" class="node" rx="18"/>
+  <text x="1090" y="568" class="text">Feedback</text><text x="1090" y="596" class="small">Review + signal</text>
+
+  <rect x="405" y="520" width="220" height="110" class="node" rx="18"/>
+  <text x="515" y="568" class="text">Corpus</text><text x="515" y="596" class="text">Enrichment</text>
+
+  <path d="M260 300 H305" class="arrow"/><path d="M515 300 H560" class="arrow"/><path d="M780 300 H790" class="arrow"/><path d="M980 300 H1035" class="arrow"/><path d="M1235 300 H1280" class="arrow"/>
+  <path d="M1400 355 C1400 430 920 430 820 520" class="arrow"/>
+  <path d="M920 575 H980" class="arrow"/>
+  <path d="M980 610 C820 745 610 745 515 630" class="feed"/>
+  <path d="M515 520 C525 440 600 405 670 365" class="feed"/>
+
+  <text x="800" y="780" class="subtitle" text-anchor="middle">The archive stores inputs. The corpus manufactures reusable knowledge.</text>
+  <text x="70" y="850" class="footer">NKS-DGM-000001 • Generated SVG asset • Publication: NKS-PUB-000001</text>
+</svg>
