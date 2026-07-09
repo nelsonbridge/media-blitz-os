@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/nelsonbridge/media-blitz-os/schemas/validation-signal.schema.json",
+  "title": "ValidationSignal",
+  "type": "object",
+  "required": ["id", "asset_id", "change_class", "status"],
+  "properties": {
+    "id": {"type": "string"},
+    "asset_id": {"type": "string"},
+    "candidate_change": {"type": "string"},
+    "change_class": {
+      "type": "string",
+      "enum": ["evolution", "drift", "regression", "mutation", "unclassified"]
+    },
+    "reality_alignment": {"type": "number", "minimum": 0, "maximum": 10},
+    "predictive_gain": {"type": "number", "minimum": 0, "maximum": 10},
+    "explanatory_gain": {"type": "number", "minimum": 0, "maximum": 10},
+    "transfer_gain": {"type": "number", "minimum": 0, "maximum": 10},
+    "coherence_gain": {"type": "number", "minimum": 0, "maximum": 10},
+    "evidence_gain": {"type": "number", "minimum": 0, "maximum": 10},
+    "decision_gain": {"type": "number", "minimum": 0, "maximum": 10},
+    "generative_gain": {"type": "number", "minimum": 0, "maximum": 10},
+    "conservation_of_insight": {"type": "number", "minimum": 0, "maximum": 10},
+    "validation_notes": {"type": "string"},
+    "status": {
+      "type": "string",
+      "enum": ["pending", "validated", "quarantined", "rejected", "needs_more_evidence"]
+    }
+  }
+}
