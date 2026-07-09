@@ -1,0 +1,73 @@
+contract_version: 1.0
+contract_type: publication
+package_id: NKS-PUB-000001
+artifact_id: NKS-ART-000001
+source_record_id: NKS-SRC-000001
+proof_record_id: research/proof-ledger.md#NKS-PUB-000001
+narrative_record_id: publishing/narrative-arc-ledger.md#NKS-PUB-000001
+visual_package_id: NKS-VIS-000001
+status: public_readiness_candidate
+approval:
+  required: true
+  approved: false
+  approved_by: null
+  approved_at: null
+publication:
+  title: "The Corpus Is Manufactured, Not Found"
+  subtitle: "The mistake is treating knowledge as storage when the real work is production."
+  body_markdown_path: "publishing/medium-drafts/NKS-PUB-000001-the-corpus-is-manufactured-not-found-draft.md"
+  canonical_slug: "the-corpus-is-manufactured-not-found"
+  excerpt: "A folder full of documents is not a knowledge system. The asset is the manufacturing capability that turns source material into reusable knowledge."
+  tags:
+    - knowledge-management
+    - systems-thinking
+    - intellectual-property
+    - executive-architecture
+    - content-strategy
+  canonical_url: null
+visuals:
+  hero_image_id: NKS-HRO-000001
+  signature_diagram_id: NKS-DGM-000001
+  carousel_ids:
+    - NKS-CAR-000001
+  quote_card_ids:
+    - NKS-QTC-000001
+  pinterest_ids:
+    - NKS-PIN-000001
+distribution:
+  channels:
+    - Medium
+    - LinkedIn
+    - X
+    - Instagram
+    - Pinterest
+  schedule:
+    publish_now: false
+    publish_at: null
+  adapter_target: pending_selection
+metadata:
+  audience:
+    - executives
+    - transformation leaders
+    - AI-enabled operators
+    - knowledge workers
+  pillar: Nelson Knowledge System
+  risk_level: low
+  proof_status: architecture-derived; repository-derived; no external performance claims
+  narrative_arc_status: complete
+  visual_status: briefed; generation pending
+audit:
+  created_at: 2026-07-09
+  updated_at: 2026-07-09
+  created_by: assistant
+  last_validated_by: assistant
+validation:
+  source_lineage_recorded: true
+  proof_boundary_recorded: true
+  narrative_arc_complete: true
+  visual_package_created: true
+  signature_diagram_briefed: true
+  hero_image_briefed: true
+  user_approval_recorded: false
+  adapter_selected: false
+  ready_for_publication: false
