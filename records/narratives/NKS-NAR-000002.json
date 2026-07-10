@@ -1,0 +1,18 @@
+{
+  "id": "NKS-NAR-000002",
+  "title": "Narrative Arc — Media Blitz Is the Publishing Subsystem",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000002",
+  "recognition": "Publishing efforts often begin with visible platforms, cadence, and output.",
+  "reframe": "Visibility is not architecture; publishing is downstream of durable knowledge manufacturing.",
+  "framework": "Source material, extraction, canonical artifacts, corpus, publication engine, and platform derivatives form distinct layers.",
+  "proof": "The Nelson Knowledge System repository already separates corpus, governance, runtime, visual, publication, and derivative records.",
+  "application": "Use Media Blitz OS to convert governed canonical knowledge into articles, posts, threads, diagrams, and campaign packages.",
+  "consequence": "When publishing remains a subsystem, each public artifact can strengthen and reuse the larger knowledge architecture.",
+  "invitation": "Evaluate publishing systems by the knowledge supply chain behind them, not by output volume alone.",
+  "gate_status": "ready"
+}
