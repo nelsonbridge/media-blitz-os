@@ -1,0 +1,23 @@
+{
+  "id": "NKS-PRF-000008",
+  "title": "Proof Boundary — Executive Value Before the Resume",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000008",
+  "category": "strategic-and-experiential",
+  "supported_claims": [
+    "A resume is a compressed artifact that cannot fully demonstrate how an executive frames problems or makes decisions.",
+    "Public writing and frameworks can provide context before formal application review.",
+    "A coherent body of work can make an executive operating philosophy more legible to recruiters and opportunity sponsors."
+  ],
+  "unsupported_claims": [
+    "Any universal claim that public publishing improves hiring outcomes.",
+    "Any quantified conversion claim for recruiters, interviews, or offers.",
+    "Any claim that resumes are unnecessary or ineffective."
+  ],
+  "citations_required": false,
+  "gate_status": "ready"
+}
