@@ -4,12 +4,13 @@
   "status": "planned",
   "metadata": {
     "canonical": true,
-    "record_version": 1
+    "record_version": 1,
+    "signature_request_id": "NKS-VRQ-000007"
   },
   "artifact_id": "NKS-ART-000003",
   "publication_id": "NKS-PUB-000003",
-  "signature_diagram_id": null,
+  "signature_diagram_id": "NKS-DGM-000003",
   "hero_image_id": null,
-  "asset_ids": [],
+  "asset_ids": ["NKS-DGM-000003"],
   "gate_status": "needed"
 }
