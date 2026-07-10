@@ -1,0 +1,18 @@
+{
+  "id": "NKS-NAR-000010",
+  "title": "Narrative Arc — Security Automation Needs Guardrails",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000010",
+  "recognition": "Security automation promises faster triage, enrichment, correlation, recommendation, and remediation.",
+  "reframe": "Faster response also increases the speed and reach of mistakes.",
+  "framework": "Allowed actions, required approvals, forbidden actions, scope, escalation, rollback, least privilege, and audit evidence define the guardrails.",
+  "proof": "The draft distinguishes speed from safety and explicitly holds technical claims for current verification.",
+  "application": "Security leaders can govern automation as an operating capability with authority proportionate to consequence.",
+  "consequence": "Well-designed guardrails make automation more trustworthy and reviewable rather than merely more powerful.",
+  "invitation": "Design boundaries as deliberately as capabilities before trusting security automation.",
+  "gate_status": "ready"
+}
