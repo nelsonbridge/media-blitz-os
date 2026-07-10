@@ -1,0 +1,16 @@
+{
+  "id": "NKS-VIS-000010",
+  "title": "Visual Package — Security Automation Needs Guardrails",
+  "status": "planned",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "placeholder": true
+  },
+  "artifact_id": "NKS-ART-000010",
+  "publication_id": "NKS-PUB-000010",
+  "signature_diagram_id": null,
+  "hero_image_id": null,
+  "asset_ids": [],
+  "gate_status": "needed"
+}
