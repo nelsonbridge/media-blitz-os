@@ -1,0 +1,17 @@
+{
+  "id": "NKS-PUB-000006",
+  "title": "Coherence Beats Compliance",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "readiness_class": "visual-and-editorial-needed"
+  },
+  "artifact_id": "NKS-ART-000006",
+  "proof_id": "NKS-PRF-000006",
+  "narrative_id": "NKS-NAR-000006",
+  "visual_package_id": "NKS-VIS-000006",
+  "draft_path": "publishing/medium-drafts/NKS-PUB-000006-coherence-beats-compliance-draft.md",
+  "editorial_status": "needed",
+  "user_approval": "needed"
+}
