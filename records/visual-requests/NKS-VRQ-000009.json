@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000009",
+  "visual_id": "NKS-DGM-000005",
+  "publication_id": "NKS-PUB-000005",
+  "asset_type": "signature-diagram",
+  "prompt": "Create a clean executive systems diagram titled 'Clarity Is an Economic Instrument'. Show unmanaged ambiguity producing translation work, escalation, rework, decision latency, and trust erosion. Show designed clarity through priorities, ownership, constraints, decision rights, escalation paths, and operating principles, leading to reduced friction and improved coordinated action. Use qualitative relationships only, with no numerical ROI claims.",
+  "proof_boundaries": [
+    "Do not include percentages, dollar savings, productivity multipliers, or quantified ROI.",
+    "Present reduced friction as a conceptual operating relationship, not a measured result.",
+    "Do not imply that all ambiguity is harmful or avoidable."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-DGM-000005",
+    "visual_package_id": "NKS-VIS-000005",
+    "review_required": true
+  }
+}
