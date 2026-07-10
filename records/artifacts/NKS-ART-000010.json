@@ -1,0 +1,14 @@
+{
+  "id": "NKS-ART-000010",
+  "title": "Security Automation Needs Guardrails",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "pillar": "ai governance and trust"
+  },
+  "source_ids": ["NKS-SRC-000003"],
+  "proof_status": "partial",
+  "narrative_status": "ready",
+  "visual_status": "needed"
+}
