@@ -1,0 +1,23 @@
+{
+  "id": "NKS-PRF-000003",
+  "title": "Proof Boundary — GitHub as Knowledge-System Control Plane",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000003",
+  "category": "repository-implemented",
+  "supported_claims": [
+    "The repository stores governance, state, schemas, templates, canonical records, generated views, and synchronization artifacts.",
+    "Local execution can continue when a preferred workspace or hosted CI surface is unavailable.",
+    "GitHub currently provides versioned persistence and audit history for the Nelson Knowledge System."
+  ],
+  "unsupported_claims": [
+    "GitHub is the permanent production architecture.",
+    "Google Drive is fully synchronized in every session.",
+    "The system has measured public or commercial outcomes."
+  ],
+  "citations_required": false,
+  "gate_status": "ready"
+}
