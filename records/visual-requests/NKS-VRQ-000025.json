@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000025",
+  "visual_id": "NKS-HRO-000010",
+  "publication_id": "NKS-PUB-000010",
+  "asset_type": "hero-image",
+  "prompt": "Create an editorial hero image for 'Security Automation Needs Guardrails'. Show fast-moving security automation contained within clearly designed boundaries, approvals, least-privilege zones, escalation paths, and audit trails. Use abstract cybersecurity architecture rather than shields, hackers, or product dashboards. Emphasize governed speed rather than fear.",
+  "proof_boundaries": [
+    "Do not imply current capabilities of specific security products.",
+    "Do not claim quantified incident-response or risk-reduction outcomes.",
+    "Do not depict automated remediation as suitable for every event."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-HRO-000010",
+    "visual_package_id": "NKS-VIS-000010",
+    "review_required": true
+  }
+}
