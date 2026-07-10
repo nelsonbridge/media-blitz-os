@@ -2,23 +2,19 @@
 
 ## Purpose
 
-Single authoritative index for Media Blitz OS / Nelson Knowledge System state.
+Single authoritative index for the Nelson Knowledge System.
 
-The project is governed as a knowledge manufacturing system. Publishing is one output, not the objective.
+The system manufactures governed intellectual property from fragmented source material. Publishing is one downstream output.
 
 ## Active Sprint
 
 Sprint 2 — Knowledge Extraction, Runtime Construction, and Corpus Manufacturing
 
-Status: Active. Publication #1 is a public-readiness candidate. Runtime v0.1 functional core, generated views, GitHub persistence adapters, and offline dependency extraction are verified locally. Source → Proof → Narrative Arc → Visual Package gates are implemented. Drive synchronization remains queued when its connector is unavailable.
+Status: Active.
 
-## Why the System Exists
+Publication #1 is internally ready except for generated-asset review and explicit user publication approval. Runtime v0.1 is operational for the current canonical publication set.
 
-The Nelson Knowledge System exists to convert fragmented source material into reusable intellectual property.
-
-Source material includes conversations, whitepapers, resumes, role analyses, executive profiles, diagrams, proof records, and future public feedback. The system manufactures canonical artifacts, proof posture, narrative structure, visual knowledge packages, publication packages, and derivative assets.
-
-## Current Manufacturing Pipeline
+## Manufacturing Pipeline
 
 Source
 → Evidence / Proof
@@ -30,233 +26,153 @@ Source
 → Feedback
 → Corpus Enrichment
 
-## Current Runtime Topology
+## Runtime Topology
 
-- ChatGPT: orchestration and application-level execution.
-- Local Python: primary offline test, transformation, export, and reconciliation runtime.
-- GitHub: current canonical persistence, source control, contracts, code, and audit surface.
-- GitHub Actions: optional secondary CI surface; not on the critical path.
-- Drive, Docs, and Sheets: human editorial and operational views.
-- Gmail, Outlook, Calendar, Contacts, and Automations: communication, identity, scheduling, and monitoring adapters.
-- Web, Consensus, uploaded files: evidence adapters.
-- Image generation: visual renderer adapter.
-- Medium and social platforms: publication adapters or manual fallback targets.
+- ChatGPT: orchestration and application execution.
+- Local Python: primary test, transformation, export/import, and reconciliation runtime.
+- GitHub: current canonical persistence, source control, and audit surface.
+- GitHub Actions: optional secondary CI surface.
+- Drive, Docs, and Sheets: generated human workspaces behind portable contracts.
+- Email, calendars, contacts, and automations: notification, identity, scheduling, and monitoring adapters.
+- Web, Consensus, and uploaded files: evidence adapters.
+- Image generation: visual rendering adapter.
+- Medium and social platforms: direct or manual publication adapters.
 
-All external systems remain behind portable interfaces and adapters.
+External systems remain adapters. Domain policy and canonical identifiers remain portable.
 
-## Completed
-
-### Google Drive Foundation
-
-- Google Drive foundation established.
-- Editorial Constitution created.
-- Content Pillar Map created.
-- Editorial OS sheet created.
-
-### GitHub Control Plane
-
-- GitHub control plane established.
-- Project State Ledger created.
-- Execution Protocol created.
-- Execution Queue created.
-- Master State Index created and updated.
-- Drive Sync Ledger created and updated.
+## Completed Foundation
 
 ### Governance and Architecture
 
-- Media Blitz Charter created.
-- OS Constitution created.
-- No Idle State Rule added to OS Constitution.
-- Decision Matrix created.
-- Source → Proof → Publication Rule created.
-- Narrative Arc Standard created.
-- Publication Readiness Gate created and updated for visual package requirements.
-- Visual Knowledge System governance created.
-- Diagram Language Standard created.
-- Portable Runtime Rule created.
-- Capability Reassessment Protocol created.
-- Connected Ecosystem Capability Inventory created.
-- Runtime Topology created.
-- ADR-0001 — Own the Contract Layer created.
-- ADR-0002 — Hybrid Buy, Modular Design created.
+- OS Constitution and No Idle State Rule.
+- Source → Proof → Publication Rule.
+- Narrative Arc Standard.
+- Publication Readiness Gate.
+- Visual Knowledge System and Diagram Language Standard.
+- Portable Runtime Rule.
+- Capability Reassessment Protocol.
+- Connected Ecosystem Capability Inventory and machine-readable registry.
+- Runtime Topology.
+- ADR-0001 — Own the Contract Layer.
+- ADR-0002 — Hybrid Buy, Modular Design.
 
-### Schemas, Contracts, and Templates
+### Corpus and Publication
 
-- Artifact Metadata Schema created and updated with source/proof/arc/visual fields.
-- Publication Pipeline Schema created and updated with source/proof/arc/visual workflow states.
-- Visual Artifact Schema created.
-- Publication Contract v1 created.
-- Adapter Contract v1 created.
-- Publication Contract payload created for NKS-PUB-000001.
-- Integration Security Boundary v1 created.
-- Medium article template updated with source/proof/arc gate sequence.
-- LinkedIn post template updated with proof and arc boundaries.
-- X thread template updated with proof and arc boundaries.
-- Instagram carousel template updated with proof and arc boundaries.
-- Pinterest framework pin template updated with proof and arc boundaries.
-- Signature Diagram Template created.
-- Hero Image Brief Template created.
-- Visual Package Template created.
-- Carousel Visual Template created.
-- Proof Graphic Template created.
+- Source records NKS-SRC-000001 through NKS-SRC-000003.
+- Corpus artifacts NKS-ART-000001 through NKS-ART-000012.
+- Publication packages and Medium drafts NKS-PUB-000001 through NKS-PUB-000012.
+- Review checklists for all twelve publications.
+- Derivative packages NKS-DER-000001 through NKS-DER-000048.
+- Proof, narrative, relationship-map, roadmap, and retrofit artifacts.
 
-### Corpus Construction Layer
-
-- Canonical Artifact Specification created.
-- Corpus Construction Workflow created.
-- Source Record Template created.
-- Artifact Record Template created.
-- Source records created: NKS-SRC-000001 through NKS-SRC-000003.
-- Corpus artifacts created: NKS-ART-000001 through NKS-ART-000012.
-- Corpus Index created and updated.
-- Relationship maps created for architecture, executive value, and AI governance clusters.
-- Verification note created for AI governance publication cluster.
-- Knowledge Roadmap created.
-
-### Publication Layer
-
-- Publication packages created: NKS-PUB-000001 through NKS-PUB-000012.
-- Full Medium drafts created: NKS-PUB-000001 through NKS-PUB-000012.
-- NKS-PUB-000001 revised into public-readiness candidate.
-- Publication review checklists created: NKS-PUB-000001 through NKS-PUB-000012.
-- Publication readiness checklist created for NKS-PUB-000001.
-- Derivative packages created: NKS-DER-000001 through NKS-DER-000048.
-- Publication Index updated.
-- Proof Ledger created and updated with narrative arc status.
-- Narrative Arc Ledger created.
-- Narrative Arc Retrofit Checklist created.
-- Proof and Arc Retrofit Queue created.
-
-### Visual Knowledge Layer
-
-- Visual Knowledge System governance created.
-- Diagram Language Standard created.
-- Visual Artifact Schema created.
-- Visual templates created.
-- Visual Package Index created.
-- Visual Generation Queue created.
-- First Visual Package created: NKS-VIS-000001.
-- First Signature Diagram Brief created: NKS-DGM-000001.
-- First Hero Image Brief created: NKS-HRO-000001.
-- First Carousel Brief created: NKS-CAR-000001.
-- First Quote Card Brief created: NKS-QTC-000001.
-- First Pinterest Visual Brief created: NKS-PIN-000001.
-
-### Runtime Layer
-
-- Python Runtime v0.1 package created.
-- Platform-neutral domain models created.
-- Repository ports created.
-- Filesystem JSON and event adapters created.
-- Governance-as-code readiness policies created.
-- Manufacturing application service created.
-- Runtime CLI created.
-- Canonical JSON records created for NKS-PUB-000001 and its parent records.
-- GitHub record repository adapter created.
-- GitHub append-only event repository created.
-- Concrete GitHub contents client created with optimistic concurrency and classified errors.
-- First real manufacturing event persisted for NKS-PUB-000001.
-- Deterministic Markdown view generator created.
-- Generated publication, proof, visual-package, event, and capability summaries committed.
-- CLI commands added for generated views and portable state export/import.
-- Portable checksummed export/import capability created.
-- Functional, negative-gate, real-record, dependency-extraction, generated-view, event, and adapter tests created.
-- Local functional verification completed: 6 tests passed in 0.14 seconds.
-- Generated-view verification completed: 1 test passed in 0.13 seconds.
-- GitHub event repository verification completed: 2 tests passed in 0.08 seconds.
-- GitHub contents client verification completed: 1 test passed in 0.12 seconds.
-- Dependency-extraction verification completed: 3 tests passed in 0.10 seconds.
-- Formal functional-test and dependency-extraction reports committed.
-
-### Integration Layer
-
-- Integration Evaluation Matrix created.
-- TryPost and Postiz advanced to first technical validation.
-- BrightBean Studio, Mixpost, Socioboard, and Buffer Free Tier recorded as additional candidates/reference options.
-- Technical Backlog created.
-- Connected Ecosystem Execution Backlog created.
-- Machine-readable ecosystem capability registry created.
-
-## Current Gate Sequence
-
-Source → Proof → Narrative Arc → Visual Package → Editorial Review → User Approval → Publication → Derivatives.
-
-## Current Publication Milestone 1 State
+### Publication 1
 
 NKS-PUB-000001 — The Corpus Is Manufactured, Not Found
 
-Status: Public-readiness candidate.
-
 Complete:
 
-- Article revised.
-- Source/proof boundary recorded.
-- Narrative arc completed.
-- Visual package exists.
-- Signature Diagram brief exists.
-- Hero Image brief exists.
-- Carousel brief exists.
-- Quote Card brief exists.
-- Pinterest brief exists.
-- Publication Contract payload exists.
-- Readiness checklist exists.
-- Canonical JSON record set exists.
-- Manufacturing event exists.
-- Generated publication, proof, visual-package, event, and capability views exist.
-- Runtime readiness test confirms user approval is the sole expected publication gate failure.
+- Article revision.
+- Source and proof boundary.
+- Narrative arc.
+- Canonical source, artifact, proof, narrative, visual, and publication JSON records.
+- Publication Contract payload.
+- Readiness checklist.
+- Visual package NKS-VIS-000001.
+- Briefs for signature diagram, hero image, carousel, quote card, and Pinterest pin.
+- Proof-bounded render requests NKS-VRQ-000001 through NKS-VRQ-000005.
+- Manufacturing event.
+- Generated publication, proof, visual-package, visual-request, event, feedback, and capability views.
 
-Remaining before external publication:
+Current gate result:
 
-- Generate visual assets.
-- Review generated visual assets.
-- Select automated or manual distribution adapter.
-- User approval.
-- Publish or queue for manual publication.
+- Source: pass
+- Proof: pass
+- Narrative arc: pass
+- Visual package: pass
+- Editorial readiness: pass
+- User approval: pending
+
+### Runtime v0.1
+
+Implemented:
+
+- Platform-neutral domain models.
+- Repository and event ports.
+- Filesystem record and event adapters.
+- GitHub record and append-only event adapters.
+- Concrete GitHub contents client with optimistic concurrency and classified errors.
+- Governance-as-code validators.
+- Manufacturing application service.
+- Deterministic generated views.
+- Portable checksummed export/import.
+- Runtime CLI.
+- Drive/Docs/Sheets-neutral workspace contracts.
+- In-memory workspace adapters and canonical-wins reconciliation.
+- Manual publication fallback and explicit approval enforcement.
+- Feedback ingestion, persistence, events, and explicit promotion to source records.
+- Visual renderer contract and manual render-package fallback.
+
+Verified local results:
+
+- Runtime core: 6 passed in 0.14s
+- Generated views: 1 passed in 0.13s
+- GitHub event repository: 2 passed in 0.08s
+- GitHub contents client: 1 passed in 0.12s
+- Dependency extraction: 3 passed in 0.10s
+- Workspace contracts: 3 passed in 0.12s
+- Workspace adapters and reconciliation: 4 passed in 0.09s
+- Delivery and feedback workflows: 3 passed in 0.15s
+- Manual visual renderer: 1 passed in 0.12s
+
+No hosted GitHub Actions result is claimed.
 
 ## Current Critical Path
 
-1. Canonical state is read from GitHub or imported from a portable checksummed bundle.
+1. Canonical state is read from GitHub or imported from a portable bundle.
 2. Local runtime executes policies, tests, transformations, generated views, and reconciliation.
-3. GitHub persists records, events, generated views, and audit state.
-4. Image generation renders approved visual briefs.
-5. User approval releases the publication package.
-6. Automated or manual publication adapter distributes it.
-7. Feedback becomes new source/evidence records.
+3. GitHub persists records, events, views, and audit state.
+4. Image generation renders NKS-VRQ-000001 through NKS-VRQ-000005.
+5. User reviews generated assets.
+6. Explicit user approval releases NKS-PUB-000001.
+7. Direct or manual publication adapter distributes it.
+8. Public URLs and receipts are recorded.
+9. Feedback and metrics become classified feedback records and optional new source records.
 
-GitHub Actions and Google Drive are not on the critical path.
+GitHub Actions and Drive are not on the critical path.
 
-## Deferred
+## Remaining Work
 
-- Drive synchronization is queued until Drive connector availability permits execution.
-- Public release requires user approval and an external platform action.
-- Visual package creation remains pending for NKS-PUB-000002 through NKS-PUB-000012.
-- Visual generation remains pending for NKS-DGM-000001, NKS-HRO-000001, NKS-CAR-000001, NKS-QTC-000001, and NKS-PIN-000001.
-- General GitHub Actions run listing and dispatch are not exposed by the current connector surface.
+### Internally executable
 
-## Pending
+- Expand canonical JSON conversion to publications 2–12.
+- Execute proof and narrative retrofit for publications 2–12.
+- Create visual packages and render requests for publications 2–12.
+- Evaluate direct publication adapters against the existing contracts.
+- Sync generated views to Drive when that adapter is selected for execution.
 
-- Reconcile or retire stale manually maintained indexes after canonical conversion expands beyond NKS-PUB-000001.
-- Implement Drive/Docs/Sheets adapter contracts.
-- Generate and review NKS-PUB-000001 visual assets.
-- Validate manual and direct distribution adapters.
-- Execute Proof and Arc Retrofit Queue for remaining drafts.
-- Complete visual packages for NKS-PUB-000002 through NKS-PUB-000012.
-- Sync generated human views to Google Drive.
-- Publish approved assets to Medium and derivative platforms.
-- Implement feedback ingestion.
+### External or user-gated for Publication 1
+
+- Generate five visual assets.
+- Review and approve or reject each asset.
+- Record explicit publication approval.
+- Publish through a direct or manual adapter.
+- Record public URLs and receipts.
+- Ingest feedback and metrics.
 
 ## Canonical Stores
 
-- GitHub: current canonical persistence, governance, state, schemas, contracts, corpus records, visual records, code, tests, generated views, and audit history.
-- Filesystem export: portable execution, verification, extraction, migration, and disaster-recovery store.
-- Drive: generated editorial workspace and human-facing views when connector availability permits.
+- GitHub: current canonical persistence, governance, state, schemas, contracts, records, code, tests, generated views, and audit history.
+- Filesystem bundle: portable execution, verification, migration, and disaster recovery.
+- Drive: generated editorial workspace and human-facing views.
 
-## Current Operating Rules
+## Operating Rules
 
-1. If executable work remains anywhere in the approved backlog, the assistant must not become idle.
-2. Before declaring a connector or capability blocker, execute the Capability Reassessment Protocol.
-3. Empty or scoped connector results must not be treated as proof of absence beyond the tool's documented scope.
-4. External systems are adapters; domain policy and canonical identifiers remain portable.
+1. Continue the highest-priority unblocked work.
+2. Reassess capabilities before declaring a blocker.
+3. Scoped or empty connector results do not prove wider absence.
+4. External systems are adapters.
+5. Publication requires explicit recorded user approval.
+6. Generated visuals require review before public use.
 
 ## Rule
 
