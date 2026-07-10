@@ -26,7 +26,7 @@ Publication Contract:
 
 Medium-ready Markdown:
 
-`publishing/medium-ready/NKS-PUB-000001-medium-ready.md`
+`publishing/ready/NKS-PUB-000001-published.md`
 
 ## Field Mapping
 
@@ -63,7 +63,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 playwright install chromium
-python3 scripts/publish_to_medium.py /path/to/NKS-PUB-000001-medium-ready.md
+python3 scripts/publish_to_medium.py /path/to/NKS-PUB-000001-published.md
 ```
 
 ## Output Capture

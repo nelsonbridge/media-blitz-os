@@ -12,7 +12,7 @@ This tool uses Playwright to open a Chromium browser, authenticate to Medium, pu
 
 ## NKS Source File
 
-`publishing/medium-ready/NKS-PUB-000001-medium-ready.md`
+`publishing/ready/NKS-PUB-000001-published.md`
 
 ## Step 1 — Clone POC Tool
 
@@ -35,7 +35,7 @@ playwright install chromium
 From inside the cloned `publish-to-medium` repo:
 
 ```bash
-python3 scripts/publish_to_medium.py /absolute/path/to/media-blitz-os/publishing/medium-ready/NKS-PUB-000001-medium-ready.md
+python3 scripts/publish_to_medium.py /absolute/path/to/media-blitz-os/publishing/ready/NKS-PUB-000001-published.md
 ```
 
 ## Step 4 — Authenticate
