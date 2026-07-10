@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000002",
+  "visual_id": "NKS-HRO-000001",
+  "publication_id": "NKS-PUB-000001",
+  "asset_type": "hero-image",
+  "prompt": "Create a sophisticated editorial hero image for an article titled 'The Corpus Is Manufactured, Not Found'. Visualize fragmented notes, conversations, diagrams, and files being deliberately assembled into a coherent knowledge system. The composition should feel architectural and intellectual rather than futuristic or robotic. Use a restrained professional aesthetic suitable for Medium and LinkedIn, with generous negative space for title placement and no embedded text.",
+  "proof_boundaries": [
+    "Do not depict the system as fully autonomous.",
+    "Do not imply measured business outcomes or public adoption.",
+    "Avoid logos or platform branding."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-HRO-000001",
+    "visual_package_id": "NKS-VIS-000001",
+    "review_required": true
+  }
+}
