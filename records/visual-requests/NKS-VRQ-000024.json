@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000024",
+  "visual_id": "NKS-HRO-000009",
+  "publication_id": "NKS-PUB-000009",
+  "asset_type": "hero-image",
+  "prompt": "Create a sophisticated editorial hero image for 'Agentic AI Requires Human Oversight Architecture'. Depict an autonomous decision engine operating inside a visible governance envelope with human oversight points, authority boundaries, telemetry, escalation, and rollback. Use abstract enterprise AI imagery, no humanoid robots, no vendor branding, and no implication of unrestricted autonomy.",
+  "proof_boundaries": [
+    "Do not imply capabilities of specific current AI products.",
+    "Do not claim quantified safety, reliability, or business outcomes.",
+    "Do not imply one oversight model fits every risk class."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-HRO-000009",
+    "visual_package_id": "NKS-VIS-000009",
+    "review_required": true
+  }
+}
