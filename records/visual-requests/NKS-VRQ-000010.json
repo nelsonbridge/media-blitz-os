@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000010",
+  "visual_id": "NKS-DGM-000006",
+  "publication_id": "NKS-PUB-000006",
+  "asset_type": "signature-diagram",
+  "prompt": "Create a comparison diagram titled 'Coherence Beats Compliance'. On the left show visible compliance: ceremonies, templates, dashboards, checklists, and process language. On the right show operating coherence: aligned decisions, incentives, language, trust, execution, and feedback. Include a central distinction: process performance can look green while the operating system remains fragmented. Use restrained enterprise design and avoid caricature.",
+  "proof_boundaries": [
+    "Do not imply that process or compliance is inherently useless.",
+    "Do not include unsupported transformation statistics.",
+    "Show coherence as a system property, not universal agreement."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-DGM-000006",
+    "visual_package_id": "NKS-VIS-000006",
+    "review_required": true
+  }
+}
