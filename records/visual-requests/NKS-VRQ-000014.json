@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000014",
+  "visual_id": "NKS-DGM-000010",
+  "publication_id": "NKS-PUB-000010",
+  "asset_type": "signature-diagram",
+  "prompt": "Create a security automation operating-envelope diagram titled 'Security Automation Needs Guardrails'. Show automation capabilities inside explicit boundaries: allowed actions, approval-required actions, forbidden actions, scope limits, least privilege, escalation conditions, rollback, and audit evidence. Contrast 'speed only' with 'governed speed'. Use vendor-neutral security architecture styling and clear consequence tiers.",
+  "proof_boundaries": [
+    "Do not name specific security products or imply current product capabilities.",
+    "Do not claim quantified incident-response or risk-reduction outcomes.",
+    "Do not imply automated remediation is appropriate for every security event."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-DGM-000010",
+    "visual_package_id": "NKS-VIS-000010",
+    "review_required": true
+  }
+}
