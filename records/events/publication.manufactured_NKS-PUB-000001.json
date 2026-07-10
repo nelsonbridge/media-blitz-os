@@ -1,0 +1,13 @@
+{
+  "event_id": "publication.manufactured:NKS-PUB-000001",
+  "event_type": "publication.manufactured",
+  "subject_id": "NKS-PUB-000001",
+  "payload": {
+    "artifact_id": "NKS-ART-000001",
+    "source_id": "NKS-SRC-000001",
+    "proof_id": "NKS-PRF-000001",
+    "narrative_id": "NKS-NAR-000001",
+    "visual_package_id": "NKS-VIS-000001",
+    "readiness": "user-approval-pending"
+  }
+}
