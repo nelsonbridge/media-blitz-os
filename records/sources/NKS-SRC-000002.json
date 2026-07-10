@@ -1,0 +1,16 @@
+{
+  "id": "NKS-SRC-000002",
+  "title": "The Architecture of Inevitable Value",
+  "status": "approved",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "locator_type": "repository-record"
+  },
+  "source_type": "document-derived",
+  "source_location": "repository-record:NKS-SRC-000002",
+  "limitations": [
+    "Quantitative claims require independent verification before publication.",
+    "The original Markdown filename was not resolved through the current connector search surface."
+  ]
+}
