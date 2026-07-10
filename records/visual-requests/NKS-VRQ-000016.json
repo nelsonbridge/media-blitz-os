@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000016",
+  "visual_id": "NKS-DGM-000012",
+  "publication_id": "NKS-PUB-000012",
+  "asset_type": "signature-diagram",
+  "prompt": "Create a systems resiliency governance diagram titled 'Self-Healing Systems Need Governance'. Show detection -> diagnosis -> proposed remediation -> authority check -> automatic action, approval, or escalation -> verification -> rollback if needed -> audit record. Surround the loop with boundaries for safe automatic actions, approval-required actions, forbidden actions, stop conditions, observability, and accountable ownership. Use vendor-neutral SRE architecture styling.",
+  "proof_boundaries": [
+    "Do not name specific products or imply current self-healing capabilities.",
+    "Do not claim quantified incident-duration or cost reductions.",
+    "Do not imply autonomous remediation is suitable for every failure class."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-DGM-000012",
+    "visual_package_id": "NKS-VIS-000012",
+    "review_required": true
+  }
+}
