@@ -1,0 +1,18 @@
+{
+  "id": "NKS-NAR-000012",
+  "title": "Narrative Arc — Self-Healing Systems Need Governance",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000012",
+  "recognition": "Self-healing systems promise shorter incidents and less repetitive operational work.",
+  "reframe": "Automated repair is an authority model because the system can change production conditions on its own.",
+  "framework": "Safe automatic actions, approval-required actions, forbidden actions, remediation signals, escalation, stop conditions, rollback, and observability define the governance model.",
+  "proof": "The draft grounds the argument in concrete remediation categories while withholding unverified technical and quantitative claims.",
+  "application": "Platform and SRE leaders can match remediation authority to consequence and preserve evidence for review.",
+  "consequence": "Governed self-healing can scale responsibility without turning automation into opaque operational uncertainty.",
+  "invitation": "Design when the system must not repair itself, not only how it can.",
+  "gate_status": "ready"
+}
