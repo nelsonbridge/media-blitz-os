@@ -1,0 +1,17 @@
+{
+  "id": "NKS-PUB-000001",
+  "title": "The Corpus Is Manufactured, Not Found",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "readiness_class": "public-readiness-candidate"
+  },
+  "artifact_id": "NKS-ART-000001",
+  "proof_id": "NKS-PRF-000001",
+  "narrative_id": "NKS-NAR-000001",
+  "visual_package_id": "NKS-VIS-000001",
+  "draft_path": "publishing/drafts/NKS-PUB-000001.md",
+  "editorial_status": "ready",
+  "user_approval": "needed"
+}
