@@ -1,0 +1,19 @@
+{
+  "request_id": "NKS-VRQ-000028",
+  "visual_id": "NKS-CAR-000002",
+  "publication_id": "NKS-PUB-000002",
+  "asset_type": "carousel",
+  "prompt": "Create a seven-panel executive carousel for 'Media Blitz Is the Publishing Subsystem, Not the System'. Panels: 1 title; 2 why channel-first thinking is incomplete; 3 publishing is downstream; 4 the larger Nelson Knowledge System; 5 Media Blitz OS as the publishing subsystem; 6 why the distinction prevents content drift; 7 operating principle: build the knowledge system that supplies the content machine. Use sparse text, modular diagrams, and consistent typography.",
+  "proof_boundaries": [
+    "Do not imply all platforms are directly automated.",
+    "Do not claim measured authority, reach, or career outcomes.",
+    "Do not present Media Blitz OS as the whole system."
+  ],
+  "dimensions": "1080x1350 per panel",
+  "metadata": {
+    "brief_id": "NKS-CAR-000002",
+    "visual_package_id": "NKS-VIS-000002",
+    "review_required": true,
+    "panel_count": 7
+  }
+}
