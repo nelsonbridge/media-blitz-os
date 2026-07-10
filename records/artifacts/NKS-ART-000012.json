@@ -1,0 +1,14 @@
+{
+  "id": "NKS-ART-000012",
+  "title": "Self-Healing Systems Need Governance",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "pillar": "enterprise technology and agentic systems"
+  },
+  "source_ids": ["NKS-SRC-000003"],
+  "proof_status": "partial",
+  "narrative_status": "ready",
+  "visual_status": "needed"
+}
