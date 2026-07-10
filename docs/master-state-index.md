@@ -157,7 +157,7 @@ All external systems remain behind portable interfaces and adapters.
 - Concrete GitHub contents client created with optimistic concurrency and classified errors.
 - First real manufacturing event persisted for NKS-PUB-000001.
 - Deterministic Markdown view generator created.
-- Generated publication, proof, visual-package, and capability summaries committed.
+- Generated publication, proof, visual-package, event, and capability summaries committed.
 - CLI commands added for generated views and portable state export/import.
 - Portable checksummed export/import capability created.
 - Functional, negative-gate, real-record, dependency-extraction, generated-view, event, and adapter tests created.
@@ -202,7 +202,7 @@ Complete:
 - Readiness checklist exists.
 - Canonical JSON record set exists.
 - Manufacturing event exists.
-- Generated publication, proof, and visual-package views exist.
+- Generated publication, proof, visual-package, event, and capability views exist.
 - Runtime readiness test confirms user approval is the sole expected publication gate failure.
 
 Remaining before external publication:
@@ -235,7 +235,6 @@ GitHub Actions and Google Drive are not on the critical path.
 
 ## Pending
 
-- Add generated event and runtime-state summaries.
 - Reconcile or retire stale manually maintained indexes after canonical conversion expands beyond NKS-PUB-000001.
 - Implement Drive/Docs/Sheets adapter contracts.
 - Generate and review NKS-PUB-000001 visual assets.
