@@ -1,0 +1,18 @@
+{
+  "id": "NKS-NAR-000004",
+  "title": "Narrative Arc — The No Idle State Rule",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000004",
+  "recognition": "Execution systems often stop because they lose state, return to conversational posture, or ask for confirmation when the next task is already known.",
+  "reframe": "After execution is authorized, waiting without a genuine blocker is an operating failure rather than caution.",
+  "framework": "Select the highest-priority unblocked task, execute it, verify it, update state, and continue until completion or a valid stop condition.",
+  "proof": "The rule is codified in repository governance and reflected in the system's queues, gates, state index, fallback adapters, and verification loop.",
+  "application": "Use the rule in AI-assisted operations, project governance, transformation work, and any system where approved work spans multiple steps.",
+  "consequence": "State-backed execution reduces repeated planning, tool rediscovery, unnecessary confirmation, and premature summaries.",
+  "invitation": "When the next task is known and safe, execute it rather than converting the workflow back into a conversation.",
+  "gate_status": "ready"
+}
