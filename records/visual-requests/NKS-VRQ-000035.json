@@ -1,0 +1,19 @@
+{
+  "request_id": "NKS-VRQ-000035",
+  "visual_id": "NKS-CAR-000009",
+  "publication_id": "NKS-PUB-000009",
+  "asset_type": "carousel",
+  "prompt": "Create a seven-panel executive carousel for 'Agentic AI Requires Human Oversight Architecture'. Panels: 1 title; 2 autonomy changes the risk model; 3 autonomy is not maturity; 4 oversight must be designed; 5 consequence-based control points; 6 telemetry makes governance real; 7 operating principle: the more the system can do, the clearer its limits must be. Use vendor-neutral AI governance visuals.",
+  "proof_boundaries": [
+    "Do not imply capabilities of specific current AI products.",
+    "Do not claim quantified safety, reliability, or business outcomes.",
+    "Do not imply one oversight model fits every risk class."
+  ],
+  "dimensions": "1080x1350 per panel",
+  "metadata": {
+    "brief_id": "NKS-CAR-000009",
+    "visual_package_id": "NKS-VIS-000009",
+    "review_required": true,
+    "panel_count": 7
+  }
+}
