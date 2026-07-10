@@ -10,7 +10,7 @@ The project is governed as a knowledge manufacturing system. Publishing is one o
 
 Sprint 2 — Knowledge Extraction, Runtime Construction, and Corpus Manufacturing
 
-Status: Active. Publication #1 is a public-readiness candidate. Runtime v0.1 functional core is verified locally. Source → Proof → Narrative Arc → Visual Package gates are implemented. Drive synchronization remains queued when its connector is unavailable.
+Status: Active. Publication #1 is a public-readiness candidate. Runtime v0.1 functional core, generated views, GitHub persistence adapters, and offline dependency extraction are verified locally. Source → Proof → Narrative Arc → Visual Package gates are implemented. Drive synchronization remains queued when its connector is unavailable.
 
 ## Why the System Exists
 
@@ -152,10 +152,21 @@ All external systems remain behind portable interfaces and adapters.
 - Manufacturing application service created.
 - Runtime CLI created.
 - Canonical JSON records created for NKS-PUB-000001 and its parent records.
-- GitHub record adapter contract created.
-- Functional, negative-gate, real-record, dependency-extraction, and adapter contract tests created.
+- GitHub record repository adapter created.
+- GitHub append-only event repository created.
+- Concrete GitHub contents client created with optimistic concurrency and classified errors.
+- First real manufacturing event persisted for NKS-PUB-000001.
+- Deterministic Markdown view generator created.
+- Generated publication, proof, visual-package, and capability summaries committed.
+- CLI commands added for generated views and portable state export/import.
+- Portable checksummed export/import capability created.
+- Functional, negative-gate, real-record, dependency-extraction, generated-view, event, and adapter tests created.
 - Local functional verification completed: 6 tests passed in 0.14 seconds.
-- Formal functional-test report committed.
+- Generated-view verification completed: 1 test passed in 0.13 seconds.
+- GitHub event repository verification completed: 2 tests passed in 0.08 seconds.
+- GitHub contents client verification completed: 1 test passed in 0.12 seconds.
+- Dependency-extraction verification completed: 3 tests passed in 0.10 seconds.
+- Formal functional-test and dependency-extraction reports committed.
 
 ### Integration Layer
 
@@ -164,6 +175,7 @@ All external systems remain behind portable interfaces and adapters.
 - BrightBean Studio, Mixpost, Socioboard, and Buffer Free Tier recorded as additional candidates/reference options.
 - Technical Backlog created.
 - Connected Ecosystem Execution Backlog created.
+- Machine-readable ecosystem capability registry created.
 
 ## Current Gate Sequence
 
@@ -189,6 +201,8 @@ Complete:
 - Publication Contract payload exists.
 - Readiness checklist exists.
 - Canonical JSON record set exists.
+- Manufacturing event exists.
+- Generated publication, proof, and visual-package views exist.
 - Runtime readiness test confirms user approval is the sole expected publication gate failure.
 
 Remaining before external publication:
@@ -201,9 +215,9 @@ Remaining before external publication:
 
 ## Current Critical Path
 
-1. Canonical state is read from GitHub or exported JSON.
-2. Local runtime executes policies, tests, transformations, and reconciliation.
-3. GitHub persists results and audit state.
+1. Canonical state is read from GitHub or imported from a portable checksummed bundle.
+2. Local runtime executes policies, tests, transformations, generated views, and reconciliation.
+3. GitHub persists records, events, generated views, and audit state.
 4. Image generation renders approved visual briefs.
 5. User approval releases the publication package.
 6. Automated or manual publication adapter distributes it.
@@ -221,10 +235,9 @@ GitHub Actions and Google Drive are not on the critical path.
 
 ## Pending
 
-- Generate indexes from canonical JSON records.
-- Add GitHub event persistence.
-- Implement a concrete GitHub persistence client against the adapter protocol.
-- Execute full offline export/import dependency extraction.
+- Add generated event and runtime-state summaries.
+- Reconcile or retire stale manually maintained indexes after canonical conversion expands beyond NKS-PUB-000001.
+- Implement Drive/Docs/Sheets adapter contracts.
 - Generate and review NKS-PUB-000001 visual assets.
 - Validate manual and direct distribution adapters.
 - Execute Proof and Arc Retrofit Queue for remaining drafts.
@@ -235,8 +248,8 @@ GitHub Actions and Google Drive are not on the critical path.
 
 ## Canonical Stores
 
-- GitHub: current canonical persistence, governance, state, schemas, contracts, corpus records, visual records, code, tests, and audit history.
-- Filesystem export: portable execution, verification, extraction, and migration store.
+- GitHub: current canonical persistence, governance, state, schemas, contracts, corpus records, visual records, code, tests, generated views, and audit history.
+- Filesystem export: portable execution, verification, extraction, migration, and disaster-recovery store.
 - Drive: generated editorial workspace and human-facing views when connector availability permits.
 
 ## Current Operating Rules
