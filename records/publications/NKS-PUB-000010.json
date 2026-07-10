@@ -1,0 +1,17 @@
+{
+  "id": "NKS-PUB-000010",
+  "title": "Security Automation Needs Guardrails",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "readiness_class": "proof-verification-and-visual-needed"
+  },
+  "artifact_id": "NKS-ART-000010",
+  "proof_id": "NKS-PRF-000010",
+  "narrative_id": "NKS-NAR-000010",
+  "visual_package_id": "NKS-VIS-000010",
+  "draft_path": "publishing/medium-drafts/NKS-PUB-000010-security-automation-guardrails-draft.md",
+  "editorial_status": "needed",
+  "user_approval": "needed"
+}
