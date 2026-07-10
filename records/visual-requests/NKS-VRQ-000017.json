@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000017",
+  "visual_id": "NKS-HRO-000002",
+  "publication_id": "NKS-PUB-000002",
+  "asset_type": "hero-image",
+  "prompt": "Create a polished editorial hero image for 'Media Blitz Is the Publishing Subsystem, Not the System'. Depict a larger modular knowledge architecture with a smaller publishing engine nested inside it, sending finished outputs toward several distribution surfaces. Use abstract systems imagery, executive editorial composition, generous negative space, and no platform logos or literal social-media interface elements.",
+  "proof_boundaries": [
+    "Do not imply every platform is directly automated.",
+    "Do not portray publishing as the whole system.",
+    "Do not include claims about measured reach, authority, or career outcomes."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-HRO-000002",
+    "visual_package_id": "NKS-VIS-000002",
+    "review_required": true
+  }
+}
