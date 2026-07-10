@@ -1,0 +1,16 @@
+{
+  "id": "NKS-SRC-000003",
+  "title": "Agentic AI Security and Operations Whitepapers",
+  "status": "approved",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "locator_type": "repository-record"
+  },
+  "source_type": "whitepaper-cluster",
+  "source_location": "repository-record:NKS-SRC-000003",
+  "limitations": [
+    "All public technical claims require current verification against primary sources.",
+    "Product-specific and standards-specific details may have changed since the source documents were assembled."
+  ]
+}
