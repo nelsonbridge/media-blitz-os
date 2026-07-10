@@ -1,0 +1,18 @@
+{
+  "id": "NKS-NAR-000011",
+  "title": "Narrative Arc — Agentic DevOps Beyond CI/CD",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000011",
+  "recognition": "CI/CD made software delivery more repeatable, but pipeline motion does not by itself answer whether a release is wise under current conditions.",
+  "reframe": "The larger opportunity for agentic DevOps is governed delivery risk rather than raw acceleration.",
+  "framework": "Test results, code quality, dependency health, vulnerability exposure, environment state, customer impact, compliance, incidents, and rollback readiness form the decision context.",
+  "proof": "The draft grounds the argument in the difference between pipeline capability and release consequence while withholding unverified product-specific claims.",
+  "application": "Agentic systems can summarize risk, connect fragmented signals, recommend checks, and route elevated decisions to human review.",
+  "consequence": "Delivery becomes more explainable and governable instead of merely faster.",
+  "invitation": "Judge DevOps maturity by the quality of release-risk decisions, not only pipeline speed.",
+  "gate_status": "ready"
+}
