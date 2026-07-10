@@ -1,0 +1,23 @@
+{
+  "id": "NKS-PRF-000005",
+  "title": "Proof Boundary — Clarity as an Economic Instrument",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000005",
+  "category": "experiential-and-document-derived",
+  "supported_claims": [
+    "Unclear priorities, ownership, constraints, and decision rights create translation and escalation work.",
+    "Clarity can reduce decision latency and execution friction when embedded into operating systems.",
+    "The current draft presents clarity as an architectural leadership capability rather than a communication style."
+  ],
+  "unsupported_claims": [
+    "Any specific percentage reduction in cost, delay, rework, or decision time.",
+    "Any universal causal claim that clarity alone produces economic gains.",
+    "Any quantified return-on-investment claim not supported by verified source data."
+  ],
+  "citations_required": true,
+  "gate_status": "partial"
+}
