@@ -1,0 +1,19 @@
+{
+  "request_id": "NKS-VRQ-000036",
+  "visual_id": "NKS-CAR-000010",
+  "publication_id": "NKS-PUB-000010",
+  "asset_type": "carousel",
+  "prompt": "Create a seven-panel executive carousel for 'Security Automation Needs Guardrails'. Panels: 1 title; 2 speed changes consequence; 3 faster is not automatically safer; 4 boundaries are architecture; 5 least privilege and approval tiers; 6 auditability and accountability; 7 operating principle: guardrails make automation trustworthy enough to use. Use vendor-neutral security architecture visuals.",
+  "proof_boundaries": [
+    "Do not imply capabilities of specific current security products.",
+    "Do not claim quantified incident-response or risk-reduction outcomes.",
+    "Do not depict automated remediation as appropriate for every event."
+  ],
+  "dimensions": "1080x1350 per panel",
+  "metadata": {
+    "brief_id": "NKS-CAR-000010",
+    "visual_package_id": "NKS-VIS-000010",
+    "review_required": true,
+    "panel_count": 7
+  }
+}
