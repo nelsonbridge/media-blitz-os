@@ -1,0 +1,17 @@
+{
+  "id": "NKS-PUB-000011",
+  "title": "Agentic DevOps Beyond CI/CD",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "readiness_class": "proof-verification-and-visual-needed"
+  },
+  "artifact_id": "NKS-ART-000011",
+  "proof_id": "NKS-PRF-000011",
+  "narrative_id": "NKS-NAR-000011",
+  "visual_package_id": "NKS-VIS-000011",
+  "draft_path": "publishing/medium-drafts/NKS-PUB-000011-agentic-devops-beyond-cicd-draft.md",
+  "editorial_status": "needed",
+  "user_approval": "needed"
+}
