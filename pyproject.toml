@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nelson-knowledge-system"
+version = "0.1.0"
+description = "Portable runtime for the Nelson Knowledge System"
+requires-python = ">=3.11"
+dependencies = [
+  "pydantic>=2.8,<3",
+  "typer>=0.12,<1",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<9"]
+
+[project.scripts]
+nks = "nks.cli.main:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/nks"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"
