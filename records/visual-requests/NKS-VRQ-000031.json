@@ -1,0 +1,19 @@
+{
+  "request_id": "NKS-VRQ-000031",
+  "visual_id": "NKS-CAR-000005",
+  "publication_id": "NKS-PUB-000005",
+  "asset_type": "carousel",
+  "prompt": "Create a seven-panel executive carousel for 'Clarity Is an Economic Instrument'. Panels: 1 title; 2 ambiguity creates translation work; 3 decision latency and rework; 4 clarity orders complexity; 5 the architecture of clarity; 6 how clarity exposes hidden friction; 7 operating principle: ambiguity is expensive, clarity creates leverage. Use qualitative diagrams only and sparse executive copy.",
+  "proof_boundaries": [
+    "Do not include percentages, dollar values, or quantified ROI.",
+    "Do not imply all ambiguity is harmful or avoidable.",
+    "Present leverage as a conceptual operating relationship, not a measured result."
+  ],
+  "dimensions": "1080x1350 per panel",
+  "metadata": {
+    "brief_id": "NKS-CAR-000005",
+    "visual_package_id": "NKS-VIS-000005",
+    "review_required": true,
+    "panel_count": 7
+  }
+}
