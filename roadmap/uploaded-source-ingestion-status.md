@@ -1,7 +1,7 @@
 # Uploaded Source Ingestion Status
 
 ## Current Status
-Uploaded source ingestion has moved from passive availability to active corpus integration and second-stage capability expansion.
+Uploaded source ingestion has moved from passive availability to active corpus integration, second-stage capability expansion, and post-expansion validation.
 
 ## Newly Ingested Sources
 - NKS-SRC-000004 — Agentic AI Use Cases and Reference Patterns.
@@ -25,6 +25,13 @@ Uploaded source ingestion has moved from passive availability to active corpus i
 - NKS-PROOF-000001 — Executive Outcome Claim Packet.
 - NKS-GPH-000009 — Ingestion Expansion Layer.
 
+## Third-Stage Validation Assets
+- Five proof worksheets for executive outcome claim areas.
+- Three generated SVG domain reference visuals.
+- NKS-GPH-000010 — Visual and Release Expansion Layer.
+- NKS-REL-000002 — Uploaded Source Diagnostic Release Test.
+- NKS-HEALTH-000002 — Post Uploaded-Source Expansion Health Re-score.
+
 ## Capability Impact
 This ingestion pass improves:
 
@@ -37,13 +44,20 @@ This ingestion pass improves:
 - Diagnostic maturity.
 - Visual generation readiness.
 - Claim-boundary control.
+- Release-test coverage.
+- Corpus health maturity.
+
+## Current Health Signal
+Post-expansion corpus health score: 44 / 50.
+
+Interpretation: High-functioning Knowledge Manufacturing Corpus approaching adaptive platform maturity.
 
 ## Remaining Work
-1. Create individual proof worksheets for highest-value executive claims.
-2. Generate SVG visuals for the agentic AI domain reference architecture set.
-3. Add generated visuals to the Visual Knowledge graph.
-4. Connect new diagnostics to release-test records.
-5. Re-score corpus health after ingestion expansion.
+1. Complete blocked test-assurance visual through alternate production path.
+2. Attach corroborating evidence to proof worksheets when available.
+3. Update global graph index with NKS-GPH-000009 and NKS-GPH-000010.
+4. Build release feedback capture after internal review.
+5. Add public-ready derivative packages only after proof and visual gaps are resolved.
 
 ## Status
 Active. Continue from remaining work list under No Idle State Rule.
