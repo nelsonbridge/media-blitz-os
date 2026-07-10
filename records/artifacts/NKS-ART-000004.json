@@ -1,0 +1,17 @@
+{
+  "id": "NKS-ART-000004",
+  "title": "No Idle State Rule",
+  "status": "approved",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "pillar": "operational architecture",
+    "subpillar": "execution discipline",
+    "evidence_posture": "documented-governance-rule",
+    "confidence": "high"
+  },
+  "source_ids": ["NKS-SRC-000001"],
+  "proof_status": "ready",
+  "narrative_status": "ready",
+  "visual_status": "needed"
+}
