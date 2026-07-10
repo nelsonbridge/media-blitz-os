@@ -1,0 +1,15 @@
+{
+  "id": "NKS-VIS-000004",
+  "title": "Visual Package — The No Idle State Rule",
+  "status": "planned",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000004",
+  "publication_id": "NKS-PUB-000004",
+  "signature_diagram_id": null,
+  "hero_image_id": null,
+  "asset_ids": [],
+  "gate_status": "needed"
+}
