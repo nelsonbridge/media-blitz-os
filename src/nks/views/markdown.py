@@ -77,6 +77,26 @@ def render_visual_index(root: Path) -> str:
     return "\n".join(lines)
 
 
+def render_event_index(root: Path) -> str:
+    records = _load_records(root, "events")
+    lines = [
+        "# Generated Workflow Event Index",
+        "",
+        "> Generated from `records/events/*.json`. Do not edit manually.",
+        "",
+        "| Event ID | Event Type | Subject ID | Payload Fields |",
+        "|---|---|---|---:|",
+    ]
+    for item in records:
+        lines.append(
+            "| {event_id} | {event_type} | {subject_id} | {payload_count} |".format(
+                **item, payload_count=len(item.get("payload", {}))
+            )
+        )
+    lines.extend(["", f"Total workflow events: {len(records)}", ""])
+    return "\n".join(lines)
+
+
 def render_capability_summary(registry_path: Path) -> str:
     registry = json.loads(registry_path.read_text(encoding="utf-8"))
     capabilities = sorted(registry.get("capabilities", []), key=lambda item: item["id"])
@@ -109,6 +129,7 @@ def write_generated_views(repository_root: Path) -> list[Path]:
         output_root / "publication-index.md": render_publication_index(records_root),
         output_root / "proof-index.md": render_proof_index(records_root),
         output_root / "visual-package-index.md": render_visual_index(records_root),
+        output_root / "event-index.md": render_event_index(records_root),
         output_root / "ecosystem-capabilities.md": render_capability_summary(
             records_root / "capabilities" / "ecosystem-capabilities.json"
         ),
