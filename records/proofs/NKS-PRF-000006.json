@@ -1,0 +1,23 @@
+{
+  "id": "NKS-PRF-000006",
+  "title": "Proof Boundary — Coherence Beats Compliance",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000006",
+  "category": "experiential-and-document-derived",
+  "supported_claims": [
+    "Organizations can satisfy visible process requirements while incentives, decision rights, and execution remain misaligned.",
+    "Process is useful when it supports sensemaking and decision quality rather than replacing them.",
+    "The draft defines coherence through aligned priorities, language, incentives, decisions, trust, and feedback."
+  ],
+  "unsupported_claims": [
+    "A universal claim that compliance is always harmful.",
+    "Any quantified claim about transformation failure rates caused by compliance.",
+    "Any claim that process alone is sufficient or irrelevant in every context."
+  ],
+  "citations_required": false,
+  "gate_status": "ready"
+}
