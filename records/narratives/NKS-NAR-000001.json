@@ -1,0 +1,18 @@
+{
+  "id": "NKS-NAR-000001",
+  "title": "Narrative Arc — The Corpus Is Manufactured, Not Found",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000001",
+  "recognition": "Valuable knowledge is fragmented across conversations, files, frameworks, and operating experience.",
+  "reframe": "A useful corpus is not simply discovered; it is deliberately manufactured from those fragments.",
+  "framework": "Source, proof, canonical artifact, narrative arc, visual package, publication, and feedback form one manufacturing system.",
+  "proof": "The repository already contains governed records, ledgers, publication packages, visual briefs, and a portable runtime skeleton.",
+  "application": "New source material enters through the same gates and becomes reusable written, visual, and operational assets.",
+  "consequence": "Each completed artifact strengthens the corpus and reduces the cost of producing future high-quality work.",
+  "invitation": "Evaluate knowledge work as a compounding system rather than a sequence of isolated posts.",
+  "gate_status": "ready"
+}
