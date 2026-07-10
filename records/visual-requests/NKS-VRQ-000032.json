@@ -1,0 +1,19 @@
+{
+  "request_id": "NKS-VRQ-000032",
+  "visual_id": "NKS-CAR-000006",
+  "publication_id": "NKS-PUB-000006",
+  "asset_type": "carousel",
+  "prompt": "Create a seven-panel executive carousel for 'Coherence Beats Compliance'. Panels: 1 title; 2 visible process can mimic alignment; 3 compliance versus coherence; 4 process cannot replace sensemaking; 5 coherence as a system property; 6 contradictions that expose incoherence; 7 operating principle: ask whether the system makes enough sense to move. Use clean comparisons and restrained typography.",
+  "proof_boundaries": [
+    "Do not imply process or compliance is inherently useless.",
+    "Do not include unsupported transformation statistics.",
+    "Do not depict coherence as universal agreement."
+  ],
+  "dimensions": "1080x1350 per panel",
+  "metadata": {
+    "brief_id": "NKS-CAR-000006",
+    "visual_package_id": "NKS-VIS-000006",
+    "review_required": true,
+    "panel_count": 7
+  }
+}
