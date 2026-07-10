@@ -1,0 +1,23 @@
+{
+  "id": "NKS-PRF-000001",
+  "title": "Proof Boundary — The Corpus Is Manufactured, Not Found",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000001",
+  "category": "repository-derived",
+  "supported_claims": [
+    "The Nelson Knowledge System has explicit source, proof, narrative, visual, publication, and derivative records.",
+    "The runtime is being implemented with platform-neutral domain models and repository interfaces.",
+    "Publishing is treated as a downstream output of a larger knowledge-manufacturing workflow."
+  ],
+  "unsupported_claims": [
+    "The system has already produced measurable public reach or conversion outcomes.",
+    "The current GitHub runtime is the permanent production architecture.",
+    "All external integrations are fully operational."
+  ],
+  "citations_required": false,
+  "gate_status": "ready"
+}
