@@ -12,7 +12,7 @@ Sprint 2 — Knowledge Extraction, Runtime Construction, and Corpus Manufacturin
 
 Status: Active.
 
-Publication #1 is internally ready except for generated-asset review and explicit user publication approval. Runtime v0.1 is operational for the current canonical publication set.
+Runtime v0.1 is operational for all twelve canonical publications. Publication #1 is internally ready except for generated-asset review and explicit user publication approval.
 
 ## Manufacturing Pipeline
 
@@ -58,14 +58,16 @@ External systems remain adapters. Domain policy and canonical identifiers remain
 
 ### Corpus and Publication
 
-- Source records NKS-SRC-000001 through NKS-SRC-000003.
+- Canonical source records NKS-SRC-000001 through NKS-SRC-000003.
 - Corpus artifacts NKS-ART-000001 through NKS-ART-000012.
 - Publication packages and Medium drafts NKS-PUB-000001 through NKS-PUB-000012.
+- Canonical artifact, proof, narrative, visual-package, and publication JSON records for all twelve publications.
 - Review checklists for all twelve publications.
 - Derivative packages NKS-DER-000001 through NKS-DER-000048.
 - Proof, narrative, relationship-map, roadmap, and retrofit artifacts.
+- Generated publication, proof, and visual indexes now report twelve records each.
 
-### Publication 1
+### Publication #1
 
 NKS-PUB-000001 — The Corpus Is Manufactured, Not Found
 
@@ -85,12 +87,23 @@ Complete:
 
 Current gate result:
 
-- Source: pass
-- Proof: pass
-- Narrative arc: pass
-- Visual package: pass
-- Editorial readiness: pass
-- User approval: pending
+- Source: pass.
+- Proof: pass.
+- Narrative arc: pass.
+- Visual package: pass.
+- Editorial readiness: pass.
+- User approval: pending.
+
+### Publications #2–#12
+
+Canonical conversion is complete.
+
+Gate posture:
+
+- NKS-PUB-000002 through NKS-PUB-000004: proof and narrative ready; visuals, editorial review, and approval needed.
+- NKS-PUB-000005: proof partial pending quantitative verification; narrative ready; visuals, editorial review, and approval needed.
+- NKS-PUB-000006 through NKS-PUB-000008: proof and narrative ready; visuals, editorial review, and approval needed.
+- NKS-PUB-000009 through NKS-PUB-000012: proof partial pending current primary-source verification; narrative ready; visuals, editorial review, and approval needed.
 
 ### Runtime v0.1
 
@@ -114,15 +127,18 @@ Implemented:
 
 Verified local results:
 
-- Runtime core: 6 passed in 0.14s
-- Generated views: 1 passed in 0.13s
-- GitHub event repository: 2 passed in 0.08s
-- GitHub contents client: 1 passed in 0.12s
-- Dependency extraction: 3 passed in 0.10s
-- Workspace contracts: 3 passed in 0.12s
-- Workspace adapters and reconciliation: 4 passed in 0.09s
-- Delivery and feedback workflows: 3 passed in 0.15s
-- Manual visual renderer: 1 passed in 0.12s
+- Runtime core: 6 passed in 0.14s.
+- Generated views: 1 passed in 0.13s.
+- GitHub event repository: 2 passed in 0.08s.
+- GitHub contents client: 1 passed in 0.12s.
+- Dependency extraction: 3 passed in 0.10s.
+- Workspace contracts: 3 passed in 0.12s.
+- Workspace adapters and reconciliation: 4 passed in 0.09s.
+- Delivery and feedback workflows: 3 passed in 0.15s.
+- Manual visual renderer: 1 passed in 0.12s.
+- Publication #2 readiness: 1 passed in 0.09s.
+- Twelve-publication canonical reference and gate verification: passed.
+- Twelve-publication generated-index coverage: passed.
 
 No hosted GitHub Actions result is claimed.
 
@@ -131,12 +147,15 @@ No hosted GitHub Actions result is claimed.
 1. Canonical state is read from GitHub or imported from a portable bundle.
 2. Local runtime executes policies, tests, transformations, generated views, and reconciliation.
 3. GitHub persists records, events, views, and audit state.
-4. Image generation renders NKS-VRQ-000001 through NKS-VRQ-000005.
-5. User reviews generated assets.
-6. Explicit user approval releases NKS-PUB-000001.
-7. Direct or manual publication adapter distributes it.
-8. Public URLs and receipts are recorded.
-9. Feedback and metrics become classified feedback records and optional new source records.
+4. Proof-bounded visual requests are prepared for Publications #2–#12.
+5. Current evidence verification completes for proof-partial publications.
+6. Editorial reviews complete.
+7. Image generation renders approved requests.
+8. Users review generated assets.
+9. Explicit user approval releases a publication.
+10. Direct or manual publication adapter distributes it.
+11. Public URLs and receipts are recorded.
+12. Feedback and metrics become classified records and optional new source records.
 
 GitHub Actions and Drive are not on the critical path.
 
@@ -144,13 +163,14 @@ GitHub Actions and Drive are not on the critical path.
 
 ### Internally executable
 
-- Expand canonical JSON conversion to publications 2–12.
-- Execute proof and narrative retrofit for publications 2–12.
-- Create visual packages and render requests for publications 2–12.
+- Create visual briefs and render requests for Publications #2–#12.
+- Perform quantitative verification for NKS-PUB-000005.
+- Perform current primary-source technical verification for NKS-PUB-000009 through NKS-PUB-000012.
+- Run editorial reviews for Publications #2–#12.
 - Evaluate direct publication adapters against the existing contracts.
 - Sync generated views to Drive when that adapter is selected for execution.
 
-### External or user-gated for Publication 1
+### External or user-gated for Publication #1
 
 - Generate five visual assets.
 - Review and approve or reject each asset.
