@@ -1,0 +1,23 @@
+{
+  "id": "NKS-PRF-000011",
+  "title": "Proof Boundary — Agentic DevOps Beyond CI/CD",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000011",
+  "category": "document-derived-technical",
+  "supported_claims": [
+    "Release decisions can depend on test results, dependency health, vulnerabilities, environment state, compliance, incidents, and rollback readiness.",
+    "A risk-governance approach considers whether a release should move and what evidence supports that decision, not only whether the pipeline can move.",
+    "Agentic coordination can be framed as surfacing fragmented signals and routing higher-risk decisions to human review."
+  ],
+  "unsupported_claims": [
+    "Any product-specific DevOps or agent capability not revalidated against current primary documentation.",
+    "Any quantified claim about deployment speed, failure reduction, or business outcomes.",
+    "Any assertion that agentic systems can safely replace engineering judgment."
+  ],
+  "citations_required": true,
+  "gate_status": "partial"
+}
