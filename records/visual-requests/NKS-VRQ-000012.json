@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000012",
+  "visual_id": "NKS-DGM-000008",
+  "publication_id": "NKS-PUB-000008",
+  "asset_type": "signature-diagram",
+  "prompt": "Create a professional signal-chain diagram titled 'The Resume Should Not Be the First Signal'. Show Public Writing, Frameworks, Visual Models, Whitepapers, Interviews, and Professional Conversations feeding Market Context, then the Resume serving as confirmation rather than introduction. Contrast this with a resume-only path that compresses titles, dates, and claims but reveals less about judgment. Use executive portfolio aesthetics and neutral language.",
+  "proof_boundaries": [
+    "Do not claim guaranteed recruiter, interview, or hiring outcomes.",
+    "Do not imply resumes are obsolete or unnecessary.",
+    "Present public work as context and proof, not self-promotional volume."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-DGM-000008",
+    "visual_package_id": "NKS-VIS-000008",
+    "review_required": true
+  }
+}
