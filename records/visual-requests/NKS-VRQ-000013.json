@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000013",
+  "visual_id": "NKS-DGM-000009",
+  "publication_id": "NKS-PUB-000009",
+  "asset_type": "signature-diagram",
+  "prompt": "Create an AI governance architecture diagram titled 'Governed Autonomy'. Place an agentic system at the center with an operating envelope around it. Show authority boundaries, approval points, escalation paths, logging and telemetry, exception handling, rollback conditions, and accountable human ownership. Use consequence-based oversight tiers from low-risk recommendation to high-impact action requiring explicit approval. Keep the design vendor-neutral and technically restrained.",
+  "proof_boundaries": [
+    "Do not name or imply capabilities of specific current AI products.",
+    "Do not claim that one oversight model fits every risk class.",
+    "Do not include quantified safety or reliability claims."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-DGM-000009",
+    "visual_package_id": "NKS-VIS-000009",
+    "review_required": true
+  }
+}
