@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000019",
+  "visual_id": "NKS-HRO-000004",
+  "publication_id": "NKS-PUB-000004",
+  "asset_type": "hero-image",
+  "prompt": "Create an editorial hero image for 'The No Idle State Rule'. Depict a disciplined continuous execution loop moving through task selection, action, verification, and state update, with clear governed stop gates outside the loop. Use clean kinetic geometry, restrained executive styling, and a sense of momentum without depicting uncontrolled autonomy or humanoid robots.",
+  "proof_boundaries": [
+    "Do not imply action outside approved scope.",
+    "Do not remove user decision, safety, or integrity stop conditions.",
+    "Do not portray unrestricted autonomous operation."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-HRO-000004",
+    "visual_package_id": "NKS-VIS-000004",
+    "review_required": true
+  }
+}
