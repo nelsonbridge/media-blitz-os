@@ -1,0 +1,17 @@
+{
+  "request_id": "NKS-VRQ-000004",
+  "visual_id": "NKS-QTC-000001",
+  "publication_id": "NKS-PUB-000001",
+  "asset_type": "quote-card",
+  "prompt": "Create a refined editorial quote card using the line: 'A corpus is manufactured, not found.' Use bold but restrained typography, ample negative space, subtle structural motifs suggesting assembly and coherence, and a professional visual language consistent with executive thought leadership. Include the attribution 'S. Michael Nelson' in a secondary hierarchy.",
+  "proof_boundaries": [
+    "Use only the supplied quote and attribution.",
+    "Do not add outcome claims or platform logos."
+  ],
+  "dimensions": "1200x1200",
+  "metadata": {
+    "brief_id": "NKS-QTC-000001",
+    "visual_package_id": "NKS-VIS-000001",
+    "review_required": true
+  }
+}
