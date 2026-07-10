@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000018",
+  "visual_id": "NKS-HRO-000003",
+  "publication_id": "NKS-PUB-000003",
+  "asset_type": "hero-image",
+  "prompt": "Create a sophisticated editorial hero image for 'GitHub Is the Control Plane for This Knowledge System'. Show a durable versioned control core coordinating documents, schemas, state, and synchronization across several human workspaces. Use abstract architecture, layered grids, subtle version-history motifs, and a resilient fallback path. Avoid literal screenshots, code walls, or GitHub branding.",
+  "proof_boundaries": [
+    "Represent GitHub as the current control plane, not permanent architecture.",
+    "Do not imply all synchronization is automatic.",
+    "Do not portray Drive or any workspace as generally unavailable."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-HRO-000003",
+    "visual_package_id": "NKS-VIS-000003",
+    "review_required": true
+  }
+}
