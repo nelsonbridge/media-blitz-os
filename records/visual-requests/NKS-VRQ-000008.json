@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000008",
+  "visual_id": "NKS-DGM-000004",
+  "publication_id": "NKS-PUB-000004",
+  "asset_type": "signature-diagram",
+  "prompt": "Create a disciplined operating-loop diagram titled 'The No Idle State Rule'. Show: Approved Backlog -> Select Highest-Priority Unblocked Task -> Execute -> Verify -> Update State -> Select Next Task. Add explicit stop conditions branching from the loop: Sprint Complete, Genuine Blocker, Required User Decision, External Approval Gate, or Safety/Integrity Stop. Use minimal executive styling and emphasize that explanation is not a stop condition.",
+  "proof_boundaries": [
+    "Do not depict the system as acting without approved scope or governance.",
+    "Do not remove user-owned approval or safety stop conditions.",
+    "Do not imply unrestricted autonomous action."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-DGM-000004",
+    "visual_package_id": "NKS-VIS-000004",
+    "review_required": true
+  }
+}
