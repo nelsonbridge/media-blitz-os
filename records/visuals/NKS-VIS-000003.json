@@ -1,0 +1,15 @@
+{
+  "id": "NKS-VIS-000003",
+  "title": "Visual Package — GitHub as Knowledge-System Control Plane",
+  "status": "planned",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000003",
+  "publication_id": "NKS-PUB-000003",
+  "signature_diagram_id": null,
+  "hero_image_id": null,
+  "asset_ids": [],
+  "gate_status": "needed"
+}
