@@ -1,0 +1,18 @@
+{
+  "id": "NKS-NAR-000007",
+  "title": "Narrative Arc — Capability from Ambiguity",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000007",
+  "recognition": "Transformation work routinely arrives with incomplete information, competing priorities, and unstable assumptions.",
+  "reframe": "Ambiguity is not only a defect to eliminate; it can be raw material for capability construction.",
+  "framework": "Name the ambiguity, separate facts from assumptions, assign decisions, define risk, create feedback loops, and preserve learning.",
+  "proof": "The draft grounds the model in recurring operating conditions and distinguishes disciplined uncertainty from fabricated certainty.",
+  "application": "Executives can use each ambiguous situation to improve language, decision paths, ownership, and organizational judgment.",
+  "consequence": "The organization becomes better able to process the next ambiguity instead of merely surviving the current one.",
+  "invitation": "Do not merely resolve ambiguity; convert it into reusable capability.",
+  "gate_status": "ready"
+}
