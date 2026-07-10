@@ -5,12 +5,12 @@
   "metadata": {
     "canonical": true,
     "record_version": 1,
-    "placeholder": true
+    "signature_request_id": "NKS-VRQ-000009"
   },
   "artifact_id": "NKS-ART-000005",
   "publication_id": "NKS-PUB-000005",
-  "signature_diagram_id": null,
+  "signature_diagram_id": "NKS-DGM-000005",
   "hero_image_id": null,
-  "asset_ids": [],
+  "asset_ids": ["NKS-DGM-000005"],
   "gate_status": "needed"
 }
