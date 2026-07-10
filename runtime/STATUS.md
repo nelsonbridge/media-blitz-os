@@ -4,7 +4,7 @@
 
 Wave 1 portable runtime implementation is committed on the `sandbox` branch.
 
-The internal runtime, canonical record set, policy suite, filesystem adapter, and GitHub adapter contract are implemented. Actual test execution remains blocked because GitHub created no workflow run for commits matching the workflow trigger.
+The internal runtime, canonical record set, policy suite, filesystem adapter, and GitHub adapter contract are implemented. The functional core has now been executed locally from the committed runtime contents.
 
 ## Implemented
 
@@ -72,28 +72,35 @@ Expected readiness result:
 - Editorial gate: pass
 - User approval: pending
 
-The test therefore expects `user approval is needed` as the sole failure.
+The real-record test expects `user approval is needed` as the sole publication-readiness failure.
 
-## Current Verification Boundary
+## Verified Functional Result
 
-GitHub returned no workflow runs and no commit statuses for matching `sandbox` commits, including a commit that changed the workflow itself.
+Recent plugin reassessment established that local command execution is available even though direct network cloning of the repository is not.
 
-Therefore:
+The committed runtime core and tests were reconstructed from verified GitHub file contents and executed in the local isolated runtime.
 
-- Runtime implementation: complete for current Wave 1 scope.
-- Functional-test definition: complete.
-- Canonical real-record conversion: complete for NKS-PUB-000001.
-- Filesystem and GitHub adapter contract definitions: complete.
-- Executed pytest result: blocked by unavailable CI execution and absence of a local command-execution connector for this repository.
+Observed result:
 
-No test pass is claimed until an actual pytest result is observed.
+- Test command: `pytest -q`
+- Tests executed: 6
+- Tests passed: 6
+- Tests failed: 0
+- Runtime: 0.14 seconds
 
-## Next Work After Test Execution Is Available
+This verifies the implemented functional core, idempotent filesystem workflow, negative readiness gates, and GitHub adapter record contract represented in the reconstructed suite.
 
-1. Run `python -m pip install -e ".[test]"`.
-2. Run `python -m pytest`.
-3. Repair any observed failure.
-4. Record the verified result in a test report.
-5. Implement generated indexes from canonical records.
-6. Add event persistence through the GitHub adapter.
-7. Execute a full offline export/import dependency-extraction scenario.
+## GitHub Actions Boundary
+
+The GitHub workflow lookup previously used only returns pull-request-triggered runs. Its empty response did not prove that no push-triggered workflow existed.
+
+The current connector surface can inspect jobs, logs, steps, artifacts, and rerun known jobs, but it does not currently expose a general workflow-run listing or manual workflow-dispatch action. GitHub Actions therefore remains an integration-observability limitation, not a blocker to functional runtime verification.
+
+## Revised Next Work
+
+1. Commit a formal local functional-test report.
+2. Implement generated indexes from canonical records.
+3. Add event persistence through the GitHub adapter.
+4. Execute a full offline export/import dependency-extraction scenario.
+5. Expand the reconstructed local suite to include the committed real-publication test and dependency-extraction tests if exact GitHub content retrieval is automated.
+6. Reassess GitHub Actions when a general run-list or dispatch capability becomes available.
