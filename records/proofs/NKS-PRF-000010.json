@@ -1,0 +1,23 @@
+{
+  "id": "NKS-PRF-000010",
+  "title": "Proof Boundary — Security Automation Needs Guardrails",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000010",
+  "category": "document-derived-technical",
+  "supported_claims": [
+    "Security automation can accelerate both correct and incorrect actions.",
+    "Safe operating envelopes require explicit permissions, approvals, scope limits, escalation conditions, rollback, and audit evidence.",
+    "Authority should be proportionate to the consequence of the automated action."
+  ],
+  "unsupported_claims": [
+    "Any product-specific capability or security claim not revalidated against current documentation.",
+    "Any universal claim that automated remediation is unsafe.",
+    "Any quantified claim about incident-response improvement or risk reduction without current evidence."
+  ],
+  "citations_required": true,
+  "gate_status": "partial"
+}
