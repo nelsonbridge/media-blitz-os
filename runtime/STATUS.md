@@ -2,7 +2,7 @@
 
 ## Current State
 
-Runtime v0.1 is operational on the `sandbox` branch for the current canonical publication set.
+Runtime v0.1 is operational on the `sandbox` branch for the full twelve-publication canonical set.
 
 The portable core, filesystem execution, GitHub persistence, workspace synchronization contracts, generated views, export/import, manual delivery fallback, feedback ingestion, and visual-render request pipeline are implemented.
 
@@ -25,6 +25,8 @@ The portable core, filesystem execution, GitHub persistence, workspace synchroni
 - Deterministic generated views for publications, proofs, visual packages, visual requests, workflow events, feedback, and ecosystem capabilities.
 - Portable checksummed export/import.
 - CLI support for tests, view generation, and state export/import.
+- Canonical source records NKS-SRC-000001 through NKS-SRC-000003.
+- Canonical artifact, proof, narrative, visual-package, and publication records for NKS-PUB-000001 through NKS-PUB-000012.
 
 ## Architectural Boundaries
 
@@ -36,62 +38,95 @@ The portable core, filesystem execution, GitHub persistence, workspace synchroni
 - Publication preparation requires explicit recorded user approval.
 - Generated visual assets require review before approval or public use.
 
-## Canonical Publication State
+## Canonical Publication Gate State
 
-NKS-PUB-000001 — The Corpus Is Manufactured, Not Found
+### NKS-PUB-000001
 
-Internal gates:
+- Source: ready.
+- Proof: ready.
+- Narrative: ready.
+- Visual package: ready.
+- Editorial: ready.
+- User approval: needed.
 
-- Source: pass
-- Proof: pass
-- Narrative arc: pass
-- Visual package: pass
-- Editorial readiness: pass
-- User approval: pending
+Prepared render requests:
 
-Prepared visual-render inputs:
+- NKS-VRQ-000001 → NKS-DGM-000001 signature diagram.
+- NKS-VRQ-000002 → NKS-HRO-000001 hero image.
+- NKS-VRQ-000003 → NKS-CAR-000001 carousel.
+- NKS-VRQ-000004 → NKS-QTC-000001 quote card.
+- NKS-VRQ-000005 → NKS-PIN-000001 Pinterest pin.
 
-- NKS-VRQ-000001 → NKS-DGM-000001 signature diagram
-- NKS-VRQ-000002 → NKS-HRO-000001 hero image
-- NKS-VRQ-000003 → NKS-CAR-000001 carousel
-- NKS-VRQ-000004 → NKS-QTC-000001 quote card
-- NKS-VRQ-000005 → NKS-PIN-000001 Pinterest pin
+### NKS-PUB-000002 through NKS-PUB-000004
+
+- Proof: ready.
+- Narrative: ready.
+- Visual package: needed.
+- Editorial: needed.
+- User approval: needed.
+
+### NKS-PUB-000005
+
+- Proof: partial pending quantitative verification.
+- Narrative: ready.
+- Visual package: needed.
+- Editorial: needed.
+- User approval: needed.
+
+### NKS-PUB-000006 through NKS-PUB-000008
+
+- Proof: ready.
+- Narrative: ready.
+- Visual package: needed.
+- Editorial: needed.
+- User approval: needed.
+
+### NKS-PUB-000009 through NKS-PUB-000012
+
+- Proof: partial pending current primary-source verification.
+- Narrative: ready.
+- Visual package: needed.
+- Editorial: needed.
+- User approval: needed.
 
 ## Verified Local Results
 
-- Runtime core: 6 passed in 0.14s
-- Generated views: 1 passed in 0.13s
-- GitHub event repository: 2 passed in 0.08s
-- GitHub contents client: 1 passed in 0.12s
-- Dependency extraction: 3 passed in 0.10s
-- Workspace contracts: 3 passed in 0.12s
-- Workspace adapters and reconciliation: 4 passed in 0.09s
-- Manual delivery and feedback workflows: 3 passed in 0.15s
-- Manual visual renderer: 1 passed in 0.12s
+- Runtime core: 6 passed in 0.14s.
+- Generated views: 1 passed in 0.13s.
+- GitHub event repository: 2 passed in 0.08s.
+- GitHub contents client: 1 passed in 0.12s.
+- Dependency extraction: 3 passed in 0.10s.
+- Workspace contracts: 3 passed in 0.12s.
+- Workspace adapters and reconciliation: 4 passed in 0.09s.
+- Manual delivery and feedback workflows: 3 passed in 0.15s.
+- Manual visual renderer: 1 passed in 0.12s.
+- Publication #2 readiness state: 1 passed in 0.09s.
+- Twelve-publication reference and gate verification: 3 assertions passed.
+- Twelve-publication generated-index coverage: 1 check passed.
 
 No hosted GitHub Actions result is claimed.
 
 ## Generated Views
 
-- `generated/publication-index.md`
-- `generated/proof-index.md`
-- `generated/visual-package-index.md`
-- `generated/visual-request-index.md`
-- `generated/event-index.md`
-- `generated/feedback-index.md`
-- `generated/ecosystem-capabilities.md`
+- `generated/publication-index.md` — 12 publications.
+- `generated/proof-index.md` — 12 proof records.
+- `generated/visual-package-index.md` — 12 visual packages.
+- `generated/visual-request-index.md`.
+- `generated/event-index.md`.
+- `generated/feedback-index.md`.
+- `generated/ecosystem-capabilities.md`.
 
 ## Remaining Work
 
 ### Executable internally
 
-- Expand canonical JSON conversion to publications 2–12.
-- Retrofit proof and narrative records for publications 2–12.
-- Create visual packages and render requests for publications 2–12.
-- Sync generated human views to Drive when connector execution is selected.
+- Create visual briefs and render requests for NKS-PUB-000002 through NKS-PUB-000012.
+- Perform primary-source verification for NKS-PUB-000005 and NKS-PUB-000009 through NKS-PUB-000012.
+- Run editorial reviews for NKS-PUB-000002 through NKS-PUB-000012.
 - Evaluate direct publication adapters against the existing contract.
+- Sync generated human views to Drive when connector execution is selected.
 
-### External or user-gated for Publication 1
+### External or user-gated for Publication #1
 
 - Render the five visual assets.
 - Review and approve or reject each asset.
@@ -102,6 +137,6 @@ No hosted GitHub Actions result is claimed.
 
 ## Current Stop Boundary
 
-The runtime has no internal blocker for continued corpus expansion.
+There is no internal runtime blocker. The non-stop rule continues through visual-package preparation, evidence verification, and editorial review.
 
-Publication 1 cannot cross into public delivery until visual review and explicit user approval are recorded.
+Public release remains gated by visual review and explicit user approval.
