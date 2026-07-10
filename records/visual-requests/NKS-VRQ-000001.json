@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000001",
+  "visual_id": "NKS-DGM-000001",
+  "publication_id": "NKS-PUB-000001",
+  "asset_type": "signature-diagram",
+  "prompt": "Create a clean systems diagram titled 'The Corpus Is Manufactured, Not Found'. Show a left-to-right pipeline: Fragmented Sources -> Evidence and Proof -> Canonical Artifact -> Narrative Arc -> Visual Package -> Publication Package -> Distribution -> Feedback -> Corpus Enrichment. Use restrained professional typography, clear arrows, modular boxes, and no decorative clutter. Emphasize that publishing is one output of the knowledge manufacturing system, not the whole system.",
+  "proof_boundaries": [
+    "Do not claim measured public reach, revenue, conversion, or engagement outcomes.",
+    "Represent GitHub as current persistence and control plane, not permanent architecture.",
+    "Do not imply all external integrations are automated or operational."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-DGM-000001",
+    "visual_package_id": "NKS-VIS-000001",
+    "review_required": true
+  }
+}
