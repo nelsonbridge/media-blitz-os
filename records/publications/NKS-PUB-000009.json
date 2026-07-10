@@ -1,0 +1,17 @@
+{
+  "id": "NKS-PUB-000009",
+  "title": "Agentic AI Requires Human Oversight Architecture",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "readiness_class": "proof-verification-and-visual-needed"
+  },
+  "artifact_id": "NKS-ART-000009",
+  "proof_id": "NKS-PRF-000009",
+  "narrative_id": "NKS-NAR-000009",
+  "visual_package_id": "NKS-VIS-000009",
+  "draft_path": "publishing/medium-drafts/NKS-PUB-000009-agentic-ai-human-oversight-draft.md",
+  "editorial_status": "needed",
+  "user_approval": "needed"
+}
