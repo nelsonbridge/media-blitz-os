@@ -90,7 +90,7 @@ def validate_publication_readiness(
 
     if publication.editorial_status not in {GateStatus.READY, GateStatus.APPROVED}:
         failures.append(f"editorial gate is {publication.editorial_status}")
-    if publication.user_approval is not GateStatus.APPROVED:
+    if publication.user_approval != GateStatus.APPROVED:
         failures.append(f"user approval is {publication.user_approval}")
 
     return ValidationResult(not failures, tuple(failures))
