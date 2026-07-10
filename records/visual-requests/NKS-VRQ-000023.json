@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000023",
+  "visual_id": "NKS-HRO-000008",
+  "publication_id": "NKS-PUB-000008",
+  "asset_type": "hero-image",
+  "prompt": "Create a polished executive portfolio hero image for 'The Resume Should Not Be the First Signal'. Show a body of public work—articles, frameworks, visual models, and conversations—creating context around a central resume document. The resume should appear as confirmation within a broader proof ecosystem, not as the sole object. Use understated professional composition and no social-platform logos.",
+  "proof_boundaries": [
+    "Do not imply guaranteed recruiter, interview, or hiring outcomes.",
+    "Do not portray resumes as obsolete.",
+    "Do not frame public work as self-promotional volume."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-HRO-000008",
+    "visual_package_id": "NKS-VIS-000008",
+    "review_required": true
+  }
+}
