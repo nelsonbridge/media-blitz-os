@@ -1,0 +1,14 @@
+{
+  "id": "NKS-ART-000009",
+  "title": "Agentic AI Requires Human Oversight Architecture",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "pillar": "ai governance and trust"
+  },
+  "source_ids": ["NKS-SRC-000003"],
+  "proof_status": "partial",
+  "narrative_status": "ready",
+  "visual_status": "needed"
+}
