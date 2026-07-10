@@ -1,0 +1,16 @@
+{
+  "id": "NKS-VIS-000007",
+  "title": "Visual Package — Capability from Ambiguity",
+  "status": "planned",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "placeholder": true
+  },
+  "artifact_id": "NKS-ART-000007",
+  "publication_id": "NKS-PUB-000007",
+  "signature_diagram_id": null,
+  "hero_image_id": null,
+  "asset_ids": [],
+  "gate_status": "needed"
+}
