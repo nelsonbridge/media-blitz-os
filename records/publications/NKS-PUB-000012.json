@@ -1,0 +1,17 @@
+{
+  "id": "NKS-PUB-000012",
+  "title": "Self-Healing Systems Need Governance",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "readiness_class": "proof-verification-and-visual-needed"
+  },
+  "artifact_id": "NKS-ART-000012",
+  "proof_id": "NKS-PRF-000012",
+  "narrative_id": "NKS-NAR-000012",
+  "visual_package_id": "NKS-VIS-000012",
+  "draft_path": "publishing/medium-drafts/NKS-PUB-000012-self-healing-systems-governance-draft.md",
+  "editorial_status": "needed",
+  "user_approval": "needed"
+}
