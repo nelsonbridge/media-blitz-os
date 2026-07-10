@@ -18,7 +18,7 @@ def write_json(path: Path, payload: dict) -> None:
 def test_generated_views_are_deterministic_and_record_driven(tmp_path: Path):
     records = tmp_path / "records"
     write_json(
-        records / "publications" / "NKS-PUB-000001.json",
+        records / "canonical" / "publications" / "NKS-PUB-000001.json",
         {
             "id": "NKS-PUB-000001",
             "title": "The Corpus Is Manufactured, Not Found",
@@ -30,7 +30,7 @@ def test_generated_views_are_deterministic_and_record_driven(tmp_path: Path):
         },
     )
     write_json(
-        records / "proofs" / "NKS-PRF-000001.json",
+        records / "canonical" / "proofs" / "NKS-PRF-000001.json",
         {
             "id": "NKS-PRF-000001",
             "title": "Proof Boundary",
@@ -41,7 +41,7 @@ def test_generated_views_are_deterministic_and_record_driven(tmp_path: Path):
         },
     )
     write_json(
-        records / "visuals" / "NKS-VIS-000001.json",
+        records / "canonical" / "visuals" / "NKS-VIS-000001.json",
         {
             "id": "NKS-VIS-000001",
             "title": "Visual Package",
@@ -54,7 +54,7 @@ def test_generated_views_are_deterministic_and_record_driven(tmp_path: Path):
         },
     )
     write_json(
-        records / "capabilities" / "ecosystem-capabilities.json",
+        records / "canonical" / "capabilities" / "ecosystem-capabilities.json",
         {
             "registry_id": "NKS-CAP-REGISTRY-0001",
             "version": 1,
@@ -82,7 +82,7 @@ def test_generated_views_are_deterministic_and_record_driven(tmp_path: Path):
     assert "NKS-PRF-000001" in render_proof_index(records)
     assert "Total visual packages: 1" in render_visual_index(records)
     assert "NKS-CAP-GITHUB" in render_capability_summary(
-        records / "capabilities" / "ecosystem-capabilities.json"
+        records / "canonical" / "capabilities" / "ecosystem-capabilities.json"
     )
 
 
