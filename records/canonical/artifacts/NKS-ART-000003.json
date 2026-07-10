@@ -1,0 +1,17 @@
+{
+  "id": "NKS-ART-000003",
+  "title": "GitHub as Knowledge-System Control Plane",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "pillar": "enterprise technology and agentic systems",
+    "subpillar": "control plane architecture",
+    "evidence_posture": "implemented-repository-artifacts",
+    "confidence": "high"
+  },
+  "source_ids": ["NKS-SRC-000001"],
+  "proof_status": "ready",
+  "narrative_status": "ready",
+  "visual_status": "needed"
+}

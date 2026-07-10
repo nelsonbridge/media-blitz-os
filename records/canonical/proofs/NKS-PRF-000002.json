@@ -1,0 +1,23 @@
+{
+  "id": "NKS-PRF-000002",
+  "title": "Proof Boundary — Media Blitz Is the Publishing Subsystem",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000002",
+  "category": "architectural-and-experiential",
+  "supported_claims": [
+    "The repository separates corpus construction, governance, runtime, visual, and publication layers.",
+    "Media Blitz OS functions as the publication and distribution subsystem inside the broader Nelson Knowledge System.",
+    "Canonical artifacts can produce multiple publication and derivative outputs."
+  ],
+  "unsupported_claims": [
+    "The system has already produced measured audience growth or commercial outcomes.",
+    "All publication platforms are directly automated.",
+    "The current repository structure is the permanent production architecture."
+  ],
+  "citations_required": false,
+  "gate_status": "ready"
+}

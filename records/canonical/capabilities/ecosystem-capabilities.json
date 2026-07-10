@@ -1,0 +1,158 @@
+{
+  "registry_id": "NKS-CAP-REGISTRY-0001",
+  "version": 1,
+  "last_reassessed": "2026-07-10",
+  "governing_rule": "External systems are adapters; domain policy and canonical identifiers remain portable.",
+  "capabilities": [
+    {
+      "id": "NKS-CAP-ORCHESTRATION",
+      "name": "ChatGPT orchestration",
+      "role": "application orchestration and synthesis",
+      "status": "available",
+      "reliability": "high-session-scoped",
+      "canonical_authority": false,
+      "adapter_boundary": "orchestration-client",
+      "limitations": ["session-scoped execution", "must use explicit persistence adapters"]
+    },
+    {
+      "id": "NKS-CAP-LOCAL-PYTHON",
+      "name": "Local Python execution",
+      "role": "offline tests transformations export import and reconciliation",
+      "status": "available",
+      "reliability": "high",
+      "canonical_authority": false,
+      "adapter_boundary": "cli-test-runner",
+      "limitations": ["external network access unavailable", "repository may require reconstruction from connector reads"]
+    },
+    {
+      "id": "NKS-CAP-GITHUB-REPOSITORY",
+      "name": "GitHub repository",
+      "role": "current canonical persistence source control code and audit history",
+      "status": "available",
+      "reliability": "high",
+      "canonical_authority": true,
+      "adapter_boundary": "repository-adapter",
+      "limitations": ["temporary canonical store", "platform metadata must remain adapter-only"]
+    },
+    {
+      "id": "NKS-CAP-GITHUB-ACTIONS",
+      "name": "GitHub Actions",
+      "role": "optional hosted CI orchestration",
+      "status": "partially-observable",
+      "reliability": "secondary",
+      "canonical_authority": false,
+      "adapter_boundary": "ci-adapter",
+      "limitations": ["commit workflow lookup is PR-trigger scoped", "general run listing unavailable", "manual dispatch unavailable"]
+    },
+    {
+      "id": "NKS-CAP-GOOGLE-DRIVE",
+      "name": "Google Drive Docs and Sheets",
+      "role": "human editorial workspace and generated operational views",
+      "status": "intermittent",
+      "reliability": "degraded-adapter",
+      "canonical_authority": false,
+      "adapter_boundary": "document-view-sync-adapter",
+      "limitations": ["connector availability is intermittent", "must queue synchronization rather than stop domain execution"]
+    },
+    {
+      "id": "NKS-CAP-GMAIL",
+      "name": "Gmail",
+      "role": "notifications approvals communication and distribution coordination",
+      "status": "available",
+      "reliability": "high-explicit-use",
+      "canonical_authority": false,
+      "adapter_boundary": "messaging-adapter",
+      "limitations": ["email response is not implicit domain approval"]
+    },
+    {
+      "id": "NKS-CAP-GCALENDAR",
+      "name": "Google Calendar",
+      "role": "review windows publication planning and scheduling",
+      "status": "available",
+      "reliability": "high-explicit-use",
+      "canonical_authority": false,
+      "adapter_boundary": "scheduling-adapter",
+      "limitations": ["schedule contains triggers not business rules"]
+    },
+    {
+      "id": "NKS-CAP-GCONTACTS",
+      "name": "Google Contacts",
+      "role": "identity and recipient resolution",
+      "status": "available-read-only",
+      "reliability": "high",
+      "canonical_authority": false,
+      "adapter_boundary": "directory-adapter",
+      "limitations": []
+    },
+    {
+      "id": "NKS-CAP-AUTOMATIONS",
+      "name": "Automations",
+      "role": "condition watches reminders and recurring summaries",
+      "status": "available",
+      "reliability": "high-supported-cadence",
+      "canonical_authority": false,
+      "adapter_boundary": "scheduler-trigger-adapter",
+      "limitations": ["hourly is maximum supported frequency", "trigger must not duplicate domain events"]
+    },
+    {
+      "id": "NKS-CAP-WEB-RESEARCH",
+      "name": "Web research",
+      "role": "current public verification citations standards and proof",
+      "status": "available",
+      "reliability": "high-source-dependent",
+      "canonical_authority": false,
+      "adapter_boundary": "evidence-adapter",
+      "limitations": ["source quality and retrieval date must be recorded"]
+    },
+    {
+      "id": "NKS-CAP-CONSENSUS",
+      "name": "Consensus academic research",
+      "role": "peer-reviewed literature search and synthesis",
+      "status": "available",
+      "reliability": "high-source-dependent",
+      "canonical_authority": false,
+      "adapter_boundary": "academic-evidence-adapter",
+      "limitations": ["evidence must enter proof records"]
+    },
+    {
+      "id": "NKS-CAP-IMAGE-GENERATION",
+      "name": "Image generation",
+      "role": "visual rendering from approved briefs",
+      "status": "available-on-explicit-generation",
+      "reliability": "high-workflow-dependent",
+      "canonical_authority": false,
+      "adapter_boundary": "visual-renderer-adapter",
+      "limitations": ["generated assets require review", "must preserve proof boundaries and NKS IDs"]
+    },
+    {
+      "id": "NKS-CAP-OUTLOOK-EMAIL",
+      "name": "Outlook Email",
+      "role": "optional messaging and email retrieval",
+      "status": "available",
+      "reliability": "connector-dependent",
+      "canonical_authority": false,
+      "adapter_boundary": "messaging-adapter",
+      "limitations": []
+    },
+    {
+      "id": "NKS-CAP-OUTLOOK-CALENDAR",
+      "name": "Outlook Calendar",
+      "role": "optional scheduling and availability",
+      "status": "available",
+      "reliability": "connector-dependent",
+      "canonical_authority": false,
+      "adapter_boundary": "scheduling-adapter",
+      "limitations": []
+    },
+    {
+      "id": "NKS-CAP-PUBLICATION-PLATFORMS",
+      "name": "Medium and social publishing platforms",
+      "role": "external distribution",
+      "status": "manual-or-future-adapter",
+      "reliability": "platform-dependent",
+      "canonical_authority": false,
+      "adapter_boundary": "publication-adapter",
+      "limitations": ["manual publication is current fallback", "public URL becomes canonical external reference only after release"]
+    }
+  ]
+}

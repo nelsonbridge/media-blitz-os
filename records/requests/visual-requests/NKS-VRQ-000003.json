@@ -1,0 +1,19 @@
+{
+  "request_id": "NKS-VRQ-000003",
+  "visual_id": "NKS-CAR-000001",
+  "publication_id": "NKS-PUB-000001",
+  "asset_type": "carousel",
+  "prompt": "Create a seven-panel professional carousel visual system for 'The Corpus Is Manufactured, Not Found'. Panels: 1) fragmented knowledge is not yet a corpus, 2) sources require proof boundaries, 3) canonical artifacts create reusable structure, 4) narrative arcs turn structure into understanding, 5) visual packages make systems legible, 6) publication is one downstream output, 7) feedback enriches the corpus. Use consistent grid, strong hierarchy, concise on-image headings, and restrained executive design.",
+  "proof_boundaries": [
+    "Do not claim measured performance outcomes.",
+    "Do not present publication as the entire system.",
+    "Keep platform references generic."
+  ],
+  "dimensions": "1080x1350 per panel",
+  "metadata": {
+    "brief_id": "NKS-CAR-000001",
+    "visual_package_id": "NKS-VIS-000001",
+    "panel_count": 7,
+    "review_required": true
+  }
+}

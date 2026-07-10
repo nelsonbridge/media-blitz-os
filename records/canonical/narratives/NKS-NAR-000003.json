@@ -1,0 +1,18 @@
+{
+  "id": "NKS-NAR-000003",
+  "title": "Narrative Arc — GitHub as Knowledge-System Control Plane",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000003",
+  "recognition": "Chats, folders, and drafts can hold work without governing it.",
+  "reframe": "A resilient knowledge system needs a durable control plane separate from its preferred workspace.",
+  "framework": "Human workspace, control plane, local runtime, synchronization queue, and recovery path form distinct architectural roles.",
+  "proof": "The repository contains versioned governance, schemas, canonical records, generated views, events, tests, and synchronization state.",
+  "application": "Use GitHub for durable machine state while Drive and other workspaces remain replaceable human-facing views.",
+  "consequence": "Work can continue and remain auditable when one connector or workspace becomes unavailable.",
+  "invitation": "Separate the place where people work from the system that preserves rules, state, history, and recovery.",
+  "gate_status": "ready"
+}

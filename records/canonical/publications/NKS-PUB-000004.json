@@ -1,0 +1,18 @@
+{
+  "id": "NKS-PUB-000004",
+  "title": "The No Idle State Rule",
+  "status": "drafted",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "canonical_platform": "medium-or-linkedin",
+    "readiness_class": "internal-draft"
+  },
+  "artifact_id": "NKS-ART-000004",
+  "proof_id": "NKS-PRF-000004",
+  "narrative_id": "NKS-NAR-000004",
+  "visual_package_id": "NKS-VIS-000004",
+  "draft_path": "publishing/drafts/NKS-PUB-000004-no-idle-state-rule-draft.md",
+  "editorial_status": "needed",
+  "user_approval": "needed"
+}

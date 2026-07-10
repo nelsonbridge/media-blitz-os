@@ -1,0 +1,23 @@
+{
+  "id": "NKS-PRF-000004",
+  "title": "Proof Boundary — The No Idle State Rule",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000004",
+  "category": "documented-governance-and-observed-operation",
+  "supported_claims": [
+    "The No Idle State Rule is codified in the repository governance and Master State operating rules.",
+    "The runtime uses explicit state, queues, gates, events, and fallback adapters to continue unblocked work.",
+    "The rule distinguishes valid stop conditions from artificial stoppage."
+  ],
+  "unsupported_claims": [
+    "Continuous execution eliminates all errors or judgment failures.",
+    "Every external dependency can always be worked around.",
+    "The rule has measured productivity outcomes outside this implementation."
+  ],
+  "citations_required": false,
+  "gate_status": "ready"
+}

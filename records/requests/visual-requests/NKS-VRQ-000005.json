@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000005",
+  "visual_id": "NKS-PIN-000001",
+  "publication_id": "NKS-PUB-000001",
+  "asset_type": "pinterest-pin",
+  "prompt": "Create a vertical Pinterest framework graphic titled 'The Knowledge Manufacturing Pipeline'. Show the sequence: Sources -> Proof -> Canonical Artifact -> Narrative Arc -> Visual Package -> Publication -> Feedback. Use an elegant vertical flow, clear labels, strong legibility on mobile, and a professional knowledge-systems aesthetic. Include a small footer: 'The corpus is manufactured, not found.'",
+  "proof_boundaries": [
+    "Do not claim measured outcomes or adoption.",
+    "Do not imply the system is fully automated.",
+    "Do not use platform logos."
+  ],
+  "dimensions": "1000x1500",
+  "metadata": {
+    "brief_id": "NKS-PIN-000001",
+    "visual_package_id": "NKS-VIS-000001",
+    "review_required": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "NKS-SRC-000001",
+  "title": "Foundational Nelson Knowledge System Source Cluster",
+  "status": "approved",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "source_type": "conversation-and-repository-derived",
+  "source_location": "corpus/sources/NKS-SRC-000001.md",
+  "limitations": [
+    "Public outcome and audience-response claims are not yet available.",
+    "Drive synchronization remains an external integration concern."
+  ]
+}
