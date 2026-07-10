@@ -1,0 +1,23 @@
+{
+  "id": "NKS-PRF-000012",
+  "title": "Proof Boundary — Self-Healing Systems Need Governance",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000012",
+  "category": "document-derived-technical",
+  "supported_claims": [
+    "Automated remediation changes operational authority because the system can modify production conditions without immediate human action.",
+    "Governed self-healing requires action boundaries, approval rules, escalation, rollback, observability, and accountable ownership.",
+    "Trust depends on preserving evidence about what was detected, changed, and whether the remediation succeeded."
+  ],
+  "unsupported_claims": [
+    "Any product-specific self-healing capability not revalidated against current primary documentation.",
+    "Any quantified claim about incident-duration or operational-cost reduction.",
+    "Any assertion that autonomous remediation is appropriate for every failure class."
+  ],
+  "citations_required": true,
+  "gate_status": "partial"
+}
