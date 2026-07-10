@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000027",
+  "visual_id": "NKS-HRO-000012",
+  "publication_id": "NKS-PUB-000012",
+  "asset_type": "hero-image",
+  "prompt": "Create an editorial hero image for 'Self-Healing Systems Need Governance'. Show a resilient system detecting and repairing faults inside a visible governance envelope with authority checks, escalation, rollback, observability, and human accountability. Use abstract SRE and systems-resiliency imagery, no product branding, and no implication of unrestricted autonomous remediation.",
+  "proof_boundaries": [
+    "Do not imply capabilities of specific current products.",
+    "Do not claim quantified incident-duration or cost reductions.",
+    "Do not depict autonomous remediation as appropriate for every failure class."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-HRO-000012",
+    "visual_package_id": "NKS-VIS-000012",
+    "review_required": true
+  }
+}
