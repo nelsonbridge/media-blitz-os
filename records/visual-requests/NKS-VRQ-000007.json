@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000007",
+  "visual_id": "NKS-DGM-000003",
+  "publication_id": "NKS-PUB-000003",
+  "asset_type": "signature-diagram",
+  "prompt": "Create an enterprise architecture diagram titled 'Workspace vs Control Plane'. Show Google Drive, Docs, and Sheets as the human editorial workspace on one side; GitHub as the current durable control plane for governance, schemas, records, state, version history, and sync ledgers on the other; and a portable domain core above both using adapters. Include a degraded-mode path where work continues through GitHub and synchronizes later. Use clean executive styling and precise labels.",
+  "proof_boundaries": [
+    "Represent GitHub as the current control plane, not permanent runtime identity.",
+    "Do not imply Drive is unavailable generally; show connector degradation as a possible operating mode.",
+    "Do not claim all synchronization is currently automatic."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-DGM-000003",
+    "visual_package_id": "NKS-VIS-000003",
+    "review_required": true
+  }
+}
