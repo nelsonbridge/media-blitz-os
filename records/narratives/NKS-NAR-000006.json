@@ -1,0 +1,18 @@
+{
+  "id": "NKS-NAR-000006",
+  "title": "Narrative Arc — Coherence Beats Compliance",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000006",
+  "recognition": "Transformation efforts often look aligned because visible processes, ceremonies, metrics, and templates are in place.",
+  "reframe": "Visible compliance can coexist with deep operating incoherence.",
+  "framework": "Coherence aligns decisions, incentives, language, trust, execution, and feedback around the same operating reality.",
+  "proof": "The draft distinguishes process performance from system movement through recurring contradictions in priorities, decision rights, incentives, and metrics.",
+  "application": "Leaders should evaluate whether process improves sensemaking and coordinated action rather than merely whether people followed it.",
+  "consequence": "A coherent organization can process disagreement and change without fragmenting into competing local systems.",
+  "invitation": "Ask whether the system makes enough sense to move, not merely whether the process was followed.",
+  "gate_status": "ready"
+}
