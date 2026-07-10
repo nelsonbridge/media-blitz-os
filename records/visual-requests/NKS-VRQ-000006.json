@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000006",
+  "visual_id": "NKS-DGM-000002",
+  "publication_id": "NKS-PUB-000002",
+  "asset_type": "signature-diagram",
+  "prompt": "Create a clean systems architecture diagram titled 'Media Blitz Is the Publishing Subsystem, Not the System'. Show a larger Nelson Knowledge System containing source material, extraction, canonical artifacts, corpus, governance, career intelligence, and research. Nest Media Blitz OS inside it as the publication and distribution subsystem feeding Medium, LinkedIn, X, Instagram, and Pinterest. Use restrained executive typography, clear hierarchy, modular boxes, and no decorative clutter.",
+  "proof_boundaries": [
+    "Do not imply that every publication platform is directly automated.",
+    "Do not present Media Blitz OS as the entire Nelson Knowledge System.",
+    "Do not claim measured authority, reach, or career outcomes."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-DGM-000002",
+    "visual_package_id": "NKS-VIS-000002",
+    "review_required": true
+  }
+}
