@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000026",
+  "visual_id": "NKS-HRO-000011",
+  "publication_id": "NKS-PUB-000011",
+  "asset_type": "hero-image",
+  "prompt": "Create a sophisticated enterprise technology hero image for 'Agentic DevOps Beyond CI/CD'. Show software delivery signals converging into a governed release decision: tests, dependencies, vulnerabilities, environment state, compliance, incidents, and rollback readiness. Use abstract pipeline and risk-orchestration imagery, with human review at elevated-risk points. Avoid product logos and dashboard screenshots.",
+  "proof_boundaries": [
+    "Do not imply capabilities of specific current DevOps products.",
+    "Do not claim quantified speed, reliability, or failure-reduction outcomes.",
+    "Do not portray agentic systems as replacing engineering judgment."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-HRO-000011",
+    "visual_package_id": "NKS-VIS-000011",
+    "review_required": true
+  }
+}
