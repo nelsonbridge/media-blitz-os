@@ -1,0 +1,14 @@
+{
+  "id": "NKS-ART-000007",
+  "title": "Capability from Ambiguity",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "pillar": "leadership under pressure"
+  },
+  "source_ids": ["NKS-SRC-000002"],
+  "proof_status": "ready",
+  "narrative_status": "ready",
+  "visual_status": "needed"
+}
