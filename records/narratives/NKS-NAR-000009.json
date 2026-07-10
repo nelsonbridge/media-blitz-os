@@ -1,0 +1,18 @@
+{
+  "id": "NKS-NAR-000009",
+  "title": "Narrative Arc — Agentic AI Requires Human Oversight Architecture",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000009",
+  "recognition": "Agentic systems can interpret goals, choose actions, and continue through multi-step work with less immediate human instruction.",
+  "reframe": "Greater operational autonomy increases rather than removes the need for explicit governance.",
+  "framework": "Approval points, escalation paths, authority boundaries, observability, exception handling, rollback, and accountable ownership define the oversight architecture.",
+  "proof": "The draft separates vague human involvement from designed control points and explicitly requires current technical verification before publication.",
+  "application": "Organizations can match oversight intensity to consequence instead of applying one undifferentiated review model.",
+  "consequence": "Clear operating limits make useful autonomy more trustworthy and easier to adopt responsibly.",
+  "invitation": "Design governed autonomy rather than assuming autonomy itself is maturity.",
+  "gate_status": "ready"
+}
