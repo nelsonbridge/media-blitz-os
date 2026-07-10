@@ -1,0 +1,23 @@
+{
+  "id": "NKS-PRF-000009",
+  "title": "Proof Boundary — Agentic AI Requires Human Oversight Architecture",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000009",
+  "category": "document-derived-technical",
+  "supported_claims": [
+    "Systems that can interpret goals, select actions, and use tools require explicit authority boundaries and escalation paths.",
+    "Human oversight must be designed through approval points, logging, exception handling, rollback conditions, and accountable ownership.",
+    "Observability and evidence trails are necessary for meaningful review of agentic actions."
+  ],
+  "unsupported_claims": [
+    "Any product-specific claim not revalidated against current documentation.",
+    "Any claim that a single oversight pattern is sufficient for every risk class.",
+    "Any quantified claim about safety, reliability, or business outcomes without current evidence."
+  ],
+  "citations_required": true,
+  "gate_status": "partial"
+}
