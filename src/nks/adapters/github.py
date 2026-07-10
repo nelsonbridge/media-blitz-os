@@ -1,16 +1,16 @@
-"""GitHub storage adapter isolated behind a minimal client contract."""
+"""GitHub storage adapters isolated behind a minimal client contract."""
 
 from __future__ import annotations
 
 from typing import Generic, Protocol, TypeVar
 
-from nks.domain.models import CanonicalRecord
+from nks.domain.models import CanonicalRecord, WorkflowEvent
 
 RecordT = TypeVar("RecordT", bound=CanonicalRecord)
 
 
 class GitHubContentClient(Protocol):
-    """Minimal platform client required by the adapter.
+    """Minimal platform client required by the adapters.
 
     Concrete REST, SDK, connector, or test implementations may satisfy this
     contract without leaking into the domain or application layers.
@@ -66,3 +66,44 @@ class GitHubRecordRepository(Generic[RecordT]):
             if content is not None:
                 records.append(self._record_type.model_validate_json(content))
         return records
+
+
+class GitHubEventRepository:
+    """Append-only event repository using one immutable JSON file per event.
+
+    Per-event files avoid shared append conflicts and make duplicate event IDs
+    naturally idempotent. An existing event ID with different content is an
+    integrity conflict rather than an update.
+    """
+
+    def __init__(self, client: GitHubContentClient) -> None:
+        self._client = client
+        self._prefix = "records/events/"
+
+    def _path(self, event_id: str) -> str:
+        safe_id = event_id.replace("/", "_").replace(":", "_")
+        return f"{self._prefix}{safe_id}.json"
+
+    def append(self, event: WorkflowEvent) -> None:
+        path = self._path(event.event_id)
+        serialized = event.model_dump_json(indent=2)
+        existing = self._client.read_text(path)
+        if existing == serialized:
+            return
+        if existing is not None:
+            raise ValueError(f"event integrity conflict: {event.event_id}")
+        self._client.write_text(
+            path,
+            serialized,
+            f"Append workflow event {event.event_id}",
+        )
+
+    def list(self) -> list[WorkflowEvent]:
+        events: list[WorkflowEvent] = []
+        for path in sorted(self._client.list_paths(self._prefix)):
+            if not path.endswith(".json"):
+                continue
+            content = self._client.read_text(path)
+            if content is not None:
+                events.append(WorkflowEvent.model_validate_json(content))
+        return events
