@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000011",
+  "visual_id": "NKS-DGM-000007",
+  "publication_id": "NKS-PUB-000007",
+  "asset_type": "signature-diagram",
+  "prompt": "Create an executive operating model titled 'Turning Ambiguity into Capability'. Show a sequence: Name the Ambiguity -> Separate Facts from Assumptions -> Assign Decision Ownership -> Define Acceptable Risk -> Create Feedback Loops -> Preserve Learning -> Repeatable Capability. Use a circular or compounding loop to show that each ambiguous situation improves future decision capacity. Use clear, restrained typography and no motivational clichés.",
+  "proof_boundaries": [
+    "Do not imply ambiguity is always beneficial.",
+    "Do not present the six-step sequence as the only valid method.",
+    "Do not claim quantified executive-performance outcomes."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-DGM-000007",
+    "visual_package_id": "NKS-VIS-000007",
+    "review_required": true
+  }
+}
