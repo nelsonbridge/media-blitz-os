@@ -1,0 +1,21 @@
+{
+  "id": "NKS-VIS-000001",
+  "title": "Visual Package — The Corpus Is Manufactured, Not Found",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000001",
+  "publication_id": "NKS-PUB-000001",
+  "signature_diagram_id": "NKS-DGM-000001",
+  "hero_image_id": "NKS-HRO-000001",
+  "asset_ids": [
+    "NKS-DGM-000001",
+    "NKS-HRO-000001",
+    "NKS-CAR-000001",
+    "NKS-QTC-000001",
+    "NKS-PIN-000001"
+  ],
+  "gate_status": "ready"
+}
