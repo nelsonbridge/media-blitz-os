@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000022",
+  "visual_id": "NKS-HRO-000007",
+  "publication_id": "NKS-PUB-000007",
+  "asset_type": "hero-image",
+  "prompt": "Create an executive editorial hero image for 'How Executives Turn Ambiguity into Capability'. Show ambiguous signals and incomplete fragments being organized into clear decision paths, ownership, feedback loops, and a reusable operating capability. Use sophisticated abstract systems imagery, layered information becoming structured, and no heroic individual portraiture.",
+  "proof_boundaries": [
+    "Do not imply ambiguity is always beneficial.",
+    "Do not claim quantified executive-performance outcomes.",
+    "Do not present one method as universally sufficient."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-HRO-000007",
+    "visual_package_id": "NKS-VIS-000007",
+    "review_required": true
+  }
+}
