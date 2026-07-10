@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000021",
+  "visual_id": "NKS-HRO-000006",
+  "publication_id": "NKS-PUB-000006",
+  "asset_type": "hero-image",
+  "prompt": "Create a refined editorial hero image for 'Coherence Beats Compliance'. Contrast a polished but fragmented process surface—checklists, dashboards, ceremonies—with an underlying coherent system where decisions, incentives, language, trust, and execution align. Use abstract organizational architecture and subtle tension between surface order and real operating coherence.",
+  "proof_boundaries": [
+    "Do not portray process or compliance as inherently useless.",
+    "Do not include unsupported transformation statistics.",
+    "Do not depict coherence as universal agreement or conformity."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-HRO-000006",
+    "visual_package_id": "NKS-VIS-000006",
+    "review_required": true
+  }
+}
