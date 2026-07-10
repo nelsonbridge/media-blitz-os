@@ -4,31 +4,41 @@
 
 Wave 1 portable runtime implementation is committed on the `sandbox` branch.
 
+The internal runtime, canonical record set, policy suite, filesystem adapter, and GitHub adapter contract are implemented. Actual test execution remains blocked because GitHub created no workflow run for commits matching the workflow trigger.
+
 ## Implemented
 
 - Python project definition and package entry point.
 - Platform-neutral domain records for sources, artifacts, proof, narrative, visuals, publications, and workflow events.
-- Repository ports that contain no GitHub or Google dependencies.
+- Repository ports containing no GitHub or Google dependencies.
 - Local filesystem JSON adapter.
 - Append-only JSONL event adapter with duplicate-event protection.
 - Executable governance validators for source, proof, narrative, visual, editorial, and user-approval gates.
 - Application service that persists one complete publication package and evaluates readiness.
 - CLI entry point.
-- Idempotent end-to-end pytest fixture.
-- GitHub Actions workflow that invokes the same pytest test used locally.
+- Idempotent end-to-end functional test.
+- Negative gate tests for missing source, incomplete narrative arc, missing signature diagram, and missing user approval.
+- Offline dependency-extraction tests for core imports and open JSON records.
+- Canonical JSON records for NKS-SRC-000001, NKS-ART-000001, NKS-PRF-000001, NKS-NAR-000001, NKS-VIS-000001, and NKS-PUB-000001.
+- Real-record readiness test for NKS-PUB-000001.
+- GitHub repository adapter behind a minimal client protocol.
+- GitHub adapter contract test using an in-memory fake client.
+- GitHub Actions workflow configured to run the complete test suite.
 
 ## Architectural Boundaries Preserved
 
 - Domain code imports no platform connector libraries.
 - Application workflow depends on repository interfaces.
+- GitHub-specific behavior is isolated in the GitHub adapter.
 - GitHub Actions contains orchestration only, not business rules.
-- Canonical records serialize as JSON.
+- Canonical records serialize as open JSON.
 - Filesystem execution does not require network access.
 - Repeated execution does not duplicate records or events.
+- The GitHub adapter uses platform-neutral record models and the same repository behavior.
 
-## Functional Test Scope
+## Test Suite Scope
 
-The committed test exercises:
+The committed suite covers:
 
 Source
 → Artifact
@@ -41,21 +51,49 @@ Source
 → Event Audit
 → Idempotent Re-run
 
+It also covers:
+
+- explicit negative gate behavior;
+- real publication readiness state;
+- dependency leakage detection;
+- canonical-record format checks;
+- GitHub adapter contract behavior.
+
+## Real Publication State
+
+NKS-PUB-000001 is represented in canonical JSON.
+
+Expected readiness result:
+
+- Source: pass
+- Proof: pass
+- Narrative arc: pass
+- Visual package: pass
+- Editorial gate: pass
+- User approval: pending
+
+The test therefore expects `user approval is needed` as the sole failure.
+
 ## Current Verification Boundary
 
-Repository structure and test implementation are verified by readback. The CI workflow has been committed, but a completed workflow result has not yet been observed through the available connector surface in this execution session.
+GitHub returned no workflow runs and no commit statuses for matching `sandbox` commits, including a commit that changed the workflow itself.
 
 Therefore:
 
-- Implementation status: Complete for Wave 1 code skeleton.
-- Functional-test definition: Complete.
-- Runtime test result: Pending CI or local pytest execution.
+- Runtime implementation: complete for current Wave 1 scope.
+- Functional-test definition: complete.
+- Canonical real-record conversion: complete for NKS-PUB-000001.
+- Filesystem and GitHub adapter contract definitions: complete.
+- Executed pytest result: blocked by unavailable CI execution and absence of a local command-execution connector for this repository.
 
-## Next Work
+No test pass is claimed until an actual pytest result is observed.
 
-1. Observe and resolve the first pytest run.
-2. Add negative gate tests.
-3. Convert NKS-PUB-000001 records into canonical JSON.
-4. Run the same workflow against those real records.
-5. Implement the GitHub repository adapter against the existing ports.
-6. Execute the dependency-extraction test offline.
+## Next Work After Test Execution Is Available
+
+1. Run `python -m pip install -e ".[test]"`.
+2. Run `python -m pytest`.
+3. Repair any observed failure.
+4. Record the verified result in a test report.
+5. Implement generated indexes from canonical records.
+6. Add event persistence through the GitHub adapter.
+7. Execute a full offline export/import dependency-extraction scenario.
