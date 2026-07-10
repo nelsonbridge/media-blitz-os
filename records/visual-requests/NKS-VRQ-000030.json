@@ -1,0 +1,19 @@
+{
+  "request_id": "NKS-VRQ-000030",
+  "visual_id": "NKS-CAR-000004",
+  "publication_id": "NKS-PUB-000004",
+  "asset_type": "carousel",
+  "prompt": "Create a seven-panel executive carousel for 'The No Idle State Rule'. Panels: 1 title; 2 the conversational trap; 3 execution requires state; 4 the execution loop; 5 valid stop conditions; 6 artificial stoppage and its costs; 7 operating principle: if the next task is known, execute it. Use a disciplined process-loop visual language and concise text.",
+  "proof_boundaries": [
+    "Do not imply action outside approved scope.",
+    "Retain user-decision, safety, and integrity stop conditions.",
+    "Do not portray unrestricted autonomous operation."
+  ],
+  "dimensions": "1080x1350 per panel",
+  "metadata": {
+    "brief_id": "NKS-CAR-000004",
+    "visual_package_id": "NKS-VIS-000004",
+    "review_required": true,
+    "panel_count": 7
+  }
+}
