@@ -1,0 +1,19 @@
+{
+  "request_id": "NKS-VRQ-000033",
+  "visual_id": "NKS-CAR-000007",
+  "publication_id": "NKS-PUB-000007",
+  "asset_type": "carousel",
+  "prompt": "Create a seven-panel executive carousel for 'How Executives Turn Ambiguity into Capability'. Panels: 1 title; 2 ambiguity is normal in transformation; 3 forced certainty is insufficient; 4 the six conversion moves; 5 ambiguity becomes information; 6 information becomes repeatable capability; 7 operating principle: do not merely resolve ambiguity—convert it. Use a compounding-loop visual language.",
+  "proof_boundaries": [
+    "Do not imply ambiguity is always beneficial.",
+    "Do not claim quantified executive-performance outcomes.",
+    "Do not present the six moves as the only valid method."
+  ],
+  "dimensions": "1080x1350 per panel",
+  "metadata": {
+    "brief_id": "NKS-CAR-000007",
+    "visual_package_id": "NKS-VIS-000007",
+    "review_required": true,
+    "panel_count": 7
+  }
+}
