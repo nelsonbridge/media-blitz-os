@@ -4,13 +4,13 @@
 
 Single authoritative index for Media Blitz OS / Nelson Knowledge System state.
 
-The project is now governed as a knowledge manufacturing system. Publishing is one output, not the objective.
+The project is governed as a knowledge manufacturing system. Publishing is one output, not the objective.
 
 ## Active Sprint
 
-Sprint 2 — Knowledge Extraction & Corpus Construction
+Sprint 2 — Knowledge Extraction, Runtime Construction, and Corpus Manufacturing
 
-Status: Active. Publication #1 is now a public-readiness candidate. Source → Proof → Narrative Arc → Visual Package gates are implemented. Drive sync queued due connector intermittency.
+Status: Active. Publication #1 is a public-readiness candidate. Runtime v0.1 functional core is verified locally. Source → Proof → Narrative Arc → Visual Package gates are implemented. Drive synchronization remains queued when its connector is unavailable.
 
 ## Why the System Exists
 
@@ -30,6 +30,20 @@ Source
 → Feedback
 → Corpus Enrichment
 
+## Current Runtime Topology
+
+- ChatGPT: orchestration and application-level execution.
+- Local Python: primary offline test, transformation, export, and reconciliation runtime.
+- GitHub: current canonical persistence, source control, contracts, code, and audit surface.
+- GitHub Actions: optional secondary CI surface; not on the critical path.
+- Drive, Docs, and Sheets: human editorial and operational views.
+- Gmail, Outlook, Calendar, Contacts, and Automations: communication, identity, scheduling, and monitoring adapters.
+- Web, Consensus, uploaded files: evidence adapters.
+- Image generation: visual renderer adapter.
+- Medium and social platforms: publication adapters or manual fallback targets.
+
+All external systems remain behind portable interfaces and adapters.
+
 ## Completed
 
 ### Google Drive Foundation
@@ -48,7 +62,7 @@ Source
 - Master State Index created and updated.
 - Drive Sync Ledger created and updated.
 
-### Governance
+### Governance and Architecture
 
 - Media Blitz Charter created.
 - OS Constitution created.
@@ -59,6 +73,10 @@ Source
 - Publication Readiness Gate created and updated for visual package requirements.
 - Visual Knowledge System governance created.
 - Diagram Language Standard created.
+- Portable Runtime Rule created.
+- Capability Reassessment Protocol created.
+- Connected Ecosystem Capability Inventory created.
+- Runtime Topology created.
 - ADR-0001 — Own the Contract Layer created.
 - ADR-0002 — Hybrid Buy, Modular Design created.
 
@@ -124,12 +142,28 @@ Source
 - First Quote Card Brief created: NKS-QTC-000001.
 - First Pinterest Visual Brief created: NKS-PIN-000001.
 
+### Runtime Layer
+
+- Python Runtime v0.1 package created.
+- Platform-neutral domain models created.
+- Repository ports created.
+- Filesystem JSON and event adapters created.
+- Governance-as-code readiness policies created.
+- Manufacturing application service created.
+- Runtime CLI created.
+- Canonical JSON records created for NKS-PUB-000001 and its parent records.
+- GitHub record adapter contract created.
+- Functional, negative-gate, real-record, dependency-extraction, and adapter contract tests created.
+- Local functional verification completed: 6 tests passed in 0.14 seconds.
+- Formal functional-test report committed.
+
 ### Integration Layer
 
 - Integration Evaluation Matrix created.
 - TryPost and Postiz advanced to first technical validation.
 - BrightBean Studio, Mixpost, Socioboard, and Buffer Free Tier recorded as additional candidates/reference options.
 - Technical Backlog created.
+- Connected Ecosystem Execution Backlog created.
 
 ## Current Gate Sequence
 
@@ -154,39 +188,63 @@ Complete:
 - Pinterest brief exists.
 - Publication Contract payload exists.
 - Readiness checklist exists.
+- Canonical JSON record set exists.
+- Runtime readiness test confirms user approval is the sole expected publication gate failure.
 
 Remaining before external publication:
 
 - Generate visual assets.
-- Select distribution path / adapter target.
+- Review generated visual assets.
+- Select automated or manual distribution adapter.
 - User approval.
 - Publish or queue for manual publication.
 
+## Current Critical Path
+
+1. Canonical state is read from GitHub or exported JSON.
+2. Local runtime executes policies, tests, transformations, and reconciliation.
+3. GitHub persists results and audit state.
+4. Image generation renders approved visual briefs.
+5. User approval releases the publication package.
+6. Automated or manual publication adapter distributes it.
+7. Feedback becomes new source/evidence records.
+
+GitHub Actions and Google Drive are not on the critical path.
+
 ## Deferred
 
-- Drive synchronization is queued until Drive connector is available in-session.
-- Public release requires user approval and external platform action.
+- Drive synchronization is queued until Drive connector availability permits execution.
+- Public release requires user approval and an external platform action.
 - Visual package creation remains pending for NKS-PUB-000002 through NKS-PUB-000012.
 - Visual generation remains pending for NKS-DGM-000001, NKS-HRO-000001, NKS-CAR-000001, NKS-QTC-000001, and NKS-PIN-000001.
+- General GitHub Actions run listing and dispatch are not exposed by the current connector surface.
 
 ## Pending
 
+- Generate indexes from canonical JSON records.
+- Add GitHub event persistence.
+- Implement a concrete GitHub persistence client against the adapter protocol.
+- Execute full offline export/import dependency extraction.
 - Generate and review NKS-PUB-000001 visual assets.
-- Inspect TryPost and Postiz API/MCP docs for first adapter dry run.
-- Validate NKS-PUB-000001 Publication Contract against selected path.
+- Validate manual and direct distribution adapters.
 - Execute Proof and Arc Retrofit Queue for remaining drafts.
 - Complete visual packages for NKS-PUB-000002 through NKS-PUB-000012.
-- Sync GitHub-created artifacts to Google Drive.
+- Sync generated human views to Google Drive.
 - Publish approved assets to Medium and derivative platforms.
+- Implement feedback ingestion.
 
 ## Canonical Stores
 
-- Drive: editorial workspace and publishing drafts when write capability is available.
-- GitHub: governance, state, schemas, contracts, corpus records, visual records, fallback artifacts, and sync ledger.
+- GitHub: current canonical persistence, governance, state, schemas, contracts, corpus records, visual records, code, tests, and audit history.
+- Filesystem export: portable execution, verification, extraction, and migration store.
+- Drive: generated editorial workspace and human-facing views when connector availability permits.
 
-## Current Operating Rule
+## Current Operating Rules
 
-If executable work remains anywhere in the approved backlog, the assistant must not become idle. It must continuously select the highest-priority unblocked task, execute it, verify the result, update project state, and continue until the current sprint is complete or a genuine blocker exists.
+1. If executable work remains anywhere in the approved backlog, the assistant must not become idle.
+2. Before declaring a connector or capability blocker, execute the Capability Reassessment Protocol.
+3. Empty or scoped connector results must not be treated as proof of absence beyond the tool's documented scope.
+4. External systems are adapters; domain policy and canonical identifiers remain portable.
 
 ## Rule
 
