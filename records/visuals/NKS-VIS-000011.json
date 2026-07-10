@@ -1,0 +1,16 @@
+{
+  "id": "NKS-VIS-000011",
+  "title": "Visual Package — Agentic DevOps Beyond CI/CD",
+  "status": "planned",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "placeholder": true
+  },
+  "artifact_id": "NKS-ART-000011",
+  "publication_id": "NKS-PUB-000011",
+  "signature_diagram_id": null,
+  "hero_image_id": null,
+  "asset_ids": [],
+  "gate_status": "needed"
+}
