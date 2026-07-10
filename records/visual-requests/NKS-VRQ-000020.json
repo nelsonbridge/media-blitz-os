@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000020",
+  "visual_id": "NKS-HRO-000005",
+  "publication_id": "NKS-PUB-000005",
+  "asset_type": "hero-image",
+  "prompt": "Create an executive editorial hero image for 'Clarity Is an Economic Instrument'. Show a complex organization emerging from foggy overlapping pathways into a clear operating architecture with visible priorities, ownership, decision paths, and coordinated movement. Use abstract enterprise imagery, no charts with numbers, and no financial symbols that imply measured ROI.",
+  "proof_boundaries": [
+    "Do not include percentages, dollar values, or quantified productivity claims.",
+    "Do not imply that all ambiguity is avoidable or harmful.",
+    "Present clarity as an operating architecture, not a guaranteed financial outcome."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-HRO-000005",
+    "visual_package_id": "NKS-VIS-000005",
+    "review_required": true
+  }
+}
