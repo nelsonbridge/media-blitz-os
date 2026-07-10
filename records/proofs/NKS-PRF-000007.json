@@ -1,0 +1,23 @@
+{
+  "id": "NKS-PRF-000007",
+  "title": "Proof Boundary — Capability from Ambiguity",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1
+  },
+  "artifact_id": "NKS-ART-000007",
+  "category": "experiential-and-document-derived",
+  "supported_claims": [
+    "Transformation environments routinely contain incomplete information, competing priorities, and changing constraints.",
+    "Structuring ambiguity through ownership, risk boundaries, feedback loops, and preserved learning can improve future decision capacity.",
+    "The draft distinguishes forced certainty from disciplined action under uncertainty."
+  ],
+  "unsupported_claims": [
+    "Any universal claim that ambiguity always improves capability.",
+    "Any quantified claim about executive performance or transformation outcomes.",
+    "Any assertion that the six-step structure is the only valid ambiguity-conversion method."
+  ],
+  "citations_required": false,
+  "gate_status": "ready"
+}
