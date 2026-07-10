@@ -1,49 +1,41 @@
 # Visual Package Index
 
-## Purpose
+## Authority
 
-Tracks visual packages, diagrams, proof graphics, hero images, carousels, and platform visual derivatives for the Nelson Knowledge System.
+Canonical visual-package state is stored in:
 
-## Current Rule
+- `records/visuals/*.json`
+- generated human view: `generated/visual-package-index.md`
 
-No flagship publication is complete until it has a verified Signature Diagram and aligned Visual Package.
+This file is now a compatibility view for publication records that have not yet been converted to canonical JSON. Do not use its summary counts as canonical runtime state.
 
-## Status Summary
+## Canonical Visual Packages
 
-| Category | Count | Status |
-|---|---:|---|
-| Visual Packages | 0 | Pending creation |
-| Signature Diagrams | 0 | Pending creation |
-| Hero Image Briefs | 0 | Pending creation |
-| Proof Graphics | 0 | Pending proof source validation |
-| Carousel Visuals | 0 | Pending visual briefs |
-| Pinterest Visuals | 0 | Pending visual briefs |
-| Presentation Slides | 0 | Pending visual briefs |
+| Publication ID | Visual Package | Signature Diagram | Hero Image | Gate | Canonical Record |
+|---|---|---|---|---|---|
+| NKS-PUB-000001 | NKS-VIS-000001 | NKS-DGM-000001 | NKS-HRO-000001 | ready | `records/visuals/NKS-VIS-000001.json` |
 
-## Existing Publication Candidates Requiring Visual Packages
+Canonical package count: **1**
 
-| Publication ID | Required Visual Package | Signature Diagram | Hero | Proof Graphic | Carousel | Pinterest | Status |
-|---|---|---|---|---|---|---|---|
-| NKS-PUB-000001 | NKS-VIS-000001 | Required | Required | Required if claims are proof-bearing | Required | Required | Planned |
-| NKS-PUB-000002 | NKS-VIS-000002 | Required | Required | Required if claims are proof-bearing | Required | Required | Planned |
-| NKS-PUB-000003 | NKS-VIS-000003 | Required | Required | Required if claims are proof-bearing | Required | Required | Planned |
-| NKS-PUB-000004 | NKS-VIS-000004 | Required | Required | Required if claims are proof-bearing | Required | Required | Planned |
-| NKS-PUB-000005 | NKS-VIS-000005 | Required | Required | Required | Required | Required | Planned |
-| NKS-PUB-000006 | NKS-VIS-000006 | Required | Required | Required | Required | Required | Planned |
-| NKS-PUB-000007 | NKS-VIS-000007 | Required | Required | Required if claims are proof-bearing | Required | Required | Planned |
-| NKS-PUB-000008 | NKS-VIS-000008 | Required | Required | Required | Required | Required | Planned |
-| NKS-PUB-000009 | NKS-VIS-000009 | Required | Required | Required | Required | Required | Planned |
-| NKS-PUB-000010 | NKS-VIS-000010 | Required | Required | Required | Required | Required | Planned |
-| NKS-PUB-000011 | NKS-VIS-000011 | Required | Required | Required | Required | Required | Planned |
-| NKS-PUB-000012 | NKS-VIS-000012 | Required | Required | Required | Required | Required | Planned |
+## Legacy Planned Packages Awaiting Canonical Conversion
 
-## Next Work
+| Publication ID | Planned Visual Package | Status |
+|---|---|---|
+| NKS-PUB-000002 | NKS-VIS-000002 | Planned — legacy record only |
+| NKS-PUB-000003 | NKS-VIS-000003 | Planned — legacy record only |
+| NKS-PUB-000004 | NKS-VIS-000004 | Planned — legacy record only |
+| NKS-PUB-000005 | NKS-VIS-000005 | Planned — legacy record only |
+| NKS-PUB-000006 | NKS-VIS-000006 | Planned — legacy record only |
+| NKS-PUB-000007 | NKS-VIS-000007 | Planned — legacy record only |
+| NKS-PUB-000008 | NKS-VIS-000008 | Planned — legacy record only |
+| NKS-PUB-000009 | NKS-VIS-000009 | Planned — legacy record only |
+| NKS-PUB-000010 | NKS-VIS-000010 | Planned — legacy record only |
+| NKS-PUB-000011 | NKS-VIS-000011 | Planned — legacy record only |
+| NKS-PUB-000012 | NKS-VIS-000012 | Planned — legacy record only |
 
-1. Create visual packages for NKS-PUB-000001 through NKS-PUB-000012.
-2. Create Signature Diagram briefs for the first flagship publication.
-3. Create hero image briefs only after proof and arc state is understood.
-4. Queue generated visuals for Drive synchronization when connector is available.
+## Reconciliation Rule
 
-## Notes
-
-This index should be updated whenever a visual package or visual derivative is created, generated, reviewed, approved, published, or archived.
+1. Canonical JSON and generated views win when state conflicts.
+2. Legacy rows remain only to prevent loss of unconverted planning data.
+3. Each legacy row must be removed when its canonical JSON record is created.
+4. Runtime code must read canonical JSON, not this compatibility file.
