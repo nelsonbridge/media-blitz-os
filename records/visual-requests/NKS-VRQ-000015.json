@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000015",
+  "visual_id": "NKS-DGM-000011",
+  "publication_id": "NKS-PUB-000011",
+  "asset_type": "signature-diagram",
+  "prompt": "Create an enterprise delivery-risk orchestration diagram titled 'Agentic DevOps Beyond CI/CD'. Show a release decision receiving signals from tests, code quality, dependency health, vulnerabilities, environment status, customer impact, compliance, recent incidents, and rollback readiness. Show the agentic layer summarizing risk and routing elevated decisions to human review. Contrast pipeline motion with governed release judgment. Use vendor-neutral technical styling.",
+  "proof_boundaries": [
+    "Do not name or imply capabilities of specific current DevOps products.",
+    "Do not claim quantified deployment speed, failure reduction, or reliability gains.",
+    "Do not depict the agentic layer as replacing engineering judgment."
+  ],
+  "dimensions": "1600x900",
+  "metadata": {
+    "brief_id": "NKS-DGM-000011",
+    "visual_package_id": "NKS-VIS-000011",
+    "review_required": true
+  }
+}
