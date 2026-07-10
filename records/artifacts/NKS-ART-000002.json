@@ -1,0 +1,17 @@
+{
+  "id": "NKS-ART-000002",
+  "title": "Media Blitz OS as Publishing Subsystem",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "pillar": "systems thinking and operational architecture",
+    "subpillar": "system decomposition",
+    "evidence_posture": "experiential-architectural",
+    "confidence": "high"
+  },
+  "source_ids": ["NKS-SRC-000001"],
+  "proof_status": "ready",
+  "narrative_status": "ready",
+  "visual_status": "needed"
+}
