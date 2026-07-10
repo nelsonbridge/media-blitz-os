@@ -77,6 +77,46 @@ def render_visual_index(root: Path) -> str:
     return "\n".join(lines)
 
 
+def render_visual_request_index(root: Path) -> str:
+    records = _load_records(root, "visual-requests")
+    lines = [
+        "# Generated Visual Render Request Index",
+        "",
+        "> Generated from `records/visual-requests/*.json`. Do not edit manually.",
+        "",
+        "| Request ID | Visual ID | Publication | Asset Type | Dimensions | Review Required |",
+        "|---|---|---|---|---|---|",
+    ]
+    for item in records:
+        lines.append(
+            "| {request_id} | {visual_id} | {publication_id} | {asset_type} | {dimensions} | {review_required} |".format(
+                **item, review_required=item.get("metadata", {}).get("review_required", False)
+            )
+        )
+    lines.extend(["", f"Total visual render requests: {len(records)}", ""])
+    return "\n".join(lines)
+
+
+def render_feedback_index(root: Path) -> str:
+    records = _load_records(root, "feedback")
+    lines = [
+        "# Generated Feedback Index",
+        "",
+        "> Generated from `records/feedback/*.json`. Do not edit manually.",
+        "",
+        "| Feedback ID | Publication | Platform | Classification | Promoted Source |",
+        "|---|---|---|---|---|",
+    ]
+    for item in records:
+        lines.append(
+            "| {feedback_id} | {publication_id} | {platform} | {classification} | {promoted} |".format(
+                **item, promoted=item.get("promoted_to_source_id") or "—"
+            )
+        )
+    lines.extend(["", f"Total feedback records: {len(records)}", ""])
+    return "\n".join(lines)
+
+
 def render_event_index(root: Path) -> str:
     records = _load_records(root, "events")
     lines = [
@@ -129,6 +169,8 @@ def write_generated_views(repository_root: Path) -> list[Path]:
         output_root / "publication-index.md": render_publication_index(records_root),
         output_root / "proof-index.md": render_proof_index(records_root),
         output_root / "visual-package-index.md": render_visual_index(records_root),
+        output_root / "visual-request-index.md": render_visual_request_index(records_root),
+        output_root / "feedback-index.md": render_feedback_index(records_root),
         output_root / "event-index.md": render_event_index(records_root),
         output_root / "ecosystem-capabilities.md": render_capability_summary(
             records_root / "capabilities" / "ecosystem-capabilities.json"
