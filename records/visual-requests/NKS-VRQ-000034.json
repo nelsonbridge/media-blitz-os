@@ -1,0 +1,19 @@
+{
+  "request_id": "NKS-VRQ-000034",
+  "visual_id": "NKS-CAR-000008",
+  "publication_id": "NKS-PUB-000008",
+  "asset_type": "carousel",
+  "prompt": "Create a seven-panel executive carousel for 'The Resume Should Not Be the First Signal'. Panels: 1 title; 2 the resume is a compressed artifact; 3 what bullets cannot show; 4 public proof creates context; 5 authority versus self-promotion; 6 career visibility as coherence; 7 operating principle: the resume should confirm, not introduce, executive value. Use clean portfolio visuals and concise copy.",
+  "proof_boundaries": [
+    "Do not imply guaranteed recruiter, interview, or hiring outcomes.",
+    "Do not portray resumes as obsolete.",
+    "Do not frame public work as self-promotional volume."
+  ],
+  "dimensions": "1080x1350 per panel",
+  "metadata": {
+    "brief_id": "NKS-CAR-000008",
+    "visual_package_id": "NKS-VIS-000008",
+    "review_required": true,
+    "panel_count": 7
+  }
+}
