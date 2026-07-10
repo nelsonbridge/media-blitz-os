@@ -4,7 +4,7 @@
 
 Wave 1 portable runtime implementation is committed on the `sandbox` branch.
 
-The internal runtime, canonical record set, policy suite, filesystem adapter, and GitHub adapter contract are implemented. The functional core has now been executed locally from the committed runtime contents.
+The internal runtime, canonical record set, policy suite, filesystem adapter, GitHub adapters, generated views, and local verification path are implemented for the current canonical publication set.
 
 ## Implemented
 
@@ -21,20 +21,25 @@ The internal runtime, canonical record set, policy suite, filesystem adapter, an
 - Offline dependency-extraction tests for core imports and open JSON records.
 - Canonical JSON records for NKS-SRC-000001, NKS-ART-000001, NKS-PRF-000001, NKS-NAR-000001, NKS-VIS-000001, and NKS-PUB-000001.
 - Real-record readiness test for NKS-PUB-000001.
-- GitHub repository adapter behind a minimal client protocol.
-- GitHub adapter contract test using an in-memory fake client.
+- GitHub record repository adapter behind a minimal client protocol.
+- GitHub append-only event repository using immutable per-event JSON files.
+- Concrete GitHub contents client with optimistic concurrency and classified errors.
+- Generated Markdown views for publications, proofs, visual packages, and ecosystem capabilities.
+- CLI `generate-views` command.
 - GitHub Actions workflow configured to run the complete test suite.
+- First real manufacturing event persisted for NKS-PUB-000001.
 
 ## Architectural Boundaries Preserved
 
 - Domain code imports no platform connector libraries.
 - Application workflow depends on repository interfaces.
-- GitHub-specific behavior is isolated in the GitHub adapter.
+- GitHub-specific behavior is isolated in adapters.
+- Platform version/SHA metadata remains inside the concrete GitHub client.
 - GitHub Actions contains orchestration only, not business rules.
 - Canonical records serialize as open JSON.
 - Filesystem execution does not require network access.
 - Repeated execution does not duplicate records or events.
-- The GitHub adapter uses platform-neutral record models and the same repository behavior.
+- Generated Markdown is a deterministic view rather than canonical state.
 
 ## Test Suite Scope
 
@@ -57,7 +62,12 @@ It also covers:
 - real publication readiness state;
 - dependency leakage detection;
 - canonical-record format checks;
-- GitHub adapter contract behavior.
+- GitHub record-adapter behavior;
+- GitHub event idempotence and immutable-ID conflict detection;
+- GitHub contents-client create/read/update/list behavior;
+- optimistic concurrency conflict classification;
+- permission and retryable timeout classification;
+- deterministic generated-view output.
 
 ## Real Publication State
 
@@ -74,11 +84,9 @@ Expected readiness result:
 
 The real-record test expects `user approval is needed` as the sole publication-readiness failure.
 
-## Verified Functional Result
+## Verified Functional Results
 
-Recent plugin reassessment established that local command execution is available even though direct network cloning of the repository is not.
-
-The committed runtime core and tests were reconstructed from verified GitHub file contents and executed in the local isolated runtime.
+### Runtime Core
 
 Observed result:
 
@@ -88,19 +96,52 @@ Observed result:
 - Tests failed: 0
 - Runtime: 0.14 seconds
 
-This verifies the implemented functional core, idempotent filesystem workflow, negative readiness gates, and GitHub adapter record contract represented in the reconstructed suite.
+### Generated Views
+
+- Deterministic generation verification: passed.
+- Tests executed: 1
+- Tests passed: 1
+- Runtime: 0.13 seconds
+
+### GitHub Event Repository
+
+- Idempotent append and conflict verification: passed.
+- Tests executed: 2
+- Tests passed: 2
+- Runtime: 0.08 seconds
+
+### GitHub Contents Client
+
+- Create/read/update/list, stale-version conflict, permission, and timeout verification: passed.
+- Tests executed: 1
+- Tests passed: 1
+- Runtime: 0.12 seconds
+
+These local isolated runs verify the implemented code paths reconstructed from committed GitHub contents. No hosted GitHub Actions result is claimed.
+
+## Generated View State
+
+Committed generated views:
+
+- `generated/publication-index.md`
+- `generated/proof-index.md`
+- `generated/visual-package-index.md`
+- `generated/ecosystem-capabilities.md`
+
+The generated visual index correctly reports one canonical visual package, replacing the stale operational assumption of zero.
 
 ## GitHub Actions Boundary
 
-The GitHub workflow lookup previously used only returns pull-request-triggered runs. Its empty response did not prove that no push-triggered workflow existed.
+The current connector surface can inspect known jobs, logs, steps, artifacts, and rerun known jobs, but it does not expose a general workflow-run listing or manual workflow-dispatch action.
 
-The current connector surface can inspect jobs, logs, steps, artifacts, and rerun known jobs, but it does not currently expose a general workflow-run listing or manual workflow-dispatch action. GitHub Actions therefore remains an integration-observability limitation, not a blocker to functional runtime verification.
+GitHub Actions remains an optional secondary integration check, not a blocker to functional verification.
 
 ## Revised Next Work
 
-1. Commit a formal local functional-test report.
-2. Implement generated indexes from canonical records.
-3. Add event persistence through the GitHub adapter.
-4. Execute a full offline export/import dependency-extraction scenario.
-5. Expand the reconstructed local suite to include the committed real-publication test and dependency-extraction tests if exact GitHub content retrieval is automated.
-6. Reassess GitHub Actions when a general run-list or dispatch capability becomes available.
+1. Execute the full offline export/import dependency-extraction scenario.
+2. Add generated event and runtime-state summaries.
+3. Reconcile or retire stale manually maintained indexes after canonical conversion expands beyond NKS-PUB-000001.
+4. Implement Drive/Docs/Sheets adapter contracts.
+5. Implement the visual renderer adapter for NKS-PUB-000001.
+6. Implement the manual publication adapter.
+7. Reassess GitHub Actions when general run-list or dispatch capability becomes available.
