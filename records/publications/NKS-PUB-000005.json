@@ -1,0 +1,17 @@
+{
+  "id": "NKS-PUB-000005",
+  "title": "Clarity Is an Economic Instrument",
+  "status": "review",
+  "metadata": {
+    "canonical": true,
+    "record_version": 1,
+    "readiness_class": "proof-partial"
+  },
+  "artifact_id": "NKS-ART-000005",
+  "proof_id": "NKS-PRF-000005",
+  "narrative_id": "NKS-NAR-000005",
+  "visual_package_id": "NKS-VIS-000005",
+  "draft_path": "publishing/medium-drafts/NKS-PUB-000005-clarity-as-economic-instrument-draft.md",
+  "editorial_status": "needed",
+  "user_approval": "needed"
+}
