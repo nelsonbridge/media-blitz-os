@@ -59,9 +59,21 @@ def test_publication_gate_posture_matches_canonical_scope():
         assert publication.user_approval == GateStatus.NEEDED
         assert visual.signature_diagram_id is not None
         assert visual.hero_image_id is not None
+        assert visual.gate_status == GateStatus.NEEDED
 
-        expected_visual_gate = GateStatus.READY if index == 1 else GateStatus.NEEDED
-        assert visual.gate_status == expected_visual_gate
+
+def test_publication_000001_assets_are_rendered_but_require_human_review():
+    visual = load_record(ROOT, "visuals", "NKS-VIS-000001", VisualPackageRecord)
+
+    assert visual.status == "review"
+    assert visual.gate_status == GateStatus.NEEDED
+    assert visual.metadata["render_status"] == "rendered"
+    assert visual.metadata["review_status"] == "needed"
+    assert visual.metadata["manifest_path"] == "assets/publication-000001/manifest.json"
+    assert (
+        visual.metadata["review_record_path"]
+        == "publishing/reviews/NKS-PUB-000001-visual-review.md"
+    )
 
 
 def test_citation_required_proofs_are_ready_with_current_verification_recorded():
