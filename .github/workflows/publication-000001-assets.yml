@@ -10,8 +10,7 @@ on:
       - "publishing/reviews/NKS-PUB-000001-visual-review.md"
       - ".github/workflows/publication-000001-assets.yml"
   push:
-    branches:
-      - product/publication-000001-assets
+    branches: [sandbox]
     paths:
       - "scripts/render_publication_000001_assets.py"
       - "records/visual-requests/NKS-VRQ-00000*.json"
@@ -21,20 +20,18 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: publication-000001-assets
-  cancel-in-progress: false
+  group: publication-000001-assets-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   render-and-verify:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - name: Check out asset branch
+      - name: Check out repository
         uses: actions/checkout@v4
-        with:
-          ref: product/publication-000001-assets
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -45,24 +42,19 @@ jobs:
       - name: Install deterministic renderer dependency
         run: python -m pip install --upgrade pip && python -m pip install "Pillow==12.2.0"
 
-      - name: Render Publication 000001 assets
+      - name: Re-render Publication 000001 assets
         run: python scripts/render_publication_000001_assets.py --repository-root .
 
       - name: Verify dimensions, checksums, lineage, and pending-review state
         run: python scripts/render_publication_000001_assets.py --repository-root . --verify
 
-      - name: Commit rendered assets
+      - name: Reject rendered asset drift
         run: |
-          if git diff --quiet -- assets/publication-000001 && [ -z "$(git ls-files --others --exclude-standard assets/publication-000001)" ]; then
-            echo "Rendered assets are already current."
-            exit 0
+          if ! git diff --quiet -- assets/publication-000001; then
+            echo "Committed Publication 000001 assets do not match deterministic renderer output."
+            git diff --stat -- assets/publication-000001
+            exit 1
           fi
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/publication-000001
-          git commit -m "Render Publication 000001 visual assets"
-          git push origin HEAD:product/publication-000001-assets
 
       - name: Upload review artifact
         if: always()
