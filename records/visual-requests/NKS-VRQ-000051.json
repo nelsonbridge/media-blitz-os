@@ -1,0 +1,10 @@
+{
+  "request_id": "NKS-VRQ-000051",
+  "visual_id": "NKS-PIN-000003",
+  "publication_id": "NKS-PUB-000003",
+  "asset_type": "pinterest-pin",
+  "prompt": "Create a vertical architecture pin titled 'Workspace vs Control Plane'. Contrast human workspace functions with governance, state, history, schemas, and recovery. Include the line 'A chat is not a control plane.' Use restrained technical design.",
+  "proof_boundaries": ["Represent GitHub as the current control plane, not permanent architecture.", "Do not depict Drive as inherently unreliable or inferior.", "Do not claim unverified operational outcomes."],
+  "dimensions": "1000x1500",
+  "metadata": {"brief_id": "NKS-PIN-000003", "visual_package_id": "NKS-VIS-000003", "review_required": true}
+}
