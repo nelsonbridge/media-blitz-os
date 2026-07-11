@@ -2,102 +2,144 @@
 
 ## Purpose
 
-Evaluate free/open-source publishing and distribution solutions as replaceable buy-layer modules beneath the NKS contract layer.
+Evaluate publishing and distribution solutions as replaceable modules beneath the NKS-owned Publication Contract and Adapter Contract.
 
 ## Evaluation Principle
 
-The winning solution is not the one with the prettiest UI. It is the one that can best implement the NKS Publication Contract and Adapter Contract while preserving modularity, security, approval gates, and replaceability.
+The winning solution is not the one with the broadest marketing claim. It is the one that best implements the NKS contracts while preserving approval, proof boundaries, auditability, security, failure recovery, and replaceability.
 
-## Search Scope
+## Revalidation Date
 
-- GitHub public repositories.
-- GitLab/public web search for comparable projects.
-- Free/open-source and self-hostable solutions prioritized.
-- Hosted SaaS free tiers considered only as temporary manual fallback, not architecture.
+2026-07-10
 
-## Current Medium POC Decision
+## Current Decision Summary
 
-For Publication Milestone 1, the immediate Medium automation POC candidate is:
+| Use Case | Selected Path | Status |
+|---|---|---|
+| Universal release fallback | Manual Publication Adapter | Production-safe default |
+| First social-distribution trial | TryPost | Technical validation candidate |
+| Social comparison/fallback | Postiz | Secondary validation candidate |
+| Medium release | Manual-first | Production-safe default |
+| Medium automation | patnaikd/publish-to-medium | Controlled local POC only |
 
-**patnaikd/publish-to-medium**
+Full rationale: `integrations/direct-publication-adapter-decision.md`.
 
-Reason:
+## Medium Candidate
 
-- It publishes local Markdown files to Medium using Playwright browser automation.
-- It does not require a Medium API token.
-- First run opens Chromium and requires manual login.
-- After login, it saves the Medium browser session to `~/.publish-to-medium-profile`.
-- Future runs can publish automatically using that saved session.
-- It extracts the title from the first H1 heading.
-- It converts Markdown to HTML.
-- It publishes as an unlisted Medium post and returns the Medium URL.
+### patnaikd/publish-to-medium
 
-Known limitation:
+Current strengths:
 
-- No LICENSE file was found during inspection, so licensing must be clarified before copying or modifying code. For POC testing, treat the repository as an external reference/tool until license status is resolved.
+- Active repository.
+- Local Playwright browser automation.
+- Persistent local Medium session.
+- Markdown-to-HTML conversion.
+- Recent file-to-post mapping and republish/update support.
 
-## Medium Automation Candidate Summary
+Current risks:
 
-| Rank | Candidate | Repo / Project | License | Automation Type | Medium API Token Required | Fit | Notes |
-|---:|---|---|---|---|---|---:|---|
-| 1 | publish-to-medium | github.com/patnaikd/publish-to-medium | Not found | Playwright browser automation | No | 9.0 | Best immediate POC path for NKS-PUB-000001. |
-| 2 | medium-publishing-without-api | github.com/iancarson/medium-publishing-without-api | MIT | Documentation / option analysis | No | 7.0 | Useful decision support; points to session-based publishing options. |
-| 3 | aiagent-mcp-medium-publisher | github.com/umes4ever/aiagent-mcp-medium-publisher | MIT | Docker + MCP framing | Unknown / needs deeper inspection | 6.5 | Interesting future MCP candidate, but less direct than Playwright script. |
-| 4 | content-distribution-mcp | github.com/AutomateLab-tech/content-distribution-mcp | MIT | MCP distribution layer | No direct Medium automation | 6.0 | Useful later; Medium channel returns browser fallback rather than full publish automation. |
+- No confirmed license identified during evaluation.
+- Repository documents fragile Medium selectors.
+- Unlisted visibility may fail and fall back to default visibility.
+- Update-button behavior has not been verified in a live Medium session.
+- Browser automation depends on Medium UI behavior rather than an official stable API.
 
-## Broader Distribution Candidate Summary
+Decision:
 
-| Rank | Candidate | Repo / Project | License | Self-host | API / Automation | Platforms | NKS Fit | Notes |
-|---:|---|---|---|---|---|---|---:|---|
-| 1 | TryPost | github.com/trypostit/trypost | AGPL-3.0 | Yes | REST API + MCP | 12 listed | 9.2 | Best fit for AI/agent integration; strong platform coverage; explicit MCP support. |
-| 2 | Postiz | github.com/gitroomhq/postiz-app | AGPL-3.0 | Yes | Public API, SDK, N8N/Make/Zapier references | Broad listed platform icons | 8.8 | Strong community signal, API story, automation fit, large repo activity. |
-| 3 | BrightBean Studio | github.com/brightbeanxyz/brightbean-studio | AGPL-3.0 | Yes | Django app, self-hostable | Facebook, Instagram, LinkedIn, TikTok, YouTube, Pinterest | 8.0 | Good platform fit and inbox/insights support; no releases yet observed during initial scan. |
-| 4 | Mixpost | github.com/inovector/mixpost | MIT | Yes | Laravel/PHP; API needs deeper validation | Cross-platform social scheduler | 7.6 | Strong license advantage, active releases, simpler legal posture. Need confirm platform/API depth. |
-| 5 | Socioboard 5.0 | github.com/socioboard/Socioboard-5.0 | License present; needs review | Yes | Needs deeper validation | Social management platform | 5.5 | Legacy/known project; lower current fit pending maintenance/security review. |
-| 6 | Buffer Free Tier | buffer.com | Proprietary SaaS free tier | No | Platform APIs hidden behind SaaS | Broad | 4.5 | Useful temporary manual fallback only; not a modular NKS architecture component. |
+**POC only.** It may be used for a controlled local test after explicit user approval. It is not the production-default adapter and its code may not be copied into NKS until licensing is clarified.
 
-## POC Flow for NKS-PUB-000001
+## Social Distribution Candidates
 
-```text
-NKS Publication Contract
-    ↓
-Clean Medium Markdown file
-    ↓
-patnaikd/publish-to-medium Playwright script
-    ↓
-Medium authenticated browser session
-    ↓
-Unlisted Medium post URL
-    ↓
-NKS publication record update
-```
+| Rank | Candidate | License | Self-host | Programmatic Surface | Required Platforms | Current Fit |
+|---:|---|---|---|---|---|---:|
+| 1 | TryPost | AGPL-3.0 confirmed | Yes | REST API + MCP | LinkedIn, X, Instagram, Facebook, Pinterest | 9.3 |
+| 2 | Postiz | AGPL-3.0 confirmed | Yes | Public API, Node SDK, N8N, Make | LinkedIn, X, Instagram, Facebook, Pinterest | 9.0 |
+| 3 | Mixpost | MIT previously recorded | Yes | Requires deeper API validation | Social scheduling | 7.4 |
+| 4 | BrightBean Studio | AGPL-3.0 previously recorded | Yes | Requires deeper API validation | Required visual/social channels | 7.2 |
+| 5 | Buffer Free Tier | Proprietary SaaS | No | Vendor-managed | Broad | 4.5 |
 
-## POC Requirements
+## TryPost Verification
 
-1. Create clean Medium-ready Markdown for NKS-PUB-000001.
-2. Set up local Python virtual environment.
-3. Install requirements from `patnaikd/publish-to-medium`.
-4. Install Playwright Chromium.
-5. Run first publish command locally.
-6. Complete Medium login in the opened Chromium window.
-7. Capture returned Medium URL.
-8. Update NKS publication record with the URL.
+Verified from the current repository:
+
+- AGPL-3.0 license in `LICENSE.md`.
+- Active development.
+- README documents self-hosted and hosted deployment.
+- README documents a first-class REST API and MCP server.
+- README documents native publishing through official APIs to twelve platforms.
+- README lists the five required derivative channels.
+- README documents workspaces, roles, approval flows, comments, analytics, assets, and automation.
+
+Remaining validation:
+
+- exact request and response schema;
+- approval-rejection behavior;
+- credentials and minimum scopes;
+- external IDs and public URL receipts;
+- duplicate/idempotency behavior;
+- retryable versus terminal failures;
+- live controlled test workspace.
+
+## Postiz Verification
+
+Verified from the current repository:
+
+- AGPL-3.0 license in `LICENSE`.
+- Active development, including current platform-provider work.
+- README documents self-hosting and hosted service.
+- README links a public API and Node SDK.
+- README documents N8N and Make integrations.
+- README lists all five required derivative channels plus additional platforms.
+- README states official OAuth/platform flows for the hosted service.
+
+Remaining validation:
+
+- exact public API schema;
+- self-hosted API parity;
+- approval handling;
+- external IDs, URLs, and analytics receipts;
+- idempotency and retry semantics;
+- credential storage and log redaction;
+- live controlled test workspace.
+
+## NKS Contract Requirements
+
+Every candidate must pass the same adapter tests:
+
+1. Reject dispatch when `approval.approved` is false.
+2. Validate source, proof, narrative, and visual fields.
+3. Preserve the approved body and visual IDs.
+4. Map channel/account targets without changing canonical IDs.
+5. Support dry-run behavior.
+6. Return a structured success or failure result.
+7. Capture external IDs, URLs, and timestamps.
+8. Classify retryable and terminal failures.
+9. Avoid secret exposure in records and logs.
+10. Prevent duplicate dispatch through an idempotency key.
+11. Queue manual fallback when external dispatch fails.
 
 ## Security Boundary
 
-- Medium credentials must not be committed to GitHub.
-- Saved session profile remains local to the runner at `~/.publish-to-medium-profile`.
-- Publication requires user approval before live/public publish.
-- For first milestone, unlisted publish is acceptable as a controlled proof-of-concept.
+- User approval is authoritative in NKS, not in the vendor system.
+- Tokens, OAuth secrets, cookies, and browser profiles remain outside canonical records.
+- Credentials are environment or local-runner references.
+- Minimum practical scopes are required.
+- Logs must redact secrets.
+- External systems may not modify proof, narrative, visual, or approval state.
 
-## Immediate Next Actions
+## Current Execution Sequence
 
-1. Create clean Medium-ready Markdown from NKS-PUB-000001.
-2. Create adapter mapping note for `publish-to-medium`.
-3. Create local-run instructions for the Medium POC.
-4. Execute on a local machine with Medium login available.
-5. Capture Medium URL and update NKS state.
+1. Implement a vendor-neutral social adapter port.
+2. Create a publication derivative fixture.
+3. Add contract tests for approval, validation, idempotency, receipts, failures, and secret-free logs.
+4. Map the neutral contract to TryPost.
+5. Execute a dry-run and controlled test.
+6. Validate Postiz against the same contract if TryPost fails or as a comparison.
+7. Retain the manual adapter throughout.
 
-## Current Decision
+## Final Decision
 
-For Publication Milestone 1, use `patnaikd/publish-to-medium` as the immediate Medium automation POC path, with TryPost/Postiz remaining broader downstream distribution candidates.
+- **Manual Adapter:** current production-safe release path.
+- **TryPost:** first social-distribution technical trial.
+- **Postiz:** second candidate and fallback comparison.
+- **publish-to-medium:** controlled local Medium POC only.
