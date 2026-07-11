@@ -30,6 +30,16 @@ RECORD_COLLECTIONS = (
     "capabilities",
 )
 
+# Canonical records use domain-specific identifier names. Resolve identity from the
+# collection contract instead of imposing a false universal ``id`` field.
+IDENTIFIER_FIELDS_BY_COLLECTION: dict[str, tuple[str, ...]] = {
+    "visual-requests": ("request_id",),
+    "social-requests": ("request_id",),
+    "events": ("event_id",),
+    "capabilities": ("registry_id",),
+}
+DEFAULT_IDENTIFIER_FIELDS = ("id", "registry_id", "event_id")
+
 
 @dataclass(frozen=True)
 class AuditResult:
@@ -55,6 +65,16 @@ def _read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _record_identifier(path: Path, records_root: Path, record: dict) -> str | None:
+    """Resolve a record identifier according to its collection contract."""
+    relative = path.relative_to(records_root)
+    collection = relative.parts[0] if len(relative.parts) > 1 else ""
+    fields = IDENTIFIER_FIELDS_BY_COLLECTION.get(
+        collection, DEFAULT_IDENTIFIER_FIELDS
+    )
+    return next((value for field in fields if (value := record.get(field))), None)
+
+
 def _record_index(root: Path) -> tuple[dict[str, dict], list[str]]:
     records: dict[str, dict] = {}
     issues: list[str] = []
@@ -68,9 +88,7 @@ def _record_index(root: Path) -> tuple[dict[str, dict], list[str]]:
         except (json.JSONDecodeError, OSError) as exc:
             issues.append(f"invalid JSON: {path.relative_to(root)} ({exc})")
             continue
-        record_id = (
-            record.get("id") or record.get("registry_id") or record.get("event_id")
-        )
+        record_id = _record_identifier(path, records_root, record)
         if not record_id:
             issues.append(f"record missing identifier: {path.relative_to(root)}")
             continue
