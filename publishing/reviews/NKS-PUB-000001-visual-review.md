@@ -9,7 +9,8 @@
 - Visual package: `NKS-VIS-000001`
 - Asset manifest: `assets/publication-000001/manifest.json`
 - Review sheet: `assets/publication-000001/NKS-VIS-000001-review-sheet.png`
-- Current review state: **Needed**
+- Automated package verification: **Passed**
+- Current human review state: **Needed**
 - Publication approval: **Not granted**
 
 ## Review Rules
@@ -22,11 +23,11 @@ Rendering an asset does not approve it. Committing an asset does not approve it.
 
 | Asset | Request | Intended use | Automated verification | Human decision | Notes |
 |---|---|---|---|---|---|
-| `NKS-DGM-000001-signature-diagram.png` | `NKS-VRQ-000001` | Signature systems diagram | Pending CI | Needed | — |
-| `NKS-HRO-000001-hero.png` | `NKS-VRQ-000002` | Medium / LinkedIn hero | Pending CI | Needed | — |
-| `NKS-CAR-000001-panel-01.png` through `panel-07.png` | `NKS-VRQ-000003` | Seven-panel carousel | Pending CI | Needed | Review as one coherent sequence and as individual panels. |
-| `NKS-QTC-000001-quote-card.png` | `NKS-VRQ-000004` | Quote card | Pending CI | Needed | Confirm quote and attribution exactly match the request. |
-| `NKS-PIN-000001-pinterest.png` | `NKS-VRQ-000005` | Pinterest framework graphic | Pending CI | Needed | Confirm mobile legibility. |
+| `NKS-DGM-000001-signature-diagram.png` | `NKS-VRQ-000001` | Signature systems diagram | Passed | Needed | Dimensions and checksum verified. |
+| `NKS-HRO-000001-hero.png` | `NKS-VRQ-000002` | Medium / LinkedIn hero | Passed | Needed | Dimensions and checksum verified. |
+| `NKS-CAR-000001-panel-01.png` through `panel-07.png` | `NKS-VRQ-000003` | Seven-panel carousel | Passed | Needed | Seven panels verified; review as one coherent sequence and as individual panels. |
+| `NKS-QTC-000001-quote-card.png` | `NKS-VRQ-000004` | Quote card | Passed | Needed | Dimensions, checksum, supplied quote, and attribution verified. |
+| `NKS-PIN-000001-pinterest.png` | `NKS-VRQ-000005` | Pinterest framework graphic | Passed | Needed | Dimensions and checksum verified; confirm mobile legibility. |
 
 Allowed human decisions:
 
@@ -34,7 +35,11 @@ Allowed human decisions:
 - `REJECTED`
 - `REVISION_REQUIRED`
 
-## Proof-Boundary Review
+## Preliminary Proof-Boundary Inspection
+
+The rendered review sheet was inspected for obvious contradictions with the source briefs. No measured-outcome claims, platform logos, full-autonomy claims, or representation of publishing as the whole system were found.
+
+These findings do not replace the human package decision.
 
 Confirm that the package:
 
@@ -49,14 +54,22 @@ Confirm that the package:
 
 ## Technical Review
 
-- [ ] Every file listed in the manifest exists.
-- [ ] Every SHA-256 checksum verifies.
-- [ ] Every rendered dimension matches its request.
-- [ ] The carousel contains exactly seven panels.
-- [ ] The review sheet contains every rendered deliverable.
+Automated checks:
+
+- [x] Every file listed in the manifest exists.
+- [x] Every SHA-256 checksum verifies.
+- [x] Every rendered dimension matches its request.
+- [x] The carousel contains exactly seven panels.
+- [x] The review sheet contains every rendered deliverable.
+- [x] Every asset remains marked `review_status: needed`.
+- [x] The package remains marked `approval_status: needed`.
+
+Human checks still required:
+
 - [ ] Text is legible at intended display sizes.
 - [ ] No element is clipped, overlapped, or unintentionally obscured.
 - [ ] The visual system is consistent across all deliverables.
+- [ ] Each asset is suitable for its intended platform use.
 
 ## Final Review Record
 
