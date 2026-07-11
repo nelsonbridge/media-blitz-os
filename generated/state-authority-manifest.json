@@ -1,0 +1,122 @@
+{
+  "authority_precedence": [
+    "canonical_machine_state",
+    "generated_authoritative_projection",
+    "narrative_or_historical_material"
+  ],
+  "canonical_machine_state": {
+    "class": 1,
+    "manually_editable": true,
+    "note": "Changes require schema validation and governed state transitions.",
+    "paths": [
+      "records/**/*.json"
+    ]
+  },
+  "generated_authoritative_projections": [
+    {
+      "class": 2,
+      "generator": "nks generate-views",
+      "manually_editable": false,
+      "path": "generated/publication-index.md",
+      "sources": ["records/publications/*.json"]
+    },
+    {
+      "class": 2,
+      "generator": "nks generate-views",
+      "manually_editable": false,
+      "path": "generated/proof-index.md",
+      "sources": ["records/proofs/*.json"]
+    },
+    {
+      "class": 2,
+      "generator": "nks generate-views",
+      "manually_editable": false,
+      "path": "generated/visual-package-index.md",
+      "sources": ["records/visuals/*.json"]
+    },
+    {
+      "class": 2,
+      "generator": "nks generate-views",
+      "manually_editable": false,
+      "path": "generated/visual-request-index.md",
+      "sources": ["records/visual-requests/*.json"]
+    },
+    {
+      "class": 2,
+      "generator": "nks generate-views",
+      "manually_editable": false,
+      "path": "generated/feedback-index.md",
+      "sources": ["records/feedback/*.json"]
+    },
+    {
+      "class": 2,
+      "generator": "nks generate-views",
+      "manually_editable": false,
+      "path": "generated/event-index.md",
+      "sources": ["records/events/*.json"]
+    },
+    {
+      "class": 2,
+      "generator": "nks generate-views",
+      "manually_editable": false,
+      "path": "generated/graph-index.md",
+      "sources": ["records/**/*.json"]
+    },
+    {
+      "class": 2,
+      "generator": "nks generate-views",
+      "manually_editable": false,
+      "path": "generated/audit-report.md",
+      "sources": ["records/**/*.json"]
+    },
+    {
+      "class": 2,
+      "generator": "nks generate-views",
+      "manually_editable": false,
+      "path": "generated/runtime-status-report.md",
+      "sources": ["records/**/*.json"]
+    },
+    {
+      "class": 2,
+      "generator": "nks generate-views",
+      "manually_editable": false,
+      "path": "generated/corpus-health-dashboard.md",
+      "sources": ["records/**/*.json"]
+    },
+    {
+      "class": 2,
+      "generator": "nks generate-views",
+      "manually_editable": false,
+      "path": "generated/publication-package-index.md",
+      "sources": ["*/*/receipt.json"]
+    },
+    {
+      "class": 2,
+      "generator": "nks generate-views",
+      "manually_editable": false,
+      "path": "generated/ecosystem-capabilities.md",
+      "sources": ["records/capabilities/ecosystem-capabilities.json"]
+    },
+    {
+      "class": 2,
+      "generator": "nks audit-repository",
+      "manually_editable": false,
+      "path": "generated/audit/repository-audit.md",
+      "sources": ["repository tree", "records/**/*.json"]
+    },
+    {
+      "class": 2,
+      "generator": "nks audit-repository",
+      "manually_editable": false,
+      "path": "generated/audit/repository-audit.json",
+      "sources": ["repository tree", "records/**/*.json"]
+    }
+  ],
+  "narrative_or_historical_material": {
+    "authoritative_for_current_state": false,
+    "class": 3,
+    "exceptions": ["docs/state-authority-model.md"],
+    "paths": ["docs/**/*.md", "runtime/STATUS.md", "README.md"]
+  },
+  "schema_version": "1.0"
+}
