@@ -10,7 +10,7 @@ on:
       - "src/nks/cli/main.py"
       - "src/nks/views/markdown.py"
       - "records/feedback/**"
-      - "generated/feedback-index.md"
+      - "generated/**"
       - "tests/test_delivery_and_feedback.py"
       - "tests/test_generated_views.py"
       - "docs/canonicalization-security-boundary.md"
@@ -24,7 +24,7 @@ on:
       - "src/nks/cli/main.py"
       - "src/nks/views/markdown.py"
       - "records/feedback/**"
-      - "generated/feedback-index.md"
+      - "generated/**"
       - "tests/test_delivery_and_feedback.py"
       - "tests/test_generated_views.py"
       - "docs/canonicalization-security-boundary.md"
@@ -32,13 +32,15 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   verify-canonicalization-boundary:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -53,6 +55,31 @@ jobs:
           --no-cov
       - name: Regenerate authoritative views
         run: nks generate-views .
+      - name: Commit missing declared Class 2 projections
+        run: |
+          missing=()
+          for file in \
+            generated/graph-index.md \
+            generated/audit-report.md \
+            generated/runtime-status-report.md \
+            generated/corpus-health-dashboard.md \
+            generated/publication-package-index.md
+          do
+            if ! git ls-files --error-unmatch "$file" >/dev/null 2>&1; then
+              missing+=("$file")
+            fi
+          done
+
+          if [ ${#missing[@]} -eq 0 ]; then
+            echo "All declared Class 2 projections are already tracked."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "${missing[@]}"
+          git commit -m "Generate missing authoritative projections"
+          git push origin HEAD:${{ github.head_ref || github.ref_name }}
       - name: Reject feedback projection drift
         run: |
           if ! git diff --quiet -- generated/feedback-index.md; then
