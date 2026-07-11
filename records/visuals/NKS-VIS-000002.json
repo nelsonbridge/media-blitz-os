@@ -2,16 +2,11 @@
   "id": "NKS-VIS-000002",
   "title": "Visual Package — Media Blitz Is the Publishing Subsystem",
   "status": "planned",
-  "metadata": {
-    "canonical": true,
-    "record_version": 1,
-    "signature_request_id": "NKS-VRQ-000006",
-    "hero_request_id": "NKS-VRQ-000017"
-  },
+  "metadata": {"canonical": true, "record_version": 1},
   "artifact_id": "NKS-ART-000002",
   "publication_id": "NKS-PUB-000002",
   "signature_diagram_id": "NKS-DGM-000002",
   "hero_image_id": "NKS-HRO-000002",
-  "asset_ids": ["NKS-DGM-000002", "NKS-HRO-000002"],
+  "asset_ids": ["NKS-DGM-000002", "NKS-HRO-000002", "NKS-CAR-000002", "NKS-QTC-000002", "NKS-PIN-000002"],
   "gate_status": "needed"
 }
