@@ -1,0 +1,10 @@
+{
+  "request_id": "NKS-VRQ-000047",
+  "visual_id": "NKS-QTC-000010",
+  "publication_id": "NKS-PUB-000010",
+  "asset_type": "quote-card",
+  "prompt": "Create a restrained security quote card using: 'Speed without boundaries is not safety.' Use subtle guardrail, permission, approval, and rollback motifs.",
+  "proof_boundaries": ["Do not claim measured security improvement.", "Do not imply guardrails eliminate operational risk.", "Treat the content as a governance framework pending current technical verification."],
+  "dimensions": "1200x1200",
+  "metadata": {"brief_id": "NKS-QTC-000010", "visual_package_id": "NKS-VIS-000010", "review_required": true}
+}
