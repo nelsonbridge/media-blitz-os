@@ -20,6 +20,16 @@ Google Drive remains the working editorial environment. GitHub holds the durable
 
 Drive contains the work. GitHub contains the machine that produces, governs, validates, and evolves the work.
 
+## State Authority
+
+Repository files do not all carry equal authority.
+
+1. Validated canonical machine records establish operational truth.
+2. Deterministically generated projections under `generated/` provide authoritative human-readable views of that state.
+3. Human-authored plans, explanations, status summaries, and historical ledgers are non-authoritative unless explicitly generated.
+
+See [`docs/state-authority-model.md`](docs/state-authority-model.md) for precedence, editing rules, and the transitional classification of existing status documents.
+
 ## Current Scope
 
 The initial system supports:
