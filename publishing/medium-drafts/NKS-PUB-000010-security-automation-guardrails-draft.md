@@ -54,6 +54,8 @@ Those rules define the operating envelope.
 
 Without them, automation becomes a source of uncertainty.
 
+NIST guidance reinforces this design. The Generative AI Profile calls for clearly defined responsibilities, continuous monitoring, incident response, fallback, recovery, override, and deactivation criteria. The Secure Software Development Framework places security practices throughout the software-development lifecycle rather than after deployment.
+
 ## Least Privilege Still Matters
 
 Automation should not receive broad authority simply because it is useful.
@@ -110,8 +112,18 @@ But speed without boundaries is not safety.
 
 Guardrails are not obstacles to automation.
 
-They are what make automation trustworthy enough to use.
+They are what make automation governable enough to use.
+
+## Evidence Boundary
+
+The cited guidance supports lifecycle security, monitoring, incident response, recovery, and explicit governance controls. It does not establish that guardrails eliminate risk or provide a measurable improvement for every environment.
+
+## Sources
+
+- National Institute of Standards and Technology, *Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile*, NIST AI 600-1, July 2024. https://doi.org/10.6028/NIST.AI.600-1
+- National Institute of Standards and Technology, *Secure Software Development Framework (SSDF) Version 1.1*, NIST SP 800-218, February 2022. https://csrc.nist.gov/pubs/sp/800/218/final
+- National Institute of Standards and Technology, *Cybersecurity Framework 2.0*. https://www.nist.gov/cyberframework
 
 ## Draft Status
 
-Internal draft. Requires final citation insertion and editorial review before public publication.
+Editorially reviewed and primary-source verified. Requires rendered-asset review and explicit user approval before public publication.
