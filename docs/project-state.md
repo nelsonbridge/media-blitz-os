@@ -46,6 +46,7 @@ Sprint 1: Infrastructure Hardening
 4. Define artifact schemas.
 5. Define publication templates.
 6. Define sync/failsafe model between Drive and GitHub.
+7. Harden runtime validation and state transition boundaries.
 
 ## Current Blockers
 

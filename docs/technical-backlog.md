@@ -309,6 +309,34 @@ Acceptance criteria:
 - Test passes without GitHub, Drive, or external publication access.
 - No core module imports platform-specific code.
 
+### TB-018 — Embed Provenance / Promotion Validation as Implicit Security
+
+Status: Planned
+
+Capture the real/synthetic/replay provenance and source promotion workflow as an architectural security boundary.
+
+Acceptance criteria:
+
+- Feedback provenance is explicit and enforced by the promotion workflow.
+- External adapters may provide signals but cannot directly create canonical source records.
+- Promoted feedback includes lineage metadata and proof limitations.
+- The model preserves `REAL | SYNTHETIC | REPLAY` distinction and prevents silent canonicalization.
+- The work is scoped as backlog for later security hardening, not a current blocker.
+
+### TB-019 — Runtime Hardening and Validation Enforcement
+
+Status: Planned
+
+Harden the runtime by enforcing validation and provenance gates in the core application services.
+
+Acceptance criteria:
+
+- Feedback ingestion and promotion paths are enforced by the runtime, not just documented.
+- Invalid provenance, missing lineage, or unauthorized canonicalization transitions fail loudly.
+- Promotion to source requires explicit provenance, source location, and proof boundary metadata.
+- Runtime instrumentation records audit events for feedback ingestion, promotion, and validation failures.
+- CLI commands and automated tests cover the hardened execution path.
+
 ## Release Guardrail
 
 Runtime v0.1 is not architecturally acceptable unless TB-001 through TB-005, TB-007, TB-008, TB-011, TB-012, and TB-017 are complete.
