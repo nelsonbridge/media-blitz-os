@@ -4,14 +4,16 @@
   "status": "review",
   "metadata": {
     "canonical": true,
-    "record_version": 1,
-    "readiness_class": "proof-verification-and-visual-needed"
+    "record_version": 2,
+    "readiness_class": "visual-review-candidate",
+    "editorial_review": "editorial/reviews/NKS-PUB-000002-000012-editorial-review.md",
+    "evidence_note": "evidence/NKS-PUB-000009-000012-primary-source-verification.md"
   },
   "artifact_id": "NKS-ART-000011",
   "proof_id": "NKS-PRF-000011",
   "narrative_id": "NKS-NAR-000011",
   "visual_package_id": "NKS-VIS-000011",
   "draft_path": "publishing/medium-drafts/NKS-PUB-000011-agentic-devops-beyond-cicd-draft.md",
-  "editorial_status": "needed",
+  "editorial_status": "ready",
   "user_approval": "needed"
 }
