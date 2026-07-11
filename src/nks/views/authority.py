@@ -44,11 +44,7 @@ def build_authority_manifest() -> dict[str, Any]:
             "note": "Changes require schema validation and governed state transitions.",
         },
         "generated_authoritative_projections": [
-            {
-                "class": 2,
-                "manually_editable": False,
-                **projection,
-            }
+            {"class": 2, "manually_editable": False, **projection}
             for projection in GENERATED_PROJECTIONS
         ],
         "narrative_or_historical_material": {
@@ -77,11 +73,16 @@ def verify_authority_manifest(repository_root: Path) -> list[str]:
     """Return authority violations without mutating the repository."""
     violations: list[str] = []
     manifest_path = repository_root / MANIFEST_PATH
-    expected = render_authority_manifest()
     if not manifest_path.exists():
         violations.append(f"missing generated authority manifest: {MANIFEST_PATH}")
-    elif manifest_path.read_text(encoding="utf-8") != expected:
-        violations.append(f"stale generated authority manifest: {MANIFEST_PATH}")
+    else:
+        try:
+            observed = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            violations.append(f"invalid generated authority manifest: {MANIFEST_PATH}")
+        else:
+            if observed != build_authority_manifest():
+                violations.append(f"stale generated authority manifest: {MANIFEST_PATH}")
 
     for projection in GENERATED_PROJECTIONS:
         path = repository_root / projection["path"]
