@@ -4,7 +4,7 @@
 
 ## Census
 
-- Files: 492
+- Files: 508
 - Canonical records: 65
 - Tests: 26
 - Schemas: 7
@@ -14,10 +14,11 @@
 | Area | Files |
 |---|---:|
 | (root) | 5 |
-| .github | 5 |
+| .github | 6 |
 | .vscode | 1 |
 | adapters | 1 |
 | architecture | 8 |
+| assets | 13 |
 | briefings | 4 |
 | context | 1 |
 | contracts | 3 |
@@ -34,12 +35,13 @@
 | metrics | 6 |
 | opportunities | 4 |
 | ops | 5 |
-| publishing | 91 |
+| publishing | 92 |
 | records | 126 |
 | research | 2 |
 | roadmap | 5 |
 | runtime | 5 |
 | schemas | 7 |
+| scripts | 1 |
 | security | 1 |
 | src | 37 |
 | templates | 12 |
