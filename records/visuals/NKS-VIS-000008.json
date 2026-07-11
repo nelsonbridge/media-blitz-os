@@ -2,16 +2,11 @@
   "id": "NKS-VIS-000008",
   "title": "Visual Package — Executive Value Before the Resume",
   "status": "planned",
-  "metadata": {
-    "canonical": true,
-    "record_version": 1,
-    "signature_request_id": "NKS-VRQ-000012",
-    "hero_request_id": "NKS-VRQ-000023"
-  },
+  "metadata": {"canonical": true, "record_version": 1, "placeholder": true},
   "artifact_id": "NKS-ART-000008",
   "publication_id": "NKS-PUB-000008",
   "signature_diagram_id": "NKS-DGM-000008",
   "hero_image_id": "NKS-HRO-000008",
-  "asset_ids": ["NKS-DGM-000008", "NKS-HRO-000008"],
+  "asset_ids": ["NKS-DGM-000008", "NKS-HRO-000008", "NKS-CAR-000008", "NKS-QTC-000008", "NKS-PIN-000008"],
   "gate_status": "needed"
 }
