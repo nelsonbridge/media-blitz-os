@@ -1,0 +1,129 @@
+{
+  "approval_status": "needed",
+  "assets": [
+    {
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "filename": "NKS-CAR-000001-panel-01.png",
+      "request_id": "NKS-VRQ-000003",
+      "review_status": "needed",
+      "sha256": "1714dba3311c2c3ce50f9d732cf1c3d320635a5e5882920235953dc9696a4373"
+    },
+    {
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "filename": "NKS-CAR-000001-panel-02.png",
+      "request_id": "NKS-VRQ-000003",
+      "review_status": "needed",
+      "sha256": "c85e2c2cafbca078d7e56e47b728c702bafd141c22de764a897a424b2ba561d1"
+    },
+    {
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "filename": "NKS-CAR-000001-panel-03.png",
+      "request_id": "NKS-VRQ-000003",
+      "review_status": "needed",
+      "sha256": "47ef5abb7fbadaa4efdec7ff93e54f46ddbcb155ecd835665f2c0ebd2f5cc8c8"
+    },
+    {
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "filename": "NKS-CAR-000001-panel-04.png",
+      "request_id": "NKS-VRQ-000003",
+      "review_status": "needed",
+      "sha256": "00d5a0a239badf7996e39f4ca29027b95018c0fe674f1d6879c3bf4f94a69148"
+    },
+    {
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "filename": "NKS-CAR-000001-panel-05.png",
+      "request_id": "NKS-VRQ-000003",
+      "review_status": "needed",
+      "sha256": "53e5f95b09264ba223291cd25b32be164bff0840202891d2f1285eda9916b60a"
+    },
+    {
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "filename": "NKS-CAR-000001-panel-06.png",
+      "request_id": "NKS-VRQ-000003",
+      "review_status": "needed",
+      "sha256": "602247df6d5595d062fd10eb526fee7d69d8c76fddd2c45b943c5e5ae4098800"
+    },
+    {
+      "dimensions": [
+        1080,
+        1350
+      ],
+      "filename": "NKS-CAR-000001-panel-07.png",
+      "request_id": "NKS-VRQ-000003",
+      "review_status": "needed",
+      "sha256": "8a05ba424dacfb785e6ae337a25444559f179164a5b473787489ef1704623759"
+    },
+    {
+      "dimensions": [
+        1600,
+        900
+      ],
+      "filename": "NKS-DGM-000001-signature-diagram.png",
+      "request_id": "NKS-VRQ-000001",
+      "review_status": "needed",
+      "sha256": "2a93ef861a071ddb7b9d224641560917bcc9112e907ba4d911c9b43ca95410d5"
+    },
+    {
+      "dimensions": [
+        1600,
+        900
+      ],
+      "filename": "NKS-HRO-000001-hero.png",
+      "request_id": "NKS-VRQ-000002",
+      "review_status": "needed",
+      "sha256": "37a555756805f94de91bce557d4e282a00f084370df7ca963f4c358fa0c20320"
+    },
+    {
+      "dimensions": [
+        1000,
+        1500
+      ],
+      "filename": "NKS-PIN-000001-pinterest.png",
+      "request_id": "NKS-VRQ-000005",
+      "review_status": "needed",
+      "sha256": "2454fceb1cf981066d435f1eaa3e8bd80ec807fdae59222c1fbefbc0073473d4"
+    },
+    {
+      "dimensions": [
+        1200,
+        1200
+      ],
+      "filename": "NKS-QTC-000001-quote-card.png",
+      "request_id": "NKS-VRQ-000004",
+      "review_status": "needed",
+      "sha256": "062143a640a308c786b962e7d155242c12112749a46fc9b5ff19c09ef0362564"
+    }
+  ],
+  "manifest_id": "NKS-VIS-MANIFEST-000001",
+  "publication_id": "NKS-PUB-000001",
+  "renderer": "scripts/render_publication_000001_assets.py",
+  "renderer_version": 1,
+  "review_required": true,
+  "review_sheet": {
+    "dimensions": [
+      1200,
+      1440
+    ],
+    "filename": "NKS-VIS-000001-review-sheet.png",
+    "sha256": "ed6e41872e35f32bbd87947aef4238d78627e984d204b96285ec68cf6f4d8440"
+  },
+  "visual_package_id": "NKS-VIS-000001"
+}
