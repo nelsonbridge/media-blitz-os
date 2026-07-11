@@ -4,7 +4,7 @@
 
 Runtime v0.1 is operational on the `sandbox` branch for the full twelve-publication canonical set.
 
-The portable core, filesystem execution, GitHub persistence, workspace synchronization contracts, generated views, export/import, manual delivery fallback, feedback ingestion, and visual-render request pipeline are implemented.
+The portable core, filesystem execution, GitHub persistence, workspace synchronization contracts, generated views, export/import, manual delivery fallback, feedback ingestion, visual-render request pipeline, and quantitative branch-coverage instrumentation are implemented.
 
 ## Implemented
 
@@ -27,6 +27,11 @@ The portable core, filesystem execution, GitHub persistence, workspace synchroni
 - CLI support for tests, view generation, and state export/import.
 - Canonical source records NKS-SRC-000001 through NKS-SRC-000003.
 - Canonical artifact, proof, narrative, visual-package, and publication records for NKS-PUB-000001 through NKS-PUB-000012.
+- `pytest-cov` instrumentation with branch coverage.
+- Terminal missing-line output plus `coverage.json` and `coverage.xml` reports.
+- Initial whole-runtime coverage floor of 70%.
+- Coverage configuration regression test.
+- Portable GitHub Actions coverage workflow using the same `pytest` command as local execution.
 
 ## Architectural Boundaries
 
@@ -37,6 +42,7 @@ The portable core, filesystem execution, GitHub persistence, workspace synchroni
 - External feedback is not proof unless separately evaluated.
 - Publication preparation requires explicit recorded user approval.
 - Generated visual assets require review before approval or public use.
+- Coverage is reproducible locally; GitHub Actions is a secondary verification surface.
 
 ## Canonical Publication Gate State
 
@@ -89,7 +95,7 @@ Prepared render requests:
 - Editorial: needed.
 - User approval: needed.
 
-## Verified Local Results
+## Verified Local Functional Results
 
 - Runtime core: 6 passed in 0.14s.
 - Generated views: 1 passed in 0.13s.
@@ -106,6 +112,19 @@ Prepared render requests:
 
 No hosted GitHub Actions result is claimed.
 
+## Quantitative Coverage State
+
+Configured:
+
+- statement and branch coverage;
+- terminal missing-line report;
+- `coverage.json`;
+- `coverage.xml`;
+- whole-package failure threshold: 70%;
+- target thresholds: domain/policies 90%+, application services 85%+, portable adapters 80%+.
+
+The exact repository-wide percentage must be taken from a complete coverage execution of the committed test suite. Configuration is now enforced by `tests/test_coverage_configuration.py`; no percentage is fabricated before that report exists.
+
 ## Generated Views
 
 - `generated/publication-index.md` — 12 publications.
@@ -120,6 +139,8 @@ No hosted GitHub Actions result is claimed.
 
 ### Executable internally
 
+- Execute the complete committed suite with quantitative coverage and commit the baseline report.
+- Raise package-specific thresholds after reviewing uncovered critical paths.
 - Create visual briefs and render requests for NKS-PUB-000002 through NKS-PUB-000012.
 - Perform primary-source verification for NKS-PUB-000005 and NKS-PUB-000009 through NKS-PUB-000012.
 - Run editorial reviews for NKS-PUB-000002 through NKS-PUB-000012.
@@ -137,6 +158,6 @@ No hosted GitHub Actions result is claimed.
 
 ## Current Stop Boundary
 
-There is no internal runtime blocker. The non-stop rule continues through visual-package preparation, evidence verification, and editorial review.
+There is no internal runtime blocker. The non-stop rule continues through quantitative coverage execution, visual-package preparation, evidence verification, and editorial review.
 
 Public release remains gated by visual review and explicit user approval.
