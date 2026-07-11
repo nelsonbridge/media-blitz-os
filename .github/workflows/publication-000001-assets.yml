@@ -1,0 +1,76 @@
+name: Publication 000001 Assets
+
+on:
+  pull_request:
+    branches: [sandbox]
+    paths:
+      - "scripts/render_publication_000001_assets.py"
+      - "records/visual-requests/NKS-VRQ-00000*.json"
+      - "records/visuals/NKS-VIS-000001.json"
+      - "assets/publication-000001/**"
+      - "generated/**"
+      - "publishing/reviews/NKS-PUB-000001-visual-review.md"
+      - "tests/test_canonical_publication_set.py"
+      - ".github/workflows/publication-000001-assets.yml"
+  push:
+    branches: [sandbox]
+    paths:
+      - "scripts/render_publication_000001_assets.py"
+      - "records/visual-requests/NKS-VRQ-00000*.json"
+      - "records/visuals/NKS-VIS-000001.json"
+      - "assets/publication-000001/**"
+      - "generated/**"
+      - "publishing/reviews/NKS-PUB-000001-visual-review.md"
+      - "tests/test_canonical_publication_set.py"
+      - ".github/workflows/publication-000001-assets.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publication-000001-assets-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render-and-verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install runtime and deterministic renderer
+        run: >-
+          python -m pip install --upgrade pip &&
+          python -m pip install -e ".[test]" "Pillow==12.2.0"
+
+      - name: Re-render Publication 000001 assets
+        run: python scripts/render_publication_000001_assets.py --repository-root .
+
+      - name: Verify dimensions, checksums, lineage, and pending-review state
+        run: python scripts/render_publication_000001_assets.py --repository-root . --verify
+
+      - name: Regenerate authoritative projections
+        run: nks generate-views .
+
+      - name: Reject asset or projection drift
+        run: |
+          if ! git diff --quiet -- assets/publication-000001 generated; then
+            echo "Committed assets or authoritative projections do not match deterministic output."
+            git diff --stat -- assets/publication-000001 generated
+            exit 1
+          fi
+
+      - name: Upload review artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: publication-000001-visual-assets
+          path: assets/publication-000001/
+          if-no-files-found: error

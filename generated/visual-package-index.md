@@ -4,7 +4,7 @@
 
 | Visual Package ID | Title | Publication | Artifact | Signature Diagram | Hero Image | Gate | Assets |
 |---|---|---|---|---|---|---|---:|
-| NKS-VIS-000001 | Visual Package — The Corpus Is Manufactured, Not Found | NKS-PUB-000001 | NKS-ART-000001 | NKS-DGM-000001 | NKS-HRO-000001 | ready | 5 |
+| NKS-VIS-000001 | Visual Package — The Corpus Is Manufactured, Not Found | NKS-PUB-000001 | NKS-ART-000001 | NKS-DGM-000001 | NKS-HRO-000001 | needed | 5 |
 | NKS-VIS-000002 | Visual Package — Media Blitz Is the Publishing Subsystem | NKS-PUB-000002 | NKS-ART-000002 | NKS-DGM-000002 | NKS-HRO-000002 | needed | 5 |
 | NKS-VIS-000003 | Visual Package — GitHub as Knowledge-System Control Plane | NKS-PUB-000003 | NKS-ART-000003 | NKS-DGM-000003 | NKS-HRO-000003 | needed | 5 |
 | NKS-VIS-000004 | Visual Package — The No Idle State Rule | NKS-PUB-000004 | NKS-ART-000004 | NKS-DGM-000004 | NKS-HRO-000004 | needed | 5 |
