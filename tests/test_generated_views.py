@@ -1,15 +1,18 @@
 import json
 from pathlib import Path
 
+import pytest
+
 from nks.views.markdown import (
     render_audit_report,
     render_capability_summary,
-    render_proof_index,
+    render_corpus_health_dashboard,
+    render_feedback_index,
     render_graph_index,
+    render_proof_index,
     render_publication_index,
     render_publication_package_index,
     render_visual_index,
-    render_corpus_health_dashboard,
     write_generated_views,
 )
 
@@ -61,6 +64,28 @@ def test_generated_views_are_deterministic_and_record_driven(tmp_path: Path):
         },
     )
     write_json(
+        records / "feedback" / "NKS-FDB-000001.json",
+        {
+            "feedback_id": "NKS-FDB-000001",
+            "publication_id": "NKS-PUB-000001",
+            "derivative_id": None,
+            "platform": "linkedin",
+            "classification": "correction",
+            "content": "A reader suggests a factual correction.",
+            "provenance": "REAL",
+            "scenario_id": None,
+            "lineage_ids": ["NKS-PUB-000001"],
+            "proof_boundaries": [
+                "Treat the response as an observation, not verified proof."
+            ],
+            "source_url": None,
+            "metric_name": None,
+            "metric_value": None,
+            "metadata": {},
+            "promoted_to_source_id": None,
+        },
+    )
+    write_json(
         records / "capabilities" / "ecosystem-capabilities.json",
         {
             "registry_id": "NKS-CAP-REGISTRY-0001",
@@ -88,6 +113,9 @@ def test_generated_views_are_deterministic_and_record_driven(tmp_path: Path):
     assert "user approval" in render_publication_index(records).lower()
     assert "NKS-PRF-000001" in render_proof_index(records)
     assert "Total visual packages: 1" in render_visual_index(records)
+    feedback_content = render_feedback_index(records)
+    assert "REAL" in feedback_content
+    assert "| 1 | 1 |" in feedback_content
     assert "NKS-CAP-GITHUB" in render_capability_summary(
         records / "capabilities" / "ecosystem-capabilities.json"
     )
@@ -97,11 +125,33 @@ def test_generated_views_are_deterministic_and_record_driven(tmp_path: Path):
     assert "Total score:" in health_content
     assert "Source Lineage Coverage" in health_content
     assert "Orphan Control" in health_content
-    assert "Total publication packages: 0" in render_publication_package_index(tmp_path)
+    assert "Total publication packages: 0" in render_publication_package_index(
+        tmp_path
+    )
+
+
+def test_feedback_view_rejects_missing_provenance(tmp_path: Path):
+    write_json(
+        tmp_path / "feedback" / "NKS-FDB-INVALID.json",
+        {
+            "feedback_id": "NKS-FDB-INVALID",
+            "publication_id": "NKS-PUB-000001",
+            "platform": "linkedin",
+            "classification": "comment",
+            "lineage_ids": ["NKS-PUB-000001"],
+            "proof_boundaries": ["Unverified observation."],
+        },
+    )
+
+    with pytest.raises(KeyError, match="provenance"):
+        render_feedback_index(tmp_path)
 
 
 def test_empty_collections_render_zero_counts(tmp_path: Path):
     assert "Total publications: 0" in render_publication_index(tmp_path)
     assert "Total proof records: 0" in render_proof_index(tmp_path)
     assert "Total visual packages: 0" in render_visual_index(tmp_path)
-    assert "Total publication packages: 0" in render_publication_package_index(tmp_path)
+    assert "Total feedback records: 0" in render_feedback_index(tmp_path)
+    assert "Total publication packages: 0" in render_publication_package_index(
+        tmp_path
+    )
