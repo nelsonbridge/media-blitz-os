@@ -9,10 +9,16 @@ on:
       - "src/nks/application/feedback.py"
       - "src/nks/cli/main.py"
       - "src/nks/views/markdown.py"
+      - "src/nks/audit/repository.py"
       - "records/feedback/**"
       - "generated/**"
       - "tests/test_delivery_and_feedback.py"
       - "tests/test_generated_views.py"
+      - "tests/test_cli.py"
+      - "tests/test_canonical_publication_set.py"
+      - "tests/test_dependency_extraction.py"
+      - "tests/test_publication_000002_records.py"
+      - "tests/test_repository_audit.py"
       - "docs/canonicalization-security-boundary.md"
       - ".github/workflows/canonicalization-security.yml"
   push:
@@ -23,10 +29,16 @@ on:
       - "src/nks/application/feedback.py"
       - "src/nks/cli/main.py"
       - "src/nks/views/markdown.py"
+      - "src/nks/audit/repository.py"
       - "records/feedback/**"
       - "generated/**"
       - "tests/test_delivery_and_feedback.py"
       - "tests/test_generated_views.py"
+      - "tests/test_cli.py"
+      - "tests/test_canonical_publication_set.py"
+      - "tests/test_dependency_extraction.py"
+      - "tests/test_publication_000002_records.py"
+      - "tests/test_repository_audit.py"
       - "docs/canonicalization-security-boundary.md"
       - ".github/workflows/canonicalization-security.yml"
   workflow_dispatch:
@@ -55,35 +67,22 @@ jobs:
           --no-cov
       - name: Regenerate authoritative views
         run: nks generate-views .
-      - name: Commit missing declared Class 2 projections
+      - name: Commit regenerated Class 2 projections
         run: |
-          missing=()
-          for file in \
-            generated/graph-index.md \
-            generated/audit-report.md \
-            generated/runtime-status-report.md \
-            generated/corpus-health-dashboard.md \
-            generated/publication-package-index.md
-          do
-            if ! git ls-files --error-unmatch "$file" >/dev/null 2>&1; then
-              missing+=("$file")
-            fi
-          done
-
-          if [ ${#missing[@]} -eq 0 ]; then
-            echo "All declared Class 2 projections are already tracked."
+          if git diff --quiet -- generated && [ -z "$(git ls-files --others --exclude-standard generated)" ]; then
+            echo "Generated authority projections are current."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "${missing[@]}"
-          git commit -m "Generate missing authoritative projections"
+          git add generated
+          git commit -m "Regenerate authoritative projections"
           git push origin HEAD:${{ github.head_ref || github.ref_name }}
-      - name: Reject feedback projection drift
+      - name: Verify feedback projection is clean
         run: |
           if ! git diff --quiet -- generated/feedback-index.md; then
-            echo "Feedback projection is stale or manually edited."
+            echo "Feedback projection remains stale after regeneration."
             git diff -- generated/feedback-index.md
             exit 1
           fi
