@@ -31,10 +31,10 @@ Rules:
 
 - Class 2 files must be produced by a documented generator or audit command.
 - Class 2 files must never be manually maintained.
-- Every Class 2 file must identify its generator, input scope, and generation timestamp or source revision when practical.
+- Every Class 2 file must identify its generator and input scope in `generated/state-authority-manifest.json`.
 - A change to a Class 2 file without the corresponding canonical or generator change is invalid.
 - Regeneration must be idempotent for unchanged canonical input.
-- When two generated projections conflict, the projection produced from the broader or more recent canonical input does not automatically win; the conflict must be treated as a generator or input-scope defect and reconciled against Class 1.
+- When two generated projections conflict, the conflict is a generator or input-scope defect and must be reconciled against Class 1.
 
 ### Class 3 — Non-Authoritative Narrative and Historical Material
 
@@ -72,15 +72,13 @@ A lower-precedence artifact must never be used to overwrite a higher-precedence 
 
 ### Class 2
 
-- `generated/publication-index.md`
-- `generated/proof-index.md`
-- `generated/visual-package-index.md`
-- `generated/visual-request-index.md`
-- `generated/event-index.md`
-- `generated/feedback-index.md`
-- `generated/ecosystem-capabilities.md`
-- `generated/audit/repository-audit.md`
-- `generated/audit/repository-audit.json`
+The complete machine-readable inventory is `generated/state-authority-manifest.json`.
+
+It currently includes:
+
+- generated publication, proof, visual, event, feedback, graph, health, runtime, package, and capability projections;
+- generated repository audit reports;
+- no manually maintained status document.
 
 ### Class 3
 
@@ -89,17 +87,21 @@ A lower-precedence artifact must never be used to overwrite a higher-precedence 
 - `docs/project-state.md`, retained as an historical project ledger.
 - Audit narratives, architecture documents, ADRs, plans, and backlog documents unless explicitly generated.
 
-## Required Repository Controls
+## Implemented Repository Controls
 
-The runtime and repository audit should eventually enforce the following:
+The following controls are active:
 
-1. Every status-like document declares its authority class.
-2. Every Class 2 artifact is reproducible through a documented command.
-3. CI fails when regenerated Class 2 output differs from committed output.
-4. CI fails when a Class 2 file is changed without a canonical-input or generator change.
-5. The repository audit identifies stale Class 3 claims that contradict canonical state.
-6. Generated files carry a warning that manual edits will be overwritten.
-7. A single generated state manifest records canonical counts, active gates, generation revision, and projection inventory.
+1. `generated/state-authority-manifest.json` records Class 1 scope, Class 2 projection inventory, generator ownership, and source scope.
+2. `python -m nks.views.authority verify .` rejects a missing, invalid, or stale manifest and missing Class 2 projections.
+3. `nks generate-views .` deterministically regenerates the standard Class 2 projections.
+4. `.github/workflows/state-authority.yml` runs authority tests, verifies the manifest, regenerates projections, and fails when committed generated output differs.
+5. Generated views carry a warning that they must not be manually edited.
+
+Remaining controls:
+
+1. Extend repository audit findings to detect undeclared status-like files and contradictory Class 3 claims.
+2. Require canonical-input or generator changes whenever a Class 2 artifact changes.
+3. Add source revision metadata where it improves diagnosis without compromising deterministic output.
 
 ## Transitional Decision
 
