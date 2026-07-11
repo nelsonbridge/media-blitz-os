@@ -1,0 +1,14 @@
+﻿# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest
+.pytest_cache/
+
+# Coverage reports
+coverage.xml
+coverage.json
+.coverage
+htmlcov/
+

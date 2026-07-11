@@ -1,3 +1,13 @@
 {
-    "chatgpt.runCodexInWindowsSubsystemForLinux": true
+    "chatgpt.runCodexInWindowsSubsystemForLinux": true,
+    "chat.tools.terminal.autoApprove": {
+        "/^python -m pytest -q$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^python -m pytest -q; echo EXIT:\\$LASTEXITCODE$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
 }
