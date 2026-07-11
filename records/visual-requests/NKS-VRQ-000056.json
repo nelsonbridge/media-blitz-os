@@ -1,0 +1,10 @@
+{
+  "request_id": "NKS-VRQ-000056",
+  "visual_id": "NKS-PIN-000008",
+  "publication_id": "NKS-PUB-000008",
+  "asset_type": "pinterest-pin",
+  "prompt": "Create a vertical professional framework pin titled 'The Resume Should Not Be the First Signal'. Show public proof, frameworks, writing, and interviews creating context before formal resume review.",
+  "proof_boundaries": ["Do not promise hiring, recruiter, or career outcomes.", "Present public proof as context, not a replacement for credentials.", "Do not frame the work as self-promotion."],
+  "dimensions": "1000x1500",
+  "metadata": {"brief_id": "NKS-PIN-000008", "visual_package_id": "NKS-VIS-000008", "review_required": true}
+}
