@@ -4,7 +4,7 @@
 
 Runtime v0.1 is operational on the `sandbox` branch for the full twelve-publication canonical set.
 
-The portable core, filesystem execution, GitHub persistence, workspace synchronization contracts, generated views, export/import, manual delivery fallback, feedback ingestion, visual-render request pipeline, and quantitative branch-coverage instrumentation are implemented.
+The portable core, filesystem execution, GitHub persistence, workspace synchronization contracts, generated views, export/import, manual delivery fallback, feedback ingestion, complete visual-render request pipeline, and quantitative branch-coverage instrumentation are implemented.
 
 ## Implemented
 
@@ -21,12 +21,13 @@ The portable core, filesystem execution, GitHub persistence, workspace synchroni
 - Explicit publication-approval enforcement.
 - Feedback persistence, ingestion events, and explicit promotion to source records.
 - Manual visual renderer fallback with deterministic prompt packages.
-- Five proof-bounded render requests for NKS-PUB-000001.
+- Canonical source records NKS-SRC-000001 through NKS-SRC-000003.
+- Canonical artifact, proof, narrative, visual-package, and publication records for NKS-PUB-000001 through NKS-PUB-000012.
+- Five proof-bounded render requests for every publication: signature diagram, hero image, carousel, quote card, and Pinterest pin.
+- Contiguous visual request registry NKS-VRQ-000001 through NKS-VRQ-000060.
 - Deterministic generated views for publications, proofs, visual packages, visual requests, workflow events, feedback, and ecosystem capabilities.
 - Portable checksummed export/import.
 - CLI support for tests, view generation, and state export/import.
-- Canonical source records NKS-SRC-000001 through NKS-SRC-000003.
-- Canonical artifact, proof, narrative, visual-package, and publication records for NKS-PUB-000001 through NKS-PUB-000012.
 - `pytest-cov` instrumentation with branch coverage.
 - Terminal missing-line output plus `coverage.json` and `coverage.xml` reports.
 - Initial whole-runtime coverage floor of 70%.
@@ -55,19 +56,14 @@ The portable core, filesystem execution, GitHub persistence, workspace synchroni
 - Editorial: ready.
 - User approval: needed.
 
-Prepared render requests:
-
-- NKS-VRQ-000001 → NKS-DGM-000001 signature diagram.
-- NKS-VRQ-000002 → NKS-HRO-000001 hero image.
-- NKS-VRQ-000003 → NKS-CAR-000001 carousel.
-- NKS-VRQ-000004 → NKS-QTC-000001 quote card.
-- NKS-VRQ-000005 → NKS-PIN-000001 Pinterest pin.
+Prepared render requests: NKS-VRQ-000001 through NKS-VRQ-000005.
 
 ### NKS-PUB-000002 through NKS-PUB-000004
 
 - Proof: ready.
 - Narrative: ready.
-- Visual package: needed.
+- Five visual render requests: prepared.
+- Visual gate: needed pending rendered-asset review.
 - Editorial: needed.
 - User approval: needed.
 
@@ -75,7 +71,8 @@ Prepared render requests:
 
 - Proof: partial pending quantitative verification.
 - Narrative: ready.
-- Visual package: needed.
+- Five visual render requests: prepared.
+- Visual gate: needed pending rendered-asset review.
 - Editorial: needed.
 - User approval: needed.
 
@@ -83,7 +80,8 @@ Prepared render requests:
 
 - Proof: ready.
 - Narrative: ready.
-- Visual package: needed.
+- Five visual render requests: prepared.
+- Visual gate: needed pending rendered-asset review.
 - Editorial: needed.
 - User approval: needed.
 
@@ -91,7 +89,8 @@ Prepared render requests:
 
 - Proof: partial pending current primary-source verification.
 - Narrative: ready.
-- Visual package: needed.
+- Five visual render requests: prepared.
+- Visual gate: needed pending rendered-asset review.
 - Editorial: needed.
 - User approval: needed.
 
@@ -107,8 +106,9 @@ Prepared render requests:
 - Manual delivery and feedback workflows: 3 passed in 0.15s.
 - Manual visual renderer: 1 passed in 0.12s.
 - Publication #2 readiness state: 1 passed in 0.09s.
-- Twelve-publication reference and gate verification: 3 assertions passed.
-- Twelve-publication generated-index coverage: 1 check passed.
+- Twelve-publication reference and gate verification: passed.
+- Twelve-publication generated-index coverage: passed.
+- Complete five-asset linkage and contiguous 60-request registry: 2 checks passed.
 
 No hosted GitHub Actions result is claimed.
 
@@ -123,14 +123,14 @@ Configured:
 - whole-package failure threshold: 70%;
 - target thresholds: domain/policies 90%+, application services 85%+, portable adapters 80%+.
 
-The exact repository-wide percentage must be taken from a complete coverage execution of the committed test suite. Configuration is now enforced by `tests/test_coverage_configuration.py`; no percentage is fabricated before that report exists.
+The exact repository-wide percentage must be taken from a complete coverage execution of the committed test suite. Configuration is enforced by `tests/test_coverage_configuration.py`; no percentage is fabricated before that report exists.
 
 ## Generated Views
 
 - `generated/publication-index.md` — 12 publications.
 - `generated/proof-index.md` — 12 proof records.
-- `generated/visual-package-index.md` — 12 visual packages.
-- `generated/visual-request-index.md`.
+- `generated/visual-package-index.md` — 12 visual packages, five requested assets each.
+- `generated/visual-request-index.md` — 60 proof-bounded render requests.
 - `generated/event-index.md`.
 - `generated/feedback-index.md`.
 - `generated/ecosystem-capabilities.md`.
@@ -141,23 +141,23 @@ The exact repository-wide percentage must be taken from a complete coverage exec
 
 - Execute the complete committed suite with quantitative coverage and commit the baseline report.
 - Raise package-specific thresholds after reviewing uncovered critical paths.
-- Create visual briefs and render requests for NKS-PUB-000002 through NKS-PUB-000012.
-- Perform primary-source verification for NKS-PUB-000005 and NKS-PUB-000009 through NKS-PUB-000012.
+- Perform quantitative verification for NKS-PUB-000005.
+- Perform current primary-source verification for NKS-PUB-000009 through NKS-PUB-000012.
 - Run editorial reviews for NKS-PUB-000002 through NKS-PUB-000012.
 - Evaluate direct publication adapters against the existing contract.
 - Sync generated human views to Drive when connector execution is selected.
 
-### External or user-gated for Publication #1
+### External or user-gated
 
-- Render the five visual assets.
-- Review and approve or reject each asset.
-- Record explicit user publication approval.
+- Render the prepared visual assets.
+- Review and approve or reject generated assets.
+- Record explicit publication approval.
 - Publish through a direct or manual adapter.
 - Record public URLs and receipts.
 - Ingest resulting feedback and metrics.
 
 ## Current Stop Boundary
 
-There is no internal runtime blocker. The non-stop rule continues through quantitative coverage execution, visual-package preparation, evidence verification, and editorial review.
+There is no internal runtime blocker. The non-stop rule continues through quantitative coverage execution, evidence verification, editorial review, and adapter evaluation.
 
-Public release remains gated by visual review and explicit user approval.
+Public release remains gated by rendered-asset review and explicit user approval.
