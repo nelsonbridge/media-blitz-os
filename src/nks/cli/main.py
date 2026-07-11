@@ -12,6 +12,7 @@ from nks.application.export_import import (
     import_portable_state,
     verify_imported_state,
 )
+from nks.audit.repository import audit_repository
 from nks.views.markdown import write_generated_views
 
 app = typer.Typer(help="Nelson Knowledge System runtime")
@@ -47,6 +48,22 @@ def generate_views(
     """Generate deterministic Markdown views from canonical JSON records."""
     for path in write_generated_views(repository_root):
         typer.echo(str(path))
+
+
+@app.command("audit-repository")
+def audit_repository_command(
+    repository_root: Path = typer.Argument(..., exists=True, file_okay=False),
+    output_dir: Path | None = typer.Option(
+        None,
+        help="Output directory. Defaults to generated/audit under the repository root.",
+    ),
+) -> None:
+    """Generate deterministic census, integrity, drift, and readiness reports."""
+    result = audit_repository(repository_root, output_dir)
+    typer.echo(f"report: {result.report_path}")
+    typer.echo(f"json: {result.json_path}")
+    typer.echo(f"files: {result.file_count}")
+    typer.echo(f"findings: {result.issue_count}")
 
 
 @app.command("export-state")
