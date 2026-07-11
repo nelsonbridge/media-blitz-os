@@ -4,20 +4,21 @@
   "status": "review",
   "metadata": {
     "canonical": true,
-    "record_version": 1
+    "record_version": 2,
+    "evidence_note": "evidence/NKS-PUB-000009-000012-primary-source-verification.md"
   },
   "artifact_id": "NKS-ART-000010",
-  "category": "document-derived-technical",
+  "category": "primary-source-verified-technical",
   "supported_claims": [
-    "Security automation can accelerate both correct and incorrect actions.",
-    "Safe operating envelopes require explicit permissions, approvals, scope limits, escalation conditions, rollback, and audit evidence.",
-    "Authority should be proportionate to the consequence of the automated action."
+    "Security automation should operate within explicit permissions, scope limits, monitoring, incident-response, and recovery controls.",
+    "Secure software practices should be integrated throughout the development lifecycle rather than added only after deployment.",
+    "Authority and review requirements should be proportionate to the consequence of an automated action."
   ],
   "unsupported_claims": [
     "Any product-specific capability or security claim not revalidated against current documentation.",
-    "Any universal claim that automated remediation is unsafe.",
-    "Any quantified claim about incident-response improvement or risk reduction without current evidence."
+    "Any universal claim that automation is unsafe or that guardrails eliminate operational risk.",
+    "Any quantified claim about incident-response improvement or risk reduction without direct evidence."
   ],
   "citations_required": true,
-  "gate_status": "partial"
+  "gate_status": "ready"
 }
