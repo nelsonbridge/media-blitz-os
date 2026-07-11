@@ -1,0 +1,10 @@
+{
+  "request_id": "NKS-VRQ-000041",
+  "visual_id": "NKS-QTC-000004",
+  "publication_id": "NKS-PUB-000004",
+  "asset_type": "quote-card",
+  "prompt": "Create a restrained executive quote card using: 'If the next task is known, execute it.' Use a subtle execution-loop motif showing select, execute, verify, update, continue.",
+  "proof_boundaries": ["Present the rule as an operating principle, not universal autonomous authority.", "Preserve explicit stop conditions for safety, blockers, and user decisions.", "Do not imply public release can bypass approval."],
+  "dimensions": "1200x1200",
+  "metadata": {"brief_id": "NKS-QTC-000004", "visual_package_id": "NKS-VIS-000004", "review_required": true}
+}
