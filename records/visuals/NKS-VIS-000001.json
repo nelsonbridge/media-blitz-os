@@ -4,7 +4,12 @@
   "status": "review",
   "metadata": {
     "canonical": true,
-    "record_version": 1
+    "record_version": 2,
+    "render_status": "rendered",
+    "review_status": "needed",
+    "manifest_path": "assets/publication-000001/manifest.json",
+    "review_record_path": "publishing/reviews/NKS-PUB-000001-visual-review.md",
+    "renderer": "scripts/render_publication_000001_assets.py"
   },
   "artifact_id": "NKS-ART-000001",
   "publication_id": "NKS-PUB-000001",
@@ -17,5 +22,5 @@
     "NKS-QTC-000001",
     "NKS-PIN-000001"
   ],
-  "gate_status": "ready"
+  "gate_status": "needed"
 }
