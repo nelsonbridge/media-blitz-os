@@ -1,0 +1,10 @@
+{
+  "request_id": "NKS-VRQ-000049",
+  "visual_id": "NKS-QTC-000012",
+  "publication_id": "NKS-PUB-000012",
+  "asset_type": "quote-card",
+  "prompt": "Create a restrained technical quote card using: 'A system that can repair itself must know when not to repair itself.' Use subtle remediation-boundary, escalation, rollback, and observability motifs.",
+  "proof_boundaries": ["Do not claim measured reliability or incident-response gains.", "Do not imply autonomous remediation is universally safe.", "Treat the content as a governance framework pending current technical verification."],
+  "dimensions": "1200x1200",
+  "metadata": {"brief_id": "NKS-QTC-000012", "visual_package_id": "NKS-VIS-000012", "review_required": true}
+}
