@@ -4,14 +4,15 @@
   "status": "review",
   "metadata": {
     "canonical": true,
-    "record_version": 1
+    "record_version": 2,
+    "evidence_note": "evidence/NKS-PUB-000009-000012-primary-source-verification.md"
   },
   "artifact_id": "NKS-ART-000011",
-  "category": "document-derived-technical",
+  "category": "primary-source-verified-technical",
   "supported_claims": [
-    "Release decisions can depend on test results, dependency health, vulnerabilities, environment state, compliance, incidents, and rollback readiness.",
-    "A risk-governance approach considers whether a release should move and what evidence supports that decision, not only whether the pipeline can move.",
-    "Agentic coordination can be framed as surfacing fragmented signals and routing higher-risk decisions to human review."
+    "Secure delivery decisions can draw on vulnerability management, lifecycle security practices, source and build assurance, artifact provenance, and verification evidence.",
+    "A risk-governance approach asks whether a release should move and what evidence supports that decision, not only whether the pipeline can move.",
+    "Agentic coordination may be framed as surfacing fragmented signals and routing higher-risk decisions to human review."
   ],
   "unsupported_claims": [
     "Any product-specific DevOps or agent capability not revalidated against current primary documentation.",
@@ -19,5 +20,5 @@
     "Any assertion that agentic systems can safely replace engineering judgment."
   ],
   "citations_required": true,
-  "gate_status": "partial"
+  "gate_status": "ready"
 }
