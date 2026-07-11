@@ -1,0 +1,74 @@
+{
+  "manifest_id": "NKS-INT-SOCIAL-0001",
+  "version": 1,
+  "decision_date": "2026-07-10",
+  "production_default": "manual",
+  "first_trial": "trypost",
+  "comparison_candidate": "postiz",
+  "medium_automation": "controlled-poc-only",
+  "contract_tests": {
+    "approval_rejection": "implemented-and-verified",
+    "dry_run_mapping": "implemented-and-verified",
+    "idempotency": "implemented-and-verified",
+    "structured_receipt": "implemented-and-verified",
+    "retryable_failure": "implemented-and-verified",
+    "terminal_permission_failure": "implemented-and-verified",
+    "manual_fallback": "implemented-and-verified",
+    "secret_boundary": "implemented-and-verified",
+    "http_idempotency_header": "implemented-and-verified",
+    "credential_indirection": "implemented-and-verified",
+    "vendor_endpoint_mapping": "pending-live-schema-validation",
+    "controlled_external_dispatch": "pending-user-approval-and-connected-test-account"
+  },
+  "candidates": {
+    "trypost": {
+      "license": "AGPL-3.0",
+      "repository_activity": "active",
+      "self_host": true,
+      "documented_surfaces": ["REST API", "MCP"],
+      "required_channels_documented": ["linkedin", "x", "instagram", "facebook", "pinterest"],
+      "unknowns": [
+        "exact create-post endpoint schema",
+        "self-hosted authentication and scope model",
+        "idempotency semantics",
+        "receipt and public URL schema",
+        "retry and rate-limit response structure"
+      ]
+    },
+    "postiz": {
+      "license": "AGPL-3.0",
+      "repository_activity": "active",
+      "self_host": true,
+      "documented_surfaces": ["Public API", "Node SDK", "N8N", "Make"],
+      "required_channels_documented": ["linkedin", "x", "instagram", "facebook", "pinterest"],
+      "unknowns": [
+        "exact create-post endpoint schema",
+        "self-hosted API parity",
+        "idempotency semantics",
+        "receipt and public URL schema",
+        "retry and rate-limit response structure"
+      ]
+    },
+    "publish_to_medium": {
+      "license": "not-confirmed",
+      "repository_activity": "active",
+      "automation": "playwright-browser",
+      "status": "poc-only",
+      "known_risks": [
+        "fragile Medium selectors",
+        "unlisted visibility selection may fail",
+        "update button behavior not live verified",
+        "browser UI dependency",
+        "license unresolved"
+      ]
+    }
+  },
+  "external_dispatch_requirements": [
+    "rendered assets reviewed",
+    "explicit user publication approval recorded",
+    "test account or controlled audience selected",
+    "credential reference configured outside canonical records",
+    "live endpoint schema verified",
+    "manual fallback available"
+  ]
+}

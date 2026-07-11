@@ -1,0 +1,10 @@
+{
+  "request_id": "NKS-VRQ-000039",
+  "visual_id": "NKS-QTC-000002",
+  "publication_id": "NKS-PUB-000002",
+  "asset_type": "quote-card",
+  "prompt": "Create a restrained executive quote card using: 'Publishing is downstream of knowledge manufacturing.' Include a subtle visual distinction between a larger knowledge system and its publishing subsystem. No decorative clutter.",
+  "proof_boundaries": ["Present this as an architectural principle, not a measured outcome.", "Do not imply all publication channels are automated.", "Do not claim public reach or conversion results."],
+  "dimensions": "1200x1200",
+  "metadata": {"brief_id": "NKS-QTC-000002", "visual_package_id": "NKS-VIS-000002", "review_required": true}
+}

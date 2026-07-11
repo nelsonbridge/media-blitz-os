@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000037",
+  "visual_id": "NKS-CAR-000011",
+  "publication_id": "NKS-PUB-000011",
+  "asset_type": "carousel",
+  "prompt": "Create a professional 6-panel carousel titled 'Agentic DevOps Beyond CI/CD'. Sequence: 1) CI/CD is not the whole system; 2) Delivery risk is the executive concern; 3) Signals include quality, dependencies, vulnerabilities, environment, compliance, and rollback readiness; 4) Agentic DevOps coordinates those signals; 5) Governance belongs inside the flow of work; 6) Governed delivery is more valuable than raw speed. Use restrained enterprise design and clear progression.",
+  "proof_boundaries": [
+    "Do not claim measured delivery improvements or risk reduction.",
+    "Do not imply current tools autonomously govern releases without human oversight.",
+    "Treat the content as an architectural framework pending current technical verification."
+  ],
+  "dimensions": "1080x1350 per panel",
+  "metadata": {
+    "brief_id": "NKS-CAR-000011",
+    "visual_package_id": "NKS-VIS-000011",
+    "review_required": true
+  }
+}

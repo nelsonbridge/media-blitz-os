@@ -1,18 +1,19 @@
 {
   "id": "NKS-PUB-000003",
   "title": "GitHub Is the Control Plane for This Knowledge System",
-  "status": "drafted",
+  "status": "review",
   "metadata": {
     "canonical": true,
-    "record_version": 1,
+    "record_version": 2,
     "canonical_platform": "medium-or-linkedin",
-    "readiness_class": "internal-draft"
+    "readiness_class": "visual-review-candidate",
+    "editorial_review": "editorial/reviews/NKS-PUB-000002-000012-editorial-review.md"
   },
   "artifact_id": "NKS-ART-000003",
   "proof_id": "NKS-PRF-000003",
   "narrative_id": "NKS-NAR-000003",
   "visual_package_id": "NKS-VIS-000003",
   "draft_path": "publishing/medium-drafts/NKS-PUB-000003-github-as-control-plane-draft.md",
-  "editorial_status": "needed",
+  "editorial_status": "ready",
   "user_approval": "needed"
 }

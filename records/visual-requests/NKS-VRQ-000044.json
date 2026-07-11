@@ -1,0 +1,10 @@
+{
+  "request_id": "NKS-VRQ-000044",
+  "visual_id": "NKS-QTC-000007",
+  "publication_id": "NKS-PUB-000007",
+  "asset_type": "quote-card",
+  "prompt": "Create a restrained executive quote card using: 'Do not merely resolve ambiguity. Convert it.' Use a subtle transformation motif from noise to structure to capability.",
+  "proof_boundaries": ["Present ambiguity conversion as an executive framework, not a guaranteed outcome.", "Do not imply uncertainty can be removed entirely.", "Do not add quantified performance claims."],
+  "dimensions": "1200x1200",
+  "metadata": {"brief_id": "NKS-QTC-000007", "visual_package_id": "NKS-VIS-000007", "review_required": true}
+}

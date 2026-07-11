@@ -1,0 +1,10 @@
+{
+  "request_id": "NKS-VRQ-000048",
+  "visual_id": "NKS-QTC-000011",
+  "publication_id": "NKS-PUB-000011",
+  "asset_type": "quote-card",
+  "prompt": "Create a restrained technical quote card using: 'Agentic DevOps should govern risk, not merely accelerate mechanics.' Use subtle pipeline, risk-signal, and human-judgment motifs.",
+  "proof_boundaries": ["Do not claim measured delivery or risk improvements.", "Do not imply current systems can autonomously govern releases without oversight.", "Treat the content as an architectural framework pending current technical verification."],
+  "dimensions": "1200x1200",
+  "metadata": {"brief_id": "NKS-QTC-000011", "visual_package_id": "NKS-VIS-000011", "review_required": true}
+}

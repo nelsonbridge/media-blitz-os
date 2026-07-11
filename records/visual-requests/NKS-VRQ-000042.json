@@ -1,0 +1,10 @@
+{
+  "request_id": "NKS-VRQ-000042",
+  "visual_id": "NKS-QTC-000005",
+  "publication_id": "NKS-PUB-000005",
+  "asset_type": "quote-card",
+  "prompt": "Create a restrained executive quote card using: 'Ambiguity is expensive. Clarity creates leverage.' Use subtle decision-path and friction-reduction motifs.",
+  "proof_boundaries": ["Do not include quantified savings or performance claims.", "Present clarity as an operating principle pending quantitative verification.", "Do not imply ambiguity can be eliminated entirely."],
+  "dimensions": "1200x1200",
+  "metadata": {"brief_id": "NKS-QTC-000005", "visual_package_id": "NKS-VIS-000005", "review_required": true}
+}

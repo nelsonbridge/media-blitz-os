@@ -14,6 +14,7 @@ from nks.application.export_import import (
     import_portable_state,
     verify_imported_state,
 )
+<<<<<<< HEAD
 from nks.adapters.manual_delivery import JsonFeedbackRepository, ManualPublicationAdapter
 from nks.application.feedback import FeedbackReplayHarness
 from nks.application.load_records import load_record
@@ -21,7 +22,11 @@ from nks.application.runtime import build_runtime_status
 from nks.domain.delivery import FeedbackRecord, FeedbackScenario, PublicationPayload
 from nks.domain.models import GateStatus, PublicationRecord, VisualPackageRecord
 from nks.views.health import render_corpus_health_dashboard
+=======
+from nks.audit.repository import audit_repository
+>>>>>>> 873c3dd6c7b73cdb77c53c36108072d137a1dd39
 from nks.views.markdown import write_generated_views
+from nks.audit.repository import audit_repository
 
 app = typer.Typer(help="Nelson Knowledge System runtime")
 
@@ -58,6 +63,7 @@ def generate_views(
         typer.echo(str(path))
 
 
+<<<<<<< HEAD
 @app.command("health-dashboard")
 def health_dashboard(
     repository_root: Path = typer.Argument(..., exists=True, file_okay=False)
@@ -73,14 +79,6 @@ def runtime_status(
     """Print a live runtime status summary from canonical state and workflow events."""
     status = build_runtime_status(repository_root)
     typer.echo(status.summary())
-
-
-@app.command("health-dashboard")
-def health_dashboard(
-    repository_root: Path = typer.Argument(..., exists=True, file_okay=False)
-) -> None:
-    """Print a corpus health dashboard generated from current canonical state."""
-    typer.echo(render_corpus_health_dashboard(repository_root / "records"))
 
 
 @app.command("ingest-feedback")
@@ -168,6 +166,22 @@ def prepare_publication(
 
     typer.echo(f"receipt_id: {receipt.receipt_id}")
     typer.echo(f"package_path: {receipt.metadata.get('package_path')}")
+
+
+@app.command("audit-repository")
+def audit_repository_command(
+    repository_root: Path = typer.Argument(..., exists=True, file_okay=False),
+    output_dir: Path | None = typer.Option(
+        None,
+        help="Output directory. Defaults to generated/audit under the repository root.",
+    ),
+) -> None:
+    """Generate deterministic census, integrity, drift, and readiness reports."""
+    result = audit_repository(repository_root, output_dir)
+    typer.echo(f"report: {result.report_path}")
+    typer.echo(f"json: {result.json_path}")
+    typer.echo(f"files: {result.file_count}")
+    typer.echo(f"findings: {result.issue_count}")
 
 
 @app.command("export-state")

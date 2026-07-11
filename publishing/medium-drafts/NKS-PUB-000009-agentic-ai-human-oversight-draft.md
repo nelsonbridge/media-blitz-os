@@ -64,6 +64,8 @@ A high-impact operational action may require approval before execution.
 
 A sensitive security or compliance action may require explicit human command.
 
+NIST’s Generative AI Profile reinforces this architecture. It calls for clearly defined oversight roles, incident-response responsibilities, continuous monitoring, override and appeal mechanisms, fallback and recovery planning, and criteria for deactivation when systems move outside defined limits.
+
 ## Governance Enables Useful Autonomy
 
 The point of governance is not to suppress automation.
@@ -74,7 +76,7 @@ A system with unclear boundaries creates hesitation. People do not know whether 
 
 A system with clear boundaries can be used more confidently because everyone understands its operating envelope.
 
-Governance gives autonomy a safe shape.
+Governance gives autonomy a governable shape.
 
 ## Evidence and Telemetry Matter
 
@@ -108,6 +110,14 @@ Autonomy without oversight is not maturity.
 
 Governed autonomy is the target.
 
+## Evidence Boundary
+
+The cited guidance supports explicit governance, monitoring, incident response, fallback, recovery, override, and accountable oversight. It does not establish that human oversight alone guarantees safety, reliability, or regulatory compliance.
+
+## Source
+
+- National Institute of Standards and Technology, *Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile*, NIST AI 600-1, July 2024. https://doi.org/10.6028/NIST.AI.600-1
+
 ## Draft Status
 
-Internal draft. Requires final citation insertion and editorial review before public publication.
+Editorially reviewed and primary-source verified. Requires rendered-asset review and explicit user approval before public publication.

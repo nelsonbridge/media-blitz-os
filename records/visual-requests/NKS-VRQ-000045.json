@@ -1,0 +1,10 @@
+{
+  "request_id": "NKS-VRQ-000045",
+  "visual_id": "NKS-QTC-000008",
+  "publication_id": "NKS-PUB-000008",
+  "asset_type": "quote-card",
+  "prompt": "Create a restrained professional quote card using: 'The resume should not be the first signal.' Use a subtle sequence from public proof to context to formal review.",
+  "proof_boundaries": ["Do not promise hiring, recruiter, or career outcomes.", "Present public proof as context, not a substitute for credentials or due process.", "Do not imply self-promotion is the objective."],
+  "dimensions": "1200x1200",
+  "metadata": {"brief_id": "NKS-QTC-000008", "visual_package_id": "NKS-VIS-000008", "review_required": true}
+}

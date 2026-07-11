@@ -2,16 +2,11 @@
   "id": "NKS-VIS-000012",
   "title": "Visual Package — Self-Healing Systems Need Governance",
   "status": "planned",
-  "metadata": {
-    "canonical": true,
-    "record_version": 1,
-    "signature_request_id": "NKS-VRQ-000016",
-    "hero_request_id": "NKS-VRQ-000027"
-  },
+  "metadata": {"canonical": true, "record_version": 1, "placeholder": true},
   "artifact_id": "NKS-ART-000012",
   "publication_id": "NKS-PUB-000012",
   "signature_diagram_id": "NKS-DGM-000012",
   "hero_image_id": "NKS-HRO-000012",
-  "asset_ids": ["NKS-DGM-000012", "NKS-HRO-000012"],
+  "asset_ids": ["NKS-DGM-000012", "NKS-HRO-000012", "NKS-CAR-000012", "NKS-QTC-000012", "NKS-PIN-000012"],
   "gate_status": "needed"
 }

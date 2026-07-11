@@ -36,13 +36,15 @@ The result is not merely confusion.
 
 The result is cost.
 
-## Clarity Reduces Decision Latency
+Meta-analytic research supports the narrower empirical claim beneath this argument: role ambiguity is negatively associated with job performance. The relationship varies by context and does not establish a universal return on clarity, but ambiguity should not be dismissed as economically irrelevant.
+
+## Clarity Can Reduce Decision Latency
 
 Decision latency is one of the quiet taxes inside organizations.
 
 It shows up when people wait for direction, revisit settled topics, escalate avoidable questions, or hesitate because decision rights are unclear.
 
-Clarity reduces that tax.
+Clarity can reduce that tax.
 
 Clear priorities reduce debate about what matters.
 
@@ -52,7 +54,7 @@ Clear constraints reduce debate about what is allowed.
 
 Clear operating principles reduce debate about how to interpret new conditions.
 
-The organization begins to move with less translation friction.
+The organization can begin to move with less translation friction.
 
 ## Clarity Aligns Execution
 
@@ -104,7 +106,7 @@ It is not a slogan.
 
 Clarity is a system property.
 
-When designed well, it reduces friction everywhere it touches.
+When designed well, it can reduce friction everywhere it touches.
 
 ## The Operating Principle
 
@@ -116,6 +118,16 @@ The clearer the system, the less energy it wastes translating itself.
 
 That is why clarity is an economic instrument.
 
+## Evidence Boundary
+
+The evidence supports an association between role ambiguity and lower job performance. It does not establish a universal causal relationship between clarity and financial performance, a specific reduction in cost or decision time, or a quantified return on investment.
+
+## Sources
+
+- Travis C. Tubré and J. M. Collins, “Jackson and Schuler (1985) Revisited: A Meta-Analysis of the Relationships Between Role Ambiguity, Role Conflict, and Job Performance,” *Journal of Management* 26 (2000): 155–169.
+- S. Gilboa, A. Shirom, Yitzhak Fried, and C. Cooper, “A Meta-Analysis of Work Demand Stressors and Job Performance: Examining Main and Moderating Effects,” *Personnel Psychology* 61 (2008): 227–271.
+- D. J. Abramis, “Work Role Ambiguity, Job Satisfaction, and Job Performance: Meta-Analyses and Review,” *Psychological Reports* 75 (1994): 1411–1433.
+
 ## Draft Status
 
-Internal draft. Requires editorial review before public publication.
+Editorially reviewed and evidence-bounded. Requires rendered-asset review and explicit user approval before public publication.

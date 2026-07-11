@@ -1,0 +1,18 @@
+{
+  "request_id": "NKS-VRQ-000038",
+  "visual_id": "NKS-CAR-000012",
+  "publication_id": "NKS-PUB-000012",
+  "asset_type": "carousel",
+  "prompt": "Create a professional 6-panel carousel titled 'Self-Healing Systems Need Governance'. Sequence: 1) Self-healing changes authority; 2) Remediation is an operational decision; 3) Boundaries define safe actions; 4) Escalation, rollback, and observability are required; 5) Governance enables responsible automation; 6) A system that can repair itself must know when not to. Use restrained technical design and clear system diagrams.",
+  "proof_boundaries": [
+    "Do not claim measured reliability or incident-response improvements.",
+    "Do not imply unrestricted autonomous remediation is safe or mature.",
+    "Treat the content as a governance framework pending current technical verification."
+  ],
+  "dimensions": "1080x1350 per panel",
+  "metadata": {
+    "brief_id": "NKS-CAR-000012",
+    "visual_package_id": "NKS-VIS-000012",
+    "review_required": true
+  }
+}

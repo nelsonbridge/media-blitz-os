@@ -1,0 +1,10 @@
+{
+  "request_id": "NKS-VRQ-000059",
+  "visual_id": "NKS-PIN-000011",
+  "publication_id": "NKS-PUB-000011",
+  "asset_type": "pinterest-pin",
+  "prompt": "Create a vertical technical framework pin titled 'Agentic DevOps Beyond CI/CD'. Show delivery signals flowing into risk orchestration, human judgment, governance, release decision, and rollback readiness.",
+  "proof_boundaries": ["Do not claim measured delivery or risk improvements.", "Do not imply autonomous release governance without human oversight.", "Treat the content as an architectural framework pending current technical verification."],
+  "dimensions": "1000x1500",
+  "metadata": {"brief_id": "NKS-PIN-000011", "visual_package_id": "NKS-VIS-000011", "review_required": true}
+}

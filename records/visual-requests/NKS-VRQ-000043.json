@@ -1,0 +1,10 @@
+{
+  "request_id": "NKS-VRQ-000043",
+  "visual_id": "NKS-QTC-000006",
+  "publication_id": "NKS-PUB-000006",
+  "asset_type": "quote-card",
+  "prompt": "Create a restrained executive quote card using: 'Compliance can be visible while coherence is absent.' Use a subtle contrast between checked boxes and aligned system flows.",
+  "proof_boundaries": ["Present this as an organizational principle, not a universal empirical law.", "Do not name or attack specific frameworks or companies.", "Do not imply process has no value."],
+  "dimensions": "1200x1200",
+  "metadata": {"brief_id": "NKS-QTC-000006", "visual_package_id": "NKS-VIS-000006", "review_required": true}
+}

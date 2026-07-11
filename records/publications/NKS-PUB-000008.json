@@ -4,14 +4,15 @@
   "status": "review",
   "metadata": {
     "canonical": true,
-    "record_version": 1,
-    "readiness_class": "visual-and-editorial-needed"
+    "record_version": 2,
+    "readiness_class": "visual-review-candidate",
+    "editorial_review": "editorial/reviews/NKS-PUB-000002-000012-editorial-review.md"
   },
   "artifact_id": "NKS-ART-000008",
   "proof_id": "NKS-PRF-000008",
   "narrative_id": "NKS-NAR-000008",
   "visual_package_id": "NKS-VIS-000008",
   "draft_path": "publishing/medium-drafts/NKS-PUB-000008-executive-value-before-resume-draft.md",
-  "editorial_status": "needed",
+  "editorial_status": "ready",
   "user_approval": "needed"
 }
