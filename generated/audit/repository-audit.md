@@ -1,122 +1,138 @@
-# Repository Audit — AUDIT-0001
+# Repository Audit
 
-> Repository-derived first-pass audit. Canonical generated indexes outrank conversational memory and stale narrative state files.
+> Generated from repository state. Do not edit manually.
 
-## Outcome
+## Census
 
-The repository is no longer accurately described as a Media Blitz project.
+- Files: 492
+- Canonical records: 65
+- Tests: 26
+- Schemas: 7
 
-It is a **Knowledge Manufacturing Operating System** with publishing as one downstream subsystem.
+## Top-Level File Counts
 
-## Measured Canonical State
-
-| Capability | Measured State |
+| Area | Files |
 |---|---:|
-| Publications | 12 |
-| Proof records | 12 |
-| Proof gates ready | 12 |
-| Editorial gates ready | 12 |
-| User approvals pending | 12 |
-| Visual packages | 12 |
-| Visual packages ready | 1 |
-| Visual packages awaiting rendered review | 11 |
-| Visual render requests | 60 |
+| (root) | 5 |
+| .github | 5 |
+| .vscode | 1 |
+| adapters | 1 |
+| architecture | 8 |
+| briefings | 4 |
+| context | 1 |
+| contracts | 3 |
+| corpus | 42 |
+| diagnostics | 2 |
+| docs | 18 |
+| editorial | 1 |
+| engineering | 1 |
+| evidence | 10 |
+| frameworks | 3 |
+| generated | 13 |
+| governance | 11 |
+| integrations | 5 |
+| metrics | 6 |
+| opportunities | 4 |
+| ops | 5 |
+| publishing | 91 |
+| records | 126 |
+| research | 2 |
+| roadmap | 5 |
+| runtime | 5 |
+| schemas | 7 |
+| security | 1 |
+| src | 37 |
+| templates | 12 |
+| tests | 34 |
+| validation | 5 |
+| visuals | 17 |
+| whitepapers | 1 |
 
-## Implemented System
+## Canonical Record Counts
 
-- Portable Python runtime with platform-neutral domain and application layers.
-- Filesystem and GitHub persistence adapters.
-- Governance-as-code readiness policies.
-- Deterministic generated views.
-- Checksummed portable export/import.
-- Workspace synchronization contracts and canonical-wins reconciliation.
-- Manual publication fallback and explicit approval enforcement.
-- Feedback ingestion, event persistence, and explicit promotion to source records.
-- Proof-bounded visual request manufacturing.
-- Vendor-neutral social publication contracts and generic HTTP adapter.
-- Repository audit engine, CLI command, regression tests, and GitHub workflow.
+| Collection | Records |
+|---|---:|
+| sources | 3 |
+| artifacts | 12 |
+| proofs | 12 |
+| narratives | 12 |
+| visuals | 12 |
+| publications | 12 |
+| visual-requests | 60 |
+| feedback | 0 |
+| events | 1 |
+| capabilities | 1 |
 
-## Architecture Finding
+## Publication Readiness
 
-```text
-Source / Evidence
-        ↓
-Canonical Artifact
-        ↓
-Proof + Narrative
-        ↓
-Visual + Publication Packages
-        ↓
-Distribution Adapters
-        ↓
-Feedback + Corpus Enrichment
-```
+| State | Count |
+|---|---:|
+| approval:needed | 12 |
+| editorial:ready | 12 |
+| status:review | 12 |
 
-GitHub currently owns persistence and audit history, not runtime identity. The checksummed filesystem bundle is the portable store. Google Drive is a human-facing projection. External publishing, research, messaging, rendering, and scheduling systems remain adapters.
+## Findings
 
-## Drift Findings
+- record missing identifier: records/social-requests/NKS-SOC-REQ-000001.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000001.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000002.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000003.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000004.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000005.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000006.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000007.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000008.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000009.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000010.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000011.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000012.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000013.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000014.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000015.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000016.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000017.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000018.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000019.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000020.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000021.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000022.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000023.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000024.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000025.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000026.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000027.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000028.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000029.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000030.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000031.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000032.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000033.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000034.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000035.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000036.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000037.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000038.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000039.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000040.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000041.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000042.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000043.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000044.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000045.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000046.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000047.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000048.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000049.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000050.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000051.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000052.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000053.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000054.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000055.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000056.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000057.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000058.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000059.json
+- record missing identifier: records/visual-requests/NKS-VRQ-000060.json
 
-### High — Runtime Status is stale
-
-`runtime/STATUS.md` still reports Publication #5 and Publications #9–#12 as proof-partial, and Publications #2–#12 as editorial-needed. Canonical generated indexes show all twelve proof and editorial gates ready.
-
-### High — Master State is stale
-
-`docs/master-state-index.md` repeats the obsolete proof and editorial states and lists completed verification work as pending.
-
-### Medium — Backlog contains completed work
-
-Evidence verification, editorial reviews, social adapter evaluation, and initial Drive synchronization were executed but remain listed in pending work.
-
-### Medium — Naming drift
-
-The repository name reflects the original campaign objective. The implemented architecture is broader: corpus manufacturing, runtime governance, visual production, publication, feedback, career artifacts, and future knowledge-graph functions.
-
-### Medium — Hosted audit execution remains unobserved
-
-The repository-native audit engine and workflow are committed. The workflow has not yet produced an observable automated report commit. This report closes the first audit using canonical generated indexes and state files; future full-tree runs use `nks audit-repository .`.
-
-## Runtime Readiness
-
-| Area | Maturity |
-|---|---|
-| Domain and policy core | Operational |
-| Canonical persistence | Operational |
-| Portable export/import | Operational |
-| Generated views | Operational |
-| GitHub adapter | Operational |
-| Workspace adapter contracts | Operational |
-| Publication fallback | Operational |
-| Social adapter contract | Operational; vendor validation pending |
-| Feedback ingestion | Operational |
-| Synthetic feedback intelligence | Not implemented |
-| Visual rendering | Requests complete; production assets pending |
-| Public release | User-gated |
-
-## Ranked Debt Register
-
-1. **State reconciliation debt** — authoritative narrative documents lag canonical JSON and generated indexes.
-2. **Coverage evidence debt** — coverage configuration exists, but the repository-wide baseline report remains uncommitted.
-3. **Feedback-validation debt** — ingestion exists without a manufactured synthetic corpus and classification regression suite.
-4. **Asset-production debt** — sixty render requests exist; production assets and review records do not.
-5. **Naming and packaging debt** — repository identity understates the implemented system.
-6. **Hosted execution observability debt** — Actions remain secondary and incompletely observable.
-
-## Revised Execution Queue
-
-1. Reconcile Runtime Status and Master State to canonical indexes.
-2. Commit the quantitative coverage baseline.
-3. Implement synthetic feedback provenance, scenarios, generator, replay, classification, routing, and regression metrics.
-4. Render Publication #1 assets and record review outcomes.
-5. Obtain explicit publication approval.
-6. Execute the first publication cycle and record receipts.
-7. Compare real feedback against synthetic expectations and tune governance.
-
-## Audit Conclusion
-
-The repository has passed the architecture-construction threshold. The highest-value work is no longer additional foundational architecture. It is:
-
-- reconciling state;
-- validating the feedback intelligence loop;
-- producing final assets;
-- and completing the first public manufacturing cycle.
+Total findings: 61
