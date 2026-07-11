@@ -23,7 +23,9 @@ def test_all_twelve_publications_have_complete_canonical_reference_sets():
         narrative_id = f"NKS-NAR-{suffix}"
         visual_id = f"NKS-VIS-{suffix}"
 
-        publication = load_record(ROOT, "publications", publication_id, PublicationRecord)
+        publication = load_record(
+            ROOT, "publications", publication_id, PublicationRecord
+        )
         artifact = load_record(ROOT, "artifacts", artifact_id, ArtifactRecord)
         proof = load_record(ROOT, "proofs", proof_id, ProofRecord)
         narrative = load_record(ROOT, "narratives", narrative_id, NarrativeRecord)
@@ -44,28 +46,26 @@ def test_all_twelve_publications_have_complete_canonical_reference_sets():
 
 
 def test_publication_gate_posture_matches_canonical_scope():
-    publication_1 = load_record(ROOT, "publications", "NKS-PUB-000001", PublicationRecord)
-    assert publication_1.editorial_status == GateStatus.READY
-    assert publication_1.user_approval == GateStatus.NEEDED
-
-    for index in range(2, 13):
+    for index in range(1, 13):
         suffix = f"{index:06d}"
-        publication = load_record(ROOT, "publications", f"NKS-PUB-{suffix}", PublicationRecord)
-        visual = load_record(ROOT, "visuals", f"NKS-VIS-{suffix}", VisualPackageRecord)
+        publication = load_record(
+            ROOT, "publications", f"NKS-PUB-{suffix}", PublicationRecord
+        )
+        visual = load_record(
+            ROOT, "visuals", f"NKS-VIS-{suffix}", VisualPackageRecord
+        )
 
-        assert publication.editorial_status == GateStatus.NEEDED
+        assert publication.editorial_status == GateStatus.READY
         assert publication.user_approval == GateStatus.NEEDED
-        assert visual.gate_status == GateStatus.NEEDED
         assert visual.signature_diagram_id is not None
         assert visual.hero_image_id is not None
 
+        expected_visual_gate = GateStatus.READY if index == 1 else GateStatus.NEEDED
+        assert visual.gate_status == expected_visual_gate
 
-def test_technical_publications_remain_proof_partial_until_current_verification():
-    for index in (9, 10, 11, 12):
+
+def test_citation_required_proofs_are_ready_with_current_verification_recorded():
+    for index in (5, 9, 10, 11, 12):
         proof = load_record(ROOT, "proofs", f"NKS-PRF-{index:06d}", ProofRecord)
         assert proof.citations_required is True
-        assert proof.gate_status == GateStatus.PARTIAL
-
-    clarity_proof = load_record(ROOT, "proofs", "NKS-PRF-000005", ProofRecord)
-    assert clarity_proof.citations_required is True
-    assert clarity_proof.gate_status == GateStatus.PARTIAL
+        assert proof.gate_status == GateStatus.READY
