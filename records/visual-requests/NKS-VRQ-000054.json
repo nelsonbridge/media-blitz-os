@@ -1,0 +1,10 @@
+{
+  "request_id": "NKS-VRQ-000054",
+  "visual_id": "NKS-PIN-000006",
+  "publication_id": "NKS-PUB-000006",
+  "asset_type": "pinterest-pin",
+  "prompt": "Create a vertical executive framework pin titled 'Coherence Beats Compliance'. Contrast visible process compliance with coherent alignment across decisions, incentives, language, trust, execution, and feedback.",
+  "proof_boundaries": ["Do not present this as a universal empirical law.", "Do not imply process is unnecessary.", "Do not name or criticize specific frameworks or companies."],
+  "dimensions": "1000x1500",
+  "metadata": {"brief_id": "NKS-PIN-000006", "visual_package_id": "NKS-VIS-000006", "review_required": true}
+}
