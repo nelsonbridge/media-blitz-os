@@ -60,3 +60,10 @@ jobs:
             git diff -- generated/feedback-index.md
             exit 1
           fi
+      - name: Upload regenerated authority projections
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: regenerated-authority-projections
+          path: generated/
+          if-no-files-found: error
