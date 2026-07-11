@@ -1,5 +1,8 @@
 # Runtime v0.1 Status
 
+> **Authority class: Class 3 — transitional operational summary.**
+> This file is manually maintained and is not canonical machine state. Resolve operational facts from validated canonical records and regenerated files under `generated/`. See `docs/state-authority-model.md`.
+
 ## Current State
 
 Runtime v0.1 is operational on the `sandbox` branch for the complete twelve-publication canonical set.

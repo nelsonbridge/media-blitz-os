@@ -1,10 +1,13 @@
 # Master State Index
 
+> **Authority class: Class 3 — transitional human-readable index.**
+> This file is manually maintained and does not establish current operational truth. Canonical machine records and regenerated projections under `generated/` take precedence. See `docs/state-authority-model.md`.
+
 ## Purpose
 
-Authoritative state for the Nelson Knowledge System.
+Human-readable orientation to the Nelson Knowledge System.
 
-The repository outranks memory. Canonical JSON and generated views outrank stale narrative status documents until reconciliation is complete.
+The repository outranks memory. Validated canonical machine state and generated authoritative projections outrank this narrative index.
 
 ## System Identity
 
@@ -19,6 +22,8 @@ AUDIT-0001 is complete.
 Runtime v0.1 is operational for the complete twelve-publication canonical set.
 
 ## Canonical Counts
+
+The following counts are a narrative snapshot and must be verified against regenerated projections before operational use.
 
 - Sources: 3.
 - Publications: 12.
@@ -137,6 +142,8 @@ Audit outputs:
 
 ## Current Execution Queue
 
+This section describes intended work, not implementation truth.
+
 1. Quantitative coverage baseline.
 2. Synthetic feedback provenance, manufacturing specification, scenario catalog, generator, and replay harness.
 3. Feedback classification, routing, duplicate handling, opportunity detection, promotion tests, and coverage metrics.
@@ -145,7 +152,7 @@ Audit outputs:
 6. First publication cycle and receipt capture.
 7. Real-versus-synthetic feedback calibration.
 
-Authoritative queue: `docs/revised-execution-queue.md`.
+Designated queue: `docs/revised-execution-queue.md`.
 
 ## Current Stop Boundary
 
@@ -161,4 +168,4 @@ External rendering, approval, and public publication remain explicit user gates.
 4. External systems are adapters.
 5. Publication requires explicit recorded user approval.
 6. Generated visuals require review before public use.
-7. Repository state outranks conversational memory.
+7. Canonical machine state and regenerated projections outrank conversational memory and this document.

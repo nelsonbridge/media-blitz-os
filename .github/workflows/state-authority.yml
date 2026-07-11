@@ -1,0 +1,60 @@
+name: State Authority
+
+on:
+  pull_request:
+    branches: [sandbox]
+    paths:
+      - "records/**"
+      - "generated/**"
+      - "src/nks/views/**"
+      - "src/nks/application/runtime.py"
+      - "src/nks/application/graph.py"
+      - "docs/state-authority-model.md"
+      - "runtime/STATUS.md"
+      - "docs/master-state-index.md"
+      - "docs/project-state.md"
+      - "tests/test_state_authority.py"
+      - ".github/workflows/state-authority.yml"
+  push:
+    branches: [sandbox]
+    paths:
+      - "records/**"
+      - "generated/**"
+      - "src/nks/views/**"
+      - "src/nks/application/runtime.py"
+      - "src/nks/application/graph.py"
+      - "docs/state-authority-model.md"
+      - "runtime/STATUS.md"
+      - "docs/master-state-index.md"
+      - "docs/project-state.md"
+      - "tests/test_state_authority.py"
+      - ".github/workflows/state-authority.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-state-authority:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install runtime
+        run: python -m pip install -e ".[test]"
+      - name: Test authority enforcement
+        run: python -m pytest tests/test_state_authority.py --no-cov
+      - name: Verify authority manifest
+        run: python -m nks.views.authority verify .
+      - name: Regenerate Class 2 projections
+        run: nks generate-views .
+      - name: Reject projection drift
+        run: |
+          if ! git diff --quiet -- generated; then
+            echo "Generated authoritative projections are stale or were edited manually."
+            git diff -- generated
+            exit 1
+          fi

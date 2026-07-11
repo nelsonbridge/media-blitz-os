@@ -1,5 +1,8 @@
 # Project State Ledger
 
+> **Authority class: Class 3 — historical project ledger.**
+> This document preserves an early infrastructure snapshot from 2026-07-09. It is not a current inventory of implemented runtime capabilities and must not be used to determine operational state. See `docs/state-authority-model.md`.
+
 Last updated: 2026-07-09
 
 ## System Name
@@ -10,7 +13,7 @@ Media Blitz OS / Nelson Knowledge System
 
 Build a zero-dollar, durable executive knowledge and publishing operating system that converts conversations, drafts, whitepapers, resumes, role analyses, and frameworks into long-lived public authority, career-opportunity leverage, and reusable intellectual property.
 
-## Current Tool Roles
+## Current Tool Roles at Time of Record
 
 - Google Drive: canonical editorial workspace when write access is available.
 - GitHub: durable control plane, state ledger, execution queue, schemas, templates, and sync fallback.
@@ -18,7 +21,7 @@ Build a zero-dollar, durable executive knowledge and publishing operating system
 - LinkedIn, X, Facebook, Instagram, Pinterest: distribution surfaces.
 - Gmail: opportunity/recruiter signal source and outbound draft channel.
 
-## Completed Google Drive Artifacts
+## Completed Google Drive Artifacts at Time of Record
 
 - Media Blitz OS 2026 root folder created.
 - Folder hierarchy created for source corpus, editorial OS, Medium drafts, LinkedIn, X, Facebook, Instagram, Pinterest, visual frameworks, published archive, and career alignment.
@@ -27,14 +30,16 @@ Build a zero-dollar, durable executive knowledge and publishing operating system
 - Content Pillar Map Google Doc created.
 - Initial content assets seeded into the Editorial OS.
 
-## Completed GitHub Artifacts
+## Completed GitHub Artifacts at Time of Record
 
 - Repository located: `nelsonbridge/media-blitz-os`.
 - Default branch: `sandbox`.
 - README exists and defines repository purpose.
 - Project state ledger created.
 
-## Active Sprint
+This list is intentionally preserved as historical evidence of the repository's early state. It is not an exhaustive description of the current runtime.
+
+## Active Sprint at Time of Record
 
 Sprint 1: Infrastructure Hardening
 
@@ -48,11 +53,11 @@ Sprint 1: Infrastructure Hardening
 6. Define sync/failsafe model between Drive and GitHub.
 7. Harden runtime validation and state transition boundaries.
 
-## Current Blockers
+## Current Blockers at Time of Record
 
 - Google Drive write access has been intermittent at runtime, despite previously demonstrated successful writes and elevated user permissions.
 
-## Active Failsafe
+## Active Failsafe at Time of Record
 
 If Google Drive writes are unavailable:
 
