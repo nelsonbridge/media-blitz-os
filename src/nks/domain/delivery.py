@@ -5,7 +5,7 @@ from __future__ import annotations
 from enum import StrEnum
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict, Field, HttpUrl
+from pydantic import BaseModel, ConfigDict, Field, HttpUrl, model_validator
 
 
 class DeliveryStatus(StrEnum):
@@ -24,9 +24,16 @@ class FeedbackClassification(StrEnum):
 
 
 class FeedbackProvenance(StrEnum):
-    REAL = "real"
-    SYNTHETIC = "synthetic"
-    REPLAY = "replay"
+    """Origin category, not a truth or confidence classification."""
+
+    REAL = "REAL"
+    SYNTHETIC = "SYNTHETIC"
+    REPLAY = "REPLAY"
+
+
+class PromotionDecision(StrEnum):
+    APPROVED = "APPROVED"
+    DENIED = "DENIED"
 
 
 class PublicationPayload(BaseModel):
@@ -55,24 +62,65 @@ class PublicationReceipt(BaseModel):
 class FeedbackRecord(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    feedback_id: str
-    publication_id: str
+    feedback_id: str = Field(min_length=1)
+    publication_id: str = Field(min_length=1)
     derivative_id: str | None = None
-    platform: str
+    platform: str = Field(min_length=1)
     classification: FeedbackClassification
-    content: str
-    provenance: FeedbackProvenance = FeedbackProvenance.REAL
+    content: str = Field(min_length=1)
+    provenance: FeedbackProvenance
     scenario_id: str | None = None
+    lineage_ids: list[str] = Field(min_length=1)
+    proof_boundaries: list[str] = Field(min_length=1)
     source_url: HttpUrl | None = None
     metric_name: str | None = None
     metric_value: float | None = None
     metadata: dict[str, Any] = Field(default_factory=dict)
     promoted_to_source_id: str | None = None
 
+    @model_validator(mode="after")
+    def validate_integrity_boundary(self) -> FeedbackRecord:
+        if self.publication_id not in self.lineage_ids:
+            raise ValueError("lineage_ids must include publication_id")
+
+        if self.provenance in {
+            FeedbackProvenance.SYNTHETIC,
+            FeedbackProvenance.REPLAY,
+        } and not self.scenario_id:
+            raise ValueError(
+                "scenario_id is required for SYNTHETIC and REPLAY feedback"
+            )
+
+        if self.provenance == FeedbackProvenance.REAL and self.scenario_id is not None:
+            raise ValueError("REAL feedback cannot carry scenario_id")
+
+        return self
+
+
+class FeedbackPromotionAuthorization(BaseModel):
+    """Explicit authorization bound to one feedback record and target source."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    authorization_id: str = Field(min_length=1)
+    feedback_id: str = Field(min_length=1)
+    target_source_id: str = Field(min_length=1)
+    authorized_by: str = Field(min_length=1)
+    justification: str = Field(min_length=1)
+    decision: PromotionDecision
+
 
 class FeedbackScenario(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    scenario_id: str
-    description: str
+    scenario_id: str = Field(min_length=1)
+    description: str = Field(min_length=1)
     feedback: FeedbackRecord
+
+    @model_validator(mode="after")
+    def validate_synthetic_scenario(self) -> FeedbackScenario:
+        if self.feedback.provenance != FeedbackProvenance.SYNTHETIC:
+            raise ValueError("scenario feedback must have SYNTHETIC provenance")
+        if self.feedback.scenario_id != self.scenario_id:
+            raise ValueError("scenario feedback scenario_id must match scenario_id")
+        return self
