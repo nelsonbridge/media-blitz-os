@@ -2,16 +2,11 @@
   "id": "NKS-VIS-000005",
   "title": "Visual Package — Clarity as an Economic Instrument",
   "status": "planned",
-  "metadata": {
-    "canonical": true,
-    "record_version": 1,
-    "signature_request_id": "NKS-VRQ-000009",
-    "hero_request_id": "NKS-VRQ-000020"
-  },
+  "metadata": {"canonical": true, "record_version": 1, "placeholder": true},
   "artifact_id": "NKS-ART-000005",
   "publication_id": "NKS-PUB-000005",
   "signature_diagram_id": "NKS-DGM-000005",
   "hero_image_id": "NKS-HRO-000005",
-  "asset_ids": ["NKS-DGM-000005", "NKS-HRO-000005"],
+  "asset_ids": ["NKS-DGM-000005", "NKS-HRO-000005", "NKS-CAR-000005", "NKS-QTC-000005", "NKS-PIN-000005"],
   "gate_status": "needed"
 }
