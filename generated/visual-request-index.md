@@ -31,5 +31,38 @@
 | NKS-VRQ-000025 | NKS-HRO-000010 | NKS-PUB-000010 | hero-image | 1600x900 | True |
 | NKS-VRQ-000026 | NKS-HRO-000011 | NKS-PUB-000011 | hero-image | 1600x900 | True |
 | NKS-VRQ-000027 | NKS-HRO-000012 | NKS-PUB-000012 | hero-image | 1600x900 | True |
+| NKS-VRQ-000028 | NKS-CAR-000002 | NKS-PUB-000002 | carousel | 1080x1350 per panel | True |
+| NKS-VRQ-000029 | NKS-CAR-000003 | NKS-PUB-000003 | carousel | 1080x1350 per panel | True |
+| NKS-VRQ-000030 | NKS-CAR-000004 | NKS-PUB-000004 | carousel | 1080x1350 per panel | True |
+| NKS-VRQ-000031 | NKS-CAR-000005 | NKS-PUB-000005 | carousel | 1080x1350 per panel | True |
+| NKS-VRQ-000032 | NKS-CAR-000006 | NKS-PUB-000006 | carousel | 1080x1350 per panel | True |
+| NKS-VRQ-000033 | NKS-CAR-000007 | NKS-PUB-000007 | carousel | 1080x1350 per panel | True |
+| NKS-VRQ-000034 | NKS-CAR-000008 | NKS-PUB-000008 | carousel | 1080x1350 per panel | True |
+| NKS-VRQ-000035 | NKS-CAR-000009 | NKS-PUB-000009 | carousel | 1080x1350 per panel | True |
+| NKS-VRQ-000036 | NKS-CAR-000010 | NKS-PUB-000010 | carousel | 1080x1350 per panel | True |
+| NKS-VRQ-000037 | NKS-CAR-000011 | NKS-PUB-000011 | carousel | 1080x1350 per panel | True |
+| NKS-VRQ-000038 | NKS-CAR-000012 | NKS-PUB-000012 | carousel | 1080x1350 per panel | True |
+| NKS-VRQ-000039 | NKS-QTC-000002 | NKS-PUB-000002 | quote-card | 1200x1200 | True |
+| NKS-VRQ-000040 | NKS-QTC-000003 | NKS-PUB-000003 | quote-card | 1200x1200 | True |
+| NKS-VRQ-000041 | NKS-QTC-000004 | NKS-PUB-000004 | quote-card | 1200x1200 | True |
+| NKS-VRQ-000042 | NKS-QTC-000005 | NKS-PUB-000005 | quote-card | 1200x1200 | True |
+| NKS-VRQ-000043 | NKS-QTC-000006 | NKS-PUB-000006 | quote-card | 1200x1200 | True |
+| NKS-VRQ-000044 | NKS-QTC-000007 | NKS-PUB-000007 | quote-card | 1200x1200 | True |
+| NKS-VRQ-000045 | NKS-QTC-000008 | NKS-PUB-000008 | quote-card | 1200x1200 | True |
+| NKS-VRQ-000046 | NKS-QTC-000009 | NKS-PUB-000009 | quote-card | 1200x1200 | True |
+| NKS-VRQ-000047 | NKS-QTC-000010 | NKS-PUB-000010 | quote-card | 1200x1200 | True |
+| NKS-VRQ-000048 | NKS-QTC-000011 | NKS-PUB-000011 | quote-card | 1200x1200 | True |
+| NKS-VRQ-000049 | NKS-QTC-000012 | NKS-PUB-000012 | quote-card | 1200x1200 | True |
+| NKS-VRQ-000050 | NKS-PIN-000002 | NKS-PUB-000002 | pinterest-pin | 1000x1500 | True |
+| NKS-VRQ-000051 | NKS-PIN-000003 | NKS-PUB-000003 | pinterest-pin | 1000x1500 | True |
+| NKS-VRQ-000052 | NKS-PIN-000004 | NKS-PUB-000004 | pinterest-pin | 1000x1500 | True |
+| NKS-VRQ-000053 | NKS-PIN-000005 | NKS-PUB-000005 | pinterest-pin | 1000x1500 | True |
+| NKS-VRQ-000054 | NKS-PIN-000006 | NKS-PUB-000006 | pinterest-pin | 1000x1500 | True |
+| NKS-VRQ-000055 | NKS-PIN-000007 | NKS-PUB-000007 | pinterest-pin | 1000x1500 | True |
+| NKS-VRQ-000056 | NKS-PIN-000008 | NKS-PUB-000008 | pinterest-pin | 1000x1500 | True |
+| NKS-VRQ-000057 | NKS-PIN-000009 | NKS-PUB-000009 | pinterest-pin | 1000x1500 | True |
+| NKS-VRQ-000058 | NKS-PIN-000010 | NKS-PUB-000010 | pinterest-pin | 1000x1500 | True |
+| NKS-VRQ-000059 | NKS-PIN-000011 | NKS-PUB-000011 | pinterest-pin | 1000x1500 | True |
+| NKS-VRQ-000060 | NKS-PIN-000012 | NKS-PUB-000012 | pinterest-pin | 1000x1500 | True |
 
-Total visual render requests: 27
+Total visual render requests: 60
