@@ -1,6 +1,14 @@
 name: Publication 000001 Assets
 
 on:
+  pull_request:
+    branches: [sandbox]
+    paths:
+      - "scripts/render_publication_000001_assets.py"
+      - "records/visual-requests/NKS-VRQ-00000*.json"
+      - "assets/publication-000001/**"
+      - "publishing/reviews/NKS-PUB-000001-visual-review.md"
+      - ".github/workflows/publication-000001-assets.yml"
   push:
     branches:
       - product/publication-000001-assets
