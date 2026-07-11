@@ -8,7 +8,7 @@ A system that can repair itself must also know when not to repair itself.
 
 Self-healing systems sound ideal.
 
-A service detects a problem, diagnoses the likely cause, applies a remediation, restores function, and reduces human burden. Incidents become shorter. Operators are interrupted less often. Repetitive remediation work moves out of human hands.
+A service detects a problem, diagnoses the likely cause, applies a remediation, restores function, and reduces human burden. Incidents may become shorter. Operators may be interrupted less often. Repetitive remediation work can move out of human hands.
 
 That is the promise.
 
@@ -52,6 +52,8 @@ Without those boundaries, self-healing can become automated uncertainty.
 
 The system may act quickly, but not necessarily wisely.
 
+Kubernetes provides a useful concrete example of bounded self-healing. It can restart failed containers, replace replicas, reattach some persistent storage, and remove failed endpoints. Its own documentation also states that storage failures may require additional recovery and that restarting a container does not repair an underlying application defect.
+
 ## Observability Is Required for Trust
 
 People cannot trust what they cannot understand.
@@ -74,6 +76,8 @@ Can the action be reversed?
 
 If those answers are unavailable, the system is not governed. It is merely active.
 
+NIST’s Generative AI Profile similarly emphasizes monitoring, incident response, recovery, fallback, override, escalation, and deactivation criteria for consequential automated systems.
+
 ## Governance Does Not Remove Automation
 
 Governance is sometimes treated as a drag on automation.
@@ -82,7 +86,7 @@ That is the wrong frame.
 
 Governance is what allows automation to scale responsibly.
 
-When boundaries, telemetry, rollback, escalation, and accountability are explicit, operators can trust the system with more responsibility.
+When boundaries, telemetry, rollback, escalation, and accountability are explicit, operators can assign the system more responsibility with clearer knowledge of its operating envelope.
 
 When those conditions are absent, even useful automation becomes hard to trust.
 
@@ -100,6 +104,15 @@ The goal is not automation for its own sake.
 
 The goal is resilient operation with accountable control.
 
+## Evidence Boundary
+
+The cited sources establish that bounded self-healing exists and has documented limitations, and that monitoring, recovery, fallback, and accountable oversight are recognized risk-management practices. They do not establish a universal control pattern or quantified reliability improvement.
+
+## Sources
+
+- Kubernetes Documentation, “Kubernetes Self-Healing.” https://kubernetes.io/docs/concepts/architecture/self-healing/
+- National Institute of Standards and Technology, *Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile*, NIST AI 600-1, July 2024. https://doi.org/10.6028/NIST.AI.600-1
+
 ## Draft Status
 
-Internal draft. Requires final citation insertion and editorial review before public publication.
+Editorially reviewed and primary-source verified. Requires rendered-asset review and explicit user approval before public publication.
