@@ -34,7 +34,7 @@ A release decision may depend on:
 
 Traditional pipeline automation may check some of these signals.
 
-A more mature agentic DevOps model reasons across them.
+A more mature agentic DevOps model can coordinate them while preserving human decision authority.
 
 ## Faster Delivery Is Not Automatically Better Delivery
 
@@ -64,6 +64,8 @@ The point is to improve the quality and timing of that judgment.
 
 A system that can explain why a release is risky is more valuable than one that merely pushes the release faster.
 
+NIST’s Secure Software Development Framework supports integrating secure practices throughout the development lifecycle. SLSA adds source and build assurance, artifact provenance, attestations, and verification. Together, they reinforce the principle that delivery decisions should be based on trustworthy evidence rather than pipeline motion alone.
+
 ## Governance Belongs in the Pipeline
 
 Governance should not live entirely outside delivery.
@@ -86,6 +88,15 @@ Governed DevOps asks whether it should move, what risk comes with movement, and 
 
 That is the step beyond CI/CD.
 
+## Evidence Boundary
+
+The cited sources support secure lifecycle practices, supply-chain assurance, provenance, and verification. They do not establish that agentic systems can replace engineering judgment or guarantee safer or faster delivery.
+
+## Sources
+
+- National Institute of Standards and Technology, *Secure Software Development Framework (SSDF) Version 1.1*, NIST SP 800-218, February 2022. https://csrc.nist.gov/pubs/sp/800/218/final
+- Supply-chain Levels for Software Artifacts, *SLSA Specification Version 1.2*. https://slsa.dev/spec/v1.2/
+
 ## Draft Status
 
-Internal draft. Requires final citation insertion and editorial review before public publication.
+Editorially reviewed and primary-source verified. Requires rendered-asset review and explicit user approval before public publication.
