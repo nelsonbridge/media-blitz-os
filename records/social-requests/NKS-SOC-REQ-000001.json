@@ -1,0 +1,24 @@
+{
+  "request_id": "NKS-SOC-REQ-000001",
+  "package_id": "NKS-DER-000001",
+  "publication_id": "NKS-PUB-000001",
+  "channel": "linkedin",
+  "account_reference": "nelson-executive-profile",
+  "body": "Publishing is downstream of knowledge manufacturing. A useful corpus is not discovered intact; it is deliberately manufactured from source material, proof boundaries, canonical artifacts, narrative structure, visual packages, and feedback.",
+  "asset_ids": [
+    "NKS-QTC-000001",
+    "NKS-DGM-000001"
+  ],
+  "approval_required": true,
+  "approved": false,
+  "approved_by": null,
+  "approved_at": null,
+  "publish_at": null,
+  "idempotency_key": "NKS-DER-000001:linkedin:nelson-executive-profile",
+  "credential_reference": "SOCIAL_LINKEDIN_PRIMARY",
+  "metadata": {
+    "adapter_candidate": "trypost",
+    "fallback_adapter": "manual",
+    "state": "awaiting-visual-review-and-user-approval"
+  }
+}
