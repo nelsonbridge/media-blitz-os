@@ -8,18 +8,18 @@ import typer
 
 from nks import __version__
 from nks.adapters.filesystem import JsonEventRepository
+from nks.adapters.manual_delivery import JsonFeedbackRepository, ManualPublicationAdapter
 from nks.application.delivery import IngestFeedback, PreparePublication
 from nks.application.export_import import (
     export_portable_state,
     import_portable_state,
     verify_imported_state,
 )
-from nks.adapters.manual_delivery import JsonFeedbackRepository, ManualPublicationAdapter
 from nks.application.feedback import FeedbackReplayHarness
 from nks.application.load_records import load_record
 from nks.application.runtime import build_runtime_status
 from nks.audit.repository import audit_repository
-from nks.domain.delivery import FeedbackRecord, FeedbackScenario, PublicationPayload
+from nks.domain.delivery import PublicationPayload
 from nks.domain.models import GateStatus, PublicationRecord, VisualPackageRecord
 from nks.views.health import render_corpus_health_dashboard
 from nks.views.markdown import write_generated_views
@@ -81,14 +81,11 @@ def ingest_feedback(
     repository_root: Path = typer.Argument(..., exists=True, file_okay=False),
     feedback_path: Path = typer.Argument(..., exists=True, dir_okay=False),
 ) -> None:
-    """Ingest a feedback record from JSON into the NKS feedback repository."""
-    feedback = FeedbackRecord.model_validate_json(
-        feedback_path.read_text(encoding="utf-8")
-    )
+    """Validate and ingest a feedback record with audited failure handling."""
     repository = JsonFeedbackRepository(repository_root)
     events = JsonEventRepository(repository_root)
     service = IngestFeedback(repository, events)
-    saved = service.execute(feedback)
+    saved = service.execute_json(feedback_path.read_text(encoding="utf-8"))
     typer.echo(saved.feedback_id)
 
 
@@ -97,14 +94,11 @@ def replay_feedback(
     repository_root: Path = typer.Argument(..., exists=True, file_okay=False),
     scenario_path: Path = typer.Argument(..., exists=True, dir_okay=False),
 ) -> None:
-    """Replay a synthetic feedback scenario from JSON into the feedback repository."""
-    scenario = FeedbackScenario.model_validate_json(
-        scenario_path.read_text(encoding="utf-8")
-    )
+    """Replay a validated synthetic scenario as explicitly REPLAY feedback."""
     repository = JsonFeedbackRepository(repository_root)
     events = JsonEventRepository(repository_root)
     harness = FeedbackReplayHarness(repository, events)
-    played = harness.replay([scenario])
+    played = harness.replay_json(scenario_path.read_text(encoding="utf-8"))
     typer.echo(played[0].feedback_id)
 
 

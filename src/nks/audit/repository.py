@@ -3,12 +3,20 @@
 from __future__ import annotations
 
 import json
-from collections import Counter, defaultdict
+from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 
-IGNORED_DIRS = {".git", ".pytest_cache", ".mypy_cache", ".ruff_cache", "__pycache__", ".venv", "venv"}
+IGNORED_DIRS = {
+    ".git",
+    ".pytest_cache",
+    ".mypy_cache",
+    ".ruff_cache",
+    "__pycache__",
+    ".venv",
+    "venv",
+}
 RECORD_COLLECTIONS = (
     "sources",
     "artifacts",
@@ -31,11 +39,15 @@ class AuditResult:
     issue_count: int
 
 
-def _files(root: Path) -> list[Path]:
+def _files(root: Path, excluded_roots: tuple[Path, ...] = ()) -> list[Path]:
+    """Return repository files without caches or generated audit output roots."""
+    excluded = tuple(path.resolve() for path in excluded_roots)
     return sorted(
         path
         for path in root.rglob("*")
-        if path.is_file() and not any(part in IGNORED_DIRS for part in path.relative_to(root).parts)
+        if path.is_file()
+        and not any(part in IGNORED_DIRS for part in path.relative_to(root).parts)
+        and not any(path.resolve().is_relative_to(item) for item in excluded)
     )
 
 
@@ -56,7 +68,9 @@ def _record_index(root: Path) -> tuple[dict[str, dict], list[str]]:
         except (json.JSONDecodeError, OSError) as exc:
             issues.append(f"invalid JSON: {path.relative_to(root)} ({exc})")
             continue
-        record_id = record.get("id") or record.get("registry_id") or record.get("event_id")
+        record_id = (
+            record.get("id") or record.get("registry_id") or record.get("event_id")
+        )
         if not record_id:
             issues.append(f"record missing identifier: {path.relative_to(root)}")
             continue
@@ -94,10 +108,18 @@ def _drift_issues(root: Path, records: dict[str, dict]) -> list[str]:
     issues: list[str] = []
     generated = root / "generated"
     expected = {
-        "publication-index.md": sum(1 for rid in records if rid.startswith("NKS-PUB-")),
-        "proof-index.md": sum(1 for rid in records if rid.startswith("NKS-PRF-")),
-        "visual-package-index.md": sum(1 for rid in records if rid.startswith("NKS-VIS-")),
-        "visual-request-index.md": sum(1 for rid in records if rid.startswith("NKS-VRQ-")),
+        "publication-index.md": sum(
+            1 for record_id in records if record_id.startswith("NKS-PUB-")
+        ),
+        "proof-index.md": sum(
+            1 for record_id in records if record_id.startswith("NKS-PRF-")
+        ),
+        "visual-package-index.md": sum(
+            1 for record_id in records if record_id.startswith("NKS-VIS-")
+        ),
+        "visual-request-index.md": sum(
+            1 for record_id in records if record_id.startswith("NKS-VRQ-")
+        ),
     }
     for filename, count in expected.items():
         path = generated / filename
@@ -105,8 +127,10 @@ def _drift_issues(root: Path, records: dict[str, dict]) -> list[str]:
             issues.append(f"generated view missing: generated/{filename}")
             continue
         text = path.read_text(encoding="utf-8")
-        if f"Total " not in text or str(count) not in text:
-            issues.append(f"generated view may be stale: generated/{filename} expected count {count}")
+        if "Total " not in text or str(count) not in text:
+            issues.append(
+                f"generated view may be stale: generated/{filename} expected count {count}"
+            )
     return issues
 
 
@@ -139,7 +163,9 @@ def _record_counts(root: Path) -> dict[str, int]:
     result: dict[str, int] = {}
     for collection in RECORD_COLLECTIONS:
         directory = root / "records" / collection
-        result[collection] = len(list(directory.glob("*.json"))) if directory.exists() else 0
+        result[collection] = (
+            len(list(directory.glob("*.json"))) if directory.exists() else 0
+        )
     return result
 
 
@@ -148,7 +174,7 @@ def audit_repository(root: Path, output_dir: Path | None = None) -> AuditResult:
     output_dir = (output_dir or root / "generated" / "audit").resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    files = _files(root)
+    files = _files(root, excluded_roots=(output_dir,))
     records, parse_issues = _record_index(root)
     integrity = _integrity_issues(records)
     drift = _drift_issues(root, records)
@@ -162,8 +188,16 @@ def audit_repository(root: Path, output_dir: Path | None = None) -> AuditResult:
         "extension_counts": _extension_counts(files),
         "record_counts": _record_counts(root),
         "record_count": len(records),
-        "test_count": len(list((root / "tests").glob("test_*.py"))) if (root / "tests").exists() else 0,
-        "schema_count": len(list((root / "schemas").rglob("*.*"))) if (root / "schemas").exists() else 0,
+        "test_count": (
+            len(list((root / "tests").glob("test_*.py")))
+            if (root / "tests").exists()
+            else 0
+        ),
+        "schema_count": (
+            len(list((root / "schemas").rglob("*.*")))
+            if (root / "schemas").exists()
+            else 0
+        ),
         "readiness": _readiness(records),
         "issues": issues,
         "issue_count": len(issues),
@@ -171,7 +205,9 @@ def audit_repository(root: Path, output_dir: Path | None = None) -> AuditResult:
 
     json_path = output_dir / "repository-audit.json"
     report_path = output_dir / "repository-audit.md"
-    json_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    json_path.write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
     lines = [
         "# Repository Audit",
@@ -190,16 +226,40 @@ def audit_repository(root: Path, output_dir: Path | None = None) -> AuditResult:
         "| Area | Files |",
         "|---|---:|",
     ]
-    lines.extend(f"| {name} | {count} |" for name, count in payload["top_level_counts"].items())
-    lines.extend(["", "## Canonical Record Counts", "", "| Collection | Records |", "|---|---:|"])
-    lines.extend(f"| {name} | {count} |" for name, count in payload["record_counts"].items())
-    lines.extend(["", "## Publication Readiness", "", "| State | Count |", "|---|---:|"])
-    lines.extend(f"| {name} | {count} |" for name, count in payload["readiness"].items())
+    lines.extend(
+        f"| {name} | {count} |" for name, count in payload["top_level_counts"].items()
+    )
+    lines.extend(
+        [
+            "",
+            "## Canonical Record Counts",
+            "",
+            "| Collection | Records |",
+            "|---|---:|",
+        ]
+    )
+    lines.extend(
+        f"| {name} | {count} |" for name, count in payload["record_counts"].items()
+    )
+    lines.extend(
+        [
+            "",
+            "## Publication Readiness",
+            "",
+            "| State | Count |",
+            "|---|---:|",
+        ]
+    )
+    lines.extend(
+        f"| {name} | {count} |" for name, count in payload["readiness"].items()
+    )
     lines.extend(["", "## Findings", ""])
     if issues:
         lines.extend(f"- {issue}" for issue in issues)
     else:
-        lines.append("- No census, reference-integrity, or generated-view drift issues detected.")
+        lines.append(
+            "- No census, reference-integrity, or generated-view drift issues detected."
+        )
     lines.extend(["", f"Total findings: {len(issues)}", ""])
     report_path.write_text("\n".join(lines), encoding="utf-8")
 

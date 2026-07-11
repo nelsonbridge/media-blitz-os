@@ -1,12 +1,9 @@
 import json
 from pathlib import Path
 
-import pytest
 from typer.testing import CliRunner
 
 from nks.cli.main import app
-from nks.domain.models import GateStatus
-from nks.domain.delivery import FeedbackClassification, FeedbackProvenance, FeedbackRecord
 
 
 def write_json(path: Path, payload: dict) -> None:
@@ -36,7 +33,13 @@ def test_prepare_publication_requires_approval(tmp_path: Path):
     runner = CliRunner()
     result = runner.invoke(
         app,
-        ["prepare-publication", str(repository_root), "NKS-PUB-000001", "--platform", "medium"],
+        [
+            "prepare-publication",
+            str(repository_root),
+            "NKS-PUB-000001",
+            "--platform",
+            "medium",
+        ],
     )
 
     assert result.exit_code != 0
@@ -79,12 +82,20 @@ def test_prepare_publication_creates_package_and_events(tmp_path: Path):
         },
     )
     drafts.mkdir(parents=True, exist_ok=True)
-    (drafts / "NKS-PUB-000001.md").write_text("publication draft body", encoding="utf-8")
+    (drafts / "NKS-PUB-000001.md").write_text(
+        "publication draft body", encoding="utf-8"
+    )
 
     runner = CliRunner()
     result = runner.invoke(
         app,
-        ["prepare-publication", str(repository_root), "NKS-PUB-000001", "--platform", "medium"],
+        [
+            "prepare-publication",
+            str(repository_root),
+            "NKS-PUB-000001",
+            "--platform",
+            "medium",
+        ],
     )
 
     assert result.exit_code == 0
@@ -97,7 +108,12 @@ def test_prepare_publication_creates_package_and_events(tmp_path: Path):
     assert (output_path / "receipt.json").exists()
     assert (repository_root / "events" / "events.jsonl").exists()
 
-    events = [json.loads(line) for line in (repository_root / "events" / "events.jsonl").read_text(encoding="utf-8").splitlines()]
+    events = [
+        json.loads(line)
+        for line in (repository_root / "events" / "events.jsonl")
+        .read_text(encoding="utf-8")
+        .splitlines()
+    ]
     assert any(event["event_type"] == "publication.prepared" for event in events)
 
 
@@ -111,10 +127,16 @@ def test_ingest_feedback_creates_record_and_event(tmp_path: Path):
         "platform": "twitter",
         "classification": "comment",
         "content": "This is a customer comment.",
-        "provenance": "real",
+        "provenance": "REAL",
+        "lineage_ids": ["NKS-PUB-000001"],
+        "proof_boundaries": [
+            "Treat the comment as an observation, not automatically verified proof."
+        ],
     }
     feedback_file = tmp_path / "feedback.json"
-    feedback_file.write_text(json.dumps(feedback_payload, indent=2), encoding="utf-8")
+    feedback_file.write_text(
+        json.dumps(feedback_payload, indent=2), encoding="utf-8"
+    )
 
     runner = CliRunner()
     result = runner.invoke(
@@ -124,8 +146,15 @@ def test_ingest_feedback_creates_record_and_event(tmp_path: Path):
 
     assert result.exit_code == 0
     assert "NKS-FDB-000010" in result.output
-    assert (repository_root / "feedback" / "NKS-FDB-000010.json").exists()
-    events = [json.loads(line) for line in (repository_root / "events" / "events.jsonl").read_text(encoding="utf-8").splitlines()]
+    stored_path = repository_root / "feedback" / "NKS-FDB-000010.json"
+    assert stored_path.exists()
+    assert json.loads(stored_path.read_text(encoding="utf-8"))["provenance"] == "REAL"
+    events = [
+        json.loads(line)
+        for line in (repository_root / "events" / "events.jsonl")
+        .read_text(encoding="utf-8")
+        .splitlines()
+    ]
     assert any(event["event_type"] == "feedback.recorded" for event in events)
 
 
@@ -142,12 +171,18 @@ def test_replay_feedback_synthetic_scenario(tmp_path: Path):
             "platform": "simulation",
             "classification": "signal",
             "content": "Synthetic replayed signal.",
-            "provenance": "synthetic",
+            "provenance": "SYNTHETIC",
             "scenario_id": "SYNTH-000010",
+            "lineage_ids": ["NKS-PUB-000002", "SYNTH-000010"],
+            "proof_boundaries": [
+                "This manufactured scenario must not be represented as real feedback."
+            ],
         },
     }
     scenario_file = tmp_path / "scenario.json"
-    scenario_file.write_text(json.dumps(scenario_payload, indent=2), encoding="utf-8")
+    scenario_file.write_text(
+        json.dumps(scenario_payload, indent=2), encoding="utf-8"
+    )
 
     runner = CliRunner()
     result = runner.invoke(
@@ -157,6 +192,15 @@ def test_replay_feedback_synthetic_scenario(tmp_path: Path):
 
     assert result.exit_code == 0
     assert "NKS-FDB-000011" in result.output
-    assert (repository_root / "feedback" / "NKS-FDB-000011.json").exists()
-    events = [json.loads(line) for line in (repository_root / "events" / "events.jsonl").read_text(encoding="utf-8").splitlines()]
+    stored_path = repository_root / "feedback" / "NKS-FDB-000011.json"
+    assert stored_path.exists()
+    stored = json.loads(stored_path.read_text(encoding="utf-8"))
+    assert stored["provenance"] == "REPLAY"
+    assert stored["metadata"]["replay_source_provenance"] == "SYNTHETIC"
+    events = [
+        json.loads(line)
+        for line in (repository_root / "events" / "events.jsonl")
+        .read_text(encoding="utf-8")
+        .splitlines()
+    ]
     assert any(event["event_type"] == "feedback.replayed" for event in events)

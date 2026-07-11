@@ -30,6 +30,14 @@ Repository files do not all carry equal authority.
 
 See [`docs/state-authority-model.md`](docs/state-authority-model.md) for precedence, editing rules, and the transitional classification of existing status documents.
 
+## Canonicalization Security
+
+Ingestion may create evidence candidates. Only an explicitly authorized promotion operation may create a canonical source from feedback.
+
+Feedback provenance is mandatory and closed to `REAL`, `SYNTHETIC`, and `REPLAY`. Missing provenance fails closed; replay output is forcibly marked `REPLAY`; synthetic and replay records cannot be promoted as factual sources; and rejected promotion or validation attempts leave append-only workflow events.
+
+See [`docs/canonicalization-security-boundary.md`](docs/canonicalization-security-boundary.md) for the enforced boundary and remaining hardening work.
+
 ## Current Scope
 
 The initial system supports:
