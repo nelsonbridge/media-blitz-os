@@ -12,23 +12,32 @@ on:
       - "publishing/reviews/NKS-PUB-000001-visual-review.md"
       - "tests/test_canonical_publication_set.py"
       - ".github/workflows/publication-000001-assets.yml"
+  push:
+    branches: [sandbox]
+    paths:
+      - "scripts/render_publication_000001_assets.py"
+      - "records/visual-requests/NKS-VRQ-00000*.json"
+      - "records/visuals/NKS-VIS-000001.json"
+      - "assets/publication-000001/**"
+      - "generated/**"
+      - "publishing/reviews/NKS-PUB-000001-visual-review.md"
+      - "tests/test_canonical_publication_set.py"
+      - ".github/workflows/publication-000001-assets.yml"
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: publication-000001-assets-reconcile
-  cancel-in-progress: false
+  group: publication-000001-assets-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  render-and-reconcile:
+  render-and-verify:
     runs-on: ubuntu-24.04
     steps:
-      - name: Check out asset branch
+      - name: Check out repository
         uses: actions/checkout@v4
-        with:
-          ref: product/publication-000001-assets
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -36,7 +45,7 @@ jobs:
           python-version: "3.12"
           cache: pip
 
-      - name: Install runtime and renderer
+      - name: Install runtime and deterministic renderer
         run: >-
           python -m pip install --upgrade pip &&
           python -m pip install -e ".[test]" "Pillow==12.2.0"
@@ -50,24 +59,13 @@ jobs:
       - name: Regenerate authoritative projections
         run: nks generate-views .
 
-      - name: Commit projection reconciliation
+      - name: Reject asset or projection drift
         run: |
-          if ! git diff --quiet -- assets/publication-000001; then
-            echo "Rendered assets drifted during canonical-state reconciliation."
-            git diff --stat -- assets/publication-000001
+          if ! git diff --quiet -- assets/publication-000001 generated; then
+            echo "Committed assets or authoritative projections do not match deterministic output."
+            git diff --stat -- assets/publication-000001 generated
             exit 1
           fi
-
-          if git diff --quiet -- generated; then
-            echo "Generated projections are already current."
-            exit 0
-          fi
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated
-          git commit -m "Regenerate views for Publication 000001 visual review state"
-          git push origin HEAD:product/publication-000001-assets
 
       - name: Upload review artifact
         if: always()
