@@ -6,6 +6,12 @@ import json
 from pathlib import Path
 from typing import Any
 
+from nks.application.graph import build_audit_report, build_graph_index
+from nks.application.runtime import build_runtime_status
+from nks.domain.delivery import PublicationReceipt
+from nks.views.health import render_corpus_health_dashboard
+from nks.views.health import render_corpus_health_dashboard
+
 
 def _load_records(root: Path, collection: str) -> list[dict[str, Any]]:
     directory = root / collection
@@ -104,13 +110,15 @@ def render_feedback_index(root: Path) -> str:
         "",
         "> Generated from `records/feedback/*.json`. Do not edit manually.",
         "",
-        "| Feedback ID | Publication | Platform | Classification | Promoted Source |",
-        "|---|---|---|---|---|",
+        "| Feedback ID | Publication | Platform | Classification | Provenance | Promoted Source |",
+        "|---|---|---|---|---|---|",
     ]
     for item in records:
         lines.append(
-            "| {feedback_id} | {publication_id} | {platform} | {classification} | {promoted} |".format(
-                **item, promoted=item.get("promoted_to_source_id") or "—"
+            "| {feedback_id} | {publication_id} | {platform} | {classification} | {provenance} | {promoted} |".format(
+                **item,
+                provenance=item.get("provenance", "real"),
+                promoted=item.get("promoted_to_source_id") or "—",
             )
         )
     lines.extend(["", f"Total feedback records: {len(records)}", ""])
@@ -134,6 +142,168 @@ def render_event_index(root: Path) -> str:
             )
         )
     lines.extend(["", f"Total workflow events: {len(records)}", ""])
+    return "\n".join(lines)
+
+
+def render_graph_index(root: Path) -> str:
+    graph = build_graph_index(root)
+    lines = [
+        "# Generated Knowledge Graph Index",
+        "",
+        "> Generated from canonical records. Do not edit manually.",
+        "",
+        f"Total nodes: {len(graph.nodes)}",
+        f"Total edges: {len(graph.edges)}",
+        "",
+        "## Nodes",
+        "",
+        "| ID | Type | Title | Status |",
+        "|---|---|---|---|",
+    ]
+    for node in sorted(graph.nodes, key=lambda item: item.id):
+        title = node.title or "—"
+        status = node.status or "—"
+        lines.append(f"| {node.id} | {node.type} | {title} | {status} |")
+    lines.extend(["", "## Edges", "", "| Source | Relation | Target |", "|---|---|---|"])
+    for edge in sorted(graph.edges, key=lambda item: (item.source_id, item.relation, item.target_id)):
+        lines.append(f"| {edge.source_id} | {edge.relation} | {edge.target_id} |")
+    lines.extend(["", f"Total nodes: {len(graph.nodes)}", f"Total edges: {len(graph.edges)}", ""])
+    return "\n".join(lines)
+
+
+def render_audit_report(root: Path) -> str:
+    report = build_audit_report(root)
+    lines = [
+        "# Generated Audit Report",
+        "",
+        "> Generated from canonical records. Do not edit manually.",
+        "",
+        "## Record Counts",
+        "",
+        "| Record Type | Count |",
+        "|---|---:|",
+    ]
+    for record_type, count in sorted(report.total_records.items()):
+        lines.append(f"| {record_type} | {count} |")
+    lines.extend([
+        "",
+        "## Publication Readiness",
+        "",
+        "| State | Count |",
+        "|---|---:|",
+        f"| ready | {report.publication_readiness.get('ready', 0)} |",
+        f"| pending | {report.publication_readiness.get('pending', 0)} |",
+        "",
+        "## Proof Status",
+        "",
+        "| Status | Count |",
+        "|---|---:|",
+    ])
+    for status, count in sorted(report.proof_status.items()):
+        lines.append(f"| {status} | {count} |")
+    lines.extend([
+        "",
+        "## Narrative Status",
+        "",
+        "| Status | Count |",
+        "|---|---:|",
+    ])
+    for status, count in sorted(report.narrative_status.items()):
+        lines.append(f"| {status} | {count} |")
+    lines.extend([
+        "",
+        "## Visual Status",
+        "",
+        "| Status | Count |",
+        "|---|---:|",
+    ])
+    for status, count in sorted(report.visual_status.items()):
+        lines.append(f"| {status} | {count} |")
+    lines.extend([
+        "",
+        "## Missing References",
+        "",
+    ])
+    if report.missing_references:
+        lines.extend(f"- {item}" for item in report.missing_references)
+    else:
+        lines.append("- None")
+    lines.extend(["", "## Orphan Records", "",])
+    if report.orphan_records:
+        lines.extend(f"- {item}" for item in report.orphan_records)
+    else:
+        lines.append("- None")
+    lines.extend(["", f"Total records: {sum(report.total_records.values())}", ""])
+    return "\n".join(lines)
+
+
+def render_runtime_status_report(root: Path) -> str:
+    status = build_runtime_status(root)
+    lines = [
+        "# Generated Runtime Status Report",
+        "",
+        "> Generated from canonical records, workflow events, and graph/audit state. Do not edit manually.",
+        "",
+        "## Summary",
+        "",
+        f"Total canonical records: {sum(status.record_counts.values())}",
+        f"Total event records: {status.event_count}",
+        f"Graph nodes: {status.graph_node_count}",
+        f"Graph edges: {status.graph_edge_count}",
+        "",
+        "## Publication Readiness",
+        "",
+        "| State | Count |",
+        "|---|---:|",
+        f"| ready | {status.publication_readiness.get('ready', 0)} |",
+        f"| pending | {status.publication_readiness.get('pending', 0)} |",
+        "",
+        "## Missing References",
+        "",
+    ]
+    if status.missing_references:
+        lines.extend(f"- {item}" for item in status.missing_references)
+    else:
+        lines.append("- None")
+    lines.extend(["", "## Orphan Records", "",])
+    if status.orphan_records:
+        lines.extend(f"- {item}" for item in status.orphan_records)
+    else:
+        lines.append("- None")
+    lines.extend(["", "## Record Counts", "", "| Record Type | Count |", "|---|---:|"])
+    for record_type, count in sorted(status.record_counts.items()):
+        lines.append(f"| {record_type} | {count} |")
+    lines.extend(["", f"Total records: {sum(status.record_counts.values())}", ""])
+    return "\n".join(lines)
+
+
+def render_publication_package_index(repository_root: Path) -> str:
+    package_dirs = sorted(repository_root.glob("*/*/receipt.json"))
+    packages: list[PublicationReceipt] = []
+    for path in package_dirs:
+        packages.append(
+            PublicationReceipt.model_validate_json(path.read_text(encoding="utf-8"))
+        )
+
+    lines = [
+        "# Generated Publication Package Index",
+        "",
+        "> Generated from manual publication package receipts. Do not edit manually.",
+        "",
+        "| Publication ID | Platform | Receipt ID | Status | Package Path |",
+        "|---|---|---|---|---|",
+    ]
+    for receipt in packages:
+        lines.append(
+            "| {publication_id} | {platform} | {receipt_id} | {status} | {path} |".format(
+                publication_id=receipt.publication_id,
+                platform=receipt.platform,
+                receipt_id=receipt.receipt_id,
+                status=receipt.status,
+                path=receipt.metadata.get("package_path", "-"),
+            )
+        )
+    lines.extend(["", f"Total publication packages: {len(packages)}", ""])
     return "\n".join(lines)
 
 
@@ -172,6 +342,11 @@ def write_generated_views(repository_root: Path) -> list[Path]:
         output_root / "visual-request-index.md": render_visual_request_index(records_root),
         output_root / "feedback-index.md": render_feedback_index(records_root),
         output_root / "event-index.md": render_event_index(records_root),
+        output_root / "graph-index.md": render_graph_index(records_root),
+        output_root / "audit-report.md": render_audit_report(records_root),
+        output_root / "runtime-status-report.md": render_runtime_status_report(records_root),
+        output_root / "corpus-health-dashboard.md": render_corpus_health_dashboard(records_root),
+        output_root / "publication-package-index.md": render_publication_package_index(repository_root),
         output_root / "ecosystem-capabilities.md": render_capability_summary(
             records_root / "capabilities" / "ecosystem-capabilities.json"
         ),

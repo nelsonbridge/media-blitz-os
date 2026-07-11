@@ -2,10 +2,14 @@ import json
 from pathlib import Path
 
 from nks.views.markdown import (
+    render_audit_report,
     render_capability_summary,
     render_proof_index,
+    render_graph_index,
     render_publication_index,
+    render_publication_package_index,
     render_visual_index,
+    render_corpus_health_dashboard,
     write_generated_views,
 )
 
@@ -23,6 +27,9 @@ def test_generated_views_are_deterministic_and_record_driven(tmp_path: Path):
             "id": "NKS-PUB-000001",
             "title": "The Corpus Is Manufactured, Not Found",
             "artifact_id": "NKS-ART-000001",
+            "proof_id": "NKS-PRF-000001",
+            "narrative_id": "NKS-NAR-000001",
+            "visual_package_id": "NKS-VIS-000001",
             "status": "review",
             "editorial_status": "ready",
             "user_approval": "needed",
@@ -84,9 +91,17 @@ def test_generated_views_are_deterministic_and_record_driven(tmp_path: Path):
     assert "NKS-CAP-GITHUB" in render_capability_summary(
         records / "capabilities" / "ecosystem-capabilities.json"
     )
+    assert "Total nodes:" in render_graph_index(records)
+    assert "Total records:" in render_audit_report(records)
+    health_content = render_corpus_health_dashboard(records)
+    assert "Total score:" in health_content
+    assert "Source Lineage Coverage" in health_content
+    assert "Orphan Control" in health_content
+    assert "Total publication packages: 0" in render_publication_package_index(tmp_path)
 
 
 def test_empty_collections_render_zero_counts(tmp_path: Path):
     assert "Total publications: 0" in render_publication_index(tmp_path)
     assert "Total proof records: 0" in render_proof_index(tmp_path)
     assert "Total visual packages: 0" in render_visual_index(tmp_path)
+    assert "Total publication packages: 0" in render_publication_package_index(tmp_path)

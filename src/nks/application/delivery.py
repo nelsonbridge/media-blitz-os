@@ -63,6 +63,8 @@ class IngestFeedback:
                     "feedback_id": feedback.feedback_id,
                     "classification": feedback.classification,
                     "platform": feedback.platform,
+                    "provenance": feedback.provenance,
+                    "scenario_id": feedback.scenario_id,
                 },
             )
         )

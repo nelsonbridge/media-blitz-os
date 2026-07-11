@@ -56,7 +56,8 @@ def test_publication_gate_posture_matches_canonical_scope():
         assert publication.editorial_status == GateStatus.NEEDED
         assert publication.user_approval == GateStatus.NEEDED
         assert visual.gate_status == GateStatus.NEEDED
-        assert visual.signature_diagram_id is None
+        assert visual.signature_diagram_id is not None
+        assert visual.hero_image_id is not None
 
 
 def test_technical_publications_remain_proof_partial_until_current_verification():

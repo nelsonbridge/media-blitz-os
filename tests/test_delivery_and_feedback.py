@@ -8,7 +8,14 @@ from nks.application.delivery import (
     PreparePublication,
     PublicationNotApprovedError,
 )
-from nks.domain.delivery import FeedbackClassification, FeedbackRecord, PublicationPayload
+from nks.application.feedback import FeedbackReplayHarness
+from nks.domain.delivery import (
+    FeedbackClassification,
+    FeedbackProvenance,
+    FeedbackRecord,
+    FeedbackScenario,
+    PublicationPayload,
+)
 from nks.domain.models import GateStatus, PublicationRecord, WorkflowEvent
 
 
@@ -95,3 +102,32 @@ def test_feedback_is_idempotent_and_requires_explicit_promotion(tmp_path: Path):
         "feedback.recorded",
         "feedback.promoted_to_source",
     ]
+
+
+def test_synthetic_feedback_replay_records(tmp_path: Path):
+    events = MemoryEvents()
+    repository = JsonFeedbackRepository(tmp_path)
+    harness = FeedbackReplayHarness(repository, events)
+
+    scenario = FeedbackScenario(
+        scenario_id="SYNTH-000001",
+        description="Synthetic feedback regression scenario.",
+        feedback=FeedbackRecord(
+            feedback_id="NKS-FDB-000002",
+            publication_id="NKS-PUB-000001",
+            platform="simulation",
+            classification=FeedbackClassification.SIGNAL,
+            content="Synthetic feedback sample for replay.",
+            provenance=FeedbackProvenance.SYNTHETIC,
+            scenario_id="SYNTH-000001",
+        ),
+    )
+
+    played = harness.replay([scenario])
+
+    assert len(played) == 1
+    assert played[0].provenance == FeedbackProvenance.SYNTHETIC
+    assert played[0].scenario_id == "SYNTH-000001"
+    assert repository.get("NKS-FDB-000002") is not None
+    assert [item.event_type for item in events.list()] == ["feedback.replayed"]
+    assert events.list()[0].payload["provenance"] == "synthetic"

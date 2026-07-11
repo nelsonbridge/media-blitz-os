@@ -35,4 +35,4 @@ def test_canonical_records_are_open_json_files():
     for path in record_files:
         text = path.read_text(encoding="utf-8")
         assert text.lstrip().startswith("{")
-        assert '"id"' in text
+        assert any(key in text for key in ('"id"', '"event_id"', '"request_id"'))

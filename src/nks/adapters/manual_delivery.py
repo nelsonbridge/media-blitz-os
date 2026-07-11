@@ -42,14 +42,17 @@ class ManualPublicationAdapter:
             ]
         )
         (package_dir / "checklist.md").write_text(checklist, encoding="utf-8")
-
-        return PublicationReceipt(
+        receipt = PublicationReceipt(
             receipt_id=f"manual:{payload.platform}:{payload.publication_id}",
             publication_id=payload.publication_id,
             platform=payload.platform,
             status=DeliveryStatus.PREPARED,
             metadata={"package_path": str(package_dir)},
         )
+        (package_dir / "receipt.json").write_text(
+            receipt.model_dump_json(indent=2), encoding="utf-8"
+        )
+        return receipt
 
 
 class JsonFeedbackRepository:

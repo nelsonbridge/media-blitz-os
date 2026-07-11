@@ -18,7 +18,6 @@ def test_publication_000002_has_proof_and_narrative_but_stops_at_visual_editoria
 
     assert not result.passed
     assert result.failures == (
-        "signature diagram is missing",
         "visual gate is needed",
         "editorial gate is needed",
         "user approval is needed",

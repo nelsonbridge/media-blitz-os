@@ -23,6 +23,12 @@ class FeedbackClassification(StrEnum):
     EDITORIAL_LESSON = "editorial-lesson"
 
 
+class FeedbackProvenance(StrEnum):
+    REAL = "real"
+    SYNTHETIC = "synthetic"
+    REPLAY = "replay"
+
+
 class PublicationPayload(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -55,8 +61,18 @@ class FeedbackRecord(BaseModel):
     platform: str
     classification: FeedbackClassification
     content: str
+    provenance: FeedbackProvenance = FeedbackProvenance.REAL
+    scenario_id: str | None = None
     source_url: HttpUrl | None = None
     metric_name: str | None = None
     metric_value: float | None = None
     metadata: dict[str, Any] = Field(default_factory=dict)
     promoted_to_source_id: str | None = None
+
+
+class FeedbackScenario(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    scenario_id: str
+    description: str
+    feedback: FeedbackRecord
