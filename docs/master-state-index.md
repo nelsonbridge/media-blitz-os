@@ -12,7 +12,7 @@ Sprint 2 — Knowledge Extraction, Runtime Construction, and Corpus Manufacturin
 
 Status: Active.
 
-Runtime v0.1 is operational for all twelve canonical publications. Publication #1 is internally ready except for generated-asset review and explicit user publication approval.
+Runtime v0.1 is operational for all twelve canonical publications. Every publication has a complete five-asset, proof-bounded visual request package. Publication #1 is internally ready except for rendered-asset review and explicit user publication approval.
 
 ## Manufacturing Pipeline
 
@@ -65,7 +65,23 @@ External systems remain adapters. Domain policy and canonical identifiers remain
 - Review checklists for all twelve publications.
 - Derivative packages NKS-DER-000001 through NKS-DER-000048.
 - Proof, narrative, relationship-map, roadmap, and retrofit artifacts.
-- Generated publication, proof, and visual indexes now report twelve records each.
+- Generated publication, proof, and visual indexes report twelve records each.
+
+### Visual Knowledge Layer
+
+- Canonical visual packages NKS-VIS-000001 through NKS-VIS-000012.
+- Proof-bounded visual request registry NKS-VRQ-000001 through NKS-VRQ-000060.
+- Every publication has prepared requests for:
+  - signature diagram;
+  - hero image;
+  - carousel;
+  - quote card;
+  - Pinterest pin.
+- Every request requires review before public use.
+- Visual packages #2–#12 remain at `needed` until actual assets are rendered and reviewed.
+- Generated visual package index reports twelve packages with five requested assets each.
+- Generated visual request index reports sixty requests.
+- Complete five-asset linkage and registry-contiguity verification passed.
 
 ### Publication #1
 
@@ -80,7 +96,6 @@ Complete:
 - Publication Contract payload.
 - Readiness checklist.
 - Visual package NKS-VIS-000001.
-- Briefs for signature diagram, hero image, carousel, quote card, and Pinterest pin.
 - Proof-bounded render requests NKS-VRQ-000001 through NKS-VRQ-000005.
 - Manufacturing event.
 - Generated publication, proof, visual-package, visual-request, event, feedback, and capability views.
@@ -96,14 +111,14 @@ Current gate result:
 
 ### Publications #2–#12
 
-Canonical conversion is complete.
+Canonical conversion and visual-request preparation are complete.
 
 Gate posture:
 
-- NKS-PUB-000002 through NKS-PUB-000004: proof and narrative ready; visuals, editorial review, and approval needed.
-- NKS-PUB-000005: proof partial pending quantitative verification; narrative ready; visuals, editorial review, and approval needed.
-- NKS-PUB-000006 through NKS-PUB-000008: proof and narrative ready; visuals, editorial review, and approval needed.
-- NKS-PUB-000009 through NKS-PUB-000012: proof partial pending current primary-source verification; narrative ready; visuals, editorial review, and approval needed.
+- NKS-PUB-000002 through NKS-PUB-000004: proof and narrative ready; rendered-asset review, editorial review, and approval needed.
+- NKS-PUB-000005: proof partial pending quantitative verification; narrative ready; rendered-asset review, editorial review, and approval needed.
+- NKS-PUB-000006 through NKS-PUB-000008: proof and narrative ready; rendered-asset review, editorial review, and approval needed.
+- NKS-PUB-000009 through NKS-PUB-000012: proof partial pending current primary-source verification; narrative ready; rendered-asset review, editorial review, and approval needed.
 
 ### Runtime v0.1
 
@@ -124,21 +139,9 @@ Implemented:
 - Manual publication fallback and explicit approval enforcement.
 - Feedback ingestion, persistence, events, and explicit promotion to source records.
 - Visual renderer contract and manual render-package fallback.
+- Branch-coverage instrumentation and reproducible coverage configuration.
 
-Verified local results:
-
-- Runtime core: 6 passed in 0.14s.
-- Generated views: 1 passed in 0.13s.
-- GitHub event repository: 2 passed in 0.08s.
-- GitHub contents client: 1 passed in 0.12s.
-- Dependency extraction: 3 passed in 0.10s.
-- Workspace contracts: 3 passed in 0.12s.
-- Workspace adapters and reconciliation: 4 passed in 0.09s.
-- Delivery and feedback workflows: 3 passed in 0.15s.
-- Manual visual renderer: 1 passed in 0.12s.
-- Publication #2 readiness: 1 passed in 0.09s.
-- Twelve-publication canonical reference and gate verification: passed.
-- Twelve-publication generated-index coverage: passed.
+Verified local results include runtime, adapters, export/import, workspace reconciliation, delivery, feedback, visual rendering contracts, twelve-publication reference integrity, generated-index coverage, and complete five-asset visual linkage.
 
 No hosted GitHub Actions result is claimed.
 
@@ -147,15 +150,14 @@ No hosted GitHub Actions result is claimed.
 1. Canonical state is read from GitHub or imported from a portable bundle.
 2. Local runtime executes policies, tests, transformations, generated views, and reconciliation.
 3. GitHub persists records, events, views, and audit state.
-4. Proof-bounded visual requests are prepared for Publications #2–#12.
-5. Current evidence verification completes for proof-partial publications.
-6. Editorial reviews complete.
-7. Image generation renders approved requests.
-8. Users review generated assets.
-9. Explicit user approval releases a publication.
-10. Direct or manual publication adapter distributes it.
-11. Public URLs and receipts are recorded.
-12. Feedback and metrics become classified records and optional new source records.
+4. Quantitative and current primary-source evidence verification completes for proof-partial publications.
+5. Editorial reviews complete.
+6. Image generation renders the sixty prepared requests as prioritized.
+7. Users review generated assets.
+8. Explicit user approval releases a publication.
+9. Direct or manual publication adapter distributes it.
+10. Public URLs and receipts are recorded.
+11. Feedback and metrics become classified records and optional new source records.
 
 GitHub Actions and Drive are not on the critical path.
 
@@ -163,17 +165,17 @@ GitHub Actions and Drive are not on the critical path.
 
 ### Internally executable
 
-- Create visual briefs and render requests for Publications #2–#12.
+- Execute the complete committed suite with quantitative coverage and commit the baseline report.
 - Perform quantitative verification for NKS-PUB-000005.
 - Perform current primary-source technical verification for NKS-PUB-000009 through NKS-PUB-000012.
 - Run editorial reviews for Publications #2–#12.
 - Evaluate direct publication adapters against the existing contracts.
 - Sync generated views to Drive when that adapter is selected for execution.
 
-### External or user-gated for Publication #1
+### External or user-gated
 
-- Generate five visual assets.
-- Review and approve or reject each asset.
+- Generate requested visual assets.
+- Review and approve or reject generated assets.
 - Record explicit publication approval.
 - Publish through a direct or manual adapter.
 - Record public URLs and receipts.
