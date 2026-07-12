@@ -2,8 +2,8 @@
   "audit_version": 1,
   "extension_counts": {
     "(none)": 1,
-    ".json": 134,
-    ".md": 280,
+    ".json": 137,
+    ".md": 285,
     ".png": 12,
     ".py": 64,
     ".svg": 8,
@@ -12,7 +12,7 @@
     ".yaml": 1,
     ".yml": 6
   },
-  "file_count": 508,
+  "file_count": 516,
   "issue_count": 61,
   "issues": [
     "record missing identifier: records/social-requests/NKS-SOC-REQ-000001.json",
@@ -82,10 +82,10 @@
     "editorial:ready": 12,
     "status:review": 12
   },
-  "record_count": 65,
+  "record_count": 66,
   "record_counts": {
     "artifacts": 12,
-    "capabilities": 1,
+    "capabilities": 2,
     "events": 1,
     "feedback": 0,
     "narratives": 12,
@@ -96,7 +96,7 @@
     "visuals": 12
   },
   "repository_root": "/home/runner/work/media-blitz-os/media-blitz-os",
-  "schema_count": 7,
+  "schema_count": 9,
   "test_count": 26,
   "top_level_counts": {
     "(root)": 5,
@@ -110,7 +110,7 @@
     "contracts": 3,
     "corpus": 42,
     "diagnostics": 2,
-    "docs": 18,
+    "docs": 23,
     "editorial": 1,
     "engineering": 1,
     "evidence": 10,
@@ -122,11 +122,11 @@
     "opportunities": 4,
     "ops": 5,
     "publishing": 92,
-    "records": 126,
+    "records": 127,
     "research": 2,
     "roadmap": 5,
     "runtime": 5,
-    "schemas": 7,
+    "schemas": 9,
     "scripts": 1,
     "security": 1,
     "src": 37,
