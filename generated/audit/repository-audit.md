@@ -4,9 +4,9 @@
 
 ## Census
 
-- Files: 563
-- Canonical records: 149
-- Tests: 30
+- Files: 570
+- Canonical records: 152
+- Tests: 33
 - Schemas: 9
 
 ## Top-Level File Counts
@@ -43,9 +43,9 @@
 | schemas | 9 |
 | scripts | 1 |
 | security | 1 |
-| src | 48 |
+| src | 52 |
 | templates | 12 |
-| tests | 38 |
+| tests | 41 |
 | validation | 5 |
 | visuals | 17 |
 | whitepapers | 1 |
@@ -65,10 +65,12 @@
 | feedback | 0 |
 | events | 1 |
 | capabilities | 4 |
+| stewards | 1 |
 | human-observations | 0 |
 | human-transitions | 0 |
 | model-ingestion-policies | 0 |
 | model-feedback-receipts | 0 |
+| canonical-reservations | 0 |
 | work-items | 11 |
 | sprints | 11 |
 
@@ -82,8 +84,6 @@
 
 ## Findings
 
-- record missing identifier: records/capabilities/ANU.json
-- record missing identifier: records/capabilities/ENKI.json
-- record missing identifier: records/stewards/stewards.json
+- No census, reference-integrity, or generated-view drift issues detected.
 
-Total findings: 3
+Total findings: 0
