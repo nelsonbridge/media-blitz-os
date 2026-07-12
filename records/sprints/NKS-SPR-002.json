@@ -1,0 +1,12 @@
+{
+  "sprint_id": "NKS-SPR-002",
+  "sequence": 2,
+  "title": "Canonical backlog and roadmap control plane",
+  "objective": "Make work status evidence-bearing, machine-readable, and deterministically projected.",
+  "status": "active",
+  "work_item_ids": ["BL-002"],
+  "exit_criteria": ["Canonical work records exist", "Generated backlog and roadmap are deterministic", "Authority drift is detectable"],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-12T20:19:00Z"
+}
