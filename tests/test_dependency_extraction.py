@@ -47,7 +47,10 @@ def test_core_contains_no_platform_or_network_imports():
 def test_canonical_records_are_open_json_files():
     record_files = sorted((ROOT / "records").glob("*/*.json"))
     assert record_files, "no canonical JSON records found"
+    identifier_keys = ('"id"', '"event_id"', '"request_id"', '"registry_id"')
     for path in record_files:
         text = path.read_text(encoding="utf-8")
         assert text.lstrip().startswith("{")
-        assert any(key in text for key in ('"id"', '"event_id"', '"request_id"'))
+        assert any(key in text for key in identifier_keys), (
+            f"canonical JSON record has no recognized identifier: {path.relative_to(ROOT)}"
+        )
