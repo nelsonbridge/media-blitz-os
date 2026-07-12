@@ -25,6 +25,14 @@ jobs:
         run: python -c "from pathlib import Path; from nks.views.work_control import write_work_control_views; write_work_control_views(Path('.'))"
       - name: Regenerate authority manifest
         run: python -m nks.views.authority write .
+      - name: Upload regenerated work-control projections
+        uses: actions/upload-artifact@v4
+        with:
+          name: regenerated-work-control
+          path: |
+            generated/canonical-backlog.md
+            generated/canonical-roadmap.md
+            generated/state-authority-manifest.json
       - name: Reject generated drift
         run: git diff --exit-code -- generated/canonical-backlog.md generated/canonical-roadmap.md generated/state-authority-manifest.json
       - name: Verify authority manifest
