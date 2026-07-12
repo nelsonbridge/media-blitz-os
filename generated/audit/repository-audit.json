@@ -2,7 +2,7 @@
   "audit_version": 1,
   "extension_counts": {
     "(none)": 1,
-    ".json": 137,
+    ".json": 139,
     ".md": 285,
     ".png": 12,
     ".py": 64,
@@ -12,7 +12,7 @@
     ".yaml": 1,
     ".yml": 6
   },
-  "file_count": 516,
+  "file_count": 518,
   "issue_count": 61,
   "issues": [
     "record missing identifier: records/social-requests/NKS-SOC-REQ-000001.json",
@@ -82,10 +82,10 @@
     "editorial:ready": 12,
     "status:review": 12
   },
-  "record_count": 66,
+  "record_count": 68,
   "record_counts": {
     "artifacts": 12,
-    "capabilities": 2,
+    "capabilities": 4,
     "events": 1,
     "feedback": 0,
     "narratives": 12,
@@ -122,7 +122,7 @@
     "opportunities": 4,
     "ops": 5,
     "publishing": 92,
-    "records": 127,
+    "records": 129,
     "research": 2,
     "roadmap": 5,
     "runtime": 5,

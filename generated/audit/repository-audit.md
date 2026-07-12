@@ -4,8 +4,8 @@
 
 ## Census
 
-- Files: 516
-- Canonical records: 66
+- Files: 518
+- Canonical records: 68
 - Tests: 26
 - Schemas: 9
 
@@ -36,7 +36,7 @@
 | opportunities | 4 |
 | ops | 5 |
 | publishing | 92 |
-| records | 127 |
+| records | 129 |
 | research | 2 |
 | roadmap | 5 |
 | runtime | 5 |
@@ -63,7 +63,7 @@
 | visual-requests | 60 |
 | feedback | 0 |
 | events | 1 |
-| capabilities | 2 |
+| capabilities | 4 |
 
 ## Publication Readiness
 
