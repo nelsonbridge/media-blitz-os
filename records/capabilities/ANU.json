@@ -1,0 +1,36 @@
+{
+  "id": "ANU",
+  "canonical_name": "ANU",
+  "display_name": "Origin Authority",
+  "kind": "deity-domain",
+  "parent_id": null,
+  "purpose": "Preserve foundational intent, strategic direction, constitutional authority, and final governance authority without coupling those functions to a permanent individual.",
+  "status": "active",
+  "authority_class": "constitutional",
+  "responsibilities": [
+    "define foundational intent",
+    "approve constitutional amendments",
+    "set strategic direction",
+    "authorize irreversible governance changes",
+    "preserve succession and delegation continuity"
+  ],
+  "requires": [],
+  "provides": [
+    "constitutional authority",
+    "strategic intent",
+    "final governance authority"
+  ],
+  "implementation_independent": true,
+  "license_eligible": false,
+  "historical_alignment": "Anu occupies the highest position in the selected Sumerian hierarchy and is used here for origin authority rather than as a personal identity.",
+  "governance_refs": [
+    "docs/governance/NKS-CONSTITUTION.md",
+    "docs/standards/NKS-STD-001-Canonical-Naming.md",
+    "docs/standards/NKS-STD-002-Role-Independence.md",
+    "docs/standards/NKS-STD-003-Capability-Hierarchy.md"
+  ],
+  "metadata": {
+    "current_assignment_reference": "founder-origin-authority",
+    "personal_identity_embedded": false
+  }
+}
