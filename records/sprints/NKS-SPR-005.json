@@ -1,0 +1,12 @@
+{
+  "sprint_id": "NKS-SPR-005",
+  "sequence": 5,
+  "title": "Journaled promotion transaction",
+  "objective": "Make canonical promotion recoverable, atomic or journaled, idempotent, and receipted.",
+  "status": "planned",
+  "work_item_ids": ["BL-005"],
+  "exit_criteria": ["Interrupted promotion is recoverable", "Partial state cannot persist", "Immutable promotion receipts exist"],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-12T20:19:00Z"
+}
