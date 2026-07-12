@@ -2,11 +2,14 @@
   "work_item_id": "BL-002",
   "title": "Backlog and Roadmap as Generated State",
   "description": "Create canonical work and sprint records with deterministic projections.",
-  "status": "active",
+  "status": "complete",
   "sprint_id": "NKS-SPR-002",
   "acceptance_criteria": ["Work state is machine-readable", "Completion requires evidence", "Backlog and roadmap projections are deterministic", "Authority drift fails validation"],
-  "evidence": [],
+  "evidence": [
+    {"evidence_id": "NKS-EVD-BL002-001", "kind": "pull-request", "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/23", "description": "Sprint 2 implementation pull request"},
+    {"evidence_id": "NKS-EVD-BL002-002", "kind": "test-run", "reference": "f26e7d3338f98fa86e464eb3d9a3bb41246d0925", "description": "CI, Runtime Coverage, State Authority, Canonicalization Security, and Work Control Authority passed"}
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T20:19:00Z"
+  "updated_at": "2026-07-12T20:31:00Z"
 }
