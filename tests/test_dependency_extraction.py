@@ -16,6 +16,19 @@ FORBIDDEN_MODULE_PREFIXES = (
     "requests",
     "httpx",
 )
+CANONICAL_IDENTIFIER_KEYS = (
+    '"id"',
+    '"event_id"',
+    '"request_id"',
+    '"registry_id"',
+    '"feedback_id"',
+    '"observation_id"',
+    '"transition_id"',
+    '"policy_id"',
+    '"receipt_id"',
+    '"work_item_id"',
+    '"sprint_id"',
+)
 
 
 def _imported_modules(path: Path) -> list[str]:
@@ -47,10 +60,9 @@ def test_core_contains_no_platform_or_network_imports():
 def test_canonical_records_are_open_json_files():
     record_files = sorted((ROOT / "records").glob("*/*.json"))
     assert record_files, "no canonical JSON records found"
-    identifier_keys = ('"id"', '"event_id"', '"request_id"', '"registry_id"')
     for path in record_files:
         text = path.read_text(encoding="utf-8")
         assert text.lstrip().startswith("{")
-        assert any(key in text for key in identifier_keys), (
+        assert any(key in text for key in CANONICAL_IDENTIFIER_KEYS), (
             f"canonical JSON record has no recognized identifier: {path.relative_to(ROOT)}"
         )
