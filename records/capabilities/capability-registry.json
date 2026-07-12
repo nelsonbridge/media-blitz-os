@@ -1,0 +1,34 @@
+{
+  "registry_id": "NKS-CAPABILITY-REGISTRY",
+  "version": 1,
+  "governance": {
+    "constitution": "docs/governance/NKS-CONSTITUTION.md",
+    "naming_standard": "docs/standards/NKS-STD-001-Canonical-Naming.md",
+    "role_independence": "docs/standards/NKS-STD-002-Role-Independence.md",
+    "hierarchy_standard": "docs/standards/NKS-STD-003-Capability-Hierarchy.md",
+    "licensing_standard": "docs/standards/NKS-STD-004-Licensing-Model.md"
+  },
+  "capabilities": [
+    {
+      "id": "ANU",
+      "record": "records/capabilities/ANU.json",
+      "kind": "deity-domain",
+      "parent_id": null,
+      "status": "active"
+    },
+    {
+      "id": "ENKI",
+      "record": "records/capabilities/ENKI.json",
+      "kind": "deity-domain",
+      "parent_id": "ANU",
+      "status": "active"
+    }
+  ],
+  "reserved_names": [],
+  "rules": {
+    "commercial_names_are_metadata": true,
+    "implementations_are_replaceable": true,
+    "capabilities_may_be_licensed": true,
+    "personal_identity_in_domain_logic_forbidden": true
+  }
+}
