@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/capability.schema.json",
+  "title": "Canonical Capability",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "canonical_name",
+    "kind",
+    "purpose",
+    "status",
+    "authority_class",
+    "responsibilities",
+    "implementation_independent",
+    "license_eligible"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9-]*$"
+    },
+    "canonical_name": {"type": "string", "minLength": 1},
+    "display_name": {"type": "string"},
+    "kind": {
+      "type": "string",
+      "enum": ["fundamental", "deity-domain", "king-program", "component"]
+    },
+    "parent_id": {"type": ["string", "null"]},
+    "purpose": {"type": "string", "minLength": 1},
+    "status": {
+      "type": "string",
+      "enum": ["reserved", "active", "deprecated", "retired"]
+    },
+    "authority_class": {
+      "type": "string",
+      "enum": ["constitutional", "governance", "domain", "program", "component"]
+    },
+    "responsibilities": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "requires": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true,
+      "default": []
+    },
+    "provides": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true,
+      "default": []
+    },
+    "implementation_independent": {"type": "boolean", "const": true},
+    "license_eligible": {"type": "boolean"},
+    "historical_alignment": {"type": "string"},
+    "governance_refs": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "metadata": {"type": "object"}
+  }
+}
