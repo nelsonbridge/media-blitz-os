@@ -5,14 +5,14 @@
     ".json": 140,
     ".md": 285,
     ".png": 12,
-    ".py": 64,
+    ".py": 71,
     ".svg": 8,
     ".toml": 1,
     ".xml": 1,
     ".yaml": 1,
     ".yml": 6
   },
-  "file_count": 519,
+  "file_count": 526,
   "issue_count": 61,
   "issues": [
     "record missing identifier: records/social-requests/NKS-SOC-REQ-000001.json",
@@ -97,7 +97,7 @@
   },
   "repository_root": "/home/runner/work/media-blitz-os/media-blitz-os",
   "schema_count": 9,
-  "test_count": 26,
+  "test_count": 28,
   "top_level_counts": {
     "(root)": 5,
     ".github": 6,
@@ -129,9 +129,9 @@
     "schemas": 9,
     "scripts": 1,
     "security": 1,
-    "src": 37,
+    "src": 42,
     "templates": 12,
-    "tests": 34,
+    "tests": 36,
     "validation": 5,
     "visuals": 17,
     "whitepapers": 1
