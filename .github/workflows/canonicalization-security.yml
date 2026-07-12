@@ -18,6 +18,8 @@ on:
       - "src/nks/audit/repository.py"
       - "records/feedback/**"
       - "records/canonical-reservations/**"
+      - "records/work-items/**"
+      - "records/sprints/**"
       - "generated/**"
       - "tests/test_delivery_and_feedback.py"
       - "tests/test_restricted_canonical_writer.py"
@@ -48,6 +50,8 @@ on:
       - "src/nks/audit/repository.py"
       - "records/feedback/**"
       - "records/canonical-reservations/**"
+      - "records/work-items/**"
+      - "records/sprints/**"
       - "generated/**"
       - "tests/test_delivery_and_feedback.py"
       - "tests/test_restricted_canonical_writer.py"
@@ -89,6 +93,8 @@ jobs:
           --no-cov
       - name: Regenerate authoritative views
         run: nks generate-views .
+      - name: Regenerate repository audit
+        run: nks audit-repository .
       - name: Reject generated projection drift
         run: |
           if ! git diff --quiet -- generated; then
