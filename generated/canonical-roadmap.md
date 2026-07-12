@@ -18,10 +18,10 @@ Exit criteria:
 ## Sprint 2 — Canonical backlog and roadmap control plane
 
 - ID: `NKS-SPR-002`
-- Status: `active`
+- Status: `complete`
 - Objective: Make work status evidence-bearing, machine-readable, and deterministically projected.
 - Work items: BL-002
-- Evidence records: 0
+- Evidence records: 2
 
 Exit criteria:
 
