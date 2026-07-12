@@ -1,0 +1,12 @@
+{
+  "work_item_id": "BL-004",
+  "title": "Restricted Canonical Writer",
+  "description": "Create the only ordinary application boundary allowed to mutate canonical source state.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-004",
+  "acceptance_criteria": ["Direct writes are prohibited", "Authorization is content-hash-bound", "Idempotency is enforced"],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-12T20:19:00Z"
+}
