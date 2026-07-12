@@ -19,8 +19,8 @@ jobs:
           python-version: "3.12"
       - name: Install runtime and tests
         run: python -m pip install -e '.[test]'
-      - name: Run work-control tests
-        run: python -m pytest tests/test_work_control.py tests/test_repository_audit.py
+      - name: Run focused work-control tests
+        run: python -m pytest -o addopts='' -q tests/test_work_control.py tests/test_repository_audit.py
       - name: Regenerate work-control projections
         run: python -c "from pathlib import Path; from nks.views.work_control import write_work_control_views; write_work_control_views(Path('.'))"
       - name: Regenerate authority manifest
