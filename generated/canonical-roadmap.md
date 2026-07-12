@@ -11,6 +11,7 @@
 - Evidence records: 1
 
 Exit criteria:
+
 - Identity registry covers canonical collections
 - Hosted validation passes
 
@@ -23,6 +24,7 @@ Exit criteria:
 - Evidence records: 0
 
 Exit criteria:
+
 - Canonical work records exist
 - Generated backlog and roadmap are deterministic
 - Authority drift is detectable
@@ -36,6 +38,7 @@ Exit criteria:
 - Evidence records: 0
 
 Exit criteria:
+
 - Human decisions are recorded
 - Publication and social receipts exist
 - Real feedback is ingested
@@ -49,6 +52,7 @@ Exit criteria:
 - Evidence records: 0
 
 Exit criteria:
+
 - Direct writes are prohibited
 - Authorization is hash-bound
 - Idempotency is enforced
@@ -62,6 +66,7 @@ Exit criteria:
 - Evidence records: 0
 
 Exit criteria:
+
 - Interrupted promotion is recoverable
 - Partial state cannot persist
 - Immutable promotion receipts exist
@@ -75,6 +80,7 @@ Exit criteria:
 - Evidence records: 0
 
 Exit criteria:
+
 - CLI and views are integrated
 - Privacy and revocation controls exist
 - Behavior evaluation fixtures pass
@@ -88,6 +94,7 @@ Exit criteria:
 - Evidence records: 0
 
 Exit criteria:
+
 - Generic KnowledgeState exists
 - Authority and validity are explicit
 - Human protections remain intact
@@ -101,6 +108,7 @@ Exit criteria:
 - Evidence records: 0
 
 Exit criteria:
+
 - Transition types are enforced
 - Explicit and inferred authority remain distinct
 - Lineage is reconstructable
@@ -114,6 +122,7 @@ Exit criteria:
 - Evidence records: 0
 
 Exit criteria:
+
 - Context-aware interpretation exists
 - Feedback is scoped and receipted
 - Superseded state cannot control behavior
@@ -127,6 +136,7 @@ Exit criteria:
 - Evidence records: 0
 
 Exit criteria:
+
 - Canonical creation is reconstructable
 - Imports enforce authority
 - Offline extraction passes
@@ -141,6 +151,7 @@ Exit criteria:
 - Evidence records: 0
 
 Exit criteria:
+
 - A complete adaptive loop is repeated
 - Security and behavior regressions pass
 - Known limitations are recorded
