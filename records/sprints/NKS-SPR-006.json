@@ -1,0 +1,12 @@
+{
+  "sprint_id": "NKS-SPR-006",
+  "sequence": 6,
+  "title": "Temporal human-state productionization",
+  "objective": "Integrate human evolution with CLI, authority, privacy, revocation, and audit.",
+  "status": "planned",
+  "work_item_ids": ["BL-006"],
+  "exit_criteria": ["CLI and views are integrated", "Privacy and revocation controls exist", "Behavior evaluation fixtures pass"],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-12T20:19:00Z"
+}
