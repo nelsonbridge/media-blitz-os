@@ -1,0 +1,12 @@
+{
+  "sprint_id": "NKS-SPR-001",
+  "sequence": 1,
+  "title": "Canonical identity and repository truth",
+  "objective": "Establish schema-aware canonical identity and reconcile stale branches.",
+  "status": "complete",
+  "work_item_ids": ["BL-001"],
+  "exit_criteria": ["Identity registry covers canonical collections", "Hosted validation passes"],
+  "evidence": [{"evidence_id": "NKS-EVD-SPR001-001", "kind": "pull-request", "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/11", "description": "Merged Sprint 1 implementation"}],
+  "blocked_reason": null,
+  "updated_at": "2026-07-12T20:18:00Z"
+}

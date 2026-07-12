@@ -1,0 +1,12 @@
+{
+  "sprint_id": "NKS-SPR-010",
+  "sequence": 10,
+  "title": "Forensic audit, migration, and portability",
+  "objective": "Reconstruct canonical creation and prove clean-room portability and adapter parity.",
+  "status": "planned",
+  "work_item_ids": ["BL-010"],
+  "exit_criteria": ["Canonical creation is reconstructable", "Imports enforce authority", "Offline extraction passes", "Adapter parity is proven"],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-12T20:19:00Z"
+}

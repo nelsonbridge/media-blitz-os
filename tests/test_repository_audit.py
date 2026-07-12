@@ -15,6 +15,8 @@ def _write_empty_views(
     root: Path,
     publication_count: int = 0,
     visual_request_count: int = 0,
+    work_item_count: int = 0,
+    sprint_count: int = 0,
 ) -> None:
     generated = root / "generated"
     generated.mkdir(exist_ok=True)
@@ -29,6 +31,12 @@ def _write_empty_views(
     )
     (generated / "visual-request-index.md").write_text(
         f"Total visual requests: {visual_request_count}\n", encoding="utf-8"
+    )
+    (generated / "canonical-backlog.md").write_text(
+        f"Total work items: {work_item_count}\n", encoding="utf-8"
+    )
+    (generated / "canonical-roadmap.md").write_text(
+        f"Total sprints: {sprint_count}\n", encoding="utf-8"
     )
 
 

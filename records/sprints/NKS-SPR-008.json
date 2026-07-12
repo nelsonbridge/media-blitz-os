@@ -1,0 +1,12 @@
+{
+  "sprint_id": "NKS-SPR-008",
+  "sequence": 8,
+  "title": "Generic transition engine",
+  "objective": "Govern how any knowledge state changes while preserving history and authority.",
+  "status": "planned",
+  "work_item_ids": ["BL-008"],
+  "exit_criteria": ["Transition types are enforced", "Explicit and inferred authority remain distinct", "Lineage is reconstructable"],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-12T20:19:00Z"
+}

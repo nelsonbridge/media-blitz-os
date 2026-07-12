@@ -1,0 +1,12 @@
+{
+  "sprint_id": "NKS-SPR-009",
+  "sequence": 9,
+  "title": "Governed interpretation and model feedback",
+  "objective": "Resolve current interpretation and publish scoped, revocable model feedback.",
+  "status": "planned",
+  "work_item_ids": ["BL-009"],
+  "exit_criteria": ["Context-aware interpretation exists", "Feedback is scoped and receipted", "Superseded state cannot control behavior"],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-12T20:19:00Z"
+}

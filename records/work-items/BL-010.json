@@ -1,0 +1,12 @@
+{
+  "work_item_id": "BL-010",
+  "title": "Forensic Audit and Clean-Room Portability",
+  "description": "Reconstruct canonical creation, enforce migrations, and prove offline extraction and adapter parity.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-010",
+  "acceptance_criteria": ["Every canonical creation is reconstructable", "Imports cannot bypass authority", "Clean-room offline tests pass", "Adapter contracts are equivalent"],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-12T20:19:00Z"
+}

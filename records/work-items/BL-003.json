@@ -1,0 +1,12 @@
+{
+  "work_item_id": "BL-003",
+  "title": "Publication 000001 Live Cycle",
+  "description": "Complete human review, publication, receipt, and real feedback cycle.",
+  "status": "blocked",
+  "sprint_id": "NKS-SPR-003",
+  "acceptance_criteria": ["Visual decision recorded", "Publication approval recorded", "Publication and social receipts persisted", "Real feedback ingested"],
+  "evidence": [],
+  "blocked_reason": "Explicit human visual and publication approval required.",
+  "superseded_by": null,
+  "updated_at": "2026-07-12T20:19:00Z"
+}
