@@ -9,11 +9,11 @@
 | BL-003 | blocked | NKS-SPR-003 | Publication 000001 Live Cycle | 0 |
 | BL-004 | complete | NKS-SPR-004 | Restricted Canonical Writer | 5 |
 | BL-005 | planned | NKS-SPR-005 | Journaled Promotion and Receipts | 0 |
-| BL-006 | planned | NKS-SPR-006 | Temporal Human-State Production Integration | 0 |
-| BL-007 | planned | NKS-SPR-007 | Governed Adaptive Knowledge Core | 0 |
-| BL-008 | planned | NKS-SPR-008 | Generic Transition Engine | 0 |
-| BL-009 | planned | NKS-SPR-009 | Governed Interpretation and Model Feedback | 0 |
-| BL-010 | planned | NKS-SPR-010 | Forensic Audit and Clean-Room Portability | 0 |
-| BL-011 | planned | NKS-SPR-011 | Operational Proof and Release Candidate | 0 |
+| BL-006 | planned | NKS-SPR-006 | Transactional Human-State Reference Implementation | 0 |
+| BL-007 | planned | NKS-SPR-007 | Governed Adaptive Knowledge State Substrate | 0 |
+| BL-008 | planned | NKS-SPR-008 | Governed Transition and Conflict Engine | 0 |
+| BL-009 | planned | NKS-SPR-009 | Governed Interpretation and Model-Use Boundary | 0 |
+| BL-010 | planned | NKS-SPR-010 | Forensic Reconstruction, Migration, and Adapter Parity | 0 |
+| BL-011 | planned | NKS-SPR-011 | Operational Proof, Hardening, and Release Candidate | 0 |
 
 Total work items: 11
