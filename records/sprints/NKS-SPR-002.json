@@ -3,10 +3,13 @@
   "sequence": 2,
   "title": "Canonical backlog and roadmap control plane",
   "objective": "Make work status evidence-bearing, machine-readable, and deterministically projected.",
-  "status": "active",
+  "status": "complete",
   "work_item_ids": ["BL-002"],
   "exit_criteria": ["Canonical work records exist", "Generated backlog and roadmap are deterministic", "Authority drift is detectable"],
-  "evidence": [],
+  "evidence": [
+    {"evidence_id": "NKS-EVD-SPR002-001", "kind": "pull-request", "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/23", "description": "Sprint 2 implementation pull request"},
+    {"evidence_id": "NKS-EVD-SPR002-002", "kind": "test-run", "reference": "f26e7d3338f98fa86e464eb3d9a3bb41246d0925", "description": "All required hosted validation workflows passed"}
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-12T20:19:00Z"
+  "updated_at": "2026-07-12T20:31:00Z"
 }
