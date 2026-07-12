@@ -1,10 +1,17 @@
 import json
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import pytest
 from pydantic import ValidationError
 
+from nks.adapters.canonicalization import JsonCanonicalSourceStore
 from nks.adapters.manual_delivery import JsonFeedbackRepository, ManualPublicationAdapter
+from nks.application.canonicalization import (
+    RestrictedCanonicalSourceWriter,
+    feedback_sha256,
+    promotion_idempotency_key,
+)
 from nks.application.delivery import (
     FeedbackPromotionNotAuthorizedError,
     FeedbackPromotionProhibitedError,
@@ -15,14 +22,18 @@ from nks.application.delivery import (
 from nks.application.feedback import FeedbackReplayHarness
 from nks.domain.delivery import (
     FeedbackClassification,
+    FeedbackProofReview,
     FeedbackPromotionAuthorization,
     FeedbackProvenance,
     FeedbackRecord,
     FeedbackScenario,
     PromotionDecision,
+    ProofReviewDecision,
     PublicationPayload,
 )
 from nks.domain.models import GateStatus, PublicationRecord, WorkflowEvent
+
+NOW = datetime(2026, 7, 12, 20, 40, tzinfo=timezone.utc)
 
 
 class MemoryEvents:
@@ -76,19 +87,42 @@ def real_feedback(feedback_id: str = "NKS-FDB-000001") -> FeedbackRecord:
     )
 
 
+def proof_review(item: FeedbackRecord) -> FeedbackProofReview:
+    return FeedbackProofReview(
+        review_id=f"NKS-PRV-{item.feedback_id}",
+        feedback_id=item.feedback_id,
+        feedback_sha256=feedback_sha256(item),
+        reviewed_by="S. Michael Nelson",
+        reviewed_at=NOW - timedelta(minutes=5),
+        decision=ProofReviewDecision.ELIGIBLE,
+        evidence_ids=[item.publication_id],
+        limitations=["Independent validation remains required."],
+    )
+
+
 def promotion_authorization(
+    item: FeedbackRecord,
+    review: FeedbackProofReview,
     *,
-    feedback_id: str = "NKS-FDB-000001",
+    feedback_id: str | None = None,
     source_id: str = "NKS-SRC-000004",
     decision: PromotionDecision = PromotionDecision.APPROVED,
 ) -> FeedbackPromotionAuthorization:
+    digest = feedback_sha256(item)
+    authorization_id = f"NKS-AUTH-{item.feedback_id}"
     return FeedbackPromotionAuthorization(
-        authorization_id="NKS-AUTH-000001",
-        feedback_id=feedback_id,
+        authorization_id=authorization_id,
+        feedback_id=feedback_id or item.feedback_id,
+        feedback_sha256=digest,
         target_source_id=source_id,
+        proof_review_id=review.review_id,
+        idempotency_key=promotion_idempotency_key(
+            digest, authorization_id, source_id
+        ),
         authorized_by="S. Michael Nelson",
         justification="Retain the observed correction as a review-state source.",
         decision=decision,
+        authorized_at=NOW - timedelta(minutes=1),
     )
 
 
@@ -112,6 +146,17 @@ def synthetic_scenario() -> FeedbackScenario:
     )
 
 
+def promotion_service(tmp_path: Path, events: MemoryEvents):
+    repository = JsonFeedbackRepository(tmp_path)
+    writer = RestrictedCanonicalSourceWriter(
+        store=JsonCanonicalSourceStore(tmp_path / "records"),
+        feedback=repository,
+        events=events,
+        clock=lambda: NOW,
+    )
+    return repository, IngestFeedback(repository, events, writer)
+
+
 def test_manual_publication_requires_explicit_approval(tmp_path: Path):
     service = PreparePublication(ManualPublicationAdapter(tmp_path), MemoryEvents())
     with pytest.raises(PublicationNotApprovedError):
@@ -121,7 +166,6 @@ def test_manual_publication_requires_explicit_approval(tmp_path: Path):
 def test_manual_publication_creates_package_and_event(tmp_path: Path):
     events = MemoryEvents()
     service = PreparePublication(ManualPublicationAdapter(tmp_path), events)
-
     receipt = service.execute(publication(GateStatus.APPROVED), payload())
 
     package = tmp_path / "medium" / "NKS-PUB-000001"
@@ -132,41 +176,36 @@ def test_manual_publication_creates_package_and_event(tmp_path: Path):
 
 
 def test_feedback_requires_explicit_provenance():
-    payload = real_feedback().model_dump(mode="json")
-    payload.pop("provenance")
-
+    record = real_feedback().model_dump(mode="json")
+    record.pop("provenance")
     with pytest.raises(ValidationError):
-        FeedbackRecord.model_validate(payload)
+        FeedbackRecord.model_validate(record)
 
 
 def test_feedback_rejects_unknown_provenance():
-    payload = real_feedback().model_dump(mode="json")
-    payload["provenance"] = "ASSUMED_REAL"
-
+    record = real_feedback().model_dump(mode="json")
+    record["provenance"] = "ASSUMED_REAL"
     with pytest.raises(ValidationError):
-        FeedbackRecord.model_validate(payload)
+        FeedbackRecord.model_validate(record)
 
 
 def test_feedback_requires_lineage_and_proof_boundaries():
-    payload = real_feedback().model_dump(mode="json")
-    payload["lineage_ids"] = []
-
+    record = real_feedback().model_dump(mode="json")
+    record["lineage_ids"] = []
     with pytest.raises(ValidationError):
-        FeedbackRecord.model_validate(payload)
+        FeedbackRecord.model_validate(record)
 
-    payload = real_feedback().model_dump(mode="json")
-    payload["proof_boundaries"] = []
-
+    record = real_feedback().model_dump(mode="json")
+    record["proof_boundaries"] = []
     with pytest.raises(ValidationError):
-        FeedbackRecord.model_validate(payload)
+        FeedbackRecord.model_validate(record)
 
 
 def test_real_feedback_cannot_carry_scenario_id():
-    payload = real_feedback().model_dump(mode="json")
-    payload["scenario_id"] = "SYNTH-000001"
-
+    record = real_feedback().model_dump(mode="json")
+    record["scenario_id"] = "SYNTH-000001"
     with pytest.raises(ValidationError):
-        FeedbackRecord.model_validate(payload)
+        FeedbackRecord.model_validate(record)
 
 
 def test_ingestion_validation_failure_is_audited(tmp_path: Path):
@@ -186,65 +225,74 @@ def test_ingestion_validation_failure_is_audited(tmp_path: Path):
 
 def test_feedback_is_idempotent_and_requires_authorized_promotion(tmp_path: Path):
     events = MemoryEvents()
-    repository = JsonFeedbackRepository(tmp_path)
-    service = IngestFeedback(repository, events)
-    feedback = real_feedback()
+    repository, service = promotion_service(tmp_path, events)
+    item = real_feedback()
+    review = proof_review(item)
+    authorization = promotion_authorization(item, review)
 
-    service.execute(feedback)
-    service.execute(feedback)
+    service.execute(item)
+    service.execute(item)
 
     with pytest.raises(FeedbackPromotionNotAuthorizedError):
         service.promote_to_source(
-            feedback,
+            item,
             source_id="NKS-SRC-000004",
             source_location="records/feedback/NKS-FDB-000001.json",
             authorization=None,
         )
 
     source = service.promote_to_source(
-        feedback,
+        item,
         source_id="NKS-SRC-000004",
         source_location="records/feedback/NKS-FDB-000001.json",
-        authorization=promotion_authorization(),
+        authorization=authorization,
+        proof_review=review,
     )
 
     assert len(repository.list_for_publication("NKS-PUB-000001")) == 1
     assert source.source_type == "external-feedback"
     assert source.status == "review"
     assert "not automatically verified proof" in source.limitations[0]
-    assert source.metadata["authorization_id"] == "NKS-AUTH-000001"
-    assert [item.event_type for item in events.list()] == [
+    assert source.metadata["authorization_id"] == authorization.authorization_id
+    assert [event.event_type for event in events.list()] == [
         "feedback.recorded",
         "feedback.promotion_denied",
-        "feedback.promoted_to_source",
+        "canonical.source_created",
     ]
     assert events.list()[1].payload["reason_code"] == "AUTHORIZATION_REQUIRED"
 
 
 def test_denied_or_mismatched_authorization_blocks_promotion(tmp_path: Path):
     events = MemoryEvents()
-    service = IngestFeedback(JsonFeedbackRepository(tmp_path), events)
-    feedback = real_feedback()
+    _, service = promotion_service(tmp_path, events)
+    item = real_feedback()
+    review = proof_review(item)
 
     with pytest.raises(FeedbackPromotionNotAuthorizedError):
         service.promote_to_source(
-            feedback,
+            item,
             source_id="NKS-SRC-000004",
             source_location="records/feedback/NKS-FDB-000001.json",
-            authorization=promotion_authorization(decision=PromotionDecision.DENIED),
+            authorization=promotion_authorization(
+                item, review, decision=PromotionDecision.DENIED
+            ),
+            proof_review=review,
         )
 
     with pytest.raises(FeedbackPromotionNotAuthorizedError):
         service.promote_to_source(
-            feedback,
+            item,
             source_id="NKS-SRC-000004",
             source_location="records/feedback/NKS-FDB-000001.json",
-            authorization=promotion_authorization(feedback_id="NKS-FDB-OTHER"),
+            authorization=promotion_authorization(
+                item, review, feedback_id="NKS-FDB-OTHER"
+            ),
+            proof_review=review,
         )
 
-    assert [item.payload["reason_code"] for item in events.list()] == [
+    assert [event.payload["reason_code"] for event in events.list()] == [
         "AUTHORIZATION_DENIED",
-        "AUTHORIZATION_FEEDBACK_MISMATCH",
+        "FEEDBACK_ID_MISMATCH",
     ]
 
 
@@ -252,7 +300,6 @@ def test_synthetic_feedback_replay_is_forced_to_replay_provenance(tmp_path: Path
     events = MemoryEvents()
     repository = JsonFeedbackRepository(tmp_path)
     harness = FeedbackReplayHarness(repository, events)
-
     played = harness.replay([synthetic_scenario()])
 
     assert len(played) == 1
@@ -270,18 +317,26 @@ def test_replay_promotion_is_prohibited_and_audited(tmp_path: Path):
     repository = JsonFeedbackRepository(tmp_path)
     harness = FeedbackReplayHarness(repository, events)
     replayed = harness.replay([synthetic_scenario()])[0]
-    service = IngestFeedback(repository, events)
+    writer = RestrictedCanonicalSourceWriter(
+        store=JsonCanonicalSourceStore(tmp_path / "records"),
+        feedback=repository,
+        events=events,
+        clock=lambda: NOW,
+    )
+    service = IngestFeedback(repository, events, writer)
+    review = proof_review(replayed)
 
     with pytest.raises(FeedbackPromotionProhibitedError):
         service.promote_to_source(
             replayed,
             source_id="NKS-SRC-000004",
             source_location="records/feedback/NKS-FDB-000002.json",
-            authorization=promotion_authorization(feedback_id=replayed.feedback_id),
+            authorization=promotion_authorization(replayed, review),
+            proof_review=review,
         )
 
-    assert events.list()[-1].event_type == "feedback.promotion_denied"
-    assert events.list()[-1].payload["reason_code"] == "REPLAY_PROMOTION_PROHIBITED"
+    assert events.list()[-1].event_type == "canonical.write_rejected"
+    assert events.list()[-1].payload["reason_code"] == "PROVENANCE_INELIGIBLE"
 
 
 def test_replay_validation_failure_is_audited(tmp_path: Path):
