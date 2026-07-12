@@ -90,9 +90,15 @@ class PublicationRecord(CanonicalRecord):
 
 
 class WorkflowEvent(BaseModel):
+    """Append-only event with enduring capability and transient implementation attribution."""
+
     model_config = ConfigDict(extra="forbid")
 
     event_id: str
     event_type: str
     subject_id: str
+    actor_capability: str | None = None
+    actor_implementation: str | None = None
+    authority_source: str | None = None
+    legacy_actor: str | None = None
     payload: dict[str, Any] = Field(default_factory=dict)
