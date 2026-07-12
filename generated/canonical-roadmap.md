@@ -46,10 +46,10 @@ Exit criteria:
 ## Sprint 4 — Restricted canonical writer
 
 - ID: `NKS-SPR-004`
-- Status: `planned`
+- Status: `complete`
 - Objective: Enforce one canonical source mutation boundary.
 - Work items: BL-004
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 
