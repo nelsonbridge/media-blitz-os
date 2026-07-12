@@ -1,0 +1,107 @@
+{
+  "registry_id": "NKS-STEWARDSHIP-REGISTRY",
+  "version": 1,
+  "assignments": [
+    {
+      "capability_id": "ANU",
+      "assignment_type": "authority-holder",
+      "holder_reference": "founder-origin-authority",
+      "holder_kind": "human",
+      "scope": [
+        "foundational intent",
+        "strategic direction",
+        "constitutional approval",
+        "final governance authority"
+      ],
+      "authority_limits": [
+        "role occupancy does not permit bypass of evidence integrity",
+        "role identity must remain transferable and separate from domain logic"
+      ],
+      "status": "active",
+      "effective_from": "2026-07-12",
+      "effective_until": null,
+      "implementation_metadata": {
+        "display_role": "ANU",
+        "personal_name_required_by_runtime": false
+      }
+    },
+    {
+      "capability_id": "ENKI",
+      "assignment_type": "steward",
+      "holder_reference": "knowledge-engine-collective",
+      "holder_kind": "collective",
+      "scope": [
+        "knowledge synthesis",
+        "systems reasoning",
+        "architecture",
+        "implementation guidance",
+        "repository intelligence",
+        "technical continuity"
+      ],
+      "authority_limits": [
+        "cannot infer ANU approval",
+        "cannot claim exclusive identity with ENKI",
+        "cannot publish or perform irreversible external actions without required approval",
+        "must preserve proof, provenance, and canonical integrity"
+      ],
+      "status": "active",
+      "effective_from": "2026-07-12",
+      "effective_until": null,
+      "implementation_metadata": {
+        "display_role": "ENKI",
+        "provider_neutral": true,
+        "may_include_humans": true,
+        "may_include_ai_systems": true,
+        "replaceable_implementations": true
+      }
+    },
+    {
+      "capability_id": "ENKI",
+      "assignment_type": "implementation",
+      "holder_reference": "conversational-reasoning-adapter",
+      "holder_kind": "ai-system",
+      "scope": [
+        "interactive reasoning",
+        "architecture drafting",
+        "governance drafting",
+        "execution orchestration"
+      ],
+      "authority_limits": [
+        "implementation is not ENKI itself",
+        "implementation is replaceable",
+        "implementation inherits ENKI policy boundaries"
+      ],
+      "status": "active",
+      "effective_from": "2026-07-12",
+      "effective_until": null,
+      "implementation_metadata": {
+        "provider_bound_metadata_allowed": true,
+        "provider_bound_domain_logic_allowed": false
+      }
+    },
+    {
+      "capability_id": "ENKI",
+      "assignment_type": "implementation",
+      "holder_reference": "repository-coding-adapter",
+      "holder_kind": "ai-system",
+      "scope": [
+        "repository implementation",
+        "test generation",
+        "refactoring",
+        "code review support"
+      ],
+      "authority_limits": [
+        "implementation is not ENKI itself",
+        "implementation must operate from canonical repository state",
+        "implementation cannot bypass approval gates"
+      ],
+      "status": "active",
+      "effective_from": "2026-07-12",
+      "effective_until": null,
+      "implementation_metadata": {
+        "provider_bound_metadata_allowed": true,
+        "provider_bound_domain_logic_allowed": false
+      }
+    }
+  ]
+}
