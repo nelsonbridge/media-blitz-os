@@ -1,0 +1,44 @@
+{
+  "id": "ENKI",
+  "canonical_name": "ENKI",
+  "display_name": "Knowledge Engine",
+  "kind": "deity-domain",
+  "parent_id": "ANU",
+  "purpose": "Transform strategic intent into governed knowledge, architecture, implementation guidance, repository intelligence, and technical continuity through replaceable human and machine implementations.",
+  "status": "active",
+  "authority_class": "domain",
+  "responsibilities": [
+    "synthesize knowledge",
+    "perform systems reasoning",
+    "design architecture",
+    "guide implementation",
+    "analyze repository state",
+    "preserve technical continuity",
+    "coordinate replaceable implementation agents"
+  ],
+  "requires": [
+    "ANU"
+  ],
+  "provides": [
+    "knowledge synthesis",
+    "architectural reasoning",
+    "implementation guidance",
+    "repository intelligence",
+    "technical continuity"
+  ],
+  "implementation_independent": true,
+  "license_eligible": true,
+  "historical_alignment": "Enki is associated with wisdom, craft, design, and problem-solving and is used here for the collective knowledge capability rather than any one assistant or vendor.",
+  "governance_refs": [
+    "docs/governance/NKS-CONSTITUTION.md",
+    "docs/standards/NKS-STD-001-Canonical-Naming.md",
+    "docs/standards/NKS-STD-002-Role-Independence.md",
+    "docs/standards/NKS-STD-003-Capability-Hierarchy.md",
+    "docs/standards/NKS-STD-004-Licensing-Model.md"
+  ],
+  "metadata": {
+    "collective_capability": true,
+    "exclusive_implementation_allowed": false,
+    "personal_identity_embedded": false
+  }
+}
