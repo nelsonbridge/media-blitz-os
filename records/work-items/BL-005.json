@@ -1,0 +1,12 @@
+{
+  "work_item_id": "BL-005",
+  "title": "Journaled Promotion and Receipts",
+  "description": "Make canonical promotion atomic or journaled, recoverable, idempotent, and fully receipted.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-005",
+  "acceptance_criteria": ["Promotion is recoverable", "Partial state cannot persist", "Immutable receipts bind input and output hashes"],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-12T20:19:00Z"
+}
