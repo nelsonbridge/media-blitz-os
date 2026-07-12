@@ -1,0 +1,15 @@
+{
+  "work_item_id": "BL-001",
+  "title": "Schema-Aware Canonical Identity",
+  "description": "Resolve canonical identifiers through explicit collection contracts.",
+  "status": "complete",
+  "sprint_id": "NKS-SPR-001",
+  "acceptance_criteria": ["All canonical record families resolve identity", "Duplicate and missing identifiers fail", "Hosted validation passes"],
+  "evidence": [
+    {"evidence_id": "NKS-EVD-BL001-001", "kind": "pull-request", "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/11", "description": "Merged Sprint 1 implementation"},
+    {"evidence_id": "NKS-EVD-BL001-002", "kind": "test-run", "reference": "1845956adff5c9290de491b6b5435b307332e7f9", "description": "CI, Runtime Coverage, and Canonicalization Security passed"}
+  ],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-12T20:18:00Z"
+}
