@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/stewardship.schema.json",
+  "title": "Capability Stewardship Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["registry_id", "version", "assignments"],
+  "properties": {
+    "registry_id": {"type": "string", "minLength": 1},
+    "version": {"type": "integer", "minimum": 1},
+    "assignments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "capability_id",
+          "assignment_type",
+          "holder_reference",
+          "holder_kind",
+          "scope",
+          "status"
+        ],
+        "properties": {
+          "capability_id": {"type": "string", "minLength": 1},
+          "assignment_type": {
+            "type": "string",
+            "enum": ["authority-holder", "steward", "implementation", "delegate"]
+          },
+          "holder_reference": {"type": "string", "minLength": 1},
+          "holder_kind": {
+            "type": "string",
+            "enum": ["human", "collective", "ai-system", "service", "automation"]
+          },
+          "scope": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1},
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "authority_limits": {
+            "type": "array",
+            "items": {"type": "string"},
+            "uniqueItems": true,
+            "default": []
+          },
+          "status": {
+            "type": "string",
+            "enum": ["active", "suspended", "superseded", "retired"]
+          },
+          "effective_from": {"type": ["string", "null"], "format": "date"},
+          "effective_until": {"type": ["string", "null"], "format": "date"},
+          "implementation_metadata": {"type": "object"}
+        }
+      }
+    }
+  }
+}
