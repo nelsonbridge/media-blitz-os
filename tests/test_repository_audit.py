@@ -11,7 +11,11 @@ def _write_json(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
-def _write_empty_views(root: Path, publication_count: int = 0) -> None:
+def _write_empty_views(
+    root: Path,
+    publication_count: int = 0,
+    visual_request_count: int = 0,
+) -> None:
     generated = root / "generated"
     generated.mkdir(exist_ok=True)
     (generated / "publication-index.md").write_text(
@@ -24,7 +28,7 @@ def _write_empty_views(root: Path, publication_count: int = 0) -> None:
         "Total visual packages: 0\n", encoding="utf-8"
     )
     (generated / "visual-request-index.md").write_text(
-        "Total visual requests: 0\n", encoding="utf-8"
+        f"Total visual requests: {visual_request_count}\n", encoding="utf-8"
     )
 
 
@@ -130,7 +134,7 @@ def test_audit_resolves_collection_specific_record_identifiers(tmp_path: Path):
     }
     for relative, payload in records.items():
         _write_json(tmp_path / "records" / relative, payload)
-    _write_empty_views(tmp_path)
+    _write_empty_views(tmp_path, visual_request_count=1)
 
     result = audit_repository(tmp_path)
     payload = json.loads(result.json_path.read_text(encoding="utf-8"))
@@ -150,7 +154,7 @@ def test_audit_detects_duplicate_domain_specific_identifier(tmp_path: Path):
         tmp_path / "records" / "social-requests" / "second.json",
         {"request_id": "NKS-VRQ-DUPLICATE"},
     )
-    _write_empty_views(tmp_path)
+    _write_empty_views(tmp_path, visual_request_count=1)
 
     result = audit_repository(tmp_path)
     payload = json.loads(result.json_path.read_text(encoding="utf-8"))
