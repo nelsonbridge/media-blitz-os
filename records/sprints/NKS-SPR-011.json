@@ -1,12 +1,18 @@
 {
   "sprint_id": "NKS-SPR-011",
   "sequence": 11,
-  "title": "Operational proof and release candidate",
-  "objective": "Demonstrate repeated governed adaptive operation and produce a release candidate.",
+  "title": "Operational proof, hardening, and release candidate",
+  "objective": "Demonstrate repeated governed adaptive operation across human and nonhuman subjects, complete an explicitly approved external feedback cycle, exercise recovery under failure, and produce a versioned release candidate.",
   "status": "planned",
   "work_item_ids": ["BL-011"],
-  "exit_criteria": ["A complete adaptive loop is repeated", "Security and behavior regressions pass", "Known limitations are recorded", "A release candidate is versioned"],
+  "exit_criteria": [
+    "At least two complete adaptive loops run across different subject classes, including one human-state loop and one nonhuman knowledge-state loop",
+    "Publication 000001 or an equivalent explicitly approved external publication cycle produces publication, feedback, transition, and model-use receipts",
+    "Chaos and interruption exercises recover without duplicate, unexplained, or partially authoritative state",
+    "Security, privacy, behavior, portability, migration, and performance regressions pass as a release gate",
+    "Threat model, known limitations, operational runbooks, rollback plan, versioned artifacts, and release decision are recorded"
+  ],
   "evidence": [],
   "blocked_reason": null,
-  "updated_at": "2026-07-12T20:19:00Z"
+  "updated_at": "2026-07-12T21:40:00Z"
 }

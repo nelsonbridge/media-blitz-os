@@ -1,12 +1,17 @@
 {
   "sprint_id": "NKS-SPR-007",
   "sequence": 7,
-  "title": "Governed Adaptive Knowledge core",
-  "objective": "Generalize governed temporal state while preserving human-agency protections.",
+  "title": "Governed Adaptive Knowledge state substrate",
+  "objective": "Introduce generic subject, domain, and KnowledgeState contracts on the journaled mutation foundation while retaining stricter human-agency policy overlays.",
   "status": "planned",
   "work_item_ids": ["BL-007"],
-  "exit_criteria": ["Generic KnowledgeState exists", "Authority and validity are explicit", "Human protections remain intact"],
+  "exit_criteria": [
+    "Generic Subject, Domain, and KnowledgeState records exist with explicit context, confidence, validity, provenance, authority, sensitivity, and lineage",
+    "The substrate supports humans and at least two nonhuman subject classes without schema forks",
+    "Knowledge-state creation is journaled, receipted, recoverable, audited, and represented in deterministic views",
+    "Human consent, privacy, and self-declaration protections remain stricter than generic entity policies"
+  ],
   "evidence": [],
   "blocked_reason": null,
-  "updated_at": "2026-07-12T20:19:00Z"
+  "updated_at": "2026-07-12T21:40:00Z"
 }

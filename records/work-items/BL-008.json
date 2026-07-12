@@ -1,12 +1,18 @@
 {
   "work_item_id": "BL-008",
-  "title": "Generic Transition Engine",
-  "description": "Govern correction, refinement, expansion, restriction, supersession, reversal, retraction, context shift, confidence change, merge, split, and deprecation.",
+  "title": "Governed Transition and Conflict Engine",
+  "description": "Govern correction, refinement, expansion, restriction, supersession, reversal, retraction, context shift, confidence change, merge, split, and deprecation as journaled transitions between exact knowledge-state versions, including conflict, branching, and review semantics.",
   "status": "planned",
   "sprint_id": "NKS-SPR-008",
-  "acceptance_criteria": ["Invalid transitions fail", "Explicit and inferred authority remain distinct", "Transition lineage is reconstructable"],
+  "acceptance_criteria": [
+    "Invalid, cyclic, contradictory, or unauthorized transitions fail closed",
+    "Explicit subject declarations, human-reviewed conclusions, and governed inference remain distinguishable",
+    "Every transition binds exact before-and-after hashes and produces an immutable receipt",
+    "Branch, merge, split, overlap, and conflicting-authority conditions are explicit and reconstructable",
+    "Human-state transitions run through the generic engine while retaining stricter human policy controls"
+  ],
   "evidence": [],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T20:19:00Z"
+  "updated_at": "2026-07-12T21:40:00Z"
 }

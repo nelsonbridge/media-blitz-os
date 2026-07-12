@@ -1,12 +1,17 @@
 {
   "sprint_id": "NKS-SPR-006",
   "sequence": 6,
-  "title": "Temporal human-state productionization",
-  "objective": "Integrate human evolution with CLI, authority, privacy, revocation, and audit.",
+  "title": "Temporal human-state reference implementation",
+  "objective": "Productionize temporal human state on the Sprint 5 journal, receipt, recovery, and audit foundation before generalizing it into Governed Adaptive Knowledge.",
   "status": "planned",
   "work_item_ids": ["BL-006"],
-  "exit_criteria": ["CLI and views are integrated", "Privacy and revocation controls exist", "Behavior evaluation fixtures pass"],
+  "exit_criteria": [
+    "Human-state creation, transition, policy, revocation, and model-feedback operations are journaled and receipted",
+    "Privacy classification, consent, purpose scope, redaction, expiration, and revocation fail closed",
+    "CLI commands, canonical collections, generated views, authority manifest, and forensic audit are integrated",
+    "Behavior evaluation fixtures prove that current, contextual, uncertain, retracted, and superseded states are handled correctly"
+  ],
   "evidence": [],
   "blocked_reason": null,
-  "updated_at": "2026-07-12T20:19:00Z"
+  "updated_at": "2026-07-12T21:40:00Z"
 }

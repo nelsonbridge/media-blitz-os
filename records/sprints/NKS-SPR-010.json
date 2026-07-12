@@ -1,12 +1,18 @@
 {
   "sprint_id": "NKS-SPR-010",
   "sequence": 10,
-  "title": "Forensic audit, migration, and portability",
-  "objective": "Reconstruct canonical creation and prove clean-room portability and adapter parity.",
+  "title": "Forensic reconstruction, migration, and adapter parity",
+  "objective": "Prove that canonical state, transitions, model-use decisions, receipts, and recovery can be reconstructed, migrated, exported, imported, and executed equivalently across supported adapters.",
   "status": "planned",
   "work_item_ids": ["BL-010"],
-  "exit_criteria": ["Canonical creation is reconstructable", "Imports enforce authority", "Offline extraction passes", "Adapter parity is proven"],
+  "exit_criteria": [
+    "Every canonical state creation, transition, revocation, interpretation package, and recovery action is reconstructable from journals and receipts",
+    "Legacy human-state and canonical-source records migrate into current schemas through authorized, receipted transformations",
+    "Clean-room offline export, import, verification, and disaster-recovery exercises pass without network or GitHub dependency",
+    "Filesystem and GitHub adapters satisfy equivalent transaction, idempotency, recovery, and audit contracts",
+    "Schema-version and forward/backward migration fixtures fail closed on unsupported or unauthorized changes"
+  ],
   "evidence": [],
   "blocked_reason": null,
-  "updated_at": "2026-07-12T20:19:00Z"
+  "updated_at": "2026-07-12T21:40:00Z"
 }

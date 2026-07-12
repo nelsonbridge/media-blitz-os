@@ -1,12 +1,17 @@
 {
   "sprint_id": "NKS-SPR-009",
   "sequence": 9,
-  "title": "Governed interpretation and model feedback",
-  "objective": "Resolve current interpretation and publish scoped, revocable model feedback.",
+  "title": "Interpretation resolution and model-use boundary",
+  "objective": "Resolve the current governed interpretation for a subject and context, then publish only purpose-limited, redactable, expirable, revocable, receipted model feedback.",
   "status": "planned",
   "work_item_ids": ["BL-009"],
-  "exit_criteria": ["Context-aware interpretation exists", "Feedback is scoped and receipted", "Superseded state cannot control behavior"],
+  "exit_criteria": [
+    "ResolveInterpretation deterministically returns applicable current state, lineage, confidence, uncertainty, restrictions, and behavioral authority",
+    "Retracted, expired, superseded, context-inapplicable, or unauthorized state cannot control behavior",
+    "Model-feedback packages are purpose-scoped, hash-bound, privacy-filtered, expirable, revocable, and immutably receipted",
+    "Prediction remains a downstream consumer and cannot write probabilistic forecasts into canonical knowledge state"
+  ],
   "evidence": [],
   "blocked_reason": null,
-  "updated_at": "2026-07-12T20:19:00Z"
+  "updated_at": "2026-07-12T21:40:00Z"
 }

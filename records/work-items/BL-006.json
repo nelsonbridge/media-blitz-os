@@ -1,12 +1,18 @@
 {
   "work_item_id": "BL-006",
-  "title": "Temporal Human-State Production Integration",
-  "description": "Integrate temporal human evolution with CLI, generated views, events, privacy, revocation, and audit.",
+  "title": "Transactional Human-State Reference Implementation",
+  "description": "Use the existing temporal human-state subsystem as the first complete consumer of journaled canonical mutation: integrate CLI, generated views, events, privacy classification, consent, redaction, expiration, revocation, recovery, receipts, audit reconstruction, and model-behavior evaluation.",
   "status": "planned",
   "sprint_id": "NKS-SPR-006",
-  "acceptance_criteria": ["CLI and canonical collections are registered", "Generated indexes and authority manifest are integrated", "Privacy and revocation are enforced", "Model behavior fixtures pass"],
+  "acceptance_criteria": [
+    "All human-state mutations and model-feedback publications use journaled, recoverable, receipted operations",
+    "Canonical collections, CLI commands, generated indexes, and the authority manifest are integrated",
+    "Privacy classification, consent, purpose limitation, redaction, expiration, and revocation are enforced",
+    "Recovery and forensic audit detect or resolve incomplete human-state operations",
+    "Model-behavior fixtures preserve context and uncertainty and reject superseded, retracted, or unauthorized state"
+  ],
   "evidence": [],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T20:19:00Z"
+  "updated_at": "2026-07-12T21:40:00Z"
 }

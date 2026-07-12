@@ -1,12 +1,18 @@
 {
   "work_item_id": "BL-010",
-  "title": "Forensic Audit and Clean-Room Portability",
-  "description": "Reconstruct canonical creation, enforce migrations, and prove offline extraction and adapter parity.",
+  "title": "Forensic Reconstruction, Migration, and Adapter Parity",
+  "description": "Reconstruct every governed state mutation and model-use decision, migrate legacy records through authorized transformations, and prove clean-room offline portability plus equivalent transaction behavior across filesystem and GitHub adapters.",
   "status": "planned",
   "sprint_id": "NKS-SPR-010",
-  "acceptance_criteria": ["Every canonical creation is reconstructable", "Imports cannot bypass authority", "Clean-room offline tests pass", "Adapter contracts are equivalent"],
+  "acceptance_criteria": [
+    "Every canonical state, transition, revocation, model-feedback package, receipt, rollback, and recovery action is reconstructable",
+    "Legacy records migrate only through explicit authorization, exact hashes, transformation lineage, and immutable receipts",
+    "Offline export, import, verification, and disaster-recovery drills pass in a clean environment",
+    "Filesystem and GitHub adapters exhibit equivalent idempotency, transaction-state, recovery, and audit behavior",
+    "Unsupported, corrupt, stale, or unauthorized schema migrations fail closed with forensic findings"
+  ],
   "evidence": [],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T20:19:00Z"
+  "updated_at": "2026-07-12T21:40:00Z"
 }

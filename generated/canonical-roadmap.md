@@ -71,90 +71,96 @@ Exit criteria:
 - Partial state cannot persist
 - Immutable promotion receipts exist
 
-## Sprint 6 — Temporal human-state productionization
+## Sprint 6 — Temporal human-state reference implementation
 
 - ID: `NKS-SPR-006`
 - Status: `planned`
-- Objective: Integrate human evolution with CLI, authority, privacy, revocation, and audit.
+- Objective: Productionize temporal human state on the Sprint 5 journal, receipt, recovery, and audit foundation before generalizing it into Governed Adaptive Knowledge.
 - Work items: BL-006
 - Evidence records: 0
 
 Exit criteria:
 
-- CLI and views are integrated
-- Privacy and revocation controls exist
-- Behavior evaluation fixtures pass
+- Human-state creation, transition, policy, revocation, and model-feedback operations are journaled and receipted
+- Privacy classification, consent, purpose scope, redaction, expiration, and revocation fail closed
+- CLI commands, canonical collections, generated views, authority manifest, and forensic audit are integrated
+- Behavior evaluation fixtures prove that current, contextual, uncertain, retracted, and superseded states are handled correctly
 
-## Sprint 7 — Governed Adaptive Knowledge core
+## Sprint 7 — Governed Adaptive Knowledge state substrate
 
 - ID: `NKS-SPR-007`
 - Status: `planned`
-- Objective: Generalize governed temporal state while preserving human-agency protections.
+- Objective: Introduce generic subject, domain, and KnowledgeState contracts on the journaled mutation foundation while retaining stricter human-agency policy overlays.
 - Work items: BL-007
 - Evidence records: 0
 
 Exit criteria:
 
-- Generic KnowledgeState exists
-- Authority and validity are explicit
-- Human protections remain intact
+- Generic Subject, Domain, and KnowledgeState records exist with explicit context, confidence, validity, provenance, authority, sensitivity, and lineage
+- The substrate supports humans and at least two nonhuman subject classes without schema forks
+- Knowledge-state creation is journaled, receipted, recoverable, audited, and represented in deterministic views
+- Human consent, privacy, and self-declaration protections remain stricter than generic entity policies
 
-## Sprint 8 — Generic transition engine
+## Sprint 8 — Governed transition and conflict engine
 
 - ID: `NKS-SPR-008`
 - Status: `planned`
-- Objective: Govern how any knowledge state changes while preserving history and authority.
+- Objective: Apply typed knowledge-state transitions transactionally while preserving history, authority, branch semantics, and conflict visibility.
 - Work items: BL-008
 - Evidence records: 0
 
 Exit criteria:
 
-- Transition types are enforced
-- Explicit and inferred authority remain distinct
-- Lineage is reconstructable
+- Correction, refinement, expansion, restriction, supersession, reversal, retraction, context shift, confidence change, merge, split, and deprecation rules are enforced
+- Transitions are journaled, receipted, idempotent, recoverable, and linked to exact before-and-after state hashes
+- Cycle, overlap, branch, merge, and conflicting-authority conditions fail closed or enter explicit review state
+- The human-state subsystem uses the generic engine without weakening human-specific authority protections
 
-## Sprint 9 — Governed interpretation and model feedback
+## Sprint 9 — Interpretation resolution and model-use boundary
 
 - ID: `NKS-SPR-009`
 - Status: `planned`
-- Objective: Resolve current interpretation and publish scoped, revocable model feedback.
+- Objective: Resolve the current governed interpretation for a subject and context, then publish only purpose-limited, redactable, expirable, revocable, receipted model feedback.
 - Work items: BL-009
 - Evidence records: 0
 
 Exit criteria:
 
-- Context-aware interpretation exists
-- Feedback is scoped and receipted
-- Superseded state cannot control behavior
+- ResolveInterpretation deterministically returns applicable current state, lineage, confidence, uncertainty, restrictions, and behavioral authority
+- Retracted, expired, superseded, context-inapplicable, or unauthorized state cannot control behavior
+- Model-feedback packages are purpose-scoped, hash-bound, privacy-filtered, expirable, revocable, and immutably receipted
+- Prediction remains a downstream consumer and cannot write probabilistic forecasts into canonical knowledge state
 
-## Sprint 10 — Forensic audit, migration, and portability
+## Sprint 10 — Forensic reconstruction, migration, and adapter parity
 
 - ID: `NKS-SPR-010`
 - Status: `planned`
-- Objective: Reconstruct canonical creation and prove clean-room portability and adapter parity.
+- Objective: Prove that canonical state, transitions, model-use decisions, receipts, and recovery can be reconstructed, migrated, exported, imported, and executed equivalently across supported adapters.
 - Work items: BL-010
 - Evidence records: 0
 
 Exit criteria:
 
-- Canonical creation is reconstructable
-- Imports enforce authority
-- Offline extraction passes
-- Adapter parity is proven
+- Every canonical state creation, transition, revocation, interpretation package, and recovery action is reconstructable from journals and receipts
+- Legacy human-state and canonical-source records migrate into current schemas through authorized, receipted transformations
+- Clean-room offline export, import, verification, and disaster-recovery exercises pass without network or GitHub dependency
+- Filesystem and GitHub adapters satisfy equivalent transaction, idempotency, recovery, and audit contracts
+- Schema-version and forward/backward migration fixtures fail closed on unsupported or unauthorized changes
 
-## Sprint 11 — Operational proof and release candidate
+## Sprint 11 — Operational proof, hardening, and release candidate
 
 - ID: `NKS-SPR-011`
 - Status: `planned`
-- Objective: Demonstrate repeated governed adaptive operation and produce a release candidate.
+- Objective: Demonstrate repeated governed adaptive operation across human and nonhuman subjects, complete an explicitly approved external feedback cycle, exercise recovery under failure, and produce a versioned release candidate.
 - Work items: BL-011
 - Evidence records: 0
 
 Exit criteria:
 
-- A complete adaptive loop is repeated
-- Security and behavior regressions pass
-- Known limitations are recorded
-- A release candidate is versioned
+- At least two complete adaptive loops run across different subject classes, including one human-state loop and one nonhuman knowledge-state loop
+- Publication 000001 or an equivalent explicitly approved external publication cycle produces publication, feedback, transition, and model-use receipts
+- Chaos and interruption exercises recover without duplicate, unexplained, or partially authoritative state
+- Security, privacy, behavior, portability, migration, and performance regressions pass as a release gate
+- Threat model, known limitations, operational runbooks, rollback plan, versioned artifacts, and release decision are recorded
 
 Total sprints: 11

@@ -1,12 +1,18 @@
 {
   "work_item_id": "BL-009",
-  "title": "Governed Interpretation and Model Feedback",
-  "description": "Resolve current interpretation and publish scoped, redactable, expirable, revocable model feedback with receipts.",
+  "title": "Governed Interpretation and Model-Use Boundary",
+  "description": "Implement deterministic context- and authority-aware interpretation resolution and publish purpose-limited model-feedback packages with consent, privacy filtering, redaction, expiration, revocation, journaling, and immutable receipts.",
   "status": "planned",
   "sprint_id": "NKS-SPR-009",
-  "acceptance_criteria": ["ResolveInterpretation is context and authority aware", "Model feedback is scoped and receipted", "Superseded state cannot control behavior"],
+  "acceptance_criteria": [
+    "ResolveInterpretation is deterministic and context, domain, temporal validity, confidence, uncertainty, and authority aware",
+    "Retracted, expired, superseded, disputed, context-inapplicable, or unauthorized state cannot control model behavior",
+    "Model feedback is purpose-scoped, hash-bound, privacy-filtered, expirable, revocable, journaled, and receipted",
+    "Behavior evaluation fixtures prove current-state preference without erasing historical lineage",
+    "Forecasting and prediction remain noncanonical downstream consumers"
+  ],
   "evidence": [],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T20:19:00Z"
+  "updated_at": "2026-07-12T21:40:00Z"
 }

@@ -1,12 +1,17 @@
 {
   "sprint_id": "NKS-SPR-008",
   "sequence": 8,
-  "title": "Generic transition engine",
-  "objective": "Govern how any knowledge state changes while preserving history and authority.",
+  "title": "Governed transition and conflict engine",
+  "objective": "Apply typed knowledge-state transitions transactionally while preserving history, authority, branch semantics, and conflict visibility.",
   "status": "planned",
   "work_item_ids": ["BL-008"],
-  "exit_criteria": ["Transition types are enforced", "Explicit and inferred authority remain distinct", "Lineage is reconstructable"],
+  "exit_criteria": [
+    "Correction, refinement, expansion, restriction, supersession, reversal, retraction, context shift, confidence change, merge, split, and deprecation rules are enforced",
+    "Transitions are journaled, receipted, idempotent, recoverable, and linked to exact before-and-after state hashes",
+    "Cycle, overlap, branch, merge, and conflicting-authority conditions fail closed or enter explicit review state",
+    "The human-state subsystem uses the generic engine without weakening human-specific authority protections"
+  ],
   "evidence": [],
   "blocked_reason": null,
-  "updated_at": "2026-07-12T20:19:00Z"
+  "updated_at": "2026-07-12T21:40:00Z"
 }
