@@ -1,0 +1,12 @@
+{
+  "sprint_id": "NKS-SPR-007",
+  "sequence": 7,
+  "title": "Governed Adaptive Knowledge core",
+  "objective": "Generalize governed temporal state while preserving human-agency protections.",
+  "status": "planned",
+  "work_item_ids": ["BL-007"],
+  "exit_criteria": ["Generic KnowledgeState exists", "Authority and validity are explicit", "Human protections remain intact"],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-12T20:19:00Z"
+}
