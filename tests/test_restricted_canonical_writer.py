@@ -96,7 +96,6 @@ def authorization_for(
     decision: PromotionDecision = PromotionDecision.APPROVED,
     feedback_id: str | None = None,
     digest: str | None = None,
-    idempotency_key: str | None = None,
     expires_at: datetime | None = None,
     revoked_at: datetime | None = None,
 ) -> FeedbackPromotionAuthorization:
@@ -108,8 +107,9 @@ def authorization_for(
         feedback_sha256=content_hash,
         target_source_id=source_id,
         proof_review_id=review.review_id,
-        idempotency_key=idempotency_key
-        or promotion_idempotency_key(content_hash, authorization_id, source_id),
+        idempotency_key=promotion_idempotency_key(
+            content_hash, authorization_id, source_id
+        ),
         authorized_by="S. Michael Nelson",
         justification="Retain the observed correction as a review-state source.",
         decision=decision,
@@ -132,29 +132,33 @@ def writer_bundle(tmp_path: Path):
     return writer, store, feedback_repository, events
 
 
-def test_promote_feedback_is_persistent_reconstructable_and_idempotent(tmp_path: Path):
+def promote(
+    writer: RestrictedCanonicalSourceWriter,
+    item: FeedbackRecord,
+    review: FeedbackProofReview,
+    authorization: FeedbackPromotionAuthorization,
+    source_id: str = "NKS-SRC-000004",
+):
+    return writer.promote_feedback(
+        item,
+        source_id=source_id,
+        source_location=f"records/feedback/{item.feedback_id}.json",
+        authorization=authorization,
+        proof_review=review,
+    )
+
+
+def test_promotion_is_persistent_reconstructable_and_idempotent(tmp_path: Path):
     writer, store, feedback_repository, events = writer_bundle(tmp_path)
     item = feedback()
     feedback_repository.save(item)
     review = review_for(item)
     authorization = authorization_for(item, review)
 
-    first = writer.promote_feedback(
-        item,
-        source_id="NKS-SRC-000004",
-        source_location="records/feedback/NKS-FDB-000001.json",
-        authorization=authorization,
-        proof_review=review,
-    )
-    second = writer.promote_feedback(
-        item,
-        source_id="NKS-SRC-000004",
-        source_location="records/feedback/NKS-FDB-000001.json",
-        authorization=authorization,
-        proof_review=review,
-    )
+    first = promote(writer, item, review, authorization)
+    second = promote(writer, item, review, authorization)
 
-    assert first == second == store.get("NKS-SRC-000004")
+    assert first == second == store.get(first.id)
     assert first.metadata["canonical_writer"] == "RestrictedCanonicalSourceWriter"
     assert first.metadata["authorization_id"] == authorization.authorization_id
     assert first.metadata["proof_review_id"] == review.review_id
@@ -173,22 +177,16 @@ def test_changed_feedback_invalidates_review_and_authorization(tmp_path: Path):
     original = feedback()
     review = review_for(original)
     authorization = authorization_for(original, review)
-    changed = original.model_copy(update={"content": "The correction changed after review."})
+    changed = original.model_copy(update={"content": "Changed after approval."})
 
     with pytest.raises(CanonicalWriteAuthorizationError):
-        writer.promote_feedback(
-            changed,
-            source_id="NKS-SRC-000004",
-            source_location="records/feedback/NKS-FDB-000001.json",
-            authorization=authorization,
-            proof_review=review,
-        )
+        promote(writer, changed, review, authorization)
 
     assert events.list()[-1].payload["reason_code"] == "CONTENT_HASH_MISMATCH"
 
 
 @pytest.mark.parametrize(
-    ("review", "reason_code"),
+    ("state", "reason_code"),
     [
         ("ineligible", "PROOF_REVIEW_INELIGIBLE"),
         ("expired", "PROOF_REVIEW_EXPIRED"),
@@ -196,34 +194,27 @@ def test_changed_feedback_invalidates_review_and_authorization(tmp_path: Path):
     ],
 )
 def test_proof_review_lifecycle_fails_closed(
-    tmp_path: Path, review: str, reason_code: str
+    tmp_path: Path, state: str, reason_code: str
 ):
     writer, _, _, events = writer_bundle(tmp_path)
     item = feedback()
     kwargs = {}
-    if review == "ineligible":
+    if state == "ineligible":
         kwargs["decision"] = ProofReviewDecision.INELIGIBLE
-    elif review == "expired":
+    elif state == "expired":
         kwargs["expires_at"] = NOW - timedelta(seconds=1)
     else:
         kwargs["revoked_at"] = NOW - timedelta(seconds=1)
-    proof_review = review_for(item, **kwargs)
-    authorization = authorization_for(item, proof_review)
+    review = review_for(item, **kwargs)
 
     with pytest.raises(CanonicalWriteIntegrityError):
-        writer.promote_feedback(
-            item,
-            source_id="NKS-SRC-000004",
-            source_location="records/feedback/NKS-FDB-000001.json",
-            authorization=authorization,
-            proof_review=proof_review,
-        )
+        promote(writer, item, review, authorization_for(item, review))
 
     assert events.list()[-1].payload["reason_code"] == reason_code
 
 
 @pytest.mark.parametrize(
-    ("authorization_state", "reason_code"),
+    ("state", "reason_code"),
     [
         ("denied", "AUTHORIZATION_DENIED"),
         ("expired", "AUTHORIZATION_EXPIRED"),
@@ -231,28 +222,21 @@ def test_proof_review_lifecycle_fails_closed(
     ],
 )
 def test_authorization_lifecycle_fails_closed(
-    tmp_path: Path, authorization_state: str, reason_code: str
+    tmp_path: Path, state: str, reason_code: str
 ):
     writer, _, _, events = writer_bundle(tmp_path)
     item = feedback()
-    proof_review = review_for(item)
+    review = review_for(item)
     kwargs = {}
-    if authorization_state == "denied":
+    if state == "denied":
         kwargs["decision"] = PromotionDecision.DENIED
-    elif authorization_state == "expired":
+    elif state == "expired":
         kwargs["expires_at"] = NOW - timedelta(seconds=1)
     else:
         kwargs["revoked_at"] = NOW - timedelta(seconds=1)
-    authorization = authorization_for(item, proof_review, **kwargs)
 
     with pytest.raises(CanonicalWriteAuthorizationError):
-        writer.promote_feedback(
-            item,
-            source_id="NKS-SRC-000004",
-            source_location="records/feedback/NKS-FDB-000001.json",
-            authorization=authorization,
-            proof_review=proof_review,
-        )
+        promote(writer, item, review, authorization_for(item, review, **kwargs))
 
     assert events.list()[-1].payload["reason_code"] == reason_code
 
@@ -266,17 +250,10 @@ def test_non_real_feedback_cannot_become_factual_source(
 ):
     writer, _, _, events = writer_bundle(tmp_path)
     item = feedback(provenance=provenance)
-    proof_review = review_for(item)
-    authorization = authorization_for(item, proof_review)
+    review = review_for(item)
 
     with pytest.raises(CanonicalWriteIntegrityError):
-        writer.promote_feedback(
-            item,
-            source_id="NKS-SRC-000004",
-            source_location="records/feedback/NKS-FDB-000001.json",
-            authorization=authorization,
-            proof_review=proof_review,
-        )
+        promote(writer, item, review, authorization_for(item, review))
 
     assert events.list()[-1].payload["reason_code"] == "PROVENANCE_INELIGIBLE"
 
@@ -285,51 +262,53 @@ def test_conflicting_target_reservation_is_rejected(tmp_path: Path):
     writer, _, _, events = writer_bundle(tmp_path)
     first = feedback("NKS-FDB-000001")
     first_review = review_for(first)
-    writer.promote_feedback(
-        first,
-        source_id="NKS-SRC-000004",
-        source_location="records/feedback/NKS-FDB-000001.json",
-        authorization=authorization_for(first, first_review),
-        proof_review=first_review,
-    )
+    promote(writer, first, first_review, authorization_for(first, first_review))
 
     second = feedback("NKS-FDB-000002")
     second_review = review_for(second)
     with pytest.raises(CanonicalTargetReservedError):
-        writer.promote_feedback(
-            second,
-            source_id="NKS-SRC-000004",
-            source_location="records/feedback/NKS-FDB-000002.json",
-            authorization=authorization_for(second, second_review),
-            proof_review=second_review,
-        )
+        promote(writer, second, second_review, authorization_for(second, second_review))
 
     assert events.list()[-1].payload["reason_code"] == "TARGET_ALREADY_RESERVED"
 
 
-def test_maintenance_write_requires_explicit_non_normal_authorization(tmp_path: Path):
-    writer, store, _, events = writer_bundle(tmp_path)
-    source = SourceRecord(
+def maintenance_authorization(
+    source: SourceRecord,
+    *,
+    digest: str | None = None,
+    mode: CanonicalWriteMode = CanonicalWriteMode.MIGRATION,
+) -> CanonicalMaintenanceAuthorization:
+    content_hash = digest or source_sha256(source)
+    authorization_id = "NKS-MAINT-000001"
+    return CanonicalMaintenanceAuthorization(
+        authorization_id=authorization_id,
+        mode=mode,
+        target_source_id=source.id,
+        source_sha256=content_hash,
+        idempotency_key=promotion_idempotency_key(
+            content_hash, authorization_id, source.id
+        ),
+        authorized_by="S. Michael Nelson",
+        reason="Controlled exceptional canonical source creation.",
+        decision=PromotionDecision.APPROVED,
+        authorized_at=NOW - timedelta(minutes=1),
+    )
+
+
+def legacy_source() -> SourceRecord:
+    return SourceRecord(
         id="NKS-SRC-LEGACY-000001",
         title="Migrated legacy source",
         status=RecordStatus.REVIEW,
         source_type="legacy-import",
         source_location="legacy/source.json",
     )
-    digest = source_sha256(source)
-    authorization_id = "NKS-MAINT-000001"
-    key = promotion_idempotency_key(digest, authorization_id, source.id)
-    authorization = CanonicalMaintenanceAuthorization(
-        authorization_id=authorization_id,
-        mode=CanonicalWriteMode.MIGRATION,
-        target_source_id=source.id,
-        source_sha256=digest,
-        idempotency_key=key,
-        authorized_by="S. Michael Nelson",
-        reason="Controlled migration of a pre-boundary source.",
-        decision=PromotionDecision.APPROVED,
-        authorized_at=NOW - timedelta(minutes=1),
-    )
+
+
+def test_maintenance_write_requires_explicit_non_normal_authorization(tmp_path: Path):
+    writer, store, _, events = writer_bundle(tmp_path)
+    source = legacy_source()
+    authorization = maintenance_authorization(source)
 
     first = writer.write_maintenance_source(source, authorization=authorization)
     second = writer.write_maintenance_source(source, authorization=authorization)
@@ -338,40 +317,25 @@ def test_maintenance_write_requires_explicit_non_normal_authorization(tmp_path: 
     assert first.metadata["canonical_write_mode"] == CanonicalWriteMode.MIGRATION
     assert events.list()[0].payload["mode"] == CanonicalWriteMode.MIGRATION
 
+    invalid = authorization.model_dump()
+    invalid["mode"] = CanonicalWriteMode.NORMAL
     with pytest.raises(ValidationError):
-        CanonicalMaintenanceAuthorization(
-            **authorization.model_dump(),
-            mode=CanonicalWriteMode.NORMAL,
-        )
+        CanonicalMaintenanceAuthorization.model_validate(invalid)
 
 
 def test_maintenance_write_is_bound_to_exact_source_content(tmp_path: Path):
     writer, _, _, events = writer_bundle(tmp_path)
-    source = SourceRecord(
-        id="NKS-SRC-LEGACY-000001",
-        title="Migrated legacy source",
-        status=RecordStatus.REVIEW,
-        source_type="legacy-import",
-        source_location="legacy/source.json",
-    )
-    digest = "0" * 64
-    authorization_id = "NKS-MAINT-000001"
-    authorization = CanonicalMaintenanceAuthorization(
-        authorization_id=authorization_id,
-        mode=CanonicalWriteMode.DISASTER_RECOVERY,
-        target_source_id=source.id,
-        source_sha256=digest,
-        idempotency_key=promotion_idempotency_key(
-            digest, authorization_id, source.id
-        ),
-        authorized_by="S. Michael Nelson",
-        reason="Recovery exercise.",
-        decision=PromotionDecision.APPROVED,
-        authorized_at=NOW - timedelta(minutes=1),
-    )
+    source = legacy_source()
 
     with pytest.raises(CanonicalWriteAuthorizationError):
-        writer.write_maintenance_source(source, authorization=authorization)
+        writer.write_maintenance_source(
+            source,
+            authorization=maintenance_authorization(
+                source,
+                digest="0" * 64,
+                mode=CanonicalWriteMode.DISASTER_RECOVERY,
+            ),
+        )
 
     assert (
         events.list()[-1].payload["reason_code"]
