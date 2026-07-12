@@ -28,6 +28,7 @@ CANONICAL_IDENTIFIER_KEYS = (
     '"receipt_id"',
     '"work_item_id"',
     '"sprint_id"',
+    '"reservation_id"',
 )
 
 
@@ -66,3 +67,23 @@ def test_canonical_records_are_open_json_files():
         assert any(key in text for key in CANONICAL_IDENTIFIER_KEYS), (
             f"canonical JSON record has no recognized identifier: {path.relative_to(ROOT)}"
         )
+
+
+def test_application_source_creation_is_restricted_to_canonicalization():
+    application_root = ROOT / "src" / "nks" / "application"
+    violations: list[str] = []
+    for path in application_root.glob("*.py"):
+        if path.name == "canonicalization.py":
+            continue
+        tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+        for node in ast.walk(tree):
+            if (
+                isinstance(node, ast.Call)
+                and isinstance(node.func, ast.Name)
+                and node.func.id == "SourceRecord"
+            ):
+                violations.append(str(path.relative_to(ROOT)))
+    assert not violations, (
+        "canonical SourceRecord construction bypasses restricted writer: "
+        + ", ".join(violations)
+    )
