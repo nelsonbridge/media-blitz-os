@@ -5,28 +5,25 @@
     ".json": 162,
     ".md": 290,
     ".png": 12,
-    ".py": 79,
+    ".py": 86,
     ".svg": 8,
     ".toml": 1,
     ".xml": 1,
     ".yaml": 1,
     ".yml": 8
   },
-  "file_count": 563,
-  "issue_count": 3,
-  "issues": [
-    "record missing identifier: records/capabilities/ANU.json",
-    "record missing identifier: records/capabilities/ENKI.json",
-    "record missing identifier: records/stewards/stewards.json"
-  ],
+  "file_count": 570,
+  "issue_count": 0,
+  "issues": [],
   "readiness": {
     "approval:needed": 12,
     "editorial:ready": 12,
     "status:review": 12
   },
-  "record_count": 149,
+  "record_count": 152,
   "record_counts": {
     "artifacts": 12,
+    "canonical-reservations": 0,
     "capabilities": 4,
     "events": 1,
     "feedback": 0,
@@ -40,13 +37,14 @@
     "social-requests": 1,
     "sources": 3,
     "sprints": 11,
+    "stewards": 1,
     "visual-requests": 60,
     "visuals": 12,
     "work-items": 11
   },
   "repository_root": "/home/runner/work/media-blitz-os/media-blitz-os",
   "schema_count": 9,
-  "test_count": 30,
+  "test_count": 33,
   "top_level_counts": {
     "(root)": 5,
     ".github": 9,
@@ -78,9 +76,9 @@
     "schemas": 9,
     "scripts": 1,
     "security": 1,
-    "src": 48,
+    "src": 52,
     "templates": 12,
-    "tests": 38,
+    "tests": 41,
     "validation": 5,
     "visuals": 17,
     "whitepapers": 1

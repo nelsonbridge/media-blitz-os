@@ -1,7 +1,22 @@
+from datetime import datetime, timezone
 from pathlib import Path
 
+import pytest
+
+from nks.adapters.canonicalization import JsonCanonicalSourceStore
 from nks.adapters.filesystem import JsonEventRepository, JsonRecordRepository
+from nks.adapters.manual_delivery import JsonFeedbackRepository
+from nks.application.canonicalization import (
+    RestrictedCanonicalSourceWriter,
+    promotion_idempotency_key,
+    source_sha256,
+)
 from nks.application.manufacture import ManufacturePublication, ManufacturingRepositories
+from nks.domain.canonicalization import (
+    CanonicalMaintenanceAuthorization,
+    CanonicalWriteMode,
+)
+from nks.domain.delivery import PromotionDecision
 from nks.domain.models import (
     ArtifactRecord,
     GateStatus,
@@ -12,6 +27,8 @@ from nks.domain.models import (
     SourceRecord,
     VisualPackageRecord,
 )
+
+NOW = datetime(2026, 7, 12, 20, 40, tzinfo=timezone.utc)
 
 
 def build_runtime(root: Path) -> ManufacturePublication:
@@ -25,6 +42,33 @@ def build_runtime(root: Path) -> ManufacturePublication:
         events=JsonEventRepository(root),
     )
     return ManufacturePublication(repositories)
+
+
+def bootstrap_source(root: Path, source: SourceRecord) -> None:
+    digest = source_sha256(source)
+    authorization_id = "NKS-MAINT-FUNCTIONAL-BOOTSTRAP"
+    writer = RestrictedCanonicalSourceWriter(
+        store=JsonCanonicalSourceStore(root),
+        feedback=JsonFeedbackRepository(root),
+        events=JsonEventRepository(root),
+        clock=lambda: NOW,
+    )
+    writer.write_maintenance_source(
+        source,
+        authorization=CanonicalMaintenanceAuthorization(
+            authorization_id=authorization_id,
+            mode=CanonicalWriteMode.BOOTSTRAP,
+            target_source_id=source.id,
+            source_sha256=digest,
+            idempotency_key=promotion_idempotency_key(
+                digest, authorization_id, source.id
+            ),
+            authorized_by="functional-test-authority",
+            reason="Explicitly bootstrap the governed functional fixture source.",
+            decision=PromotionDecision.APPROVED,
+            authorized_at=NOW,
+        ),
+    )
 
 
 def fixture_records():
@@ -94,21 +138,44 @@ def fixture_records():
     return source, artifact, proof, narrative, visual, publication
 
 
-def test_end_to_end_workflow_is_idempotent(tmp_path: Path):
+def test_manufacture_rejects_ungoverned_source(tmp_path: Path):
     runtime = build_runtime(tmp_path)
     records = fixture_records()
+    with pytest.raises(ValueError, match="CanonicalSourceWriter"):
+        runtime.execute(
+            source=records[0],
+            artifact=records[1],
+            proof=records[2],
+            narrative=records[3],
+            visual=records[4],
+            publication=records[5],
+        )
+
+
+def test_end_to_end_workflow_is_idempotent(tmp_path: Path):
+    records = fixture_records()
+    bootstrap_source(tmp_path, records[0])
+    runtime = build_runtime(tmp_path)
 
     first = runtime.execute(
-        source=records[0], artifact=records[1], proof=records[2],
-        narrative=records[3], visual=records[4], publication=records[5],
+        source=records[0],
+        artifact=records[1],
+        proof=records[2],
+        narrative=records[3],
+        visual=records[4],
+        publication=records[5],
     )
     second = runtime.execute(
-        source=records[0], artifact=records[1], proof=records[2],
-        narrative=records[3], visual=records[4], publication=records[5],
+        source=records[0],
+        artifact=records[1],
+        proof=records[2],
+        narrative=records[3],
+        visual=records[4],
+        publication=records[5],
     )
 
     assert first.passed, first.failures
     assert second.passed, second.failures
     assert len(list((tmp_path / "sources").glob("*.json"))) == 1
     assert len(list((tmp_path / "publications").glob("*.json"))) == 1
-    assert len((tmp_path / "events" / "events.jsonl").read_text().splitlines()) == 1
+    assert len((tmp_path / "events" / "events.jsonl").read_text().splitlines()) == 2

@@ -4,7 +4,8 @@ from __future__ import annotations
 
 from typing import Generic, Protocol, TypeVar
 
-from nks.domain.models import CanonicalRecord, WorkflowEvent
+from nks.domain.models import CanonicalRecord, SourceRecord, WorkflowEvent
+from nks.ports.canonicalization import DirectCanonicalSourceWriteError
 
 RecordT = TypeVar("RecordT", bound=CanonicalRecord)
 
@@ -45,6 +46,10 @@ class GitHubRecordRepository(Generic[RecordT]):
         return self._record_type.model_validate_json(content)
 
     def save(self, record: RecordT) -> RecordT:
+        if isinstance(record, SourceRecord):
+            raise DirectCanonicalSourceWriteError(
+                "canonical sources must be created through CanonicalSourceWriter"
+            )
         path = self._path(record.id)
         serialized = record.model_dump_json(indent=2)
         if self._client.read_text(path) == serialized:

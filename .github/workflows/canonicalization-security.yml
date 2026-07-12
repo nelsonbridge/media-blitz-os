@@ -4,15 +4,27 @@ on:
   pull_request:
     branches: [sandbox]
     paths:
+      - "src/nks/domain/canonicalization.py"
       - "src/nks/domain/delivery.py"
+      - "src/nks/application/canonicalization.py"
       - "src/nks/application/delivery.py"
       - "src/nks/application/feedback.py"
+      - "src/nks/ports/canonicalization.py"
+      - "src/nks/adapters/canonicalization.py"
+      - "src/nks/adapters/filesystem.py"
+      - "src/nks/adapters/github.py"
       - "src/nks/cli/main.py"
       - "src/nks/views/markdown.py"
       - "src/nks/audit/repository.py"
       - "records/feedback/**"
+      - "records/canonical-reservations/**"
+      - "records/work-items/**"
+      - "records/sprints/**"
       - "generated/**"
       - "tests/test_delivery_and_feedback.py"
+      - "tests/test_restricted_canonical_writer.py"
+      - "tests/test_direct_source_write_protection.py"
+      - "tests/test_canonical_reservation_audit.py"
       - "tests/test_generated_views.py"
       - "tests/test_cli.py"
       - "tests/test_canonical_publication_set.py"
@@ -24,15 +36,27 @@ on:
   push:
     branches: [sandbox]
     paths:
+      - "src/nks/domain/canonicalization.py"
       - "src/nks/domain/delivery.py"
+      - "src/nks/application/canonicalization.py"
       - "src/nks/application/delivery.py"
       - "src/nks/application/feedback.py"
+      - "src/nks/ports/canonicalization.py"
+      - "src/nks/adapters/canonicalization.py"
+      - "src/nks/adapters/filesystem.py"
+      - "src/nks/adapters/github.py"
       - "src/nks/cli/main.py"
       - "src/nks/views/markdown.py"
       - "src/nks/audit/repository.py"
       - "records/feedback/**"
+      - "records/canonical-reservations/**"
+      - "records/work-items/**"
+      - "records/sprints/**"
       - "generated/**"
       - "tests/test_delivery_and_feedback.py"
+      - "tests/test_restricted_canonical_writer.py"
+      - "tests/test_direct_source_write_protection.py"
+      - "tests/test_canonical_reservation_audit.py"
       - "tests/test_generated_views.py"
       - "tests/test_cli.py"
       - "tests/test_canonical_publication_set.py"
@@ -61,10 +85,16 @@ jobs:
         run: >-
           python -m pytest
           tests/test_delivery_and_feedback.py
+          tests/test_restricted_canonical_writer.py
+          tests/test_direct_source_write_protection.py
+          tests/test_canonical_reservation_audit.py
+          tests/test_dependency_extraction.py
           tests/test_generated_views.py
           --no-cov
       - name: Regenerate authoritative views
         run: nks generate-views .
+      - name: Regenerate repository audit
+        run: nks audit-repository .
       - name: Reject generated projection drift
         run: |
           if ! git diff --quiet -- generated; then

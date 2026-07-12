@@ -29,10 +29,12 @@ RECORD_COLLECTIONS = (
     "feedback",
     "events",
     "capabilities",
+    "stewards",
     "human-observations",
     "human-transitions",
     "model-ingestion-policies",
     "model-feedback-receipts",
+    "canonical-reservations",
     "work-items",
     "sprints",
 )
@@ -42,11 +44,13 @@ IDENTIFIER_FIELDS_BY_COLLECTION: dict[str, tuple[str, ...]] = {
     "social-requests": ("request_id",),
     "feedback": ("feedback_id",),
     "events": ("event_id",),
-    "capabilities": ("registry_id",),
+    "capabilities": ("registry_id", "id"),
+    "stewards": ("registry_id",),
     "human-observations": ("observation_id",),
     "human-transitions": ("transition_id",),
     "model-ingestion-policies": ("policy_id",),
     "model-feedback-receipts": ("receipt_id",),
+    "canonical-reservations": ("reservation_id",),
     "work-items": ("work_item_id",),
     "sprints": ("sprint_id",),
 }
@@ -143,6 +147,57 @@ def _integrity_issues(records: dict[str, dict]) -> list[str]:
             for target in values:
                 if target and target not in records:
                     issues.append(f"orphan reference: {record_id}.{field} -> {target}")
+
+        path = item["path"]
+        if path.startswith("records/canonical-reservations/"):
+            target_id = data.get("target_source_id")
+            if data.get("status") == "COMMITTED":
+                target = records.get(target_id)
+                if target is None:
+                    issues.append(
+                        f"committed reservation missing source: {record_id} -> {target_id}"
+                    )
+                else:
+                    metadata = target["data"].get("metadata", {})
+                    if metadata.get("canonical_reservation_id") != record_id:
+                        issues.append(
+                            f"source reservation mismatch: {target_id} -> {record_id}"
+                        )
+                    if metadata.get("promotion_idempotency_key") != data.get(
+                        "idempotency_key"
+                    ):
+                        issues.append(
+                            f"source idempotency mismatch: {target_id} -> {record_id}"
+                        )
+                    if metadata.get("content_sha256") != data.get("content_sha256"):
+                        issues.append(
+                            f"source content hash mismatch: {target_id} -> {record_id}"
+                        )
+
+        if path.startswith("records/sources/"):
+            metadata = data.get("metadata", {})
+            if metadata.get("canonical_writer"):
+                reservation_id = metadata.get("canonical_reservation_id")
+                if not reservation_id or reservation_id not in records:
+                    issues.append(
+                        f"canonical source missing reservation lineage: {record_id}"
+                    )
+            if data.get("source_type") == "external-feedback":
+                required = (
+                    "feedback_id",
+                    "feedback_sha256",
+                    "authorization_id",
+                    "proof_review_id",
+                    "promotion_idempotency_key",
+                    "canonical_reservation_id",
+                    "canonical_writer",
+                )
+                missing = [name for name in required if not metadata.get(name)]
+                if missing:
+                    issues.append(
+                        f"external feedback source missing governed metadata: "
+                        f"{record_id} ({', '.join(missing)})"
+                    )
     return issues
 
 
@@ -150,12 +205,24 @@ def _drift_issues(root: Path, records: dict[str, dict]) -> list[str]:
     issues: list[str] = []
     generated = root / "generated"
     expected = {
-        "publication-index.md": sum(1 for record_id in records if record_id.startswith("NKS-PUB-")),
-        "proof-index.md": sum(1 for record_id in records if record_id.startswith("NKS-PRF-")),
-        "visual-package-index.md": sum(1 for record_id in records if record_id.startswith("NKS-VIS-")),
-        "visual-request-index.md": sum(1 for record_id in records if record_id.startswith("NKS-VRQ-")),
-        "canonical-backlog.md": sum(1 for record_id in records if record_id.startswith("BL-")),
-        "canonical-roadmap.md": sum(1 for record_id in records if record_id.startswith("NKS-SPR-")),
+        "publication-index.md": sum(
+            1 for record_id in records if record_id.startswith("NKS-PUB-")
+        ),
+        "proof-index.md": sum(
+            1 for record_id in records if record_id.startswith("NKS-PRF-")
+        ),
+        "visual-package-index.md": sum(
+            1 for record_id in records if record_id.startswith("NKS-VIS-")
+        ),
+        "visual-request-index.md": sum(
+            1 for record_id in records if record_id.startswith("NKS-VRQ-")
+        ),
+        "canonical-backlog.md": sum(
+            1 for record_id in records if record_id.startswith("BL-")
+        ),
+        "canonical-roadmap.md": sum(
+            1 for record_id in records if record_id.startswith("NKS-SPR-")
+        ),
     }
     for filename, count in expected.items():
         path = generated / filename
@@ -199,7 +266,9 @@ def _record_counts(root: Path) -> dict[str, int]:
     result: dict[str, int] = {}
     for collection in RECORD_COLLECTIONS:
         directory = root / "records" / collection
-        result[collection] = len(list(directory.glob("*.json"))) if directory.exists() else 0
+        result[collection] = (
+            len(list(directory.glob("*.json"))) if directory.exists() else 0
+        )
     return result
 
 
@@ -210,7 +279,9 @@ def audit_repository(root: Path, output_dir: Path | None = None) -> AuditResult:
 
     files = _files(root, excluded_roots=(output_dir,))
     records, parse_issues = _record_index(root)
-    issues = sorted(parse_issues + _integrity_issues(records) + _drift_issues(root, records))
+    issues = sorted(
+        parse_issues + _integrity_issues(records) + _drift_issues(root, records)
+    )
 
     payload = {
         "audit_version": 2,
@@ -220,8 +291,16 @@ def audit_repository(root: Path, output_dir: Path | None = None) -> AuditResult:
         "extension_counts": _extension_counts(files),
         "record_counts": _record_counts(root),
         "record_count": len(records),
-        "test_count": len(list((root / "tests").glob("test_*.py"))) if (root / "tests").exists() else 0,
-        "schema_count": len(list((root / "schemas").rglob("*.*"))) if (root / "schemas").exists() else 0,
+        "test_count": (
+            len(list((root / "tests").glob("test_*.py")))
+            if (root / "tests").exists()
+            else 0
+        ),
+        "schema_count": (
+            len(list((root / "schemas").rglob("*.*")))
+            if (root / "schemas").exists()
+            else 0
+        ),
         "readiness": _readiness(records),
         "issues": issues,
         "issue_count": len(issues),
@@ -229,7 +308,9 @@ def audit_repository(root: Path, output_dir: Path | None = None) -> AuditResult:
 
     json_path = output_dir / "repository-audit.json"
     report_path = output_dir / "repository-audit.md"
-    json_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    json_path.write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
     lines = [
         "# Repository Audit",
@@ -248,16 +329,35 @@ def audit_repository(root: Path, output_dir: Path | None = None) -> AuditResult:
         "| Area | Files |",
         "|---|---:|",
     ]
-    lines.extend(f"| {name} | {count} |" for name, count in payload["top_level_counts"].items())
-    lines.extend(["", "## Canonical Record Counts", "", "| Collection | Records |", "|---|---:|"])
-    lines.extend(f"| {name} | {count} |" for name, count in payload["record_counts"].items())
-    lines.extend(["", "## Publication Readiness", "", "| State | Count |", "|---|---:|"])
-    lines.extend(f"| {name} | {count} |" for name, count in payload["readiness"].items())
+    lines.extend(
+        f"| {name} | {count} |"
+        for name, count in payload["top_level_counts"].items()
+    )
+    lines.extend(
+        [
+            "",
+            "## Canonical Record Counts",
+            "",
+            "| Collection | Records |",
+            "|---|---:|",
+        ]
+    )
+    lines.extend(
+        f"| {name} | {count} |" for name, count in payload["record_counts"].items()
+    )
+    lines.extend(
+        ["", "## Publication Readiness", "", "| State | Count |", "|---|---:|"]
+    )
+    lines.extend(
+        f"| {name} | {count} |" for name, count in payload["readiness"].items()
+    )
     lines.extend(["", "## Findings", ""])
     if issues:
         lines.extend(f"- {issue}" for issue in issues)
     else:
-        lines.append("- No census, reference-integrity, or generated-view drift issues detected.")
+        lines.append(
+            "- No census, reference-integrity, or generated-view drift issues detected."
+        )
     lines.extend(["", f"Total findings: {len(issues)}", ""])
     report_path.write_text("\n".join(lines), encoding="utf-8")
 

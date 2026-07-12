@@ -2,11 +2,46 @@
   "work_item_id": "BL-004",
   "title": "Restricted Canonical Writer",
   "description": "Create the only ordinary application boundary allowed to mutate canonical source state.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-004",
-  "acceptance_criteria": ["Direct writes are prohibited", "Authorization is content-hash-bound", "Idempotency is enforced"],
-  "evidence": [],
+  "acceptance_criteria": [
+    "Direct writes are prohibited",
+    "Authorization is content-hash-bound",
+    "Idempotency is enforced"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "BL-004-PR-24",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/24",
+      "description": "Sprint 4 implementation and review boundary."
+    },
+    {
+      "evidence_id": "BL-004-COMMIT-C595E51",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/c595e51b8a89dd0e632decbf67783ea301f5560b",
+      "description": "Restricted writer, target reservation, maintenance authorization, direct-write prevention, audit, tests, and documentation implementation."
+    },
+    {
+      "evidence_id": "BL-004-CI-29209731672",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29209731672",
+      "description": "Complete CI suite passed on the implementation head."
+    },
+    {
+      "evidence_id": "BL-004-SECURITY-29209731664",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29209731664",
+      "description": "Focused canonicalization security suite passed."
+    },
+    {
+      "evidence_id": "BL-004-COVERAGE-29209731659",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29209731659",
+      "description": "Runtime branch-coverage suite passed."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T20:19:00Z"
+  "updated_at": "2026-07-12T21:32:00Z"
 }

@@ -1,30 +1,33 @@
-"""Application services for publication preparation and feedback promotion."""
+"""Application services for publication preparation and feedback ingestion."""
 
 from __future__ import annotations
 
 import hashlib
 import json
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 from pydantic import ValidationError
 
+from nks.application.canonicalization import (
+    CanonicalTargetReservedError,
+    CanonicalWriteAuthorizationError,
+    CanonicalWriteIntegrityError,
+)
 from nks.domain.delivery import (
+    FeedbackProofReview,
     FeedbackPromotionAuthorization,
-    FeedbackProvenance,
     FeedbackRecord,
-    PromotionDecision,
     PublicationPayload,
     PublicationReceipt,
 )
-from nks.domain.models import (
-    GateStatus,
-    PublicationRecord,
-    RecordStatus,
-    SourceRecord,
-    WorkflowEvent,
-)
+from nks.domain.models import GateStatus, PublicationRecord, WorkflowEvent
+from nks.ports.canonicalization import CanonicalSourceWriter
 from nks.ports.delivery import FeedbackRepository, PublicationAdapter
 from nks.ports.repositories import EventRepository
+
+if TYPE_CHECKING:
+    from nks.domain.models import SourceRecord
 
 
 class PublicationNotApprovedError(ValueError):
@@ -80,6 +83,7 @@ class PreparePublication:
 class IngestFeedback:
     repository: FeedbackRepository
     events: EventRepository
+    canonical_writer: CanonicalSourceWriter | None = None
 
     def execute_json(self, raw_feedback: str) -> FeedbackRecord:
         """Validate and ingest JSON while retaining validation failure evidence."""
@@ -169,22 +173,9 @@ class IngestFeedback:
         source_id: str,
         source_location: str,
         authorization: FeedbackPromotionAuthorization | None,
+        proof_review: FeedbackProofReview | None = None,
     ) -> SourceRecord:
-        if feedback.provenance in {
-            FeedbackProvenance.SYNTHETIC,
-            FeedbackProvenance.REPLAY,
-        }:
-            reason_code = f"{feedback.provenance}_PROMOTION_PROHIBITED"
-            self._deny_promotion(
-                feedback,
-                source_id=source_id,
-                reason_code=reason_code,
-                authorization=authorization,
-            )
-            raise FeedbackPromotionProhibitedError(
-                f"{feedback.provenance} feedback cannot be promoted to a factual source"
-            )
-
+        """Delegate promotion to the sole restricted canonical writer."""
         if authorization is None:
             self._deny_promotion(
                 feedback,
@@ -195,87 +186,40 @@ class IngestFeedback:
             raise FeedbackPromotionNotAuthorizedError(
                 "explicit promotion authorization is required"
             )
-
-        if authorization.decision != PromotionDecision.APPROVED:
+        if proof_review is None:
             self._deny_promotion(
                 feedback,
                 source_id=source_id,
-                reason_code="AUTHORIZATION_DENIED",
+                reason_code="PROOF_REVIEW_REQUIRED",
                 authorization=authorization,
             )
             raise FeedbackPromotionNotAuthorizedError(
-                "promotion authorization decision is not APPROVED"
+                "structured proof review is required"
             )
-
-        if authorization.feedback_id != feedback.feedback_id:
+        if self.canonical_writer is None:
             self._deny_promotion(
                 feedback,
                 source_id=source_id,
-                reason_code="AUTHORIZATION_FEEDBACK_MISMATCH",
+                reason_code="CANONICAL_WRITER_REQUIRED",
                 authorization=authorization,
             )
             raise FeedbackPromotionNotAuthorizedError(
-                "promotion authorization does not match feedback record"
+                "restricted canonical writer is not configured"
             )
 
-        if authorization.target_source_id != source_id:
-            self._deny_promotion(
+        try:
+            return self.canonical_writer.promote_feedback(
                 feedback,
                 source_id=source_id,
-                reason_code="AUTHORIZATION_TARGET_MISMATCH",
+                source_location=source_location,
                 authorization=authorization,
+                proof_review=proof_review,
             )
-            raise FeedbackPromotionNotAuthorizedError(
-                "promotion authorization does not match target source"
-            )
-
-        if feedback.promoted_to_source_id and feedback.promoted_to_source_id != source_id:
-            self._deny_promotion(
-                feedback,
-                source_id=source_id,
-                reason_code="ALREADY_PROMOTED_TO_DIFFERENT_SOURCE",
-                authorization=authorization,
-            )
-            raise FeedbackPromotionError(
-                "feedback is already promoted to a different source record"
-            )
-
-        source = SourceRecord(
-            id=source_id,
-            title=f"Feedback from {feedback.platform}: {feedback.feedback_id}",
-            status=RecordStatus.REVIEW,
-            source_type="external-feedback",
-            source_location=source_location,
-            limitations=[
-                "External feedback is an observation, not automatically verified proof.",
-                f"Feedback classification: {feedback.classification}",
-                *feedback.proof_boundaries,
-            ],
-            metadata={
-                "feedback_id": feedback.feedback_id,
-                "publication_id": feedback.publication_id,
-                "platform": feedback.platform,
-                "provenance": feedback.provenance,
-                "lineage_ids": feedback.lineage_ids,
-                "authorization_id": authorization.authorization_id,
-                "authorized_by": authorization.authorized_by,
-                "authorization_justification": authorization.justification,
-            },
-        )
-        promoted = feedback.model_copy(update={"promoted_to_source_id": source_id})
-        self.repository.save(promoted)
-        self.events.append(
-            WorkflowEvent(
-                event_id=f"feedback.promoted:{feedback.feedback_id}",
-                event_type="feedback.promoted_to_source",
-                subject_id=source_id,
-                payload={
-                    "feedback_id": feedback.feedback_id,
-                    "publication_id": feedback.publication_id,
-                    "provenance": feedback.provenance,
-                    "authorization_id": authorization.authorization_id,
-                    "authorized_by": authorization.authorized_by,
-                },
-            )
-        )
-        return source
+        except CanonicalWriteAuthorizationError as exc:
+            raise FeedbackPromotionNotAuthorizedError(str(exc)) from exc
+        except CanonicalWriteIntegrityError as exc:
+            if feedback.provenance != "REAL":
+                raise FeedbackPromotionProhibitedError(str(exc)) from exc
+            raise FeedbackPromotionError(str(exc)) from exc
+        except CanonicalTargetReservedError as exc:
+            raise FeedbackPromotionError(str(exc)) from exc

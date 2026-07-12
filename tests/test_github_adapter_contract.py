@@ -1,5 +1,5 @@
 from nks.adapters.github import GitHubRecordRepository
-from nks.domain.models import RecordStatus, SourceRecord
+from nks.domain.models import ArtifactRecord, RecordStatus
 
 
 class FakeGitHubClient:
@@ -20,13 +20,12 @@ class FakeGitHubClient:
 
 def test_github_adapter_implements_idempotent_record_contract():
     client = FakeGitHubClient()
-    repository = GitHubRecordRepository(client, SourceRecord, "sources")
-    record = SourceRecord(
-        id="NKS-SRC-ADAPTER-0001",
-        title="Adapter Contract Source",
+    repository = GitHubRecordRepository(client, ArtifactRecord, "artifacts")
+    record = ArtifactRecord(
+        id="NKS-ART-ADAPTER-0001",
+        title="Adapter Contract Artifact",
         status=RecordStatus.APPROVED,
-        source_type="contract-test",
-        source_location="fixture.md",
+        source_ids=["NKS-SRC-ADAPTER-0001"],
     )
 
     repository.save(record)
@@ -35,4 +34,4 @@ def test_github_adapter_implements_idempotent_record_contract():
     assert repository.get(record.id) == record
     assert repository.list() == [record]
     assert len(client.writes) == 1
-    assert client.writes[0][0] == "records/sources/NKS-SRC-ADAPTER-0001.json"
+    assert client.writes[0][0] == "records/artifacts/NKS-ART-ADAPTER-0001.json"
