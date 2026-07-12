@@ -16,6 +16,10 @@ from nks.domain.delivery import (
 from nks.domain.models import SourceRecord
 
 
+class DirectCanonicalSourceWriteError(PermissionError):
+    """Raised when a generic repository attempts to bypass the writer."""
+
+
 class CanonicalStoreConflictError(ValueError):
     """Raised when a canonical target or idempotency key conflicts."""
 
