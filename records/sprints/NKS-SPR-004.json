@@ -1,0 +1,12 @@
+{
+  "sprint_id": "NKS-SPR-004",
+  "sequence": 4,
+  "title": "Restricted canonical writer",
+  "objective": "Enforce one canonical source mutation boundary.",
+  "status": "planned",
+  "work_item_ids": ["BL-004"],
+  "exit_criteria": ["Direct writes are prohibited", "Authorization is hash-bound", "Idempotency is enforced"],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-12T20:19:00Z"
+}
