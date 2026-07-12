@@ -1,0 +1,12 @@
+{
+  "work_item_id": "BL-007",
+  "title": "Governed Adaptive Knowledge Core",
+  "description": "Generalize governed temporal state across people, projects, organizations, policies, products, hypotheses, models, and the NKS.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-007",
+  "acceptance_criteria": ["Generic KnowledgeState exists", "Context, confidence, validity, and authority are explicit", "Human protections are preserved"],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-12T20:19:00Z"
+}
