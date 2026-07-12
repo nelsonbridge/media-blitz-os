@@ -39,7 +39,9 @@ class AuthorityResolver:
         raw = json.loads(path.read_text(encoding="utf-8"))
         self.assignments: list[dict[str, object]] = raw.get("assignments", [])
 
-    def _assignment_for(self, holder_reference: str) -> dict[str, object] | None:
+    def _assignment_for(self, holder_reference: str | None) -> dict[str, object] | None:
+        if holder_reference is None:
+            return None
         for assignment in self.assignments:
             if (
                 assignment.get("holder_reference") == holder_reference
@@ -53,7 +55,7 @@ class AuthorityResolver:
         *,
         action: str,
         requested_by: str,
-        explicit_authority: str | None = None,
+        approval_holder_reference: str | None = None,
     ) -> AuthorityDecision:
         assignment = self._assignment_for(requested_by)
         if assignment is None:
@@ -70,32 +72,16 @@ class AuthorityResolver:
         self.registry.get(actor_capability)
 
         if action in self._ANU_ACTIONS:
-            if explicit_authority != "ANU":
+            approval = self._assignment_for(approval_holder_reference)
+            if approval is None or approval.get("capability_id") != "ANU":
                 return AuthorityDecision(
                     authorized=False,
                     action=action,
                     requested_by=requested_by,
                     actor_capability=actor_capability,
                     required_authority="ANU",
-                    reason="explicit ANU authority is required and may not be inferred",
+                    reason="explicit approval by an active ANU authority holder is required",
                 )
-            if actor_capability != "ANU":
-                anu_holder = any(
-                    item.get("capability_id") == "ANU"
-                    and item.get("holder_reference") == explicit_authority
-                    and item.get("status") == "active"
-                    for item in self.assignments
-                )
-                if not anu_holder:
-                    # explicit_authority is a capability assertion, not an impersonation grant.
-                    return AuthorityDecision(
-                        authorized=False,
-                        action=action,
-                        requested_by=requested_by,
-                        actor_capability=actor_capability,
-                        required_authority="ANU",
-                        reason="ANU approval must be recorded by an active ANU authority holder",
-                    )
 
         return AuthorityDecision(
             authorized=True,
@@ -111,12 +97,12 @@ class AuthorityResolver:
         *,
         action: str,
         requested_by: str,
-        explicit_authority: str | None = None,
+        approval_holder_reference: str | None = None,
     ) -> AuthorityDecision:
         decision = self.resolve(
             action=action,
             requested_by=requested_by,
-            explicit_authority=explicit_authority,
+            approval_holder_reference=approval_holder_reference,
         )
         if not decision.authorized:
             raise PermissionError(decision.reason)
