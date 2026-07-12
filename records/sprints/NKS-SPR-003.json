@@ -1,0 +1,12 @@
+{
+  "sprint_id": "NKS-SPR-003",
+  "sequence": 3,
+  "title": "First live publication cycle",
+  "objective": "Complete Publication 000001 through human approval, publication, receipts, and real feedback.",
+  "status": "blocked",
+  "work_item_ids": ["BL-003"],
+  "exit_criteria": ["Human decisions are recorded", "Publication and social receipts exist", "Real feedback is ingested"],
+  "evidence": [],
+  "blocked_reason": "Explicit human visual and publication approval required.",
+  "updated_at": "2026-07-12T20:19:00Z"
+}
