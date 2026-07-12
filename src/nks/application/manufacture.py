@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from nks.application.canonicalization import source_sha256
 from nks.domain.models import (
     ArtifactRecord,
     NarrativeRecord,
@@ -47,7 +48,7 @@ class ManufacturePublication:
             raise ValueError(
                 "source must be created through CanonicalSourceWriter before manufacture"
             )
-        if governed_source != source:
+        if governed_source.metadata.get("content_sha256") != source_sha256(source):
             raise ValueError(
                 "manufacture source does not match governed canonical source"
             )
