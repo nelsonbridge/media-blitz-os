@@ -25,10 +25,30 @@ RECORD_COLLECTIONS = (
     "visuals",
     "publications",
     "visual-requests",
+    "social-requests",
     "feedback",
     "events",
     "capabilities",
+    "human-observations",
+    "human-transitions",
+    "model-ingestion-policies",
+    "model-feedback-receipts",
 )
+
+# Canonical record identity is a domain contract. Collection-aware resolution
+# avoids both a false universal ``id`` field and ad hoc file-name inference.
+IDENTIFIER_FIELDS_BY_COLLECTION: dict[str, tuple[str, ...]] = {
+    "visual-requests": ("request_id",),
+    "social-requests": ("request_id",),
+    "feedback": ("feedback_id",),
+    "events": ("event_id",),
+    "capabilities": ("registry_id",),
+    "human-observations": ("observation_id",),
+    "human-transitions": ("transition_id",),
+    "model-ingestion-policies": ("policy_id",),
+    "model-feedback-receipts": ("receipt_id",),
+}
+DEFAULT_IDENTIFIER_FIELDS = ("id",)
 
 
 @dataclass(frozen=True)
@@ -55,6 +75,23 @@ def _read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _record_identifier(path: Path, records_root: Path, record: dict) -> str | None:
+    """Resolve record identity according to the owning collection contract."""
+    relative = path.relative_to(records_root)
+    collection = relative.parts[0] if len(relative.parts) > 1 else ""
+    fields = IDENTIFIER_FIELDS_BY_COLLECTION.get(
+        collection, DEFAULT_IDENTIFIER_FIELDS
+    )
+    return next(
+        (
+            value
+            for field in fields
+            if isinstance((value := record.get(field)), str) and value.strip()
+        ),
+        None,
+    )
+
+
 def _record_index(root: Path) -> tuple[dict[str, dict], list[str]]:
     records: dict[str, dict] = {}
     issues: list[str] = []
@@ -68,14 +105,15 @@ def _record_index(root: Path) -> tuple[dict[str, dict], list[str]]:
         except (json.JSONDecodeError, OSError) as exc:
             issues.append(f"invalid JSON: {path.relative_to(root)} ({exc})")
             continue
-        record_id = (
-            record.get("id") or record.get("registry_id") or record.get("event_id")
-        )
+        record_id = _record_identifier(path, records_root, record)
         if not record_id:
             issues.append(f"record missing identifier: {path.relative_to(root)}")
             continue
         if record_id in records:
-            issues.append(f"duplicate record id: {record_id}")
+            issues.append(
+                f"duplicate record id: {record_id} "
+                f"({records[record_id]['path']}, {path.relative_to(root)})"
+            )
         records[record_id] = {"path": str(path.relative_to(root)), "data": record}
     return records, issues
 
@@ -90,6 +128,11 @@ def _integrity_issues(records: dict[str, dict]) -> list[str]:
         "visual_package_id": False,
         "publication_id": False,
         "source_id": False,
+        "from_observation_id": False,
+        "to_observation_id": False,
+        "observation_id": False,
+        "transition_ids": True,
+        "observation_ids": True,
     }
     for record_id, item in sorted(records.items()):
         data = item["data"]
@@ -181,7 +224,7 @@ def audit_repository(root: Path, output_dir: Path | None = None) -> AuditResult:
     issues = sorted(parse_issues + integrity + drift)
 
     payload = {
-        "audit_version": 1,
+        "audit_version": 2,
         "repository_root": str(root),
         "file_count": len(files),
         "top_level_counts": _top_level_counts(root, files),
