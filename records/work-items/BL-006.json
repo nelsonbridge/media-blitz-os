@@ -1,0 +1,12 @@
+{
+  "work_item_id": "BL-006",
+  "title": "Temporal Human-State Production Integration",
+  "description": "Integrate temporal human evolution with CLI, generated views, events, privacy, revocation, and audit.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-006",
+  "acceptance_criteria": ["CLI and canonical collections are registered", "Generated indexes and authority manifest are integrated", "Privacy and revocation are enforced", "Model behavior fixtures pass"],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-12T20:19:00Z"
+}
