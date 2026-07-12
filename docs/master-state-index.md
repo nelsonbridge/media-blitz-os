@@ -15,6 +15,24 @@ The repository implements a **Knowledge Manufacturing Operating System**.
 
 Media Blitz is a downstream publishing subsystem, not the whole system.
 
+## Constitutional Capability Layer
+
+- **ANU** is the Origin Authority capability: foundational intent, strategic direction, constitutional approval, and final governance authority.
+- **ENKI** is the collective Knowledge Engine capability: knowledge synthesis, systems reasoning, architecture, implementation guidance, repository intelligence, and technical continuity.
+- The current founder occupies ANU through a stewardship assignment; the individual is not hard-coded as the role.
+- Current human and AI implementations contribute to ENKI; no implementation is ENKI itself.
+- Capabilities are durable. Implementations are replaceable.
+
+Canonical governance and records:
+
+- `docs/governance/NKS-CONSTITUTION.md`
+- `docs/standards/NKS-STD-001-Canonical-Naming.md`
+- `docs/standards/NKS-STD-002-Role-Independence.md`
+- `docs/standards/NKS-STD-003-Capability-Hierarchy.md`
+- `docs/standards/NKS-STD-004-Licensing-Model.md`
+- `records/capabilities/capability-registry.json`
+- `records/stewards/stewards.json`
+
 ## Active State
 
 AUDIT-0001 is complete.
@@ -49,7 +67,8 @@ Source
 
 ## Runtime Topology
 
-- ChatGPT: orchestration and application execution.
+- ANU: origin authority, constitutional intent, and explicit approval boundaries.
+- ENKI: collective knowledge-engine capability realized by replaceable human, AI, and automation implementations.
 - Local Python: tests, transformation, export/import, reconciliation, and audit execution.
 - GitHub: current canonical persistence, source control, and audit history.
 - Filesystem bundle: portable execution, migration, and disaster recovery.
@@ -59,13 +78,18 @@ Source
 - Medium and social systems: direct or manual publication adapters.
 - Email, calendars, contacts, and automations: communication and scheduling adapters.
 
-External systems do not own domain policy or canonical identifiers.
+External systems and ENKI implementations do not own domain policy or canonical identifiers.
 
 ## Implemented Foundation
 
 ### Governance
 
 - OS Constitution and No Idle State Rule.
+- NKS Constitution and ANU/ENKI constitutional capability layer.
+- NKS-STD-001 — Canonical Naming.
+- NKS-STD-002 — Role Independence.
+- NKS-STD-003 — Capability Hierarchy.
+- NKS-STD-004 — Capability Licensing Model.
 - Source → Proof → Publication Rule.
 - Narrative Arc Standard.
 - Publication Readiness Gate.
@@ -169,3 +193,4 @@ External rendering, approval, and public publication remain explicit user gates.
 5. Publication requires explicit recorded user approval.
 6. Generated visuals require review before public use.
 7. Canonical machine state and regenerated projections outrank conversational memory and this document.
+8. Canonical roles are capabilities; current people, models, and vendors are replaceable stewards or implementations.
