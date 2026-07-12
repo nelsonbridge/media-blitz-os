@@ -1,353 +1,174 @@
 # Technical Backlog
 
+> Authority class: Class 3 active execution plan. Implementation status is evidenced by canonical records, merged code, generated projections, tests, receipts, and workflow results—not by this document alone.
+
+Last reconciled: 2026-07-12
+
 ## Purpose
 
-This backlog governs implementation of the Nelson Knowledge System runtime while preserving architectural runway toward a portable, modular, service-oriented platform.
+Govern the next implementation sequence for the Nelson Knowledge System while preserving portability, explicit authority, human agency, reconstructable lineage, and platform-neutral domain logic.
 
-GitHub is the current runtime host and storage adapter. It is not the permanent domain boundary.
+## Status Vocabulary
 
-## Architectural Principle
+- **Complete** — implemented and evidenced on `sandbox`.
+- **Partial** — useful implementation exists; acceptance criteria remain.
+- **Active** — assigned to the current sprint.
+- **Planned** — sequenced in the eleven-sprint roadmap.
+- **Blocked: Human Decision** — engineering is complete enough that explicit human approval is required.
+- **Superseded** — replaced by a later architectural decision.
 
-The runtime must be portable by design.
+## Reconciled Foundation
 
-No domain rule, workflow, state transition, identifier, proof gate, narrative gate, visual gate, or publication gate may depend directly on GitHub, Google Drive, Medium, LinkedIn, or any other external platform.
+| Prior item | Status | Evidence / remaining condition |
+|---|---|---|
+| TB-001 Package boundaries | Complete | Domain, application, adapter, CLI, audit, and view layers exist. |
+| TB-002 Canonical schemas | Partial | Core Pydantic models exist; schema versioning and newer record-family registration remain. |
+| TB-003 Repository interfaces | Partial | Neutral services/adapters exist; interface consistency and restricted canonical writer remain. |
+| TB-004 Filesystem adapter | Complete | Local deterministic persistence and portable bundles exist. |
+| TB-005 GitHub adapter | Partial | Adapter exists; equivalent contract suite against filesystem remains. |
+| TB-006 Drive adapter contract | Partial | Contract and projection role exist; durable queued synchronization remains. |
+| TB-007 State machines | Partial | Publication, provenance, replay, and human-state constraints exist; generic transition engine remains. |
+| TB-008 Governance as code | Complete | Readiness, approval, authority, provenance, and promotion validators are executable. |
+| TB-009 Event/audit model | Partial | Append-only events exist; full workflow reconstruction remains. |
+| TB-010 Generated views | Complete | Generated authority manifest and deterministic projections exist. |
+| TB-011 Runtime CLI | Partial | Operational commands exist; human-state/GAK and transaction commands remain. |
+| TB-012 Functional harness | Partial | Deterministic tests exist; complete live source-to-feedback vertical slice remains. |
+| TB-013 Integration contracts | Partial | Social and selected adapter tests exist; broader contract parity remains. |
+| TB-014 Export/migration | Partial | Checksummed export/import exists; migration enforcement for new record families remains. |
+| TB-015 Database runway | Planned | Repository mapping and migration proof remain. |
+| TB-016 Orchestrator independence | Complete | Application services are callable outside Actions; workflows are secondary. |
+| TB-017 Dependency extraction | Partial | Portability design exists; clean-room extraction test remains. |
+| TB-018 Provenance/promotion security | Complete — Sprint 1 boundary | `REAL | SYNTHETIC | REPLAY`, authorization, replay isolation, and failure events are enforced. |
+| TB-019 Runtime validation hardening | Partial | Immediate fail-closed gates exist; transactional promotion and restricted writing remain. |
 
-External systems are adapters. The domain core remains independent.
+## Active Backlog
 
-## Definition of Portable
+### BL-001 — Schema-Aware Canonical Identity
+**Status:** Active — Sprint 1
 
-The runtime is considered portable when:
-
-1. Domain logic runs locally without GitHub Actions.
-2. Canonical records can be read from and written to a filesystem adapter.
-3. GitHub access is isolated behind repository interfaces.
-4. Google Drive access is isolated behind repository or synchronization interfaces.
-5. Workflow execution can be invoked from CLI, test runner, GitHub Actions, or future API without changing domain logic.
-6. All canonical records use open formats such as JSON or YAML.
-7. Generated Markdown is a view, not the only source of truth.
-8. External integrations may fail without corrupting domain state.
-9. The same functional test can run against at least two storage adapters.
-
-## Technical Direction
-
-Initial implementation defaults:
-
-- Python
-- Pydantic or JSON Schema
-- YAML or JSON canonical records
-- pytest
-- CLI entry point
-- GitHub Actions as current orchestration host
-- Adapter-based storage and integration boundaries
-- Deterministic, idempotent workflows
-- Event records for auditability
-
-## Backlog
-
-### TB-001 — Define Runtime Package Boundaries
-
-Status: Planned
-
-Create a package structure that separates:
-
-- domain models
-- application workflows
-- policy validators
-- repository interfaces
-- storage adapters
-- external integrations
-- CLI
-- tests
+Reapply the valid work from closed PR #7 onto current `sandbox`.
 
 Acceptance criteria:
+- Record identity resolves through an explicit collection contract.
+- `request_id`, `event_id`, `registry_id`, human-state IDs, and future knowledge-state IDs are recognized without imposing a false universal field.
+- Duplicate identity detection remains global.
+- Repository audit reports zero unexplained identity findings.
+- Regression tests cover missing and duplicate IDs.
 
-- Domain packages import no GitHub or Google libraries.
-- Integration packages may depend on domain interfaces, never the reverse.
+### BL-002 — Backlog and Roadmap as Generated State
+**Status:** Planned — Sprint 2
 
-### TB-002 — Create Machine-Readable Canonical Schemas
-
-Status: Planned
-
-Create JSON Schema or Pydantic models for:
-
-- source records
-- corpus artifacts
-- proof records
-- narrative records
-- publication packages
-- visual packages
-- derivative packages
-- workflow events
-- synchronization jobs
+Create canonical backlog/sprint records and deterministic human-readable projections.
 
 Acceptance criteria:
+- Work status is machine-readable.
+- Completion requires linked implementation evidence.
+- Generated backlog and roadmap drift fails CI.
+- Narrative plans cannot declare implementation complete without evidence.
 
-- Existing Markdown records can be mapped to schema-compliant records.
-- Schema validation runs without network access.
-
-### TB-003 — Implement Repository Interfaces
-
-Status: Planned
-
-Define interfaces such as:
-
-- SourceRepository
-- ArtifactRepository
-- ProofRepository
-- NarrativeRepository
-- VisualRepository
-- PublicationRepository
-- EventRepository
-- SyncQueueRepository
+### BL-003 — Publication 000001 Human Gate and Live Cycle
+**Status:** Blocked: Human Decision / Planned — Sprint 3
 
 Acceptance criteria:
+- Visual review decision recorded.
+- Publication approval recorded separately.
+- Publication receipt and external URL persisted.
+- Approved social derivatives dispatched or manual receipts recorded.
+- Real feedback captured with provenance and lineage.
+- No approval is inferred from rendering or test success.
 
-- No workflow accesses GitHub paths directly.
-- Workflows depend only on repository interfaces.
-
-### TB-004 — Implement Filesystem Adapter
-
-Status: Planned
-
-Implement the first neutral storage adapter using local files.
-
-Acceptance criteria:
-
-- Full functional test runs without GitHub connectivity.
-- Records persist in deterministic paths.
-- Re-running the same workflow is idempotent.
-
-### TB-005 — Implement GitHub Adapter
-
-Status: Planned
-
-Implement GitHub as a repository and execution adapter.
+### BL-004 — Restricted Canonical Writer
+**Status:** Planned — Sprint 4
 
 Acceptance criteria:
+- Only one application boundary may create or mutate canonical source state.
+- Direct adapter writes are rejected or isolated to recovery/migration procedures.
+- Authorization binds feedback ID, exact content hash, target source ID, proof review, actor, and decision.
+- Idempotency is enforced.
 
-- GitHub-specific code is isolated under integrations/adapters.
-- The same domain tests pass with filesystem and GitHub adapters.
-- GitHub failures produce retryable synchronization or persistence errors.
-
-### TB-006 — Implement Drive Adapter Contract
-
-Status: Planned
-
-Define Google Drive, Docs, and Sheets interfaces before implementing connector-specific behavior.
+### BL-005 — Journaled Promotion and Receipts
+**Status:** Planned — Sprint 5
 
 Acceptance criteria:
+- Promotion is atomic or journaled and recoverable.
+- Partial operations cannot leave inconsistent source, event, authorization, or receipt state.
+- Immutable promotion receipts capture input/output hashes and transaction lineage.
+- Audit detects incomplete or replayed transactions.
 
-- Drive synchronization can be disabled without changing workflows.
-- Connector intermittency queues work rather than stopping domain execution.
-- Drive documents are treated as editorial views, not sole canonical state.
-
-### TB-007 — Create Explicit State Machines
-
-Status: Planned
-
-Implement valid state transitions for source, proof, narrative, visual, publication, and synchronization records.
+### BL-006 — Temporal Human-State Production Integration
+**Status:** Planned — Sprint 6
 
 Acceptance criteria:
+- CLI commands, canonical collection registration, generated indexes, authority manifest entries, workflow events, privacy redaction, revocation receipts, and evaluation fixtures are implemented.
+- Historical observations remain immutable.
+- Current behavioral authority is resolved independently from historical truth.
+- Model-ingestion scope remains separate from canonicalization.
 
-- Invalid transitions fail with explicit errors.
-- State transitions are deterministic and auditable.
-- Transition tests cover recovery from partial failure.
-
-### TB-008 — Implement Governance as Code
-
-Status: Planned
-
-Convert written governance into executable validators:
-
-- validate_source_lineage
-- validate_proof_posture
-- validate_narrative_arc
-- validate_visual_package
-- validate_editorial_readiness
-- validate_publication_readiness
+### BL-007 — Governed Adaptive Knowledge Core
+**Status:** Planned — Sprint 7
 
 Acceptance criteria:
+- Generic `KnowledgeState`, governed subject, domain, context, confidence, validity, and authority models exist.
+- Human-state semantics can map onto the generic core without losing human-agency protections.
+- Prediction remains outside canonical state.
 
-- Every public-readiness decision is reproducible.
-- Validation results identify exact failing gates.
-
-### TB-009 — Create Event and Audit Model
-
-Status: Planned
-
-Emit append-only events such as:
-
-- source.recorded
-- artifact.created
-- proof.required
-- proof.completed
-- narrative.review_required
-- visual.briefed
-- publication.ready
-- sync.queued
-- sync.completed
+### BL-008 — Generic Transition Engine
+**Status:** Planned — Sprint 8
 
 Acceptance criteria:
+- Supports correction, refinement, expansion, restriction, supersession, reversal, retraction, context shift, confidence change, merge, split, and deprecation.
+- Invalid transitions fail explicitly.
+- Transition lineage is reconstructable and context-scoped.
+- Inference remains distinguishable from explicit declaration.
 
-- Events can reconstruct workflow history.
-- Events are platform-neutral records.
-
-### TB-010 — Generate Human Views from Canonical Records
-
-Status: Planned
-
-Generate Markdown indexes, ledgers, and summaries from machine-readable records.
+### BL-009 — Governed Interpretation and Model Feedback
+**Status:** Planned — Sprint 9
 
 Acceptance criteria:
+- `ResolveInterpretation(subject, domain, context, scope, authority)` returns current interpretation, history, uncertainty, limitations, and behavior instructions.
+- Model-feedback publication is content-hash-bound, scoped, redactable, expirable, revocable, and receipted.
+- Superseded state cannot continue controlling behavior.
 
-- Publication Index, Proof Ledger, Visual Index, and Master State are generated views.
-- Manual edits to generated views are detectable.
-
-### TB-011 — Build Runtime CLI
-
-Status: Planned
-
-Provide commands such as:
-
-- nks ingest
-- nks validate
-- nks manufacture
-- nks reconcile
-- nks test
-- nks sync
+### BL-010 — Forensic Audit and Clean-Room Portability
+**Status:** Planned — Sprint 10
 
 Acceptance criteria:
+- Every canonical creation is reconstructable.
+- Imports and migrations cannot bypass provenance or authority gates.
+- Clean filesystem initialization, validation, manufacture, export, import, and reconciliation pass without GitHub or network access.
+- Filesystem and GitHub adapter contract behavior is equivalent except for adapter metadata.
 
-- CLI runs locally and in GitHub Actions.
-- Commands return machine-readable exit status and reports.
-
-### TB-012 — Build Functional Test Harness
-
-Status: Planned
-
-Test one source through:
-
-Source
-→ Canonical Artifact
-→ Proof
-→ Narrative Arc
-→ Visual Package
-→ Publication Package
-→ Generated Indexes
-→ Reconciled State
+### BL-011 — Operational Proof and Release Candidate
+**Status:** Planned — Sprint 11
 
 Acceptance criteria:
+- At least one complete observation-to-publication-to-real-feedback-to-governed-evolution loop is recorded.
+- Security, authority, portability, and model-behavior regression suites pass.
+- Release documentation reflects actual system identity: Nelson Knowledge System as implementation, Knowledge Manufacturing / Governed Adaptive Knowledge as architecture, Media Blitz as an application program.
+- A versioned release candidate is produced with known limitations.
 
-- Test runs against filesystem adapter first.
-- Test runs against GitHub adapter second.
-- Outputs are equivalent except for adapter metadata.
-- Re-run creates no duplicate IDs or records.
+## Cross-Cutting Backlog
 
-### TB-013 — Add Contract Tests for Integrations
+- Detect undeclared status-like files and contradictory narrative claims.
+- Require generator or canonical-input changes for authoritative projection changes.
+- Add schema versions, migration fixtures, and deprecation policy.
+- Raise coverage expectations for security-critical modules.
+- Normalize repository naming and README system boundaries.
+- Complete the Agile manuscript evidence and publication package after the first live publication cycle.
+- Consolidate duplicate or placeholder corpus assets before ingestion.
 
-Status: Planned
+## Release Guardrails
 
-Create adapter contract tests for GitHub, Drive, image generation, and publication platforms.
+No release may claim production-grade adaptive knowledge until:
 
-Acceptance criteria:
+1. canonical identity findings are zero or explicitly waived;
+2. promotion is restricted, hash-bound, receipted, and recoverable;
+3. human evolution can alter current behavior without rewriting history;
+4. model ingestion is independently scoped and revocable;
+5. one real feedback loop is completed;
+6. every canonical creation is forensically reconstructable;
+7. clean-room portability passes.
 
-- Each adapter proves the same repository contract.
-- Failures are classified as retryable, blocked, or terminal.
+## Execution Rule
 
-### TB-014 — Add Export and Migration Capability
-
-Status: Planned
-
-Create a complete export of canonical records, events, schemas, and binary asset references.
-
-Acceptance criteria:
-
-- System state can be exported without GitHub APIs.
-- Export can initialize a fresh filesystem or database adapter.
-- No proprietary platform identifier is required as the primary key.
-
-### TB-015 — Database Adapter Runway
-
-Status: Planned
-
-Define mapping from canonical schemas to a future relational or document database.
-
-Acceptance criteria:
-
-- IDs remain stable across migration.
-- Repository interfaces require no domain-level changes.
-- Migration can occur incrementally.
-
-### TB-016 — Orchestrator Independence
-
-Status: Planned
-
-Ensure workflow orchestration is not defined exclusively in GitHub Actions YAML.
-
-Acceptance criteria:
-
-- GitHub Actions invokes the same application service used by CLI and tests.
-- Workflow definitions contain no business rules.
-- A future scheduler, API, or worker can invoke the runtime unchanged.
-
-### TB-017 — Dependency Extraction Test
-
-Status: Planned
-
-Prove the runtime can be extracted from GitHub.
-
-Test procedure:
-
-1. Export canonical state.
-2. Initialize a clean local filesystem runtime.
-3. Run validation and reconciliation without network access.
-4. Manufacture a new test artifact.
-5. Confirm identical policy behavior.
-
-Acceptance criteria:
-
-- Test passes without GitHub, Drive, or external publication access.
-- No core module imports platform-specific code.
-
-### TB-018 — Embed Provenance / Promotion Validation as Implicit Security
-
-Status: Planned
-
-Capture the real/synthetic/replay provenance and source promotion workflow as an architectural security boundary.
-
-Acceptance criteria:
-
-- Feedback provenance is explicit and enforced by the promotion workflow.
-- External adapters may provide signals but cannot directly create canonical source records.
-- Promoted feedback includes lineage metadata and proof limitations.
-- The model preserves `REAL | SYNTHETIC | REPLAY` distinction and prevents silent canonicalization.
-- The work is scoped as backlog for later security hardening, not a current blocker.
-
-### TB-019 — Runtime Hardening and Validation Enforcement
-
-Status: Planned
-
-Harden the runtime by enforcing validation and provenance gates in the core application services.
-
-Acceptance criteria:
-
-- Feedback ingestion and promotion paths are enforced by the runtime, not just documented.
-- Invalid provenance, missing lineage, or unauthorized canonicalization transitions fail loudly.
-- Promotion to source requires explicit provenance, source location, and proof boundary metadata.
-- Runtime instrumentation records audit events for feedback ingestion, promotion, and validation failures.
-- CLI commands and automated tests cover the hardened execution path.
-
-## Release Guardrail
-
-Runtime v0.1 is not architecturally acceptable unless TB-001 through TB-005, TB-007, TB-008, TB-011, TB-012, and TB-017 are complete.
-
-## Ongoing Rule
-
-Every new integration must include:
-
-1. an interface or contract;
-2. an adapter implementation;
-3. contract tests;
-4. failure classification;
-5. export or migration implications;
-6. proof that the domain core remains platform-neutral.
+When the user says `Execute`, continue through the active sprint and immediately begin the next unblocked sprint. Stop only for an explicit human approval gate, unavailable external capability, failed invariant that requires user choice, or a material security ambiguity.
