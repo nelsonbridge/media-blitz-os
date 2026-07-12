@@ -3,10 +3,47 @@
   "sequence": 4,
   "title": "Restricted canonical writer",
   "objective": "Enforce one canonical source mutation boundary.",
-  "status": "planned",
-  "work_item_ids": ["BL-004"],
-  "exit_criteria": ["Direct writes are prohibited", "Authorization is hash-bound", "Idempotency is enforced"],
-  "evidence": [],
+  "status": "complete",
+  "work_item_ids": [
+    "BL-004"
+  ],
+  "exit_criteria": [
+    "Direct writes are prohibited",
+    "Authorization is hash-bound",
+    "Idempotency is enforced"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "NKS-SPR-004-PR-24",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/24",
+      "description": "Reviewable Sprint 4 implementation."
+    },
+    {
+      "evidence_id": "NKS-SPR-004-COMMIT-C595E51",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/c595e51b8a89dd0e632decbf67783ea301f5560b",
+      "description": "Integrated restricted-writer implementation and security documentation."
+    },
+    {
+      "evidence_id": "NKS-SPR-004-CI-29209731672",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29209731672",
+      "description": "Complete CI suite passed."
+    },
+    {
+      "evidence_id": "NKS-SPR-004-SECURITY-29209731664",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29209731664",
+      "description": "Canonicalization security suite passed."
+    },
+    {
+      "evidence_id": "NKS-SPR-004-COVERAGE-29209731659",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29209731659",
+      "description": "Runtime coverage suite passed."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-12T20:19:00Z"
+  "updated_at": "2026-07-12T21:32:00Z"
 }
