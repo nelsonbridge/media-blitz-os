@@ -1,0 +1,12 @@
+{
+  "sprint_id": "NKS-SPR-011",
+  "sequence": 11,
+  "title": "Operational proof and release candidate",
+  "objective": "Demonstrate repeated governed adaptive operation and produce a release candidate.",
+  "status": "planned",
+  "work_item_ids": ["BL-011"],
+  "exit_criteria": ["A complete adaptive loop is repeated", "Security and behavior regressions pass", "Known limitations are recorded", "A release candidate is versioned"],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-12T20:19:00Z"
+}
