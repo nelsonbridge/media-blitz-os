@@ -1,0 +1,12 @@
+{
+  "work_item_id": "BL-002",
+  "title": "Backlog and Roadmap as Generated State",
+  "description": "Create canonical work and sprint records with deterministic projections.",
+  "status": "active",
+  "sprint_id": "NKS-SPR-002",
+  "acceptance_criteria": ["Work state is machine-readable", "Completion requires evidence", "Backlog and roadmap projections are deterministic", "Authority drift fails validation"],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-12T20:19:00Z"
+}
