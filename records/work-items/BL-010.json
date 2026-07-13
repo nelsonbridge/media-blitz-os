@@ -1,18 +1,19 @@
 {
   "work_item_id": "BL-010",
-  "title": "Forensic Reconstruction, Migration, and Adapter Parity",
-  "description": "Reconstruct every governed state mutation and model-use decision, migrate legacy records through authorized transformations, and prove clean-room offline portability plus equivalent transaction behavior across filesystem and GitHub adapters.",
+  "title": "Forensic Reconstruction, Migration, and Approval-Context Portability",
+  "description": "Reconstruct every governed mutation, enforce authorized migration, and prove clean-room portability and adapter parity without allowing TEST authority or evidence to escalate into PRODUCTION.",
   "status": "planned",
   "sprint_id": "NKS-SPR-010",
   "acceptance_criteria": [
-    "Every canonical state, transition, revocation, model-feedback package, receipt, rollback, and recovery action is reconstructable",
-    "Legacy records migrate only through explicit authorization, exact hashes, transformation lineage, and immutable receipts",
-    "Offline export, import, verification, and disaster-recovery drills pass in a clean environment",
-    "Filesystem and GitHub adapters exhibit equivalent idempotency, transaction-state, recovery, and audit behavior",
-    "Unsupported, corrupt, stale, or unauthorized schema migrations fail closed with forensic findings"
+    "Every canonical creation, transition, revocation, interpretation package, model-use publication, receipt, rollback, recovery, and approval consumption is reconstructable",
+    "Import and migration preserve execution context, approval identity, hashes, scope, authority, validity, consumption, and receipt lineage",
+    "TEST approvals, receipts, provenance, and adapter capabilities cannot be relabeled, transformed, or recovered as PRODUCTION",
+    "Schema-version, privilege-escalation, corrupt-input, stale-input, unsupported-migration, and cross-context replay fixtures fail closed",
+    "Clean-room offline bootstrap, import, verification, operation, export, rollback, and disaster-recovery exercises pass",
+    "Filesystem and GitHub adapters exhibit equivalent transaction, approval, idempotency, recovery, receipt, and audit behavior"
   ],
   "evidence": [],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T21:40:00Z"
+  "updated_at": "2026-07-12T22:30:00Z"
 }
