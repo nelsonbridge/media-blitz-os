@@ -95,6 +95,9 @@ class ApprovalEvaluation(BaseModel):
 
     approval_id: str
     authorized: bool
+    consumption_status: ApprovalConsumptionStatus
+    reserved_by_transaction_id: str | None = None
+    consumed_by_transaction_id: str | None = None
     exact_retry: bool = False
     reasons: list[str] = Field(default_factory=list)
     evaluated_at: datetime
@@ -150,6 +153,9 @@ def evaluate_approval(
     return ApprovalEvaluation(
         approval_id=grant.approval_id,
         authorized=not reasons,
+        consumption_status=grant.consumption_status,
+        reserved_by_transaction_id=grant.reserved_by_transaction_id,
+        consumed_by_transaction_id=grant.consumed_by_transaction_id,
         exact_retry=exact_retry and not reasons,
         reasons=reasons,
         evaluated_at=evaluated_at,
