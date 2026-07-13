@@ -1,18 +1,19 @@
 {
   "sprint_id": "NKS-SPR-010",
   "sequence": 10,
-  "title": "Forensic reconstruction, migration, and adapter parity",
-  "objective": "Prove that canonical state, transitions, model-use decisions, receipts, and recovery can be reconstructed, migrated, exported, imported, and executed equivalently across supported adapters.",
+  "title": "Forensic reconstruction, migration, and approval-context portability",
+  "objective": "Prove system-wide reconstruction, authorized migration, clean-room recovery, and adapter parity while preserving execution context and preventing TEST-to-PRODUCTION privilege escalation.",
   "status": "planned",
   "work_item_ids": ["BL-010"],
   "exit_criteria": [
-    "Every canonical state creation, transition, revocation, interpretation package, and recovery action is reconstructable from journals and receipts",
-    "Legacy human-state and canonical-source records migrate into current schemas through authorized, receipted transformations",
-    "Clean-room offline export, import, verification, and disaster-recovery exercises pass without network or GitHub dependency",
-    "Filesystem and GitHub adapters satisfy equivalent transaction, idempotency, recovery, and audit contracts",
-    "Schema-version and forward/backward migration fixtures fail closed on unsupported or unauthorized changes"
+    "Every governed mutation and approval consumption is forensically reconstructable",
+    "Import and migration preserve execution context, approval scope, authority, hashes, validity, consumption, and receipt lineage",
+    "TEST approvals, receipts, provenance, and adapter capabilities cannot become PRODUCTION through import, migration, replay, rollback, or recovery",
+    "Privilege-escalation, corrupt-input, stale-input, unsupported-migration, and cross-context replay tests fail closed",
+    "Clean-room offline and disaster-recovery exercises pass",
+    "Filesystem and GitHub adapters exhibit equivalent transaction, approval, recovery, receipt, and audit behavior"
   ],
   "evidence": [],
   "blocked_reason": null,
-  "updated_at": "2026-07-12T21:40:00Z"
+  "updated_at": "2026-07-12T22:30:00Z"
 }

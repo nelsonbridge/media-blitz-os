@@ -1,12 +1,19 @@
 {
   "work_item_id": "BL-005",
-  "title": "Journaled Promotion and Receipts",
-  "description": "Make canonical promotion atomic or journaled, recoverable, idempotent, and fully receipted.",
+  "title": "Journaled Promotion, Approval Context, and Receipts",
+  "description": "Make canonical promotion recoverable, atomic or journaled, idempotent, and fully receipted while enforcing context-bound approvals and TEST/PRODUCTION side-effect isolation.",
   "status": "planned",
   "sprint_id": "NKS-SPR-005",
-  "acceptance_criteria": ["Promotion is recoverable", "Partial state cannot persist", "Immutable receipts bind input and output hashes"],
+  "acceptance_criteria": [
+    "Promotion is recoverable after interruption and partial authority cannot persist",
+    "Immutable receipts bind exact input hashes, output hashes, transaction identity, and execution context",
+    "Approval evaluation binds decision, execution context, permitted action, subject, content hash, authority, validity, and consumption state",
+    "TEST approvals cannot authorize PRODUCTION effects, production receipts, REAL feedback, or production model ingestion",
+    "TEST execution uses adapters that are technically incapable of external side effects",
+    "Import, replay, migration, rollback, and recovery cannot escalate or rewrite approval context"
+  ],
   "evidence": [],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T20:19:00Z"
+  "updated_at": "2026-07-12T22:30:00Z"
 }

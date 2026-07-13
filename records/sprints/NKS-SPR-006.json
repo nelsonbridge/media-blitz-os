@@ -1,17 +1,19 @@
 {
   "sprint_id": "NKS-SPR-006",
   "sequence": 6,
-  "title": "Temporal human-state reference implementation",
-  "objective": "Productionize temporal human state on the Sprint 5 journal, receipt, recovery, and audit foundation before generalizing it into Governed Adaptive Knowledge.",
+  "title": "Temporal human-state testable reference implementation",
+  "objective": "Productionize temporal human state on the Sprint 5 journal, receipt, recovery, audit, and approval-context foundation, proving a complete automated TEST lane before generalizing into Governed Adaptive Knowledge.",
   "status": "planned",
   "work_item_ids": ["BL-006"],
   "exit_criteria": [
     "Human-state creation, transition, policy, revocation, and model-feedback operations are journaled and receipted",
+    "TEST-scoped approvals exercise the complete human-state loop without external effects or production authority",
+    "PRODUCTION actions require recognized human authority and reject TEST approval consumption",
     "Privacy classification, consent, purpose scope, redaction, expiration, and revocation fail closed",
-    "CLI commands, canonical collections, generated views, authority manifest, and forensic audit are integrated",
-    "Behavior evaluation fixtures prove that current, contextual, uncertain, retracted, and superseded states are handled correctly"
+    "CLI commands, canonical collections, generated views, authority manifest, and forensic audit preserve execution context",
+    "Behavior evaluation fixtures prove that current, contextual, uncertain, disputed, retracted, superseded, and context-inapplicable states are handled correctly"
   ],
   "evidence": [],
   "blocked_reason": null,
-  "updated_at": "2026-07-12T21:40:00Z"
+  "updated_at": "2026-07-12T22:30:00Z"
 }

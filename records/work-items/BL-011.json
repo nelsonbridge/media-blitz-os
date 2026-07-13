@@ -1,18 +1,19 @@
 {
   "work_item_id": "BL-011",
-  "title": "Operational Proof, Hardening, and Release Candidate",
-  "description": "Run repeated governed adaptive loops across human and nonhuman subjects, complete an explicitly approved external publication feedback cycle, execute chaos and recovery drills, close release-blocking risks, and produce a versioned release candidate with rollback and operating documentation.",
+  "title": "Two-Lane Operational Proof, Hardening, and Release Candidate",
+  "description": "Demonstrate repeated governed adaptive operation through a fully automated TEST lane and a separately authorized PRODUCTION lane, then harden and version the release candidate without conflating test evidence with real-world authority.",
   "status": "planned",
   "sprint_id": "NKS-SPR-011",
   "acceptance_criteria": [
-    "Two or more complete adaptive loops run across distinct subject classes with reconstructable receipts",
-    "Publication 000001 or an equivalent explicitly approved external cycle produces publication, feedback, transition, and model-use evidence",
-    "Injected failures recover without duplicate, unexplained, or partially authoritative state",
-    "Security, privacy, behavior, portability, migration, recovery, and performance release gates pass",
-    "Threat model, known limitations, operational runbooks, rollback plan, release notes, versioned artifacts, and explicit release decision exist"
+    "At least two complete TEST adaptive loops run across different subject classes using TEST-scoped approvals and non-side-effecting adapters",
+    "TEST loops produce reconstructable journals, receipts, rollback evidence, and behavior results but cannot satisfy production publication, real-feedback, or release-authorization gates",
+    "Publication 000001 or an equivalent external cycle uses explicit PRODUCTION approval, external publication, REAL feedback, governed transition, interpretation, and production model-use receipts",
+    "Chaos and interruption drills recover without duplicates, unexplained state, context escalation, or partial authority",
+    "Release-blocking security, privacy, behavior, portability, migration, recovery, context-isolation, and performance findings are closed or explicitly accepted",
+    "Threat model, known limitations, runbooks, rollback plan, release notes, versioned artifacts, and explicit production release decision exist"
   ],
   "evidence": [],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T21:40:00Z"
+  "updated_at": "2026-07-12T22:30:00Z"
 }

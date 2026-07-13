@@ -4,7 +4,7 @@
 
 ## Census
 
-- Files: 570
+- Files: 571
 - Canonical records: 152
 - Tests: 33
 - Schemas: 9
@@ -24,7 +24,7 @@
 | contracts | 3 |
 | corpus | 42 |
 | diagnostics | 2 |
-| docs | 24 |
+| docs | 25 |
 | editorial | 1 |
 | engineering | 1 |
 | evidence | 10 |

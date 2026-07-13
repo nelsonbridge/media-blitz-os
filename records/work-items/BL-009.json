@@ -1,18 +1,19 @@
 {
   "work_item_id": "BL-009",
-  "title": "Governed Interpretation and Model-Use Boundary",
-  "description": "Implement deterministic context- and authority-aware interpretation resolution and publish purpose-limited model-feedback packages with consent, privacy filtering, redaction, expiration, revocation, journaling, and immutable receipts.",
+  "title": "Interpretation Resolution and Context-Bound Model Use",
+  "description": "Resolve governed interpretation deterministically and publish model-use packages through purpose-limited, privacy-filtered, context-bound approvals with non-side-effecting TEST adapters and separately governed PRODUCTION dispatch.",
   "status": "planned",
   "sprint_id": "NKS-SPR-009",
   "acceptance_criteria": [
-    "ResolveInterpretation is deterministic and context, domain, temporal validity, confidence, uncertainty, and authority aware",
-    "Retracted, expired, superseded, disputed, context-inapplicable, or unauthorized state cannot control model behavior",
-    "Model feedback is purpose-scoped, hash-bound, privacy-filtered, expirable, revocable, journaled, and receipted",
-    "Behavior evaluation fixtures prove current-state preference without erasing historical lineage",
-    "Forecasting and prediction remain noncanonical downstream consumers"
+    "ResolveInterpretation is deterministic across subject, domain, context, scope, authority, validity, confidence, and behavioral authority",
+    "Retracted, expired, superseded, disputed, context-inapplicable, or unauthorized states cannot control behavior",
+    "TEST-scoped interpretation and model-use approvals exercise package generation, redaction, expiration, revocation, recovery, and receipts without production dispatch",
+    "TEST adapters cannot publish to production models or external systems and TEST receipts cannot satisfy production evidence gates",
+    "PRODUCTION model-use packages require recognized authority, exact hashes, purpose limitation, privacy filtering, expiration, revocation, journaling, and immutable receipts",
+    "Prediction and forecasting remain downstream, noncanonical, and unable to mutate canonical knowledge state"
   ],
   "evidence": [],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T21:40:00Z"
+  "updated_at": "2026-07-12T22:30:00Z"
 }
