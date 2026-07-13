@@ -22,6 +22,9 @@ class ModelUseEventStage(StrEnum):
     RESERVATION_RELEASED = "RESERVATION_RELEASED"
     FAILED = "FAILED"
     RECOVERED = "RECOVERED"
+    TEST_DISPATCH_SIMULATED = "TEST_DISPATCH_SIMULATED"
+    PRODUCTION_DISPATCHED = "PRODUCTION_DISPATCHED"
+    DISPATCH_FAILED = "DISPATCH_FAILED"
 
 
 def model_use_event_id(
@@ -55,6 +58,8 @@ class ModelUseJournal:
         payload_hash: str,
         execution_context: str,
         failure_type: str | None = None,
+        actor_capability: str = "governed-model-use",
+        actor_implementation: str = "nks.application.execute_human_state_model_use",
     ) -> None:
         if self._writer is None:
             return
@@ -69,17 +74,21 @@ class ModelUseJournal:
         }
         if failure_type is not None:
             payload["failure_type"] = failure_type
+        failure_stages = {
+            ModelUseEventStage.FAILED,
+            ModelUseEventStage.DISPATCH_FAILED,
+        }
         self._writer.append(
             WorkflowEvent(
                 event_id=model_use_event_id(
                     transaction_id,
                     stage,
-                    discriminator=failure_type if stage == ModelUseEventStage.FAILED else None,
+                    discriminator=failure_type if stage in failure_stages else None,
                 ),
                 event_type=f"MODEL_USE_{stage.value}",
                 subject_id=subject_id,
-                actor_capability="governed-model-use",
-                actor_implementation="nks.application.execute_human_state_model_use",
+                actor_capability=actor_capability,
+                actor_implementation=actor_implementation,
                 authority_source=approval_id,
                 payload=payload,
             )
