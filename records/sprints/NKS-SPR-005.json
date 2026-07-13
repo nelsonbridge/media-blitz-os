@@ -1,12 +1,19 @@
 {
   "sprint_id": "NKS-SPR-005",
   "sequence": 5,
-  "title": "Journaled promotion transaction",
-  "objective": "Make canonical promotion recoverable, atomic or journaled, idempotent, and receipted.",
+  "title": "Journaled promotion and approval isolation",
+  "objective": "Make canonical promotion recoverable, journaled, idempotent, and receipted while establishing context-bound TEST and PRODUCTION approval lanes with policy and adapter-level side-effect isolation.",
   "status": "planned",
   "work_item_ids": ["BL-005"],
-  "exit_criteria": ["Interrupted promotion is recoverable", "Partial state cannot persist", "Immutable promotion receipts exist"],
+  "exit_criteria": [
+    "Interrupted promotion converges to one committed transaction or one documented rollback",
+    "Partial authority cannot persist and immutable receipts bind exact inputs, outputs, and execution context",
+    "Approval grants are evaluated against context, action, subject, content, authority, validity, and consumption state",
+    "TEST approvals cannot satisfy PRODUCTION gates or produce production side effects, receipts, REAL feedback, or production model ingestion",
+    "TEST adapters are incapable of external side effects",
+    "Import, replay, migration, rollback, and recovery preserve approval context and reject escalation"
+  ],
   "evidence": [],
   "blocked_reason": null,
-  "updated_at": "2026-07-12T20:19:00Z"
+  "updated_at": "2026-07-12T22:30:00Z"
 }
