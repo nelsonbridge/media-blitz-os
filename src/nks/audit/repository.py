@@ -34,6 +34,8 @@ RECORD_COLLECTIONS = (
     "human-transitions",
     "model-ingestion-policies",
     "model-feedback-receipts",
+    "reconciliation-findings",
+    "disclosure-receipts",
     "canonical-reservations",
     "work-items",
     "sprints",
@@ -50,6 +52,8 @@ IDENTIFIER_FIELDS_BY_COLLECTION: dict[str, tuple[str, ...]] = {
     "human-transitions": ("transition_id",),
     "model-ingestion-policies": ("policy_id",),
     "model-feedback-receipts": ("receipt_id",),
+    "reconciliation-findings": ("finding_id",),
+    "disclosure-receipts": ("disclosure_id",),
     "canonical-reservations": ("reservation_id",),
     "work-items": ("work_item_id",),
     "sprints": ("sprint_id",),
@@ -135,6 +139,10 @@ def _integrity_issues(records: dict[str, dict]) -> list[str]:
         "observation_id": False,
         "transition_ids": True,
         "observation_ids": True,
+        "requested_finding_ids": True,
+        "surfaced_finding_ids": True,
+        "deferred_finding_ids": True,
+        "withheld_finding_ids": True,
         "work_item_ids": True,
     }
     for record_id, item in sorted(records.items()):
@@ -149,6 +157,20 @@ def _integrity_issues(records: dict[str, dict]) -> list[str]:
                     issues.append(f"orphan reference: {record_id}.{field} -> {target}")
 
         path = item["path"]
+        if path.startswith("records/disclosure-receipts/"):
+            decision_finding_ids = {
+                decision.get("finding_id")
+                for decision in data.get("decisions", [])
+                if isinstance(decision, dict) and decision.get("finding_id")
+            }
+            requested_finding_ids = set(data.get("requested_finding_ids", []))
+            if not decision_finding_ids <= requested_finding_ids:
+                unknown = sorted(decision_finding_ids - requested_finding_ids)
+                issues.append(
+                    f"disclosure decisions reference unrequested findings: "
+                    f"{record_id} ({', '.join(unknown)})"
+                )
+
         if path.startswith("records/canonical-reservations/"):
             target_id = data.get("target_source_id")
             if data.get("status") == "COMMITTED":
