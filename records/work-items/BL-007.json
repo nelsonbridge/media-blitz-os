@@ -1,18 +1,19 @@
 {
   "work_item_id": "BL-007",
-  "title": "Governed Adaptive Knowledge State Substrate",
-  "description": "Generalize governed temporal state into Subject, Domain, and KnowledgeState records for people, projects, organizations, products, policies, hypotheses, models, and the NKS, using the journaled mutation and receipt foundation established in Sprint 5.",
+  "title": "Governed Adaptive Knowledge State and Approval Substrate",
+  "description": "Generalize the proven human-state reference implementation into platform-neutral governed subjects, domains, knowledge states, and context-bound approval applicability across human and nonhuman subject classes.",
   "status": "planned",
   "sprint_id": "NKS-SPR-007",
   "acceptance_criteria": [
-    "Subject, Domain, and KnowledgeState schemas are generic and platform-neutral",
-    "Context, confidence, temporal validity, provenance, interpretive authority, behavioral authority, sensitivity, and lineage are explicit",
-    "Journal, receipt, recovery, audit, repository, schema, and generated-view integrations exist",
-    "At least one human and two nonhuman subject classes pass the same functional contract",
-    "Human-agency, consent, privacy, and self-declaration protections are preserved as stricter policy overlays"
+    "Generic Subject, Domain, KnowledgeState, and ApprovalApplicability contracts work without subject-specific schema forks",
+    "Context, confidence, validity, provenance, interpretive authority, behavioral authority, sensitivity, lineage, and execution context are explicit",
+    "All state creation reuses Sprint 5 journaling, receipts, recovery, idempotency, and context-isolation controls",
+    "TEST approvals can exercise generic state creation across one human and at least two nonhuman subject classes without production effects",
+    "Human consent, privacy, self-declaration, correction, and production-approval rights remain stricter policy overlays",
+    "Canonical views, authority registration, migration mappings, and audits preserve approval and execution context"
   ],
   "evidence": [],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T21:40:00Z"
+  "updated_at": "2026-07-12T22:30:00Z"
 }
