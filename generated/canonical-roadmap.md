@@ -57,110 +57,123 @@ Exit criteria:
 - Authorization is hash-bound
 - Idempotency is enforced
 
-## Sprint 5 — Journaled promotion transaction
+## Sprint 5 — Journaled promotion and approval isolation
 
 - ID: `NKS-SPR-005`
 - Status: `planned`
-- Objective: Make canonical promotion recoverable, atomic or journaled, idempotent, and receipted.
+- Objective: Make canonical promotion recoverable, journaled, idempotent, and receipted while establishing context-bound TEST and PRODUCTION approval lanes with policy and adapter-level side-effect isolation.
 - Work items: BL-005
 - Evidence records: 0
 
 Exit criteria:
 
-- Interrupted promotion is recoverable
-- Partial state cannot persist
-- Immutable promotion receipts exist
+- Interrupted promotion converges to one committed transaction or one documented rollback
+- Partial authority cannot persist and immutable receipts bind exact inputs, outputs, and execution context
+- Approval grants are evaluated against context, action, subject, content, authority, validity, and consumption state
+- TEST approvals cannot satisfy PRODUCTION gates or produce production side effects, receipts, REAL feedback, or production model ingestion
+- TEST adapters are incapable of external side effects
+- Import, replay, migration, rollback, and recovery preserve approval context and reject escalation
 
-## Sprint 6 — Temporal human-state reference implementation
+## Sprint 6 — Temporal human-state testable reference implementation
 
 - ID: `NKS-SPR-006`
 - Status: `planned`
-- Objective: Productionize temporal human state on the Sprint 5 journal, receipt, recovery, and audit foundation before generalizing it into Governed Adaptive Knowledge.
+- Objective: Productionize temporal human state on the Sprint 5 journal, receipt, recovery, audit, and approval-context foundation, proving a complete automated TEST lane before generalizing into Governed Adaptive Knowledge.
 - Work items: BL-006
 - Evidence records: 0
 
 Exit criteria:
 
 - Human-state creation, transition, policy, revocation, and model-feedback operations are journaled and receipted
+- TEST-scoped approvals exercise the complete human-state loop without external effects or production authority
+- PRODUCTION actions require recognized human authority and reject TEST approval consumption
 - Privacy classification, consent, purpose scope, redaction, expiration, and revocation fail closed
-- CLI commands, canonical collections, generated views, authority manifest, and forensic audit are integrated
-- Behavior evaluation fixtures prove that current, contextual, uncertain, retracted, and superseded states are handled correctly
+- CLI commands, canonical collections, generated views, authority manifest, and forensic audit preserve execution context
+- Behavior evaluation fixtures prove that current, contextual, uncertain, disputed, retracted, superseded, and context-inapplicable states are handled correctly
 
-## Sprint 7 — Governed Adaptive Knowledge state substrate
+## Sprint 7 — Governed Adaptive Knowledge state and approval substrate
 
 - ID: `NKS-SPR-007`
 - Status: `planned`
-- Objective: Introduce generic subject, domain, and KnowledgeState contracts on the journaled mutation foundation while retaining stricter human-agency policy overlays.
+- Objective: Generalize the proven human-state reference implementation into platform-neutral Subject, Domain, KnowledgeState, and approval-applicability contracts while preserving stricter human-agency protections.
 - Work items: BL-007
 - Evidence records: 0
 
 Exit criteria:
 
-- Generic Subject, Domain, and KnowledgeState records exist with explicit context, confidence, validity, provenance, authority, sensitivity, and lineage
-- The substrate supports humans and at least two nonhuman subject classes without schema forks
-- Knowledge-state creation is journaled, receipted, recoverable, audited, and represented in deterministic views
-- Human consent, privacy, and self-declaration protections remain stricter than generic entity policies
+- Generic state and approval-applicability contracts work without subject-specific schema forks
+- Every state creation is journaled, receipted, recoverable, auditable, and bound to execution context
+- TEST approvals exercise one human and at least two nonhuman subject classes without production effects
+- Human consent, privacy, self-declaration, correction, and production-authority protections remain stricter and regression-tested
+- Views, authority registration, migration mappings, and audits preserve approval context
+- The substrate is ready for context-bound transactional transitions in Sprint 8
 
-## Sprint 8 — Governed transition and conflict engine
+## Sprint 8 — Governed transition, conflict, and approval engine
 
 - ID: `NKS-SPR-008`
 - Status: `planned`
-- Objective: Apply typed knowledge-state transitions transactionally while preserving history, authority, branch semantics, and conflict visibility.
+- Objective: Implement the transactional state-change engine for Governed Adaptive Knowledge with exact state hashes, context-bound approvals, conflict semantics, recovery, and receipts.
 - Work items: BL-008
 - Evidence records: 0
 
 Exit criteria:
 
-- Correction, refinement, expansion, restriction, supersession, reversal, retraction, context shift, confidence change, merge, split, and deprecation rules are enforced
-- Transitions are journaled, receipted, idempotent, recoverable, and linked to exact before-and-after state hashes
-- Cycle, overlap, branch, merge, and conflicting-authority conditions fail closed or enter explicit review state
-- The human-state subsystem uses the generic engine without weakening human-specific authority protections
+- All supported transition types bind exact before-and-after state hashes, execution context, approval identity, and receipt
+- TEST transition approvals cannot mutate PRODUCTION state or satisfy production transition gates
+- Invalid, cyclic, contradictory, context-mismatched, or unauthorized transitions fail closed
+- Transition lineage, branch and merge state, overlaps, and authority conflicts are reconstructable
+- Recovery after interruption produces one committed transition or one documented rollback
+- Human-state regression tests pass through the generic engine without weakening human-specific controls
 
-## Sprint 9 — Interpretation resolution and model-use boundary
+## Sprint 9 — Interpretation resolution and context-bound model-use boundary
 
 - ID: `NKS-SPR-009`
 - Status: `planned`
-- Objective: Resolve the current governed interpretation for a subject and context, then publish only purpose-limited, redactable, expirable, revocable, receipted model feedback.
+- Objective: Implement deterministic interpretation resolution and purpose-limited model-use publication with context-bound approvals, non-side-effecting TEST adapters, and separately authorized PRODUCTION dispatch.
 - Work items: BL-009
 - Evidence records: 0
 
 Exit criteria:
 
-- ResolveInterpretation deterministically returns applicable current state, lineage, confidence, uncertainty, restrictions, and behavioral authority
-- Retracted, expired, superseded, context-inapplicable, or unauthorized state cannot control behavior
-- Model-feedback packages are purpose-scoped, hash-bound, privacy-filtered, expirable, revocable, and immutably receipted
-- Prediction remains a downstream consumer and cannot write probabilistic forecasts into canonical knowledge state
+- Interpretation resolution is deterministic and authority-aware across context, validity, confidence, restrictions, and behavioral authority
+- Retracted, expired, superseded, disputed, context-inapplicable, or unauthorized state cannot control behavior
+- TEST approvals exercise interpretation and model-package generation, redaction, expiration, revocation, recovery, and receipts without production dispatch
+- TEST adapters cannot publish externally and TEST evidence cannot satisfy production gates
+- PRODUCTION model-use packages require recognized authority, exact hashes, purpose limitation, privacy filtering, journaling, revocation, and immutable receipts
+- Prediction remains downstream and cannot mutate canonical knowledge state
 
-## Sprint 10 — Forensic reconstruction, migration, and adapter parity
+## Sprint 10 — Forensic reconstruction, migration, and approval-context portability
 
 - ID: `NKS-SPR-010`
 - Status: `planned`
-- Objective: Prove that canonical state, transitions, model-use decisions, receipts, and recovery can be reconstructed, migrated, exported, imported, and executed equivalently across supported adapters.
+- Objective: Prove system-wide reconstruction, authorized migration, clean-room recovery, and adapter parity while preserving execution context and preventing TEST-to-PRODUCTION privilege escalation.
 - Work items: BL-010
 - Evidence records: 0
 
 Exit criteria:
 
-- Every canonical state creation, transition, revocation, interpretation package, and recovery action is reconstructable from journals and receipts
-- Legacy human-state and canonical-source records migrate into current schemas through authorized, receipted transformations
-- Clean-room offline export, import, verification, and disaster-recovery exercises pass without network or GitHub dependency
-- Filesystem and GitHub adapters satisfy equivalent transaction, idempotency, recovery, and audit contracts
-- Schema-version and forward/backward migration fixtures fail closed on unsupported or unauthorized changes
+- Every governed mutation and approval consumption is forensically reconstructable
+- Import and migration preserve execution context, approval scope, authority, hashes, validity, consumption, and receipt lineage
+- TEST approvals, receipts, provenance, and adapter capabilities cannot become PRODUCTION through import, migration, replay, rollback, or recovery
+- Privilege-escalation, corrupt-input, stale-input, unsupported-migration, and cross-context replay tests fail closed
+- Clean-room offline and disaster-recovery exercises pass
+- Filesystem and GitHub adapters exhibit equivalent transaction, approval, recovery, receipt, and audit behavior
 
-## Sprint 11 — Operational proof, hardening, and release candidate
+## Sprint 11 — Two-lane operational proof, hardening, and release candidate
 
 - ID: `NKS-SPR-011`
 - Status: `planned`
-- Objective: Demonstrate repeated governed adaptive operation across human and nonhuman subjects, complete an explicitly approved external feedback cycle, exercise recovery under failure, and produce a versioned release candidate.
+- Objective: Prove repeated governed adaptive operation through a fully automated TEST lane and a separately authorized PRODUCTION lane, then harden and version the release candidate without treating test approval as real-world authority.
 - Work items: BL-011
 - Evidence records: 0
 
 Exit criteria:
 
-- At least two complete adaptive loops run across different subject classes, including one human-state loop and one nonhuman knowledge-state loop
-- Publication 000001 or an equivalent explicitly approved external publication cycle produces publication, feedback, transition, and model-use receipts
-- Chaos and interruption exercises recover without duplicate, unexplained, or partially authoritative state
-- Security, privacy, behavior, portability, migration, and performance regressions pass as a release gate
-- Threat model, known limitations, operational runbooks, rollback plan, versioned artifacts, and release decision are recorded
+- At least two complete TEST adaptive loops run across different subject classes using TEST-scoped approvals and non-side-effecting adapters
+- TEST journals and receipts are reconstructable but cannot satisfy production publication, REAL-feedback, model-ingestion, release-evidence, or release-authorization gates
+- Publication 000001 or an equivalent external cycle uses explicit PRODUCTION approval, external publication, REAL feedback, governed transition, interpretation, and production model-use receipts
+- Chaos and interruption drills recover without duplicates, unexplained state, context escalation, or partial authority
+- All release gates pass or have explicit governing-authority acceptance with recorded limitations
+- A versioned release candidate, rollback path, threat model, runbooks, release notes, and explicit production release decision exist
 
 Total sprints: 11
