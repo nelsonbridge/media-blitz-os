@@ -19,6 +19,7 @@ from nks.enki.disclosure import (
     disclosure_content_hash,
 )
 from nks.governance.approvals import (
+    ApprovalConsumptionStatus,
     ApprovalDecision,
     ApprovalGrant,
     ApprovalRequest,
@@ -46,7 +47,11 @@ def _result(level: ConfidenceLevel = ConfidenceLevel.HIGH) -> ReconciliationResu
         priority_refs=["PRI-1"],
         confidence=ConfidenceAssertion(
             level=level,
-            rationale="Supported by attributable evidence." if level != ConfidenceLevel.UNKNOWN else "Support is incomplete.",
+            rationale=(
+                "Supported by attributable evidence."
+                if level != ConfidenceLevel.UNKNOWN
+                else "Support is incomplete."
+            ),
             evidence_ids=["E-1"] if level != ConfidenceLevel.UNKNOWN else [],
         ),
         created_at=_now(),
@@ -62,15 +67,20 @@ def _result(level: ConfidenceLevel = ConfidenceLevel.HIGH) -> ReconciliationResu
     )
 
 
-def _external_approval(result: ReconciliationResult, *, action: str = "disclose:external_model"):
+def _external_approval(
+    result: ReconciliationResult,
+    *,
+    action: str = "disclose:external_model",
+):
     content_hash = disclosure_content_hash(result, {"RF-1"})
+    transaction_id = "TX-DISCLOSE-1"
     request = ApprovalRequest(
         execution_context=ExecutionContext.TEST,
         action=action,
         subject_id=result.subject.subject_id,
         content_sha256=content_hash,
         acceptable_authority_classes={"SUBJECT"},
-        transaction_id="TX-DISCLOSE-1",
+        transaction_id=transaction_id,
         requested_at=_now(),
     )
     grant = ApprovalGrant(
@@ -84,16 +94,15 @@ def _external_approval(result: ReconciliationResult, *, action: str = "disclose:
         authority_class="SUBJECT",
         issued_at=_now() - timedelta(minutes=1),
         expires_at=_now() + timedelta(hours=1),
+        consumption_status=ApprovalConsumptionStatus.RESERVED,
+        reserved_by_transaction_id=transaction_id,
     )
     return evaluate_approval(grant, request)
 
 
 def test_subject_requested_finding_is_surfaced_without_external_approval() -> None:
-    result = _result()
-    service = ConservativeDisclosureService()
-
-    disclosed = service.evaluate(
-        result,
+    disclosed = ConservativeDisclosureService().evaluate(
+        _result(),
         DisclosureContext(
             disclosure_id="DISC-1",
             audience=DisclosureAudience.SUBJECT,
@@ -144,7 +153,7 @@ def test_unknown_confidence_is_deferred_not_erased() -> None:
     assert disclosed.receipt.withheld_finding_ids == []
 
 
-def test_external_disclosure_requires_content_bound_approval() -> None:
+def test_external_disclosure_requires_content_bound_reserved_approval() -> None:
     result = _result()
     service = ConservativeDisclosureService()
 
@@ -173,6 +182,8 @@ def test_external_disclosure_requires_content_bound_approval() -> None:
     assert without_approval.receipt.withheld_finding_ids == ["RF-1"]
     assert with_approval.receipt.surfaced_finding_ids == ["RF-1"]
     assert with_approval.receipt.approval_id == "APR-DISCLOSE-1"
+    assert with_approval.receipt.execution_context == ExecutionContext.TEST
+    assert with_approval.receipt.transaction_id == "TX-DISCLOSE-1"
 
 
 def test_external_approval_for_wrong_action_is_withheld() -> None:
