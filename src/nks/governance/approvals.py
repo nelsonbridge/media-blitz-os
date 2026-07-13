@@ -1,9 +1,8 @@
 """Context-bound approval grants and fail-closed evaluation.
 
-This module implements the executable contract accepted in ADR-0001. It does
-not persist or consume approvals; it evaluates whether a supplied grant may
-legitimately authorize one exact requested operation. Reservation and durable
-consumption remain application and adapter responsibilities.
+This module implements the executable contract accepted in ADR-0001. It
+models exact authority and lifecycle state but leaves durable compare-and-swap
+reservation and consumption to application services and adapters.
 """
 
 from __future__ import annotations
@@ -48,6 +47,7 @@ class ApprovalGrant(BaseModel):
     expires_at: datetime | None = None
     revoked_at: datetime | None = None
     consumption_status: ApprovalConsumptionStatus = ApprovalConsumptionStatus.AVAILABLE
+    reserved_by_transaction_id: str | None = None
     consumed_by_transaction_id: str | None = None
     metadata: dict[str, object] = Field(default_factory=dict)
 
@@ -57,6 +57,15 @@ class ApprovalGrant(BaseModel):
             raise ValueError("expires_at must follow issued_at")
         if self.revoked_at is not None and self.revoked_at < self.issued_at:
             raise ValueError("revoked_at cannot precede issued_at")
+
+        if self.consumption_status == ApprovalConsumptionStatus.RESERVED:
+            if not self.reserved_by_transaction_id:
+                raise ValueError("reserved approvals require reserved_by_transaction_id")
+            if self.consumed_by_transaction_id is not None:
+                raise ValueError("reserved approvals cannot name a consuming transaction")
+        elif self.reserved_by_transaction_id is not None:
+            raise ValueError("only reserved approvals may name a reserving transaction")
+
         if self.consumption_status == ApprovalConsumptionStatus.CONSUMED:
             if not self.consumed_by_transaction_id:
                 raise ValueError("consumed approvals require consumed_by_transaction_id")
@@ -100,9 +109,9 @@ def evaluate_approval(
 ) -> ApprovalEvaluation:
     """Evaluate all ADR-0001 dimensions without mutating the grant.
 
-    Ambiguity fails closed. A consumed grant is accepted only for an exact retry
-    using the same transaction identifier; this does not authorize a second
-    consumption operation.
+    Ambiguity fails closed. A reservation is usable only by its owning
+    transaction. A consumed grant is accepted only for an exact retry using the
+    same transaction identifier; this does not authorize a second consumption.
     """
 
     evaluated_at = now or request.requested_at
@@ -126,6 +135,10 @@ def evaluate_approval(
         reasons.append("grant is revoked")
     if grant.consumption_status == ApprovalConsumptionStatus.REVOKED:
         reasons.append("grant consumption state is REVOKED")
+
+    if grant.consumption_status == ApprovalConsumptionStatus.RESERVED:
+        if grant.reserved_by_transaction_id != request.transaction_id:
+            reasons.append("grant is reserved by another transaction")
 
     exact_retry = False
     if grant.consumption_status == ApprovalConsumptionStatus.CONSUMED:
