@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import hashlib
 import json
 from enum import StrEnum
 from pathlib import Path
@@ -10,7 +9,10 @@ from typing import TypeVar
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
-from nks.application.human_state_model_use import GovernedHumanStateModelUseReceipt
+from nks.application.human_state_model_use import (
+    GovernedHumanStateModelUseReceipt,
+    hash_model_use_package,
+)
 from nks.application.model_use_journal import ModelUseEventStage
 from nks.domain.human_state import ModelFeedbackPackage
 from nks.domain.models import WorkflowEvent
@@ -41,11 +43,6 @@ class ModelUseForensicReport(BaseModel):
     output_pair_present: bool = False
     reconstructable: bool = False
     issues: list[str] = Field(default_factory=list)
-
-
-def _hash_package(package: ModelFeedbackPackage) -> str:
-    serialized = package.model_dump_json(exclude_none=False)
-    return "sha256:" + hashlib.sha256(serialized.encode("utf-8")).hexdigest()
 
 
 def _load_json_records(directory: Path, record_type: type[RecordT]) -> list[RecordT]:
@@ -221,7 +218,7 @@ def reconstruct_model_use(
             else:
                 if on_disk_receipt != receipt:
                     conflicts.append("selected and on-disk generated receipts differ")
-                observed_hash = _hash_package(package)
+                observed_hash = hash_model_use_package(package)
                 if observed_hash != receipt.payload_hash:
                     conflicts.append(
                         "generated payload hash does not match selected receipt"
