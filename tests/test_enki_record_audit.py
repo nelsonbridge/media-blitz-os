@@ -31,6 +31,10 @@ def _records(root: Path) -> None:
         {"observation_id": "OBS-1"},
     )
     _write_json(
+        root / "records" / "approval-grants" / "APR-1.json",
+        {"approval_id": "APR-1"},
+    )
+    _write_json(
         root / "records" / "reconciliation-findings" / "RF-1.json",
         {
             "finding_id": "RF-1",
@@ -59,9 +63,10 @@ def test_audit_recognizes_enki_record_families(tmp_path: Path) -> None:
     payload = json.loads(result.json_path.read_text(encoding="utf-8"))
 
     assert result.issue_count == 0
+    assert payload["record_counts"]["approval-grants"] == 1
     assert payload["record_counts"]["reconciliation-findings"] == 1
     assert payload["record_counts"]["disclosure-receipts"] == 1
-    assert payload["record_count"] == 3
+    assert payload["record_count"] == 4
 
 
 def test_audit_detects_orphan_disclosure_finding(tmp_path: Path) -> None:
