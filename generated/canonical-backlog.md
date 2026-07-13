@@ -8,12 +8,12 @@
 | BL-002 | complete | NKS-SPR-002 | Backlog and Roadmap as Generated State | 2 |
 | BL-003 | blocked | NKS-SPR-003 | Publication 000001 Live Cycle | 0 |
 | BL-004 | complete | NKS-SPR-004 | Restricted Canonical Writer | 5 |
-| BL-005 | planned | NKS-SPR-005 | Journaled Promotion and Receipts | 0 |
-| BL-006 | planned | NKS-SPR-006 | Transactional Human-State Reference Implementation | 0 |
-| BL-007 | planned | NKS-SPR-007 | Governed Adaptive Knowledge State Substrate | 0 |
-| BL-008 | planned | NKS-SPR-008 | Governed Transition and Conflict Engine | 0 |
-| BL-009 | planned | NKS-SPR-009 | Governed Interpretation and Model-Use Boundary | 0 |
-| BL-010 | planned | NKS-SPR-010 | Forensic Reconstruction, Migration, and Adapter Parity | 0 |
-| BL-011 | planned | NKS-SPR-011 | Operational Proof, Hardening, and Release Candidate | 0 |
+| BL-005 | planned | NKS-SPR-005 | Journaled Promotion, Approval Context, and Receipts | 0 |
+| BL-006 | planned | NKS-SPR-006 | Temporal Human-State Testable Reference Implementation | 0 |
+| BL-007 | planned | NKS-SPR-007 | Governed Adaptive Knowledge State and Approval Substrate | 0 |
+| BL-008 | planned | NKS-SPR-008 | Governed Transition, Conflict, and Approval Engine | 0 |
+| BL-009 | planned | NKS-SPR-009 | Interpretation Resolution and Context-Bound Model Use | 0 |
+| BL-010 | planned | NKS-SPR-010 | Forensic Reconstruction, Migration, and Approval-Context Portability | 0 |
+| BL-011 | planned | NKS-SPR-011 | Two-Lane Operational Proof, Hardening, and Release Candidate | 0 |
 
 Total work items: 11
