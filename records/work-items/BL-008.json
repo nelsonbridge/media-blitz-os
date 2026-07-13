@@ -1,18 +1,19 @@
 {
   "work_item_id": "BL-008",
-  "title": "Governed Transition and Conflict Engine",
-  "description": "Govern correction, refinement, expansion, restriction, supersession, reversal, retraction, context shift, confidence change, merge, split, and deprecation as journaled transitions between exact knowledge-state versions, including conflict, branching, and review semantics.",
+  "title": "Governed Transition, Conflict, and Approval Engine",
+  "description": "Govern all knowledge-state transitions transactionally while binding transition authority to exact before-and-after hashes, execution context, and non-escalating approval grants.",
   "status": "planned",
   "sprint_id": "NKS-SPR-008",
   "acceptance_criteria": [
-    "Invalid, cyclic, contradictory, or unauthorized transitions fail closed",
-    "Explicit subject declarations, human-reviewed conclusions, and governed inference remain distinguishable",
-    "Every transition binds exact before-and-after hashes and produces an immutable receipt",
-    "Branch, merge, split, overlap, and conflicting-authority conditions are explicit and reconstructable",
-    "Human-state transitions run through the generic engine while retaining stricter human policy controls"
+    "Correction, refinement, expansion, restriction, supersession, reversal, retraction, context shift, confidence change, merge, split, and deprecation are enforced",
+    "Every transition binds exact before-and-after hashes, execution context, approval identity, and transaction receipt",
+    "TEST transition approvals cannot mutate PRODUCTION state or produce production receipts",
+    "Invalid, cyclic, contradictory, context-mismatched, or unauthorized transitions fail closed",
+    "Branch, merge, overlap, and conflicting-authority states are explicit and reconstructable",
+    "Human-state transition regression tests pass through the generic engine without weakening human-specific controls"
   ],
   "evidence": [],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T21:40:00Z"
+  "updated_at": "2026-07-12T22:30:00Z"
 }
