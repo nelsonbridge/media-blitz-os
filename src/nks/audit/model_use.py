@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from enum import StrEnum
 from pathlib import Path
 from typing import TypeVar
@@ -56,18 +57,38 @@ def _load_json_records(directory: Path, record_type: type[RecordT]) -> list[Reco
     return records
 
 
-def _generated_receipts(repository_root: Path) -> list[GovernedHumanStateModelUseReceipt]:
+def _generated_receipts_for_transaction(
+    repository_root: Path,
+    transaction_id: str,
+) -> tuple[list[GovernedHumanStateModelUseReceipt], list[str]]:
+    """Read only generated receipts that claim the requested transaction.
+
+    Legacy or unrelated generated receipt formats do not make reconstruction
+    crash. A malformed receipt that explicitly claims this transaction is
+    reported as conflicting evidence.
+    """
+
     output_root = repository_root / "generated" / "model-feedback"
     if not output_root.exists():
-        return []
+        return [], []
+
     receipts: list[GovernedHumanStateModelUseReceipt] = []
+    issues: list[str] = []
     for path in sorted(output_root.glob("*/receipt.json")):
-        receipts.append(
-            GovernedHumanStateModelUseReceipt.model_validate_json(
-                path.read_text(encoding="utf-8")
+        try:
+            raw = json.loads(path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        if raw.get("transaction_id") != transaction_id:
+            continue
+        try:
+            receipts.append(GovernedHumanStateModelUseReceipt.model_validate(raw))
+        except ValidationError:
+            issues.append(
+                "generated receipt claiming this transaction is invalid: "
+                f"{path.relative_to(repository_root)}"
             )
-        )
-    return receipts
+    return receipts, issues
 
 
 def reconstruct_model_use(
@@ -114,11 +135,11 @@ def reconstruct_model_use(
         conflicts.append("multiple canonical model-use receipts share transaction id")
     canonical_receipt = canonical_matches[0] if len(canonical_matches) == 1 else None
 
-    generated_matches = [
-        receipt
-        for receipt in _generated_receipts(repository_root)
-        if receipt.transaction_id == transaction_id
-    ]
+    generated_matches, generated_issues = _generated_receipts_for_transaction(
+        repository_root,
+        transaction_id,
+    )
+    conflicts.extend(generated_issues)
     if len(generated_matches) > 1:
         conflicts.append("multiple generated model-use receipts share transaction id")
     generated_receipt = generated_matches[0] if len(generated_matches) == 1 else None
@@ -143,19 +164,24 @@ def reconstruct_model_use(
     if approval_id is None:
         incomplete.append("approval identity cannot be reconstructed")
     else:
-        path = repository_root / "records" / "approval-grants" / f"{approval_id}.json"
-        if not path.exists():
+        matching_grants = [
+            grant
+            for grant in _load_json_records(
+                repository_root / "records" / "approval-grants",
+                ApprovalGrant,
+            )
+            if grant.approval_id == approval_id
+        ]
+        if not matching_grants:
             incomplete.append("approval grant record is missing")
+        elif len(matching_grants) > 1:
+            conflicts.append("multiple approval grant records share approval id")
         else:
-            try:
-                grant = ApprovalGrant.model_validate_json(path.read_text(encoding="utf-8"))
-            except ValidationError:
-                conflicts.append("approval grant record is invalid")
-            else:
-                if grant.consumption_status != ApprovalConsumptionStatus.CONSUMED:
-                    incomplete.append("approval grant is not consumed")
-                if grant.consumed_by_transaction_id != transaction_id:
-                    conflicts.append("approval grant was not consumed by this transaction")
+            grant = matching_grants[0]
+            if grant.consumption_status != ApprovalConsumptionStatus.CONSUMED:
+                incomplete.append("approval grant is not consumed")
+            if grant.consumed_by_transaction_id != transaction_id:
+                conflicts.append("approval grant was not consumed by this transaction")
 
     required_stages = {
         ModelUseEventStage.APPROVAL_RESERVED.value,
@@ -190,7 +216,7 @@ def reconstruct_model_use(
                 package = ModelFeedbackPackage.model_validate_json(
                     payload_path.read_text(encoding="utf-8")
                 )
-            except ValidationError:
+            except (ValidationError, OSError):
                 conflicts.append("generated model-use output is invalid")
             else:
                 if on_disk_receipt != receipt:
