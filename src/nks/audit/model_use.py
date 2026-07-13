@@ -5,14 +5,17 @@ from __future__ import annotations
 import hashlib
 from enum import StrEnum
 from pathlib import Path
+from typing import TypeVar
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from nks.application.human_state_model_use import GovernedHumanStateModelUseReceipt
 from nks.application.model_use_journal import ModelUseEventStage
 from nks.domain.human_state import ModelFeedbackPackage
 from nks.domain.models import WorkflowEvent
 from nks.governance.approvals import ApprovalConsumptionStatus, ApprovalGrant
+
+RecordT = TypeVar("RecordT", bound=BaseModel)
 
 
 class ForensicStatus(StrEnum):
@@ -33,6 +36,7 @@ class ModelUseForensicReport(BaseModel):
     payload_hash: str | None = None
     approval_consumed: bool = False
     canonical_receipt_present: bool = False
+    generated_receipt_present: bool = False
     output_pair_present: bool = False
     reconstructable: bool = False
     issues: list[str] = Field(default_factory=list)
@@ -43,22 +47,44 @@ def _hash_package(package: ModelFeedbackPackage) -> str:
     return "sha256:" + hashlib.sha256(serialized.encode("utf-8")).hexdigest()
 
 
-def _load_json_records(directory: Path, record_type):
+def _load_json_records(directory: Path, record_type: type[RecordT]) -> list[RecordT]:
     if not directory.exists():
         return []
-    records = []
+    records: list[RecordT] = []
     for path in sorted(directory.glob("*.json")):
         records.append(record_type.model_validate_json(path.read_text(encoding="utf-8")))
     return records
+
+
+def _generated_receipts(repository_root: Path) -> list[GovernedHumanStateModelUseReceipt]:
+    output_root = repository_root / "generated" / "model-feedback"
+    if not output_root.exists():
+        return []
+    receipts: list[GovernedHumanStateModelUseReceipt] = []
+    for path in sorted(output_root.glob("*/receipt.json")):
+        receipts.append(
+            GovernedHumanStateModelUseReceipt.model_validate_json(
+                path.read_text(encoding="utf-8")
+            )
+        )
+    return receipts
 
 
 def reconstruct_model_use(
     repository_root: Path,
     transaction_id: str,
 ) -> ModelUseForensicReport:
-    """Reconstruct authority, journal, receipt, and payload consistency."""
+    """Reconstruct authority, journal, receipt, and payload consistency.
 
-    issues: list[str] = []
+    A missing canonical receipt may still be reconstructable from one complete,
+    internally consistent generated payload/receipt pair. Reconstructability is
+    distinct from completeness: the report remains ``INCOMPLETE`` until the
+    canonical record and required journal stages exist.
+    """
+
+    incomplete: list[str] = []
+    conflicts: list[str] = []
+
     events = [
         event
         for event in _load_json_records(
@@ -73,10 +99,10 @@ def reconstruct_model_use(
         if event.payload.get("approval_id")
     }
     if len(approval_ids) > 1:
-        issues.append("transaction journal references multiple approval ids")
+        conflicts.append("transaction journal references multiple approval ids")
     approval_id = next(iter(approval_ids), None)
 
-    receipts = [
+    canonical_matches = [
         receipt
         for receipt in _load_json_records(
             repository_root / "records" / "model-feedback-receipts",
@@ -84,28 +110,52 @@ def reconstruct_model_use(
         )
         if receipt.transaction_id == transaction_id
     ]
-    if len(receipts) > 1:
-        issues.append("multiple canonical model-use receipts share transaction id")
-    receipt = receipts[0] if len(receipts) == 1 else None
+    if len(canonical_matches) > 1:
+        conflicts.append("multiple canonical model-use receipts share transaction id")
+    canonical_receipt = canonical_matches[0] if len(canonical_matches) == 1 else None
+
+    generated_matches = [
+        receipt
+        for receipt in _generated_receipts(repository_root)
+        if receipt.transaction_id == transaction_id
+    ]
+    if len(generated_matches) > 1:
+        conflicts.append("multiple generated model-use receipts share transaction id")
+    generated_receipt = generated_matches[0] if len(generated_matches) == 1 else None
+
+    if canonical_receipt is not None and generated_receipt is not None:
+        if canonical_receipt != generated_receipt:
+            conflicts.append("generated and canonical receipts differ")
+
+    receipt = canonical_receipt or generated_receipt
+    if canonical_receipt is None:
+        incomplete.append("canonical model-use receipt is missing")
+    if generated_receipt is None:
+        incomplete.append("generated model-use receipt is missing")
+
     if receipt is not None:
         if approval_id is None:
             approval_id = receipt.approval_id
         elif receipt.approval_id != approval_id:
-            issues.append("journal and canonical receipt approval ids differ")
+            conflicts.append("journal and receipt approval ids differ")
 
     grant: ApprovalGrant | None = None
     if approval_id is None:
-        issues.append("approval identity cannot be reconstructed")
+        incomplete.append("approval identity cannot be reconstructed")
     else:
         path = repository_root / "records" / "approval-grants" / f"{approval_id}.json"
         if not path.exists():
-            issues.append("approval grant record is missing")
+            incomplete.append("approval grant record is missing")
         else:
-            grant = ApprovalGrant.model_validate_json(path.read_text(encoding="utf-8"))
-            if grant.consumption_status != ApprovalConsumptionStatus.CONSUMED:
-                issues.append("approval grant is not consumed")
-            if grant.consumed_by_transaction_id != transaction_id:
-                issues.append("approval grant was not consumed by this transaction")
+            try:
+                grant = ApprovalGrant.model_validate_json(path.read_text(encoding="utf-8"))
+            except ValidationError:
+                conflicts.append("approval grant record is invalid")
+            else:
+                if grant.consumption_status != ApprovalConsumptionStatus.CONSUMED:
+                    incomplete.append("approval grant is not consumed")
+                if grant.consumed_by_transaction_id != transaction_id:
+                    conflicts.append("approval grant was not consumed by this transaction")
 
     required_stages = {
         ModelUseEventStage.APPROVAL_RESERVED.value,
@@ -115,57 +165,77 @@ def reconstruct_model_use(
     }
     missing_stages = sorted(required_stages - set(stages))
     if missing_stages:
-        issues.append(f"required journal stages are missing: {missing_stages}")
+        incomplete.append(f"required journal stages are missing: {missing_stages}")
     if (
         ModelUseEventStage.RECOVERED.value in stages
         and ModelUseEventStage.FAILED.value not in stages
     ):
-        issues.append("recovery stage exists without a recorded failure")
+        conflicts.append("recovery stage exists without a recorded failure")
 
     output_pair_present = False
+    payload_valid = False
     payload_hash: str | None = receipt.payload_hash if receipt else None
-    if receipt is None:
-        issues.append("canonical model-use receipt is missing")
-    else:
+    if receipt is not None:
         output = repository_root / "generated" / "model-feedback" / receipt.receipt_id
         payload_path = output / "payload.json"
         receipt_path = output / "receipt.json"
         output_pair_present = payload_path.exists() and receipt_path.exists()
         if not output_pair_present:
-            issues.append("generated payload and receipt pair is incomplete")
+            incomplete.append("generated payload and receipt pair is incomplete")
         else:
-            generated_receipt = GovernedHumanStateModelUseReceipt.model_validate_json(
-                receipt_path.read_text(encoding="utf-8")
-            )
-            if generated_receipt != receipt:
-                issues.append("generated and canonical receipts differ")
-            package = ModelFeedbackPackage.model_validate_json(
-                payload_path.read_text(encoding="utf-8")
-            )
-            observed_hash = _hash_package(package)
-            if observed_hash != receipt.payload_hash:
-                issues.append("generated payload hash does not match canonical receipt")
-            if grant is not None:
-                if grant.content_sha256 != receipt.payload_hash:
-                    issues.append("approval content hash does not match receipt payload hash")
-                if grant.subject_id != receipt.subject_id:
-                    issues.append("approval subject does not match receipt subject")
-                if grant.execution_context != receipt.execution_context:
-                    issues.append("approval execution context does not match receipt")
+            try:
+                on_disk_receipt = GovernedHumanStateModelUseReceipt.model_validate_json(
+                    receipt_path.read_text(encoding="utf-8")
+                )
+                package = ModelFeedbackPackage.model_validate_json(
+                    payload_path.read_text(encoding="utf-8")
+                )
+            except ValidationError:
+                conflicts.append("generated model-use output is invalid")
+            else:
+                if on_disk_receipt != receipt:
+                    conflicts.append("selected and on-disk generated receipts differ")
+                observed_hash = _hash_package(package)
+                if observed_hash != receipt.payload_hash:
+                    conflicts.append(
+                        "generated payload hash does not match selected receipt"
+                    )
+                else:
+                    payload_valid = True
 
-    conflict_markers = (
-        "differ",
-        "multiple",
-        "does not match",
-        "was not consumed by",
+                if grant is not None:
+                    if grant.content_sha256 != receipt.payload_hash:
+                        conflicts.append(
+                            "approval content hash does not match receipt payload hash"
+                        )
+                    if grant.subject_id != receipt.subject_id:
+                        conflicts.append("approval subject does not match receipt subject")
+                    if grant.execution_context != receipt.execution_context:
+                        conflicts.append(
+                            "approval execution context does not match receipt"
+                        )
+
+    approval_consumed = (
+        grant is not None
+        and grant.consumption_status == ApprovalConsumptionStatus.CONSUMED
+        and grant.consumed_by_transaction_id == transaction_id
     )
+    reconstructable = (
+        not conflicts
+        and generated_receipt is not None
+        and output_pair_present
+        and payload_valid
+        and approval_consumed
+    )
+    issues = [*conflicts, *incomplete]
     status = (
         ForensicStatus.CONFLICT
-        if any(marker in issue for issue in issues for marker in conflict_markers)
+        if conflicts
         else ForensicStatus.INCOMPLETE
-        if issues
+        if incomplete
         else ForensicStatus.COMPLETE
     )
+
     return ModelUseForensicReport(
         transaction_id=transaction_id,
         status=status,
@@ -174,13 +244,10 @@ def reconstruct_model_use(
         event_ids=sorted(event.event_id for event in events),
         event_stages=stages,
         payload_hash=payload_hash,
-        approval_consumed=(
-            grant is not None
-            and grant.consumption_status == ApprovalConsumptionStatus.CONSUMED
-            and grant.consumed_by_transaction_id == transaction_id
-        ),
-        canonical_receipt_present=receipt is not None,
+        approval_consumed=approval_consumed,
+        canonical_receipt_present=canonical_receipt is not None,
+        generated_receipt_present=generated_receipt is not None,
         output_pair_present=output_pair_present,
-        reconstructable=not issues,
+        reconstructable=reconstructable,
         issues=issues,
     )
