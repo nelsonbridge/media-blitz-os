@@ -12,6 +12,7 @@ from nks.application.human_state_model_use import (
     BuildHumanStateModelUsePackage,
     ResolveHumanStateInterpretation,
 )
+from nks.application.model_use_journal import ModelUseEventStage
 from nks.domain.human_state import (
     ExpressionStrength,
     HumanStateObservation,
@@ -105,6 +106,21 @@ class Writer:
         self.saved.append((package, receipt))
 
 
+class EventMemory:
+    def __init__(self) -> None:
+        self.events = {}
+
+    def append(self, event) -> None:
+        current = self.events.get(event.event_id)
+        if current is not None:
+            assert current == event
+            return
+        self.events[event.event_id] = event
+
+    def stages(self) -> list[str]:
+        return [event.payload["stage"] for event in self.events.values()]
+
+
 def _setup(*, policy_scope: IngestionScope = IngestionScope.PERSONALIZATION):
     repository = Repository(scope=policy_scope)
     interpretation = ResolveHumanStateInterpretation(repository).execute(
@@ -146,10 +162,12 @@ def _setup(*, policy_scope: IngestionScope = IngestionScope.PERSONALIZATION):
 def test_success_consumes_authority_before_recording() -> None:
     repository, interpretation, envelope, approvals, request = _setup()
     writer = Writer()
+    events = EventMemory()
     workflow = ExecuteGovernedHumanStateModelUse(
         model_use_reader=repository,
         model_use_writer=writer,
         approval_repository=approvals,
+        event_writer=events,
         publisher_version="test/v1",
     )
 
@@ -168,15 +186,23 @@ def test_success_consumes_authority_before_recording() -> None:
     assert receipt.authorized_at == request.requested_at
     assert receipt.recorded_at == request.requested_at
     assert writer.saved == [(envelope.package, receipt)]
+    assert events.stages() == [
+        ModelUseEventStage.APPROVAL_RESERVED.value,
+        ModelUseEventStage.AUTHORIZED.value,
+        ModelUseEventStage.APPROVAL_CONSUMED.value,
+        ModelUseEventStage.PERSISTED.value,
+    ]
 
 
 def test_failed_persistence_leaves_consumed_authority_for_exact_retry() -> None:
     repository, interpretation, envelope, approvals, request = _setup()
+    events = EventMemory()
     failing_writer = Writer(fail_once=True)
     workflow = ExecuteGovernedHumanStateModelUse(
         model_use_reader=repository,
         model_use_writer=failing_writer,
         approval_repository=approvals,
+        event_writer=events,
         publisher_version="test/v1",
     )
 
@@ -191,12 +217,15 @@ def test_failed_persistence_leaves_consumed_authority_for_exact_retry() -> None:
         )
 
     assert approvals.current.consumption_status == ApprovalConsumptionStatus.CONSUMED
+    assert ModelUseEventStage.FAILED.value in events.stages()
+    assert ModelUseEventStage.PERSISTED.value not in events.stages()
 
     recovery_writer = Writer()
     recovery = ExecuteGovernedHumanStateModelUse(
         model_use_reader=repository,
         model_use_writer=recovery_writer,
         approval_repository=approvals,
+        event_writer=events,
         publisher_version="test/v1",
     )
     receipt = recovery.execute(
@@ -212,16 +241,20 @@ def test_failed_persistence_leaves_consumed_authority_for_exact_retry() -> None:
     assert receipt.authorized_at == request.requested_at
     assert receipt.recorded_at == request.requested_at
     assert len(recovery_writer.saved) == 1
+    assert ModelUseEventStage.PERSISTED.value in events.stages()
+    assert ModelUseEventStage.RECOVERED.value in events.stages()
 
 
 def test_authorization_failure_releases_unconsumed_reservation() -> None:
     repository, interpretation, envelope, approvals, request = _setup(
         policy_scope=IngestionScope.RETRIEVAL
     )
+    events = EventMemory()
     workflow = ExecuteGovernedHumanStateModelUse(
         model_use_reader=repository,
         model_use_writer=Writer(),
         approval_repository=approvals,
+        event_writer=events,
         publisher_version="test/v1",
     )
 
@@ -237,3 +270,8 @@ def test_authorization_failure_releases_unconsumed_reservation() -> None:
 
     assert approvals.current.consumption_status == ApprovalConsumptionStatus.AVAILABLE
     assert approvals.current.reserved_by_transaction_id is None
+    assert events.stages() == [
+        ModelUseEventStage.APPROVAL_RESERVED.value,
+        ModelUseEventStage.RESERVATION_RELEASED.value,
+        ModelUseEventStage.FAILED.value,
+    ]
