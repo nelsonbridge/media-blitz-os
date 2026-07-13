@@ -21,7 +21,11 @@ from nks.enki.contracts import (
     ReconciliationResult,
     SubjectRef,
 )
-from nks.governance.approvals import ApprovalEvaluation
+from nks.governance.approvals import (
+    ApprovalConsumptionStatus,
+    ApprovalEvaluation,
+    ExecutionContext,
+)
 
 
 class DisclosureAudience(StrEnum):
@@ -63,6 +67,8 @@ class DisclosureReceipt(BaseModel):
     decisions: list[DisclosureDecision]
     content_sha256: str = Field(pattern=r"^sha256:[0-9a-f]{64}$")
     approval_id: str | None = None
+    execution_context: ExecutionContext | None = None
+    transaction_id: str | None = None
     policy_version: str
 
 
@@ -92,9 +98,10 @@ class ConservativeDisclosureService:
     """Apply a restrained, audience-aware disclosure policy.
 
     Subject-facing disclosure requires the subject to have requested the
-    findings. External model or public disclosure additionally requires an
-    authorized, content-bound approval evaluation for the exact audience.
-    Unknown-confidence findings are deferred rather than silently discarded.
+    findings. External model or public disclosure additionally requires a
+    reserved, content-bound approval evaluation for the exact audience. An
+    exact retry may use a previously consumed grant owned by the same
+    transaction. Unknown-confidence findings are deferred rather than erased.
     """
 
     def evaluate(
@@ -156,7 +163,7 @@ class ConservativeDisclosureService:
             for decision in decisions
             if decision.action == DisclosureAction.WITHHOLD
         ]
-        approval_id = context.approval.approval_id if context.approval else None
+        approval = context.approval
 
         return DisclosureResult(
             findings=surfaced,
@@ -172,7 +179,11 @@ class ConservativeDisclosureService:
                 withheld_finding_ids=withheld_ids,
                 decisions=decisions,
                 content_sha256=requested_hash,
-                approval_id=approval_id,
+                approval_id=approval.approval_id if approval else None,
+                execution_context=(
+                    approval.request.execution_context if approval else None
+                ),
+                transaction_id=approval.request.transaction_id if approval else None,
                 policy_version=context.policy_version,
             ),
         )
@@ -197,6 +208,17 @@ class ConservativeDisclosureService:
                 reasons.append("external disclosure approval evaluation is not authorized")
             else:
                 request = approval.request
+                reservation_owned = (
+                    approval.consumption_status == ApprovalConsumptionStatus.RESERVED
+                    and approval.reserved_by_transaction_id == request.transaction_id
+                )
+                retry_owned = (
+                    approval.consumption_status == ApprovalConsumptionStatus.CONSUMED
+                    and approval.exact_retry
+                    and approval.consumed_by_transaction_id == request.transaction_id
+                )
+                if not reservation_owned and not retry_owned:
+                    reasons.append("external disclosure approval is not reserved for execution")
                 if request.action != expected_action:
                     reasons.append("approval action does not match disclosure audience")
                 if request.subject_id != result.subject.subject_id:
