@@ -59,6 +59,7 @@ class ModelUseJournal:
         if self._writer is None:
             return
         payload = {
+            "logical_time": occurred_at.isoformat(),
             "transaction_id": transaction_id,
             "approval_id": approval_id,
             "policy_id": policy_id,
@@ -76,7 +77,6 @@ class ModelUseJournal:
                     discriminator=failure_type if stage == ModelUseEventStage.FAILED else None,
                 ),
                 event_type=f"MODEL_USE_{stage.value}",
-                occurred_at=occurred_at,
                 subject_id=subject_id,
                 actor_capability="governed-model-use",
                 actor_implementation="nks.application.execute_human_state_model_use",
