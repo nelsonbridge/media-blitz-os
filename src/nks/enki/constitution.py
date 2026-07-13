@@ -1,8 +1,9 @@
 """Executable traceability for Enki's current constitutional controls.
 
 This registry does not amend the Constitution or prove implementation by
-itself. It records where each candidate invariant is enforced so repository
-checks can detect missing or untraceable controls as the architecture evolves.
+itself. It records where each core invariant is enforced so repository checks
+can detect missing or untraceable controls as the architecture evolves.
+Product-specific enforcement belongs in product traceability registries.
 """
 
 from __future__ import annotations
@@ -67,8 +68,12 @@ TRACEABILITY_CONTROLS: tuple[InvariantControl, ...] = (
         status=ControlStatus.PARTIAL,
         contract_refs=("nks.enki.contracts.ReconciliationFinding",),
         service_refs=("nks.enki.reconciliation.RelationshipFindingStrategy",),
-        test_refs=("tests/test_enki_core.py::test_relationship_strategy_surfaces_divergence_without_reordering_priorities",),
-        limitations=("Product projections still require independent tests against prescriptive objective substitution.",),
+        test_refs=(
+            "tests/test_enki_core.py::test_relationship_strategy_surfaces_divergence_without_reordering_priorities",
+        ),
+        limitations=(
+            "Consuming products require independent controls against prescriptive objective substitution.",
+        ),
     ),
     InvariantControl(
         invariant=EnkiInvariant.ATTRIBUTABLE_HISTORY,
@@ -77,24 +82,27 @@ TRACEABILITY_CONTROLS: tuple[InvariantControl, ...] = (
         contract_refs=(
             "nks.enki.contracts.EvidenceRef",
             "nks.enki.contracts.ReconciliationFinding.interpretation_version",
-            "nks.application.human_state_model_use.GovernedHumanStateModelUseReceipt",
+            "nks.enki.disclosure.DisclosureReceipt",
+            "nks.governance.approvals.ApprovalEvaluation",
         ),
         service_refs=(
             "nks.enki.reconciliation.ReconciliationEngine",
-            "nks.application.human_state_model_use.RecordHumanStateModelUse",
+            "nks.enki.disclosure.ConservativeDisclosureService",
         ),
         test_refs=(
             "tests/test_enki_core.py::test_relationship_strategy_surfaces_divergence_without_reordering_priorities",
-            "tests/test_human_state_model_use.py::test_governed_authority_binds_exact_package_before_recording",
+            "tests/test_enki_disclosure.py::test_external_disclosure_requires_content_bound_approval",
         ),
         receipt_fields=(
             "approval_id",
             "execution_context",
             "transaction_id",
-            "payload_hash",
-            "publisher_version",
+            "content_sha256",
+            "policy_version",
         ),
-        limitations=("Canonical persistence and migration of reconciliation findings remain unimplemented.",),
+        limitations=(
+            "Canonical persistence and migration of reconciliation findings remain unimplemented.",
+        ),
     ),
     InvariantControl(
         invariant=EnkiInvariant.NO_HIDDEN_OBJECTIVE_SUBSTITUTION,
@@ -113,12 +121,16 @@ TRACEABILITY_CONTROLS: tuple[InvariantControl, ...] = (
         status=ControlStatus.PARTIAL,
         contract_refs=("nks.enki.contracts.ReconciliationResult",),
         service_refs=("nks.application.enki_workflow.ReconcileAndRecord",),
-        test_refs=("tests/test_enki_workflow.py::test_recording_reconciliation_does_not_imply_disclosure",),
-        limitations=("Triggering, scheduling, and longitudinal canonical persistence remain future work.",),
+        test_refs=(
+            "tests/test_enki_workflow.py::test_recording_reconciliation_does_not_imply_disclosure",
+        ),
+        limitations=(
+            "Triggering, scheduling, and longitudinal canonical persistence remain future work.",
+        ),
     ),
     InvariantControl(
         invariant=EnkiInvariant.GOVERNED_EXTERNAL_DISCLOSURE,
-        description="External disclosure requires exact audience, subject, content, and approval alignment.",
+        description="External disclosure requires exact audience, subject, content, and reserved approval alignment.",
         status=ControlStatus.IMPLEMENTED,
         contract_refs=(
             "nks.enki.disclosure.DisclosureContext",
@@ -133,7 +145,14 @@ TRACEABILITY_CONTROLS: tuple[InvariantControl, ...] = (
             "tests/test_enki_disclosure.py::test_external_disclosure_requires_content_bound_approval",
             "tests/test_enki_disclosure.py::test_external_approval_for_wrong_action_is_withheld",
         ),
-        receipt_fields=("content_sha256", "approval_id", "audience", "purpose"),
+        receipt_fields=(
+            "content_sha256",
+            "approval_id",
+            "execution_context",
+            "transaction_id",
+            "audience",
+            "purpose",
+        ),
     ),
     InvariantControl(
         invariant=EnkiInvariant.NO_COMPULSORY_CORRECTION,
@@ -141,7 +160,9 @@ TRACEABILITY_CONTROLS: tuple[InvariantControl, ...] = (
         status=ControlStatus.IMPLEMENTED,
         contract_refs=("nks.enki.contracts.ReconciliationFinding",),
         service_refs=("nks.enki.reconciliation.RelationshipFindingStrategy",),
-        test_refs=("tests/test_enki_core.py::test_relationship_strategy_surfaces_divergence_without_reordering_priorities",),
+        test_refs=(
+            "tests/test_enki_core.py::test_relationship_strategy_surfaces_divergence_without_reordering_priorities",
+        ),
     ),
     InvariantControl(
         invariant=EnkiInvariant.CONTEXT_PRESERVATION,
@@ -151,7 +172,7 @@ TRACEABILITY_CONTROLS: tuple[InvariantControl, ...] = (
             "nks.enki.contracts.SubjectRef",
             "nks.enki.contracts.TemporalApplicability",
             "nks.governance.approvals.ApprovalRequest",
-            "nks.application.human_state_model_use.GovernedHumanStateModelUseReceipt",
+            "nks.enki.disclosure.DisclosureReceipt",
         ),
         service_refs=(
             "nks.enki.reconciliation.ReconciliationEngine._validate_request_scope",
@@ -161,7 +182,12 @@ TRACEABILITY_CONTROLS: tuple[InvariantControl, ...] = (
             "tests/test_enki_core.py::test_unknown_observation_reference_fails_closed",
             "tests/test_governed_approvals.py::test_mismatched_dimension_fails_closed",
         ),
-        receipt_fields=("execution_context", "destination_scope", "payload_hash"),
+        receipt_fields=(
+            "execution_context",
+            "transaction_id",
+            "content_sha256",
+            "purpose",
+        ),
     ),
     InvariantControl(
         invariant=EnkiInvariant.RELATIONSHIP_INTEGRITY,
@@ -179,13 +205,12 @@ TRACEABILITY_CONTROLS: tuple[InvariantControl, ...] = (
     ),
     InvariantControl(
         invariant=EnkiInvariant.CORE_RESTRAINT,
-        description="Person, product, organizational maturity, and clinical ontologies remain outside Enki core.",
+        description="Subject and product ontologies remain outside the reconciliation core.",
         status=ControlStatus.IMPLEMENTED,
         contract_refs=("nks.enki",),
-        service_refs=("nks.adapters.human_state_enki",),
+        service_refs=("nks.enki.reconciliation.ReconciliationEngine",),
         test_refs=(
-            "tests/test_enki_core.py::test_enki_package_does_not_import_product_or_human_state_domains",
-            "tests/test_human_state_enki_adapter.py",
+            "tests/test_enki_core.py::test_enki_package_does_not_import_bounded_context_domains",
         ),
     ),
 )
