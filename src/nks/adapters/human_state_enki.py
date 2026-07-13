@@ -8,11 +8,7 @@ core ontology.
 
 from __future__ import annotations
 
-from nks.domain.human_state import (
-    ExpressionStrength,
-    HumanStateObservation,
-    HumanStateTransition,
-)
+from nks.domain.human_state import HumanStateObservation, HumanStateTransition
 from nks.enki.contracts import (
     ConfidenceAssertion,
     ConfidenceLevel,
@@ -96,13 +92,6 @@ def project_human_transition(record: HumanStateTransition) -> RelationshipAssert
     intentionally not projected. They are compatibility inputs, not governed
     authority under ADR-0001.
     """
-
-    origin = (
-        ExpressionOrigin.GOVERNED_INFERENCE
-        if record.expression_origin == ExpressionStrength.INFERRED
-        else ExpressionOrigin.OBSERVED
-    ) if hasattr(record, "expression_origin") else None
-    del origin  # Transition origin is preserved as metadata, not reinterpreted.
 
     return RelationshipAssertion(
         relationship_id=record.transition_id,
