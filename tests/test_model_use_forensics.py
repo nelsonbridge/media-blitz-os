@@ -137,7 +137,7 @@ def test_complete_transaction_reconstructs_without_issues(tmp_path: Path) -> Non
 
     report = reconstruct_model_use(tmp_path, "TX-1")
 
-    assert report.status == ForensicStatus.COMPLETE
+    assert report.status == ForensicStatus.COMPLETE, report.model_dump()
     assert report.reconstructable is True
     assert report.approval_consumed is True
     assert report.canonical_receipt_present is True
@@ -161,7 +161,7 @@ def test_missing_canonical_receipt_is_incomplete_but_reconstructable(
 
     report = reconstruct_model_use(tmp_path, "TX-1")
 
-    assert report.status == ForensicStatus.INCOMPLETE
+    assert report.status == ForensicStatus.INCOMPLETE, report.model_dump()
     assert report.reconstructable is True
     assert report.canonical_receipt_present is False
     assert report.generated_receipt_present is True
@@ -177,7 +177,7 @@ def test_missing_persisted_stage_is_incomplete_but_artifacts_remain_repairable(
 
     report = reconstruct_model_use(tmp_path, "TX-1")
 
-    assert report.status == ForensicStatus.INCOMPLETE
+    assert report.status == ForensicStatus.INCOMPLETE, report.model_dump()
     assert report.reconstructable is True
     assert any("required journal stages are missing" in issue for issue in report.issues)
 
@@ -193,7 +193,10 @@ def test_tampered_payload_is_a_forensic_conflict(tmp_path: Path) -> None:
     )
     payload = json.loads(payload_path.read_text(encoding="utf-8"))
     payload["behavioral_instructions"]["preserve_uncertainty"] = False
-    payload_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    payload_path.write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     report = reconstruct_model_use(tmp_path, "TX-1")
 
