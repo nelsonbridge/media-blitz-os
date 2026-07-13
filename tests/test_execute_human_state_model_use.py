@@ -165,6 +165,8 @@ def test_success_consumes_authority_before_recording() -> None:
     assert approvals.current.consumption_status == ApprovalConsumptionStatus.CONSUMED
     assert approvals.current.consumed_by_transaction_id == "TX-1"
     assert receipt.exact_retry is False
+    assert receipt.authorized_at == request.requested_at
+    assert receipt.recorded_at == request.requested_at
     assert writer.saved == [(envelope.package, receipt)]
 
 
@@ -206,7 +208,9 @@ def test_failed_persistence_leaves_consumed_authority_for_exact_retry() -> None:
         now=_now() + timedelta(seconds=1),
     )
 
-    assert receipt.exact_retry is True
+    assert receipt.exact_retry is False
+    assert receipt.authorized_at == request.requested_at
+    assert receipt.recorded_at == request.requested_at
     assert len(recovery_writer.saved) == 1
 
 
