@@ -13,6 +13,7 @@ from nks.enki.contracts import (
     RelationshipAssertion,
     SubjectRef,
 )
+from nks.enki.disclosure import DisclosureReceipt
 
 
 class ObservationReader(Protocol):
@@ -29,6 +30,10 @@ class RelationshipReader(Protocol):
 
 class FindingWriter(Protocol):
     def append_findings(self, findings: Iterable[ReconciliationFinding]) -> None: ...
+
+
+class DisclosureReceiptWriter(Protocol):
+    def append_disclosure_receipt(self, receipt: DisclosureReceipt) -> None: ...
 
 
 class DisclosureEvaluator(Protocol):
