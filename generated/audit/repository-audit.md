@@ -4,9 +4,9 @@
 
 ## Census
 
-- Files: 615
+- Files: 617
 - Canonical records: 152
-- Tests: 51
+- Tests: 52
 - Schemas: 12
 
 ## Top-Level File Counts
@@ -43,9 +43,9 @@
 | schemas | 12 |
 | scripts | 1 |
 | security | 1 |
-| src | 72 |
+| src | 73 |
 | templates | 12 |
-| tests | 59 |
+| tests | 60 |
 | validation | 5 |
 | visuals | 17 |
 | whitepapers | 1 |
