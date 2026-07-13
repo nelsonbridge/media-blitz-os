@@ -8,6 +8,7 @@ and persistence stages that can migrate to Enki-native contracts over time.
 from __future__ import annotations
 
 import hashlib
+import json
 from collections.abc import Sequence
 from datetime import datetime, timezone
 from typing import Protocol
@@ -96,6 +97,22 @@ def _sha256_text(value: str) -> str:
     return "sha256:" + hashlib.sha256(value.encode("utf-8")).hexdigest()
 
 
+def canonical_model_use_payload(package: ModelFeedbackPackage) -> str:
+    """Return the order-independent canonical JSON used for authority hashes."""
+
+    return json.dumps(
+        package.model_dump(mode="json", exclude_none=False),
+        sort_keys=True,
+        separators=(",", ":"),
+    )
+
+
+def hash_model_use_package(package: ModelFeedbackPackage) -> str:
+    """Hash the package's canonical semantic representation."""
+
+    return _sha256_text(canonical_model_use_payload(package))
+
+
 class ResolveHumanStateInterpretation:
     """Resolve current and historical state without authorizing disclosure."""
 
@@ -177,10 +194,9 @@ class BuildHumanStateModelUsePackage:
                 "do_not_treat_inference_as_self_declaration": True,
             },
         )
-        payload = package.model_dump_json(exclude_none=False)
         return HumanStateModelUseEnvelope(
             package=package,
-            payload_hash=_sha256_text(payload),
+            payload_hash=hash_model_use_package(package),
         )
 
 
