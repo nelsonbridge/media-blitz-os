@@ -20,6 +20,8 @@ from nks.application.model_use_journal import (
 from nks.domain.human_state import ModelFeedbackPackage
 from nks.governance.approvals import ExecutionContext
 
+_DISPATCH_IMPLEMENTATION = "nks.application.model_use_dispatch"
+
 
 class ExternalTransportReceipt(BaseModel):
     """Provider response returned by an injected production transport."""
@@ -113,6 +115,8 @@ class TestModelUseDispatcher:
             policy_id=receipt.policy_id,
             payload_hash=receipt.payload_hash,
             execution_context=receipt.execution_context.value,
+            actor_capability="test-model-use-dispatch",
+            actor_implementation=_DISPATCH_IMPLEMENTATION,
         )
         return result
 
@@ -156,6 +160,8 @@ class ProductionModelUseDispatcher:
                 payload_hash=receipt.payload_hash,
                 execution_context=receipt.execution_context.value,
                 failure_type=type(exc).__name__,
+                actor_capability="production-model-use-dispatch",
+                actor_implementation=_DISPATCH_IMPLEMENTATION,
             )
             raise
 
@@ -179,5 +185,7 @@ class ProductionModelUseDispatcher:
             policy_id=receipt.policy_id,
             payload_hash=receipt.payload_hash,
             execution_context=receipt.execution_context.value,
+            actor_capability="production-model-use-dispatch",
+            actor_implementation=_DISPATCH_IMPLEMENTATION,
         )
         return result
