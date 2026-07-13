@@ -1,17 +1,19 @@
 {
   "sprint_id": "NKS-SPR-008",
   "sequence": 8,
-  "title": "Governed transition and conflict engine",
-  "objective": "Apply typed knowledge-state transitions transactionally while preserving history, authority, branch semantics, and conflict visibility.",
+  "title": "Governed transition, conflict, and approval engine",
+  "objective": "Implement the transactional state-change engine for Governed Adaptive Knowledge with exact state hashes, context-bound approvals, conflict semantics, recovery, and receipts.",
   "status": "planned",
   "work_item_ids": ["BL-008"],
   "exit_criteria": [
-    "Correction, refinement, expansion, restriction, supersession, reversal, retraction, context shift, confidence change, merge, split, and deprecation rules are enforced",
-    "Transitions are journaled, receipted, idempotent, recoverable, and linked to exact before-and-after state hashes",
-    "Cycle, overlap, branch, merge, and conflicting-authority conditions fail closed or enter explicit review state",
-    "The human-state subsystem uses the generic engine without weakening human-specific authority protections"
+    "All supported transition types bind exact before-and-after state hashes, execution context, approval identity, and receipt",
+    "TEST transition approvals cannot mutate PRODUCTION state or satisfy production transition gates",
+    "Invalid, cyclic, contradictory, context-mismatched, or unauthorized transitions fail closed",
+    "Transition lineage, branch and merge state, overlaps, and authority conflicts are reconstructable",
+    "Recovery after interruption produces one committed transition or one documented rollback",
+    "Human-state regression tests pass through the generic engine without weakening human-specific controls"
   ],
   "evidence": [],
   "blocked_reason": null,
-  "updated_at": "2026-07-12T21:40:00Z"
+  "updated_at": "2026-07-12T22:30:00Z"
 }
