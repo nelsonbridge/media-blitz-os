@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+from datetime import datetime
 from enum import StrEnum
 from typing import Protocol
 
@@ -38,6 +39,7 @@ class ModelUseJournal:
         self,
         stage: ModelUseEventStage,
         *,
+        occurred_at: datetime,
         transaction_id: str,
         subject_id: str,
         approval_id: str,
@@ -62,6 +64,7 @@ class ModelUseJournal:
             WorkflowEvent(
                 event_id=model_use_event_id(transaction_id, stage),
                 event_type=f"MODEL_USE_{stage.value}",
+                occurred_at=occurred_at,
                 subject_id=subject_id,
                 actor_capability="governed-model-use",
                 actor_implementation="nks.application.execute_human_state_model_use",
