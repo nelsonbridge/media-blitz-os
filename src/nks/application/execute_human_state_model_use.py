@@ -21,7 +21,11 @@ from nks.application.human_state_model_use import (
     HumanStateModelUseWriter,
     RecordHumanStateModelUse,
 )
-from nks.governance.approvals import ApprovalRequest, evaluate_approval
+from nks.governance.approvals import (
+    ApprovalConsumptionStatus,
+    ApprovalRequest,
+    evaluate_approval,
+)
 
 
 class ExecuteGovernedHumanStateModelUse:
@@ -68,7 +72,9 @@ class ExecuteGovernedHumanStateModelUse:
         now: datetime | None = None,
     ) -> GovernedHumanStateModelUseReceipt:
         reserved = self._reserve.execute(approval_id, request, now=now)
-        consumed = reserved.consumption_status.value == "CONSUMED"
+        already_consumed = (
+            reserved.consumption_status == ApprovalConsumptionStatus.CONSUMED
+        )
 
         try:
             approval = evaluate_approval(reserved, request, now=now)
@@ -79,19 +85,14 @@ class ExecuteGovernedHumanStateModelUse:
                 approval=approval,
                 now=now,
             )
-            consumed_grant = self._consume.execute(approval_id, request, now=now)
-            consumed = True
-
-            consumed_evaluation = evaluate_approval(consumed_grant, request, now=now)
-            retry_authorized = authorized.model_copy(
-                update={"exact_retry": consumed_evaluation.exact_retry}
-            )
-            return self._record.execute(retry_authorized, recorded_at=now)
+            self._consume.execute(approval_id, request, now=now)
+            return self._record.execute(authorized, recorded_at=now)
         except Exception:
-            if not consumed:
+            if not already_consumed:
                 current = self._approval_repository.get_approval(approval_id)
                 if (
                     current is not None
+                    and current.consumption_status == ApprovalConsumptionStatus.RESERVED
                     and current.reserved_by_transaction_id == request.transaction_id
                 ):
                     self._release.execute(approval_id, request.transaction_id)
