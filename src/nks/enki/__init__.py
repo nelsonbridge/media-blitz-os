@@ -5,6 +5,13 @@ subject's values, objectives, choices, or accountability. Human, organization,
 and product-specific policy remain outside this package.
 """
 
+from nks.enki.constitution import (
+    ControlStatus,
+    EnkiInvariant,
+    InvariantControl,
+    TRACEABILITY_CONTROLS,
+    validate_traceability,
+)
 from nks.enki.contracts import (
     ConfidenceAssertion,
     ConfidenceLevel,
@@ -37,15 +44,18 @@ __all__ = [
     "ConfidenceAssertion",
     "ConfidenceLevel",
     "ConservativeDisclosureService",
+    "ControlStatus",
     "DisclosureAction",
     "DisclosureAudience",
     "DisclosureContext",
     "DisclosureDecision",
     "DisclosureReceipt",
     "DisclosureResult",
+    "EnkiInvariant",
     "EvidenceRef",
     "ExpressionOrigin",
     "FindingKind",
+    "InvariantControl",
     "Observation",
     "ReferenceKind",
     "ReconciliationEngine",
@@ -55,7 +65,9 @@ __all__ = [
     "RelationshipAssertion",
     "RelationshipFindingStrategy",
     "SubjectRef",
+    "TRACEABILITY_CONTROLS",
     "TemporalApplicability",
     "TemporalStatus",
     "disclosure_content_hash",
+    "validate_traceability",
 ]
