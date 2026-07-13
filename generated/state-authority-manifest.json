@@ -160,6 +160,25 @@
       ]
     }
   ],
+  "generated_output_families": [
+    {
+      "class": 2,
+      "directory_glob": "generated/model-feedback/*",
+      "generator": "nks.application.human_state.PublishHumanStateFeedback",
+      "manually_editable": false,
+      "required": false,
+      "required_files": [
+        "payload.json",
+        "receipt.json"
+      ],
+      "sources": [
+        "records/human-observations/*.json",
+        "records/human-transitions/*.json",
+        "records/model-ingestion-policies/*.json",
+        "records/model-feedback-receipts/*.json"
+      ]
+    }
+  ],
   "narrative_or_historical_material": {
     "authoritative_for_current_state": false,
     "class": 3,
@@ -173,5 +192,5 @@
       "README.md"
     ]
   },
-  "schema_version": "1.1"
+  "schema_version": "1.2"
 }
