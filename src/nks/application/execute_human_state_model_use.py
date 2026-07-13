@@ -86,7 +86,20 @@ class ExecuteGovernedHumanStateModelUse:
                 now=now,
             )
             self._consume.execute(approval_id, request, now=now)
-            return self._record.execute(authorized, recorded_at=now)
+
+            # The canonical receipt describes the transaction, not the current
+            # execution attempt. Retry state remains in ApprovalEvaluation so an
+            # exact retry reproduces byte-identical receipt content.
+            stable_authorized = authorized.model_copy(
+                update={
+                    "authorized_at": request.requested_at,
+                    "exact_retry": False,
+                }
+            )
+            return self._record.execute(
+                stable_authorized,
+                recorded_at=request.requested_at,
+            )
         except Exception:
             if not already_consumed:
                 current = self._approval_repository.get_approval(approval_id)
