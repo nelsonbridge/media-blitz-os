@@ -4,9 +4,9 @@
 
 ## Census
 
-- Files: 597
+- Files: 606
 - Canonical records: 152
-- Tests: 43
+- Tests: 48
 - Schemas: 9
 
 ## Top-Level File Counts
@@ -43,9 +43,9 @@
 | schemas | 9 |
 | scripts | 1 |
 | security | 1 |
-| src | 65 |
+| src | 69 |
 | templates | 12 |
-| tests | 51 |
+| tests | 56 |
 | validation | 5 |
 | visuals | 17 |
 | whitepapers | 1 |
@@ -70,6 +70,9 @@
 | human-transitions | 0 |
 | model-ingestion-policies | 0 |
 | model-feedback-receipts | 0 |
+| approval-grants | 0 |
+| reconciliation-findings | 0 |
+| disclosure-receipts | 0 |
 | canonical-reservations | 0 |
 | work-items | 11 |
 | sprints | 11 |
