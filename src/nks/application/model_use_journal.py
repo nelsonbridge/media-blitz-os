@@ -24,8 +24,16 @@ class ModelUseEventStage(StrEnum):
     RECOVERED = "RECOVERED"
 
 
-def model_use_event_id(transaction_id: str, stage: ModelUseEventStage) -> str:
-    digest = hashlib.sha256(f"{transaction_id}|{stage.value}".encode("utf-8")).hexdigest()
+def model_use_event_id(
+    transaction_id: str,
+    stage: ModelUseEventStage,
+    *,
+    discriminator: str | None = None,
+) -> str:
+    identity = f"{transaction_id}|{stage.value}"
+    if discriminator:
+        identity += f"|{discriminator}"
+    digest = hashlib.sha256(identity.encode("utf-8")).hexdigest()
     return "NKS-EVT-" + digest[:16].upper()
 
 
@@ -62,7 +70,11 @@ class ModelUseJournal:
             payload["failure_type"] = failure_type
         self._writer.append(
             WorkflowEvent(
-                event_id=model_use_event_id(transaction_id, stage),
+                event_id=model_use_event_id(
+                    transaction_id,
+                    stage,
+                    discriminator=failure_type if stage == ModelUseEventStage.FAILED else None,
+                ),
                 event_type=f"MODEL_USE_{stage.value}",
                 occurred_at=occurred_at,
                 subject_id=subject_id,
