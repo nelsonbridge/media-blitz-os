@@ -23,13 +23,26 @@ from nks.enki.contracts import (
     TemporalApplicability,
     TemporalStatus,
 )
+from nks.enki.disclosure import (
+    ConservativeDisclosureService,
+    DisclosureAudience,
+    DisclosureContext,
+    DisclosureReceipt,
+    DisclosureResult,
+    disclosure_content_hash,
+)
 from nks.enki.reconciliation import ReconciliationEngine, RelationshipFindingStrategy
 
 __all__ = [
     "ConfidenceAssertion",
     "ConfidenceLevel",
+    "ConservativeDisclosureService",
     "DisclosureAction",
+    "DisclosureAudience",
+    "DisclosureContext",
     "DisclosureDecision",
+    "DisclosureReceipt",
+    "DisclosureResult",
     "EvidenceRef",
     "ExpressionOrigin",
     "FindingKind",
@@ -44,4 +57,5 @@ __all__ = [
     "SubjectRef",
     "TemporalApplicability",
     "TemporalStatus",
+    "disclosure_content_hash",
 ]
