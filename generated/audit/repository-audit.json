@@ -3,7 +3,7 @@
   "extension_counts": {
     "(none)": 1,
     ".json": 162,
-    ".md": 290,
+    ".md": 291,
     ".png": 12,
     ".py": 86,
     ".svg": 8,
@@ -12,7 +12,7 @@
     ".yaml": 1,
     ".yml": 8
   },
-  "file_count": 570,
+  "file_count": 571,
   "issue_count": 0,
   "issues": [],
   "readiness": {
@@ -57,7 +57,7 @@
     "contracts": 3,
     "corpus": 42,
     "diagnostics": 2,
-    "docs": 24,
+    "docs": 25,
     "editorial": 1,
     "engineering": 1,
     "evidence": 10,
