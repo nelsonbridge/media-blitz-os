@@ -1,19 +1,19 @@
 {
   "sprint_id": "NKS-SPR-010",
   "sequence": 10,
-  "title": "Forensic reconstruction, migration, and approval-context portability",
-  "objective": "Prove system-wide reconstruction, authorized migration, clean-room recovery, and adapter parity while preserving execution context and preventing TEST-to-PRODUCTION privilege escalation.",
+  "title": "Governed Transition and Conflict Engine",
+  "objective": "Implement the transactional engine for correction, refinement, supersession, retraction, reversal, context shift, confidence change, branching, merging, splitting, restriction, expansion, and deprecation while preserving history, uncertainty, authority, and deterministic recovery.",
   "status": "planned",
   "work_item_ids": ["BL-010"],
   "exit_criteria": [
-    "Every governed mutation and approval consumption is forensically reconstructable",
-    "Import and migration preserve execution context, approval scope, authority, hashes, validity, consumption, and receipt lineage",
-    "TEST approvals, receipts, provenance, and adapter capabilities cannot become PRODUCTION through import, migration, replay, rollback, or recovery",
-    "Privilege-escalation, corrupt-input, stale-input, unsupported-migration, and cross-context replay tests fail closed",
-    "Clean-room offline and disaster-recovery exercises pass",
-    "Filesystem and GitHub adapters exhibit equivalent transaction, approval, recovery, receipt, and audit behavior"
+    "Every supported transition binds exact before-and-after state hashes, subject, context, evidence, provenance, interpretation version, authority, execution context, transaction, and receipt",
+    "Correction, refinement, supersession, retraction, reversal, expansion, restriction, confidence change, merge, split, and deprecation paths are explicit and versioned",
+    "Invalid, cyclic, contradictory, stale, context-mismatched, or unauthorized transitions fail closed",
+    "Branch, merge, overlap, contradiction, and competing-authority states remain reconstructable without manufacturing one falsely singular truth",
+    "Interrupted transitions converge to one committed transition, one recovered exact retry, or one documented rollback",
+    "Human-state regression tests pass through the generic engine without weakening human privacy, consent, correction, retraction, or authority controls"
   ],
   "evidence": [],
   "blocked_reason": null,
-  "updated_at": "2026-07-12T22:30:00Z"
+  "updated_at": "2026-07-14T06:20:00Z"
 }
