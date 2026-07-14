@@ -20,6 +20,7 @@ def _path(
         state_changing=state_changing,
         recovery_strategy=RecoveryStrategy.NONE,
         prohibited_effects=[
+            "production-effect",
             "production-credential-use",
             "external-effect",
             "release-self-approval",
