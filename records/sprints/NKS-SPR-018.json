@@ -1,0 +1,18 @@
+{
+  "sprint_id": "NKS-SPR-018",
+  "sequence": 18,
+  "title": "Privacy-Preserving Observability and Operational Metrics",
+  "objective": "Provide actionable health, metrics, tracing, and diagnostic evidence while preventing canonical content, private human state, secrets, or unauthorized context from leaking through telemetry.",
+  "status": "planned",
+  "work_item_ids": ["BL-018"],
+  "exit_criteria": [
+    "Structured operation, transaction, recovery, and adapter telemetry uses stable identifiers and bounded metadata",
+    "Metrics and traces expose no protected content, secrets, or disallowed personal data",
+    "Health, saturation, failure, and recovery indicators support explicit TEST service objectives",
+    "Telemetry loss, duplication, and correlation mismatch are detectable",
+    "Observability cannot mutate canonical state or widen disclosure"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-14T14:00:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "sprint_id": "NKS-SPR-022",
+  "sequence": 22,
+  "title": "Downstream Product Boundary Proofs",
+  "objective": "Demonstrate that Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity can consume Enki through scoped no-effect adapters without redefining the core or acquiring unauthorized authority.",
+  "status": "planned",
+  "work_item_ids": ["BL-022"],
+  "exit_criteria": [
+    "Each downstream suite uses an explicit consumer contract and no-effect TEST adapter",
+    "Consumer-specific views and packages preserve provenance, context, privacy, and authority",
+    "Products cannot write predictions, recommendations, publication decisions, or inferred preferences directly into canonical Enki state",
+    "Cross-product data leakage, authority reuse, and audience widening fail closed",
+    "At least one end-to-end TEST proof passes for each downstream suite"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-14T14:00:00Z"
+}

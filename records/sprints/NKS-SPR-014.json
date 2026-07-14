@@ -1,0 +1,20 @@
+{
+  "sprint_id": "NKS-SPR-014",
+  "sequence": 14,
+  "title": "Reproducible Release and Supply-Chain Integrity",
+  "objective": "Make every Enki release candidate reproducible from a clean checkout and bind source, dependencies, workflows, artifacts, and attestations without introducing production credentials or self-issued trust.",
+  "status": "active",
+  "work_item_ids": [
+    "BL-014"
+  ],
+  "exit_criteria": [
+    "Clean-room build regenerates the exact declared release candidate and artifact hashes",
+    "A machine-readable dependency inventory and SBOM cover runtime, test, workflow, and release tooling",
+    "Source, workflow, dependency, and artifact provenance are bound in reproducible TEST attestations",
+    "Dependency drift, artifact substitution, missing provenance, and secret leakage fail closed",
+    "Release verification remains independent of production credentials and cannot issue a human release decision"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-14T14:00:00Z"
+}

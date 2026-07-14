@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-023",
+  "title": "Production-Readiness Review and Enki 1.0 Decision Package",
+  "description": "Consolidate supply-chain, performance, isolation, policy, observability, retention, concurrency, compatibility, and consumer-boundary evidence into an independently reviewable Enki 1.0 decision package.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-023",
+  "acceptance_criteria": [
+    "All prior sprint evidence is assembled into one exact, versioned readiness manifest",
+    "Adversarial, chaos, recovery, privacy, isolation, compatibility, and supply-chain campaigns pass or have explicit accepted findings",
+    "Known limitations, production prerequisites, operating runbooks, rollback plans, and support boundaries are complete",
+    "An independent review checklist records unresolved concerns without self-certification",
+    "An Enki 1.0 candidate and human decision request exist without implying production approval"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-14T14:00:00Z"
+}

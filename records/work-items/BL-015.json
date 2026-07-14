@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-015",
+  "title": "Performance, Capacity, and Resource Boundaries",
+  "description": "Characterize Enki performance and resource behavior under governed synthetic workloads, publish explicit budgets and limits, and reject unsupported production-scale claims.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-015",
+  "acceptance_criteria": [
+    "Repeatable benchmarks cover transactions, state writes, reconciliation, transitions, model use, reconstruction, and export/import",
+    "Latency, throughput, memory, storage growth, and recovery cost are reported by workload size",
+    "Performance budgets and overload behavior are explicit and machine-tested",
+    "Benchmarks preserve TEST isolation and contain no private or production data",
+    "No benchmark result is represented as a production capacity guarantee"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-14T14:00:00Z"
+}

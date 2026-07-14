@@ -210,4 +210,164 @@ Exit criteria:
 - Chaos drills recover without duplicate effects, partial authority, unexplained state, audience widening, context escalation, or production effects
 - A hash-bound calibration report, threat model, runbooks, limitations, rollback package, release notes, exact evidence manifests, and versioned Enki release candidate exist for an explicit human release decision
 
-Total sprints: 13
+## Sprint 14 — Reproducible Release and Supply-Chain Integrity
+
+- ID: `NKS-SPR-014`
+- Status: `active`
+- Objective: Make every Enki release candidate reproducible from a clean checkout and bind source, dependencies, workflows, artifacts, and attestations without introducing production credentials or self-issued trust.
+- Work items: BL-014
+- Evidence records: 0
+
+Exit criteria:
+
+- Clean-room build regenerates the exact declared release candidate and artifact hashes
+- A machine-readable dependency inventory and SBOM cover runtime, test, workflow, and release tooling
+- Source, workflow, dependency, and artifact provenance are bound in reproducible TEST attestations
+- Dependency drift, artifact substitution, missing provenance, and secret leakage fail closed
+- Release verification remains independent of production credentials and cannot issue a human release decision
+
+## Sprint 15 — Performance, Capacity, and Resource Boundaries
+
+- ID: `NKS-SPR-015`
+- Status: `planned`
+- Objective: Characterize Enki performance and resource behavior under governed synthetic workloads, publish explicit budgets and limits, and reject unsupported production-scale claims.
+- Work items: BL-015
+- Evidence records: 0
+
+Exit criteria:
+
+- Repeatable benchmarks cover transactions, state writes, reconciliation, transitions, model use, reconstruction, and export/import
+- Latency, throughput, memory, storage growth, and recovery cost are reported by workload size
+- Performance budgets and overload behavior are explicit and machine-tested
+- Benchmarks preserve TEST isolation and contain no private or production data
+- No benchmark result is represented as a production capacity guarantee
+
+## Sprint 16 — Namespace, Tenant, and Subject Isolation
+
+- ID: `NKS-SPR-016`
+- Status: `planned`
+- Objective: Enforce namespace, tenant, subject, domain, and audience isolation across every governed operation, export, import, recovery, and downstream-consumer boundary.
+- Work items: BL-016
+- Evidence records: 0
+
+Exit criteria:
+
+- Every governed record and operation carries an explicit namespace or tenant boundary
+- Cross-tenant, cross-subject, cross-domain, and unauthorized audience access fails closed
+- Export, import, migration, replay, and recovery preserve isolation boundaries
+- Human consent, privacy, correction, retraction, and ownership protections remain stricter than generic tenant rules
+- Isolation failures are reconstructable without exposing protected content
+
+## Sprint 17 — Versioned Policy Lifecycle and Simulation
+
+- ID: `NKS-SPR-017`
+- Status: `planned`
+- Objective: Govern policy creation, comparison, simulation, approval, activation, rollback, and retirement without rewriting historical decisions or widening authority.
+- Work items: BL-017
+- Evidence records: 0
+
+Exit criteria:
+
+- Policy bundles are immutable, versioned, attributable, context-bound, and hash-bound
+- Policy simulation reports affected operations and decisions without mutating canonical state
+- Activation and rollback require exact authority and produce receipts
+- Historical decisions retain the policy version under which they were made
+- TEST policy outcomes cannot activate or replace PRODUCTION policy
+
+## Sprint 18 — Privacy-Preserving Observability and Operational Metrics
+
+- ID: `NKS-SPR-018`
+- Status: `planned`
+- Objective: Provide actionable health, metrics, tracing, and diagnostic evidence while preventing canonical content, private human state, secrets, or unauthorized context from leaking through telemetry.
+- Work items: BL-018
+- Evidence records: 0
+
+Exit criteria:
+
+- Structured operation, transaction, recovery, and adapter telemetry uses stable identifiers and bounded metadata
+- Metrics and traces expose no protected content, secrets, or disallowed personal data
+- Health, saturation, failure, and recovery indicators support explicit TEST service objectives
+- Telemetry loss, duplication, and correlation mismatch are detectable
+- Observability cannot mutate canonical state or widen disclosure
+
+## Sprint 19 — Retention, Archival, and Cryptographic Continuity
+
+- ID: `NKS-SPR-019`
+- Status: `planned`
+- Objective: Govern retention, archival, tombstoning, legal or subject-driven restriction, and hash-algorithm continuity while preserving historical lineage and authority.
+- Work items: BL-019
+- Evidence records: 0
+
+Exit criteria:
+
+- Retention and archival policies are explicit, versioned, purpose-bound, and authority-bound
+- Archival preserves verification, lineage, execution context, and receipt integrity
+- Restriction or deletion requests produce governed tombstones or redactions without silently rewriting history
+- Hash-algorithm migration preserves old verification and creates new receipted continuity evidence
+- Expired, archived, restricted, or revoked records cannot control unauthorized downstream behavior
+
+## Sprint 20 — Concurrency, Contention, and Distributed Recovery
+
+- ID: `NKS-SPR-020`
+- Status: `planned`
+- Objective: Prove correct behavior under concurrent approvals, competing writes, duplicate delivery, out-of-order evidence, adapter interruption, and partition-shaped failure.
+- Work items: BL-020
+- Evidence records: 0
+
+Exit criteria:
+
+- Concurrent approval reservation and consumption permit at most one conflicting effect
+- Duplicate, delayed, and out-of-order messages remain idempotent or fail closed
+- Compare-and-swap contention and adapter interruption produce reconstructable outcomes
+- Partition-shaped failures recover without split authority, duplicate effects, or lost receipts
+- Filesystem and GitHub adapters satisfy the declared concurrency and recovery contract
+
+## Sprint 21 — Stable Consumer API, CLI, and Compatibility Contract
+
+- ID: `NKS-SPR-021`
+- Status: `planned`
+- Objective: Expose a stable product-neutral Enki service boundary through versioned APIs and CLI operations without allowing consumers to bypass governance or access repositories directly.
+- Work items: BL-021
+- Evidence records: 0
+
+Exit criteria:
+
+- Versioned request, response, error, receipt, pagination, and idempotency contracts are explicit
+- CLI and API exercise the same application services and authority checks
+- Unsupported, ambiguous, or incompatible versions fail closed
+- Consumers cannot write canonical records or consume approvals through repository shortcuts
+- Generated contract documentation and compatibility fixtures remain deterministic
+
+## Sprint 22 — Downstream Product Boundary Proofs
+
+- ID: `NKS-SPR-022`
+- Status: `planned`
+- Objective: Demonstrate that Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity can consume Enki through scoped no-effect adapters without redefining the core or acquiring unauthorized authority.
+- Work items: BL-022
+- Evidence records: 0
+
+Exit criteria:
+
+- Each downstream suite uses an explicit consumer contract and no-effect TEST adapter
+- Consumer-specific views and packages preserve provenance, context, privacy, and authority
+- Products cannot write predictions, recommendations, publication decisions, or inferred preferences directly into canonical Enki state
+- Cross-product data leakage, authority reuse, and audience widening fail closed
+- At least one end-to-end TEST proof passes for each downstream suite
+
+## Sprint 23 — Production-Readiness Review and Enki 1.0 Decision Package
+
+- ID: `NKS-SPR-023`
+- Status: `planned`
+- Objective: Consolidate supply-chain, performance, isolation, policy, observability, retention, concurrency, compatibility, and consumer-boundary evidence into an independently reviewable Enki 1.0 decision package.
+- Work items: BL-023
+- Evidence records: 0
+
+Exit criteria:
+
+- All prior sprint evidence is assembled into one exact, versioned readiness manifest
+- Adversarial, chaos, recovery, privacy, isolation, compatibility, and supply-chain campaigns pass or have explicit accepted findings
+- Known limitations, production prerequisites, operating runbooks, rollback plans, and support boundaries are complete
+- An independent review checklist records unresolved concerns without self-certification
+- An Enki 1.0 candidate and human decision request exist without implying production approval
+
+Total sprints: 23
