@@ -1,9 +1,8 @@
 {
   "audit_version": 2,
   "extension_counts": {
-    "(none)": 2,
+    "(none)": 1,
     ".json": 206,
-    ".log": 1,
     ".md": 321,
     ".png": 12,
     ".py": 188,
@@ -13,7 +12,7 @@
     ".yaml": 1,
     ".yml": 8
   },
-  "file_count": 749,
+  "file_count": 747,
   "issue_count": 0,
   "issues": [],
   "readiness": {
@@ -52,7 +51,7 @@
   "schema_count": 16,
   "test_count": 80,
   "top_level_counts": {
-    "(root)": 7,
+    "(root)": 5,
     ".github": 9,
     ".vscode": 1,
     "adapters": 1,
