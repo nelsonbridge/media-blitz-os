@@ -47,7 +47,7 @@ jobs:
         run: |
           git fetch origin governance/promote-sprint-14-completion
           git checkout -B governance/promote-sprint-14-completion origin/governance/promote-sprint-14-completion
-          python -m nks.views.work_control write .
+          python -c "from pathlib import Path; from nks.views.work_control import write_work_control_views; write_work_control_views(Path('.'))"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add generated/canonical-backlog.md generated/canonical-roadmap.md
