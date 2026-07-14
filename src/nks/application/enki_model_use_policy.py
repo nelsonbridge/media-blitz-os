@@ -188,10 +188,13 @@ def build_enki_model_use_package(
 
     included: list[EnkiModelUseItem] = []
     decisions: list[ModelUseItemDecision] = []
-    used_directive_ids: list[str] = []
+    used_directive_ids: set[str] = set()
 
     for item in sorted(request.items, key=lambda candidate: candidate.item_id):
         directive = directives_by_item.get((item.item_id, item.item_kind))
+        if directive is not None:
+            used_directive_ids.add(directive.directive_id)
+
         action, reasons = _base_item_reasons(request, item)
         if action is not None:
             decisions.append(_decision(item, action, reasons, directive))
@@ -206,8 +209,8 @@ def build_enki_model_use_package(
                 )
             )
             continue
+
         action, reasons = _directive_reasons(request, item, directive)
-        used_directive_ids.append(directive.directive_id)
         if action is not None:
             decisions.append(_decision(item, action, reasons, directive))
             continue
@@ -260,24 +263,19 @@ def assert_package_context(
     request: EnkiModelUseRequest,
 ) -> None:
     expected_context_hash = model_use_context_sha256(request)
-    if package.package_id != request.package_id:
-        raise ModelUsePackageConflictError("package id does not match request")
-    if package.subject != request.subject:
-        raise ModelUsePackageConflictError("package subject does not match request")
-    if package.domain != request.domain:
-        raise ModelUsePackageConflictError("package domain does not match request")
-    if package.purpose != request.purpose:
-        raise ModelUsePackageConflictError("package purpose does not match request")
-    if package.audience != request.audience:
-        raise ModelUsePackageConflictError("package audience does not match request")
-    if package.context != request.context:
-        raise ModelUsePackageConflictError("package context does not match request")
-    if package.execution_context != request.execution_context:
-        raise ModelUsePackageConflictError(
-            "package execution context does not match request"
-        )
-    if package.context_sha256 != expected_context_hash:
-        raise ModelUsePackageConflictError("package context hash does not match request")
+    checks = {
+        "id": package.package_id == request.package_id,
+        "subject": package.subject == request.subject,
+        "domain": package.domain == request.domain,
+        "purpose": package.purpose == request.purpose,
+        "audience": package.audience == request.audience,
+        "context": package.context == request.context,
+        "execution context": package.execution_context == request.execution_context,
+        "context hash": package.context_sha256 == expected_context_hash,
+    }
+    for name, valid in checks.items():
+        if not valid:
+            raise ModelUsePackageConflictError(f"package {name} does not match request")
 
 
 def assert_package_not_revoked(
@@ -286,18 +284,17 @@ def assert_package_not_revoked(
 ) -> None:
     if revocation is None:
         return
-    if revocation.package_id != package.package_id:
-        raise ModelUsePackageConflictError("revocation package id does not match")
-    if revocation.package_sha256 != package.package_sha256:
-        raise ModelUsePackageConflictError("revocation package hash does not match")
-    if revocation.subject != package.subject:
-        raise ModelUsePackageConflictError("revocation subject does not match")
-    if revocation.purpose != package.purpose:
-        raise ModelUsePackageConflictError("revocation purpose does not match")
-    if revocation.audience != package.audience:
-        raise ModelUsePackageConflictError("revocation audience does not match")
-    if revocation.execution_context != package.execution_context:
-        raise ModelUsePackageConflictError("revocation context does not match")
+    checks = {
+        "package id": revocation.package_id == package.package_id,
+        "package hash": revocation.package_sha256 == package.package_sha256,
+        "subject": revocation.subject == package.subject,
+        "purpose": revocation.purpose == package.purpose,
+        "audience": revocation.audience == package.audience,
+        "context": revocation.execution_context == package.execution_context,
+    }
+    for name, valid in checks.items():
+        if not valid:
+            raise ModelUsePackageConflictError(f"revocation {name} does not match")
     raise PermissionError("model-use package is revoked")
 
 
