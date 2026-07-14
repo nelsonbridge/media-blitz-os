@@ -2,7 +2,7 @@
   "work_item_id": "BL-010",
   "title": "Governed Transition and Conflict Engine",
   "description": "Govern generic Enki state transitions transactionally while preserving exact before-and-after state, temporal meaning, branching, conflict, authority, rollback, recovery, and human-specific protections.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-010",
   "acceptance_criteria": [
     "Versioned transition contracts cover correction, refinement, supersession, retraction, reversal, expansion, restriction, context shift, confidence change, merge, split, and deprecation",
@@ -12,8 +12,27 @@
     "Interruption produces one commit, one exact recovery, or one documented rollback",
     "Human-specific protections remain intact through the generic transition engine"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL10-PR34",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/34",
+      "description": "Governed transition and conflict implementation."
+    },
+    {
+      "evidence_id": "E-BL10-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29314526767",
+      "description": "Sprint 10 CI passed after deterministic schema and runtime validation corrections."
+    },
+    {
+      "evidence_id": "E-BL10-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29314526984",
+      "description": "Declared transition and conflict paths achieved runtime coverage."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-14T06:20:00Z"
+  "updated_at": "2026-07-14T07:25:00Z"
 }
