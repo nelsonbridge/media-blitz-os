@@ -27,7 +27,6 @@ from nks.enki.transitions import (
     TransitionConflictError,
     TransitionPayload,
     TransitionReconstructionStatus,
-    TransitionRecord,
     TransitionType,
     reconstruct_transition,
 )
@@ -285,8 +284,18 @@ def test_stale_before_hash_is_rejected(tmp_path) -> None:
     stale = _snapshot("A", content="stale")
     target = _snapshot("B")
     plan = _plan(_payload(TransitionType.REFINEMENT, [stale], [target]))
-    service, transitions, approvals, _ = _service(tmp_path, plan)
+    transitions = JsonEnkiTransitionRepository(tmp_path)
     transitions.append_seed_snapshot(actual)
+    approvals = JsonApprovalGrantRepository(tmp_path)
+    approvals.save_new(_grant(plan))
+    transactions = JsonGovernedTransactionRepository(tmp_path)
+    service = ExecuteGovernedTransition(
+        transition_repository=transitions,
+        state_reader=transitions,
+        approval_repository=approvals,
+        journal=transactions,
+        receipt_repository=transactions,
+    )
 
     with pytest.raises(TransitionConflictError) as exc:
         service.execute(plan, approval_id="APR-TR-1", now=_now())
@@ -367,10 +376,10 @@ def test_explicit_branch_is_recorded_not_silently_collapsed(tmp_path) -> None:
     outcome = service.execute(second, approval_id="APR-TR-2", now=_now())
 
     assert outcome.transition.detected_conflicts == {ConflictKind.BRANCH}
-    assert {item.transition_id for item in transitions.list_transitions(_subject(), "operations")} == {
-        "TR-1",
-        "TR-2",
-    }
+    assert {
+        item.transition_id
+        for item in transitions.list_transitions(_subject(), "operations")
+    } == {"TR-1", "TR-2"}
 
 
 def test_explicit_overlap_is_recorded(tmp_path) -> None:
