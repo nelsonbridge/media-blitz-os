@@ -2,7 +2,7 @@
   "work_item_id": "BL-011",
   "title": "Governed Interpretation and Capability-Isolated Model Use",
   "description": "Resolve interpretation and construct purpose-limited, privacy-filtered, authority-bound model-use packages through isolated TEST and separately authorized PRODUCTION dispatch boundaries.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-011",
   "acceptance_criteria": [
     "Interpretation resolution is deterministic across context, time, transition state, confidence, restrictions, authority, and purpose",
@@ -12,8 +12,27 @@
     "PRODUCTION dispatch requires exact package hashes, recognized authority, privacy filtering, explicit transport, provider-effect journaling, and immutable receipts",
     "Prediction and model output remain downstream, noncanonical, and unable to mutate Enki state without a separate governed operation"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL11-PR36",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/36",
+      "description": "Governed interpretation and capability-isolated model-use implementation."
+    },
+    {
+      "evidence_id": "E-BL11-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29316316991",
+      "description": "Sprint 11 CI passed on the final implementation head."
+    },
+    {
+      "evidence_id": "E-BL11-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29316316908",
+      "description": "Declared Sprint 11 model-use and revocation paths achieved runtime coverage."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-14T06:20:00Z"
+  "updated_at": "2026-07-14T08:05:00Z"
 }

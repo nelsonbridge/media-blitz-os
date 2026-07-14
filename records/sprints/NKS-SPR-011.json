@@ -3,7 +3,7 @@
   "sequence": 11,
   "title": "Governed Interpretation and Capability-Isolated Model Use",
   "objective": "Separate interpretation resolution, package construction, purpose and privacy policy, approval, persistence, receipt creation, revocation, and dispatch into independently testable governed steps while keeping prediction downstream and noncanonical.",
-  "status": "planned",
+  "status": "complete",
   "work_item_ids": ["BL-011"],
   "exit_criteria": [
     "Interpretation resolution is deterministic across subject, domain, context, temporal applicability, transition state, authority, confidence, restrictions, and purpose",
@@ -13,7 +13,38 @@
     "PRODUCTION dispatch requires exact package and context hashes, recognized authority, privacy filtering, explicit transport, and production receipts",
     "Prediction, recommendation, and model output remain downstream and cannot mutate canonical Enki knowledge without a separately governed operation"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S11-PR36",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/36",
+      "description": "Implemented Enki-native confidence-aware model-use policy, approval-bound transaction execution, capability-isolated dispatch, governed revocation, immutable effect receipts, rollback, exact recovery, and path-complete TEST proof."
+    },
+    {
+      "evidence_id": "E-S11-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/87ec5adbff767468fc8bdeb7469d8730d60d6a2d",
+      "description": "Merged the Sprint 11 governed model-use implementation into sandbox."
+    },
+    {
+      "evidence_id": "E-S11-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29316316991",
+      "description": "CI passed on the final Sprint 11 implementation head."
+    },
+    {
+      "evidence_id": "E-S11-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29316316908",
+      "description": "Runtime Coverage passed with every declared Sprint 11 path covered."
+    },
+    {
+      "evidence_id": "E-S11-WORK-CONTROL",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29316316906",
+      "description": "Work Control Authority passed for the Sprint 11 implementation."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-14T06:20:00Z"
+  "updated_at": "2026-07-14T08:05:00Z"
 }

@@ -162,10 +162,10 @@ Exit criteria:
 ## Sprint 11 — Governed Interpretation and Capability-Isolated Model Use
 
 - ID: `NKS-SPR-011`
-- Status: `planned`
+- Status: `complete`
 - Objective: Separate interpretation resolution, package construction, purpose and privacy policy, approval, persistence, receipt creation, revocation, and dispatch into independently testable governed steps while keeping prediction downstream and noncanonical.
 - Work items: BL-011
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 
