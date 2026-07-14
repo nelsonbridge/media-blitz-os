@@ -152,7 +152,7 @@ def test_dependency_and_workflow_drift_fail_closed(tmp_path: Path) -> None:
 
     workflow = next((root / ".github" / "workflows").glob("*.yml"))
     with workflow.open("a", encoding="utf-8") as handle:
-        handle.write("\n# supply-chain drift\n# uses: actions/cache@v4\n")
+        handle.write("\n      - uses: actions/cache@v4\n")
     workflow_drift = verify_release_integrity(
         root,
         release,
@@ -294,5 +294,5 @@ def test_raw_file_hash_matches_standard_sha256(tmp_path: Path) -> None:
     path = tmp_path / "artifact.txt"
     path.write_bytes(b"Enki")
     assert raw_file_sha256(path) == (
-        "sha256:6a0d0940396362afadef921eef693c9947bcf7c370092a6582aad69783548a6c"
+        "sha256:9071d562a9f5ae26c40acb62ee1d7b43a40b6497acd7ac5b4f91571360b7ba1e"
     )
