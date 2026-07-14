@@ -17,7 +17,7 @@
 | BL-011 | complete | NKS-SPR-011 | Governed Interpretation and Capability-Isolated Model Use | 3 |
 | BL-012 | complete | NKS-SPR-012 | Forensic Reconstruction, Portability, and Governed Work Completion | 4 |
 | BL-013 | complete | NKS-SPR-013 | Integrated Internal TEST Proof and Enki Release Candidate | 5 |
-| BL-014 | active | NKS-SPR-014 | Reproducible Release and Supply-Chain Integrity | 0 |
+| BL-014 | complete | NKS-SPR-014 | Reproducible Release and Supply-Chain Integrity | 5 |
 | BL-015 | planned | NKS-SPR-015 | Performance, Capacity, and Resource Boundaries | 0 |
 | BL-016 | planned | NKS-SPR-016 | Namespace, Tenant, and Subject Isolation | 0 |
 | BL-017 | planned | NKS-SPR-017 | Versioned Policy Lifecycle and Simulation | 0 |

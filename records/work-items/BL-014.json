@@ -2,7 +2,7 @@
   "work_item_id": "BL-014",
   "title": "Reproducible Release and Supply-Chain Integrity",
   "description": "Make every Enki release candidate reproducible from a clean checkout and bind source, dependencies, workflows, artifacts, and attestations without introducing production credentials or self-issued trust.",
-  "status": "active",
+  "status": "complete",
   "sprint_id": "NKS-SPR-014",
   "acceptance_criteria": [
     "Clean-room build regenerates the exact declared release candidate and artifact hashes",
@@ -11,8 +11,39 @@
     "Dependency drift, artifact substitution, missing provenance, and secret leakage fail closed",
     "Release verification remains independent of production credentials and cannot issue a human release decision"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL14-PR54",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/54",
+      "description": "Reproducible release and supply-chain integrity implementation."
+    },
+    {
+      "evidence_id": "E-BL14-PROVENANCE",
+      "kind": "canonical-record",
+      "reference": "releases/enki-0.1.0-rc1/integrity/provenance.json",
+      "description": "Exact source, inventory, workflow, SBOM, attestation, and evidence hashes."
+    },
+    {
+      "evidence_id": "E-BL14-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29340325742",
+      "description": "CI regenerated deterministic integrity evidence without production credentials."
+    },
+    {
+      "evidence_id": "E-BL14-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29340325878",
+      "description": "Runtime Coverage validated every declared Sprint 14 path."
+    },
+    {
+      "evidence_id": "E-BL14-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29340325708",
+      "description": "Work Control Authority accepted the qualifying completion evidence."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-14T14:00:00Z"
+  "updated_at": "2026-07-14T14:25:00Z"
 }

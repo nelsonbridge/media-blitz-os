@@ -3,10 +3,8 @@
   "sequence": 14,
   "title": "Reproducible Release and Supply-Chain Integrity",
   "objective": "Make every Enki release candidate reproducible from a clean checkout and bind source, dependencies, workflows, artifacts, and attestations without introducing production credentials or self-issued trust.",
-  "status": "active",
-  "work_item_ids": [
-    "BL-014"
-  ],
+  "status": "complete",
+  "work_item_ids": ["BL-014"],
   "exit_criteria": [
     "Clean-room build regenerates the exact declared release candidate and artifact hashes",
     "A machine-readable dependency inventory and SBOM cover runtime, test, workflow, and release tooling",
@@ -14,7 +12,44 @@
     "Dependency drift, artifact substitution, missing provenance, and secret leakage fail closed",
     "Release verification remains independent of production credentials and cannot issue a human release decision"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S14-PR54",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/54",
+      "description": "Implemented deterministic release inventories, SBOM generation, integrity verification, secret detection, attestations, and path-complete tests."
+    },
+    {
+      "evidence_id": "E-S14-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/8161b23b2e883278f25f3539ee3e392b8eb04033",
+      "description": "Merged the Sprint 14 implementation into sandbox."
+    },
+    {
+      "evidence_id": "E-S14-PROVENANCE",
+      "kind": "canonical-record",
+      "reference": "releases/enki-0.1.0-rc1/integrity/provenance.json",
+      "description": "TEST provenance binds candidate source, verifier source, dependencies, workflows, SBOM, attestation, and exact evidence-file hashes."
+    },
+    {
+      "evidence_id": "E-S14-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29340325742",
+      "description": "CI generated and validated deterministic release-integrity evidence."
+    },
+    {
+      "evidence_id": "E-S14-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29340325878",
+      "description": "Runtime Coverage passed across release integrity, drift, tamper, secret, and authority paths."
+    },
+    {
+      "evidence_id": "E-S14-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29340325708",
+      "description": "Work Control Authority passed before completion promotion."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-14T14:00:00Z"
+  "updated_at": "2026-07-14T14:25:00Z"
 }

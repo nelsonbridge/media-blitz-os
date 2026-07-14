@@ -1,0 +1,153 @@
+{
+  "schema_version": "1.0",
+  "workflow_actions": [
+    {
+      "action": "actions/checkout",
+      "local": false,
+      "reference": "actions/checkout@v4",
+      "revision": "v4",
+      "workflow_path": ".github/workflows/canonicalization-security.yml"
+    },
+    {
+      "action": "actions/setup-python",
+      "local": false,
+      "reference": "actions/setup-python@v5",
+      "revision": "v5",
+      "workflow_path": ".github/workflows/canonicalization-security.yml"
+    },
+    {
+      "action": "actions/upload-artifact",
+      "local": false,
+      "reference": "actions/upload-artifact@v4",
+      "revision": "v4",
+      "workflow_path": ".github/workflows/canonicalization-security.yml"
+    },
+    {
+      "action": "actions/checkout",
+      "local": false,
+      "reference": "actions/checkout@v4",
+      "revision": "v4",
+      "workflow_path": ".github/workflows/ci.yml"
+    },
+    {
+      "action": "actions/setup-python",
+      "local": false,
+      "reference": "actions/setup-python@v5",
+      "revision": "v5",
+      "workflow_path": ".github/workflows/ci.yml"
+    },
+    {
+      "action": "actions/upload-artifact",
+      "local": false,
+      "reference": "actions/upload-artifact@v4",
+      "revision": "v4",
+      "workflow_path": ".github/workflows/ci.yml"
+    },
+    {
+      "action": "actions/checkout",
+      "local": false,
+      "reference": "actions/checkout@v4",
+      "revision": "v4",
+      "workflow_path": ".github/workflows/coverage.yml"
+    },
+    {
+      "action": "actions/setup-python",
+      "local": false,
+      "reference": "actions/setup-python@v5",
+      "revision": "v5",
+      "workflow_path": ".github/workflows/coverage.yml"
+    },
+    {
+      "action": "actions/upload-artifact",
+      "local": false,
+      "reference": "actions/upload-artifact@v4",
+      "revision": "v4",
+      "workflow_path": ".github/workflows/coverage.yml"
+    },
+    {
+      "action": "actions/checkout",
+      "local": false,
+      "reference": "actions/checkout@v4",
+      "revision": "v4",
+      "workflow_path": ".github/workflows/publication-000001-assets.yml"
+    },
+    {
+      "action": "actions/setup-python",
+      "local": false,
+      "reference": "actions/setup-python@v5",
+      "revision": "v5",
+      "workflow_path": ".github/workflows/publication-000001-assets.yml"
+    },
+    {
+      "action": "actions/upload-artifact",
+      "local": false,
+      "reference": "actions/upload-artifact@v4",
+      "revision": "v4",
+      "workflow_path": ".github/workflows/publication-000001-assets.yml"
+    },
+    {
+      "action": "actions/checkout",
+      "local": false,
+      "reference": "actions/checkout@v4",
+      "revision": "v4",
+      "workflow_path": ".github/workflows/repository-audit.yml"
+    },
+    {
+      "action": "actions/setup-python",
+      "local": false,
+      "reference": "actions/setup-python@v5",
+      "revision": "v5",
+      "workflow_path": ".github/workflows/repository-audit.yml"
+    },
+    {
+      "action": "actions/checkout",
+      "local": false,
+      "reference": "actions/checkout@v4",
+      "revision": "v4",
+      "workflow_path": ".github/workflows/runtime-functional-test.yml"
+    },
+    {
+      "action": "actions/setup-python",
+      "local": false,
+      "reference": "actions/setup-python@v5",
+      "revision": "v5",
+      "workflow_path": ".github/workflows/runtime-functional-test.yml"
+    },
+    {
+      "action": "actions/checkout",
+      "local": false,
+      "reference": "actions/checkout@v4",
+      "revision": "v4",
+      "workflow_path": ".github/workflows/state-authority.yml"
+    },
+    {
+      "action": "actions/setup-python",
+      "local": false,
+      "reference": "actions/setup-python@v5",
+      "revision": "v5",
+      "workflow_path": ".github/workflows/state-authority.yml"
+    },
+    {
+      "action": "actions/checkout",
+      "local": false,
+      "reference": "actions/checkout@v4",
+      "revision": "v4",
+      "workflow_path": ".github/workflows/work-control.yml"
+    },
+    {
+      "action": "actions/setup-python",
+      "local": false,
+      "reference": "actions/setup-python@v5",
+      "revision": "v5",
+      "workflow_path": ".github/workflows/work-control.yml"
+    },
+    {
+      "action": "actions/upload-artifact",
+      "local": false,
+      "reference": "actions/upload-artifact@v4",
+      "revision": "v4",
+      "workflow_path": ".github/workflows/work-control.yml"
+    }
+  ],
+  "workflow_sha256": "sha256:1dd1d873e88364ade7b72461d11d7c032bc65102ef6125930cfb47c1a0f1234e"
+}

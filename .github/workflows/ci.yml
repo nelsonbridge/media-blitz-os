@@ -36,7 +36,13 @@ jobs:
           set -o pipefail
           python -m pytest 2>&1 | tee pytest.log
 
-      - name: Upload test and coverage artifacts
+      - name: Generate release integrity evidence
+        run: |
+          python scripts/generate_release_integrity_evidence.py \
+            --output-directory generated/release-integrity \
+            --verifier-source-commit 8161b23b2e883278f25f3539ee3e392b8eb04033
+
+      - name: Upload test, coverage, and release-integrity artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -45,4 +51,5 @@ jobs:
             pytest.log
             coverage.json
             coverage.xml
+            generated/release-integrity
           if-no-files-found: warn

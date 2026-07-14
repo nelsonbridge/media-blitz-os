@@ -1,0 +1,21 @@
+{
+  "attestation_sha256": "sha256:47bef4f2f8a7835ef45573488a52f63899f066b6141d24281cc1e2dfcad4f2a0",
+  "candidate_sha256": "sha256:96fe1533369a3d64d6914ff5eaa849babea4e874eb6fd843bf988ad693541bd5",
+  "candidate_source_commit_sha": "cb84fbc8eef6096e8a707e1b922dfa2eddb23e51",
+  "dependency_sha256": "sha256:a45475d07722071535c7ee6cd1fc4c5640f674a852993e508b903bdff8b30a3a",
+  "evidence_file_hashes": {
+    "dependency-inventory.json": "sha256:135dbea5eba59de7a8864592faeb329d1789beb87853051a0fd3029aabbfffd2",
+    "sbom.json": "sha256:ccce445563f2a78f1da433125485651e9fd9d4bc10587bb8f2f7b9424f7e5548",
+    "supply-chain-attestation.json": "sha256:59c96b1ddd0ba2606f38a7294be0b543a8d0a8b23535e333e493e76ad6aaa8fe",
+    "workflow-inventory.json": "sha256:de29141ff81f0babd3d04426a1313edc1a808d911d17e0aa93165a5fef4c0c0a"
+  },
+  "execution_context": "TEST",
+  "external_effect": false,
+  "human_release_decision_issued": false,
+  "inventory_sha256": "sha256:128ccaacd3294c0542a901fa01aa393176bc75d44e45e4bbd696526af5483e3b",
+  "production_credentials_used": false,
+  "sbom_sha256": "sha256:63edddb101d28fd0e45515daea668e68d58c92b7e9cd96e03994d6db62353196",
+  "schema_version": "1.0",
+  "verifier_source_commit_sha": "8161b23b2e883278f25f3539ee3e392b8eb04033",
+  "workflow_sha256": "sha256:1dd1d873e88364ade7b72461d11d7c032bc65102ef6125930cfb47c1a0f1234e"
+}
