@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/governed-transaction-receipt.schema.json",
+  "title": "Governed Transaction Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_id",
+    "operation_id",
+    "transaction_id",
+    "plan_sha256",
+    "approval_id",
+    "execution_context",
+    "terminal_state",
+    "recovery_strategy",
+    "recorded_at"
+  ],
+  "properties": {
+    "receipt_id": {"type": "string", "minLength": 1},
+    "operation_id": {"type": "string", "minLength": 1},
+    "transaction_id": {"type": "string", "minLength": 1},
+    "plan_sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "approval_id": {"type": "string", "minLength": 1},
+    "execution_context": {"type": "string", "enum": ["TEST", "PRODUCTION"]},
+    "terminal_state": {
+      "type": "string",
+      "enum": ["COMMITTED", "RECOVERED", "ROLLED_BACK"]
+    },
+    "recovery_strategy": {
+      "type": "string",
+      "enum": ["NONE", "RELEASE_RESERVATION", "EXACT_RETRY"]
+    },
+    "output_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "exact_retry": {"type": "boolean", "default": false},
+    "metadata": {"type": "object", "default": {}}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "terminal_state": {"enum": ["COMMITTED", "RECOVERED"]}
+        },
+        "required": ["terminal_state"]
+      },
+      "then": {
+        "required": ["output_sha256"],
+        "properties": {
+          "output_sha256": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"terminal_state": {"const": "ROLLED_BACK"}},
+        "required": ["terminal_state"]
+      },
+      "then": {
+        "properties": {"output_sha256": {"type": "null"}}
+      }
+    }
+  ]
+}
