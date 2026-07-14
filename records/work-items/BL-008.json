@@ -1,19 +1,38 @@
 {
   "work_item_id": "BL-008",
-  "title": "Governed Transition, Conflict, and Approval Engine",
-  "description": "Govern all knowledge-state transitions transactionally while binding transition authority to exact before-and-after hashes, execution context, and non-escalating approval grants.",
-  "status": "planned",
+  "title": "Human-State Compatibility, Authority, and Governed Migration",
+  "description": "Migrate temporal human state into generic Enki through explicit expression-origin decisions, human-protection policies, content-addressed plans, approval-bound execution, immutable receipts, and exact recovery.",
+  "status": "complete",
   "sprint_id": "NKS-SPR-008",
   "acceptance_criteria": [
-    "Correction, refinement, expansion, restriction, supersession, reversal, retraction, context shift, confidence change, merge, split, and deprecation are enforced",
-    "Every transition binds exact before-and-after hashes, execution context, approval identity, and transaction receipt",
-    "TEST transition approvals cannot mutate PRODUCTION state or produce production receipts",
-    "Invalid, cyclic, contradictory, context-mismatched, or unauthorized transitions fail closed",
-    "Branch, merge, overlap, and conflicting-authority states are explicit and reconstructable",
-    "Human-state transition regression tests pass through the generic engine without weakening human-specific controls"
+    "Legacy observations and transitions project into generic Enki without rewriting historical source records",
+    "Every observation has an explicit expression-origin decision and preserved source lineage",
+    "Consent, purpose, privacy, correction, retraction, expiration, revocation, and redaction protections fail closed",
+    "Legacy model-feedback approval fields cannot satisfy generic authority",
+    "Migration plans and approvals bind the exact subject, payload hash, policy, purpose, context, and transaction",
+    "Interrupted migration recovers through the same transaction without duplicate or semantically altered state"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL8-PR31",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/31",
+      "description": "Governed human migration and protection implementation."
+    },
+    {
+      "evidence_id": "E-BL8-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29310463635",
+      "description": "Migration CI passed."
+    },
+    {
+      "evidence_id": "E-BL8-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29310463684",
+      "description": "Declared migration paths achieved runtime coverage."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T22:30:00Z"
+  "updated_at": "2026-07-14T06:20:00Z"
 }
