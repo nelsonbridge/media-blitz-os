@@ -25,8 +25,10 @@ from nks.application.governed_transactions import (
 )
 from nks.enki.model_use_contracts import (
     DownstreamEffectReceipt,
+    DownstreamEffectStatus,
     EnkiModelUsePackage,
     EnkiModelUseRequest,
+    ModelUseRevocation,
 )
 
 
@@ -36,6 +38,8 @@ class EnkiModelUsePersistence(Protocol):
     def append_effect(self, effect: DownstreamEffectReceipt) -> None: ...
 
     def get_effect(self, effect_id: str) -> DownstreamEffectReceipt | None: ...
+
+    def append_revocation(self, revocation: ModelUseRevocation) -> None: ...
 
 
 class GovernedEnkiModelUseExecution(BaseModel):
@@ -110,6 +114,51 @@ def build_model_use_operation_plan(
     )
 
 
+def build_model_use_revocation_plan(
+    package: EnkiModelUsePackage,
+    revocation: ModelUseRevocation,
+    *,
+    acceptable_authority_classes: set[str],
+) -> GovernedOperationPlan:
+    """Bind revocation authority to the exact package and revocation payload."""
+
+    _assert_revocation_matches_package(package, revocation)
+    return GovernedOperationPlan(
+        operation_id=f"enki-model-use-revocation:{revocation.revocation_id}",
+        transaction_id=revocation.transaction_id,
+        action="enki:model-use:revoke",
+        subject_id=package.subject.subject_id,
+        content_sha256=canonical_sha256(revocation),
+        execution_context=package.execution_context,
+        acceptable_authority_classes=acceptable_authority_classes,
+        requested_at=revocation.revoked_at,
+        metadata={
+            "package_id": package.package_id,
+            "package_sha256": package.package_sha256,
+            "revocation_id": revocation.revocation_id,
+            "purpose": package.purpose,
+            "audience": package.audience.value,
+        },
+    )
+
+
+def _assert_revocation_matches_package(
+    package: EnkiModelUsePackage,
+    revocation: ModelUseRevocation,
+) -> None:
+    checks = {
+        "package id": revocation.package_id == package.package_id,
+        "package hash": revocation.package_sha256 == package.package_sha256,
+        "subject": revocation.subject == package.subject,
+        "purpose": revocation.purpose == package.purpose,
+        "audience": revocation.audience == package.audience,
+        "execution context": revocation.execution_context == package.execution_context,
+    }
+    for name, valid in checks.items():
+        if not valid:
+            raise ModelUsePackageConflictError(f"revocation {name} does not match package")
+
+
 class EnkiModelUseOperationAdapter(GovernedOperationAdapter):
     """Idempotently persist and dispatch one exact package after authority consumption."""
 
@@ -168,6 +217,79 @@ class EnkiModelUseOperationAdapter(GovernedOperationAdapter):
         )
 
 
+class EnkiModelUseRevocationAdapter(GovernedOperationAdapter):
+    """Persist exact revocation and its downstream-effect receipt after consumption."""
+
+    def __init__(
+        self,
+        *,
+        package: EnkiModelUsePackage,
+        revocation: ModelUseRevocation,
+        repository: EnkiModelUsePersistence,
+    ) -> None:
+        self._package = package
+        self._revocation = revocation
+        self._repository = repository
+
+    def apply(self, plan: GovernedOperationPlan) -> GovernedOperationResult:
+        if plan.action != "enki:model-use:revoke":
+            raise ModelUsePackageConflictError("operation action is not model-use revocation")
+        _assert_revocation_matches_package(self._package, self._revocation)
+        if plan.content_sha256 != canonical_sha256(self._revocation):
+            raise ModelUsePackageConflictError("revocation content hash does not match plan")
+        if plan.transaction_id != self._revocation.transaction_id:
+            raise ModelUsePackageConflictError("revocation transaction does not match plan")
+
+        self._repository.append_revocation(self._revocation)
+        effect = DownstreamEffectReceipt(
+            effect_id=f"EFFECT-{plan.transaction_id}",
+            package_id=self._package.package_id,
+            package_sha256=self._package.package_sha256,
+            execution_context=self._package.execution_context,
+            status=DownstreamEffectStatus.REVOKED,
+            external_effect=False,
+            dispatcher_id="enki-model-use-revocation/v1",
+            transaction_id=plan.transaction_id,
+            recorded_at=self._revocation.revoked_at,
+            metadata={
+                "revocation_id": self._revocation.revocation_id,
+                "reason": self._revocation.reason,
+            },
+        )
+        self._repository.append_effect(effect)
+        return GovernedOperationResult(
+            output_sha256=canonical_sha256(
+                {
+                    "revocation": self._revocation,
+                    "effect": effect,
+                }
+            ),
+            metadata={
+                "package_id": self._package.package_id,
+                "revocation_id": self._revocation.revocation_id,
+                "effect_id": effect.effect_id,
+                "effect_status": effect.status.value,
+            },
+        )
+
+
+def _execution_result(
+    package: EnkiModelUsePackage,
+    *,
+    transaction_id: str,
+    repository: EnkiModelUsePersistence,
+    receipt: GovernedTransactionReceipt,
+) -> GovernedEnkiModelUseExecution:
+    effect = repository.get_effect(f"EFFECT-{transaction_id}")
+    if effect is None:
+        raise RuntimeError("committed model-use transaction has no effect receipt")
+    return GovernedEnkiModelUseExecution(
+        package=package,
+        effect=effect,
+        transaction_receipt=receipt,
+    )
+
+
 def execute_governed_enki_model_use(
     package: EnkiModelUsePackage,
     *,
@@ -206,11 +328,47 @@ def execute_governed_enki_model_use(
         now=now,
         failure_hook=failure_hook,
     )
-    effect = repository.get_effect(f"EFFECT-{transaction_id}")
-    if effect is None:
-        raise RuntimeError("committed model-use transaction has no effect receipt")
-    return GovernedEnkiModelUseExecution(
-        package=package,
-        effect=effect,
-        transaction_receipt=receipt,
+    return _execution_result(
+        package,
+        transaction_id=transaction_id,
+        repository=repository,
+        receipt=receipt,
+    )
+
+
+def execute_governed_model_use_revocation(
+    package: EnkiModelUsePackage,
+    revocation: ModelUseRevocation,
+    *,
+    approval_id: str,
+    acceptable_authority_classes: set[str],
+    transaction_executor: GovernedTransactionExecutor,
+    repository: EnkiModelUsePersistence,
+    now: datetime,
+    failure_hook: FailureHook | None = None,
+) -> GovernedEnkiModelUseExecution:
+    """Reserve, consume, persist, receipt, and exactly recover one revocation."""
+
+    assert_model_use_package_integrity(package)
+    plan = build_model_use_revocation_plan(
+        package,
+        revocation,
+        acceptable_authority_classes=acceptable_authority_classes,
+    )
+    receipt = transaction_executor.execute(
+        plan,
+        approval_id=approval_id,
+        adapter=EnkiModelUseRevocationAdapter(
+            package=package,
+            revocation=revocation,
+            repository=repository,
+        ),
+        now=now,
+        failure_hook=failure_hook,
+    )
+    return _execution_result(
+        package,
+        transaction_id=revocation.transaction_id,
+        repository=repository,
+        receipt=receipt,
     )

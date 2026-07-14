@@ -2,14 +2,8 @@
 
 from __future__ import annotations
 
-from nks.application.governed_transactions import (
-    RecoveryStrategy,
-    TransactionTerminalState,
-)
-from nks.application.path_manifest import (
-    OperationPathExpectation,
-    OperationPathManifest,
-)
+from nks.application.governed_transactions import RecoveryStrategy, TransactionTerminalState
+from nks.application.path_manifest import OperationPathExpectation, OperationPathManifest
 from nks.governance.approvals import ExecutionContext
 
 
@@ -76,23 +70,12 @@ def model_use_path_manifest() -> OperationPathManifest:
             _path("exact-package-revocation", terminal=rollback),
             _path("revocation-hash-conflict", terminal=rollback),
             _path("approval-hash-mismatch", terminal=rollback),
-            _path(
-                "failure-before-consumption",
-                terminal=rollback,
-                recovery=RecoveryStrategy.RELEASE_RESERVATION,
-            ),
-            _path(
-                "failure-after-consumption",
-                terminal=recovered,
-                state_changing=True,
-                recovery=RecoveryStrategy.EXACT_RETRY,
-            ),
-            _path(
-                "exact-transaction-retry",
-                terminal=recovered,
-                state_changing=True,
-                recovery=RecoveryStrategy.EXACT_RETRY,
-            ),
+            _path("failure-before-consumption", terminal=rollback, recovery=RecoveryStrategy.RELEASE_RESERVATION),
+            _path("failure-after-consumption", terminal=recovered, state_changing=True, recovery=RecoveryStrategy.EXACT_RETRY),
+            _path("exact-transaction-retry", terminal=recovered, state_changing=True, recovery=RecoveryStrategy.EXACT_RETRY),
+            _path("governed-revocation-commit", state_changing=True),
+            _path("governed-revocation-exact-retry", terminal=recovered, state_changing=True, recovery=RecoveryStrategy.EXACT_RETRY),
+            _path("revocation-package-mismatch", terminal=rollback),
             _path("test-no-effect-dispatch", state_changing=True),
             _path("test-dispatcher-production-rejection", terminal=rollback),
             _path("production-dispatcher-test-rejection", terminal=rollback),
