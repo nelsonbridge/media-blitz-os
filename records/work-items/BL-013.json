@@ -21,7 +21,7 @@
     },
     {
       "evidence_id": "E-BL13-CANDIDATE",
-      "kind": "release-candidate",
+      "kind": "canonical-record",
       "reference": "releases/enki-0.1.0-rc1/release-candidate.json",
       "description": "Exact Enki 0.1.0-rc1 candidate and release evidence package bound to commit cb84fbc8eef6096e8a707e1b922dfa2eddb23e51."
     },
