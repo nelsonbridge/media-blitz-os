@@ -1,7 +1,7 @@
-# Enki Roadmap Gap Analysis — Internal-Only Validation Model
+# Enki Roadmap Gap Analysis — Internal Validation with Mandatory Publication POC Lane
 
 > **Authority class: Class 3 — implementation assessment.**
-> This analysis supersedes prior versions of this file. It incorporates the decision that Enki is the deliverable, Publication 000001 is a historical downstream proof of concept, and all Enki testing remains internal until Enki release. It does not alter canonical status until promoted through governed work control.
+> This analysis supersedes prior versions of this file. It incorporates Enki as the deliverable, mandatory internal publication-shaped POC testing, and deferral of only the external production effect. It does not alter canonical status until promoted through governed work control.
 
 - Assessment date: 2026-07-13
 - Canonical branch: `sandbox`
@@ -13,25 +13,23 @@
   - `roadmap/decisions/automated-path-complete-testing-policy.md`
   - `roadmap/decisions/enki-deliverable-and-production-deferral.md`
 
-## Executive conclusion
+## Executive correction
 
-Enki is the product being built and released. The first-live-publication work is not an Enki production gate. It is retained as the original proof-of-concept and a future downstream Media Blitz validation path.
+Enki is the deliverable. Enki is not a publication engine.
 
-This removes external publication from the Enki dependency structure.
+The first-live-publication proof of concept is nevertheless still tested completely before Enki release. It is one required production-shaped downstream-consumer lane within the internal validation model.
 
-The following are no longer Enki blockers:
+The correction is:
 
-- article or visual production approval;
-- publishing accounts, channels, bylines, identities, or brand configuration;
-- production publication transport or credentials;
-- external publication and distribution receipts;
-- audience observation windows;
-- REAL/PRODUCTION publication feedback or zero-feedback receipts;
-- post-publication calibration.
+```text
+DEFER
+actual live publication and production audience evidence
 
-All Enki capability lanes remain TEST-only until the integrated internal release candidate has passed path-complete automated proof and governing authority approves Enki release.
+RETAIN AND REQUIRE
+complete internal publication-shaped execution through no-effect adapters
+```
 
-The remaining gaps are internal engineering and evidence gaps, not external dependencies.
+The prior analysis went too far by describing the publication POC as merely historical or optional future work. Its external effect is deferred. Its internal test obligations remain active and mandatory.
 
 ## Corrected execution topology
 
@@ -41,7 +39,7 @@ S1 Canonical identity
 → S2 Work-control plane
 → S4 Restricted canonical writer
 
-INTERNAL ENKI CONSTRUCTION AND VALIDATION
+ENKI CAPABILITY CONSTRUCTION
 S5 Approval and transaction foundation
 → S6 Enki core boundary and contracts
 → S7 Governed generic state creation
@@ -50,13 +48,51 @@ S5 Approval and transaction foundation
 → S10 Transition and conflict engine
 → S11 Governed interpretation and model use
 → S12 Reconstruction, portability, and governed completion
-→ S13 Integrated internal TEST proof and Enki release candidate
-→ explicit Enki release decision
 
-DEFERRED DOWNSTREAM PRODUCT WORK
-Historical Sprint 3 / Publication 000001
-→ retained as Media Blitz proof-of-concept evidence and future product validation
+INTEGRATED INTERNAL VALIDATION
+S13
+├─ complete publication-shaped POC lane using no-effect adapters
+├─ complete at least one other adaptive lane
+├─ execute full path matrix, rollback, recovery, reconstruction, and chaos proof
+└─ produce versioned Enki release candidate
+
+RELEASE
+explicit Enki release decision
+
+POST-ENKI DOWNSTREAM PRODUCTION
+separate Media Blitz production authority and live publication
 ```
+
+## What the internal publication POC must prove
+
+Before Enki release, the publication lane must exercise:
+
+- exact content body and visual manifest;
+- production-shaped configuration, identity, byline, brand, and channel fixtures;
+- review and exact-hash TEST approval;
+- publication package construction;
+- no-effect publication and distribution adapters;
+- TEST publication and distribution receipts;
+- simulated observation windows;
+- `SYNTHETIC/TEST`, `REPLAY/TEST`, and controlled `REAL/TEST` feedback;
+- feedback lineage, classification, routing, deduplication, disposition, and calibration;
+- invalid input, denied authority, mismatch, expiry, revocation, stale state, duplicate, conflict, interruption, retry, rollback, recovery, tamper, replay, and privilege-escalation paths;
+- deterministic reconstruction of the complete lane.
+
+This proves that Enki can safely govern a downstream product workflow. It does not redefine Enki as that downstream product.
+
+## What is actually deferred
+
+The following are not required before Enki release:
+
+- live publishing accounts and production credentials;
+- reachable production transports, endpoints, or callbacks;
+- actual external publication or distribution;
+- real production audience observation;
+- `REAL/PRODUCTION` publication feedback or production zero-feedback receipts;
+- production post-publication calibration.
+
+These become Media Blitz release requirements after Enki is live.
 
 ## Assessment model
 
@@ -64,7 +100,7 @@ Each Enki sprint is evaluated across:
 
 1. **Design** — the capability and boundaries are defined.
 2. **Implementation** — executable contracts, services, schemas, adapters, and receipts exist.
-3. **Path automation** — every success, failure, interruption, retry, rollback, recovery, replay, and escalation path is tested.
+3. **Path automation** — every success, failure, interruption, retry, rollback, recovery, replay, tamper, and escalation path is tested.
 4. **Evidence** — immutable proof is bound to the exact commit and sprint.
 5. **Authority** — architecture, accepted limitations, completion, and release decisions remain explicit.
 
@@ -74,7 +110,7 @@ Each Enki sprint is evaluated across:
 |---|---|---|---|---|---|---|
 | S1 | Canonical identity and repository truth | resolved | complete | complete | accepted | COMPLETE |
 | S2 | Canonical backlog and roadmap control plane | resolved | complete | complete | accepted | COMPLETE |
-| S3 | Historical publication POC | preserved | downstream, not Enki core | may be reused as TEST fixtures | defer or transfer to Media Blitz | NO ENKI DEPENDENCY |
+| S3 | Original publication POC | preserved and decomposed | internal obligations distributed into S5–S13; external effect deferred | mandatory internal lane incomplete | canonical decomposition decision pending | INTERNAL TEST OBLIGATION, NOT PRODUCTION GATE |
 | S4 | Restricted canonical writer | resolved | complete | complete for accepted scope | accepted | COMPLETE |
 | S5 | Context-bound approval and transaction foundation | resolved | partial | incomplete | unmapped | PARTIAL |
 | S6 | Enki cognitive-core boundary and generic contracts | resolved | strong | mostly present | architecture acceptance and evidence mapping pending | READY FOR COMPLETION REVIEW |
@@ -84,28 +120,29 @@ Each Enki sprint is evaluated across:
 | S10 | Governed transition and conflict engine | resolved | missing | absent | absent | IMPLEMENTATION MISSING |
 | S11 | Governed interpretation and capability-isolated model use | resolved | strong but incomplete | partial | unmapped | PARTIAL |
 | S12 | Reconstruction, portability, and governed completion | resolved | partial | incomplete | unmapped | PARTIAL |
-| S13 | Integrated internal TEST proof and Enki release candidate | resolved | missing as integrated subsystem | absent as a complete matrix | controlled REAL/TEST evaluation and release decision pending | IMPLEMENTATION MISSING |
+| S13 | Integrated internal TEST proof and Enki release candidate | resolved | missing as integrated subsystem | publication POC and additional lane not yet executed | controlled REAL/TEST evaluation and release decision pending | IMPLEMENTATION MISSING |
 
 ## Governance and integration gaps
 
 ### G-1 — Corrected roadmap is not canonical
 
-The live canonical roadmap still has eleven sprints and treats the first publication cycle as blocked work inside the core sequence.
+The live canonical roadmap still has eleven sprints and treats the first publication cycle as blocked production work inside the core sequence.
 
 Closure requires:
 
 1. record approval of the corrected roadmap;
 2. preserve S1, S2, and S4 unchanged;
-3. preserve Sprint 3 history while deferring or transferring unfinished work to Media Blitz;
-4. create or update canonical S5–S13 and backlog records;
-5. incorporate automated path-complete internal TEST criteria;
-6. remove external publication evidence from Enki completion criteria;
-7. regenerate roadmap, backlog, authority manifest, and repository audit;
-8. run all required workflows.
+3. decompose Sprint 3 without erasing its history;
+4. distribute its mandatory internal TEST obligations across S5–S13;
+5. transfer only its external production effect to a downstream Media Blitz backlog;
+6. create or update canonical S5–S13 and backlog records;
+7. incorporate automated path-complete internal TEST criteria;
+8. regenerate roadmap, backlog, authority manifest, and repository audit;
+9. run all required workflows.
 
 ### G-2 — PR #27 must be reconciled with current `sandbox`
 
-PR #27 is 98 commits ahead and 3 commits behind current `sandbox`. The branches must be reconciled without losing the publication POC artifacts, even though those artifacts no longer gate Enki.
+PR #27 is 98 commits ahead and 3 commits behind current `sandbox`. The branches must be reconciled without losing Publication 000001 artifacts, because they remain active internal validation fixtures.
 
 ### G-3 — Evidence must come from executable records
 
@@ -113,7 +150,7 @@ PR #27 contains strong candidate implementation, but narrative claims must be va
 
 ### G-4 — Path catalogs and coverage enforcement are incomplete
 
-Every governed operation requires a machine-readable path manifest containing:
+Every governed operation and integrated consumer lane requires a machine-readable path manifest containing:
 
 - operation and path identifiers;
 - fixture and input hashes;
@@ -262,7 +299,8 @@ Missing:
 - explicit package-context matching;
 - governed revocation and downstream-effect receipts;
 - Sprint 10 transition integration;
-- full automated privacy, failure, rollback, and recovery matrix.
+- full automated privacy, failure, rollback, and recovery matrix;
+- no-effect publication-package and distribution-path integration.
 
 Assessment: **PARTIAL, STRONG SUBSTRATE**.
 
@@ -279,6 +317,7 @@ Missing:
 
 - common reconstruction interface and terminal-state taxonomy;
 - reconstruction across every operation family;
+- reconstruction of the full publication-shaped POC lane;
 - clean-room and disaster-recovery exercises;
 - import and export preserving authority and lineage;
 - filesystem and GitHub adapter parity;
@@ -294,19 +333,21 @@ Design and test authority are resolved.
 Missing:
 
 - complete cross-operation path manifest;
+- complete internal publication-shaped POC lane through no-effect adapters;
+- at least one additional adaptive lane across a different subject or product context;
 - feedback provenance and execution-context contracts;
 - feedback schemas, services, receipts, classification, routing, deduplication, disposition, and promotion control;
 - synthetic scenario corpus;
 - replay harness;
 - controlled REAL/TEST human interface;
-- zero-feedback TEST handling;
-- at least two adaptive loops across subject classes;
+- simulated observation-window and zero-feedback handling;
 - chaos and interruption campaign;
 - path-coverage enforcement;
+- deterministic reconstruction of both integrated lanes;
 - hash-bound internal calibration report;
 - versioned Enki release candidate, threat model, runbooks, rollback package, release notes, limitations, and explicit release decision.
 
-No live publication or downstream product handoff is required for Sprint 13 completion.
+No live external publication is required for Sprint 13 completion. Complete internal publication-shaped testing is required.
 
 Assessment: **IMPLEMENTATION MISSING, DESIGN AND TEST AUTHORITY RESOLVED**.
 
@@ -322,7 +363,7 @@ Closes S10 and enables final integration in S11–S13.
 
 ### Package C — Internal feedback, calibration, and integrated validation subsystem
 
-Closes S13 without requiring external publication.
+Closes S13 by executing the publication POC and at least one additional adaptive lane internally.
 
 ### Package D — Canonical promotion and branch integration
 
@@ -339,16 +380,14 @@ approve and promote corrected Enki roadmap
 → implement and prove S8 human migration
 → implement and prove S9 reconciliation and disclosure
 → implement S10 transition/conflict engine
-→ finish S11 privacy-governed model use
+→ finish S11 privacy-governed model use and no-effect downstream packaging
 → finish S12 reconstruction and governed completion
-→ execute S13 integrated internal path matrix, REAL/TEST evaluation, chaos, calibration, and Enki release proof
+→ execute S13 publication POC lane + second adaptive lane + full path matrix + REAL/TEST + chaos + calibration
 → explicit Enki release decision
 ```
 
 ## Final finding
 
-Yes, removing first-live-publication from the Enki roadmap resolves most external and human coordination dependencies.
+The publication proof of concept remains fully tested.
 
-It does not eliminate the internal engineering work. The remaining blockers are bounded and under direct control: governed operations, automated path coverage, rollback and reconstruction proof, evidence binding, and canonical completion.
-
-Media Blitz production can occur later as a downstream product release after Enki is live.
+What is removed is only the requirement to perform the real external publication before Enki itself is proven and released. The remaining blockers are bounded and under direct control: governed operations, automated path coverage, rollback and reconstruction proof, integrated consumer-lane execution, evidence binding, and canonical completion.
