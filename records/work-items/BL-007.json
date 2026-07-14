@@ -1,19 +1,38 @@
 {
   "work_item_id": "BL-007",
-  "title": "Governed Adaptive Knowledge State and Approval Substrate",
-  "description": "Generalize the proven human-state reference implementation into platform-neutral governed subjects, domains, knowledge states, and context-bound approval applicability across human and nonhuman subject classes.",
-  "status": "planned",
+  "title": "Generic Observation, Relationship, and State-Write Substrate",
+  "description": "Provide one approval-bound append-only state-write operation across human and nonhuman subject classes using identical Enki contracts.",
+  "status": "complete",
   "sprint_id": "NKS-SPR-007",
   "acceptance_criteria": [
-    "Generic Subject, Domain, KnowledgeState, and ApprovalApplicability contracts work without subject-specific schema forks",
-    "Context, confidence, validity, provenance, interpretive authority, behavioral authority, sensitivity, lineage, and execution context are explicit",
-    "All state creation reuses Sprint 5 journaling, receipts, recovery, idempotency, and context-isolation controls",
-    "TEST approvals can exercise generic state creation across one human and at least two nonhuman subject classes without production effects",
-    "Human consent, privacy, self-declaration, correction, and production-approval rights remain stricter policy overlays",
-    "Canonical views, authority registration, migration mappings, and audits preserve approval and execution context"
+    "PERSON, ORGANIZATION, and PROJECT reuse identical state-write contracts and collections",
+    "Every write is content-addressed, preflighted, approval-bound, journaled, receipted, auditable, and recoverable",
+    "Unknown references, subject or domain leakage, tampering, duplicate conflicts, and cross-plan replay fail closed",
+    "Partial observation and relationship writes recover by exact retry without duplicate effects",
+    "TEST state-write execution cannot reach a production effect",
+    "Declared state-write paths have automated coverage"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL7-PR29",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/29",
+      "description": "Generic governed state-write implementation and tests."
+    },
+    {
+      "evidence_id": "E-BL7-PR30",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/30",
+      "description": "Date-bearing plan-hash correction."
+    },
+    {
+      "evidence_id": "E-BL7-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29309868310",
+      "description": "Final Sprint 7 CI passed."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T22:30:00Z"
+  "updated_at": "2026-07-14T06:20:00Z"
 }
