@@ -4,10 +4,10 @@
 
 ## Census
 
-- Files: 635
+- Files: 653
 - Canonical records: 152
-- Tests: 53
-- Schemas: 12
+- Tests: 60
+- Schemas: 14
 
 ## Top-Level File Counts
 
@@ -40,12 +40,12 @@
 | research | 2 |
 | roadmap | 19 |
 | runtime | 5 |
-| schemas | 12 |
+| schemas | 14 |
 | scripts | 1 |
 | security | 1 |
-| src | 75 |
+| src | 84 |
 | templates | 12 |
-| tests | 61 |
+| tests | 68 |
 | validation | 5 |
 | visuals | 17 |
 | whitepapers | 1 |
@@ -76,6 +76,8 @@
 | canonical-reservations | 0 |
 | work-items | 11 |
 | sprints | 11 |
+| governed-transaction-events | 0 |
+| governed-transaction-receipts | 0 |
 
 ## Publication Readiness
 
