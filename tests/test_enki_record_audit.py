@@ -53,6 +53,14 @@ def _records(root: Path) -> None:
             "decisions": [{"finding_id": "RF-1"}],
         },
     )
+    _write_json(
+        root / "records" / "governed-transaction-events" / "TX-1_0001.json",
+        {"event_id": "TX-1:0001"},
+    )
+    _write_json(
+        root / "records" / "governed-transaction-receipts" / "TX-1.json",
+        {"receipt_id": "GTR-TX-1"},
+    )
 
 
 def test_audit_recognizes_enki_record_families(tmp_path: Path) -> None:
@@ -66,7 +74,9 @@ def test_audit_recognizes_enki_record_families(tmp_path: Path) -> None:
     assert payload["record_counts"]["approval-grants"] == 1
     assert payload["record_counts"]["reconciliation-findings"] == 1
     assert payload["record_counts"]["disclosure-receipts"] == 1
-    assert payload["record_count"] == 4
+    assert payload["record_counts"]["governed-transaction-events"] == 1
+    assert payload["record_counts"]["governed-transaction-receipts"] == 1
+    assert payload["record_count"] == 6
 
 
 def test_audit_detects_orphan_disclosure_finding(tmp_path: Path) -> None:
