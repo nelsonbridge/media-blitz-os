@@ -26,7 +26,7 @@ def _path(
         expected_terminal_state=terminal,
         state_changing=state_changing,
         recovery_strategy=recovery,
-        prohibited_effects=["unapproved-production-effect"],
+        prohibited_effects=["production-effect"],
     )
 
 
