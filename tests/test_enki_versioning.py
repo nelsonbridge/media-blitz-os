@@ -49,7 +49,7 @@ def test_contract_version_ambiguous_paths_fail_closed() -> None:
         _policy().assert_compatible(["2.2", "2.3"])
 
 
-def test_forward_compatibility_requires_explicit_same-major_declaration() -> None:
+def test_forward_compatibility_requires_explicit_same_major_declaration() -> None:
     with pytest.raises(ValueError, match="cannot cross a major"):
         ContractCompatibilityPolicy(
             contract_name="Observation",
