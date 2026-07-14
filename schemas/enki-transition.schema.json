@@ -10,19 +10,15 @@
     "subject",
     "domain",
     "from_states",
-    "to_states",
     "before_sha256",
     "after_sha256",
     "reason",
-    "evidence_ids",
     "provenance_classification",
     "authority_class",
     "interpretation_version",
     "execution_context",
     "transaction_id",
-    "detected_conflicts",
-    "occurred_at",
-    "metadata"
+    "occurred_at"
   ],
   "properties": {
     "transition_id": {"type": "string", "minLength": 1},
