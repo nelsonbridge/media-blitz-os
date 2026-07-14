@@ -16,6 +16,6 @@
 | BL-010 | complete | NKS-SPR-010 | Governed Transition and Conflict Engine | 3 |
 | BL-011 | complete | NKS-SPR-011 | Governed Interpretation and Capability-Isolated Model Use | 3 |
 | BL-012 | complete | NKS-SPR-012 | Forensic Reconstruction, Portability, and Governed Work Completion | 4 |
-| BL-013 | planned | NKS-SPR-013 | Integrated Internal TEST Proof and Enki Release Candidate | 0 |
+| BL-013 | complete | NKS-SPR-013 | Integrated Internal TEST Proof and Enki Release Candidate | 5 |
 
 Total work items: 13
