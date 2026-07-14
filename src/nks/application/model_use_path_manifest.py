@@ -32,6 +32,7 @@ def _path(
 
 def model_use_path_manifest() -> OperationPathManifest:
     rollback = TransactionTerminalState.ROLLED_BACK
+    recovered = TransactionTerminalState.RECOVERED
     return OperationPathManifest(
         operation_family="enki-model-use",
         execution_context=ExecutionContext.TEST,
@@ -74,6 +75,24 @@ def model_use_path_manifest() -> OperationPathManifest:
             _path("package-tamper", terminal=rollback),
             _path("exact-package-revocation", terminal=rollback),
             _path("revocation-hash-conflict", terminal=rollback),
+            _path("approval-hash-mismatch", terminal=rollback),
+            _path(
+                "failure-before-consumption",
+                terminal=rollback,
+                recovery=RecoveryStrategy.RELEASE_RESERVATION,
+            ),
+            _path(
+                "failure-after-consumption",
+                terminal=recovered,
+                state_changing=True,
+                recovery=RecoveryStrategy.EXACT_RETRY,
+            ),
+            _path(
+                "exact-transaction-retry",
+                terminal=recovered,
+                state_changing=True,
+                recovery=RecoveryStrategy.EXACT_RETRY,
+            ),
             _path("test-no-effect-dispatch", state_changing=True),
             _path("test-dispatcher-production-rejection", terminal=rollback),
             _path("production-dispatcher-test-rejection", terminal=rollback),
