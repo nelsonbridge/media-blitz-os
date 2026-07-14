@@ -7,7 +7,7 @@ from enum import StrEnum
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from nks.enki.contracts import SubjectRef
+from nks.enki.contracts import ConfidenceAssertion, SubjectRef
 from nks.governance.approvals import ExecutionContext
 
 
@@ -71,6 +71,7 @@ class EnkiModelUseItem(BaseModel):
     content_sha256: str = Field(pattern=r"^sha256:[0-9a-f]{64}$")
     context: list[str] = Field(default_factory=list)
     temporal_state: ModelUseTemporalState
+    confidence: ConfidenceAssertion
     sensitivity: ModelUseSensitivity
     consent_state: ModelUseConsentState
     allowed_purposes: set[str] = Field(min_length=1)
@@ -139,7 +140,7 @@ class EnkiModelUseRequest(BaseModel):
     @model_validator(mode="after")
     def validate_unique_identifiers(self) -> "EnkiModelUseRequest":
         item_ids = [item.item_id for item in self.items]
-        directive_ids = [item.directive_id for item in self.directives]
+        directive_ids = [directive.directive_id for directive in self.directives]
         if len(item_ids) != len(set(item_ids)):
             raise ValueError("model-use item ids must be unique")
         if len(directive_ids) != len(set(directive_ids)):
@@ -230,8 +231,11 @@ class DownstreamEffectReceipt(BaseModel):
                 raise ValueError("TEST effect receipts cannot claim an external effect")
             if self.provider_reference is not None:
                 raise ValueError("TEST effect receipts cannot contain provider references")
-            if self.status != DownstreamEffectStatus.NO_EFFECT_TEST:
-                raise ValueError("TEST effect receipts must be NO_EFFECT_TEST")
+            if self.status not in {
+                DownstreamEffectStatus.NO_EFFECT_TEST,
+                DownstreamEffectStatus.REVOKED,
+            }:
+                raise ValueError("TEST effect receipts must be no-effect or revocation records")
         if self.status == DownstreamEffectStatus.DISPATCHED and not self.external_effect:
             raise ValueError("DISPATCHED receipts must record an external effect")
         return self

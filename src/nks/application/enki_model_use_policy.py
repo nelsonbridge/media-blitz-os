@@ -6,6 +6,7 @@ from datetime import datetime
 from typing import Protocol
 
 from nks.application.governed_transactions import canonical_sha256
+from nks.enki.contracts import ConfidenceLevel
 from nks.enki.model_use_contracts import (
     DownstreamEffectReceipt,
     DownstreamEffectStatus,
@@ -83,7 +84,10 @@ def _decision(
         action=action,
         directive_id=directive.directive_id if directive else None,
         reasons=list(dict.fromkeys(reasons)),
-        metadata={"item_kind": item.item_kind.value},
+        metadata={
+            "item_kind": item.item_kind.value,
+            "confidence_level": item.confidence.level.value,
+        },
     )
 
 
@@ -136,6 +140,10 @@ def _base_item_reasons(
     if item.temporal_state == ModelUseTemporalState.DISPUTED:
         return ModelUseDecisionAction.DEFER, [
             "DISPUTED item is preserved but cannot control downstream behavior"
+        ]
+    if item.confidence.level in {ConfidenceLevel.UNKNOWN, ConfidenceLevel.LOW}:
+        return ModelUseDecisionAction.DEFER, [
+            f"{item.confidence.level.value} confidence cannot control downstream behavior"
         ]
     return None, []
 

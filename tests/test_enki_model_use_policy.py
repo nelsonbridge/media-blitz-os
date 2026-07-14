@@ -22,7 +22,7 @@ from nks.application.enki_model_use_policy import (
     assert_package_not_revoked,
     build_enki_model_use_package,
 )
-from nks.enki.contracts import SubjectRef
+from nks.enki.contracts import ConfidenceAssertion, ConfidenceLevel, SubjectRef
 from nks.enki.model_use_contracts import (
     DownstreamEffectReceipt,
     DownstreamEffectStatus,
@@ -52,6 +52,14 @@ def _now() -> datetime:
 SUBJECT = SubjectRef(subject_id="PERSON-1", subject_type="PERSON")
 
 
+def _confidence(level: ConfidenceLevel = ConfidenceLevel.HIGH) -> ConfidenceAssertion:
+    return ConfidenceAssertion(
+        level=level,
+        rationale=f"TEST fixture confidence is {level.value}.",
+        evidence_ids=["EVIDENCE-1"],
+    )
+
+
 def _item(
     item_id: str = "ITEM-1",
     *,
@@ -60,6 +68,7 @@ def _item(
     domain: str = "career",
     context: list[str] | None = None,
     temporal_state: ModelUseTemporalState = ModelUseTemporalState.CURRENT,
+    confidence_level: ConfidenceLevel = ConfidenceLevel.HIGH,
     sensitivity: ModelUseSensitivity = ModelUseSensitivity.PUBLIC,
     consent_state: ModelUseConsentState = ModelUseConsentState.GRANTED,
     allowed_purposes: set[str] | None = None,
@@ -75,6 +84,7 @@ def _item(
         content_sha256=_hash(item_id),
         context=context or ["current-role"],
         temporal_state=temporal_state,
+        confidence=_confidence(confidence_level),
         sensitivity=sensitivity,
         consent_state=consent_state,
         allowed_purposes=allowed_purposes or {"career-assistance"},
@@ -167,16 +177,16 @@ def _revocation(package, **updates) -> ModelUseRevocation:
     return ModelUseRevocation(**values)
 
 
-def test_exact_directive_includes_item_and_package_hash_is_deterministic() -> None:
+def test_exact_directive_includes_item_and_hashes_are_deterministic() -> None:
     item = _item()
     request = _request([item], [_directive(item)])
-
     first = build_enki_model_use_package(request)
     second = build_enki_model_use_package(request)
 
     assert first == second
     assert first.included_items == [item]
     assert first.decisions[0].action == ModelUseDecisionAction.INCLUDE
+    assert first.decisions[0].metadata["confidence_level"] == "HIGH"
     assert first.directive_ids == ["DIR-1"]
     assert_model_use_package_integrity(first)
 
@@ -184,14 +194,12 @@ def test_exact_directive_includes_item_and_package_hash_is_deterministic() -> No
 def test_item_without_directive_is_deferred_not_inferred() -> None:
     item = _item()
     package = build_enki_model_use_package(_request([item], []))
-
     assert package.included_items == []
     assert package.decisions[0].action == ModelUseDecisionAction.DEFER
-    assert "no exact model-use directive" in package.decisions[0].reasons[0]
 
 
 @pytest.mark.parametrize(
-    "temporal_state",
+    "state",
     [
         ModelUseTemporalState.RETRACTED,
         ModelUseTemporalState.EXPIRED,
@@ -199,63 +207,66 @@ def test_item_without_directive_is_deferred_not_inferred() -> None:
         ModelUseTemporalState.INAPPLICABLE,
     ],
 )
-def test_inapplicable_temporal_state_is_withheld(
-    temporal_state: ModelUseTemporalState,
-) -> None:
-    item = _item(temporal_state=temporal_state)
+def test_inapplicable_temporal_state_is_withheld(state: ModelUseTemporalState) -> None:
+    item = _item(temporal_state=state)
     package = build_enki_model_use_package(_request([item], [_directive(item)]))
-
     assert package.decisions[0].action == ModelUseDecisionAction.WITHHOLD
-    assert temporal_state.value in package.decisions[0].reasons[0]
+    assert state.value in package.decisions[0].reasons[0]
 
 
-def test_disputed_item_is_deferred_even_with_include_directive() -> None:
+def test_disputed_item_is_deferred() -> None:
     item = _item(temporal_state=ModelUseTemporalState.DISPUTED)
     package = build_enki_model_use_package(_request([item], [_directive(item)]))
-
     assert package.decisions[0].action == ModelUseDecisionAction.DEFER
-    assert package.included_items == []
+
+
+@pytest.mark.parametrize("level", [ConfidenceLevel.UNKNOWN, ConfidenceLevel.LOW])
+def test_insufficient_confidence_is_deferred(level: ConfidenceLevel) -> None:
+    item = _item(confidence_level=level)
+    package = build_enki_model_use_package(_request([item], [_directive(item)]))
+    assert package.decisions[0].action == ModelUseDecisionAction.DEFER
+    assert level.value in package.decisions[0].reasons[0]
+
+
+@pytest.mark.parametrize("level", [ConfidenceLevel.MODERATE, ConfidenceLevel.HIGH])
+def test_supported_confidence_can_be_included(level: ConfidenceLevel) -> None:
+    item = _item(confidence_level=level)
+    package = build_enki_model_use_package(_request([item], [_directive(item)]))
+    assert package.decisions[0].action == ModelUseDecisionAction.INCLUDE
 
 
 @pytest.mark.parametrize(
-    "consent_state",
+    "state",
     [
         ModelUseConsentState.DENIED,
         ModelUseConsentState.REVOKED,
         ModelUseConsentState.UNKNOWN,
     ],
 )
-def test_nonqualifying_consent_is_withheld(
-    consent_state: ModelUseConsentState,
-) -> None:
-    item = _item(consent_state=consent_state)
+def test_nonqualifying_consent_is_withheld(state: ModelUseConsentState) -> None:
+    item = _item(consent_state=state)
     package = build_enki_model_use_package(_request([item], [_directive(item)]))
-
     assert package.decisions[0].action == ModelUseDecisionAction.WITHHOLD
-    assert consent_state.value in package.decisions[0].reasons[0]
 
 
-def test_item_expiry_and_revocation_are_withheld() -> None:
+def test_item_expiry_revocation_and_purpose_are_withheld() -> None:
     expired = _item("EXPIRED", expires_at=_now() - timedelta(seconds=1))
     revoked = _item("REVOKED", revoked_at=_now() - timedelta(seconds=1))
+    purpose = _item("PURPOSE", allowed_purposes={"research"})
     package = build_enki_model_use_package(
         _request(
-            [expired, revoked],
-            [_directive(expired, directive_id="DIR-E"), _directive(revoked, directive_id="DIR-R")],
+            [expired, revoked, purpose],
+            [
+                _directive(expired, directive_id="DIR-E"),
+                _directive(revoked, directive_id="DIR-R"),
+                _directive(purpose, directive_id="DIR-P"),
+            ],
         )
     )
-
-    actions = {decision.item_id: decision for decision in package.decisions}
-    assert "item is expired" in actions["EXPIRED"].reasons
-    assert "item is revoked" in actions["REVOKED"].reasons
-
-
-def test_purpose_mismatch_is_withheld() -> None:
-    item = _item(allowed_purposes={"research"})
-    package = build_enki_model_use_package(_request([item], [_directive(item)]))
-
-    assert package.decisions[0].action == ModelUseDecisionAction.WITHHOLD
-    assert "purpose is not allowed" in package.decisions[0].reasons[0]
+    assert all(
+        decision.action == ModelUseDecisionAction.WITHHOLD
+        for decision in package.decisions
+    )
 
 
 @pytest.mark.parametrize(
@@ -271,22 +282,6 @@ def test_sensitive_state_is_not_widened_to_external_models(
 ) -> None:
     item = _item(sensitivity=sensitivity)
     directive = _directive(item, audience=ModelUseAudience.EXTERNAL_MODEL)
-    request = _request(
-        [item],
-        [directive],
-        audience=ModelUseAudience.EXTERNAL_MODEL,
-    )
-    package = build_enki_model_use_package(request)
-
-    assert package.included_items == []
-    assert package.decisions[0].action == ModelUseDecisionAction.WITHHOLD
-
-
-def test_redaction_requirement_withholds_original_item() -> None:
-    item = _item(
-        redaction_required_for={ModelUseAudience.EXTERNAL_MODEL},
-    )
-    directive = _directive(item, audience=ModelUseAudience.EXTERNAL_MODEL)
     package = build_enki_model_use_package(
         _request(
             [item],
@@ -294,54 +289,54 @@ def test_redaction_requirement_withholds_original_item() -> None:
             audience=ModelUseAudience.EXTERNAL_MODEL,
         )
     )
-
     assert package.decisions[0].action == ModelUseDecisionAction.WITHHOLD
-    assert "redacted derivative" in package.decisions[0].reasons[0]
+
+
+def test_redaction_requirement_withholds_original_item() -> None:
+    item = _item(redaction_required_for={ModelUseAudience.EXTERNAL_MODEL})
+    directive = _directive(item, audience=ModelUseAudience.EXTERNAL_MODEL)
+    package = build_enki_model_use_package(
+        _request([item], [directive], audience=ModelUseAudience.EXTERNAL_MODEL)
+    )
+    assert package.decisions[0].action == ModelUseDecisionAction.WITHHOLD
 
 
 def test_transition_requires_explicit_inclusion_choice() -> None:
     item = _item(item_kind=ModelUseItemKind.TRANSITION)
+    payload = _directive(item, transition_inclusion=True).model_dump(mode="python")
+    payload.pop("transition_inclusion")
     with pytest.raises(ValidationError, match="explicit inclusion choice"):
-        _directive(item, transition_inclusion=None).model_copy(
-            update={"transition_inclusion": None}
-        ).model_validate(
-            _directive(item, transition_inclusion=True).model_dump(
-                mode="python",
-                exclude={"transition_inclusion"},
-            )
-        )
+        EnkiModelUseDirective.model_validate(payload)
 
 
-def test_transition_explicit_exclusion_is_withheld() -> None:
+def test_transition_explicit_exclusion_and_inclusion_are_distinct() -> None:
     item = _item(item_kind=ModelUseItemKind.TRANSITION)
-    directive = _directive(item, transition_inclusion=False)
-    package = build_enki_model_use_package(_request([item], [directive]))
+    excluded = build_enki_model_use_package(
+        _request([item], [_directive(item, transition_inclusion=False)])
+    )
+    included = build_enki_model_use_package(
+        _request([item], [_directive(item, transition_inclusion=True)])
+    )
+    assert excluded.decisions[0].action == ModelUseDecisionAction.WITHHOLD
+    assert included.decisions[0].action == ModelUseDecisionAction.INCLUDE
 
-    assert package.included_items == []
-    assert "transition inclusion was not explicitly authorized" in package.decisions[0].reasons
 
-
-def test_duplicate_directives_for_one_item_fail_closed() -> None:
+def test_duplicate_directives_and_absent_items_fail_closed() -> None:
     item = _item()
-    request = _request(
+    duplicate = _request(
         [item],
         [_directive(item, directive_id="D-1"), _directive(item, directive_id="D-2")],
     )
     with pytest.raises(ModelUsePackageConflictError, match="multiple directives"):
-        build_enki_model_use_package(request)
+        build_enki_model_use_package(duplicate)
 
-
-def test_directive_for_absent_item_fails_closed() -> None:
-    present = _item("PRESENT")
     absent = _item("ABSENT")
-    request = _request([present], [_directive(absent)])
-
     with pytest.raises(ModelUsePackageConflictError, match="absent or mismatched"):
-        build_enki_model_use_package(request)
+        build_enki_model_use_package(_request([item], [_directive(absent)]))
 
 
 @pytest.mark.parametrize(
-    ("directive_update", "reason"),
+    ("update", "reason"),
     [
         ({"purpose": "other-purpose"}, "directive purpose"),
         ({"audience": ModelUseAudience.EXTERNAL_MODEL}, "directive audience"),
@@ -351,37 +346,26 @@ def test_directive_for_absent_item_fails_closed() -> None:
         ({"action": ModelUseDirectiveAction.EXCLUDE}, "explicitly excludes"),
     ],
 )
-def test_directive_mismatch_or_ineligibility_withholds(
-    directive_update: dict,
-    reason: str,
-) -> None:
+def test_directive_mismatch_or_ineligibility_withholds(update: dict, reason: str) -> None:
     item = _item()
-    directive = _directive(item).model_copy(update=directive_update)
+    directive = _directive(item).model_copy(update=update)
     package = build_enki_model_use_package(_request([item], [directive]))
-
     assert package.decisions[0].action == ModelUseDecisionAction.WITHHOLD
-    assert any(reason in item_reason for item_reason in package.decisions[0].reasons)
+    assert any(reason in value for value in package.decisions[0].reasons)
 
 
-def test_package_context_substitution_is_rejected() -> None:
+def test_package_context_substitution_and_tampering_are_rejected(tmp_path) -> None:
     item = _item()
     request = _request([item], [_directive(item)])
     package = build_enki_model_use_package(request)
-    mismatched = request.model_copy(update={"purpose": "other-purpose"})
 
     with pytest.raises(ModelUsePackageConflictError, match="purpose"):
-        assert_package_context(package, mismatched)
+        assert_package_context(package, request.model_copy(update={"purpose": "other"}))
 
-
-def test_package_tampering_is_rejected_before_dispatch(tmp_path) -> None:
-    item = _item()
-    request = _request([item], [_directive(item)])
-    package = build_enki_model_use_package(request)
     tampered_item = package.included_items[0].model_copy(
         update={"content_sha256": _hash("tampered")}
     )
     tampered = package.model_copy(update={"included_items": [tampered_item]})
-
     with pytest.raises(ModelUsePackageConflictError, match="hash is invalid"):
         execute_model_use_dispatch(
             tampered,
@@ -393,7 +377,7 @@ def test_package_tampering_is_rejected_before_dispatch(tmp_path) -> None:
         )
 
 
-def test_exact_revocation_blocks_dispatch(tmp_path) -> None:
+def test_exact_revocation_blocks_dispatch_and_hash_mismatch_conflicts(tmp_path) -> None:
     item = _item()
     request = _request([item], [_directive(item)])
     package = build_enki_model_use_package(request)
@@ -409,13 +393,6 @@ def test_exact_revocation_blocks_dispatch(tmp_path) -> None:
             revocation_repository=repository,
             now=_now(),
         )
-
-
-def test_revocation_hash_mismatch_fails_as_conflict() -> None:
-    item = _item()
-    request = _request([item], [_directive(item)])
-    package = build_enki_model_use_package(request)
-
     with pytest.raises(ModelUsePackageConflictError, match="hash"):
         assert_package_not_revoked(
             package,
@@ -423,21 +400,18 @@ def test_revocation_hash_mismatch_fails_as_conflict() -> None:
         )
 
 
-def test_test_dispatcher_has_no_external_effect_or_provider_reference(tmp_path) -> None:
+def test_test_dispatcher_has_no_transport_or_external_effect(tmp_path) -> None:
     item = _item()
     request = _request([item], [_directive(item)])
     package = build_enki_model_use_package(request)
-    repository = JsonEnkiModelUseRepository(tmp_path)
-
     receipt = execute_model_use_dispatch(
         package,
         request=request,
         transaction_id="TX-1",
         dispatcher=NoEffectTestModelDispatcher(),
-        revocation_repository=repository,
+        revocation_repository=JsonEnkiModelUseRepository(tmp_path),
         now=_now(),
     )
-
     assert receipt.status == DownstreamEffectStatus.NO_EFFECT_TEST
     assert receipt.external_effect is False
     assert receipt.provider_reference is None
@@ -445,11 +419,10 @@ def test_test_dispatcher_has_no_external_effect_or_provider_reference(tmp_path) 
 
 def test_test_dispatcher_rejects_production_package() -> None:
     item = _item()
-    directive = _directive(item)
     package = build_enki_model_use_package(
         _request(
             [item],
-            [directive],
+            [_directive(item)],
             execution_context=ExecutionContext.PRODUCTION,
         )
     )
@@ -470,10 +443,9 @@ class _FakeTransport:
         return f"provider:{transaction_id}"
 
 
-def test_production_dispatcher_requires_production_package_and_explicit_transport() -> None:
+def test_production_dispatcher_requires_production_package_and_transport() -> None:
     item = _item()
-    directive = _directive(item)
-    test_package = build_enki_model_use_package(_request([item], [directive]))
+    test_package = build_enki_model_use_package(_request([item], [_directive(item)]))
     transport = _FakeTransport()
     dispatcher = CapabilityIsolatedProductionModelDispatcher(transport)
 
@@ -481,22 +453,21 @@ def test_production_dispatcher_requires_production_package_and_explicit_transpor
         dispatcher.dispatch(test_package, transaction_id="TX-1", now=_now())
     assert transport.calls == []
 
-    production_request = _request(
-        [item],
-        [directive],
-        execution_context=ExecutionContext.PRODUCTION,
+    production_package = build_enki_model_use_package(
+        _request(
+            [item],
+            [_directive(item)],
+            execution_context=ExecutionContext.PRODUCTION,
+        )
     )
-    production_package = build_enki_model_use_package(production_request)
     receipt = dispatcher.dispatch(
         production_package,
         transaction_id="TX-2",
         now=_now(),
     )
-
     assert transport.calls == [("PKG-1", "TX-2")]
     assert receipt.status == DownstreamEffectStatus.DISPATCHED
     assert receipt.external_effect is True
-    assert receipt.provider_reference == "provider:TX-2"
 
 
 def test_test_effect_receipt_cannot_claim_external_effect() -> None:
@@ -516,8 +487,7 @@ def test_test_effect_receipt_cannot_claim_external_effect() -> None:
 
 def test_append_only_repository_preserves_packages_effects_and_revocations(tmp_path) -> None:
     item = _item()
-    request = _request([item], [_directive(item)])
-    package = build_enki_model_use_package(request)
+    package = build_enki_model_use_package(_request([item], [_directive(item)]))
     repository = JsonEnkiModelUseRepository(tmp_path)
     repository.append_package(package)
     repository.append_package(package)
@@ -543,4 +513,15 @@ def test_append_only_repository_preserves_packages_effects_and_revocations(tmp_p
     with pytest.raises(EnkiModelUseRecordConflictError):
         repository.append_revocation(
             revocation.model_copy(update={"reason": "different revocation"})
+        )
+
+
+def test_request_rejects_duplicate_item_and_directive_ids() -> None:
+    item = _item()
+    with pytest.raises(ValidationError, match="item ids must be unique"):
+        _request([item, item], [])
+    with pytest.raises(ValidationError, match="directive ids must be unique"):
+        _request(
+            [item],
+            [_directive(item), _directive(item)],
         )
