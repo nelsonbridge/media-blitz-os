@@ -4,10 +4,10 @@
 
 ## Census
 
-- Files: 571
+- Files: 635
 - Canonical records: 152
-- Tests: 33
-- Schemas: 9
+- Tests: 53
+- Schemas: 12
 
 ## Top-Level File Counts
 
@@ -24,7 +24,7 @@
 | contracts | 3 |
 | corpus | 42 |
 | diagnostics | 2 |
-| docs | 25 |
+| docs | 28 |
 | editorial | 1 |
 | engineering | 1 |
 | evidence | 10 |
@@ -35,17 +35,17 @@
 | metrics | 6 |
 | opportunities | 4 |
 | ops | 5 |
-| publishing | 92 |
+| publishing | 94 |
 | records | 152 |
 | research | 2 |
-| roadmap | 6 |
+| roadmap | 19 |
 | runtime | 5 |
-| schemas | 9 |
+| schemas | 12 |
 | scripts | 1 |
 | security | 1 |
-| src | 52 |
+| src | 75 |
 | templates | 12 |
-| tests | 41 |
+| tests | 61 |
 | validation | 5 |
 | visuals | 17 |
 | whitepapers | 1 |
@@ -70,6 +70,9 @@
 | human-transitions | 0 |
 | model-ingestion-policies | 0 |
 | model-feedback-receipts | 0 |
+| approval-grants | 0 |
+| reconciliation-findings | 0 |
+| disclosure-receipts | 0 |
 | canonical-reservations | 0 |
 | work-items | 11 |
 | sprints | 11 |

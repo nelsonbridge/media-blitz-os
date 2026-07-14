@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/disclosure-receipt.schema.json",
+  "title": "Enki Disclosure Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "disclosure_id",
+    "subject",
+    "domain",
+    "audience",
+    "purpose",
+    "requested_finding_ids",
+    "surfaced_finding_ids",
+    "deferred_finding_ids",
+    "withheld_finding_ids",
+    "decisions",
+    "content_sha256",
+    "approval_id",
+    "execution_context",
+    "transaction_id",
+    "policy_version"
+  ],
+  "properties": {
+    "disclosure_id": {"type": "string", "minLength": 1},
+    "subject": {"$ref": "#/$defs/subject_ref"},
+    "domain": {"type": "string", "minLength": 1},
+    "audience": {
+      "type": "string",
+      "enum": ["SUBJECT", "INTERNAL_OPERATOR", "EXTERNAL_MODEL", "PUBLIC"]
+    },
+    "purpose": {"type": "string", "minLength": 1},
+    "requested_finding_ids": {"$ref": "#/$defs/finding_ids"},
+    "surfaced_finding_ids": {"$ref": "#/$defs/finding_ids"},
+    "deferred_finding_ids": {"$ref": "#/$defs/finding_ids"},
+    "withheld_finding_ids": {"$ref": "#/$defs/finding_ids"},
+    "decisions": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/disclosure_decision"}
+    },
+    "content_sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "approval_id": {"type": ["string", "null"], "minLength": 1},
+    "execution_context": {
+      "type": ["string", "null"],
+      "enum": ["TEST", "PRODUCTION", null]
+    },
+    "transaction_id": {"type": ["string", "null"], "minLength": 1},
+    "policy_version": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "audience": {"enum": ["EXTERNAL_MODEL", "PUBLIC"]}
+        },
+        "required": ["audience"]
+      },
+      "then": {
+        "properties": {
+          "approval_id": {"type": "string", "minLength": 1},
+          "execution_context": {"type": "string", "enum": ["TEST", "PRODUCTION"]},
+          "transaction_id": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "subject_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subject_id", "subject_type", "namespace"],
+      "properties": {
+        "subject_id": {"type": "string", "minLength": 1},
+        "subject_type": {"type": "string", "minLength": 1},
+        "namespace": {"type": "string", "minLength": 1, "default": "default"}
+      }
+    },
+    "finding_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "disclosure_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "finding_id",
+        "action",
+        "reasons",
+        "decided_at",
+        "policy_version",
+        "metadata"
+      ],
+      "properties": {
+        "finding_id": {"type": "string", "minLength": 1},
+        "action": {"type": "string", "enum": ["SURFACE", "DEFER", "WITHHOLD"]},
+        "reasons": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "decided_at": {"type": "string", "format": "date-time"},
+        "policy_version": {"type": "string", "minLength": 1},
+        "metadata": {"type": "object"}
+      }
+    }
+  }
+}

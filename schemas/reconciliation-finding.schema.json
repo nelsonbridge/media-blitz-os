@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/reconciliation-finding.schema.json",
+  "title": "Enki Reconciliation Finding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "finding_id",
+    "subject",
+    "domain",
+    "finding_kind",
+    "summary",
+    "observation_ids",
+    "relationship_ids",
+    "evidence_ids",
+    "objective_refs",
+    "priority_refs",
+    "hypotheses",
+    "confidence",
+    "created_at",
+    "interpretation_version",
+    "metadata"
+  ],
+  "properties": {
+    "finding_id": {"type": "string", "minLength": 1},
+    "subject": {"$ref": "#/$defs/subject_ref"},
+    "domain": {"type": "string", "minLength": 1},
+    "finding_kind": {
+      "type": "string",
+      "enum": ["ALIGNMENT", "DIVERGENCE", "UNCERTAINTY", "INSUFFICIENT_EVIDENCE"]
+    },
+    "summary": {"type": "string", "minLength": 1},
+    "observation_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "relationship_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "objective_refs": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "priority_refs": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "hypotheses": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "confidence": {"$ref": "#/$defs/confidence_assertion"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "interpretation_version": {"type": "string", "minLength": 1},
+    "metadata": {"type": "object"}
+  },
+  "anyOf": [
+    {"properties": {"observation_ids": {"minItems": 1}}},
+    {"properties": {"relationship_ids": {"minItems": 1}}}
+  ],
+  "$defs": {
+    "subject_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subject_id", "subject_type", "namespace"],
+      "properties": {
+        "subject_id": {"type": "string", "minLength": 1},
+        "subject_type": {"type": "string", "minLength": 1},
+        "namespace": {"type": "string", "minLength": 1, "default": "default"}
+      }
+    },
+    "confidence_assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "rationale", "evidence_ids"],
+      "properties": {
+        "level": {"type": "string", "enum": ["UNKNOWN", "LOW", "MODERATE", "HIGH"]},
+        "rationale": {"type": "string", "minLength": 1},
+        "evidence_ids": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

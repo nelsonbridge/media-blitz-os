@@ -23,18 +23,20 @@ Rules:
 
 ### Class 2 — Generated Authoritative Projections
 
-Generated authoritative projections are deterministic, human-readable views derived from Class 1 state.
+Generated authoritative projections are deterministic views or payload families derived from Class 1 state.
 
-Current examples include files under `generated/`, such as publication, proof, visual, event, feedback, capability, and repository-audit indexes.
+Current examples include files under `generated/`, such as publication, proof, visual, event, feedback, capability, and repository-audit indexes, plus governed model-feedback payload and receipt pairs.
 
 Rules:
 
 - Class 2 files must be produced by a documented generator or audit command.
 - Class 2 files must never be manually maintained.
-- Every Class 2 file must identify its generator and input scope in `generated/state-authority-manifest.json`.
+- Every Class 2 file or output family must identify its generator and input scope in `generated/state-authority-manifest.json`.
 - A change to a Class 2 file without the corresponding canonical or generator change is invalid.
 - Regeneration must be idempotent for unchanged canonical input.
 - When two generated projections conflict, the conflict is a generator or input-scope defect and must be reconciled against Class 1.
+- An optional output family may be absent when no authorized operation has produced it.
+- Once any member directory of an output family exists, every file required by that family must exist. Partial payload or receipt pairs fail verification.
 
 ### Class 3 — Non-Authoritative Narrative and Historical Material
 
@@ -78,6 +80,7 @@ It currently includes:
 
 - generated publication, proof, visual, event, feedback, graph, health, runtime, package, and capability projections;
 - generated repository audit reports;
+- optional `generated/model-feedback/*/` output-family members, each requiring both `payload.json` and `receipt.json` when present;
 - no manually maintained status document.
 
 ### Class 3
@@ -91,23 +94,27 @@ It currently includes:
 
 The following controls are active:
 
-1. `generated/state-authority-manifest.json` records Class 1 scope, Class 2 projection inventory, generator ownership, and source scope.
-2. `python -m nks.views.authority verify .` rejects a missing, invalid, or stale manifest and missing Class 2 projections.
+1. `generated/state-authority-manifest.json` records Class 1 scope, Class 2 projection inventory, optional generated-output families, generator ownership, and source scope.
+2. `python -m nks.views.authority verify .` rejects a missing, invalid, or stale manifest, missing required Class 2 projections, and incomplete generated-output family members.
 3. `nks generate-views .` deterministically regenerates the standard Class 2 projections.
 4. `.github/workflows/state-authority.yml` runs authority tests, verifies the manifest, regenerates projections, and fails when committed generated output differs.
 5. Generated views carry a warning that they must not be manually edited.
+6. Model-feedback output directories may be absent, but any present directory must contain both its payload and receipt.
 
 Remaining controls:
 
 1. Extend repository audit findings to detect undeclared status-like files and contradictory Class 3 claims.
 2. Require canonical-input or generator changes whenever a Class 2 artifact changes.
 3. Add source revision metadata where it improves diagnosis without compromising deterministic output.
+4. Replace the legacy model-feedback generator reference after the governed writer becomes the production path.
 
 ## Transitional Decision
 
 `runtime/STATUS.md` and `docs/master-state-index.md` currently contain useful reconciled summaries, but they are manually maintained. They are therefore Class 3 transitional documents and are not authoritative.
 
 They may become Class 2 only after a deterministic generator owns their complete contents and CI verifies regeneration.
+
+The current model-feedback output family is registered against the legacy `PublishHumanStateFeedback` generator because that is the implementation that presently writes the payload and receipt pair. The decomposed governed path must replace that generator declaration only when it owns production persistence and equivalent recovery controls.
 
 ## Operating Rule
 

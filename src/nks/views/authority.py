@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-SCHEMA_VERSION = "1.1"
+SCHEMA_VERSION = "1.2"
 MANIFEST_PATH = Path("generated/state-authority-manifest.json")
 
 GENERATED_PROJECTIONS: tuple[dict[str, Any], ...] = (
@@ -28,6 +28,21 @@ GENERATED_PROJECTIONS: tuple[dict[str, Any], ...] = (
     {"path": "generated/audit/repository-audit.json", "generator": "nks audit-repository", "sources": ["repository tree", "records/**/*.json"]},
 )
 
+GENERATED_OUTPUT_FAMILIES: tuple[dict[str, Any], ...] = (
+    {
+        "directory_glob": "generated/model-feedback/*",
+        "generator": "nks.application.human_state.PublishHumanStateFeedback",
+        "required": False,
+        "required_files": ["payload.json", "receipt.json"],
+        "sources": [
+            "records/human-observations/*.json",
+            "records/human-transitions/*.json",
+            "records/model-ingestion-policies/*.json",
+            "records/model-feedback-receipts/*.json",
+        ],
+    },
+)
+
 
 def build_authority_manifest() -> dict[str, Any]:
     return {
@@ -46,6 +61,10 @@ def build_authority_manifest() -> dict[str, Any]:
         "generated_authoritative_projections": [
             {"class": 2, "manually_editable": False, **projection}
             for projection in GENERATED_PROJECTIONS
+        ],
+        "generated_output_families": [
+            {"class": 2, "manually_editable": False, **family}
+            for family in GENERATED_OUTPUT_FAMILIES
         ],
         "narrative_or_historical_material": {
             "class": 3,
@@ -85,6 +104,23 @@ def verify_authority_manifest(repository_root: Path) -> list[str]:
         path = repository_root / projection["path"]
         if not path.exists():
             violations.append(f"missing Class 2 projection: {projection['path']}")
+
+    for family in GENERATED_OUTPUT_FAMILIES:
+        directories = sorted(repository_root.glob(family["directory_glob"]))
+        if family["required"] and not directories:
+            violations.append(
+                f"missing required Class 2 output family: {family['directory_glob']}"
+            )
+        for directory in directories:
+            if not directory.is_dir():
+                violations.append(f"Class 2 output family member is not a directory: {directory}")
+                continue
+            for filename in family["required_files"]:
+                path = directory / filename
+                if not path.exists():
+                    violations.append(
+                        f"incomplete Class 2 output family member: {path.relative_to(repository_root)}"
+                    )
 
     return violations
 
