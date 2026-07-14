@@ -4,19 +4,20 @@
 > This is a design-quality assessment, not the governing human approval required to promote the roadmap.
 
 - Proposal reviewed: `roadmap/proposals/revised-thirteen-sprint-plan.md`
-- Review result: `RECOMMEND APPROVAL WITH EXPLICIT CLARIFICATIONS`
-- Blocking architectural defects found: none after applying the dependency interpretations below
+- Required correction: `roadmap/proposals/feedback-validation-amendment.md`
+- Review result: `RECOMMEND APPROVAL WITH EXPLICIT CLARIFICATIONS AND FEEDBACK AMENDMENT`
+- Blocking architectural defects found: none after applying the dependency and feedback interpretations below
 
 ## Review conclusion
 
 The revised roadmap is structurally stronger than the eleven-sprint plan because it replaces broad mixed-capability sprints with smaller evidence boundaries and separates internal construction from external validation.
 
-The strongest correction is the distinction between:
+The strongest architectural distinction remains:
 
-- Sprint 13: internally complete and reconstructable release candidate; and
-- Sprint 3: explicitly authorized external publication, receipts, and REAL feedback.
+- Sprint 13: internally complete, reconstructable, and pre-production validated release candidate; and
+- Sprint 3: explicitly authorized production publication, observation, and post-release calibration.
 
-This preserves the value of production evidence without allowing an unavailable adapter, unreviewed visual, publishing account decision, or audience response to halt unrelated internal construction.
+The original thirteen-sprint draft still contained one defect: it required actual audience feedback in Sprint 3 without first proving the feedback subsystem before production and without accounting for the valid possibility that no audience member responds. The feedback-validation amendment corrects this by requiring synthetic, replay, and controlled human TEST validation before production, while allowing Sprint 3 to record either observed production feedback or a zero-feedback receipt after a defined observation window.
 
 ## Finding 1 — No work-control bootstrap paradox
 
@@ -82,7 +83,7 @@ The word `blocked` can be misread as a global dependency rather than the state o
 
 Sprint 3 may remain canonically `blocked` or transition to another valid open state according to the work-control schema. Its dependency metadata and generated views must make clear that:
 
-- the blockers apply to Sprint 3's external-effect completion only;
+- the blockers apply to Sprint 3's production-effect completion only;
 - Sprints 5–13 do not depend on Sprint 3;
 - Sprint 3 and Sprint 13 converge as separate evidence lanes.
 
@@ -92,12 +93,41 @@ Sprint 13 may approve an internal release candidate and production-readiness han
 
 - public publication;
 - successful production transport;
-- REAL feedback;
+- production audience feedback;
 - production model ingestion;
 - production validation;
 - authorization to cause an external effect.
 
 Those claims remain with Sprint 3 or a later explicitly authorized production operation.
+
+## Finding 6 — Real feedback and production context must remain separate
+
+### Defect in the prior draft
+
+The prior draft used “REAL feedback” as though it necessarily followed public production and could be required as controllable sprint work.
+
+### Governing interpretation
+
+Feedback uses two independent dimensions:
+
+- provenance: `REAL | SYNTHETIC | REPLAY`;
+- execution context: `TEST | PRODUCTION`.
+
+A real human evaluator may produce `REAL/TEST` feedback through a non-side-effecting interface. That is genuine human feedback, but it cannot satisfy a production evidence gate.
+
+Pre-production validation must combine:
+
+- `SYNTHETIC/TEST` for coverage and adversarial cases;
+- `REPLAY/TEST` for regression where historical cases exist;
+- `REAL/TEST` for controlled human interaction;
+- deterministic pipeline, disposition, audit, zero-feedback, and calibration proof.
+
+After production, the observation window yields either:
+
+- `REAL/PRODUCTION` feedback records; or
+- an immutable zero-feedback receipt.
+
+The system controls collection readiness and evidence capture. It does not control whether an audience chooses to respond.
 
 ## Review of sprint ordering
 
@@ -110,24 +140,28 @@ The proposed order is coherent:
 5. reconciliation before transitions derived from findings;
 6. transitions before downstream model influence;
 7. operation families before system-wide reconstruction;
-8. reconstruction before integrated release-candidate proof.
+8. reconstruction and pre-production feedback validation before release-candidate approval;
+9. production authorization before external publication and post-release calibration.
 
-No ordering inversion requires correction.
+No ordering inversion requires correction after applying the feedback amendment.
 
 ## Scope-pressure review
 
 The densest revised sprint is Sprint 12. Its scope remains acceptable only because the common outcome is one capability: forensic portability of governed authority and state. During execution, it should be implemented as independently testable operation-family reconstructions and then closed by one cross-family recovery proof.
 
-Sprint 13 should remain an execution-and-evidence sprint. New domain features discovered there return to the backlog unless required to satisfy an already approved exit criterion.
+Sprint 13 is also substantial after adding feedback validation. It must remain an execution-and-evidence sprint. The synthetic scenario corpus, replay harness, controlled human evaluation, and calibration report all serve one outcome: proving the release candidate before production. New domain features discovered there return to the backlog unless required to satisfy an approved exit criterion.
 
 ## Recommendation
 
-Approve the roadmap proposal with the four dependency interpretations above incorporated into the canonical amendment:
+Approve the roadmap proposal only with the feedback-validation amendment incorporated into the canonical amendment:
 
 - existing work control is sufficient for pre-Sprint-12 evidence-bearing completion;
 - Sprint 12 hardens rather than bootstraps work control;
 - adapter parity is contract-bounded;
+- PR #27 is an evidence source spanning sprints;
 - Sprint 3's blocked state is lane-local;
-- Sprint 13 remains an internal release-candidate claim only.
+- Sprint 13 remains an internal release-candidate claim only;
+- the feedback pipeline is proven before production with SYNTHETIC/TEST, REPLAY/TEST where available, and controlled REAL/TEST evidence;
+- Sprint 3 records observed REAL/PRODUCTION feedback or a zero-feedback receipt rather than requiring an audience response.
 
-The proposal itself changes planning authority only. Implementation status must be reviewed sprint by sprint after canonical promotion.
+The proposal changes planning authority only. Implementation status must be reviewed sprint by sprint after canonical promotion.
