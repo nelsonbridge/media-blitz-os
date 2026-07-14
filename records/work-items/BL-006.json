@@ -1,19 +1,38 @@
 {
   "work_item_id": "BL-006",
-  "title": "Temporal Human-State Testable Reference Implementation",
-  "description": "Productionize temporal human state as the first complete consumer of the Sprint 5 transaction and approval-context foundation, with a fully automatable TEST lane and separately governed PRODUCTION lane.",
-  "status": "planned",
+  "title": "Enki Cognitive-Core Boundary and Generic Contracts",
+  "description": "Establish the product-neutral Enki bounded context, stable generic contracts, version compatibility rules, and uncertainty-preserving confidence behavior.",
+  "status": "complete",
   "sprint_id": "NKS-SPR-006",
   "acceptance_criteria": [
-    "Human-state observation, transition, policy, revocation, and model-feedback operations are journaled, recoverable, idempotent, and receipted",
-    "TEST-scoped consent, privacy, correction, transition, revocation, and model-use approvals can exercise the full automated human-state loop without external side effects",
-    "PRODUCTION human-state and model-use actions require recognized governing authority and cannot consume TEST approvals",
-    "Privacy classification, consent, purpose scope, redaction, expiration, and revocation fail closed in both execution contexts",
-    "CLI commands, canonical collections, generated views, authority manifest, and forensic audit preserve execution context",
-    "Behavior fixtures prove correct treatment of current, contextual, uncertain, disputed, retracted, superseded, and context-inapplicable state"
+    "Enki core remains independent of downstream product, Person Object, Organization Object, EOA/V8, clinical, maturity, and publication ontologies",
+    "Human objectives, priorities, values, choices, accountability, and outcomes remain external authority",
+    "Generic contracts and ports preserve evidence, temporal applicability, context, confidence, lineage, findings, and disclosure boundaries",
+    "Contract versions resolve to exact, backward-compatible, explicitly forward-compatible, unsupported, or ambiguous outcomes",
+    "Unsupported and ambiguous versions fail closed",
+    "UNKNOWN confidence is deferred and non-UNKNOWN confidence requires attributable known evidence"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL6-PR27",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/27",
+      "description": "Bounded-core implementation and constitutional tests."
+    },
+    {
+      "evidence_id": "E-BL6-PR32",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/32",
+      "description": "Versioning, confidence-use, and canonical evidence hardening."
+    },
+    {
+      "evidence_id": "E-BL6-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29310870041",
+      "description": "Final Sprint 6 hardening CI passed."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T22:30:00Z"
+  "updated_at": "2026-07-14T06:20:00Z"
 }

@@ -1,115 +1,52 @@
-# Sprints 5–9 — Path-Complete Testing Reclassification
+# Sprints 5–9 — Path-Complete Completion Assessment
 
-> **Authority class: Class 3 — implementation assessment.**
-> This analysis applies `automated-path-complete-testing-policy.md` to Sprints 5–9. It does not change canonical sprint status.
+> **Authority class: Class 3 — implementation and evidence assessment.**
+> Canonical status is governed by `records/sprints/` and `records/work-items/`. This document explains the evidence supporting the promoted Class 1 records.
 
-## Governing correction
+## Governing standard
 
-Sprints 5–9 are not waiting for permission to exercise TEST paths individually.
+TEST execution is approved when each path is TEST-scoped, isolated from production effects, machine-declared, automated, auditable, idempotent, and protected by rollback, compensation, isolated discard, or exact recovery.
 
-TEST execution is approved when every path is:
+Completion requires:
 
-- TEST-scoped;
-- isolated from production effects;
-- machine-declared with an expected result;
-- automated;
-- auditable;
-- idempotent; and
-- protected by rollback, compensation, isolated discard, or exact recovery.
+1. a machine-readable operation path graph;
+2. automated coverage for every declared path;
+3. rollback, compensation, discard, or exact recovery for every state-changing failure path;
+4. proof that TEST cannot reach production capability;
+5. fail-closed duplicate, tamper, replay, mismatch, and cross-context behavior;
+6. immutable evidence bound to qualifying implementation and validation records; and
+7. an evidence-bearing Class 1 completion record.
 
-The remaining gap is therefore not **approval to test**. It is **implementation and automated proof of every path**.
+## Final status
 
-## Revised status summary
-
-| Sprint | Revised testing status | What remains |
+| Sprint | Canonical status | Principal completion evidence |
 |---|---|---|
-| 5 | TEST execution approved by policy | Build reusable transaction path graph and automate every authority, interruption, rollback, retry, conflict, and escalation path |
-| 6 | TEST execution approved; implementation ready for review | Complete path coverage for constitutional boundaries, schema evolution, and confidence-contract behavior; record architecture acceptance and evidence mapping |
-| 7 | TEST execution approved by policy | Build governed state-write plan and executor, then automate every partial-write, conflict, tamper, rollback, retry, and reconstruction path |
-| 8 | TEST execution approved by policy | Build governed migration and human-protection workflows, then automate every semantic, privacy, consent, revocation, interruption, rollback, and recovery path |
-| 9 | TEST execution approved by policy | Add temporal/privacy governance and transactional disclosure, then automate every eligibility, uncertainty, authority, redaction, revocation, rollback, and receipt path |
+| 5 | COMPLETE | PR #29; reusable transaction executor; journals; terminal receipts; rollback release; exact retry; path-coverage enforcement |
+| 6 | COMPLETE | PR #27 and PR #32; bounded Enki core; constitutional tests; version compatibility; confidence-use rules; human roadmap authority |
+| 7 | COMPLETE | PR #29 and PR #30; content-addressed generic state write; PERSON/ORGANIZATION/PROJECT reuse; partial-write recovery |
+| 8 | COMPLETE | PR #31; governed human migration; consent/privacy/purpose policy; semantic parity; explicit expression origin; exact recovery |
+| 9 | COMPLETE | PR #31; temporal/context eligibility; transactional reconciliation; separately governed disclosure; privacy/redaction/revocation; exact recovery |
 
-## Sprint 5
+## Sprint 5 closure
 
-### Missing
+The shared transaction foundation now supplies exact plans and hashes, approval reservation and consumption, append-only journals, immutable terminal receipts, rollback release before consumption, exact-retry recovery after consumption, cross-plan replay rejection, failure injection, and machine-readable coverage enforcement.
 
-- reusable transaction state machine shared across governed operation families;
-- machine-readable path catalog;
-- common journal and receipt contract;
-- automated failure injection at every transaction boundary;
-- deterministic rollback or recovery assertion for every state-changing path;
-- coverage enforcement that fails when a declared path is untested;
-- cross-context escalation and replay matrix.
+## Sprint 6 closure
 
-### Why partial
+The Enki core remains product-neutral and cannot silently own human objectives, priorities, values, choices, accountability, or outcomes. Generic contracts and ports preserve evidence, temporal applicability, context, confidence, findings, and disclosure boundaries. Contract evolution resolves to exact, backward-compatible, explicitly forward-compatible, unsupported, or ambiguous states. Unsupported and ambiguous versions fail closed. UNKNOWN confidence is deferred; unsupported confidence is rejected.
 
-Approval primitives exist, but the automated path-complete transaction system does not. The sprint closes when the transaction graph is executable and every terminal path is tested, not when a reviewer manually approves each test.
+## Sprint 7 closure
 
-## Sprint 6
+Generic state creation uses one content-addressed, approval-bound operation across PERSON, ORGANIZATION, and PROJECT. Known references, subject and domain alignment, immutable append behavior, partial-write recovery, plan tampering, duplicate conflict, and cross-plan replay are automated and fail closed where required.
 
-### Missing
+## Sprint 8 closure
 
-- automated schema and contract-version compatibility paths;
-- explicit tests for forward, backward, unsupported, and ambiguous contract evolution;
-- final decision on the confidence assertion contract and tests for every resulting path;
-- evidence manifest and architecture acceptance.
+Human migration preserves historical source records and semantic meaning. Every observation receives an explicit expression-origin decision. Consent, purpose, privacy, correction, retraction, expiration, revocation, and redaction rules are evaluated before planning and execution. Legacy model-feedback Boolean fields cannot become generic authority. Partial migration recovers through the same consumed transaction without duplicate state.
 
-### Why not technically partial
+## Sprint 9 closure
 
-The core boundary and principal implementation exist. Sprint 6 remains ready for completion review. The new policy removes any implication that individual TEST cases require separate human authority. Human acceptance is needed for the constitutional architecture, not for each automated path.
+Temporal and contextual eligibility classifies applicable, future, expired, retracted, superseded, historical, disputed, context-mismatched, and endpoint-ineligible state. Reconciliation and disclosure are separate approval-bound operations. Purpose, audience, consent, sensitivity, privacy, redaction, expiration, and revocation controls produce attributable surfaced, deferred, and withheld outcomes. Interrupted finding and disclosure persistence recover through exact retry.
 
-## Sprint 7
+## Production boundary
 
-### Missing
-
-- content-addressed state-write plan;
-- approval-bound executor;
-- journal and immutable receipt;
-- automated paths for valid write, invalid reference, duplicate, conflict, stale preflight, interruption at each write stage, receipt loss, tampering, rollback, exact retry, and reconstruction;
-- automated subject-class matrix for PERSON, ORGANIZATION, and PROJECT.
-
-### Why partial
-
-The repository proves storage behavior. It does not yet prove the governed operation or every path through it. Rollback or exact recovery must be designed alongside the write path and tested automatically.
-
-## Sprint 8
-
-### Missing
-
-- content-addressed migration plan and executor;
-- migration journal and receipt;
-- human protection policy layer;
-- automated paths for every expression-origin choice, privacy classification, consent state, purpose restriction, correction, retraction, expiry, revocation, interruption, duplicate migration, semantic mismatch, rollback, and exact recovery;
-- semantic-parity assertions across all temporal states.
-
-### Why partial
-
-Projection is implemented, but migration is not yet an automated, rollback-capable governed operation. Testing permission is not the blocker.
-
-## Sprint 9
-
-### Missing
-
-- temporal and context eligibility resolver;
-- sensitivity, privacy, consent, purpose, and redaction contracts;
-- transactional reconciliation and disclosure execution;
-- approval consumption, rollback, retry, and receipts;
-- automated paths for applicable, inapplicable, uncertain, conflicting, private, redacted, subject-requested, externally authorized, unauthorized, revoked, duplicate, interrupted, and receipt-conflict outcomes.
-
-### Why partial
-
-The conceptual boundary is implemented. The complete governed path graph and its automated rollback/recovery proof are not.
-
-## Revised completion principle
-
-For Sprints 5–9, the testing portion of completion is satisfied when:
-
-1. the full operation path graph is machine-readable;
-2. every declared path has an automated test;
-3. every state-changing test proves rollback, compensation, discard, or exact recovery;
-4. no TEST path can reach a production effect;
-5. duplicate and cross-context escalation tests fail closed;
-6. coverage fails when any path is undeclared or untested;
-7. immutable test evidence is bound to the implementation commit.
-
-No additional human approval is required merely to run those tests. Human authority remains required for architecture decisions, accepted limitations, canonical completion, and actual production effects.
+All completion evidence is internal and TEST-scoped. No completed sprint authorizes production, external publication, operational migration, external model dispatch, audience exposure, or Enki release. The complete publication-shaped POC remains mandatory internal Sprint 13 evidence through no-effect adapters.

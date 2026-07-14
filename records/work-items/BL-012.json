@@ -1,0 +1,19 @@
+{
+  "work_item_id": "BL-012",
+  "title": "Forensic Reconstruction, Portability, and Governed Work Completion",
+  "description": "Generalize deterministic reconstruction, clean-room portability, adapter parity, disaster recovery, and evidence-bound work-control completion across every governed Enki operation family.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-012",
+  "acceptance_criteria": [
+    "All operation families reconstruct from immutable journals, records, approvals, and receipts into an explicit terminal taxonomy",
+    "Import, export, replay, migration, rollback, clean-room recovery, and disaster recovery preserve authority and lineage",
+    "Corrupt, stale, unsupported, cross-context, or privilege-escalating recovery paths fail closed",
+    "Filesystem and GitHub adapters match their declared shared contract surface or deny unsupported differences",
+    "Work-control amendments are approval-bound, journaled, receipted, recoverable, and evidence-bound",
+    "No completion status can be created from narrative claims, TEST-to-PRODUCTION escalation, or missing qualifying evidence"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-14T06:20:00Z"
+}

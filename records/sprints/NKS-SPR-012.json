@@ -1,0 +1,19 @@
+{
+  "sprint_id": "NKS-SPR-012",
+  "sequence": 12,
+  "title": "Forensic Reconstruction, Portability, and Governed Work Completion",
+  "objective": "Prove that every governed Enki operation, authority consumption, migration, state write, reconciliation, disclosure, transition, model use, feedback action, promotion, and work-control amendment can be reconstructed, moved, recovered, and completed without authority escalation or unsupported status claims.",
+  "status": "planned",
+  "work_item_ids": ["BL-012"],
+  "exit_criteria": [
+    "Every governed operation reconstructs to COMPLETE, INCOMPLETE, REPAIRABLE, ROLLED_BACK, or CONFLICT from immutable evidence",
+    "Import, export, migration, replay, rollback, clean-room recovery, and disaster recovery preserve authority, execution context, hashes, lineage, validity, consumption, and receipts",
+    "Corrupt, stale, unsupported, cross-context, or privilege-escalating recovery fails closed",
+    "Filesystem and GitHub adapters exhibit equivalent behavior for their declared shared contract surface, with unsupported differences recorded and denied",
+    "Governed work-control amendments bind sprint and work-item status changes to exact qualifying evidence and remain reconstructable",
+    "No sprint or work item can become complete without qualifying implementation, path-coverage, validation, and authority evidence"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-14T06:20:00Z"
+}

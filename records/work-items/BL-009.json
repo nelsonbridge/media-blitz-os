@@ -1,19 +1,38 @@
 {
   "work_item_id": "BL-009",
-  "title": "Interpretation Resolution and Context-Bound Model Use",
-  "description": "Resolve governed interpretation deterministically and publish model-use packages through purpose-limited, privacy-filtered, context-bound approvals with non-side-effecting TEST adapters and separately governed PRODUCTION dispatch.",
-  "status": "planned",
+  "title": "Governed Reconciliation and Disclosure Separation",
+  "description": "Reconcile eligible state internally and disclose findings only through a separate approval-bound operation with explicit temporal, contextual, privacy, consent, purpose, sensitivity, redaction, revocation, receipt, and recovery controls.",
+  "status": "complete",
   "sprint_id": "NKS-SPR-009",
   "acceptance_criteria": [
-    "ResolveInterpretation is deterministic across subject, domain, context, scope, authority, validity, confidence, and behavioral authority",
-    "Retracted, expired, superseded, disputed, context-inapplicable, or unauthorized states cannot control behavior",
-    "TEST-scoped interpretation and model-use approvals exercise package generation, redaction, expiration, revocation, recovery, and receipts without production dispatch",
-    "TEST adapters cannot publish to production models or external systems and TEST receipts cannot satisfy production evidence gates",
-    "PRODUCTION model-use packages require recognized authority, exact hashes, purpose limitation, privacy filtering, expiration, revocation, journaling, and immutable receipts",
-    "Prediction and forecasting remain downstream, noncanonical, and unable to mutate canonical knowledge state"
+    "Temporal and contextual eligibility deterministically excludes future, expired, retracted, superseded, historical, disputed, mismatched, and endpoint-ineligible state according to policy",
+    "Reconciliation and disclosure are separate operations with independent authority and receipts",
+    "Findings preserve full attributable lineage and UNKNOWN confidence remains deferred",
+    "Subject-facing disclosure requires subject request and external audiences require exact content-bound authority",
+    "Purpose, audience, consent, sensitivity, privacy, redaction, expiration, and revocation rules fail closed",
+    "Interrupted finding or disclosure persistence recovers by exact retry without duplicate effects or widened audience scope"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL9-PR31",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/31",
+      "description": "Governed reconciliation and disclosure implementation."
+    },
+    {
+      "evidence_id": "E-BL9-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29310463635",
+      "description": "Reconciliation and disclosure CI passed."
+    },
+    {
+      "evidence_id": "E-BL9-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29310463684",
+      "description": "Declared reconciliation and disclosure paths achieved runtime coverage."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T22:30:00Z"
+  "updated_at": "2026-07-14T06:20:00Z"
 }

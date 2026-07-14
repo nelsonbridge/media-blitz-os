@@ -1,19 +1,19 @@
 {
   "work_item_id": "BL-010",
-  "title": "Forensic Reconstruction, Migration, and Approval-Context Portability",
-  "description": "Reconstruct every governed mutation, enforce authorized migration, and prove clean-room portability and adapter parity without allowing TEST authority or evidence to escalate into PRODUCTION.",
+  "title": "Governed Transition and Conflict Engine",
+  "description": "Govern generic Enki state transitions transactionally while preserving exact before-and-after state, temporal meaning, branching, conflict, authority, rollback, recovery, and human-specific protections.",
   "status": "planned",
   "sprint_id": "NKS-SPR-010",
   "acceptance_criteria": [
-    "Every canonical creation, transition, revocation, interpretation package, model-use publication, receipt, rollback, recovery, and approval consumption is reconstructable",
-    "Import and migration preserve execution context, approval identity, hashes, scope, authority, validity, consumption, and receipt lineage",
-    "TEST approvals, receipts, provenance, and adapter capabilities cannot be relabeled, transformed, or recovered as PRODUCTION",
-    "Schema-version, privilege-escalation, corrupt-input, stale-input, unsupported-migration, and cross-context replay fixtures fail closed",
-    "Clean-room offline bootstrap, import, verification, operation, export, rollback, and disaster-recovery exercises pass",
-    "Filesystem and GitHub adapters exhibit equivalent transaction, approval, idempotency, recovery, receipt, and audit behavior"
+    "Versioned transition contracts cover correction, refinement, supersession, retraction, reversal, expansion, restriction, context shift, confidence change, merge, split, and deprecation",
+    "Every transition binds exact before-and-after hashes, subject, context, evidence, provenance, authority, execution context, transaction, and receipt",
+    "Cycle, stale-input, contradiction, overlap, context mismatch, and authority-conflict paths fail closed",
+    "Branch, merge, split, overlap, contradiction, and competing-authority outcomes are reconstructable",
+    "Interruption produces one commit, one exact recovery, or one documented rollback",
+    "Human-specific protections remain intact through the generic transition engine"
   ],
   "evidence": [],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T22:30:00Z"
+  "updated_at": "2026-07-14T06:20:00Z"
 }

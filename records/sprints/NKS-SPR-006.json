@@ -1,19 +1,44 @@
 {
   "sprint_id": "NKS-SPR-006",
   "sequence": 6,
-  "title": "Temporal human-state testable reference implementation",
-  "objective": "Productionize temporal human state on the Sprint 5 journal, receipt, recovery, audit, and approval-context foundation, proving a complete automated TEST lane before generalizing into Governed Adaptive Knowledge.",
-  "status": "planned",
+  "title": "Enki Cognitive-Core Boundary and Generic Contracts",
+  "objective": "Formalize Enki as a product-neutral cognitive and reconciliation core with explicit constitutional boundaries, stable ports, fail-closed contract versioning, and uncertainty-preserving confidence rules.",
+  "status": "complete",
   "work_item_ids": ["BL-006"],
   "exit_criteria": [
-    "Human-state creation, transition, policy, revocation, and model-feedback operations are journaled and receipted",
-    "TEST-scoped approvals exercise the complete human-state loop without external effects or production authority",
-    "PRODUCTION actions require recognized human authority and reject TEST approval consumption",
-    "Privacy classification, consent, purpose scope, redaction, expiration, and revocation fail closed",
-    "CLI commands, canonical collections, generated views, authority manifest, and forensic audit preserve execution context",
-    "Behavior evaluation fixtures prove that current, contextual, uncertain, disputed, retracted, superseded, and context-inapplicable states are handled correctly"
+    "Core imports no product package and requires no complete Person, Organization, maturity, clinical, or publication ontology",
+    "Core cannot silently substitute human objectives, priorities, choices, values, accountability, or outcomes",
+    "Raw evidence and observations remain preservable for later reinterpretation",
+    "Subject, evidence, observation, relationship, temporal, confidence, finding, disclosure, request, result, and receipt contracts are product-neutral",
+    "Exact, backward, explicitly forward, unsupported, and ambiguous contract-version paths are automated and fail closed where required",
+    "UNKNOWN confidence is deferred and unsupported confidence claims are rejected"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S6-PR27",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/27",
+      "description": "Implemented ADR-0002, the bounded Enki core, generic contracts, ports, and constitutional tests."
+    },
+    {
+      "evidence_id": "E-S6-PR32",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/32",
+      "description": "Closed contract-version and confidence-use review gaps and registered transaction evidence."
+    },
+    {
+      "evidence_id": "E-S6-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29310870041",
+      "description": "CI passed for architecture compatibility, confidence, and audit hardening."
+    },
+    {
+      "evidence_id": "E-S6-HUMAN-AUTHORITY",
+      "kind": "human-decision",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/28#issuecomment-4965763508",
+      "description": "Human Origin Authority approved Enki as the deliverable and the bounded internal-validation roadmap."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-12T22:30:00Z"
+  "updated_at": "2026-07-14T06:20:00Z"
 }

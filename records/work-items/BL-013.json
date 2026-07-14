@@ -1,0 +1,19 @@
+{
+  "work_item_id": "BL-013",
+  "title": "Integrated Internal TEST Proof and Enki Release Candidate",
+  "description": "Run complete internal adaptive loops, including the publication-shaped downstream-consumer POC through no-effect adapters, prove feedback, chaos, rollback, recovery, reconstruction, and authority isolation, and package the exact Enki release candidate for human decision.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-013",
+  "acceptance_criteria": [
+    "At least two complete adaptive TEST loops pass across different subject classes and consumer patterns",
+    "The mandatory publication-shaped POC executes content, visuals, production-shaped configuration, TEST review and approval, package construction, no-effect publication and distribution, TEST receipts, simulated observation, feedback, calibration, rollback, recovery, tamper, replay, and reconstruction",
+    "Synthetic, replay, controlled real-human, malformed, irrelevant, duplicate, contradictory, adversarial, unauthorized, mismatched, and zero-response feedback cases pass end to end",
+    "TEST execution is technically incapable of causing production publication, transport, model dispatch, audience exposure, or other external effect",
+    "Chaos and interruption campaigns recover without duplicate effects, partial authority, context escalation, audience widening, or unexplained state",
+    "The release candidate, exact evidence manifests, calibration report, threat model, runbooks, limitations, release notes, rollback package, and human release-decision package are bound to one exact commit"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-14T06:20:00Z"
+}
