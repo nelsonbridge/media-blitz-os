@@ -28,7 +28,7 @@
     },
     {
       "evidence_id": "E-S13-CANDIDATE",
-      "kind": "release-candidate",
+      "kind": "canonical-record",
       "reference": "releases/enki-0.1.0-rc1/release-candidate.json",
       "description": "Hash-bound Enki 0.1.0-rc1 TEST release candidate, adaptive-loop receipts, calibration, threat model, runbook, limitations, rollback package, release notes, and unresolved human decision request."
     },
