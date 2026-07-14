@@ -1,517 +1,525 @@
-# Thirteen-Sprint Gap Analysis
+# Thirteen-Sprint Gap Analysis — Rerun
 
 > **Authority class: Class 3 — implementation assessment.**
-> This analysis compares the revised thirteen-sprint proposal with the live canonical roadmap and the current implementation in PR #27. It does not change sprint status or authorize production.
+> This rerun supersedes the earlier analysis in this file. It separates design gaps, implementation gaps, evidence gaps, and irreducible authority or external-effect boundaries. It does not change canonical sprint status or authorize production.
 
 - Assessment date: 2026-07-13
-- Canonical branch assessed: `sandbox`
+- Canonical branch: `sandbox`
+- Canonical branch head: `8f98e92227b1568a812900d5904dc7c3f057ee24`
 - Revised-plan branch: `roadmap/refactor-to-thirteen-sprints`
+- Revised-plan head: `77d79f2b54b7d6cc9cd7141ea9ae97283bc84eb6`
 - Implementation branch: `agent/enki-core-refactor`
+- Implementation head: `c29c0de4425e82d693e1c635d12a36e7f3b76097`
 - Implementation PR: `#27`
 - Roadmap PR: `#28`
-- PR #27 head assessed: `c29c0de4425e82d693e1c635d12a36e7f3b76097`
 
 ## Executive conclusion
 
-The repository contains a substantial Enki-core implementation substrate, but the revised roadmap is not yet canonical and the implementation does not yet support completion through Sprint 13.
+The prior gap analysis conflated two different conditions in Sprint 3:
 
-The current condition is:
+1. whether review, configuration, approval, publication, observation, feedback, and calibration mechanisms can be tested before production; and
+2. whether the final human authority, external effect, and production evidence have occurred.
+
+That conflation is corrected.
+
+The architecture for pre-production testing is already resolved in the revised roadmap. Sprint 13 owns complete TEST proof using `SYNTHETIC/TEST`, `REPLAY/TEST`, and controlled `REAL/TEST`. Sprint 3 owns only the irreducible production transaction: final human authority, external publication, the real observation window, and production evidence.
+
+The current repository therefore has **no unresolved conceptual paradox around pre-production testing**. It has a finite implementation backlog.
+
+Current state:
 
 - Sprints 1, 2, and 4 are canonically complete.
-- Sprint 3 remains canonically blocked under obsolete exit language.
-- Sprints 5–11 remain canonically planned with no completion evidence.
-- Sprints 12 and 13 do not yet exist in canonical work control.
-- PR #27 provides strong candidate evidence for Sprint 6 and material partial evidence for Sprints 5, 7, 8, 9, 11, and 12.
-- Sprint 10 is not implemented as a generic governed transition/conflict engine.
-- Sprint 13 pre-production feedback validation and integrated release proof are not implemented.
+- The revised thirteen-sprint roadmap is not yet canonical.
+- Sprint 3 pre-production mechanics are designed but not yet implemented end to end; that implementation belongs primarily to Sprint 13.
+- Sprint 3 production authority and external effects are intentionally pending and are not implementation defects.
+- PR #27 contains a strong Enki-core substrate and passes all six required workflows.
+- PR #27 is 98 commits ahead of and 3 commits behind current `sandbox`; branch integration must be reconciled before promotion or merge.
+- Sprint 6 is functionally ready for completion review after roadmap promotion and branch reconciliation.
+- Sprints 5, 7, 8, 9, 11, and 12 have material partial implementation.
+- Sprint 10's generic transition/conflict engine is not implemented.
+- Sprint 13's feedback-validation, integrated-loop, chaos, calibration, and release-candidate execution is not implemented, although its design is resolved.
 
-Passing CI establishes regression health. It does not establish that the revised sprint exit criteria are satisfied.
+Passing CI establishes regression health. It does not by itself establish revised sprint completion.
 
-## Status vocabulary
+## Assessment dimensions
 
-- **READY FOR COMPLETION REVIEW** — implementation appears to cover the revised scope; remaining work is evidence mapping, review, and governed status amendment.
-- **PARTIAL** — useful implementation exists, but one or more material exit criteria lack code or evidence.
-- **MISSING** — the primary sprint capability is not implemented.
-- **EXTERNAL / HUMAN GATE** — completion depends on explicit human authority or an actual external effect and cannot be manufactured by CI.
+This rerun uses four independent dimensions:
 
-## Gap matrix
+- **Design** — whether the capability and boundaries are sufficiently specified to build.
+- **Implementation** — whether executable code, schemas, adapters, and tests exist.
+- **Evidence** — whether exact implementation evidence is mapped to the revised sprint and accepted through governed work control.
+- **Authority / effect** — whether an irreducible human decision or external production event is still required.
 
-| Sprint | Revised capability | Current assessment | Principal gap |
-|---|---|---|---|
-| 1 | Canonical identity and repository truth | COMPLETE | None; preserve historical evidence |
-| 2 | Canonical backlog and roadmap control plane | COMPLETE | None; use it to promote the revised plan |
-| 3 | Controlled production publication and post-release calibration | EXTERNAL / HUMAN GATE | Roadmap language is stale; approvals, configuration, production execution, observation window, and calibration remain |
-| 4 | Restricted canonical writer | COMPLETE | None; extend rather than bypass it |
-| 5 | Context-bound approval and transaction foundation | PARTIAL | Approval lifecycle exists; one general journaled transaction/promotion boundary does not |
-| 6 | Enki cognitive-core boundary and generic contracts | READY FOR COMPLETION REVIEW | Architecture decision and implementation evidence still require governing acceptance and mapping |
-| 7 | Generic observation, relationship, and state-write substrate | PARTIAL | Generic storage exists; governed approval-bound state-write transaction and receipt do not |
-| 8 | Human-state compatibility, authority, and governed migration | PARTIAL | Compatibility projection exists; governed migration transaction, consent/privacy enforcement, and migration receipts do not |
-| 9 | Governed reconciliation and disclosure separation | PARTIAL | Separation exists; temporal/context applicability, privacy/redaction, journaled authority consumption, and recovery remain incomplete |
-| 10 | Governed transition and conflict engine | MISSING | No generic transactional transition engine, conflict semantics, lineage reconstruction, or transition receipts |
-| 11 | Governed interpretation and capability-isolated model use | PARTIAL | Strong dispatch boundary exists; typed directives, package-wide privacy filtering, context matching, and revocation remain incomplete |
-| 12 | Forensic reconstruction, portability, and governed work completion | PARTIAL | Model-use reconstruction exists; cross-operation reconstruction, clean-room recovery, GitHub adapter parity, and governed work amendment do not |
-| 13 | Integrated TEST proof, pre-production feedback validation, and release candidate | MISSING | No feedback harness, controlled human TEST path, integrated loops, chaos proof, calibration report, or release package |
+Status terms:
+
+- `COMPLETE` — already canonical and evidence-bearing.
+- `READY FOR COMPLETION REVIEW` — implementation appears sufficient; evidence mapping and governing review remain.
+- `PARTIAL` — useful implementation exists, but material exit criteria remain unimplemented.
+- `IMPLEMENTATION MISSING` — design exists, but the primary executable capability does not.
+- `PRODUCTION BOUNDARY PENDING` — no implementation defect; final authority or external evidence has not yet occurred.
+
+## Rerun matrix
+
+| Sprint | Capability | Design | Implementation | Evidence | Authority / effect | Rerun assessment |
+|---|---|---|---|---|---|---|
+| 1 | Canonical identity and repository truth | resolved | complete | accepted | none | COMPLETE |
+| 2 | Canonical backlog and roadmap control plane | resolved | complete | accepted | none | COMPLETE |
+| 3 | Controlled production publication and post-release calibration | resolved | pre-production mechanics assigned to Sprint 13 | production evidence not yet possible | final human authority and external effect pending | PRODUCTION BOUNDARY PENDING |
+| 4 | Restricted canonical writer | resolved | complete | accepted | none | COMPLETE |
+| 5 | Context-bound approval and transaction foundation | resolved | partial | unmapped | none | PARTIAL |
+| 6 | Enki cognitive-core boundary and generic contracts | resolved | strong | mappable but unaccepted | architecture decision pending | READY FOR COMPLETION REVIEW |
+| 7 | Generic observation, relationship, and governed state write | resolved | partial | unmapped | none | PARTIAL |
+| 8 | Human-state compatibility, authority, and governed migration | resolved | partial | unmapped | human-policy decisions may be needed | PARTIAL |
+| 9 | Governed reconciliation and disclosure separation | resolved | partial | unmapped | disclosure authority applies per operation | PARTIAL |
+| 10 | Governed transition and conflict engine | resolved | missing | absent | none | IMPLEMENTATION MISSING |
+| 11 | Governed interpretation and capability-isolated model use | resolved | strong but incomplete | unmapped | production transport remains separate | PARTIAL |
+| 12 | Forensic reconstruction, portability, and governed work completion | resolved | partial | unmapped | none | PARTIAL |
+| 13 | Integrated TEST proof, pre-production feedback validation, and release candidate | resolved | missing as an integrated subsystem | absent | controlled human TEST evaluator required | IMPLEMENTATION MISSING |
 
 ---
 
-# Governance and roadmap gaps
+# Governance and integration gaps
 
 ## G-1 — Revised roadmap is not canonical
 
-The live generated roadmap still contains eleven sprints. Sprint 3 still requires real feedback as a mandatory occurrence, Sprints 5–11 retain their prior scopes, and Sprints 12–13 do not exist.
+The live generated roadmap still contains eleven sprints. It still describes Sprint 3 as requiring real feedback as a mandatory occurrence, retains the prior scopes for Sprints 5–11, and has no Sprint 12 or Sprint 13 records.
 
 ### Closure required
 
 1. Record the human roadmap decision on PR #28.
-2. Promote the accepted Sprint 3 and Sprint 5–13 definitions through the governed work-control path.
-3. Create canonical sprint and work-item records for Sprints 12 and 13.
-4. Regenerate canonical roadmap and backlog projections.
-5. Regenerate the repository audit and run all authority checks.
+2. Promote the accepted Sprint 3 and Sprint 5–13 definitions through governed work control.
+3. Create canonical sprint and backlog records for Sprints 12 and 13.
+4. Regenerate roadmap, backlog, authority manifests, and repository audit.
+5. Run all authority, security, CI, coverage, and publication checks.
 
-No implementation sprint can be canonically completed against the revised scope until this promotion occurs.
+No revised sprint should be marked complete against a roadmap that has not yet been canonically adopted.
 
-## G-2 — PR #27 narrative exceeds the live file evidence in several areas
+## G-2 — PR #27 is behind current `sandbox`
 
-The PR description refers to governed generic state-write plans, migration receipts, and broader forensic reconstruction. The live changed-file set does not contain dedicated state-write transaction services, migration transaction services, migration receipt schemas, generic transition services, or a governed work-control amendment mechanism.
-
-### Governing rule
-
-Use executable files, tests, schemas, receipts, and workflow artifacts as evidence. Treat PR prose as a claim to verify, not as completion evidence.
-
-## G-3 — Completion evidence has not been mapped to revised sprint criteria
-
-PR #27 is one implementation substrate spanning multiple revised sprints. It cannot be treated as one indivisible completion event.
+The implementation branch is 98 commits ahead of but 3 commits behind `sandbox`. The missing base commits contain the Sprint 3 dependency decomposition, article draft, and publication configuration worksheet.
 
 ### Closure required
 
-For each sprint, produce an evidence manifest binding:
+- Bring `agent/enki-core-refactor` forward to current `sandbox`, or merge it through a path that explicitly preserves the three newer base commits.
+- Re-run the full workflow set against the reconciled branch.
+- Verify generated audit and authority manifests after integration.
+
+The branch is currently reported mergeable, but mergeability is not evidence that the later base-state changes have been semantically reconciled.
+
+## G-3 — PR narrative exceeds executable evidence
+
+PR #27 describes generic state-write plans, governed migration transactions, migration receipts, and broad forensic reconstruction. The actual changed-file set contains generic repositories, compatibility projection, model-use journaling, and model-use reconstruction, but not dedicated generic state-write executors, migration executors, migration receipt schemas, a generic transition engine, or governed work-control amendment execution.
+
+### Governing rule
+
+Use source files, schemas, tests, immutable receipts, workflow runs, and generated reports as evidence. Treat PR descriptions as claims requiring verification.
+
+## G-4 — Evidence is not mapped to revised sprint boundaries
+
+PR #27 spans several revised sprints. Completion must be assessed capability by capability.
+
+Each sprint requires an evidence manifest binding:
 
 - exact commit;
-- relevant source files;
-- schemas;
-- tests;
-- workflow run and artifacts;
-- generated audit;
-- remaining limitations;
+- relevant source files and schemas;
+- tests and expected failure paths;
+- workflow run identifiers and artifacts;
+- generated audit state;
+- known limitations;
 - governing review decision.
 
 ---
 
-# Sprint-by-sprint analysis
+# Sprint-by-sprint rerun
+
+## Sprint 3 — Controlled Production Publication and Post-Release Calibration
+
+### Design status
+
+**Resolved.** The complete mechanism is tested before production in Sprint 13.
+
+Pre-production validation includes:
+
+- review workflow and exact-hash binding;
+- production-shaped configuration rehearsal;
+- TEST approval lifecycle and rejection paths;
+- no-effect publication dry run or governed manual rehearsal;
+- TEST receipt construction;
+- observation-window and zero-feedback handling;
+- feedback lineage, classification, routing, deduplication, disposition, audit, and replay;
+- synthetic, replay, and controlled real-human TEST feedback;
+- pre-production calibration.
+
+### What actually remains in Sprint 3
+
+- final human decisions on exact production content, visuals, identity, channels, and limitations;
+- final PRODUCTION approval;
+- actual external publication and distribution;
+- passage of the real observation window;
+- `REAL/PRODUCTION` feedback or a production zero-feedback receipt;
+- post-release calibration.
+
+### Rerun assessment
+
+**PRODUCTION BOUNDARY PENDING.** Sprint 3 is not a technical blocker. Its testable mechanics are a Sprint 13 implementation obligation. Its remaining native work is intentionally irreducible production authority and evidence.
+
+### Current cleanup gaps
+
+- Issue #14 still contains stale language saying the article body is missing.
+- Issue #14 still requires real feedback as though audience response were controllable.
+- Visual, article, configuration, and final production decisions remain unrecorded.
+
+These documentation and decision gaps do not change the pre-production testing architecture.
+
+---
 
 ## Sprint 5 — Context-Bound Approval and Transaction Foundation
 
-### Present evidence
+### Present implementation
 
-- `ExecutionContext` separates TEST and PRODUCTION.
-- `ApprovalGrant` binds action, subject, content hash, authority class, validity, revocation, and consumption state.
-- Approval lifecycle supports AVAILABLE, RESERVED, CONSUMED, and REVOKED states.
-- Reservation and consumption use compare-and-swap semantics.
-- Exact retry by the same transaction is supported.
-- A durable filesystem approval repository uses exclusive lock and atomic replacement.
-- Model-use execution demonstrates reserve, authorize, consume, persist, journal, release, and retry behavior for one operation family.
+- TEST and PRODUCTION execution contexts.
+- Approval bound to action, subject, content hash, authority class, validity, revocation, and transaction.
+- AVAILABLE → RESERVED → CONSUMED lifecycle with exact retry.
+- Compare-and-swap approval persistence with local locking and atomic replacement.
+- Reservation release after pre-consumption failure.
+- Model-use-specific journal, persistence recovery, provider failure, and retry behavior.
 
-### Material gaps
+### Remaining implementation gaps
 
-1. **No general transaction coordinator.** Transaction behavior is implemented primarily for human-state model use, not one reusable operation contract covering canonical promotion, state creation, migration, disclosure, transition, feedback, and work control.
-2. **Canonical promotion is not journaled through this mechanism.** The current restricted writer remains separate from the new approval lifecycle.
-3. **No universal transaction receipt.** Operation-specific events exist, but there is no common immutable transaction receipt binding exact inputs, outputs, authority, context, and final disposition across all operation families.
-4. **Recovery taxonomy is incomplete.** COMPLETE, rollback, repairable, and CONFLICT reconstruction is not available across all governed operations.
-5. **Cross-path escalation tests are incomplete.** Import, replay, migration, rollback, and recovery have not all been proven incapable of turning TEST authority into PRODUCTION authority.
+1. One reusable governed-operation transaction contract across promotion, state write, migration, disclosure, transition, feedback, and work control.
+2. Canonical promotion integrated into that transaction boundary.
+3. Common journal-stage model and final transaction receipt.
+4. Cross-operation recovery taxonomy and reconstruction.
+5. Full cross-context import, replay, rollback, migration, and recovery escalation tests.
 
-### Minimum closure package
+### Rerun assessment
 
-- General governed-operation transaction contract and state machine.
-- Integration with canonical promotion and restricted writer.
-- Common journal and final receipt contract.
-- Interruption tests before and after authority consumption.
-- Cross-context replay and escalation tests.
-- Sprint 5 evidence manifest and governed completion amendment.
-
-### Assessment
-
-**PARTIAL.** Approval semantics are strong enough to retain. The remaining gap is generalization into the shared transaction foundation claimed by the sprint.
+**PARTIAL.** Approval authority is strong. The shared transaction kernel is not complete.
 
 ---
 
 ## Sprint 6 — Enki Cognitive-Core Boundary and Generic Contracts
 
-### Present evidence
+### Present implementation
 
-- ADR-0002 defines Enki as a governed cognitive and reconciliation kernel rather than a Person, Organization, maturity, clinical, or product ontology.
-- Generic contracts exist for subject, evidence, confidence, temporal applicability, observation, relationship, finding, disclosure, request, and result.
-- Reconciliation validates subject and domain scope, evidence references, and objective/priority ownership.
-- Hidden objective and priority substitution fail closed.
-- The baseline strategy preserves unknown relationships as uncertainty.
-- Architecture tests inspect the Enki package for prohibited bounded-context dependencies.
-- Constitutional traceability maps invariants to contract, service, and test references.
+- ADR-0002 defines the Enki boundary and product separation.
+- Generic subject, evidence, observation, relationship, temporal, confidence, finding, disclosure, request, and result contracts.
+- Product-neutral ports.
+- Reconciliation scope, traceability, and objective/priority ownership checks.
+- Unknown relationships preserve uncertainty.
+- Hidden objective or priority substitution fails closed.
+- Dependency tests keep human-state, Person Object, EOA/V8, and maturity concepts outside core.
+- Constitutional traceability tests exist.
 
-### Remaining gaps
+### Remaining closure work
 
-1. **ADR status remains proposed.** Governing human acceptance is not yet recorded.
-2. **No canonical sprint evidence mapping.** The implementation must be bound to revised Sprint 6 rather than the former Sprint 7-oriented proposal.
-3. **Contract versioning policy is implicit.** Interpretation versions exist, but schema and compatibility evolution rules should be explicit before production records accumulate.
-4. **Confidence structure is still narrow.** It has level, rationale, and evidence IDs, but not the full asserted value, source, basis, method, context, applicable time, and uncertainty-note structure envisioned by the refactor plan.
+1. Human acceptance or revision of ADR-0002.
+2. Explicit schema and contract versioning policy.
+3. Decision on whether the current confidence structure is sufficient or requires richer assertion metadata.
+4. Evidence manifest mapped to revised Sprint 6.
+5. Governed completion amendment after roadmap promotion and branch reconciliation.
 
-### Minimum closure package
+### Rerun assessment
 
-- Accept or revise ADR-0002.
-- Add explicit contract/schema versioning and compatibility rules.
-- Decide whether the present confidence contract satisfies Sprint 6 or requires extension.
-- Map tests and files to every Sprint 6 exit criterion.
-- Execute the governed Sprint 6 completion amendment.
-
-### Assessment
-
-**READY FOR COMPLETION REVIEW.** This is the strongest revised sprint in the current implementation.
+**READY FOR COMPLETION REVIEW.** This remains the closest revised sprint to legitimate completion.
 
 ---
 
-## Sprint 7 — Generic Observation, Relationship, and State-Write Substrate
+## Sprint 7 — Generic Observation, Relationship, and Governed State Write
 
-### Present evidence
+### Present implementation
 
-- Shared observation and relationship contracts work for PERSON, ORGANIZATION, and PROJECT subjects.
-- One filesystem repository stores all three subject classes in shared collections.
-- Append-only identifiers are idempotent and reject conflicting rewrites.
-- Reconciliation operates on the shared contracts without subject-specific schema forks.
+- Shared contracts and collections for PERSON, ORGANIZATION, and PROJECT.
+- One append-only filesystem repository.
+- Idempotent identical writes and conflict rejection.
+- Generic reconciliation across subject classes without schema forks.
 
-### Material gaps
+### Remaining implementation gaps
 
-1. **Direct repository writes remain possible.** `append_observations()` and `append_relationships()` accept records directly without approval, execution context, transaction, or receipt.
-2. **No generic state-write plan.** Exact plan hashing, known-reference binding, and preflight validation are not represented as a reusable application contract.
-3. **No approval consumption for generic writes.** The tests exercise direct persistence rather than TEST-scoped state-write approvals.
-4. **No state-write journal or immutable receipt.** Generic records are append-only, but the operation that created them is not independently reconstructable.
-5. **No interruption recovery.** There is no demonstrated recovery from observations written without relationships, authority consumed before write, or receipt missing after write.
-6. **No canonical record instances.** The repository audit still reports zero operational Enki observations and relationships in the assessed branch state.
+1. Content-addressed generic state-write plan.
+2. Exact known-reference, subject, domain, and context preflight.
+3. Approval-bound state-write executor.
+4. Multi-record journal, immutable receipt, and exact retry.
+5. Recovery from partial observation, relationship, and receipt writes.
+6. Forensic reconstruction and tamper tests.
+7. TEST approval proof across one human and two nonhuman subjects.
 
-### Minimum closure package
+### Rerun assessment
 
-- Content-addressed `StateWritePlan` covering observations, relationships, known references, subject, domain, and context.
-- Approval-bound `ExecuteStateWrite` workflow.
-- Atomic or recoverable multi-record write sequence.
-- State-write journal and receipt schema.
-- Forensic reconstruction and tamper tests.
-- TEST approvals across one human and at least two nonhuman subjects.
-
-### Assessment
-
-**PARTIAL.** Generic contracts and storage are proven; governed state creation is not.
+**PARTIAL.** Generic storage is implemented. Governed state creation is not.
 
 ---
 
 ## Sprint 8 — Human-State Compatibility, Authority, and Governed Migration
 
-### Present evidence
+### Present implementation
 
-- The compatibility adapter lives outside Enki core.
-- Human observations can be projected into generic observations.
-- Expression origin must be supplied explicitly rather than inferred from explicit wording.
-- Legacy model-feedback Boolean fields are excluded from generic authority.
-- Human transitions can be represented as relationship assertions for compatibility.
+- Compatibility adapter outside Enki core.
+- Explicit expression-origin choice.
+- Legacy Boolean model-feedback approval excluded from generic authority.
+- Legacy transitions project to generic relationship assertions.
 
-### Material gaps
+### Remaining implementation gaps
 
-1. **Projection is not migration.** The current adapter transforms in memory; it does not create a side-effect-free migration plan or execute a governed migration transaction.
-2. **No migration-plan hash or approval.** There is no exact migration content hash bound to subject, authority, context, and transaction.
-3. **No migration receipts or events.** Partial migration and exact retry cannot be forensically reconstructed.
-4. **Human protection execution is incomplete.** Consent, privacy classification, purpose scope, redaction, expiration, revocation, subject correction, and retraction are not enforced by a unified human overlay workflow.
-5. **Transition projection loses attributable evidence.** Legacy transition confidence is reduced to UNKNOWN because the legacy contract lacks attributable evidence references.
-6. **No semantic-parity fixture set.** Current, historical, conditional, disputed, tentative, retracted, expired, superseded, and context-inapplicable states have not all been proven through migration and generic reconciliation.
+1. Side-effect-free content-addressed migration plan.
+2. Exact migration plan hash and approval binding.
+3. Governed migration executor using Sprint 5 transaction semantics.
+4. Migration events, receipts, recovery, and duplicate prevention.
+5. Unified human privacy, consent, purpose, redaction, correction, retraction, expiry, and revocation layer.
+6. Full semantic-parity fixture set across temporal and disputed states.
 
-### Minimum closure package
+### Rerun assessment
 
-- Content-addressed migration plan with one explicit origin decision per observation.
-- Approval-bound migration executor using Sprint 5 transaction semantics.
-- Immutable migration receipt and event schema.
-- Interruption recovery and duplicate-prevention tests.
-- Human consent/privacy/purpose/correction/revocation policy layer.
-- Full semantic-parity fixture suite.
-
-### Assessment
-
-**PARTIAL.** Compatibility semantics are promising; operational governed migration is absent.
+**PARTIAL.** Compatibility design is proven; governed migration execution is absent.
 
 ---
 
 ## Sprint 9 — Governed Reconciliation and Disclosure Separation
 
-### Present evidence
+### Present implementation
 
-- Reconciliation and disclosure are separate services.
-- Reconciliation findings are attributable to observations, relationships, evidence, objectives, priorities, and interpretation version.
-- Unknown relationship types remain uncertain.
-- Unknown-confidence findings are deferred rather than erased.
-- Subject-facing disclosure requires subject request.
-- External-model and public disclosure require a reserved or exact-retry approval bound to audience, subject, and content hash.
-- Disclosure receipts distinguish surfaced, deferred, and withheld findings.
+- Separate reconcile-and-record and disclose-and-record workflows.
+- Findings preserve observation, relationship, evidence, objective, priority, and interpretation references.
+- Unknown confidence is deferred.
+- Subject disclosure requires a subject request.
+- External disclosure checks audience, subject, content hash, transaction, and reserved approval ownership.
+- Receipts distinguish surfaced, deferred, and withheld findings.
 
-### Material gaps
+### Remaining implementation gaps
 
-1. **Temporal applicability is not resolved by the core engine.** The engine accepts the observations and relationships supplied by the caller but does not itself reject retracted, expired, superseded, future, or context-inapplicable state.
-2. **No sensitivity and privacy classification.** Findings and disclosure contexts lack enforceable sensitivity, privacy, consent, and redaction contracts.
-3. **Approval is checked but not consumed in the disclosure workflow.** `DiscloseAndRecord` receives an evaluation and writes a receipt, but does not own a reserve/consume/recover transaction.
-4. **Finding persistence is not journaled.** Reconciliation may persist findings directly through an optional writer with no execution-context receipt.
-5. **No deterministic competing-interpretation model.** The structures allow hypotheses, but the baseline strategy creates one finding per supplied relationship and does not preserve or rank multiple candidate interpretations.
-6. **No revocation or withdrawal propagation.** A later authority or privacy revocation does not invalidate or supersede prior disclosure eligibility through a governed transition.
+1. Deterministic temporal and context applicability resolver before reconciliation.
+2. Enforceable sensitivity, privacy, consent, purpose, and redaction contracts.
+3. Approval reserve, consume, recover, and receipt lifecycle owned by disclosure execution.
+4. Journaled finding persistence and reconciliation receipt.
+5. Competing-interpretation and authority-conflict fixtures.
+6. Revocation and withdrawal propagation.
 
-### Minimum closure package
+### Rerun assessment
 
-- Deterministic context and temporal state resolver before reconciliation.
-- Sensitivity, privacy, consent, purpose, and redaction contracts.
-- Transactional reconcile-and-record and disclose-and-record workflows.
-- Approval consumption and recovery for external disclosure.
-- Competing-interpretation fixtures and receipts.
-- Revocation propagation tests.
-
-### Assessment
-
-**PARTIAL.** The conceptual boundary is implemented, but its production governance is incomplete.
+**PARTIAL.** The conceptual separation is implemented; production-grade governance is incomplete.
 
 ---
 
 ## Sprint 10 — Governed Transition and Conflict Engine
 
-### Present evidence
+### Design status
 
-- The legacy human-state domain has a `HumanStateTransition` record.
-- The compatibility adapter can project a legacy transition as a generic relationship assertion.
-- Generic observations carry temporal status.
+**Resolved.** Required contracts and behavior are specified in the revised roadmap.
 
-### Missing primary capability
+### Missing implementation
 
-There is no generic governed transition engine implementing:
+No generic transactional transition engine currently provides:
 
-- exact before-and-after state hashes;
+- exact before-and-after hashes;
 - correction, refinement, supersession, retraction, reversal, expansion, restriction, confidence change, merge, split, and deprecation;
-- branch and merge lineage;
-- contradictory or overlapping transitions;
-- authority conflicts;
-- cycle detection;
-- stale-input rejection;
-- context-bound approval consumption;
+- branch, merge, overlap, contradiction, and competing-authority semantics;
+- cycle and stale-input detection;
+- approval consumption;
 - transaction journal and transition receipt;
-- interruption recovery;
-- deterministic forensic reconstruction;
-- human-state regression through the generic engine.
+- interruption recovery and exact retry;
+- deterministic reconstruction;
+- human-overlay regression through the generic engine.
 
-Mapping a transition to a relationship assertion does not satisfy these requirements because it records that a relationship exists without governing the state mutation it represents.
+A legacy transition record or a relationship projection records a relationship. It does not govern the state mutation.
 
-### Minimum closure package
+### Rerun assessment
 
-- Versioned generic transition contracts and schemas.
-- Transition preflight planner binding exact source and destination state hashes.
-- Conflict and branch/merge model.
-- Approval-bound executor with journal, receipt, rollback, and exact retry.
-- Reconstruction service and adversarial tests.
-- Human overlay regression suite.
-
-### Assessment
-
-**MISSING.** This is the largest implementation gap and the principal technical critical-path item.
+**IMPLEMENTATION MISSING.** This remains the largest single technical gap.
 
 ---
 
 ## Sprint 11 — Governed Interpretation and Capability-Isolated Model Use
 
-### Present evidence
+### Present implementation
 
-- Human-state interpretation, package construction, policy evaluation, approval, receipt creation, persistence, and dispatch are separated.
-- Package hashes use deterministic canonical JSON.
-- Model-use execution reserves and consumes exact approval authority before persistence.
-- Exact retry can recover after authority consumption.
-- TEST dispatch accepts no transport, credentials, endpoint, callback, or generic adapter.
-- PRODUCTION dispatch requires an explicitly injected production transport and PRODUCTION receipt.
-- Package tampering is rejected before transport invocation.
-- Provider failures and effects are journaled.
+- Interpretation, package construction, policy evaluation, authority, receipt, persistence, and dispatch are separated.
+- Deterministic canonical package hashing.
+- Approval reserve and consumption before persistence.
+- Exact-retry recovery after authority consumption.
+- TEST dispatcher has no transport, credential, endpoint, callback, or adapter surface.
+- PRODUCTION dispatcher requires explicit transport and PRODUCTION receipt.
+- Package tampering is rejected before dispatch.
+- Provider effects and failures are journaled.
 
-### Material gaps
+### Remaining implementation gaps
 
-1. **Model-use contracts remain human-state specific.** The workflow has not yet been generalized to Enki findings and generic subject contracts.
-2. **Behavioral instructions remain opaque Boolean flags.** Typed, attributable, purpose-bound directives are not implemented.
-3. **Package-wide privacy filtering is absent.** The package may contain current and historical observations without item-level sensitivity, consent, purpose, or redaction evaluation.
-4. **Context matching is incomplete.** `requires_context_match` exists in policy but the authorization path does not enforce an explicit package/context match.
-5. **Revocation is declarative rather than operational.** Receipts are marked revocable, but no governed revocation workflow prevents future use or records downstream revocation effects.
-6. **No production transport implementation.** The capability boundary exists, but an operational adapter and credentials are intentionally absent.
-7. **No generic transition authority.** Model-use can explicitly include legacy transitions, but cannot yet consume output from the missing Sprint 10 engine.
+1. Enki-native generic model-use contracts rather than human-state compatibility contracts.
+2. Typed, attributable, purpose-bound directives replacing Boolean behavioral flags.
+3. Item-level privacy, consent, sensitivity, purpose, and redaction filtering.
+4. Explicit package/context matching.
+5. Governed revocation and downstream-effect receipts.
+6. Integration with Sprint 10 transition outputs.
 
-### Minimum closure package
+An actual production transport remains a Sprint 3 execution dependency, not a Sprint 11 TEST completion requirement.
 
-- Enki-native interpretation and model-use package.
-- Typed model-use directives.
-- Item-level privacy, consent, purpose, sensitivity, and redaction filter.
-- Explicit context-match enforcement.
-- Governed revocation workflow and receipts.
-- Transition-engine integration.
-- Production adapter remains a Sprint 3 dependency, not a Sprint 11 TEST completion requirement.
+### Rerun assessment
 
-### Assessment
-
-**PARTIAL.** The capability-isolated dispatch and recovery boundary are strong; the data-governance and generic-contract layers are incomplete.
+**PARTIAL, WITH STRONG SUBSTRATE.** Dispatch isolation and recovery are good; generic governance and privacy remain.
 
 ---
 
 ## Sprint 12 — Forensic Reconstruction, Portability, and Governed Work Completion
 
-### Present evidence
+### Present implementation
 
-- Model-use events and receipts can be reconstructed.
-- Repository audit and state-authority validation include new Enki record families.
-- Approval grants use durable filesystem persistence.
-- Some model-use partial-output and exact-retry behavior is tested.
-- Existing work-control records require evidence before COMPLETE status.
+- Model-use journal and forensic reconstruction.
+- Approval persistence and exact-retry evidence.
+- Repository audit and state-authority registration for new Enki record families.
+- Evidence-required COMPLETE status in work-control schemas.
 
-### Material gaps
+### Remaining implementation gaps
 
-1. **Reconstruction is operation-specific.** Generic state write, migration, disclosure, transition, feedback, canonical promotion, and work-control amendments lack equivalent reconstruction.
-2. **No clean-room recovery exercise.** There is no demonstrated rebuild from immutable records and receipts into an equivalent authoritative state.
-3. **No import/export portability contract.** Context, approval scope, consumption, hashes, and receipt lineage are not proven across migration between repositories.
-4. **No GitHub adapter parity.** The assessed implementation is filesystem-oriented; there is no adapter implementing the shared transaction surface through GitHub.
-5. **No governed work-control amendment transaction.** Sprint and backlog status changes are schema-validated, but not yet executed through a journaled, approval-bound, reconstructable amendment workflow.
-6. **No cross-operation privilege-escalation suite.** TEST artifacts have not been proven unable to become PRODUCTION through every import, replay, rollback, and recovery path.
+1. Common reconstruction interface and result taxonomy across all operation families.
+2. Reconstruction for generic state write, migration, reconciliation, disclosure, transition, feedback, canonical promotion, and work-control amendment.
+3. Clean-room and disaster-recovery exercises.
+4. Import/export package preserving authority, context, hashes, consumption, and receipt lineage.
+5. GitHub adapter parity for the declared shared contract surface.
+6. Journaled, approval-bound, reconstructable work-control amendment transaction.
+7. Cross-operation TEST-to-PRODUCTION escalation suite.
 
-### Minimum closure package
+### Rerun assessment
 
-- Common forensic reconstruction interface and result taxonomy.
-- Reconstruction for every operation family.
-- Clean-room and disaster-recovery exercises.
-- Import/export package preserving authority and lineage.
-- GitHub adapter for the declared shared contract surface.
-- Governed work-control amendment and reconstruction workflow.
-- Cross-context escalation test matrix.
-
-### Assessment
-
-**PARTIAL.** Useful model-use forensics exist, but system-wide portability and work-control governance remain unimplemented.
+**PARTIAL.** Model-use forensics exist; system-wide reconstruction and governed work completion do not.
 
 ---
 
 ## Sprint 13 — Integrated TEST Proof, Pre-Production Feedback Validation, and Release Candidate
 
-### Present evidence
+### Design status
 
-- Unit and component tests cover many Enki-core and model-use behaviors.
-- CI, runtime coverage, state authority, work-control authority, canonicalization security, and publication-asset workflows pass on the PR #27 head.
-- TEST model-use dispatch is structurally non-side-effecting.
+**Resolved.** The testing approach has already been established.
 
-### Missing primary capability
+Required evidence modes:
 
-1. **No feedback provenance contract.** `REAL`, `SYNTHETIC`, and `REPLAY` are not implemented as a governed feedback type independent of execution context.
-2. **No feedback pipeline.** There is no ingestion, publication lineage, classification, routing, deduplication, disposition, promotion control, audit, or replay service.
-3. **No synthetic scenario corpus.** Supportive, critical, corrective, ambiguous, irrelevant, duplicate, contradictory, adversarial, malformed, mismatched, unauthorized, and zero-response cases are not encoded.
-4. **No replay harness.** Historical cases cannot be rerun while preserving original provenance and preventing them from appearing as new feedback.
-5. **No controlled human TEST interface.** There is no mechanism for an identified evaluator to produce `REAL/TEST` feedback through a non-side-effecting path.
-6. **No integrated adaptive loops.** The system has not executed complete state-write → reconciliation → disclosure → transition → interpretation → model-use → feedback → disposition loops across two subject classes.
-7. **No chaos campaign.** Interruption at every authority, persistence, receipt, dispatch, and recovery boundary has not been exercised end to end.
-8. **No calibration report.** Expected and observed synthetic, replay, and human results are not compared in a hash-bound artifact.
-9. **No release package.** Version, threat model, runbooks, rollback path, release notes, known limitations, and internal release decision do not exist as an integrated candidate.
+- `SYNTHETIC/TEST` for scenario and adversarial coverage;
+- `REPLAY/TEST` for regression where immutable cases exist;
+- controlled `REAL/TEST` from an identified human evaluator;
+- strict rejection of all TEST evidence by production gates.
 
-### Minimum closure package
+### Missing implementation
 
-- Feedback contracts, schemas, repositories, receipts, and execution services.
-- Synthetic scenario fixtures and expected outcomes.
-- Replay harness.
-- Controlled human TEST review surface and authority boundary.
-- Two complete integrated loops across different subject classes.
-- Chaos and recovery matrix.
-- Pre-production calibration report.
-- Versioned release candidate, threat model, runbooks, rollback, release notes, and Sprint 3 handoff.
+1. Feedback provenance and execution-context contracts.
+2. Feedback schemas, repositories, receipts, and services.
+3. Publication-lineage validation.
+4. Classification, routing, deduplication, disposition, and promotion-control pipeline.
+5. Synthetic scenario corpus and expected outcomes.
+6. Replay harness preserving original provenance without creating new feedback.
+7. Controlled human TEST interface.
+8. Observation-window and zero-feedback TEST proof.
+9. Two complete adaptive loops across different subject classes.
+10. End-to-end chaos and interruption campaign.
+11. Hash-bound pre-production calibration report.
+12. Versioned release candidate, threat model, runbooks, rollback path, release notes, limitations, internal release decision, and Sprint 3 handoff.
 
-### Assessment
+### Rerun assessment
 
-**MISSING.** Existing tests are inputs to Sprint 13, not evidence that Sprint 13 has occurred.
+**IMPLEMENTATION MISSING, DESIGN RESOLVED.** The problem is execution of the agreed test architecture, not discovery of how to test before production.
 
 ---
 
-# Sprint 3 parallel production lane
+# Consolidated gap structure
 
-## Present evidence
+Most remaining work is not thirteen unrelated feature sets. It concentrates in four shared mechanisms.
 
-- Publication 000001 canonical record exists.
-- Article body now exists at the declared draft path.
-- Visual package and manifest exist and automated checks pass.
-- A configuration worksheet exists.
-- Issue #14 provides a traceable approval workspace.
+## Mechanism A — Shared governed transaction kernel
 
-## Remaining gaps
+Closes major gaps in Sprints 5, 7, 8, 9, 10, 12, and 13:
 
-1. Issue #14 still states that the article body is missing and retains the obsolete mandatory real-feedback exit language.
-2. Human visual decision is not recorded.
-3. Human article-body decision is not recorded.
-4. Channels, account identity, byline, brand treatment, channel copy, selected assets, and publication method remain unresolved.
-5. Final production authorization has not been recorded against exact body and manifest hashes.
-6. Production publication and distribution receipts do not exist.
-7. The observation-window and zero-feedback receipt contracts do not exist.
-8. Sprint 13 pre-production feedback validation has not occurred.
-9. No post-release calibration report exists.
+- exact plans and hashes;
+- authority reservation and consumption;
+- journals and receipts;
+- idempotency and exact retry;
+- rollback and interruption recovery;
+- common reconstruction.
 
-## Closure sequence
+## Mechanism B — Generic transition and conflict engine
 
-Sprint 3 should remain parallel until Sprint 13 has produced the pre-production calibration report and release handoff. Visual, editorial, and configuration review can proceed before then.
+Closes Sprint 10 and enables final integration for Sprints 11–13:
+
+- governed changes;
+- branch and merge lineage;
+- conflict and authority semantics;
+- transition receipts and reconstruction.
+
+## Mechanism C — Governed feedback and calibration subsystem
+
+Closes Sprint 13 and provides the tested production handoff to Sprint 3:
+
+- provenance/context matrix;
+- synthetic, replay, and controlled human TEST paths;
+- feedback processing and disposition;
+- observation windows and zero-feedback receipts;
+- calibration reports.
+
+## Mechanism D — Canonical promotion and branch integration
+
+Makes the revised plan governable:
+
+- approve PR #28;
+- promote revised sprint and backlog records;
+- reconcile PR #27 with current `sandbox`;
+- map evidence to revised sprint boundaries;
+- execute governed completion amendments.
 
 ---
 
-# Critical path
-
-The minimum legitimate technical critical path is:
+# Corrected critical path
 
 ```text
-Roadmap approval and canonical promotion
-→ Sprint 5 general transaction foundation
-→ Sprint 6 completion review
-→ Sprint 7 governed state-write transaction
-→ Sprint 8 governed human migration
-→ Sprint 9 temporal/privacy-governed reconciliation and disclosure
-→ Sprint 10 transition/conflict engine
-→ Sprint 11 generic privacy-filtered model use and revocation
-→ Sprint 12 system-wide reconstruction and governed work completion
-→ Sprint 13 feedback validation, integrated loops, chaos proof, and release candidate
+Approve PR #28
+→ canonically promote revised roadmap
+→ reconcile PR #27 with current sandbox
+→ review and integrate Enki core substrate
+→ implement shared transaction kernel
+→ complete Sprint 6 evidence review
+→ execute Sprint 7 governed state writes
+→ execute Sprint 8 governed migration
+→ harden Sprint 9 temporal/privacy disclosure
+→ implement Sprint 10 transition/conflict engine
+→ complete Sprint 11 generic privacy-governed model use
+→ complete Sprint 12 reconstruction and work-control amendment
+→ execute Sprint 13 integrated TEST, feedback validation, chaos, calibration, and release proof
+→ hand exact release candidate to Sprint 3
+→ obtain final production authority and cause the external effect
 ```
 
-Sprint 3 editorial, visual, and configuration work can proceed in parallel. Production authorization waits for Sprint 13 or an explicit accepted limitation.
+## Parallelizable now
 
-## Parallelizable work
+- Sprint 6 ADR and evidence review.
+- Sprint 13 feedback contracts and synthetic scenario corpus design.
+- Sprint 3 article, visual, identity, channel, and configuration review.
+- Publication dry-run specification and observation-window contract.
+- Threat model, runbook, rollback, and release-document skeletons.
 
-The following can be developed without violating the dependency chain:
+## Cannot be honestly claimed early
 
-- Roadmap promotion records and Sprint 5 transaction work.
-- Sprint 6 evidence mapping and ADR review.
-- Sprint 13 feedback contracts and synthetic scenario design, provided they depend only on stable core contracts.
-- Sprint 3 visual, article, and publication-configuration review.
-- Release-document skeletons, threat-model outline, and runbook templates.
-
-The following cannot be honestly completed early:
-
-- Sprint 10 before governed state creation and human migration semantics are stable.
+- Sprint 10 completion before governed state-write and migration semantics stabilize.
 - Sprint 11 final integration before Sprint 10 transition outputs exist.
-- Sprint 12 cross-operation reconstruction before all operation families exist.
+- Sprint 12 cross-operation reconstruction before the operation families exist.
 - Sprint 13 integrated proof before Sprints 7–12 are operational.
-- Sprint 3 production calibration before Sprint 13 feedback validation.
+- Sprint 3 production calibration before Sprint 13 has proven the mechanism in TEST.
 
-# Recommended immediate execution order
+# Same-day completion finding
 
-1. Approve or revise PR #28.
-2. Promote the revised roadmap canonically.
-3. Review PR #27 as the shared implementation substrate and merge only after its current claims are reconciled with live files.
-4. Close Sprint 5's general transaction gap.
-5. Complete Sprint 6 evidence review.
-6. Implement Sprint 7 governed state-write workflow.
-7. Implement Sprint 8 governed migration workflow.
-8. Harden Sprint 9 temporal, privacy, and disclosure transactions.
-9. Build Sprint 10 transition/conflict engine.
-10. Generalize and privacy-harden Sprint 11 model use.
-11. Build Sprint 12 cross-operation reconstruction and governed work amendment.
-12. Execute Sprint 13 feedback, integrated, chaos, and release proof.
-13. Hand the release candidate to Sprint 3 for separately authorized production validation.
+The repository does not currently contain enough implementation evidence to mark completion through Sprint 13 today without manufacturing unsupported status.
 
-# Final assessment
+That does not indicate an architectural paradox. It indicates three substantial missing executable systems plus governance integration:
 
-The architecture is not blocked by a paradox. It is blocked by a finite set of missing operation boundaries.
+1. the shared transaction kernel;
+2. the generic transition/conflict engine;
+3. the governed feedback/calibration subsystem;
+4. canonical roadmap promotion and branch reconciliation.
 
-The greatest leverage comes from implementing three missing shared mechanisms rather than treating every sprint as independent feature work:
+The fastest legitimate route is to build those shared mechanisms and reuse them across sprint boundaries rather than implementing each sprint as isolated work.
 
-1. a reusable approval-bound transaction and receipt engine;
-2. a generic transition/conflict engine;
-3. a governed feedback and calibration subsystem.
+# Final rerun finding
 
-Those three mechanisms close the majority of the remaining gaps across Sprints 5, 7–13 while preserving the modularity established by the revised roadmap.
+The corrected gap is narrower and clearer than the first analysis suggested:
+
+- **Sprint 3 is not waiting for us to invent pre-production testing.** That design is solved.
+- **Sprint 13 must implement and execute the solved pre-production test architecture.**
+- **Sprint 3 then performs only the final human-authorized production transaction and records real production evidence.**
+- **Sprint 10 remains the largest missing domain capability.**
+- **The shared transaction kernel is the highest-leverage foundational build.**
+
+The system is not blocked by perception or paradox. It is blocked by a bounded set of executable mechanisms and their evidence-bearing promotion.
