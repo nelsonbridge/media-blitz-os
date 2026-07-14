@@ -1,0 +1,45 @@
+{
+  "dependencies": [
+    {
+      "name": "hatchling",
+      "requirement": "hatchling>=1.25",
+      "scope": "BUILD",
+      "source_file": "pyproject.toml"
+    },
+    {
+      "name": "pydantic",
+      "requirement": "pydantic>=2.8,<3",
+      "scope": "RUNTIME",
+      "source_file": "pyproject.toml"
+    },
+    {
+      "name": "typer",
+      "requirement": "typer>=0.12,<1",
+      "scope": "RUNTIME",
+      "source_file": "pyproject.toml"
+    },
+    {
+      "name": "jsonschema",
+      "requirement": "jsonschema>=4.23,<5",
+      "scope": "TEST",
+      "source_file": "pyproject.toml"
+    },
+    {
+      "name": "pytest",
+      "requirement": "pytest>=8,<9",
+      "scope": "TEST",
+      "source_file": "pyproject.toml"
+    },
+    {
+      "name": "pytest-cov",
+      "requirement": "pytest-cov>=5,<7",
+      "scope": "TEST",
+      "source_file": "pyproject.toml"
+    }
+  ],
+  "dependency_sha256": "sha256:a45475d07722071535c7ee6cd1fc4c5640f674a852993e508b903bdff8b30a3a",
+  "project_name": "nelson-knowledge-system",
+  "project_version": "0.1.0",
+  "python_requirement": ">=3.11",
+  "schema_version": "1.0"
+}
