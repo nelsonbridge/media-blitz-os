@@ -74,10 +74,6 @@ def main() -> int:
             output / "supply-chain-attestation.json",
             result.attestation.model_dump(mode="json"),
         ),
-        "verification-result.json": _write_json(
-            output / "verification-result.json",
-            result.model_dump(mode="json"),
-        ),
     }
     provenance = {
         "schema_version": "1.0",
