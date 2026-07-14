@@ -1,19 +1,32 @@
 {
   "work_item_id": "BL-005",
-  "title": "Journaled Promotion, Approval Context, and Receipts",
-  "description": "Make canonical promotion recoverable, atomic or journaled, idempotent, and fully receipted while enforcing context-bound approvals and TEST/PRODUCTION side-effect isolation.",
-  "status": "planned",
+  "title": "Context-Bound Approval and Transaction Foundation",
+  "description": "Provide one reusable fail-closed transaction, approval, journal, receipt, rollback, recovery, and path-coverage foundation for every governed Enki operation.",
+  "status": "complete",
   "sprint_id": "NKS-SPR-005",
   "acceptance_criteria": [
-    "Promotion is recoverable after interruption and partial authority cannot persist",
-    "Immutable receipts bind exact input hashes, output hashes, transaction identity, and execution context",
-    "Approval evaluation binds decision, execution context, permitted action, subject, content hash, authority, validity, and consumption state",
-    "TEST approvals cannot authorize PRODUCTION effects, production receipts, REAL feedback, or production model ingestion",
-    "TEST execution uses adapters that are technically incapable of external side effects",
-    "Import, replay, migration, rollback, and recovery cannot escalate or rewrite approval context"
+    "Approval evaluation binds execution context, action, subject, content hash, authority, validity, revocation, and transaction identity",
+    "AVAILABLE, RESERVED, CONSUMED, and REVOKED states are durable and compare-and-swap safe",
+    "Interruption before consumption releases reservation and records rollback",
+    "Interruption after consumption recovers only through the same exact transaction without duplicate effects",
+    "TEST cannot reach production capability and cross-context replay fails closed",
+    "Machine-readable path manifests and automated coverage enforce every declared terminal path"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL5-PR29",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/29",
+      "description": "Shared governed transaction and path-completeness implementation."
+    },
+    {
+      "evidence_id": "E-BL5-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29309868310",
+      "description": "Final transaction and state-write branch CI passed."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T22:30:00Z"
+  "updated_at": "2026-07-14T06:20:00Z"
 }
