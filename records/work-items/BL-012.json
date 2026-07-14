@@ -2,7 +2,7 @@
   "work_item_id": "BL-012",
   "title": "Forensic Reconstruction, Portability, and Governed Work Completion",
   "description": "Generalize deterministic reconstruction, clean-room portability, adapter parity, disaster recovery, and evidence-bound work-control completion across every governed Enki operation family.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-012",
   "acceptance_criteria": [
     "All operation families reconstruct from immutable journals, records, approvals, and receipts into an explicit terminal taxonomy",
@@ -12,8 +12,33 @@
     "Work-control amendments are approval-bound, journaled, receipted, recoverable, and evidence-bound",
     "No completion status can be created from narrative claims, TEST-to-PRODUCTION escalation, or missing qualifying evidence"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL12-PR38",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/38",
+      "description": "Implemented the Sprint 12 reconstruction, portability, recovery, parity, and governed completion capability."
+    },
+    {
+      "evidence_id": "E-BL12-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29320065936",
+      "description": "Sprint 12 completion-promotion CI passed."
+    },
+    {
+      "evidence_id": "E-BL12-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29320065907",
+      "description": "Declared Sprint 12 reconstruction and recovery paths achieved runtime coverage."
+    },
+    {
+      "evidence_id": "E-BL12-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29320065997",
+      "description": "Work Control Authority accepted the qualifying completion evidence."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-14T06:20:00Z"
+  "updated_at": "2026-07-14T13:08:00Z"
 }
