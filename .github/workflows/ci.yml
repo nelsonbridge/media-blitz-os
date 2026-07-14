@@ -4,13 +4,14 @@ on:
   push:
     branches:
       - sandbox
+      - governance/promote-sprint-14-completion
   pull_request:
     branches:
       - sandbox
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   test:
@@ -41,6 +42,22 @@ jobs:
           python scripts/generate_release_integrity_evidence.py \
             --output-directory generated/release-integrity \
             --verifier-source-commit 8161b23b2e883278f25f3539ee3e392b8eb04033
+
+      - name: Synchronize generated authority projections
+        if: github.event_name == 'push' && github.ref_name == 'governance/promote-sprint-14-completion'
+        run: |
+          nks generate-views .
+          nks audit-repository .
+          python -m nks.views.authority write .
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated
+          if git diff --cached --quiet; then
+            echo "Generated projections already synchronized."
+          else
+            git commit -m "Synchronize Sprint 14 generated authority projections"
+            git push origin HEAD:governance/promote-sprint-14-completion
+          fi
 
       - name: Upload test, coverage, and release-integrity artifacts
         if: always()
