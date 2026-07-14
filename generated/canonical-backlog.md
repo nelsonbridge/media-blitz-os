@@ -14,7 +14,7 @@
 | BL-008 | complete | NKS-SPR-008 | Human-State Compatibility, Authority, and Governed Migration | 3 |
 | BL-009 | complete | NKS-SPR-009 | Governed Reconciliation and Disclosure Separation | 3 |
 | BL-010 | complete | NKS-SPR-010 | Governed Transition and Conflict Engine | 3 |
-| BL-011 | planned | NKS-SPR-011 | Governed Interpretation and Capability-Isolated Model Use | 0 |
+| BL-011 | complete | NKS-SPR-011 | Governed Interpretation and Capability-Isolated Model Use | 3 |
 | BL-012 | planned | NKS-SPR-012 | Forensic Reconstruction, Portability, and Governed Work Completion | 0 |
 | BL-013 | planned | NKS-SPR-013 | Integrated Internal TEST Proof and Enki Release Candidate | 0 |
 
