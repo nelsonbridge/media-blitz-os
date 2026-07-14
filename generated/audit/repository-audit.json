@@ -51,7 +51,7 @@
   "schema_count": 16,
   "test_count": 69,
   "top_level_counts": {
-    "(none)": 5,
+    "(root)": 5,
     ".github": 9,
     ".vscode": 1,
     "adapters": 1,
