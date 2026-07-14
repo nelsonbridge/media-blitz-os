@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-017",
+  "title": "Versioned Policy Lifecycle and Simulation",
+  "description": "Govern policy creation, comparison, simulation, approval, activation, rollback, and retirement without rewriting historical decisions or widening authority.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-017",
+  "acceptance_criteria": [
+    "Policy bundles are immutable, versioned, attributable, context-bound, and hash-bound",
+    "Policy simulation reports affected operations and decisions without mutating canonical state",
+    "Activation and rollback require exact authority and produce receipts",
+    "Historical decisions retain the policy version under which they were made",
+    "TEST policy outcomes cannot activate or replace PRODUCTION policy"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-14T14:00:00Z"
+}
