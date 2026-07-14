@@ -141,10 +141,15 @@ class TransitionPayload(BaseModel):
                     f"{self.transition_type.value} requires one from_state and one to_state"
                 )
 
-        if ConflictKind.CYCLE in self.accepted_conflicts:
-            raise ValueError("cycles can never be accepted")
-        if ConflictKind.STALE_INPUT in self.accepted_conflicts:
-            raise ValueError("stale input can never be accepted")
+        unconditionally_rejected = {
+            ConflictKind.CYCLE,
+            ConflictKind.STALE_INPUT,
+            ConflictKind.CONTRADICTION,
+        }
+        invalid = self.accepted_conflicts & unconditionally_rejected
+        if invalid:
+            names = ", ".join(sorted(item.value for item in invalid))
+            raise ValueError(f"these conflicts can never be accepted: {names}")
         return self
 
     @property
@@ -327,13 +332,20 @@ class TransitionGraphAnalyzer:
                 graph[source.state_id].add(target.state_id)
 
         rejected = conflicts - payload.accepted_conflicts
-        if ConflictKind.CYCLE in conflicts:
-            rejected.add(ConflictKind.CYCLE)
-        if ConflictKind.STALE_INPUT in conflicts:
-            rejected.add(ConflictKind.STALE_INPUT)
+        rejected.update(
+            conflicts
+            & {
+                ConflictKind.CYCLE,
+                ConflictKind.STALE_INPUT,
+                ConflictKind.CONTRADICTION,
+            }
+        )
         if rejected:
             names = ", ".join(sorted(item.value for item in rejected))
-            raise TransitionConflictError(rejected, f"transition conflicts are not accepted: {names}")
+            raise TransitionConflictError(
+                rejected,
+                f"transition conflicts are not accepted: {names}",
+            )
         return conflicts
 
 
@@ -479,7 +491,10 @@ def reconstruct_transition(
             issues.append("before-state hash does not match plan")
         if record.after_sha256 != plan.payload.after_sha256:
             issues.append("after-state hash does not match plan")
-        if canonical_sha256(record) != (receipt.output_sha256 if receipt else None):
+        if (
+            receipt is not None
+            and canonical_sha256(record) != receipt.output_sha256
+        ):
             issues.append("transition record hash does not match transaction receipt")
     if receipt is not None:
         if receipt.plan_sha256 != plan.operation.plan_sha256:
