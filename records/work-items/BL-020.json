@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-020",
+  "title": "Concurrency, Contention, and Distributed Recovery",
+  "description": "Prove correct behavior under concurrent approvals, competing writes, duplicate delivery, out-of-order evidence, adapter interruption, and partition-shaped failure.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-020",
+  "acceptance_criteria": [
+    "Concurrent approval reservation and consumption permit at most one conflicting effect",
+    "Duplicate, delayed, and out-of-order messages remain idempotent or fail closed",
+    "Compare-and-swap contention and adapter interruption produce reconstructable outcomes",
+    "Partition-shaped failures recover without split authority, duplicate effects, or lost receipts",
+    "Filesystem and GitHub adapters satisfy the declared concurrency and recovery contract"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-14T14:00:00Z"
+}
