@@ -2,7 +2,7 @@
   "work_item_id": "BL-013",
   "title": "Integrated Internal TEST Proof and Enki Release Candidate",
   "description": "Run complete internal adaptive loops, including the publication-shaped downstream-consumer POC through no-effect adapters, prove feedback, chaos, rollback, recovery, reconstruction, and authority isolation, and package the exact Enki release candidate for human decision.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-013",
   "acceptance_criteria": [
     "At least two complete adaptive TEST loops pass across different subject classes and consumer patterns",
@@ -12,8 +12,39 @@
     "Chaos and interruption campaigns recover without duplicate effects, partial authority, context escalation, audience widening, or unexplained state",
     "The release candidate, exact evidence manifests, calibration report, threat model, runbooks, limitations, release notes, rollback package, and human release-decision package are bound to one exact commit"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL13-PR41",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/41",
+      "description": "Integrated internal TEST proof and release-candidate implementation."
+    },
+    {
+      "evidence_id": "E-BL13-CANDIDATE",
+      "kind": "release-candidate",
+      "reference": "releases/enki-0.1.0-rc1/release-candidate.json",
+      "description": "Exact Enki 0.1.0-rc1 candidate and release evidence package bound to commit cb84fbc8eef6096e8a707e1b922dfa2eddb23e51."
+    },
+    {
+      "evidence_id": "E-BL13-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29337305375",
+      "description": "CI validated the candidate package and integrated proof."
+    },
+    {
+      "evidence_id": "E-BL13-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29337306298",
+      "description": "Runtime Coverage passed for the final Sprint 13 candidate branch."
+    },
+    {
+      "evidence_id": "E-BL13-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29337306208",
+      "description": "Work Control Authority accepted the qualifying completion evidence."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-14T06:20:00Z"
+  "updated_at": "2026-07-14T13:45:00Z"
 }
