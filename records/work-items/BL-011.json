@@ -1,19 +1,19 @@
 {
   "work_item_id": "BL-011",
-  "title": "Two-Lane Operational Proof, Hardening, and Release Candidate",
-  "description": "Demonstrate repeated governed adaptive operation through a fully automated TEST lane and a separately authorized PRODUCTION lane, then harden and version the release candidate without conflating test evidence with real-world authority.",
+  "title": "Governed Interpretation and Capability-Isolated Model Use",
+  "description": "Resolve interpretation and construct purpose-limited, privacy-filtered, authority-bound model-use packages through isolated TEST and separately authorized PRODUCTION dispatch boundaries.",
   "status": "planned",
   "sprint_id": "NKS-SPR-011",
   "acceptance_criteria": [
-    "At least two complete TEST adaptive loops run across different subject classes using TEST-scoped approvals and non-side-effecting adapters",
-    "TEST loops produce reconstructable journals, receipts, rollback evidence, and behavior results but cannot satisfy production publication, real-feedback, or release-authorization gates",
-    "Publication 000001 or an equivalent external cycle uses explicit PRODUCTION approval, external publication, REAL feedback, governed transition, interpretation, and production model-use receipts",
-    "Chaos and interruption drills recover without duplicates, unexplained state, context escalation, or partial authority",
-    "Release-blocking security, privacy, behavior, portability, migration, recovery, context-isolation, and performance findings are closed or explicitly accepted",
-    "Threat model, known limitations, runbooks, rollback plan, release notes, versioned artifacts, and explicit production release decision exist"
+    "Interpretation resolution is deterministic across context, time, transition state, confidence, restrictions, authority, and purpose",
+    "Typed model-use directives are attributable, purpose-bound, versioned, and explicit about transition inclusion",
+    "Inapplicable, retracted, expired, superseded, disputed, private, unredacted, revoked, or unauthorized state cannot control downstream behavior",
+    "TEST adapters lack transport, credentials, endpoints, callbacks, or generic adapter injection capability",
+    "PRODUCTION dispatch requires exact package hashes, recognized authority, privacy filtering, explicit transport, provider-effect journaling, and immutable receipts",
+    "Prediction and model output remain downstream, noncanonical, and unable to mutate Enki state without a separate governed operation"
   ],
   "evidence": [],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-12T22:30:00Z"
+  "updated_at": "2026-07-14T06:20:00Z"
 }
