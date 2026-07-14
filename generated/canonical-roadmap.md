@@ -145,10 +145,10 @@ Exit criteria:
 ## Sprint 10 — Governed Transition and Conflict Engine
 
 - ID: `NKS-SPR-010`
-- Status: `planned`
+- Status: `complete`
 - Objective: Implement the transactional engine for correction, refinement, supersession, retraction, reversal, context shift, confidence change, branching, merging, splitting, restriction, expansion, and deprecation while preserving history, uncertainty, authority, and deterministic recovery.
 - Work items: BL-010
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 

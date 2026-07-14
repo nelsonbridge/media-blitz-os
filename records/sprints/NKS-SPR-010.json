@@ -3,7 +3,7 @@
   "sequence": 10,
   "title": "Governed Transition and Conflict Engine",
   "objective": "Implement the transactional engine for correction, refinement, supersession, retraction, reversal, context shift, confidence change, branching, merging, splitting, restriction, expansion, and deprecation while preserving history, uncertainty, authority, and deterministic recovery.",
-  "status": "planned",
+  "status": "complete",
   "work_item_ids": ["BL-010"],
   "exit_criteria": [
     "Every supported transition binds exact before-and-after state hashes, subject, context, evidence, provenance, interpretation version, authority, execution context, transaction, and receipt",
@@ -13,7 +13,38 @@
     "Interrupted transitions converge to one committed transition, one recovered exact retry, or one documented rollback",
     "Human-state regression tests pass through the generic engine without weakening human privacy, consent, correction, retraction, or authority controls"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S10-PR34",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/34",
+      "description": "Implemented the generic governed transition and conflict engine, schemas, persistence, recovery, reconstruction, and path-complete TEST matrix."
+    },
+    {
+      "evidence_id": "E-S10-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/609268f8a25ce39afa0ad9fec8fbf1f3c0dcd4bc",
+      "description": "Merged the Sprint 10 transition engine into sandbox."
+    },
+    {
+      "evidence_id": "E-S10-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29314526767",
+      "description": "CI passed after dependency, schema-contract, and deterministic validation corrections."
+    },
+    {
+      "evidence_id": "E-S10-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29314526984",
+      "description": "Runtime Coverage passed with every declared Sprint 10 path covered."
+    },
+    {
+      "evidence_id": "E-S10-WORK-CONTROL",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29314526766",
+      "description": "Work Control Authority passed for the pre-promotion evidence branch."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-14T06:20:00Z"
+  "updated_at": "2026-07-14T07:25:00Z"
 }
