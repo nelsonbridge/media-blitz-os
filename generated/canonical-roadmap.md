@@ -196,10 +196,10 @@ Exit criteria:
 ## Sprint 13 — Integrated Internal TEST Proof and Enki Release Candidate
 
 - ID: `NKS-SPR-013`
-- Status: `planned`
+- Status: `complete`
 - Objective: Execute repeated end-to-end internal TEST loops across Enki capabilities and downstream-consumer scenarios, including the complete publication-shaped proof of concept through no-effect adapters, then produce a versioned, reconstructable, rollback-capable Enki release candidate for an explicit release decision.
 - Work items: BL-013
-- Evidence records: 0
+- Evidence records: 6
 
 Exit criteria:
 
