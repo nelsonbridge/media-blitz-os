@@ -3,6 +3,13 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from nks.application.governed_transactions import (
+    GovernedTransactionEvent,
+    GovernedTransactionReceipt,
+    RecoveryStrategy,
+    TransactionStage,
+    TransactionTerminalState,
+)
 from nks.enki.contracts import (
     ConfidenceLevel,
     DisclosureAction,
@@ -30,6 +37,8 @@ def test_enki_schemas_use_strict_draft_2020_12() -> None:
         "approval-grant.schema.json",
         "reconciliation-finding.schema.json",
         "disclosure-receipt.schema.json",
+        "governed-transaction-event.schema.json",
+        "governed-transaction-receipt.schema.json",
     ):
         schema = _schema(name)
         assert schema["$schema"] == "https://json-schema.org/draft/2020-12/schema"
@@ -82,4 +91,30 @@ def test_disclosure_schema_fields_and_enums_match_contract() -> None:
     decision = schema["$defs"]["disclosure_decision"]
     assert set(decision["properties"]["action"]["enum"]) == {
         item.value for item in DisclosureAction
+    }
+
+
+def test_governed_transaction_event_schema_matches_contract() -> None:
+    schema = _schema("governed-transaction-event.schema.json")
+    model_schema = GovernedTransactionEvent.model_json_schema()
+
+    assert set(schema["properties"]) == set(model_schema["properties"])
+    assert set(schema["properties"]["stage"]["enum"]) == {
+        item.value for item in TransactionStage
+    }
+
+
+def test_governed_transaction_receipt_schema_matches_contract() -> None:
+    schema = _schema("governed-transaction-receipt.schema.json")
+    model_schema = GovernedTransactionReceipt.model_json_schema()
+
+    assert set(schema["properties"]) == set(model_schema["properties"])
+    assert set(schema["properties"]["terminal_state"]["enum"]) == {
+        item.value for item in TransactionTerminalState
+    }
+    assert set(schema["properties"]["recovery_strategy"]["enum"]) == {
+        item.value for item in RecoveryStrategy
+    }
+    assert set(schema["properties"]["execution_context"]["enum"]) == {
+        item.value for item in ExecutionContext
     }
