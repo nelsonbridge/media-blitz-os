@@ -3,7 +3,7 @@
   "sequence": 12,
   "title": "Forensic Reconstruction, Portability, and Governed Work Completion",
   "objective": "Prove that every governed Enki operation, authority consumption, migration, state write, reconciliation, disclosure, transition, model use, feedback action, promotion, and work-control amendment can be reconstructed, moved, recovered, and completed without authority escalation or unsupported status claims.",
-  "status": "planned",
+  "status": "complete",
   "work_item_ids": ["BL-012"],
   "exit_criteria": [
     "Every governed operation reconstructs to COMPLETE, INCOMPLETE, REPAIRABLE, ROLLED_BACK, or CONFLICT from immutable evidence",
@@ -13,7 +13,38 @@
     "Governed work-control amendments bind sprint and work-item status changes to exact qualifying evidence and remain reconstructable",
     "No sprint or work item can become complete without qualifying implementation, path-coverage, validation, and authority evidence"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S12-PR38",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/38",
+      "description": "Implemented system-wide forensic reconstruction, portable evidence packages, clean-room and disaster recovery, adapter parity, and approval-bound governed work completion."
+    },
+    {
+      "evidence_id": "E-S12-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/7d9f37b8bd9f1d55e7cc7f3ea20eebe749abc238",
+      "description": "Merged the Sprint 12 implementation into sandbox."
+    },
+    {
+      "evidence_id": "E-S12-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29320065936",
+      "description": "CI passed on the Sprint 12 completion-promotion branch."
+    },
+    {
+      "evidence_id": "E-S12-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29320065907",
+      "description": "Runtime Coverage passed with every declared Sprint 12 path covered."
+    },
+    {
+      "evidence_id": "E-S12-WORK-CONTROL",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29320065997",
+      "description": "Work Control Authority passed before governed completion promotion."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-14T06:20:00Z"
+  "updated_at": "2026-07-14T13:08:00Z"
 }

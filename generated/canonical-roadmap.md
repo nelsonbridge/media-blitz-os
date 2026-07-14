@@ -179,10 +179,10 @@ Exit criteria:
 ## Sprint 12 — Forensic Reconstruction, Portability, and Governed Work Completion
 
 - ID: `NKS-SPR-012`
-- Status: `planned`
+- Status: `complete`
 - Objective: Prove that every governed Enki operation, authority consumption, migration, state write, reconciliation, disclosure, transition, model use, feedback action, promotion, and work-control amendment can be reconstructed, moved, recovered, and completed without authority escalation or unsupported status claims.
 - Work items: BL-012
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 
