@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-016",
+  "title": "Namespace, Tenant, and Subject Isolation",
+  "description": "Enforce namespace, tenant, subject, domain, and audience isolation across every governed operation, export, import, recovery, and downstream-consumer boundary.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-016",
+  "acceptance_criteria": [
+    "Every governed record and operation carries an explicit namespace or tenant boundary",
+    "Cross-tenant, cross-subject, cross-domain, and unauthorized audience access fails closed",
+    "Export, import, migration, replay, and recovery preserve isolation boundaries",
+    "Human consent, privacy, correction, retraction, and ownership protections remain stricter than generic tenant rules",
+    "Isolation failures are reconstructable without exposing protected content"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-14T14:00:00Z"
+}
