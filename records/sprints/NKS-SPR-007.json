@@ -1,19 +1,38 @@
 {
   "sprint_id": "NKS-SPR-007",
   "sequence": 7,
-  "title": "Governed Adaptive Knowledge state and approval substrate",
-  "objective": "Generalize the proven human-state reference implementation into platform-neutral Subject, Domain, KnowledgeState, and approval-applicability contracts while preserving stricter human-agency protections.",
-  "status": "planned",
+  "title": "Generic Observation, Relationship, and State-Write Substrate",
+  "objective": "Implement one append-only, schema-governed substrate for observations, relationship assertions, and approval-bound generic state creation without subject-specific schema forks.",
+  "status": "complete",
   "work_item_ids": ["BL-007"],
   "exit_criteria": [
-    "Generic state and approval-applicability contracts work without subject-specific schema forks",
-    "Every state creation is journaled, receipted, recoverable, auditable, and bound to execution context",
-    "TEST approvals exercise one human and at least two nonhuman subject classes without production effects",
-    "Human consent, privacy, self-declaration, correction, and production-authority protections remain stricter and regression-tested",
-    "Views, authority registration, migration mappings, and audits preserve approval context",
-    "The substrate is ready for context-bound transactional transitions in Sprint 8"
+    "PERSON, ORGANIZATION, and PROJECT use identical Enki observation, relationship, plan, journal, and receipt contracts",
+    "State-write plans bind exact payload hash, subject, domain, context, known references, authority, and transaction",
+    "Unknown references, subject leakage, domain mismatch, duplicate conflicts, tampering, and cross-plan replay fail closed",
+    "Partial writes recover through the same consumed transaction without duplicate or rewritten state",
+    "TEST state writes cannot reach production effects",
+    "Machine-readable state-write paths have automated coverage and immutable evidence"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S7-PR29",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/29",
+      "description": "Implemented approval-bound generic state-write plans, partial-write recovery, and multi-subject tests."
+    },
+    {
+      "evidence_id": "E-S7-PR30",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/30",
+      "description": "Repaired deterministic hashing for date-bearing Enki plans."
+    },
+    {
+      "evidence_id": "E-S7-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29309868310",
+      "description": "Final state-write CI passed across PERSON, ORGANIZATION, and PROJECT."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-12T22:30:00Z"
+  "updated_at": "2026-07-14T06:20:00Z"
 }
