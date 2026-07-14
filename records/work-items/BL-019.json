@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-019",
+  "title": "Retention, Archival, and Cryptographic Continuity",
+  "description": "Govern retention, archival, tombstoning, legal or subject-driven restriction, and hash-algorithm continuity while preserving historical lineage and authority.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-019",
+  "acceptance_criteria": [
+    "Retention and archival policies are explicit, versioned, purpose-bound, and authority-bound",
+    "Archival preserves verification, lineage, execution context, and receipt integrity",
+    "Restriction or deletion requests produce governed tombstones or redactions without silently rewriting history",
+    "Hash-algorithm migration preserves old verification and creates new receipted continuity evidence",
+    "Expired, archived, restricted, or revoked records cannot control unauthorized downstream behavior"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-14T14:00:00Z"
+}
