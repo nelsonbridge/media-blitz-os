@@ -1,19 +1,44 @@
 {
   "sprint_id": "NKS-SPR-008",
   "sequence": 8,
-  "title": "Governed transition, conflict, and approval engine",
-  "objective": "Implement the transactional state-change engine for Governed Adaptive Knowledge with exact state hashes, context-bound approvals, conflict semantics, recovery, and receipts.",
-  "status": "planned",
+  "title": "Human-State Compatibility, Authority, and Governed Migration",
+  "objective": "Project the temporal human-state reference implementation into the generic Enki substrate while preserving human agency, historical meaning, privacy, consent, purpose limitation, explicit expression origin, and recoverable migration authority.",
+  "status": "complete",
   "work_item_ids": ["BL-008"],
   "exit_criteria": [
-    "All supported transition types bind exact before-and-after state hashes, execution context, approval identity, and receipt",
-    "TEST transition approvals cannot mutate PRODUCTION state or satisfy production transition gates",
-    "Invalid, cyclic, contradictory, context-mismatched, or unauthorized transitions fail closed",
-    "Transition lineage, branch and merge state, overlaps, and authority conflicts are reconstructable",
-    "Recovery after interruption produces one committed transition or one documented rollback",
-    "Human-state regression tests pass through the generic engine without weakening human-specific controls"
+    "Historical human records are projected without rewriting canonical history or changing their original meaning",
+    "Every migrated observation has an explicit expression-origin decision and attributable source lineage",
+    "Consent, purpose, privacy, correction, retraction, expiration, revocation, and redaction protections fail closed",
+    "Legacy Boolean model-feedback fields never become generic Enki authority",
+    "Migration plans bind exact content hash, subject, policy, purpose, execution context, approval, and transaction",
+    "Partial migration recovers by exact retry without duplicate observations, relationships, or weakened human protections"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S8-PR31",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/31",
+      "description": "Implemented protected, content-addressed human migration, semantic parity, policy enforcement, and exact-retry recovery."
+    },
+    {
+      "evidence_id": "E-S8-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/f4a0124192a86802353e952c0680260e8e07570a",
+      "description": "Merged governed migration, reconciliation, disclosure, schemas, and path-coverage evidence."
+    },
+    {
+      "evidence_id": "E-S8-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29310463635",
+      "description": "CI passed for migration policy, semantic parity, interruption, recovery, tamper, and authority paths."
+    },
+    {
+      "evidence_id": "E-S8-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29310463684",
+      "description": "Runtime coverage passed for the complete declared migration path matrix."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-12T22:30:00Z"
+  "updated_at": "2026-07-14T06:20:00Z"
 }
