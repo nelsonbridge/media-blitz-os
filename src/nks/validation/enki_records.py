@@ -6,6 +6,10 @@ from typing import Any
 
 from pydantic import BaseModel, ValidationError
 
+from nks.application.governed_transactions import (
+    GovernedTransactionEvent,
+    GovernedTransactionReceipt,
+)
 from nks.enki.contracts import ReconciliationFinding
 from nks.enki.disclosure import DisclosureReceipt
 from nks.governance.approvals import ApprovalGrant
@@ -14,6 +18,8 @@ ENKI_RECORD_MODELS: dict[str, type[BaseModel]] = {
     "approval-grants": ApprovalGrant,
     "reconciliation-findings": ReconciliationFinding,
     "disclosure-receipts": DisclosureReceipt,
+    "governed-transaction-events": GovernedTransactionEvent,
+    "governed-transaction-receipts": GovernedTransactionReceipt,
 }
 
 
