@@ -1,19 +1,38 @@
 {
   "sprint_id": "NKS-SPR-005",
   "sequence": 5,
-  "title": "Journaled promotion and approval isolation",
-  "objective": "Make canonical promotion recoverable, journaled, idempotent, and receipted while establishing context-bound TEST and PRODUCTION approval lanes with policy and adapter-level side-effect isolation.",
-  "status": "planned",
+  "title": "Context-Bound Approval and Transaction Foundation",
+  "objective": "Establish one fail-closed approval lifecycle and reusable transaction foundation for canonical mutation, migration, reconciliation, disclosure, model use, transition, feedback, and work control.",
+  "status": "complete",
   "work_item_ids": ["BL-005"],
   "exit_criteria": [
-    "Interrupted promotion converges to one committed transaction or one documented rollback",
-    "Partial authority cannot persist and immutable receipts bind exact inputs, outputs, and execution context",
-    "Approval grants are evaluated against context, action, subject, content, authority, validity, and consumption state",
-    "TEST approvals cannot satisfy PRODUCTION gates or produce production side effects, receipts, REAL feedback, or production model ingestion",
-    "TEST adapters are incapable of external side effects",
-    "Import, replay, migration, rollback, and recovery preserve approval context and reject escalation"
+    "TEST authority cannot satisfy a PRODUCTION gate or produce a production effect",
+    "Interrupted operations converge to one committed transaction, one recovered exact retry, or one documented rollback",
+    "Approval reservation and consumption are durable, reconstructable, and exact-retry safe",
+    "Ambiguous, stale, revoked, expired, mismatched, competing, or cross-context authority fails closed",
+    "Every declared authority, interruption, retry, rollback, recovery, replay, tamper, and escalation path has automated coverage",
+    "Immutable journals and terminal receipts bind the exact plan, transaction, approval, context, and output"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S5-PR29",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/29",
+      "description": "Implemented the reusable governed transaction executor, path manifests, rollback release, exact retry, immutable journals, and receipts."
+    },
+    {
+      "evidence_id": "E-S5-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/5a868e2ca604d57a98814e48378b2bed55ef29e7",
+      "description": "Merged and repaired content-addressed transaction and state-write foundation."
+    },
+    {
+      "evidence_id": "E-S5-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29309868310",
+      "description": "CI passed after the date-bearing canonical hash repair."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-12T22:30:00Z"
+  "updated_at": "2026-07-14T06:20:00Z"
 }
