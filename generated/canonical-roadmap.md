@@ -205,7 +205,7 @@ Exit criteria:
 
 - At least two complete adaptive TEST loops pass across different subject classes, including the mandatory publication-shaped POC lane and at least one nonpublication lane
 - The publication POC exercises exact content, visuals, configuration, identity, byline, brand, channel, review, TEST approval, package construction, no-effect distribution, TEST receipts, simulated observation, feedback, calibration, rollback, recovery, tamper, replay, and deterministic reconstruction
-- SYNTHETIC/TEST, REPLAY/TEST, and controlled REAL/TEST feedback remain distinguishishable, attributable, deduplicated, routed, dispositioned, auditable, replayable, and incapable of satisfying production gates
+- SYNTHETIC/TEST, REPLAY/TEST, and controlled REAL/TEST feedback remain distinguishable, attributable, deduplicated, routed, dispositioned, auditable, replayable, and incapable of satisfying production gates
 - Every declared success, denial, invalid-input, stale-input, duplicate, conflict, interruption, retry, rollback, recovery, replay, tamper, zero-response, and privilege-escalation path has automated coverage
 - Chaos drills recover without duplicate effects, partial authority, unexplained state, audience widening, context escalation, or production effects
 - A hash-bound calibration report, threat model, runbooks, limitations, rollback package, release notes, exact evidence manifests, and versioned Enki release candidate exist for an explicit human release decision
