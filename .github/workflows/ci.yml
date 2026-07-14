@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   test:
@@ -41,22 +41,6 @@ jobs:
           python scripts/generate_release_integrity_evidence.py \
             --output-directory generated/release-integrity \
             --verifier-source-commit 8161b23b2e883278f25f3539ee3e392b8eb04033
-
-      - name: Synchronize work-control projections
-        if: github.event_name == 'pull_request' && github.head_ref == 'governance/promote-sprint-14-completion'
-        run: |
-          git fetch origin governance/promote-sprint-14-completion
-          git checkout -B governance/promote-sprint-14-completion origin/governance/promote-sprint-14-completion
-          python -c "from pathlib import Path; from nks.views.work_control import write_work_control_views; write_work_control_views(Path('.'))"
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/canonical-backlog.md generated/canonical-roadmap.md
-          if git diff --cached --quiet; then
-            echo "Work-control projections already synchronized."
-          else
-            git commit -m "Synchronize Sprint 14 work-control projections"
-            git push origin HEAD:governance/promote-sprint-14-completion
-          fi
 
       - name: Upload test, coverage, and release-integrity artifacts
         if: always()
