@@ -18,3 +18,5 @@ Sprint 3 no longer requires that an audience member responds. It requires a defi
 - an immutable zero-feedback receipt.
 
 Actual production feedback becomes post-release calibration evidence. It is not the first test of whether the feedback system works and cannot be fabricated, assumed, or substituted with TEST evidence.
+
+This correction is incorporated directly into `roadmap/proposals/revised-thirteen-sprint-plan.md` and is required by the formal review record before canonical promotion.
