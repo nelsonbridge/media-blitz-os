@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-021",
+  "title": "Stable Consumer API, CLI, and Compatibility Contract",
+  "description": "Expose a stable product-neutral Enki service boundary through versioned APIs and CLI operations without allowing consumers to bypass governance or access repositories directly.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-021",
+  "acceptance_criteria": [
+    "Versioned request, response, error, receipt, pagination, and idempotency contracts are explicit",
+    "CLI and API exercise the same application services and authority checks",
+    "Unsupported, ambiguous, or incompatible versions fail closed",
+    "Consumers cannot write canonical records or consume approvals through repository shortcuts",
+    "Generated contract documentation and compatibility fixtures remain deterministic"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-14T14:00:00Z"
+}
