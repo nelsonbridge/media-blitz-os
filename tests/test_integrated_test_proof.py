@@ -549,7 +549,7 @@ def test_release_candidate_rejects_missing_evidence_bad_commit_and_tamper() -> N
             created_at=_now(),
         )
 
-    with pytest.raises(ValidationError, match="40-character"):
+    with pytest.raises(ValidationError, match="source_commit_sha"):
         build_release_candidate(
             loops,
             candidate_id="RC",
