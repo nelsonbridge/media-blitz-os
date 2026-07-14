@@ -6,6 +6,7 @@
 - Proposed date: 2026-07-13
 - Target: complete the internal execution sequence through Sprint 13 today where exit evidence supports completion
 - Governing constraint: no sprint may be marked complete merely to satisfy the date target
+- Incorporated amendment: `roadmap/proposals/feedback-validation-amendment.md`
 
 ## Why the roadmap is being refactored
 
@@ -24,10 +25,21 @@ The revised plan applies that modular pattern to the remaining roadmap.
 ## Governing revisions
 
 1. **Sprints 1, 2, and 4 remain historically complete.** Their scope and evidence are not rewritten.
-2. **Sprint 3 remains open as a parallel external-validation lane.** It no longer blocks Sprints 5–13.
+2. **Sprint 3 remains open as a parallel production-validation lane.** It no longer blocks Sprints 5–13.
 3. **Sprints 5–11 are decomposed and extended through Sprint 13.** Each sprint owns one primary governed capability and one reviewable evidence boundary.
-4. **Internal release-candidate proof and external production proof are separated.** Sprint 13 may establish an internally complete release candidate without falsely claiming that Sprint 3's public publication and REAL-feedback cycle has occurred.
-5. **Canonical completion remains evidence-bearing.** Planning approval authorizes the revised roadmap; it does not pre-approve implementation completion.
+4. **Internal release-candidate proof and external production proof are separated.** Sprint 13 may establish an internally complete and pre-production-validated release candidate without falsely claiming public publication or production validation.
+5. **The feedback subsystem is proven before production.** Sprint 13 uses `SYNTHETIC/TEST`, `REPLAY/TEST` where available, and controlled `REAL/TEST` human evaluation.
+6. **Audience response is observed, not assumed.** Sprint 3 closes with observed `REAL/PRODUCTION` feedback or a zero-feedback receipt after a defined observation window.
+7. **Canonical completion remains evidence-bearing.** Planning approval authorizes the revised roadmap; it does not pre-approve implementation completion.
+
+## Feedback provenance and execution context
+
+Feedback provenance and execution context are independent.
+
+- Provenance: `REAL | SYNTHETIC | REPLAY`
+- Execution context: `TEST | PRODUCTION`
+
+A real human evaluator may produce `REAL/TEST` feedback through a non-side-effecting interface. That is genuine human feedback, but it cannot satisfy production gates. `SYNTHETIC` and `REPLAY` evidence may exercise the full pipeline in TEST but cannot become production evidence through migration, import, replay, or relabelling.
 
 ## Execution topology
 
@@ -36,17 +48,20 @@ Historical foundation
 S1 ── S2 ── S4
               │
               v
-Internal construction lane
+Internal construction and pre-production validation
 S5 ── S6 ── S7 ── S8 ── S9 ── S10 ── S11 ── S12 ── S13
 
-Parallel external-validation lane
-S3: content + visuals + configuration → production approval → publication → receipts → REAL feedback
+Parallel controlled-production lane
+S3: content + visuals + configuration → production approval → publication
+    → observation window → REAL/PRODUCTION feedback or zero-feedback receipt
+    → post-release calibration
 
 Convergence milestone
-S3 complete + S13 complete = internally hardened system with demonstrated external cycle
+S13 complete = internally hardened and pre-production-validated release candidate
+S3 complete  = authorized production cycle and post-release observation complete
 ```
 
-Sprint 3 may consume any stable capability produced by the internal lane, but absence of a publishing adapter, visual approval, account configuration, or public response cannot halt unrelated internal work.
+Sprint 3 may consume any stable capability produced by the internal lane, but absence of a publishing adapter, visual approval, account configuration, public response, or audience engagement cannot halt unrelated internal work.
 
 ---
 
@@ -64,15 +79,15 @@ Sprint 3 may consume any stable capability produced by the internal lane, but ab
 - Status: preserved as `complete`
 - Revision: none
 
-## Sprint 3 — First live publication and REAL-feedback proof
+## Sprint 3 — First Controlled Production Publication and Post-Release Calibration
 
 - ID: `NKS-SPR-003`
-- Status: remains open until external evidence exists
-- Lane: parallel external validation
+- Status: remains open until the authorized production cycle and observation window are complete
+- Lane: parallel production validation
 
 ### Revised objective
 
-Complete Publication 000001 through independently reviewed content, visuals, publication configuration, explicit production authorization, external publication, receipts, attributable REAL feedback, governed disposition, and an end-to-end cycle report.
+Complete Publication 000001 through independently reviewed content and visuals, production configuration, explicit production authorization, external publication, publication receipts, a defined observation window, capture of any attributable `REAL/PRODUCTION` feedback, and comparison against pre-production expectations.
 
 ### Dependency rule
 
@@ -83,10 +98,14 @@ Sprint 3 is not a prerequisite for Sprints 5–13. Its internal components proce
 - Content decision is recorded and bound to the exact body hash.
 - Visual decision is recorded and bound to the exact manifest hash.
 - Channel, identity, byline, and brand configuration are recorded.
+- Sprint 13 pre-production feedback validation has passed or an explicit limitation is accepted by the governing authority.
 - Final production publication approval is explicit and hash-bound.
 - Publication and applicable social-distribution receipts exist.
-- Attributable REAL feedback is ingested with publication lineage.
-- Feedback disposition and end-to-end cycle report exist.
+- A feedback observation window is defined before publication.
+- At the end of the observation window, either attributable `REAL/PRODUCTION` feedback exists or an immutable zero-feedback receipt records that no qualifying response was observed.
+- Any observed production feedback is classified, routed, and dispositioned through the governed pipeline.
+- A post-release calibration report compares production outcomes with `SYNTHETIC/TEST`, `REPLAY/TEST`, and `REAL/TEST` expectations.
+- Mismatches become governed improvement candidates rather than silent behavior changes.
 
 ## Sprint 4 — Restricted canonical writer
 
@@ -332,7 +351,7 @@ Prove that governed operations, approval consumption, migrations, state writes, 
 - COMPLETE, INCOMPLETE, repairable, rollback, and CONFLICT classifications.
 - Import, export, migration, replay, rollback, clean-room recovery, and disaster recovery.
 - Approval-context preservation and TEST-to-PRODUCTION escalation prevention.
-- Filesystem and GitHub adapter parity for supported operations.
+- Filesystem and GitHub adapter parity for the contract surface declared supported by both adapters.
 - Governed work-control amendment transaction that binds sprint/work-item status changes to exact evidence.
 
 ### Exit criteria
@@ -340,7 +359,8 @@ Prove that governed operations, approval consumption, migrations, state writes, 
 - Every governed mutation and approval consumption is reconstructable from immutable evidence.
 - Corrupt, stale, unsupported, cross-context, or privilege-escalating recovery fails closed.
 - Clean-room recovery reproduces authoritative state and receipts.
-- Adapter behavior is equivalent for the supported contract surface or differences are explicitly recorded.
+- Adapter behavior is equivalent for the declared shared contract surface or differences are explicitly recorded and fail closed where unsupported.
+- Existing evidence-bearing work control remains valid; Sprint 12 hardens and generalizes it rather than creating a retroactive prerequisite.
 - No sprint or work item can become complete without qualifying implementation evidence.
 
 ### Review gate
@@ -349,36 +369,47 @@ Confirm that the system can explain not only current state, but exactly how auth
 
 ---
 
-## Sprint 13 — Integrated TEST Proof, Release Candidate, and External-Validation Handoff
+## Sprint 13 — Integrated TEST Proof, Pre-Production Feedback Validation, and Release Candidate
 
 - ID: `NKS-SPR-013`
-- Primary capability: internally complete, reviewable release candidate
+- Primary capability: internally complete and pre-production-validated release candidate
 
 ### Objective
 
-Run repeated end-to-end TEST loops across subject classes, prove interruption recovery and authority isolation, package a versioned release candidate, and hand a production-ready execution package to the independently governed Sprint 3 external-validation lane.
+Run repeated end-to-end TEST loops across subject classes, prove interruption recovery and authority isolation, validate the complete feedback subsystem before production, package a versioned release candidate, and hand a production-ready execution package to Sprint 3.
 
 ### Scope
 
 - At least two complete adaptive TEST loops across different subject classes.
 - Generic state creation, reconciliation, disclosure decision, transition, interpretation, model-use package, receipt, and reconstruction.
+- Explicit `SYNTHETIC/TEST` feedback scenario manufacture and execution.
+- `REPLAY/TEST` regression where immutable source cases exist.
+- At least one controlled human evaluation producing `REAL/TEST` feedback through a non-side-effecting interface.
+- Feedback ingestion, lineage validation, classification, routing, deduplication, disposition, promotion control, zero-feedback handling, audit, and deterministic replay.
 - Chaos and interruption drills.
 - Security and authority regression suite.
+- Pre-production calibration report comparing expected and observed synthetic, replay, and controlled human outcomes.
 - Versioned release candidate, threat model, runbooks, rollback path, release notes, limitations, and explicit internal release decision.
-- Production-readiness package identifying the exact approvals, transport, account configuration, content, visuals, receipts, and external actions still owned by Sprint 3.
+- Production-readiness package identifying the exact approvals, transport, account configuration, content, visuals, receipts, observation window, and external actions still owned by Sprint 3.
 
 ### Exit criteria
 
 - Two complete TEST loops pass without production effects or authority leakage.
+- Synthetic scenarios cover supportive, critical, corrective, ambiguous, irrelevant, duplicate, contradictory, adversarial, malformed, mismatched, unauthorized, and zero-response cases.
+- Replay evidence, where available, preserves immutable source lineage and cannot appear as new REAL feedback.
+- At least one identified human evaluator produces `REAL/TEST` feedback.
+- `SYNTHETIC`, `REPLAY`, and `REAL/TEST` evidence remain distinguishable and reconstructable.
+- Production evidence gates reject all TEST feedback regardless of provenance.
+- Feedback classification, routing, deduplication, disposition, promotion control, audit, and zero-feedback handling pass end to end.
 - All journals and receipts reconstruct deterministically.
 - Chaos drills recover without duplicate effects, partial authority, unexplained state, or context escalation.
+- A hash-bound pre-production calibration report records expected outcomes, observed outcomes, mismatches, and accepted limitations.
 - A versioned internal release candidate and rollback path exist.
-- Known limitations and external dependencies are explicit.
-- The Sprint 3 handoff package is complete, but Sprint 13 does not falsely claim public publication or REAL feedback.
+- The Sprint 3 handoff package is complete, but Sprint 13 does not claim public publication, production audience response, or production validation.
 
 ### Review gate
 
-Approve or reject the internal release candidate separately from production publication approval.
+Approve or reject the internally complete and pre-production-validated release candidate separately from production publication approval.
 
 ---
 
@@ -398,7 +429,7 @@ Initial assessment:
 | Sprint 10 | missing or incomplete | Is the full governed transition/conflict engine implemented and evidenced? |
 | Sprint 11 | substantial but review required | Are privacy, purpose, dispatch isolation, recovery, and revocation complete? |
 | Sprint 12 | partial | Are all operation families reconstructable, are adapters portable, and does governed work completion exist? |
-| Sprint 13 | not yet evidenced | Have integrated loops, chaos proof, release artifacts, and the Sprint 3 handoff been executed? |
+| Sprint 13 | not yet evidenced | Have integrated loops, feedback scenarios, controlled human evaluation, calibration, chaos proof, release artifacts, and the Sprint 3 handoff been executed? |
 
 “Substantial” does not mean complete. Each sprint receives its own evidence review and completion transaction.
 
@@ -423,11 +454,13 @@ A failed review narrows the remaining work. It does not collapse the entire road
 After this proposal is reviewed and accepted:
 
 1. preserve Sprints 1, 2, and 4 unchanged;
-2. amend Sprint 3 to declare its parallel external-validation dependency model;
+2. amend Sprint 3 as the controlled production publication and post-release calibration lane;
 3. revise `NKS-SPR-005` through `NKS-SPR-011` to the accepted modular scopes;
 4. create `NKS-SPR-012` and `NKS-SPR-013`;
-5. revise or create corresponding backlog items;
-6. regenerate canonical roadmap and backlog projections;
-7. regenerate the repository audit;
-8. run work-control, state-authority, canonicalization-security, coverage, CI, and publication-asset checks;
-9. preserve this proposal as the historical rationale for the canonical revision.
+5. incorporate pre-production feedback validation into Sprint 13;
+6. add the observation-window and zero-feedback receipt requirements to Sprint 3;
+7. revise or create corresponding backlog items;
+8. regenerate canonical roadmap and backlog projections;
+9. regenerate the repository audit;
+10. run work-control, state-authority, canonicalization-security, coverage, CI, publication-asset, and feedback-provenance checks;
+11. preserve this proposal and its amendment as the historical rationale for the canonical revision.
