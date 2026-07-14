@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/enki-transition.schema.json",
+  "title": "Governed Enki Transition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "transition_id",
+    "transition_type",
+    "subject",
+    "domain",
+    "from_states",
+    "to_states",
+    "before_sha256",
+    "after_sha256",
+    "reason",
+    "evidence_ids",
+    "provenance_classification",
+    "authority_class",
+    "interpretation_version",
+    "execution_context",
+    "transaction_id",
+    "detected_conflicts",
+    "occurred_at",
+    "metadata"
+  ],
+  "properties": {
+    "transition_id": {"type": "string", "minLength": 1},
+    "transition_type": {
+      "type": "string",
+      "enum": [
+        "CORRECTION",
+        "REFINEMENT",
+        "SUPERSESSION",
+        "RETRACTION",
+        "REVERSAL",
+        "EXPANSION",
+        "RESTRICTION",
+        "CONFIDENCE_CHANGE",
+        "CONTEXT_SHIFT",
+        "MERGE",
+        "SPLIT",
+        "DEPRECATION"
+      ]
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subject_id", "subject_type"],
+      "properties": {
+        "subject_id": {"type": "string", "minLength": 1},
+        "subject_type": {"type": "string", "minLength": 1}
+      }
+    },
+    "domain": {"type": "string", "minLength": 1},
+    "from_states": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "enki-state-snapshot.schema.json"}
+    },
+    "to_states": {
+      "type": "array",
+      "items": {"$ref": "enki-state-snapshot.schema.json"},
+      "default": []
+    },
+    "before_sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "after_sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "reason": {"type": "string", "minLength": 1},
+    "evidence_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "default": []
+    },
+    "provenance_classification": {"type": "string", "minLength": 1},
+    "authority_class": {"type": "string", "minLength": 1},
+    "interpretation_version": {"type": "string", "minLength": 1},
+    "execution_context": {"type": "string", "enum": ["TEST", "PRODUCTION"]},
+    "transaction_id": {"type": "string", "minLength": 1},
+    "detected_conflicts": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "OVERLAP",
+          "BRANCH",
+          "CONTRADICTION",
+          "AUTHORITY_CONFLICT",
+          "CYCLE",
+          "STALE_INPUT"
+        ]
+      },
+      "default": []
+    },
+    "occurred_at": {"type": "string", "format": "date-time"},
+    "metadata": {"type": "object", "default": {}}
+  }
+}
