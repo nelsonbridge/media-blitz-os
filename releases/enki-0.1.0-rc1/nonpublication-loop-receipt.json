@@ -1,0 +1,18 @@
+{
+  "ci_run": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29336687498",
+  "execution_context": "TEST",
+  "external_effect": false,
+  "implementation_pr": "https://github.com/nelsonbridge/media-blitz-os/pull/41",
+  "lane_kind": "NONPUBLICATION",
+  "loop_id": "LANE-ORGANIZATION-001",
+  "receipt_sha256": "sha256:f3e82654d0919d71eed399fa387be58def6d67be207a0ffb7cc01e3dbb4b6e35",
+  "reconstruction_status": "COMPLETE",
+  "runtime_coverage_run": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29336687640",
+  "schema_version": "1.0",
+  "source_commit_sha": "cb84fbc8eef6096e8a707e1b922dfa2eddb23e51",
+  "subject_id": "ORG-001",
+  "subject_type": "ORGANIZATION",
+  "terminal_state": "COMMITTED",
+  "test_case": "tests/test_integrated_test_proof.py::test_two_adaptive_test_loops_build_hash_bound_release_candidate",
+  "work_control_run": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29336687647"
+}

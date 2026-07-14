@@ -1,0 +1,28 @@
+{
+  "candidate_sha256": "sha256:96fe1533369a3d64d6914ff5eaa849babea4e874eb6fd843bf988ad693541bd5",
+  "external_effect": false,
+  "manifest": {
+    "artifact_hashes": {
+      "calibration-report": "sha256:a285918505e7383091872e47ee3558dcb5e75889268e295f061e7c2d56388f1b",
+      "evidence-manifest": "sha256:f0bb5b6c405512f21a43aabedbb11de4ab99fb91f3b2b041877f836ec72a9a33",
+      "human-release-decision": "sha256:425ac2c92f898f85cfdf68d42c137ecbfec2c37a7586266ac8b180489ccfccae",
+      "known-limitations": "sha256:e4ac14259126fba5c640b93f7df97e3db571748abc8dedec1286a5ffb87000e6",
+      "nonpublication-loop-receipt-file": "sha256:26f632ebbad09976b488c919976ef4a377684a2eae8b75d98492d77dc964f644",
+      "publication-loop-receipt-file": "sha256:a30f7a4f4b7e32ecb397ede729c645ddd55a554c793b1124effefb55558633d4",
+      "release-notes": "sha256:d34126495c53840970b61d3c229bdb726ae043e7560a9709eccb880011b1b695",
+      "rollback-package": "sha256:8821faac8337e9d4305c561818b984c508bf70f8065b16796968ab5affe79d37",
+      "runbook": "sha256:3c8c2bd4c8ac428412fa965c969e57452b0035551540feb45695638a02e890f7",
+      "threat-model": "sha256:c269623984e46881fa2d2b0776369aa9eb52081cf4a36935c7e27bf050a47c4e"
+    },
+    "candidate_id": "ENKI-0.1.0-RC1",
+    "created_at": "2026-07-14T13:40:00+00:00",
+    "execution_context": "TEST",
+    "loop_receipt_hashes": [
+      "sha256:743c0b5444719a6dbe4757a90a42c21fd1111f47dcd8d786e370f8a9e02c7cfc",
+      "sha256:f3e82654d0919d71eed399fa387be58def6d67be207a0ffb7cc01e3dbb4b6e35"
+    ],
+    "source_commit_sha": "cb84fbc8eef6096e8a707e1b922dfa2eddb23e51",
+    "version": "0.1.0-rc1"
+  },
+  "status": "READY_FOR_HUMAN_DECISION"
+}
