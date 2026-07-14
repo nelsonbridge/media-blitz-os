@@ -376,6 +376,8 @@ class ExecuteGovernedDisclosure:
             failure_hook=failure_hook,
         )
         if adapter.result is None:
+            adapter.apply(plan.operation)
+        if adapter.result is None:
             raise RuntimeError("disclosure result was not reconstructed for this execution")
         return GovernedDisclosureOutcome(
             result=adapter.result,
