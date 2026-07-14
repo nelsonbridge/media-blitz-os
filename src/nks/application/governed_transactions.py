@@ -5,7 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 from collections.abc import Callable
-from datetime import datetime
+from datetime import date, datetime
 from enum import StrEnum
 from typing import Protocol
 
@@ -60,7 +60,7 @@ def _canonicalize(value: object) -> object:
         return [_canonicalize(item) for item in sorted(value, key=str)]
     if isinstance(value, (list, tuple)):
         return [_canonicalize(item) for item in value]
-    if isinstance(value, datetime):
+    if isinstance(value, (date, datetime)):
         return value.isoformat()
     if isinstance(value, StrEnum):
         return value.value
