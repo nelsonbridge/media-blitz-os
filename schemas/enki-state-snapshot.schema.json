@@ -9,11 +9,7 @@
     "subject",
     "domain",
     "content_sha256",
-    "observation_ids",
-    "relationship_ids",
-    "context",
-    "temporal_status",
-    "metadata"
+    "temporal_status"
   ],
   "properties": {
     "state_id": {"type": "string", "minLength": 1},
