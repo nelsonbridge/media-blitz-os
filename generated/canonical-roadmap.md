@@ -213,10 +213,10 @@ Exit criteria:
 ## Sprint 14 — Reproducible Release and Supply-Chain Integrity
 
 - ID: `NKS-SPR-014`
-- Status: `active`
+- Status: `complete`
 - Objective: Make every Enki release candidate reproducible from a clean checkout and bind source, dependencies, workflows, artifacts, and attestations without introducing production credentials or self-issued trust.
 - Work items: BL-014
-- Evidence records: 0
+- Evidence records: 6
 
 Exit criteria:
 
