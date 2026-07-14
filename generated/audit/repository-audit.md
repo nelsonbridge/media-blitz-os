@@ -4,16 +4,16 @@
 
 ## Census
 
-- Files: 730
+- Files: 749
 - Canonical records: 176
-- Tests: 77
+- Tests: 80
 - Schemas: 16
 
 ## Top-Level File Counts
 
 | Area | Files |
 |---|---:|
-| (root) | 5 |
+| (root) | 7 |
 | .github | 9 |
 | .vscode | 1 |
 | adapters | 1 |
@@ -29,7 +29,7 @@
 | engineering | 1 |
 | evidence | 10 |
 | frameworks | 3 |
-| generated | 15 |
+| generated | 20 |
 | governance | 11 |
 | integrations | 5 |
 | metrics | 6 |
@@ -37,16 +37,16 @@
 | ops | 5 |
 | publishing | 94 |
 | records | 176 |
-| releases | 11 |
+| releases | 16 |
 | research | 2 |
 | roadmap | 23 |
 | runtime | 5 |
 | schemas | 16 |
-| scripts | 1 |
+| scripts | 3 |
 | security | 1 |
-| src | 103 |
+| src | 105 |
 | templates | 12 |
-| tests | 85 |
+| tests | 88 |
 | validation | 5 |
 | visuals | 17 |
 | whitepapers | 1 |

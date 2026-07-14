@@ -1,0 +1,457 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "name": "actions/checkout",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/coverage.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/checkout@v4"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v4"
+    },
+    {
+      "name": "actions/checkout",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/repository-audit.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/checkout@v4"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v4"
+    },
+    {
+      "name": "actions/checkout",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/canonicalization-security.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/checkout@v4"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v4"
+    },
+    {
+      "name": "actions/checkout",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/ci.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/checkout@v4"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v4"
+    },
+    {
+      "name": "actions/checkout",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/publication-000001-assets.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/checkout@v4"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v4"
+    },
+    {
+      "name": "actions/checkout",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/work-control.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/checkout@v4"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v4"
+    },
+    {
+      "name": "actions/checkout",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/runtime-functional-test.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/checkout@v4"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v4"
+    },
+    {
+      "name": "actions/checkout",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/state-authority.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/checkout@v4"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v4"
+    },
+    {
+      "name": "actions/setup-python",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/state-authority.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/setup-python@v5"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v5"
+    },
+    {
+      "name": "actions/setup-python",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/work-control.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/setup-python@v5"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v5"
+    },
+    {
+      "name": "actions/setup-python",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/runtime-functional-test.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/setup-python@v5"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v5"
+    },
+    {
+      "name": "actions/setup-python",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/ci.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/setup-python@v5"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v5"
+    },
+    {
+      "name": "actions/setup-python",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/canonicalization-security.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/setup-python@v5"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v5"
+    },
+    {
+      "name": "actions/setup-python",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/coverage.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/setup-python@v5"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v5"
+    },
+    {
+      "name": "actions/setup-python",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/publication-000001-assets.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/setup-python@v5"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v5"
+    },
+    {
+      "name": "actions/setup-python",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/repository-audit.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/setup-python@v5"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v5"
+    },
+    {
+      "name": "actions/upload-artifact",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/canonicalization-security.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/upload-artifact@v4"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v4"
+    },
+    {
+      "name": "actions/upload-artifact",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/ci.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/upload-artifact@v4"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v4"
+    },
+    {
+      "name": "actions/upload-artifact",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/coverage.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/upload-artifact@v4"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v4"
+    },
+    {
+      "name": "actions/upload-artifact",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/publication-000001-assets.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/upload-artifact@v4"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v4"
+    },
+    {
+      "name": "actions/upload-artifact",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/work-control.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/upload-artifact@v4"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v4"
+    },
+    {
+      "name": "hatchling",
+      "properties": [
+        {
+          "name": "enki:requirement",
+          "value": "hatchling>=1.25"
+        },
+        {
+          "name": "enki:source",
+          "value": "pyproject.toml"
+        }
+      ],
+      "scope": "build",
+      "type": "library",
+      "version": "hatchling>=1.25"
+    },
+    {
+      "name": "jsonschema",
+      "properties": [
+        {
+          "name": "enki:requirement",
+          "value": "jsonschema>=4.23,<5"
+        },
+        {
+          "name": "enki:source",
+          "value": "pyproject.toml"
+        }
+      ],
+      "scope": "test",
+      "type": "library",
+      "version": "jsonschema>=4.23,<5"
+    },
+    {
+      "name": "pydantic",
+      "properties": [
+        {
+          "name": "enki:requirement",
+          "value": "pydantic>=2.8,<3"
+        },
+        {
+          "name": "enki:source",
+          "value": "pyproject.toml"
+        }
+      ],
+      "scope": "runtime",
+      "type": "library",
+      "version": "pydantic>=2.8,<3"
+    },
+    {
+      "name": "pytest",
+      "properties": [
+        {
+          "name": "enki:requirement",
+          "value": "pytest>=8,<9"
+        },
+        {
+          "name": "enki:source",
+          "value": "pyproject.toml"
+        }
+      ],
+      "scope": "test",
+      "type": "library",
+      "version": "pytest>=8,<9"
+    },
+    {
+      "name": "pytest-cov",
+      "properties": [
+        {
+          "name": "enki:requirement",
+          "value": "pytest-cov>=5,<7"
+        },
+        {
+          "name": "enki:source",
+          "value": "pyproject.toml"
+        }
+      ],
+      "scope": "test",
+      "type": "library",
+      "version": "pytest-cov>=5,<7"
+    },
+    {
+      "name": "typer",
+      "properties": [
+        {
+          "name": "enki:requirement",
+          "value": "typer>=0.12,<1"
+        },
+        {
+          "name": "enki:source",
+          "value": "pyproject.toml"
+        }
+      ],
+      "scope": "runtime",
+      "type": "library",
+      "version": "typer>=0.12,<1"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "name": "nelson-knowledge-system",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "enki:python-requirement",
+        "value": ">=3.11"
+      },
+      {
+        "name": "enki:inventory-sha256",
+        "value": "sha256:128ccaacd3294c0542a901fa01aa393176bc75d44e45e4bbd696526af5483e3b"
+      }
+    ]
+  },
+  "serialNumber": "urn:sha256:128ccaacd3294c0542a901fa01aa393176bc75d44e45e4bbd696526af5483e3b",
+  "specVersion": "1.5",
+  "version": 1
+}
