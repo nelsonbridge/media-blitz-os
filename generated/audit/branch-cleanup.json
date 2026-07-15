@@ -5,26 +5,25 @@
   ],
   "apply": true,
   "archived": {
-    "main@pre-consolidation": "archive/pre-consolidation/main-d4e3c249eeaa"
+    "main@pre-consolidation": "archive/pre-consolidation/main-17c86eb31920",
+    "roadmap/zero-cost-sprint-16-isolation": "archive/branches/roadmap-zero-cost-sprint-16-isolation-313414d5899c"
   },
   "before": [
     "main",
-    "sandbox",
-    "validation/post-consolidation"
+    "roadmap/zero-cost-sprint-16-isolation",
+    "sandbox"
   ],
   "default_branch_requested": "main",
   "delete_branch_on_merge_requested": true,
   "deleted": [
-    "validation/post-consolidation"
+    "roadmap/zero-cost-sprint-16-isolation"
   ],
   "errors": [
     "repository settings: GitHub API 403: Resource not accessible by integration"
   ],
-  "main_current_sha": "083fa9a6dc472ae91d6a04769c29840d8bb86c75",
-  "main_previous_sha": "d4e3c249eeaa2cd4885b64ee5cb9614dc6f2715e",
-  "merged_into": {
-    "validation/post-consolidation": "main"
-  },
+  "main_current_sha": "8284483cd21c6861db17c26e194c5309374cd210",
+  "main_previous_sha": "17c86eb31920e0c707e647f271f76892b7195d4f",
+  "merged_into": {},
   "repository": "nelsonbridge/media-blitz-os",
   "settings_updated": false
 }
