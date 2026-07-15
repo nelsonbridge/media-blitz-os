@@ -3,7 +3,7 @@
   "sequence": 21,
   "title": "Stable Consumer API, CLI, and Compatibility Contract",
   "objective": "Expose a stable product-neutral Enki service boundary through versioned APIs and CLI operations without allowing consumers to bypass governance or access repositories directly.",
-  "status": "planned",
+  "status": "complete",
   "work_item_ids": ["BL-021"],
   "exit_criteria": [
     "Versioned request, response, error, receipt, pagination, and idempotency contracts are explicit",
@@ -12,7 +12,56 @@
     "Consumers cannot write canonical records or consume approvals through repository shortcuts",
     "Generated contract documentation and compatibility fixtures remain deterministic"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S21-PR76",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/76",
+      "description": "Implemented the stable v1.0 consumer contract, shared governed API and CLI gateway, idempotency, pagination, compatibility fixtures, deterministic documentation, and bypass denial."
+    },
+    {
+      "evidence_id": "E-S21-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/6a571e77c93365d3b18e3b2e4b81b221e861cf36",
+      "description": "Merged the complete Sprint 21 implementation into sandbox."
+    },
+    {
+      "evidence_id": "E-S21-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29391418909",
+      "description": "CI passed the complete stable consumer contract and regression suite."
+    },
+    {
+      "evidence_id": "E-S21-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29391418991",
+      "description": "Runtime Coverage passed the declared Sprint 21 consumer path matrix."
+    },
+    {
+      "evidence_id": "E-S21-WORK-CONTROL",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29391418877",
+      "description": "Work Control Authority passed on the synchronized implementation head."
+    },
+    {
+      "evidence_id": "E-S21-STATE-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29391418893",
+      "description": "State Authority passed for the implementation."
+    },
+    {
+      "evidence_id": "E-S21-CANONICALIZATION",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29391418939",
+      "description": "Canonicalization Security passed after deterministic generated-audit synchronization."
+    },
+    {
+      "evidence_id": "E-S21-PUBLICATION-REGRESSION",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29391418995",
+      "description": "Publication 000001 asset regression checks remained green."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-14T14:00:00Z"
+  "updated_at": "2026-07-15T05:30:00Z"
 }

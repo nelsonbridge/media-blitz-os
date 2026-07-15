@@ -2,7 +2,7 @@
   "work_item_id": "BL-021",
   "title": "Stable Consumer API, CLI, and Compatibility Contract",
   "description": "Expose a stable product-neutral Enki service boundary through versioned APIs and CLI operations without allowing consumers to bypass governance or access repositories directly.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-021",
   "acceptance_criteria": [
     "Versioned request, response, error, receipt, pagination, and idempotency contracts are explicit",
@@ -11,8 +11,45 @@
     "Consumers cannot write canonical records or consume approvals through repository shortcuts",
     "Generated contract documentation and compatibility fixtures remain deterministic"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL21-PR76",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/76",
+      "description": "Implemented stable product-neutral request, response, error, receipt, pagination, idempotency, API, CLI, and compatibility contracts."
+    },
+    {
+      "evidence_id": "E-BL21-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/6a571e77c93365d3b18e3b2e4b81b221e861cf36",
+      "description": "Merged Sprint 21 implementation."
+    },
+    {
+      "evidence_id": "E-BL21-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29391418909",
+      "description": "CI passed the full consumer contract and regression suite."
+    },
+    {
+      "evidence_id": "E-BL21-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29391418991",
+      "description": "Runtime Coverage passed all declared Sprint 21 paths."
+    },
+    {
+      "evidence_id": "E-BL21-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29391418877",
+      "description": "Work Control Authority passed."
+    },
+    {
+      "evidence_id": "E-BL21-CANONICALIZATION",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29391418939",
+      "description": "Canonicalization Security passed with synchronized generated artifacts."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-14T14:00:00Z"
+  "updated_at": "2026-07-15T05:30:00Z"
 }
