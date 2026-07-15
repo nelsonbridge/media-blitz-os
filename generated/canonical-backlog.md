@@ -25,7 +25,7 @@
 | BL-019 | complete | NKS-SPR-019 | Retention, Archival, and Cryptographic Continuity | 5 |
 | BL-020 | complete | NKS-SPR-020 | Concurrency, Contention, and Distributed Recovery | 10 |
 | BL-021 | complete | NKS-SPR-021 | Stable Consumer API, CLI, and Compatibility Contract | 6 |
-| BL-022 | planned | NKS-SPR-022 | Downstream Product Boundary Proofs | 0 |
+| BL-022 | complete | NKS-SPR-022 | Downstream Product Boundary Proofs | 5 |
 | BL-023 | planned | NKS-SPR-023 | Production-Readiness Review and Enki 1.0 Decision Package | 0 |
 
 Total work items: 23

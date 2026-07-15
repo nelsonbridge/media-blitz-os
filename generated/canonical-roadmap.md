@@ -345,10 +345,10 @@ Exit criteria:
 ## Sprint 22 — Downstream Product Boundary Proofs
 
 - ID: `NKS-SPR-022`
-- Status: `planned`
+- Status: `complete`
 - Objective: Demonstrate that Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity can consume Enki through scoped no-effect adapters without redefining the core or acquiring unauthorized authority.
 - Work items: BL-022
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 
