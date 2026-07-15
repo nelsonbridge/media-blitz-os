@@ -22,7 +22,7 @@
 | BL-016 | complete | NKS-SPR-016 | Zero-Cost Governed Boundary and Isolation Proof | 6 |
 | BL-017 | complete | NKS-SPR-017 | Versioned Policy Lifecycle and Simulation | 5 |
 | BL-018 | complete | NKS-SPR-018 | Privacy-Preserving Observability and Operational Metrics | 5 |
-| BL-019 | planned | NKS-SPR-019 | Retention, Archival, and Cryptographic Continuity | 0 |
+| BL-019 | complete | NKS-SPR-019 | Retention, Archival, and Cryptographic Continuity | 5 |
 | BL-020 | planned | NKS-SPR-020 | Concurrency, Contention, and Distributed Recovery | 0 |
 | BL-021 | planned | NKS-SPR-021 | Stable Consumer API, CLI, and Compatibility Contract | 0 |
 | BL-022 | planned | NKS-SPR-022 | Downstream Product Boundary Proofs | 0 |

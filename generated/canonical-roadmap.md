@@ -297,10 +297,10 @@ Exit criteria:
 ## Sprint 19 — Retention, Archival, and Cryptographic Continuity
 
 - ID: `NKS-SPR-019`
-- Status: `planned`
+- Status: `complete`
 - Objective: Govern retention, archival, tombstoning, legal or subject-driven restriction, and hash-algorithm continuity while preserving historical lineage and authority.
 - Work items: BL-019
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 
