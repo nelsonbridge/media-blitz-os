@@ -265,10 +265,10 @@ Exit criteria:
 ## Sprint 17 — Versioned Policy Lifecycle and Simulation
 
 - ID: `NKS-SPR-017`
-- Status: `planned`
+- Status: `complete`
 - Objective: Govern policy creation, comparison, simulation, approval, activation, rollback, and retirement without rewriting historical decisions or widening authority.
 - Work items: BL-017
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 
