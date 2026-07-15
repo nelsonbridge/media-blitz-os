@@ -2,7 +2,7 @@
   "work_item_id": "BL-016",
   "title": "Zero-Cost Governed Boundary and Isolation Proof",
   "description": "Prove namespace, tenant, subject, domain, and audience isolation through product-neutral contracts, application enforcement, shared and physically separated local adapters, and exhaustive TEST fixtures without paid infrastructure, production credentials, or external services.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-016",
   "acceptance_criteria": [
     "Every governed record and operation carries an immutable namespace, tenant, subject, domain, audience, and execution-context boundary",
@@ -15,8 +15,45 @@
     "The complete proof runs with repository-local code, Python standard-library capabilities, temporary storage, and existing zero-cost CI only",
     "Cloud IAM, managed database isolation, network segmentation, per-tenant production keys, and external penetration certification are recorded as unvalidated Sprint 23 production prerequisites"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL16-DECISION",
+      "kind": "decision-record",
+      "reference": "roadmap/decisions/sprint-16-test-data-validation.md",
+      "description": "Governing decision that path-complete adversarial TEST data is sufficient for Sprint 16 software validation."
+    },
+    {
+      "evidence_id": "E-BL16-PR63",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/63",
+      "description": "Sprint 16 zero-cost isolation implementation and adversarial proof."
+    },
+    {
+      "evidence_id": "E-BL16-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/5f8b48f00a95a1f6d3d6225a174831b0163fabaf",
+      "description": "Merged implementation commit."
+    },
+    {
+      "evidence_id": "E-BL16-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29385556179",
+      "description": "Passing CI validation."
+    },
+    {
+      "evidence_id": "E-BL16-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29385555361",
+      "description": "Passing runtime path coverage."
+    },
+    {
+      "evidence_id": "E-BL16-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29385555372",
+      "description": "Passing work-control authority validation."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-14T20:00:00Z"
+  "updated_at": "2026-07-15T03:10:00Z"
 }
