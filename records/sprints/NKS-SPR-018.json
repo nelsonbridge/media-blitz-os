@@ -3,7 +3,7 @@
   "sequence": 18,
   "title": "Privacy-Preserving Observability and Operational Metrics",
   "objective": "Provide actionable health, metrics, tracing, and diagnostic evidence while preventing canonical content, private human state, secrets, or unauthorized context from leaking through telemetry.",
-  "status": "planned",
+  "status": "complete",
   "work_item_ids": ["BL-018"],
   "exit_criteria": [
     "Structured operation, transaction, recovery, and adapter telemetry uses stable identifiers and bounded metadata",
@@ -12,7 +12,38 @@
     "Telemetry loss, duplication, and correlation mismatch are detectable",
     "Observability cannot mutate canonical state or widen disclosure"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S18-PR69",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/69",
+      "description": "Implemented privacy-preserving TEST health, metrics, traces, diagnostics, stable correlation, bounded metadata, integrity findings, and incident reconstruction."
+    },
+    {
+      "evidence_id": "E-S18-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/9110b12e6c7aa2d096b6d540053a34c292631c1f",
+      "description": "Merged Sprint 18 implementation into sandbox."
+    },
+    {
+      "evidence_id": "E-S18-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29387375976",
+      "description": "CI passed telemetry privacy, correlation, loss, duplication, tamper, incident reconstruction, and protected-content denial tests."
+    },
+    {
+      "evidence_id": "E-S18-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29387375989",
+      "description": "Runtime Coverage passed every declared Sprint 18 observability path."
+    },
+    {
+      "evidence_id": "E-S18-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29387375980",
+      "description": "Work Control Authority passed before completion promotion."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-14T14:00:00Z"
+  "updated_at": "2026-07-15T03:50:00Z"
 }
