@@ -6,6 +6,20 @@
       "local": false,
       "reference": "actions/checkout@v4",
       "revision": "v4",
+      "workflow_path": ".github/workflows/branch-consolidation.yml"
+    },
+    {
+      "action": "actions/setup-python",
+      "local": false,
+      "reference": "actions/setup-python@v5",
+      "revision": "v5",
+      "workflow_path": ".github/workflows/branch-consolidation.yml"
+    },
+    {
+      "action": "actions/checkout",
+      "local": false,
+      "reference": "actions/checkout@v4",
+      "revision": "v4",
       "workflow_path": ".github/workflows/canonicalization-security.yml"
     },
     {
@@ -149,5 +163,5 @@
       "workflow_path": ".github/workflows/work-control.yml"
     }
   ],
-  "workflow_sha256": "sha256:1dd1d873e88364ade7b72461d11d7c032bc65102ef6125930cfb47c1a0f1234e"
+  "workflow_sha256": "sha256:54c5a72ec67df8214525b0ff8892e1026c411442719725e5dd5b72aedcd37ed7"
 }
