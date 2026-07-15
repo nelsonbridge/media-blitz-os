@@ -60,5 +60,5 @@
   "production_approval": false,
   "decision_state": "HUMAN_DECISION_REQUIRED",
   "generated_at": "2026-07-15T06:00:00Z",
-  "manifest_sha256": "sha256:8e6d32197e6dcd53cc9f47dfddeae272b956d1beff1000e69201104eaa510054"
+  "manifest_sha256": "sha256:6f52456d3e3b3650f22c849449bc81fc03b412849260ece776e41e89acd568dc"
 }
