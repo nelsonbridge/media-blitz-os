@@ -242,21 +242,25 @@ Exit criteria:
 - Benchmarks preserve TEST isolation and contain no private or production data
 - No benchmark result is represented as a production capacity guarantee
 
-## Sprint 16 — Namespace, Tenant, and Subject Isolation
+## Sprint 16 — Zero-Cost Governed Boundary and Isolation Proof
 
 - ID: `NKS-SPR-016`
 - Status: `planned`
-- Objective: Enforce namespace, tenant, subject, domain, and audience isolation across every governed operation, export, import, recovery, and downstream-consumer boundary.
+- Objective: Prove namespace, tenant, subject, domain, and audience isolation through product-neutral contracts, application enforcement, shared and physically separated local adapters, and exhaustive TEST fixtures without paid infrastructure, production credentials, or external services.
 - Work items: BL-016
 - Evidence records: 0
 
 Exit criteria:
 
-- Every governed record and operation carries an explicit namespace or tenant boundary
-- Cross-tenant, cross-subject, cross-domain, and unauthorized audience access fails closed
-- Export, import, migration, replay, and recovery preserve isolation boundaries
-- Human consent, privacy, correction, retraction, and ownership protections remain stricter than generic tenant rules
-- Isolation failures are reconstructable without exposing protected content
+- Every governed record and operation carries an immutable namespace, tenant, subject, domain, audience, and execution-context boundary
+- Authorization is evaluated against the complete boundary and cross-tenant, cross-subject, cross-domain, cross-audience, and TEST-to-PRODUCTION access fails closed
+- Shared logical-store and physically separated local adapters exhibit equivalent denial behavior without network access or paid services
+- Export, import, migration, replay, rollback, and recovery preserve exact boundaries and reject boundary tampering or escalation
+- Errors, audits, receipts, and telemetry reconstruct isolation failures without exposing protected cross-boundary content
+- Human consent, privacy, correction, retraction, revocation, and ownership protections remain stricter than generic tenant authorization
+- A bounded local-process adversarial test covers forged boundary envelopes, path traversal, delayed or duplicated delivery, and mismatched recovery packages
+- The complete Sprint 16 proof uses only repository-local code, Python standard-library capabilities, temporary storage, and existing zero-cost CI
+- Cloud IAM, managed database isolation, network segmentation, per-tenant production keys, and external penetration certification remain explicitly unvalidated production prerequisites for Sprint 23
 
 ## Sprint 17 — Versioned Policy Lifecycle and Simulation
 
@@ -358,15 +362,17 @@ Exit criteria:
 
 - ID: `NKS-SPR-023`
 - Status: `planned`
-- Objective: Consolidate supply-chain, performance, isolation, policy, observability, retention, concurrency, compatibility, and consumer-boundary evidence into an independently reviewable Enki 1.0 decision package.
+- Objective: Consolidate supply-chain, performance, logical-isolation, policy, observability, retention, concurrency, compatibility, consumer-boundary, and unresolved physical-isolation evidence into an independently reviewable Enki 1.0 decision package.
 - Work items: BL-023
 - Evidence records: 0
 
 Exit criteria:
 
 - All prior sprint evidence is assembled into one exact, versioned readiness manifest
-- Adversarial, chaos, recovery, privacy, isolation, compatibility, and supply-chain campaigns pass or have explicit accepted findings
+- Adversarial, chaos, recovery, privacy, logical-isolation, compatibility, and supply-chain campaigns pass or have explicit accepted findings
 - Known limitations, production prerequisites, operating runbooks, rollback plans, and support boundaries are complete
+- Cloud IAM, production identity federation, managed database row-level isolation, network segmentation, per-tenant production key management, production secrets management, and independent penetration testing are explicitly validated or recorded as unresolved prerequisites
+- No local TEST proof is represented as production infrastructure certification or multitenancy accreditation
 - An independent review checklist records unresolved concerns without self-certification
 - An Enki 1.0 candidate and human decision request exist without implying production approval
 
