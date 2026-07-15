@@ -2,7 +2,7 @@
   "work_item_id": "BL-018",
   "title": "Privacy-Preserving Observability and Operational Metrics",
   "description": "Provide actionable health, metrics, tracing, and diagnostic evidence while preventing canonical content, private human state, secrets, or unauthorized context from leaking through telemetry.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-018",
   "acceptance_criteria": [
     "Structured operation, transaction, recovery, and adapter telemetry uses stable identifiers and bounded metadata",
@@ -11,8 +11,39 @@
     "Telemetry loss, duplication, and correlation mismatch are detectable",
     "Observability cannot mutate canonical state or widen disclosure"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL18-PR69",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/69",
+      "description": "Sprint 18 privacy-preserving observability implementation."
+    },
+    {
+      "evidence_id": "E-BL18-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/9110b12e6c7aa2d096b6d540053a34c292631c1f",
+      "description": "Merged implementation commit."
+    },
+    {
+      "evidence_id": "E-BL18-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29387375976",
+      "description": "Passing CI validation."
+    },
+    {
+      "evidence_id": "E-BL18-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29387375989",
+      "description": "Passing runtime path coverage."
+    },
+    {
+      "evidence_id": "E-BL18-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29387375980",
+      "description": "Passing work-control authority validation."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-14T14:00:00Z"
+  "updated_at": "2026-07-15T03:50:00Z"
 }
