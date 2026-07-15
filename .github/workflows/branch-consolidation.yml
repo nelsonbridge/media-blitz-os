@@ -31,7 +31,7 @@ jobs:
           python-version: "3.11"
 
       - name: Verify cleanup governance
-        run: python -m pytest tests/test_branch_cleanup.py -q
+        run: python -m pytest tests/test_branch_cleanup.py -q --no-cov
 
       - name: Consolidate branches
         env:
