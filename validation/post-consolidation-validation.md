@@ -1,14 +1,14 @@
 # Post-Consolidation Validation
 
-Status: hosted validation passed; post-merge cleanup pending
+Status: passed
 
-## Candidate
+## Candidate and Authority Boundary
 
-- Validation commit: `a49e52181a9a768ef008eee346d90d11b7e5e3b0`
-- Base branch: `sandbox`
-- Canonical branch: `main`
-- Required permanent branch set: `main`, `sandbox`
-- Required branch relation before validation: identical
+- Validated pull request: `#61`
+- Validated evidence commit: `6a4ac6007461da7843e8ed04631dc71c5575f07b`
+- Merge commit: `083fa9a6dc472ae91d6a04769c29840d8bb86c75`
+- Cleanup report commit: `c09afc975b0acbef7e5857afa4a04d05f63299ad`
+- Permanent branch set: `main`, `sandbox`
 - Execution context: `TEST`
 - Production credentials used: `false`
 - External effect authorized: `false`
@@ -18,27 +18,33 @@ Status: hosted validation passed; post-merge cleanup pending
 
 | Gate | Run | Result |
 |---|---:|---|
-| CI | `29383766851` | passed |
-| Runtime Coverage | `29383766827` | passed — 437 tests, 87.59% branch-aware coverage |
-| Work Control Authority | `29383766820` | passed |
-| State Authority | `29383766841` | passed |
-| Canonicalization Security | `29383766840` | passed |
-| Publication 000001 Assets | `29383766821` | passed |
+| CI | `29383826111` | passed |
+| Runtime Coverage | `29383826103` | passed — 437 tests, 87.59% branch-aware coverage |
+| Work Control Authority | `29383826099` | passed |
+| State Authority | `29383826102` | passed |
+| Canonicalization Security | `29383826125` | passed |
+| Publication 000001 Assets | `29383826123` | passed |
+| Branch Consolidation | `29383855796` | passed |
 
 ## Corrections Proven During Validation
 
-1. Release-integrity evidence now includes the branch-consolidation workflow.
+1. Release-integrity evidence includes the branch-consolidation workflow.
 2. Generated and release-bound integrity evidence are synchronized.
 3. Branch-cleanup tests load portably under the hosted pytest environment.
 4. Authoritative generated projections regenerate without drift.
-5. All hosted validation workflows operate with read-only repository permissions after evidence synchronization.
+5. Hosted validation workflows operate with read-only repository permissions after evidence synchronization.
+6. The temporary validation branch was deleted after merge.
+7. The live repository branch set was reduced to `main` and `sandbox` only.
+8. Unique nonmerged tips remain preserved as immutable archive tags.
 
 ## Acceptance Criteria
 
-1. Every applicable hosted gate passes on the final validation candidate.
-2. Canonical and generated state remain drift-free.
-3. Repository audit regeneration produces no unsupported drift.
-4. No production authority, credential, external effect, or release decision is introduced.
-5. After merge, the temporary validation branch is deleted and `main` and `sandbox` are realigned to one exact commit.
+1. Every applicable hosted gate passes on the final validation candidate. **Passed.**
+2. Canonical and generated state remain drift-free. **Passed.**
+3. Repository audit regeneration produces no unsupported drift. **Passed.**
+4. No production authority, credential, external effect, or release decision is introduced. **Passed.**
+5. The temporary validation branch is deleted and `main` and `sandbox` are realigned to one exact commit. **Passed.**
 
-Criteria 1–4 are satisfied. Criterion 5 is completed by the governed branch-consolidation workflow after merge.
+## Conclusion
+
+The two-branch repository model is operational and validated. `main` is canonical authority, `sandbox` is the manufacturing branch, and all other branches are transient and governed by automated consolidation.
