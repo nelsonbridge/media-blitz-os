@@ -1,0 +1,39 @@
+{
+  "adapter_effect": "TEST_NO_EFFECT",
+  "consumer_contract_version": "1.0",
+  "prohibited_direct_canonical_outputs": [
+    "predictions",
+    "recommendations",
+    "publication-decisions",
+    "inferred-preferences"
+  ],
+  "required_preservation": [
+    "provenance",
+    "context",
+    "privacy",
+    "authority"
+  ],
+  "suites": {
+    "CAREER_INTELLIGENCE_PLACEMENT": {
+      "audience": "career-placement",
+      "outputs": [
+        "opportunity-view",
+        "application-package"
+      ]
+    },
+    "MEDIA_BLITZ": {
+      "audience": "media-blitz",
+      "outputs": [
+        "publication-package",
+        "distribution-plan"
+      ]
+    },
+    "PERSONAL_COGNITIVE_CONTINUITY": {
+      "audience": "cognitive-continuity",
+      "outputs": [
+        "continuity-view",
+        "reflection-package"
+      ]
+    }
+  }
+}
