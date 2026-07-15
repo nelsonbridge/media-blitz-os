@@ -1,0 +1,36 @@
+{
+  "contract": "enki-consumer",
+  "error_codes": [
+    "UNSUPPORTED_VERSION",
+    "AMBIGUOUS_VERSION",
+    "INVALID_REQUEST",
+    "AUTHORITY_DENIED",
+    "IDEMPOTENCY_CONFLICT",
+    "REPOSITORY_SHORTCUT_DENIED",
+    "OPERATION_UNAVAILABLE"
+  ],
+  "idempotency": "exact-retry-reuses-original-receipt",
+  "operations": [
+    "QUERY",
+    "COMMAND"
+  ],
+  "page_size": {
+    "default": 50,
+    "maximum": 100,
+    "minimum": 1
+  },
+  "repository_shortcuts": "denied",
+  "request_fields": [
+    "request_id",
+    "contract_version",
+    "operation",
+    "boundary",
+    "authorization_id",
+    "idempotency_key",
+    "payload",
+    "pagination"
+  ],
+  "supported_versions": [
+    "1.0"
+  ]
+}

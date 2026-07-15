@@ -20,7 +20,7 @@ test = [
 ]
 
 [project.scripts]
-nks = "nks.cli.main:app"
+nks = "nks.cli.root:app"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/nks"]
