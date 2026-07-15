@@ -130,6 +130,22 @@
       "version": "v4"
     },
     {
+      "name": "actions/checkout",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/branch-consolidation.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/checkout@v4"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v4"
+    },
+    {
       "name": "actions/setup-python",
       "properties": [
         {
@@ -183,6 +199,22 @@
         {
           "name": "enki:workflow",
           "value": ".github/workflows/ci.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/setup-python@v5"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v5"
+    },
+    {
+      "name": "actions/setup-python",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/branch-consolidation.yml"
         },
         {
           "name": "enki:reference",
@@ -447,11 +479,11 @@
       },
       {
         "name": "enki:inventory-sha256",
-        "value": "sha256:128ccaacd3294c0542a901fa01aa393176bc75d44e45e4bbd696526af5483e3b"
+        "value": "sha256:618a6f5c18cc5dce553f6dbd9fae85fdc5a3e9422f0de587387a37f3dcceb906"
       }
     ]
   },
-  "serialNumber": "urn:sha256:128ccaacd3294c0542a901fa01aa393176bc75d44e45e4bbd696526af5483e3b",
+  "serialNumber": "urn:sha256:618a6f5c18cc5dce553f6dbd9fae85fdc5a3e9422f0de587387a37f3dcceb906",
   "specVersion": "1.5",
   "version": 1
 }
