@@ -5,24 +5,27 @@
   ],
   "apply": true,
   "archived": {
-    "execution/complete-enki-sprint-16": "archive/branches/execution-complete-enki-sprint-16-a5b8c5374011",
-    "main@pre-consolidation": "archive/pre-consolidation/main-8284483cd21c"
+    "execution/complete-enki-sprint-15": "archive/branches/execution-complete-enki-sprint-15-972d7a5719c9",
+    "governance/promote-sprint-16-completion": "archive/branches/governance-promote-sprint-16-completion-607431d779cc",
+    "main@pre-consolidation": "archive/pre-consolidation/main-5f8b48f00a95"
   },
   "before": [
-    "execution/complete-enki-sprint-16",
+    "execution/complete-enki-sprint-15",
+    "governance/promote-sprint-16-completion",
     "main",
     "sandbox"
   ],
   "default_branch_requested": "main",
   "delete_branch_on_merge_requested": true,
   "deleted": [
-    "execution/complete-enki-sprint-16"
+    "execution/complete-enki-sprint-15",
+    "governance/promote-sprint-16-completion"
   ],
   "errors": [
     "repository settings: GitHub API 403: Resource not accessible by integration"
   ],
-  "main_current_sha": "5f8b48f00a95a1f6d3d6225a174831b0163fabaf",
-  "main_previous_sha": "8284483cd21c6861db17c26e194c5309374cd210",
+  "main_current_sha": "cf666ab406070678b9a0f3385033a90569aff095",
+  "main_previous_sha": "5f8b48f00a95a1f6d3d6225a174831b0163fabaf",
   "merged_into": {},
   "repository": "nelsonbridge/media-blitz-os",
   "settings_updated": false
