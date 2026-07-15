@@ -3,7 +3,7 @@
   "sequence": 24,
   "title": "Hosted Deployment Options and Split-Cloud Architecture Exploration",
   "objective": "Produce an independently reviewable hosting-architecture decision package for Enki by evaluating single-cloud, split-cloud, and portability-preserving alternatives against governance, security, resilience, cost, operational, and migration requirements without implying production approval.",
-  "status": "planned",
+  "status": "complete",
   "work_item_ids": ["BL-024"],
   "exit_criteria": [
     "A hosting options matrix compares single-cloud, provider-split cloud, control-plane/data-plane split, and relevant hybrid or portability-preserving patterns",
@@ -15,7 +15,38 @@
     "A recommended shortlist and explicit human hosting-decision criteria exist without default approval",
     "No production infrastructure is provisioned and Sprint completion does not constitute production hosting approval"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S24-PR84",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/84",
+      "description": "Implemented the deterministic hosted architecture decision package, six-option comparison, reference architectures, threat and failure analysis, cost model, migration and rollback analysis, shortlist, and human decision request."
+    },
+    {
+      "evidence_id": "E-S24-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/74980a3f2bea524a74a71c0d00353819fad5c2d2",
+      "description": "Merged the complete Sprint 24 hosting architecture exploration implementation into sandbox."
+    },
+    {
+      "evidence_id": "E-S24-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29455207703",
+      "description": "CI passed deterministic package, source, architecture, prerequisite, tamper-denial, document, and regression tests."
+    },
+    {
+      "evidence_id": "E-S24-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29455207710",
+      "description": "Runtime Coverage passed the complete Sprint 24 hosted-architecture path matrix."
+    },
+    {
+      "evidence_id": "E-S24-WORK-CONTROL",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29455207724",
+      "description": "Work Control Authority passed before completion promotion."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-15T19:55:00Z"
+  "updated_at": "2026-07-15T22:35:00Z"
 }

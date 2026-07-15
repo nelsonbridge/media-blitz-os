@@ -379,10 +379,10 @@ Exit criteria:
 ## Sprint 24 — Hosted Deployment Options and Split-Cloud Architecture Exploration
 
 - ID: `NKS-SPR-024`
-- Status: `planned`
+- Status: `complete`
 - Objective: Produce an independently reviewable hosting-architecture decision package for Enki by evaluating single-cloud, split-cloud, and portability-preserving alternatives against governance, security, resilience, cost, operational, and migration requirements without implying production approval.
 - Work items: BL-024
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 

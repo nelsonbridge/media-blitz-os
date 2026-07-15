@@ -27,6 +27,6 @@
 | BL-021 | complete | NKS-SPR-021 | Stable Consumer API, CLI, and Compatibility Contract | 6 |
 | BL-022 | complete | NKS-SPR-022 | Downstream Product Boundary Proofs | 5 |
 | BL-023 | complete | NKS-SPR-023 | Production-Readiness Review and Enki 1.0 Decision Package | 5 |
-| BL-024 | planned | NKS-SPR-024 | Hosted Deployment Options and Split-Cloud Architecture Exploration | 0 |
+| BL-024 | complete | NKS-SPR-024 | Hosted Deployment Options and Split-Cloud Architecture Exploration | 5 |
 
 Total work items: 24
