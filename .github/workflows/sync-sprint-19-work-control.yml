@@ -1,0 +1,34 @@
+name: Synchronize Sprint 19 Work Control
+
+on:
+  push:
+    branches: [governance/promote-enki-sprint-19]
+
+permissions:
+  contents: write
+
+jobs:
+  synchronize:
+    if: ${{ !contains(github.event.head_commit.message, '[s19-work-control]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: governance/promote-enki-sprint-19
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e '.[test]'
+      - name: Regenerate work-control views only
+        run: python -c "from pathlib import Path; from nks.views.work_control import write_work_control_views; write_work_control_views(Path('.'))"
+      - name: Commit work-control projections
+        shell: bash
+        run: |
+          if git diff --quiet -- generated/canonical-backlog.md generated/canonical-roadmap.md; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/canonical-backlog.md generated/canonical-roadmap.md
+          git commit -m "[s19-work-control] Synchronize Sprint 19 projections"
+          git push origin HEAD:governance/promote-enki-sprint-19
