@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://enki.local/schemas/boundary-record.schema.json",
+  "title": "Enki Boundary Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id",
+    "subject_type",
+    "boundary",
+    "payload",
+    "payload_sha256",
+    "record_sha256"
+  ],
+  "properties": {
+    "record_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"},
+    "subject_type": {"type": "string", "pattern": "^[A-Z][A-Z0-9_-]{0,63}$"},
+    "boundary": {"$ref": "boundary-context.schema.json"},
+    "payload": {"type": "object"},
+    "payload_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "record_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  }
+}
