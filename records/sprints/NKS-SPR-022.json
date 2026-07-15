@@ -3,7 +3,7 @@
   "sequence": 22,
   "title": "Downstream Product Boundary Proofs",
   "objective": "Demonstrate that Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity can consume Enki through scoped no-effect adapters without redefining the core or acquiring unauthorized authority.",
-  "status": "planned",
+  "status": "complete",
   "work_item_ids": ["BL-022"],
   "exit_criteria": [
     "Each downstream suite uses an explicit consumer contract and no-effect TEST adapter",
@@ -12,7 +12,38 @@
     "Cross-product data leakage, authority reuse, and audience widening fail closed",
     "At least one end-to-end TEST proof passes for each downstream suite"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S22-PR78",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/78",
+      "description": "Implemented scoped no-effect TEST consumer boundaries for Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity."
+    },
+    {
+      "evidence_id": "E-S22-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/3627340731da3d0dd7beecfe700077a282a3428f",
+      "description": "Merged the complete Sprint 22 downstream product boundary implementation."
+    },
+    {
+      "evidence_id": "E-S22-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29391973568",
+      "description": "CI passed all three downstream end-to-end no-effect proofs and adversarial boundary tests."
+    },
+    {
+      "evidence_id": "E-S22-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29391973540",
+      "description": "Runtime Coverage passed the complete Sprint 22 path matrix."
+    },
+    {
+      "evidence_id": "E-S22-WORK-CONTROL",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29391973551",
+      "description": "Work Control Authority passed before completion promotion."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-14T14:00:00Z"
+  "updated_at": "2026-07-15T05:45:00Z"
 }
