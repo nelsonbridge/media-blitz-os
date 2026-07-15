@@ -1,0 +1,76 @@
+name: Branch Consolidation
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [sandbox]
+    paths:
+      - ".github/workflows/branch-consolidation.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: branch-consolidation
+  cancel-in-progress: false
+
+jobs:
+  consolidate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out complete repository history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: sandbox
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Verify cleanup governance
+        run: python -m pytest tests/test_branch_cleanup.py -q
+
+      - name: Consolidate branches
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/cleanup_branches.py \
+            --repository "$GITHUB_REPOSITORY" \
+            --apply \
+            --report generated/audit/branch-cleanup.json
+
+      - name: Verify resulting branch set
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from urllib.request import Request, urlopen
+
+          request = Request(
+              f"https://api.github.com/repos/{os.environ['GITHUB_REPOSITORY']}/branches?per_page=100",
+              headers={
+                  "Accept": "application/vnd.github+json",
+                  "Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}",
+                  "X-GitHub-Api-Version": "2022-11-28",
+              },
+          )
+          with urlopen(request, timeout=30) as response:
+              branches = sorted(item["name"] for item in json.load(response))
+          assert branches == ["main", "sandbox"], branches
+          print("Verified branches:", branches)
+          PY
+
+      - name: Commit cleanup report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated/audit/branch-cleanup.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Record two-branch repository consolidation [skip ci]"
+            git push origin HEAD:sandbox
+          fi
