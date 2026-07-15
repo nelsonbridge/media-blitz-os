@@ -19,7 +19,7 @@
   "evidence": [
     {
       "evidence_id": "E-S16-DECISION",
-      "kind": "decision-record",
+      "kind": "human-decision",
       "reference": "roadmap/decisions/sprint-16-test-data-validation.md",
       "description": "Explicit human direction establishes governed TEST data as sufficient evidence for Sprint 16 software-isolation completion while preserving separate production-deployment gates."
     },
