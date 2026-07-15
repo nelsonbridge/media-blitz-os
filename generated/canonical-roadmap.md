@@ -281,10 +281,10 @@ Exit criteria:
 ## Sprint 18 — Privacy-Preserving Observability and Operational Metrics
 
 - ID: `NKS-SPR-018`
-- Status: `planned`
+- Status: `complete`
 - Objective: Provide actionable health, metrics, tracing, and diagnostic evidence while preventing canonical content, private human state, secrets, or unauthorized context from leaking through telemetry.
 - Work items: BL-018
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 
