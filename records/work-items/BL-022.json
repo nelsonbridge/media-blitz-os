@@ -2,7 +2,7 @@
   "work_item_id": "BL-022",
   "title": "Downstream Product Boundary Proofs",
   "description": "Demonstrate that Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity can consume Enki through scoped no-effect adapters without redefining the core or acquiring unauthorized authority.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-022",
   "acceptance_criteria": [
     "Each downstream suite uses an explicit consumer contract and no-effect TEST adapter",
@@ -11,8 +11,39 @@
     "Cross-product data leakage, authority reuse, and audience widening fail closed",
     "At least one end-to-end TEST proof passes for each downstream suite"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL22-PR78",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/78",
+      "description": "Implemented all three downstream product boundary proofs and no-effect adapters."
+    },
+    {
+      "evidence_id": "E-BL22-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/3627340731da3d0dd7beecfe700077a282a3428f",
+      "description": "Merged Sprint 22 implementation."
+    },
+    {
+      "evidence_id": "E-BL22-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29391973568",
+      "description": "CI passed downstream end-to-end and adversarial boundary tests."
+    },
+    {
+      "evidence_id": "E-BL22-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29391973540",
+      "description": "Runtime Coverage passed every declared Sprint 22 path."
+    },
+    {
+      "evidence_id": "E-BL22-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29391973551",
+      "description": "Work Control Authority passed before promotion."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-14T14:00:00Z"
+  "updated_at": "2026-07-15T05:45:00Z"
 }
