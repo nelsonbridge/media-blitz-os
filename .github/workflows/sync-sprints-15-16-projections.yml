@@ -1,0 +1,38 @@
+name: Synchronize Sprints 15 and 16 Projections
+
+on:
+  push:
+    branches: [governance/promote-sprints-15-16-completion]
+
+permissions:
+  contents: write
+
+jobs:
+  synchronize:
+    if: ${{ !contains(github.event.head_commit.message, '[generated-sync]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: governance/promote-sprints-15-16-completion
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e '.[test]'
+      - name: Regenerate authoritative projections
+        run: |
+          nks generate-views .
+          python -c "from pathlib import Path; from nks.views.work_control import write_work_control_views; write_work_control_views(Path('.'))"
+          python -m nks.views.authority write .
+          nks audit-repository .
+      - name: Commit generated projections
+        shell: bash
+        run: |
+          if git diff --quiet -- generated; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generated
+          git commit -m "[generated-sync] Synchronize Sprints 15 and 16 projections"
+          git push origin HEAD:governance/promote-sprints-15-16-completion
