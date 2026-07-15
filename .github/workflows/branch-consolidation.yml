@@ -31,7 +31,18 @@ jobs:
           python-version: "3.11"
 
       - name: Verify cleanup governance
-        run: python -m pytest tests/test_branch_cleanup.py -q --no-cov
+        run: |
+          python - <<'PY'
+          from scripts.cleanup_branches import archive_tag, merged_target, validate_final_branches
+
+          assert archive_tag("execution/complete-enki-sprint-14", "abcdef1234567890") == (
+              "archive/branches/execution-complete-enki-sprint-14-abcdef123456"
+          )
+          assert merged_target({"main": "diverged", "sandbox": "ahead"}) == "sandbox"
+          assert merged_target({"main": "identical", "sandbox": "behind"}) == "main"
+          validate_final_branches(["sandbox", "main"])
+          print("Branch cleanup governance verified")
+          PY
 
       - name: Consolidate branches
         env:
