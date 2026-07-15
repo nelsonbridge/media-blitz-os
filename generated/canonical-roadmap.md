@@ -329,10 +329,10 @@ Exit criteria:
 ## Sprint 21 — Stable Consumer API, CLI, and Compatibility Contract
 
 - ID: `NKS-SPR-021`
-- Status: `planned`
+- Status: `complete`
 - Objective: Expose a stable product-neutral Enki service boundary through versioned APIs and CLI operations without allowing consumers to bypass governance or access repositories directly.
 - Work items: BL-021
-- Evidence records: 0
+- Evidence records: 8
 
 Exit criteria:
 
