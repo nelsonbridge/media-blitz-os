@@ -3,7 +3,7 @@
   "sequence": 16,
   "title": "Zero-Cost Governed Boundary and Isolation Proof",
   "objective": "Prove namespace, tenant, subject, domain, and audience isolation through product-neutral contracts, application enforcement, shared and physically separated local adapters, and exhaustive TEST fixtures without paid infrastructure, production credentials, or external services.",
-  "status": "planned",
+  "status": "complete",
   "work_item_ids": ["BL-016"],
   "exit_criteria": [
     "Every governed record and operation carries an immutable namespace, tenant, subject, domain, audience, and execution-context boundary",
@@ -16,7 +16,44 @@
     "The complete Sprint 16 proof uses only repository-local code, Python standard-library capabilities, temporary storage, and existing zero-cost CI",
     "Cloud IAM, managed database isolation, network segmentation, per-tenant production keys, and external penetration certification remain explicitly unvalidated production prerequisites for Sprint 23"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S16-DECISION",
+      "kind": "human-decision",
+      "reference": "roadmap/decisions/sprint-16-test-data-validation.md",
+      "description": "Explicit human direction establishes governed TEST data as sufficient evidence for Sprint 16 software-isolation completion while preserving separate production-deployment gates."
+    },
+    {
+      "evidence_id": "E-S16-PR63",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/63",
+      "description": "Implemented complete-boundary authorization, zero-cost local stores, portable packages, disposable TEST keys, privacy-safe diagnostics, human protections, local-process adversarial proof, schemas, and path coverage."
+    },
+    {
+      "evidence_id": "E-S16-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/5f8b48f00a95a1f6d3d6225a174831b0163fabaf",
+      "description": "Merged the Sprint 16 software-isolation implementation into sandbox."
+    },
+    {
+      "evidence_id": "E-S16-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29385556179",
+      "description": "CI passed the governed synthetic-data isolation, tamper, duplicate, recovery, privacy, human-policy, schema, and local-process tests."
+    },
+    {
+      "evidence_id": "E-S16-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29385555361",
+      "description": "Runtime Coverage passed across every declared Sprint 16 path."
+    },
+    {
+      "evidence_id": "E-S16-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29385555372",
+      "description": "Work Control Authority passed before completion promotion."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-15T02:35:00Z"
+  "updated_at": "2026-07-15T03:15:00Z"
 }
