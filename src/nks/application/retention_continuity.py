@@ -303,13 +303,13 @@ class RetentionLifecycleService:
         history = self._repository.list_lifecycle(record.record_id)
         previous = history[-1] if history else None
         previous_state = previous.state if previous else LifecycleState.ACTIVE
+        if previous_state in {LifecycleState.TOMBSTONED, LifecycleState.REVOKED}:
+            raise LifecycleConflict("terminal lifecycle state cannot be changed")
         if action == LifecycleAction.RESTORE and previous_state not in {
             LifecycleState.ARCHIVED,
             LifecycleState.RESTRICTED,
         }:
             raise LifecycleConflict("only archived or restricted records may be restored")
-        if previous_state in {LifecycleState.TOMBSTONED, LifecycleState.REVOKED}:
-            raise LifecycleConflict("terminal lifecycle state cannot be changed")
 
         lifecycle_payload = {
             "lifecycle_id": f"LIFE-{transaction_id}",
