@@ -361,10 +361,10 @@ Exit criteria:
 ## Sprint 23 — Production-Readiness Review and Enki 1.0 Decision Package
 
 - ID: `NKS-SPR-023`
-- Status: `planned`
+- Status: `complete`
 - Objective: Consolidate supply-chain, performance, logical-isolation, policy, observability, retention, concurrency, compatibility, consumer-boundary, and unresolved physical-isolation evidence into an independently reviewable Enki 1.0 decision package.
 - Work items: BL-023
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 
