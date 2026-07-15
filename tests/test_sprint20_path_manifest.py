@@ -24,6 +24,11 @@ SPRINT20_TESTED_PATHS = {
     "pending-reconstruction",
     "conflict-reconstruction",
     "repairable-reconstruction",
+    "filesystem-github-adapter-parity",
+    "adapter-exact-retry-idempotent",
+    "github-adapter-interruption-recovered",
+    "adapter-immutable-conflict-denied",
+    "adapter-incomplete-reconstruction",
     "intent-tamper-denied",
     "production-context-denied",
 }
