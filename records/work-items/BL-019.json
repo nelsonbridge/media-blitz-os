@@ -2,7 +2,7 @@
   "work_item_id": "BL-019",
   "title": "Retention, Archival, and Cryptographic Continuity",
   "description": "Govern retention, archival, tombstoning, legal or subject-driven restriction, and hash-algorithm continuity while preserving historical lineage and authority.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-019",
   "acceptance_criteria": [
     "Retention and archival policies are explicit, versioned, purpose-bound, and authority-bound",
@@ -11,8 +11,39 @@
     "Hash-algorithm migration preserves old verification and creates new receipted continuity evidence",
     "Expired, archived, restricted, or revoked records cannot control unauthorized downstream behavior"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL19-PR71",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/71",
+      "description": "Sprint 19 retention, archival, restriction, tombstone, redaction, revocation, expiration, restoration, and cryptographic continuity implementation."
+    },
+    {
+      "evidence_id": "E-BL19-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/75f4dc827fbbdd4becd76052faa9da9318333816",
+      "description": "Merged implementation commit."
+    },
+    {
+      "evidence_id": "E-BL19-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29388061698",
+      "description": "Passing CI validation."
+    },
+    {
+      "evidence_id": "E-BL19-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29388061706",
+      "description": "Passing runtime path coverage."
+    },
+    {
+      "evidence_id": "E-BL19-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29388061703",
+      "description": "Passing work-control authority validation."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-14T14:00:00Z"
+  "updated_at": "2026-07-15T04:10:00Z"
 }
