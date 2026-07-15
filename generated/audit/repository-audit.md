@@ -4,7 +4,7 @@
 
 ## Census
 
-- Files: 754
+- Files: 755
 - Canonical records: 176
 - Tests: 81
 - Schemas: 16
@@ -47,7 +47,7 @@
 | src | 105 |
 | templates | 12 |
 | tests | 89 |
-| validation | 5 |
+| validation | 6 |
 | visuals | 17 |
 | whitepapers | 1 |
 
