@@ -2,7 +2,7 @@
   "work_item_id": "BL-020",
   "title": "Concurrency, Contention, and Distributed Recovery",
   "description": "Prove correct behavior under concurrent approvals, competing writes, duplicate delivery, out-of-order evidence, adapter interruption, and partition-shaped failure.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-020",
   "acceptance_criteria": [
     "Concurrent approval reservation and consumption permit at most one conflicting effect",
@@ -11,8 +11,69 @@
     "Partition-shaped failures recover without split authority, duplicate effects, or lost receipts",
     "Filesystem and GitHub adapters satisfy the declared concurrency and recovery contract"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL20-PR73",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/73",
+      "description": "Sprint 20 concurrency, contention, partition, interruption, and recovery implementation."
+    },
+    {
+      "evidence_id": "E-BL20-COMMIT-CORE",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/5681611b056fdf14af1e0bbfb021df339f933dc2",
+      "description": "Merged core implementation commit."
+    },
+    {
+      "evidence_id": "E-BL20-PR74",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/74",
+      "description": "Sprint 20 filesystem and GitHub-content adapter parity implementation."
+    },
+    {
+      "evidence_id": "E-BL20-COMMIT-PARITY",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/f5afd672f70a2a3a24c484d75612ed46ff76d9ff",
+      "description": "Merged final adapter parity commit."
+    },
+    {
+      "evidence_id": "E-BL20-CI-CORE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29388820183",
+      "description": "Passing core CI validation."
+    },
+    {
+      "evidence_id": "E-BL20-COVERAGE-CORE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29388820176",
+      "description": "Passing core runtime path coverage."
+    },
+    {
+      "evidence_id": "E-BL20-AUTHORITY-CORE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29388820174",
+      "description": "Passing core work-control authority validation."
+    },
+    {
+      "evidence_id": "E-BL20-CI-PARITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29388951133",
+      "description": "Passing adapter parity CI validation."
+    },
+    {
+      "evidence_id": "E-BL20-COVERAGE-PARITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29388951139",
+      "description": "Passing final runtime path coverage."
+    },
+    {
+      "evidence_id": "E-BL20-AUTHORITY-PARITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29388951144",
+      "description": "Passing final work-control authority validation."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-14T14:00:00Z"
+  "updated_at": "2026-07-15T04:30:00Z"
 }

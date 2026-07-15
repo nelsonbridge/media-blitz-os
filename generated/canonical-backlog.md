@@ -23,7 +23,7 @@
 | BL-017 | complete | NKS-SPR-017 | Versioned Policy Lifecycle and Simulation | 5 |
 | BL-018 | complete | NKS-SPR-018 | Privacy-Preserving Observability and Operational Metrics | 5 |
 | BL-019 | complete | NKS-SPR-019 | Retention, Archival, and Cryptographic Continuity | 5 |
-| BL-020 | planned | NKS-SPR-020 | Concurrency, Contention, and Distributed Recovery | 0 |
+| BL-020 | complete | NKS-SPR-020 | Concurrency, Contention, and Distributed Recovery | 10 |
 | BL-021 | planned | NKS-SPR-021 | Stable Consumer API, CLI, and Compatibility Contract | 0 |
 | BL-022 | planned | NKS-SPR-022 | Downstream Product Boundary Proofs | 0 |
 | BL-023 | planned | NKS-SPR-023 | Production-Readiness Review and Enki 1.0 Decision Package | 0 |

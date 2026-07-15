@@ -313,10 +313,10 @@ Exit criteria:
 ## Sprint 20 — Concurrency, Contention, and Distributed Recovery
 
 - ID: `NKS-SPR-020`
-- Status: `planned`
+- Status: `complete`
 - Objective: Prove correct behavior under concurrent approvals, competing writes, duplicate delivery, out-of-order evidence, adapter interruption, and partition-shaped failure.
 - Work items: BL-020
-- Evidence records: 0
+- Evidence records: 10
 
 Exit criteria:
 
