@@ -2,8 +2,8 @@
   "audit_version": 2,
   "extension_counts": {
     "(none)": 1,
-    ".json": 211,
-    ".md": 335,
+    ".json": 213,
+    ".md": 336,
     ".png": 12,
     ".py": 238,
     ".svg": 8,
@@ -12,7 +12,7 @@
     ".yaml": 1,
     ".yml": 9
   },
-  "file_count": 817,
+  "file_count": 820,
   "issue_count": 0,
   "issues": [],
   "readiness": {
@@ -20,7 +20,7 @@
     "editorial:ready": 12,
     "status:review": 12
   },
-  "record_count": 176,
+  "record_count": 178,
   "record_counts": {
     "approval-grants": 0,
     "artifacts": 12,
@@ -41,11 +41,11 @@
     "reconciliation-findings": 0,
     "social-requests": 1,
     "sources": 3,
-    "sprints": 23,
+    "sprints": 24,
     "stewards": 1,
     "visual-requests": 60,
     "visuals": 12,
-    "work-items": 23
+    "work-items": 24
   },
   "repository_root": "/home/runner/work/media-blitz-os/media-blitz-os",
   "schema_count": 18,
@@ -74,10 +74,10 @@
     "opportunities": 4,
     "ops": 5,
     "publishing": 94,
-    "records": 176,
+    "records": 178,
     "releases": 24,
     "research": 2,
-    "roadmap": 24,
+    "roadmap": 25,
     "runtime": 5,
     "schemas": 18,
     "scripts": 5,

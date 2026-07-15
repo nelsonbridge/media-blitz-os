@@ -1,0 +1,21 @@
+{
+  "work_item_id": "BL-024",
+  "title": "Hosted Deployment Options and Split-Cloud Architecture Exploration",
+  "description": "Evaluate hosted deployment patterns for Enki, including single-cloud, split-cloud, and portability-preserving hybrid options, while preserving governed authority boundaries and keeping unresolved production controls explicit.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-024",
+  "acceptance_criteria": [
+    "Single-cloud, split-cloud, and relevant hybrid or portability-preserving hosting patterns are compared through one explicit decision matrix",
+    "Split-cloud analysis covers both provider-split and control-plane/data-plane separation patterns and does not assume either is superior",
+    "Reference architectures identify compute, canonical data, identity, database isolation, key custody, secrets, network, observability, backup, disaster recovery, and support boundaries",
+    "Tradeoffs include failure domains, latency, egress, cost, operational complexity, vendor lock-in, portability, privacy, compliance, and recovery behavior",
+    "Each finalist maps its effect on unresolved Sprint 23 production prerequisites without manufacturing validation evidence",
+    "At least one single-cloud and one split-cloud architecture have explicit threat, trust-boundary, failure-domain, and data-flow analyses",
+    "A cost model, migration and rollback considerations, shortlist, and human decision criteria are independently reviewable",
+    "No production infrastructure is provisioned and no hosting option is represented as production-approved by completion of this exploration"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-15T19:55:00Z"
+}

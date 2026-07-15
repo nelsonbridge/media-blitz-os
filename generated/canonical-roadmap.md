@@ -376,4 +376,23 @@ Exit criteria:
 - An independent review checklist records unresolved concerns without self-certification
 - An Enki 1.0 candidate and human decision request exist without implying production approval
 
-Total sprints: 23
+## Sprint 24 — Hosted Deployment Options and Split-Cloud Architecture Exploration
+
+- ID: `NKS-SPR-024`
+- Status: `planned`
+- Objective: Produce an independently reviewable hosting-architecture decision package for Enki by evaluating single-cloud, split-cloud, and portability-preserving alternatives against governance, security, resilience, cost, operational, and migration requirements without implying production approval.
+- Work items: BL-024
+- Evidence records: 0
+
+Exit criteria:
+
+- A hosting options matrix compares single-cloud, provider-split cloud, control-plane/data-plane split, and relevant hybrid or portability-preserving patterns
+- At least one single-cloud and one split-cloud reference architecture define compute, canonical data, identity, database isolation, key custody, secrets, network, observability, backup, disaster recovery, and support boundaries
+- Threat, trust-boundary, failure-domain, data-flow, latency, egress, cost, operational complexity, lock-in, portability, privacy, compliance, and recovery tradeoffs are explicit for each finalist
+- Each option maps its implications for the unresolved Sprint 23 production prerequisites without treating local TEST evidence as production validation
+- Migration and rollback paths from the current repository-local TEST architecture are documented
+- A cost model identifies expected ranges and major cost drivers without requiring paid deployment
+- A recommended shortlist and explicit human hosting-decision criteria exist without default approval
+- No production infrastructure is provisioned and Sprint completion does not constitute production hosting approval
+
+Total sprints: 24
