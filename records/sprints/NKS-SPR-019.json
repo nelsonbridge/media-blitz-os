@@ -3,7 +3,7 @@
   "sequence": 19,
   "title": "Retention, Archival, and Cryptographic Continuity",
   "objective": "Govern retention, archival, tombstoning, legal or subject-driven restriction, and hash-algorithm continuity while preserving historical lineage and authority.",
-  "status": "planned",
+  "status": "complete",
   "work_item_ids": ["BL-019"],
   "exit_criteria": [
     "Retention and archival policies are explicit, versioned, purpose-bound, and authority-bound",
@@ -12,7 +12,38 @@
     "Hash-algorithm migration preserves old verification and creates new receipted continuity evidence",
     "Expired, archived, restricted, or revoked records cannot control unauthorized downstream behavior"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S19-PR71",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/71",
+      "description": "Implemented versioned retention policy, append-only lifecycle evidence, receipted archive/restrict/redact/tombstone/expire/revoke/restore actions, downstream denial, and cryptographic continuity."
+    },
+    {
+      "evidence_id": "E-S19-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/75f4dc827fbbdd4becd76052faa9da9318333816",
+      "description": "Merged Sprint 19 implementation into sandbox."
+    },
+    {
+      "evidence_id": "E-S19-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29388061698",
+      "description": "CI passed lifecycle, authority, timing, redaction, terminal-state, retry, continuity, tamper, and downstream-control tests."
+    },
+    {
+      "evidence_id": "E-S19-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29388061706",
+      "description": "Runtime Coverage passed every declared Sprint 19 path."
+    },
+    {
+      "evidence_id": "E-S19-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29388061703",
+      "description": "Work Control Authority passed before completion promotion."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-14T14:00:00Z"
+  "updated_at": "2026-07-15T04:10:00Z"
 }
