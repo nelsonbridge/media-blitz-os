@@ -4,9 +4,9 @@
 
 ## Census
 
-- Files: 792
+- Files: 802
 - Canonical records: 176
-- Tests: 96
+- Tests: 98
 - Schemas: 18
 
 ## Top-Level File Counts
@@ -21,7 +21,7 @@
 | assets | 13 |
 | briefings | 4 |
 | context | 1 |
-| contracts | 3 |
+| contracts | 4 |
 | corpus | 42 |
 | diagnostics | 2 |
 | docs | 31 |
@@ -29,7 +29,7 @@
 | engineering | 1 |
 | evidence | 10 |
 | frameworks | 3 |
-| generated | 20 |
+| generated | 21 |
 | governance | 12 |
 | integrations | 5 |
 | metrics | 6 |
@@ -44,9 +44,9 @@
 | schemas | 18 |
 | scripts | 5 |
 | security | 1 |
-| src | 123 |
+| src | 129 |
 | templates | 12 |
-| tests | 104 |
+| tests | 106 |
 | validation | 6 |
 | visuals | 17 |
 | whitepapers | 1 |
