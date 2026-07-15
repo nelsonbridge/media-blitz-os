@@ -1,18 +1,22 @@
 {
   "sprint_id": "NKS-SPR-016",
   "sequence": 16,
-  "title": "Namespace, Tenant, and Subject Isolation",
-  "objective": "Enforce namespace, tenant, subject, domain, and audience isolation across every governed operation, export, import, recovery, and downstream-consumer boundary.",
+  "title": "Zero-Cost Governed Boundary and Isolation Proof",
+  "objective": "Prove namespace, tenant, subject, domain, and audience isolation through product-neutral contracts, application enforcement, shared and physically separated local adapters, and exhaustive TEST fixtures without paid infrastructure, production credentials, or external services.",
   "status": "planned",
   "work_item_ids": ["BL-016"],
   "exit_criteria": [
-    "Every governed record and operation carries an explicit namespace or tenant boundary",
-    "Cross-tenant, cross-subject, cross-domain, and unauthorized audience access fails closed",
-    "Export, import, migration, replay, and recovery preserve isolation boundaries",
-    "Human consent, privacy, correction, retraction, and ownership protections remain stricter than generic tenant rules",
-    "Isolation failures are reconstructable without exposing protected content"
+    "Every governed record and operation carries an immutable namespace, tenant, subject, domain, audience, and execution-context boundary",
+    "Authorization is evaluated against the complete boundary and cross-tenant, cross-subject, cross-domain, cross-audience, and TEST-to-PRODUCTION access fails closed",
+    "Shared logical-store and physically separated local adapters exhibit equivalent denial behavior without network access or paid services",
+    "Export, import, migration, replay, rollback, and recovery preserve exact boundaries and reject boundary tampering or escalation",
+    "Errors, audits, receipts, and telemetry reconstruct isolation failures without exposing protected cross-boundary content",
+    "Human consent, privacy, correction, retraction, revocation, and ownership protections remain stricter than generic tenant authorization",
+    "A bounded local-process adversarial test covers forged boundary envelopes, path traversal, delayed or duplicated delivery, and mismatched recovery packages",
+    "The complete Sprint 16 proof uses only repository-local code, Python standard-library capabilities, temporary storage, and existing zero-cost CI",
+    "Cloud IAM, managed database isolation, network segmentation, per-tenant production keys, and external penetration certification remain explicitly unvalidated production prerequisites for Sprint 23"
   ],
   "evidence": [],
   "blocked_reason": null,
-  "updated_at": "2026-07-14T14:00:00Z"
+  "updated_at": "2026-07-15T02:35:00Z"
 }
