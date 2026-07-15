@@ -18,8 +18,8 @@
 | BL-012 | complete | NKS-SPR-012 | Forensic Reconstruction, Portability, and Governed Work Completion | 4 |
 | BL-013 | complete | NKS-SPR-013 | Integrated Internal TEST Proof and Enki Release Candidate | 5 |
 | BL-014 | complete | NKS-SPR-014 | Reproducible Release and Supply-Chain Integrity | 5 |
-| BL-015 | planned | NKS-SPR-015 | Performance, Capacity, and Resource Boundaries | 0 |
-| BL-016 | planned | NKS-SPR-016 | Zero-Cost Governed Boundary and Isolation Proof | 0 |
+| BL-015 | complete | NKS-SPR-015 | Performance, Capacity, and Resource Boundaries | 5 |
+| BL-016 | complete | NKS-SPR-016 | Zero-Cost Governed Boundary and Isolation Proof | 6 |
 | BL-017 | planned | NKS-SPR-017 | Versioned Policy Lifecycle and Simulation | 0 |
 | BL-018 | planned | NKS-SPR-018 | Privacy-Preserving Observability and Operational Metrics | 0 |
 | BL-019 | planned | NKS-SPR-019 | Retention, Archival, and Cryptographic Continuity | 0 |

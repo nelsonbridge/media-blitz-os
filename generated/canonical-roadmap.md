@@ -229,10 +229,10 @@ Exit criteria:
 ## Sprint 15 — Performance, Capacity, and Resource Boundaries
 
 - ID: `NKS-SPR-015`
-- Status: `planned`
+- Status: `complete`
 - Objective: Characterize Enki performance and resource behavior under governed synthetic workloads, publish explicit budgets and limits, and reject unsupported production-scale claims.
 - Work items: BL-015
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 
@@ -245,10 +245,10 @@ Exit criteria:
 ## Sprint 16 — Zero-Cost Governed Boundary and Isolation Proof
 
 - ID: `NKS-SPR-016`
-- Status: `planned`
+- Status: `complete`
 - Objective: Prove namespace, tenant, subject, domain, and audience isolation through product-neutral contracts, application enforcement, shared and physically separated local adapters, and exhaustive TEST fixtures without paid infrastructure, production credentials, or external services.
 - Work items: BL-016
-- Evidence records: 0
+- Evidence records: 6
 
 Exit criteria:
 
