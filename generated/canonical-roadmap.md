@@ -153,227 +153,4 @@ Exit criteria:
 Exit criteria:
 
 - Every supported transition binds exact before-and-after state hashes, subject, context, evidence, provenance, interpretation version, authority, execution context, transaction, and receipt
-- Correction, refinement, supersession, retraction, reversal, expansion, restriction, confidence change, merge, split, and deprecation paths are explicit and versioned
-- Invalid, cyclic, contradictory, stale, context-mismatched, or unauthorized transitions fail closed
-- Branch, merge, overlap, contradiction, and competing-authority states remain reconstructable without manufacturing one falsely singular truth
-- Interrupted transitions converge to one committed transition, one recovered exact retry, or one documented rollback
-- Human-state regression tests pass through the generic engine without weakening human privacy, consent, correction, retraction, or authority controls
-
-## Sprint 11 â€” Governed Interpretation and Capability-Isolated Model Use
-
-- ID: `NKS-SPR-011`
-- Status: `complete`
-- Objective: Separate interpretation resolution, package construction, purpose and privacy policy, approval, persistence, receipt creation, revocation, and dispatch into independently testable governed steps while keeping prediction downstream and noncanonical.
-- Work items: BL-011
-- Evidence records: 5
-
-Exit criteria:
-
-- Interpretation resolution is deterministic across subject, domain, context, temporal applicability, transition state, authority, confidence, restrictions, and purpose
-- Typed model-use directives are attributable, purpose-bound, versioned, and explicit about included transitions
-- Retracted, expired, superseded, disputed, context-inapplicable, private, redacted, revoked, or unauthorized state cannot control downstream behavior
-- TEST package generation, persistence, dispatch rehearsal, rollback, recovery, and receipts complete without transport capability or external effects
-- PRODUCTION dispatch requires exact package and context hashes, recognized authority, privacy filtering, explicit transport, and production receipts
-- Prediction, recommendation, and model output remain downstream and cannot mutate canonical Enki knowledge without a separately governed operation
-
-## Sprint 12 â€” Forensic Reconstruction, Portability, and Governed Work Completion
-
-- ID: `NKS-SPR-012`
-- Status: `complete`
-- Objective: Prove that every governed Enki operation, authority consumption, migration, state write, reconciliation, disclosure, transition, model use, feedback action, promotion, and work-control amendment can be reconstructed, moved, recovered, and completed without authority escalation or unsupported status claims.
-- Work items: BL-012
-- Evidence records: 5
-
-Exit criteria:
-
-- Every governed operation reconstructs to COMPLETE, INCOMPLETE, REPAIRABLE, ROLLED_BACK, or CONFLICT from immutable evidence
-- Import, export, migration, replay, rollback, clean-room recovery, and disaster recovery preserve authority, execution context, hashes, lineage, validity, consumption, and receipts
-- Corrupt, stale, unsupported, cross-context, or privilege-escalating recovery fails closed
-- Filesystem and GitHub adapters exhibit equivalent behavior for their declared shared contract surface, with unsupported differences recorded and denied
-- Governed work-control amendments bind sprint and work-item status changes to exact qualifying evidence and remain reconstructable
-- No sprint or work item can become complete without qualifying implementation, path-coverage, validation, and authority evidence
-
-## Sprint 13 â€” Integrated Internal TEST Proof and Enki Release Candidate
-
-- ID: `NKS-SPR-013`
-- Status: `complete`
-- Objective: Execute repeated end-to-end internal TEST loops across Enki capabilities and downstream-consumer scenarios, including the complete publication-shaped proof of concept through no-effect adapters, then produce a versioned, reconstructable, rollback-capable Enki release candidate for an explicit release decision.
-- Work items: BL-013
-- Evidence records: 6
-
-Exit criteria:
-
-- At least two complete adaptive TEST loops pass across different subject classes, including the mandatory publication-shaped POC lane and at least one nonpublication lane
-- The publication POC exercises exact content, visuals, configuration, identity, byline, brand, channel, review, TEST approval, package construction, no-effect distribution, TEST receipts, simulated observation, feedback, calibration, rollback, recovery, tamper, replay, and deterministic reconstruction
-- SYNTHETIC/TEST, REPLAY/TEST, and controlled REAL/TEST feedback remain distinguishable, attributable, deduplicated, routed, dispositioned, auditable, replayable, and incapable of satisfying production gates
-- Every declared success, denial, invalid-input, stale-input, duplicate, conflict, interruption, retry, rollback, recovery, replay, tamper, zero-response, and privilege-escalation path has automated coverage
-- Chaos drills recover without duplicate effects, partial authority, unexplained state, audience widening, context escalation, or production effects
-- A hash-bound calibration report, threat model, runbooks, limitations, rollback package, release notes, exact evidence manifests, and versioned Enki release candidate exist for an explicit human release decision
-
-## Sprint 14 â€” Reproducible Release and Supply-Chain Integrity
-
-- ID: `NKS-SPR-014`
-- Status: `complete`
-- Objective: Make every Enki release candidate reproducible from a clean checkout and bind source, dependencies, workflows, artifacts, and attestations without introducing production credentials or self-issued trust.
-- Work items: BL-014
-- Evidence records: 6
-
-Exit criteria:
-
-- Clean-room build regenerates the exact declared release candidate and artifact hashes
-- A machine-readable dependency inventory and SBOM cover runtime, test, workflow, and release tooling
-- Source, workflow, dependency, and artifact provenance are bound in reproducible TEST attestations
-- Dependency drift, artifact substitution, missing provenance, and secret leakage fail closed
-- Release verification remains independent of production credentials and cannot issue a human release decision
-
-## Sprint 15 â€” Performance, Capacity, and Resource Boundaries
-
-- ID: `NKS-SPR-015`
-- Status: `complete`
-- Objective: Characterize Enki performance and resource behavior under governed synthetic workloads, publish explicit budgets and limits, and reject unsupported production-scale claims.
-- Work items: BL-015
-- Evidence records: 5
-
-Exit criteria:
-
-- Repeatable benchmarks cover transactions, state writes, reconciliation, transitions, model use, reconstruction, and export/import
-- Latency, throughput, memory, storage growth, and recovery cost are reported by workload size
-- Performance budgets and overload behavior are explicit and machine-tested
-- Benchmarks preserve TEST isolation and contain no private or production data
-- No benchmark result is represented as a production capacity guarantee
-
-## Sprint 16 â€” Zero-Cost Governed Boundary and Isolation Proof
-
-- ID: `NKS-SPR-016`
-- Status: `complete`
-- Objective: Prove namespace, tenant, subject, domain, and audience isolation through product-neutral contracts, application enforcement, shared and physically separated local adapters, and exhaustive TEST fixtures without paid infrastructure, production credentials, or external services.
-- Work items: BL-016
-- Evidence records: 6
-
-Exit criteria:
-
-- Every governed record and operation carries an immutable namespace, tenant, subject, domain, audience, and execution-context boundary
-- Authorization is evaluated against the complete boundary and cross-tenant, cross-subject, cross-domain, cross-audience, and TEST-to-PRODUCTION access fails closed
-- Shared logical-store and physically separated local adapters exhibit equivalent denial behavior without network access or paid services
-- Export, import, migration, replay, rollback, and recovery preserve exact boundaries and reject boundary tampering or escalation
-- Errors, audits, receipts, and telemetry reconstruct isolation failures without exposing protected cross-boundary content
-- Human consent, privacy, correction, retraction, revocation, and ownership protections remain stricter than generic tenant authorization
-- A bounded local-process adversarial test covers forged boundary envelopes, path traversal, delayed or duplicated delivery, and mismatched recovery packages
-- The complete Sprint 16 proof uses only repository-local code, Python standard-library capabilities, temporary storage, and existing zero-cost CI
-- Cloud IAM, managed database isolation, network segmentation, per-tenant production keys, and external penetration certification remain explicitly unvalidated production prerequisites for Sprint 23
-
-## Sprint 17 â€” Versioned Policy Lifecycle and Simulation
-
-- ID: `NKS-SPR-017`
-- Status: `complete`
-- Objective: Govern policy creation, comparison, simulation, approval, activation, rollback, and retirement without rewriting historical decisions or widening authority.
-- Work items: BL-017
-- Evidence records: 5
-
-Exit criteria:
-
-- Policy bundles are immutable, versioned, attributable, context-bound, and hash-bound
-- Policy simulation reports affected operations and decisions without mutating canonical state
-- Activation and rollback require exact authority and produce receipts
-- Historical decisions retain the policy version under which they were made
-- TEST policy outcomes cannot activate or replace PRODUCTION policy
-
-## Sprint 18 â€” Privacy-Preserving Observability and Operational Metrics
-
-- ID: `NKS-SPR-018`
-- Status: `complete`
-- Objective: Provide actionable health, metrics, tracing, and diagnostic evidence while preventing canonical content, private human state, secrets, or unauthorized context from leaking through telemetry.
-- Work items: BL-018
-- Evidence records: 5
-
-Exit criteria:
-
-- Structured operation, transaction, recovery, and adapter telemetry uses stable identifiers and bounded metadata
-- Metrics and traces expose no protected content, secrets, or disallowed personal data
-- Health, saturation, failure, and recovery indicators support explicit TEST service objectives
-- Telemetry loss, duplication, and correlation mismatch are detectable
-- Observability cannot mutate canonical state or widen disclosure
-
-## Sprint 19 â€” Retention, Archival, and Cryptographic Continuity
-
-- ID: `NKS-SPR-019`
-- Status: `complete`
-- Objective: Govern retention, archival, tombstoning, legal or subject-driven restriction, and hash-algorithm continuity while preserving historical lineage and authority.
-- Work items: BL-019
-- Evidence records: 5
-
-Exit criteria:
-
-- Retention and archival policies are explicit, versioned, purpose-bound, and authority-bound
-- Archival preserves verification, lineage, execution context, and receipt integrity
-- Restriction or deletion requests produce governed tombstones or redactions without silently rewriting history
-- Hash-algorithm migration preserves old verification and creates new receipted continuity evidence
-- Expired, archived, restricted, or revoked records cannot control unauthorized downstream behavior
-
-## Sprint 20 â€” Concurrency, Contention, and Distributed Recovery
-
-- ID: `NKS-SPR-020`
-- Status: `complete`
-- Objective: Prove correct behavior under concurrent approvals, competing writes, duplicate delivery, out-of-order evidence, adapter interruption, and partition-shaped failure.
-- Work items: BL-020
-- Evidence records: 10
-
-Exit criteria:
-
-- Concurrent approval reservation and consumption permit at most one conflicting effect
-- Duplicate, delayed, and out-of-order messages remain idempotent or fail closed
-- Compare-and-swap contention and adapter interruption produce reconstructable outcomes
-- Partition-shaped failures recover without split authority, duplicate effects, or lost receipts
-- Filesystem and GitHub adapters satisfy the declared concurrency and recovery contract
-
-## Sprint 21 â€” Stable Consumer API, CLI, and Compatibility Contract
-
-- ID: `NKS-SPR-021`
-- Status: `complete`
-- Objective: Expose a stable product-neutral Enki service boundary through versioned APIs and CLI operations without allowing consumers to bypass governance or access repositories directly.
-- Work items: BL-021
-- Evidence records: 8
-
-Exit criteria:
-
-- Versioned request, response, error, receipt, pagination, and idempotency contracts are explicit
-- CLI and API exercise the same application services and authority checks
-- Unsupported, ambiguous, or incompatible versions fail closed
-- Consumers cannot write canonical records or consume approvals through repository shortcuts
-- Generated contract documentation and compatibility fixtures remain deterministic
-
-## Sprint 22 â€” Downstream Product Boundary Proofs
-
-- ID: `NKS-SPR-022`
-- Status: `complete`
-- Objective: Demonstrate that Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity can consume Enki through scoped no-effect adapters without redefining the core or acquiring unauthorized authority.
-- Work items: BL-022
-- Evidence records: 5
-
-Exit criteria:
-
-- Each downstream suite uses an explicit consumer contract and no-effect TEST adapter
-- Consumer-specific views and packages preserve provenance, context, privacy, and authority
-- Products cannot write predictions, recommendations, publication decisions, or inferred preferences directly into canonical Enki state
-- Cross-product data leakage, authority reuse, and audience widening fail closed
-- At least one end-to-end TEST proof passes for each downstream suite
-
-## Sprint 23 â€” Production-Readiness Review and Enki 1.0 Decision Package
-
-- ID: `NKS-SPR-023`
-- Status: `complete`
-- Objective: Consolidate supply-chain, performance, logical-isolation, policy, observability, retention, concurrency, compatibility, consumer-boundary, and unresolved physical-isolation evidence into an independently reviewable Enki 1.0 decision package.
-- Work items: BL-023
-- Evidence records: 5
-
-Exit criteria:
-
-- All prior sprint evidence is assembled into one exact, versioned readiness manifest
-- Adversarial, chaos, recovery, privacy, logical-isolation, compatibility, and supply-chain campaigns pass or have explicit accepted findings
-- Known limitations, production prerequisites, operating runbooks, rollback plans, and support boundaries are complete
-- Cloud IAM, production identity federation, managed database row-level isolation, network segmentation, per-tenant production key management, production secrets management, and independent penetration testing are explicitly validated or recorded as unresolved prerequisites
-- No local TEST proof is represented as production infrastructure certification or multitenancy accreditation
-- An independent review checklist records unresolved concerns without self-certification
-- An Enki 1.0 candidate and human decision request exist without implying production approval
-
-Total sprints: 23
+- Correction, refinement, supersession, retraction, reversal, expansion, restriction, confidence change, merge, sp²È="25‘•¹”É•½É‘Ìè€Ô()á¥ĞÉ¥Ñ•É¥„è((´A½±¥ä‰Õ¹‘±•Ì…É”¥µµÕÑ…‰±”°Ù•ÉÍ¥½¹•°…ÑÑÉ¥‰ÕÑ…‰±”°½¹Ñ•áĞµ‰½Õ¹°…¹¡…Í µ‰½Õ¹(´A½±¥äÍ¥µÕ±…Ñ¥½¸É•Á½ÉÑÌ…™™•Ñ•½Á•É…Ñ¥½¹Ì…¹‘•¥Í¥½¹Ìİ¥Ñ¡½ÕĞµÕÑ…Ñ¥¹œ…¹½¹¥…°ÍÑ…Ñ”(´Ñ¥Ù…Ñ¥½¸…¹É½±±‰…¬É•ÅÕ¥É”•á…Ğ…ÕÑ¡½É¥Ñä…¹ÁÉ½‘Õ”É••¥ÁÑÌ(´!¥ÍÑ½É¥…°‘•¥Í¥½¹ÌÉ•Ñ…¥¸Ñ¡”Á½±¥äÙ•ÉÍ¥½¸Õ¹‘•Èİ¡¥ Ñ¡•äİ•É”µ…‘”(´QMPÁ½±¥ä½ÕÑ½µ•Ì…¹¹½Ğ…Ñ¥Ù…Ñ”½ÈÉ•Á±…”AI=UQ%=8Á½±¥ä((ŒŒMÁÉ¥¹Ğ€ÄàƒŠPAÉ¥Ù…äµAÉ•Í•ÉÙ¥¹œ=‰Í•ÉÙ…‰¥±¥Ñä…¹=Á•É…Ñ¥½¹…°5•ÑÉ¥Ì((´%è9-LµMAH´ÀÄá€(´MÑ…ÑÕÌè½µÁ±•Ñ•€(´=‰©•Ñ¥Ù”èAÉ½Ù¥‘”…Ñ¥½¹…‰±”¡•…±Ñ °µ•ÑÉ¥Ì°ÑÉ…¥¹œ°…¹‘¥…¹½ÍÑ¥Œ•Ù¥‘•¹”İ¡¥±”ÁÉ•Ù•¹Ñ¥¹œ…¹½¹¥…°½¹Ñ•¹Ğ°ÁÉ¥Ù…Ñ”¡Õµ…¸ÍÑ…Ñ”°Í•É•ÑÌ°½ÈÕ¹…ÕÑ¡½É¥é•½¹Ñ•áĞ™É½´±•…­¥¹œÑ¡É½Õ Ñ•±•µ•ÑÉä¸(´]½É¬¥Ñ•µÌè	0´ÀÄà(´Ù¥‘•¹”É•½É‘Ìè€Ô()á¥ĞÉ¥Ñ•É¥„è((´MÑÉÕÑÕÉ•½Á•É…Ñ¥½¸°ÑÉ…¹Í…Ñ¥½¸°É•½Ù•Éä°…¹…‘…ÁÑ•ÈÑ•±•µ•ÑÉäÕÍ•ÌÍÑ…‰±”¥‘•¹Ñ¥™¥•ÉÌ…¹‰½Õ¹‘•µ•Ñ…‘…Ñ„(´5•ÑÉ¥Ì…¹ÑÉ…•Ì•áÁ½Í”¹¼ÁÉ½Ñ•Ñ•½¹Ñ•¹Ğ°Í•É•ÑÌ°½È‘¥Í…±±½İ•Á•ÉÍ½¹…°‘…Ñ„(´!•…±Ñ °Í…ÑÕÉ…Ñ¥½¸°™…¥±ÕÉ”°…¹É•½Ù•Éä¥¹‘¥…Ñ½ÉÌÍÕÁÁ½ÉĞ•áÁ±¥¥ĞQMPÍ•ÉÙ¥”½‰©•Ñ¥Ù•Ì(´Q•±•µ•ÑÉä±½ÍÌ°‘ÕÁ±¥…Ñ¥½¸°…¹½ÉÉ•±…Ñ¥½¸µ¥Íµ…Ñ …É”‘•Ñ•Ñ…‰±”(´=‰Í•ÉÙ…‰¥±¥Ñä…¹¹½ĞµÕÑ…Ñ”…¹½¹¥…°ÍÑ…Ñ”½Èİ¥‘•¸‘¥Í±½ÍÕÉ”((ŒŒMÁÉ¥¹Ğ€ÄäƒŠPI•Ñ•¹Ñ¥½¸°É¡¥Ù…°°…¹ÉåÁÑ½É…Á¡¥Œ½¹Ñ¥¹Õ¥Ñä((´%è9-LµMAH´ÀÄå€(´MÑ…ÑÕÌè½µÁ±•Ñ•€(´=‰©•Ñ¥Ù”è½Ù•É¸É•Ñ•¹Ñ¥½¸°…É¡¥Ù…°°Ñ½µ‰ÍÑ½¹¥¹œ°±•…°½ÈÍÕ‰©•Ğµ‘É¥Ù•¸É•ÍÑÉ¥Ñ¥½¸°…¹¡…Í µ…±½É¥Ñ¡´½¹Ñ¥¹Õ¥Ñäİ¡¥±”ÁÉ•Í•ÉÙ¥¹œ¡¥ÍÑ½É¥…°±¥¹•…”…¹…ÕÑ¡½É¥Ñä¸(´]½É¬¥Ñ•µÌè	0´ÀÄä(´Ù¥‘•¹”É•½É‘Ìè€Ô()á¥ĞÉ¥Ñ•É¥„è((´I•Ñ•¹Ñ¥½¸…¹…É¡¥Ù…°Á½±¥¥•Ì…É”•áÁ±¥¥Ğ°Ù•ÉÍ¥½¹•°ÁÕÉÁ½Í”µ‰½Õ¹°…¹…ÕÑ¡½É¥Ñäµ‰½Õ¹(´É¡¥Ù…°ÁÉ•Í•ÉÙ•ÌÙ•É¥™¥…Ñ¥½¸°±¥¹•…”°•á•ÕÑ¥½¸½¹Ñ•áĞ°…¹É••¥ÁĞ¥¹Ñ•É¥Ñä(´I•ÍÑÉ¥Ñ¥½¸½È‘•±•Ñ¥½¸É•ÅÕ•ÍÑÌÁÉ½‘Õ”½Ù•É¹•Ñ½µ‰ÍÑ½¹•Ì½ÈÉ•‘…Ñ¥½¹Ìİ¥Ñ¡½ÕĞÍ¥±•¹Ñ±äÉ•İÉ¥Ñ¥¹œ¡¥ÍÑ½Éä(´!…Í µ…±½É¥Ñ¡´µ¥É…Ñ¥½¸ÁÉ•Í•ÉÙ•Ì½±Ù•É¥™¥…Ñ¥½¸…¹É•…Ñ•Ì¹•ÜÉ••¥ÁÑ•½¹Ñ¥¹Õ¥Ñä•Ù¥‘•¹”(´áÁ¥É•°…É¡¥Ù•°É•ÍÑÉ¥Ñ•°½ÈÉ•Ù½­•É•½É‘Ì…¹¹½Ğ½¹ÑÉ½°Õ¹…ÕÑ¡½É¥é•‘½İ¹ÍÑÉ•…´‰•¡…Ù¥½È((ŒŒMÁÉ¥¹Ğ€ÈÀƒŠP½¹ÕÉÉ•¹ä°½¹Ñ•¹Ñ¥½¸°…¹¥ÍÑÉ¥‰ÕÑ•I•½Ù•Éä((´%è9-LµMAH´ÀÈÁ€(´MÑ…ÑÕÌè½µÁ±•Ñ•€(´=‰©•Ñ¥Ù”èAÉ½Ù”½ÉÉ•Ğ‰•¡…Ù¥½ÈÕ¹‘•È½¹ÕÉÉ•¹Ğ…ÁÁÉ½Ù…±Ì°½µÁ•Ñ¥¹œİÉ¥Ñ•Ì°‘ÕÁ±¥…Ñ”‘•±¥Ù•Éä°½ÕĞµ½˜µ½É‘•È•Ù¥‘•¹”°…‘…ÁÑ•È¥¹Ñ•ÉÉÕÁÑ¥½¸°…¹Á…ÉÑ¥Ñ¥½¸µÍ¡…Á•™…¥±ÕÉ”¸(´]½É¬¥Ñ•µÌè	0´ÀÈÀ(´Ù¥‘•¹”É•½É‘Ìè€ÄÀ()á¥ĞÉ¥Ñ•É¥„è((´½¹ÕÉÉ•¹Ğ…ÁÁÉ½Ù…°É•Í•ÉÙ…Ñ¥½¸…¹½¹ÍÕµÁÑ¥½¸Á•Éµ¥Ğ…Ğµ½ÍĞ½¹”½¹™±¥Ñ¥¹œ•™™•Ğ(´ÕÁ±¥…Ñ”°‘•±…å•°…¹½ÕĞµ½˜µ½É‘•Èµ•ÍÍ…•ÌÉ•µ…¥¸¥‘•µÁ½Ñ•¹Ğ½È™…¥°±½Í•(´½µÁ…É”µ…¹µÍİ…À½¹Ñ•¹Ñ¥½¸…¹…‘…ÁÑ•È¥¹Ñ•ÉÉÕÁÑ¥½¸ÁÉ½‘Õ”É•½¹ÍÑÉÕÑ…‰±”½ÕÑ½µ•Ì(´A…ÉÑ¥Ñ¥½¸µÍ¡…Á•™…¥±ÕÉ•ÌÉ•½Ù•Èİ¥Ñ¡½ÕĞÍÁ±¥Ğ…ÕÑ¡½É¥Ñä°‘ÕÁ±¥…Ñ”•™™•ÑÌ°½È±½ÍĞÉ••¥ÁÑÌ(´¥±•ÍåÍÑ•´…¹¥Ñ!Õˆ…‘…ÁÑ•ÉÌÍ…Ñ¥Í™äÑ¡”‘•±…É•½¹ÕÉÉ•¹ä…¹É•½Ù•Éä½¹ÑÉ…Ğ((ŒŒMÁÉ¥¹Ğ€ÈÄƒŠPMÑ…‰±”½¹ÍÕµ•ÈA$°1$°…¹½µÁ…Ñ¥‰¥±¥Ñä½¹ÑÉ…Ğ((´%è9-LµMAH´ÀÈÅ€(´MÑ…ÑÕÌè½µÁ±•Ñ•€(´=‰©•Ñ¥Ù”èáÁ½Í”„ÍÑ…‰±”ÁÉ½‘ÕĞµ¹•ÕÑÉ…°¹­¤Í•ÉÙ¥”‰½Õ¹‘…ÉäÑ¡É½Õ Ù•ÉÍ¥½¹•A%Ì…¹1$½Á•É…Ñ¥½¹Ìİ¥Ñ¡½ÕĞ…±±½İ¥¹œ½¹ÍÕµ•ÉÌÑ¼‰åÁ…ÍÌ½Ù•É¹…¹”½È…•ÍÌÉ•Á½Í¥Ñ½É¥•Ì‘¥É•Ñ±ä¸(´]½É¬¥Ñ•µÌè	0´ÀÈÄ(´Ù¥‘•¹”É•½É‘Ìè€à()á¥ĞÉ¥Ñ•É¥„è((´Y•ÉÍ¥½¹•É•ÅÕ•ÍĞ°É•ÍÁ½¹Í”°•ÉÉ½È°É••¥ÁĞ°Á…¥¹…Ñ¥½¸°…¹¥‘•µÁ½Ñ•¹ä½¹ÑÉ…ÑÌ…É”•áÁ±¥¥Ğ(´1$…¹A$•á•É¥Í”Ñ¡”Í…µ”…ÁÁ±¥…Ñ¥½¸Í•ÉÙ¥•Ì…¹…ÕÑ¡½É¥Ñä¡•­Ì(´U¹ÍÕÁÁ½ÉÑ•°…µ‰¥Õ½ÕÌ°½È¥¹½µÁ…Ñ¥‰±”Ù•ÉÍ¥½¹Ì™…¥°±½Í•(´½¹ÍÕµ•ÉÌ…¹¹½ĞİÉ¥Ñ”…¹½¹¥…°É•½É‘Ì½È½¹ÍÕµ”…ÁÁÉ½Ù…±ÌÑ¡É½Õ É•Á½Í¥Ñ½ÉäÍ¡½ÉÑÕÑÌ(´•¹•É…Ñ•½¹ÑÉ…Ğ‘½Õµ•¹Ñ…Ñ¥½¸…¹½µÁ…Ñ¥‰¥±¥Ñä™¥áÑÕÉ•ÌÉ•µ…¥¸‘•Ñ•Éµ¥¹¥ÍÑ¥Œ((ŒŒMÁÉ¥¹Ğ€ÈÈƒŠP½İ¹ÍÑÉ•…´AÉ½‘ÕĞ	½Õ¹‘…ÉäAÉ½½™Ì((´%è9-LµMAH´ÀÈÉ€(´MÑ…ÑÕÌè½µÁ±•Ñ•€(´=‰©•Ñ¥Ù”è•µ½¹ÍÑÉ…Ñ”Ñ¡…Ğ5•‘¥„	±¥Ñè°…É••È%¹Ñ•±±¥•¹”…¹A±…•µ•¹Ğ°…¹A•ÉÍ½¹…°½¹¥Ñ¥Ù”½¹Ñ¥¹Õ¥Ñä…¸½¹ÍÕµ”¹­¤Ñ¡É½Õ Í½Á•¹¼µ•™™•Ğ…‘…ÁÑ•ÉÌİ¥Ñ¡½ÕĞÉ•‘•™¥¹¥¹œÑ¡”½É”½È…ÅÕ¥É¥¹œÕ¹…ÕÑ¡½É¥é•…ÕÑ¡½É¥Ñä¸(´]½É¬¥Ñ•µÌè	0´ÀÈÈ(´Ù¥‘•¹”É•½É‘Ìè€Ô()á¥ĞÉ¥Ñ•É¥„è((´… ‘½İ¹ÍÑÉ•…´ÍÕ¥Ñ”ÕÍ•Ì…¸•áÁ±¥¥Ğ½¹ÍÕµ•È½¹ÑÉ…Ğ…¹¹¼µ•™™•ĞQMP…‘…ÁÑ•È(´½¹ÍÕµ•ÈµÍÁ•¥™¥ŒÙ¥•İÌ…¹Á…­…•ÌÁÉ•Í•ÉÙ”ÁÉ½Ù•¹…¹”°½¹Ñ•áĞ°ÁÉ¥Ù…ä°…¹…ÕÑ¡½É¥Ñä(´AÉ½‘ÕÑÌ…¹¹½ĞİÉ¥Ñ”ÁÉ•‘¥Ñ¥½¹Ì°É•½µµ•¹‘…Ñ¥½¹Ì°ÁÕ‰±¥…Ñ¥½¸‘•¥Í¥½¹Ì°½È¥¹™•ÉÉ•ÁÉ•™•É•¹•Ì‘¥É•Ñ±ä¥¹Ñ¼…¹½¹¥…°¹­¤ÍÑ…Ñ”(´É½ÍÌµÁÉ½‘ÕĞ‘…Ñ„±•…­…”°…ÕÑ¡½É¥ÑäÉ•ÕÍ”°…¹…Õ‘¥•¹”İ¥‘•¹¥¹œ™…¥°±½Í•(´Ğ±•…ÍĞ½¹”•¹µÑ¼µ•¹QMPÁÉ½½˜Á…ÍÍ•Ì™½È•… ‘½İ¹ÍÑÉ•…´ÍÕ¥Ñ”((ŒŒMÁÉ¥¹Ğ€ÈÌƒŠPAÉ½‘ÕÑ¥½¸µI•…‘¥¹•ÍÌI•Ù¥•Ü…¹¹­¤€Ä¸À•¥Í¥½¸A…­…”((´%è9-LµMAH´ÀÈÍ€(´MÑ…ÑÕÌè½µÁ±•Ñ•€(´=‰©•Ñ¥Ù”è½¹Í½±¥‘…Ñ”ÍÕÁÁ±äµ¡…¥¸°Á•É™½Éµ…¹”°±½¥…°µ¥Í½±…Ñ¥½¸°Á½±¥ä°½‰Í•ÉÙ…‰¥±¥Ñä°É•Ñ•¹Ñ¥½¸°½¹ÕÉÉ•¹ä°½µÁ…Ñ¥‰¥±¥Ñä°½¹ÍÕµ•Èµ‰½Õ¹‘…Éä°…¹Õ¹É•Í½±Ù•Á¡åÍ¥…°µ¥Í½±…Ñ¥½¸•Ù¥‘•¹”¥¹Ñ¼…¸¥¹‘•Á•¹‘•¹Ñ±äÉ•Ù¥•İ…‰±”¹­¤€Ä¸À‘•¥Í¥½¸Á…­…”¸(´]½É¬¥Ñ•µÌè	0´ÀÈÌ(´Ù¥‘•¹”É•½É‘Ìè€Ô()á¥ĞÉ¥Ñ•É¥„è((´±°ÁÉ¥½ÈÍÁÉ¥¹Ğ•Ù¥‘•¹”¥Ì…ÍÍ•µ‰±•¥¹Ñ¼½¹”•á…Ğ°Ù•ÉÍ¥½¹•É•…‘¥¹•ÍÌµ…¹¥™•ÍĞ(´‘Ù•ÉÍ…É¥…°°¡…½Ì°É•½Ù•Éä°ÁÉ¥Ù…ä°±½¥…°µ¥Í½±…Ñ¥½¸°½µÁ…Ñ¥‰¥±¥Ñä°…¹ÍÕÁÁ±äµ¡…¥¸…µÁ…¥¹ÌÁ…ÍÌ½È¡…Ù”•áÁ±¥¥Ğ…•ÁÑ•™¥¹‘¥¹Ì(´-¹½İ¸±¥µ¥Ñ…Ñ¥½¹Ì°ÁÉ½‘ÕÑ¥½¸ÁÉ•É•ÅÕ¥Í¥Ñ•Ì°½Á•É…Ñ¥¹œÉÕ¹‰½½­Ì°É½±±‰…¬Á±…¹Ì°…¹ÍÕÁÁ½ÉĞ‰½Õ¹‘…É¥•Ì…É”½µÁ±•Ñ”(´±½Õ%4°ÁÉ½‘ÕÑ¥½¸¥‘•¹Ñ¥Ñä™•‘•É…Ñ¥½¸°µ…¹…•‘…Ñ…‰…Í”É½Üµ±•Ù•°¥Í½±…Ñ¥½¸°¹•Ñİ½É¬Í•µ•¹Ñ…Ñ¥½¸°Á•ÈµÑ•¹…¹ĞÁÉ½‘ÕÑ¥½¸­•äµ…¹…•µ•¹Ğ°ÁÉ½‘ÕÑ¥½¸Í•É•ÑÌµ…¹…•µ•¹Ğ°…¹¥¹‘•Á•¹‘•¹ĞÁ•¹•ÑÉ…Ñ¥½¸Ñ•ÍÑ¥¹œ…É”•áÁ±¥¥Ñ±äÙ…±¥‘…Ñ•½ÈÉ•½É‘•…ÌÕ¹É•Í½±Ù•ÁÉ•É•ÅÕ¥Í¥Ñ•Ì(´9¼±½…°QMPÁÉ½½˜¥ÌÉ•ÁÉ•Í•¹Ñ•…ÌÁÉ½‘ÕÑ¥½¸¥¹™É…ÍÑÉÕÑÕÉ”•ÉÑ¥™¥…Ñ¥½¸½ÈµÕ±Ñ¥Ñ•¹…¹ä…É•‘¥Ñ…Ñ¥½¸(´¸¥¹‘•Á•¹‘•¹ĞÉ•Ù¥•Ü¡•­±¥ÍĞÉ•½É‘ÌÕ¹É•Í½±Ù•½¹•É¹Ìİ¥Ñ¡½ÕĞÍ•±˜µ•ÉÑ¥™¥…Ñ¥½¸(´¸¹­¤€Ä¸À…¹‘¥‘…Ñ”…¹¡Õµ…¸‘•¥Í¥½¸É•ÅÕ•ÍĞ•á¥ÍĞİ¥Ñ¡½ÕĞ¥µÁ±å¥¹œÁÉ½‘ÕÑ¥½¸…ÁÁÉ½Ù…°((ŒŒMÁÉ¥¹Ğ€ÈĞƒŠP!½ÍÑ••Á±½åµ•¹Ğ=ÁÑ¥½¹Ì…¹MÁ±¥Ğµ±½ÕÉ¡¥Ñ•ÑÕÉ”áÁ±½É…Ñ¥½¸((´%è9-LµMAH´ÀÈÑ€(´MÑ…ÑÕÌèÁ±…¹¹•‘€(´=‰©•Ñ¥Ù”èAÉ½‘Õ”…¸¥¹‘•Á•¹‘•¹Ñ±äÉ•Ù¥•İ…‰±”¡½ÍÑ¥¹œµ…É¡¥Ñ•ÑÕÉ”‘•¥Í¥½¸Á…­…”™½È¹­¤‰ä•Ù…±Õ…Ñ¥¹œÍ¥¹±”µ±½Õ°ÍÁ±¥Ğµ±½Õ°…¹Á½ÉÑ…‰¥±¥ÑäµÁÉ•Í•ÉÙ¥¹œ…±Ñ•É¹…Ñ¥Ù•Ì……¥¹ÍĞ½Ù•É¹…¹”°Í•ÕÉ¥Ñä°É•Í¥±¥•¹”°½ÍĞ°½Á•É…Ñ¥½¹…°°…¹µ¥É…Ñ¥½¸É•ÅÕ¥É•µ•¹ÑÌİ¥Ñ¡½ÕĞ¥µÁ±å¥¹œÁÉ½‘ÕÑ¥½¸…ÁÁÉ½Ù…°¸(´]½É¬¥Ñ•µÌè	0´ÀÈĞ(´Ù¥‘•¹”É•½É‘Ìè€À()á¥ĞÉ¥Ñ•É¥„è((´¡½ÍÑ¥¹œ½ÁÑ¥½¹Ìµ…ÑÉ¥à½µÁ…É•ÌÍ¥¹±”µ±½Õ°ÁÉ½Ù¥‘•ÈµÍÁ±¥Ğ±½Õ°½¹ÑÉ½°µÁ±…¹”½‘…Ñ„µÁ±…¹”ÍÁ±¥Ğ°…¹É•±•Ù…¹Ğ¡å‰É¥½ÈÁ½ÉÑ…‰¥±¥ÑäµÁÉ•Í•ÉÙ¥¹œÁ…ÑÑ•É¹Ì(´Ğ±•…ÍĞ½¹”Í¥¹±”µ±½Õ…¹½¹”ÍÁ±¥Ğµ±½ÕÉ•™•É•¹”…É¡¥Ñ•ÑÕÉ”‘•™¥¹”½µÁÕÑ”°…¹½¹¥…°‘…Ñ„°¥‘•¹Ñ¥Ñä°‘…Ñ…‰…Í”¥Í½±…Ñ¥½¸°­•äÕÍÑ½‘ä°Í•É•ÑÌ°¹•Ñİ½É¬°½‰Í•ÉÙ…‰¥±¥Ñä°‰…­ÕÀ°‘¥Í…ÍÑ•ÈÉ•½Ù•Éä°…¹ÍÕÁÁ½ÉĞ‰½Õ¹‘…É¥•Ì(´Q¡É•…Ğ°ÑÉÕÍĞµ‰½Õ¹‘…Éä°™…¥±ÕÉ”µ‘½µ…¥¸°‘…Ñ„µ™±½Ü°±…Ñ•¹ä°•É•ÍÌ°½ÍĞ°½Á•É…Ñ¥½¹…°½µÁ±•á¥Ñä°±½¬µ¥¸°Á½ÉÑ…‰¥±¥Ñä°ÁÉ¥Ù…ä°½µÁ±¥…¹”°…¹É•½Ù•ÉäÑÉ…‘•½™™Ì…É”•áÁ±¥¥Ğ™½È•… ™¥¹…±¥ÍĞ(´… ½ÁÑ¥½¸µ…ÁÌ¥ÑÌ¥µÁ±¥…Ñ¥½¹Ì™½ÈÑ¡”Õ¹É•Í½±Ù•MÁÉ¥¹Ğ€ÈÌÁÉ½‘ÕÑ¥½¸ÁÉ•É•ÅÕ¥Í¥Ñ•Ìİ¥Ñ¡½ÕĞÑÉ•…Ñ¥¹œ±½…°QMP•Ù¥‘•¹”…ÌÁÉ½‘ÕÑ¥½¸Ù…±¥‘…Ñ¥½¸(´5¥É…Ñ¥½¸…¹É½±±‰…¬Á…Ñ¡Ì™É½´Ñ¡”ÕÉÉ•¹ĞÉ•Á½Í¥Ñ½Éäµ±½…°QMP…É¡¥Ñ•ÑÕÉ”…É”‘½Õµ•¹Ñ•(´½ÍĞµ½‘•°¥‘•¹Ñ¥™¥•Ì•áÁ•Ñ•É…¹•Ì…¹µ…©½È½ÍĞ‘É¥Ù•ÉÌİ¥Ñ¡½ÕĞÉ•ÅÕ¥É¥¹œÁ…¥‘•Á±½åµ•¹Ğ(´É•½µµ•¹‘•Í¡½ÉÑ±¥ÍĞ…¹•áÁ±¥¥Ğ¡Õµ…¸¡½ÍÑ¥¹œµ‘•¥Í¥½¸É¥Ñ•É¥„•á¥ÍĞİ¥Ñ¡½ÕĞ‘•™…Õ±Ğ…ÁÁÉ½Ù…°(´9¼ÁÉ½‘ÕÑ¥½¸¥¹™É…ÍÑÉÕÑÕÉ”¥ÌÁÉ½Ù¥Í¥½¹•…¹MÁÉ¥¹Ğ½µÁ±•Ñ¥½¸‘½•Ì¹½Ğ½¹ÍÑ¥ÑÕÑ”ÁÉ½‘ÕÑ¥½¸¡½ÍÑ¥¹œ…ÁÁÉ½Ù…°()Q½Ñ…°ÍÁÉ¥¹ÑÌè€ÈĞ(
