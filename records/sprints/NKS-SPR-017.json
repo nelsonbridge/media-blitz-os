@@ -3,7 +3,7 @@
   "sequence": 17,
   "title": "Versioned Policy Lifecycle and Simulation",
   "objective": "Govern policy creation, comparison, simulation, approval, activation, rollback, and retirement without rewriting historical decisions or widening authority.",
-  "status": "planned",
+  "status": "complete",
   "work_item_ids": ["BL-017"],
   "exit_criteria": [
     "Policy bundles are immutable, versioned, attributable, context-bound, and hash-bound",
@@ -12,7 +12,38 @@
     "Historical decisions retain the policy version under which they were made",
     "TEST policy outcomes cannot activate or replace PRODUCTION policy"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S17-PR67",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/67",
+      "description": "Implemented immutable versioned policy bundles, deterministic comparison and simulation, approval-bound lifecycle actions, historical attribution, exact retry, and TEST/PRODUCTION isolation."
+    },
+    {
+      "evidence_id": "E-S17-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/ee84087716c4f7357c9543e358b043f8a5acca3d",
+      "description": "Merged Sprint 17 implementation into sandbox."
+    },
+    {
+      "evidence_id": "E-S17-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29386705089",
+      "description": "CI passed policy lifecycle, simulation, rollback, retirement, exact-retry, tamper, conflict, and context-isolation tests."
+    },
+    {
+      "evidence_id": "E-S17-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29386705114",
+      "description": "Runtime Coverage passed every declared Sprint 17 path."
+    },
+    {
+      "evidence_id": "E-S17-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29386705104",
+      "description": "Work Control Authority passed before completion promotion."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-14T14:00:00Z"
+  "updated_at": "2026-07-15T03:35:00Z"
 }
