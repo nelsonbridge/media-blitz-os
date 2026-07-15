@@ -2,7 +2,7 @@
   "work_item_id": "BL-015",
   "title": "Performance, Capacity, and Resource Boundaries",
   "description": "Characterize Enki performance and resource behavior under governed synthetic workloads, publish explicit budgets and limits, and reject unsupported production-scale claims.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-015",
   "acceptance_criteria": [
     "Repeatable benchmarks cover transactions, state writes, reconciliation, transitions, model use, reconstruction, and export/import",
@@ -11,8 +11,39 @@
     "Benchmarks preserve TEST isolation and contain no private or production data",
     "No benchmark result is represented as a production capacity guarantee"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL15-PR65",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/65",
+      "description": "Sprint 15 governed synthetic benchmark implementation."
+    },
+    {
+      "evidence_id": "E-BL15-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/cf666ab406070678b9a0f3385033a90569aff095",
+      "description": "Merged implementation commit."
+    },
+    {
+      "evidence_id": "E-BL15-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29385915623",
+      "description": "Passing CI validation."
+    },
+    {
+      "evidence_id": "E-BL15-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29385915592",
+      "description": "Passing runtime path coverage."
+    },
+    {
+      "evidence_id": "E-BL15-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29385915602",
+      "description": "Passing work-control authority validation."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-14T14:00:00Z"
+  "updated_at": "2026-07-15T03:15:00Z"
 }
