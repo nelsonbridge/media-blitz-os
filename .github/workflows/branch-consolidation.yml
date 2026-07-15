@@ -2,10 +2,9 @@ name: Branch Consolidation
 
 on:
   workflow_dispatch:
-  push:
+  pull_request:
     branches: [sandbox]
-    paths:
-      - ".github/workflows/branch-consolidation.yml"
+    types: [closed]
 
 permissions:
   contents: write
@@ -16,6 +15,7 @@ concurrency:
 
 jobs:
   consolidate:
+    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Check out complete repository history
