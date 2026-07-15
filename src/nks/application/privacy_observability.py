@@ -142,6 +142,9 @@ class TelemetryEvent(BaseModel):
     @classmethod
     def create(cls, **values: object) -> "TelemetryEvent":
         payload = dict(values)
+        payload.setdefault("metric_name", None)
+        payload.setdefault("metric_value", None)
+        payload.setdefault("metadata", {})
         payload["event_sha256"] = canonical_sha256(payload)
         return cls(**payload)
 
