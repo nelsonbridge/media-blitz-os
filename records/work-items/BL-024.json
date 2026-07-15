@@ -2,7 +2,7 @@
   "work_item_id": "BL-024",
   "title": "Hosted Deployment Options and Split-Cloud Architecture Exploration",
   "description": "Evaluate hosted deployment patterns for Enki, including single-cloud, split-cloud, and portability-preserving hybrid options, while preserving governed authority boundaries and keeping unresolved production controls explicit.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-024",
   "acceptance_criteria": [
     "Single-cloud, split-cloud, and relevant hybrid or portability-preserving hosting patterns are compared through one explicit decision matrix",
@@ -14,8 +14,39 @@
     "A cost model, migration and rollback considerations, shortlist, and human decision criteria are independently reviewable",
     "No production infrastructure is provisioned and no hosting option is represented as production-approved by completion of this exploration"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL24-PR84",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/84",
+      "description": "Implemented the complete hosted architecture exploration and independently reviewable decision package."
+    },
+    {
+      "evidence_id": "E-BL24-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/74980a3f2bea524a74a71c0d00353819fad5c2d2",
+      "description": "Merged Sprint 24 implementation."
+    },
+    {
+      "evidence_id": "E-BL24-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29455207703",
+      "description": "CI passed the hosting decision package and full regression suite."
+    },
+    {
+      "evidence_id": "E-BL24-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29455207710",
+      "description": "Runtime Coverage passed every declared Sprint 24 architecture-exploration path."
+    },
+    {
+      "evidence_id": "E-BL24-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29455207724",
+      "description": "Work Control Authority passed before completion promotion."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-15T19:55:00Z"
+  "updated_at": "2026-07-15T22:35:00Z"
 }
