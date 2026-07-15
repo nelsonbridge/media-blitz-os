@@ -68,15 +68,13 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   verify-canonicalization-boundary:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -97,16 +95,6 @@ jobs:
         run: nks generate-views .
       - name: Regenerate repository audit
         run: nks audit-repository .
-      - name: Commit regenerated projections for consolidation validation
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'validation/post-consolidation'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated
-          if ! git diff --cached --quiet; then
-            git commit -m "Regenerate authoritative projections"
-            git push origin HEAD:"$GITHUB_HEAD_REF"
-          fi
       - name: Reject generated projection drift
         run: |
           if ! git diff --quiet -- generated; then
