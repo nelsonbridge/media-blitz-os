@@ -3,7 +3,7 @@
   "sequence": 15,
   "title": "Performance, Capacity, and Resource Boundaries",
   "objective": "Characterize Enki performance and resource behavior under governed synthetic workloads, publish explicit budgets and limits, and reject unsupported production-scale claims.",
-  "status": "planned",
+  "status": "complete",
   "work_item_ids": ["BL-015"],
   "exit_criteria": [
     "Repeatable benchmarks cover transactions, state writes, reconciliation, transitions, model use, reconstruction, and export/import",
@@ -12,7 +12,38 @@
     "Benchmarks preserve TEST isolation and contain no private or production data",
     "No benchmark result is represented as a production capacity guarantee"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S15-PR65",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/65",
+      "description": "Implemented governed synthetic benchmarks, explicit TEST budgets, overload denial, report hashing, and production-claim prevention across all required operation families."
+    },
+    {
+      "evidence_id": "E-S15-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/cf666ab406070678b9a0f3385033a90569aff095",
+      "description": "Merged the Sprint 15 implementation into sandbox."
+    },
+    {
+      "evidence_id": "E-S15-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29385915623",
+      "description": "CI passed the benchmark suite, budget, overload, data-classification, reporting, and claim-boundary tests."
+    },
+    {
+      "evidence_id": "E-S15-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29385915592",
+      "description": "Runtime Coverage passed across every declared Sprint 15 performance path."
+    },
+    {
+      "evidence_id": "E-S15-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29385915602",
+      "description": "Work Control Authority passed before completion promotion."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-14T14:00:00Z"
+  "updated_at": "2026-07-15T03:15:00Z"
 }
