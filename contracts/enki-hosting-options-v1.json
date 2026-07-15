@@ -1,0 +1,45 @@
+{
+  "contract": "enki-hosting-options",
+  "version": "1",
+  "external_services_budget_usd": 0,
+  "decision_state": "HUMAN_DECISION_REQUIRED",
+  "production_approval": false,
+  "infrastructure_provisioned": false,
+  "required_patterns": [
+    "SINGLE_CLOUD",
+    "PROVIDER_SPLIT",
+    "CONTROL_DATA_SPLIT",
+    "PORTABILITY_HYBRID"
+  ],
+  "evaluated_options": [
+    "CF-NATIVE",
+    "GCP-NATIVE",
+    "AWS-NATIVE",
+    "CF-NEON-R2",
+    "GCP-NEON-R2",
+    "PORTABLE-CONTAINER-POSTGRES-OBJECT"
+  ],
+  "shortlist": [
+    "CF-NATIVE",
+    "CF-NEON-R2",
+    "GCP-NEON-R2"
+  ],
+  "required_production_prerequisites": [
+    "cloud-iam",
+    "production-identity-federation",
+    "managed-database-row-level-isolation",
+    "network-segmentation",
+    "per-tenant-production-key-management",
+    "production-secrets-management",
+    "independent-penetration-testing"
+  ],
+  "official_source_domains": [
+    "developers.cloudflare.com",
+    "cloud.google.com",
+    "aws.amazon.com",
+    "neon.com",
+    "supabase.com",
+    "azure.microsoft.com"
+  ],
+  "completion_boundary": "Architecture exploration and decision support only; no provider selection, infrastructure provisioning, production-control validation, or production approval is implied."
+}
