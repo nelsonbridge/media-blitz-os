@@ -2,17 +2,19 @@
   "sprint_id": "NKS-SPR-023",
   "sequence": 23,
   "title": "Production-Readiness Review and Enki 1.0 Decision Package",
-  "objective": "Consolidate supply-chain, performance, isolation, policy, observability, retention, concurrency, compatibility, and consumer-boundary evidence into an independently reviewable Enki 1.0 decision package.",
+  "objective": "Consolidate supply-chain, performance, logical-isolation, policy, observability, retention, concurrency, compatibility, consumer-boundary, and unresolved physical-isolation evidence into an independently reviewable Enki 1.0 decision package.",
   "status": "planned",
   "work_item_ids": ["BL-023"],
   "exit_criteria": [
     "All prior sprint evidence is assembled into one exact, versioned readiness manifest",
-    "Adversarial, chaos, recovery, privacy, isolation, compatibility, and supply-chain campaigns pass or have explicit accepted findings",
+    "Adversarial, chaos, recovery, privacy, logical-isolation, compatibility, and supply-chain campaigns pass or have explicit accepted findings",
     "Known limitations, production prerequisites, operating runbooks, rollback plans, and support boundaries are complete",
+    "Cloud IAM, production identity federation, managed database row-level isolation, network segmentation, per-tenant production key management, production secrets management, and independent penetration testing are explicitly validated or recorded as unresolved prerequisites",
+    "No local TEST proof is represented as production infrastructure certification or multitenancy accreditation",
     "An independent review checklist records unresolved concerns without self-certification",
     "An Enki 1.0 candidate and human decision request exist without implying production approval"
   ],
   "evidence": [],
   "blocked_reason": null,
-  "updated_at": "2026-07-14T14:00:00Z"
+  "updated_at": "2026-07-14T20:00:00Z"
 }
