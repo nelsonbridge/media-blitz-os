@@ -1,0 +1,19 @@
+{
+  "sprint_id": "NKS-SPR-027",
+  "sequence": 27,
+  "title": "CF-NEON-R2 Hosted TEST Validation",
+  "objective": "Execute the complete governed hosted TEST validation program against the Cloudflare Workers, Neon Postgres, and R2 finalist and measure the operational consequences of the provider split without implying production approval.",
+  "status": "planned",
+  "work_item_ids": ["BL-027"],
+  "exit_criteria": [
+    "Cloudflare and Neon TEST capabilities satisfy the same fail-closed preflight contract used for the other finalists",
+    "Every ordered validation phase completes with comparable evidence",
+    "Cross-provider transaction, failure, latency, egress, privacy, recovery, credential-revocation, and teardown behavior is explicit",
+    "No provider failure can create duplicate canonical effects, split authority, or unexplained evidence loss",
+    "The environment is destroyed and the final TEST state is reconstructable from governed exports",
+    "Results remain TEST evidence and cannot satisfy unresolved production-control prerequisites"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-16T21:05:00Z"
+}
