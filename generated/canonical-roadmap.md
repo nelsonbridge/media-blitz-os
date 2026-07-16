@@ -395,4 +395,107 @@ Exit criteria:
 - A recommended shortlist and explicit human hosting-decision criteria exist without default approval
 - No production infrastructure is provisioned and Sprint completion does not constitute production hosting approval
 
-Total sprints: 24
+## Sprint 25 — Hosted Multi-Finalist Validation Foundation
+
+- ID: `NKS-SPR-025`
+- Status: `complete`
+- Objective: Convert the Sprint 24 shortlist and explicit human hosting direction into a deterministic, comparable, TEST-only validation program for all three finalists while preserving the zero-cost boundary, unresolved production prerequisites, and fail-closed external capability gates.
+- Work items: BL-025
+- Evidence records: 5
+
+Exit criteria:
+
+- A human decision records VALIDATE MULTIPLE FINALISTS without selecting or approving a production architecture
+- CF-NATIVE, CF-NEON-R2, and GCP-NEON-R2 share one ordered validation phase contract and complete boundary-validation requirements
+- The executable validation program is TEST-only and rejects production authority, production data, and production credentials
+- All seven Sprint 23 production prerequisites remain explicit and unresolved for every finalist
+- Hosted execution readiness requires provider TEST identity, provider TEST credentials, and teardown authority and otherwise fails closed as BLOCKED_EXTERNAL_CAPABILITY
+- Automated tests cover the declared success and denial paths and pass in CI and runtime coverage
+- No infrastructure is provisioned and no production-hosting approval is implied by Sprint completion
+
+## Sprint 26 — CF-NATIVE Hosted TEST Validation
+
+- ID: `NKS-SPR-026`
+- Status: `blocked`
+- Objective: Execute the complete governed hosted TEST validation program against the Cloudflare-native finalist and capture independently reviewable evidence without production data, production credentials, or production authority.
+- Work items: BL-026
+- Evidence records: 0
+
+Exit criteria:
+
+- Cloudflare TEST identity, TEST credentials, and teardown authority are available and scoped to non-production validation
+- The CF-NATIVE finalist completes every ordered validation phase from preflight through teardown and reconstruction
+- Hosted boundary isolation, transaction recovery, portability, privacy-preserving observability, failure injection, and quota behavior are evidenced
+- No TEST approval, credential, or result becomes production authority
+- The hosted TEST environment is destroyed and canonical TEST state remains reconstructable
+- All evidence is hash-bound, attributable, and comparable to the later finalist validations
+
+## Sprint 27 — CF-NEON-R2 Hosted TEST Validation
+
+- ID: `NKS-SPR-027`
+- Status: `planned`
+- Objective: Execute the complete governed hosted TEST validation program against the Cloudflare Workers, Neon Postgres, and R2 finalist and measure the operational consequences of the provider split without implying production approval.
+- Work items: BL-027
+- Evidence records: 0
+
+Exit criteria:
+
+- Cloudflare and Neon TEST capabilities satisfy the same fail-closed preflight contract used for the other finalists
+- Every ordered validation phase completes with comparable evidence
+- Cross-provider transaction, failure, latency, egress, privacy, recovery, credential-revocation, and teardown behavior is explicit
+- No provider failure can create duplicate canonical effects, split authority, or unexplained evidence loss
+- The environment is destroyed and the final TEST state is reconstructable from governed exports
+- Results remain TEST evidence and cannot satisfy unresolved production-control prerequisites
+
+## Sprint 28 — GCP-NEON-R2 Hosted TEST Validation
+
+- ID: `NKS-SPR-028`
+- Status: `planned`
+- Objective: Execute the complete governed hosted TEST validation program against the Cloud Run, Neon Postgres, and R2 finalist and measure whether lower runtime adaptation cost justifies the additional three-provider operational and trust complexity.
+- Work items: BL-028
+- Evidence records: 0
+
+Exit criteria:
+
+- Google Cloud, Neon, and Cloudflare TEST capabilities satisfy the common fail-closed hosted preflight contract
+- Every ordered validation phase completes with evidence comparable to the other finalists
+- Three-provider identity, secret, latency, egress, quota, failure, observability, recovery, and teardown behavior is explicit
+- The current Python service boundary remains governed and consumers cannot bypass Enki application services
+- The environment is destroyed and final TEST state reconstructs from governed exports
+- Results remain non-production evidence and cannot promote unresolved production controls
+
+## Sprint 29 — Cross-Finalist Comparative Evaluation
+
+- ID: `NKS-SPR-029`
+- Status: `planned`
+- Objective: Convert the three hosted TEST campaigns into one evidence-bound, independently reviewable comparative evaluation that preserves uncertainty and failed evidence while making architecture tradeoffs explicit for a later human hosting decision.
+- Work items: BL-029
+- Evidence records: 0
+
+Exit criteria:
+
+- All finalist campaigns are evaluated through one deterministic comparison contract
+- Measured TEST evidence, provider documentation, assumptions, and unresolved findings remain distinct
+- Security, governance, resilience, performance, cost, egress, portability, complexity, recovery, privacy, and support tradeoffs are explicit
+- Incomplete or failed evidence cannot be silently scored as success
+- Production prerequisites remain unresolved unless separately validated with production-scope evidence
+- The package produces a recommendation, disqualifiers, confidence, limitations, and rollback implications without issuing a hosting decision
+
+## Sprint 30 — Hosting Direction and Production-Control Validation Decision Package
+
+- ID: `NKS-SPR-030`
+- Status: `planned`
+- Objective: Assemble the complete hosted TEST evidence, comparative findings, unresolved production-control requirements, operational obligations, migration and rollback consequences, and explicit decision options into an independently reviewable package for the next human hosting-direction decision.
+- Work items: BL-030
+- Evidence records: 0
+
+Exit criteria:
+
+- The decision package binds the exact hosted validation and comparison evidence used
+- Recommendation and human approval remain separate and no default selection is inferred
+- Every unresolved production prerequisite has explicit evidence status and a sequenced validation path
+- Migration, rollback, disaster recovery, support, cost, portability, and failure-domain obligations are explicit
+- Decision options include select, defer, request more evidence, and reject
+- No production infrastructure or production authority is created without a later explicit human production-hosting decision
+
+Total sprints: 30
