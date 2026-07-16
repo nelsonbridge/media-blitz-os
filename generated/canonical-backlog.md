@@ -28,5 +28,11 @@
 | BL-022 | complete | NKS-SPR-022 | Downstream Product Boundary Proofs | 5 |
 | BL-023 | complete | NKS-SPR-023 | Production-Readiness Review and Enki 1.0 Decision Package | 5 |
 | BL-024 | complete | NKS-SPR-024 | Hosted Deployment Options and Split-Cloud Architecture Exploration | 5 |
+| BL-025 | complete | NKS-SPR-025 | Hosted Multi-Finalist Validation Foundation | 5 |
+| BL-026 | blocked | NKS-SPR-026 | CF-NATIVE Hosted TEST Validation | 0 |
+| BL-027 | planned | NKS-SPR-027 | CF-NEON-R2 Hosted TEST Validation | 0 |
+| BL-028 | planned | NKS-SPR-028 | GCP-NEON-R2 Hosted TEST Validation | 0 |
+| BL-029 | planned | NKS-SPR-029 | Cross-Finalist Comparative Evaluation | 0 |
+| BL-030 | planned | NKS-SPR-030 | Hosting Direction and Production-Control Validation Decision Package | 0 |
 
-Total work items: 24
+Total work items: 30
