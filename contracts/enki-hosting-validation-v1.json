@@ -1,0 +1,47 @@
+{
+  "contract": "enki-hosting-validation",
+  "version": "1",
+  "decision": "VALIDATE_MULTIPLE_FINALISTS",
+  "execution_context": "TEST",
+  "external_services_budget_usd": 0,
+  "production_approval": false,
+  "production_data_allowed": false,
+  "production_credentials_allowed": false,
+  "finalists": [
+    "CF-NATIVE",
+    "CF-NEON-R2",
+    "GCP-NEON-R2"
+  ],
+  "required_validation_phases": [
+    "PREFLIGHT",
+    "DEPLOY_TEST_RUNTIME",
+    "IMPORT_SYNTHETIC_FIXTURES",
+    "BOUNDARY_ISOLATION",
+    "TRANSACTION_RECOVERY",
+    "PORTABILITY_RECONSTRUCTION",
+    "PRIVACY_OBSERVABILITY",
+    "FAILURE_INJECTION",
+    "COST_AND_QUOTA_CAPTURE",
+    "TEARDOWN_AND_RECONSTRUCT"
+  ],
+  "required_boundary_dimensions": [
+    "namespace",
+    "tenant",
+    "subject",
+    "domain",
+    "audience",
+    "execution_context"
+  ],
+  "required_production_prerequisites": [
+    "cloud-iam",
+    "production-identity-federation",
+    "managed-database-row-level-isolation",
+    "network-segmentation",
+    "per-tenant-production-key-management",
+    "production-secrets-management",
+    "independent-penetration-testing"
+  ],
+  "hosted_execution_requires_external_credentials": true,
+  "selection_rule": "No finalist may be selected from architecture claims alone. Selection requires comparable hosted TEST evidence or an explicit human waiver naming the missing evidence.",
+  "completion_boundary": "This contract authorizes non-production validation only. It cannot produce production approval or substitute TEST evidence for unresolved production-control validation."
+}
