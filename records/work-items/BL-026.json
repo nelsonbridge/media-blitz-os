@@ -1,0 +1,21 @@
+{
+  "work_item_id": "BL-026",
+  "title": "CF-NATIVE Hosted TEST Validation",
+  "description": "Execute the governed hosted TEST validation contract against the Cloudflare-native finalist using Workers, D1, and R2 with synthetic fixtures, TEST-only authority, explicit teardown, and complete evidence capture.",
+  "status": "blocked",
+  "sprint_id": "NKS-SPR-026",
+  "acceptance_criteria": [
+    "Provider TEST identity, TEST credentials, and teardown authority are available without using production credentials",
+    "A non-production CF-NATIVE runtime is provisioned under the zero-cost boundary or execution stops before cost is incurred",
+    "Synthetic canonical fixtures enter only through governed import paths",
+    "Namespace, tenant, subject, domain, audience, and execution-context isolation pass in the hosted environment",
+    "Transaction interruption, duplicate delivery, exact retry, rollback, recovery, export, import, and deterministic reconstruction pass",
+    "Provider logs and telemetry preserve Enki privacy and disclosure boundaries",
+    "Failure injection covers D1, R2, runtime, credential, quota, and teardown failure paths without manufacturing success",
+    "The environment is destroyed and the final TEST state is reconstructable from governed exports and receipts"
+  ],
+  "evidence": [],
+  "blocked_reason": "Hosted execution requires Cloudflare TEST identity, TEST credentials, and teardown authority. Those external capabilities are not available through the current GitHub execution connection and cannot be inferred or replaced with production credentials.",
+  "superseded_by": null,
+  "updated_at": "2026-07-16T21:05:00Z"
+}
