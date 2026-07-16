@@ -1,0 +1,19 @@
+{
+  "sprint_id": "NKS-SPR-028",
+  "sequence": 28,
+  "title": "GCP-NEON-R2 Hosted TEST Validation",
+  "objective": "Execute the complete governed hosted TEST validation program against the Cloud Run, Neon Postgres, and R2 finalist and measure whether lower runtime adaptation cost justifies the additional three-provider operational and trust complexity.",
+  "status": "planned",
+  "work_item_ids": ["BL-028"],
+  "exit_criteria": [
+    "Google Cloud, Neon, and Cloudflare TEST capabilities satisfy the common fail-closed hosted preflight contract",
+    "Every ordered validation phase completes with evidence comparable to the other finalists",
+    "Three-provider identity, secret, latency, egress, quota, failure, observability, recovery, and teardown behavior is explicit",
+    "The current Python service boundary remains governed and consumers cannot bypass Enki application services",
+    "The environment is destroyed and final TEST state reconstructs from governed exports",
+    "Results remain non-production evidence and cannot promote unresolved production controls"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-16T21:05:00Z"
+}
