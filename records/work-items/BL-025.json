@@ -1,0 +1,51 @@
+{
+  "work_item_id": "BL-025",
+  "title": "Hosted Multi-Finalist Validation Foundation",
+  "description": "Convert the Sprint 24 hosting shortlist and explicit human direction into one deterministic, TEST-only multi-finalist validation program with fail-closed capability gates and no production authority.",
+  "status": "complete",
+  "sprint_id": "NKS-SPR-025",
+  "acceptance_criteria": [
+    "An explicit human hosting-direction decision authorizes validation of multiple finalists without selecting a production architecture",
+    "CF-NATIVE, CF-NEON-R2, and GCP-NEON-R2 are governed by one comparable ordered validation contract",
+    "The validation program is TEST-only, permits no production data or production credentials, and cannot create production approval",
+    "Every finalist must exercise the complete boundary set for namespace, tenant, subject, domain, audience, and execution context",
+    "Every finalist retains all seven unresolved Sprint 23 production prerequisites without manufacturing validation claims",
+    "Hosted execution fails closed unless provider TEST identity, provider TEST credentials, and teardown authority are available",
+    "Focused automated tests cover finalist completeness, phase completeness, boundary completeness, unresolved prerequisites, invalid finalist rejection, capability denial, and readiness"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E-BL25-PR87",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/87",
+      "description": "Implemented the multi-finalist hosting direction, TEST-only validation contract, executable capability gates, review package, and focused tests."
+    },
+    {
+      "evidence_id": "E-BL25-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/746e206e0e2ae0f2a42bed1d2723d11726689d24",
+      "description": "Merged the Sprint 25 hosted validation foundation into sandbox."
+    },
+    {
+      "evidence_id": "E-BL25-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29534344732",
+      "description": "CI passed the complete test suite for the Sprint 25 implementation."
+    },
+    {
+      "evidence_id": "E-BL25-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29534344902",
+      "description": "Runtime Coverage passed with the new hosting validation paths."
+    },
+    {
+      "evidence_id": "E-BL25-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29534346146",
+      "description": "Work Control Authority passed on the isolated implementation change set."
+    }
+  ],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-16T21:05:00Z"
+}
