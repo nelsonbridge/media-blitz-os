@@ -1,0 +1,51 @@
+{
+  "sprint_id": "NKS-SPR-025",
+  "sequence": 25,
+  "title": "Hosted Multi-Finalist Validation Foundation",
+  "objective": "Convert the Sprint 24 shortlist and explicit human hosting direction into a deterministic, comparable, TEST-only validation program for all three finalists while preserving the zero-cost boundary, unresolved production prerequisites, and fail-closed external capability gates.",
+  "status": "complete",
+  "work_item_ids": ["BL-025"],
+  "exit_criteria": [
+    "A human decision records VALIDATE MULTIPLE FINALISTS without selecting or approving a production architecture",
+    "CF-NATIVE, CF-NEON-R2, and GCP-NEON-R2 share one ordered validation phase contract and complete boundary-validation requirements",
+    "The executable validation program is TEST-only and rejects production authority, production data, and production credentials",
+    "All seven Sprint 23 production prerequisites remain explicit and unresolved for every finalist",
+    "Hosted execution readiness requires provider TEST identity, provider TEST credentials, and teardown authority and otherwise fails closed as BLOCKED_EXTERNAL_CAPABILITY",
+    "Automated tests cover the declared success and denial paths and pass in CI and runtime coverage",
+    "No infrastructure is provisioned and no production-hosting approval is implied by Sprint completion"
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E-S25-PR87",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/87",
+      "description": "Implemented the hosted multi-finalist validation foundation and explicit validation direction."
+    },
+    {
+      "evidence_id": "E-S25-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/746e206e0e2ae0f2a42bed1d2723d11726689d24",
+      "description": "Merged the Sprint 25 implementation into sandbox."
+    },
+    {
+      "evidence_id": "E-S25-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29534344732",
+      "description": "CI passed the Sprint 25 implementation and regression suite."
+    },
+    {
+      "evidence_id": "E-S25-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29534344902",
+      "description": "Runtime Coverage passed the new validation program paths."
+    },
+    {
+      "evidence_id": "E-S25-WORK-CONTROL",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29534346146",
+      "description": "Work Control Authority passed before completion promotion."
+    }
+  ],
+  "blocked_reason": null,
+  "updated_at": "2026-07-16T21:05:00Z"
+}
