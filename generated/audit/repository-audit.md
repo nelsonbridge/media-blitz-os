@@ -4,9 +4,9 @@
 
 ## Census
 
-- Files: 832
-- Canonical records: 178
-- Tests: 101
+- Files: 851
+- Canonical records: 190
+- Tests: 102
 - Schemas: 18
 
 ## Top-Level File Counts
@@ -17,11 +17,11 @@
 | .github | 10 |
 | .vscode | 1 |
 | adapters | 1 |
-| architecture | 8 |
+| architecture | 10 |
 | assets | 13 |
 | briefings | 4 |
 | context | 1 |
-| contracts | 6 |
+| contracts | 7 |
 | corpus | 42 |
 | diagnostics | 2 |
 | docs | 31 |
@@ -36,17 +36,17 @@
 | opportunities | 4 |
 | ops | 5 |
 | publishing | 94 |
-| records | 178 |
-| releases | 32 |
+| records | 190 |
+| releases | 34 |
 | research | 2 |
 | roadmap | 25 |
 | runtime | 5 |
 | schemas | 18 |
 | scripts | 5 |
 | security | 1 |
-| src | 135 |
+| src | 136 |
 | templates | 12 |
-| tests | 109 |
+| tests | 110 |
 | validation | 6 |
 | visuals | 17 |
 | whitepapers | 1 |
@@ -75,8 +75,8 @@
 | reconciliation-findings | 0 |
 | disclosure-receipts | 0 |
 | canonical-reservations | 0 |
-| work-items | 24 |
-| sprints | 24 |
+| work-items | 30 |
+| sprints | 30 |
 | governed-transaction-events | 0 |
 | governed-transaction-receipts | 0 |
 
