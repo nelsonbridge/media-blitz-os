@@ -1,0 +1,19 @@
+{
+  "sprint_id": "NKS-SPR-029",
+  "sequence": 29,
+  "title": "Cross-Finalist Comparative Evaluation",
+  "objective": "Convert the three hosted TEST campaigns into one evidence-bound, independently reviewable comparative evaluation that preserves uncertainty and failed evidence while making architecture tradeoffs explicit for a later human hosting decision.",
+  "status": "planned",
+  "work_item_ids": ["BL-029"],
+  "exit_criteria": [
+    "All finalist campaigns are evaluated through one deterministic comparison contract",
+    "Measured TEST evidence, provider documentation, assumptions, and unresolved findings remain distinct",
+    "Security, governance, resilience, performance, cost, egress, portability, complexity, recovery, privacy, and support tradeoffs are explicit",
+    "Incomplete or failed evidence cannot be silently scored as success",
+    "Production prerequisites remain unresolved unless separately validated with production-scope evidence",
+    "The package produces a recommendation, disqualifiers, confidence, limitations, and rollback implications without issuing a hosting decision"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-16T21:05:00Z"
+}

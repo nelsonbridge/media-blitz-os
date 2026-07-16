@@ -1,0 +1,20 @@
+{
+  "work_item_id": "BL-028",
+  "title": "GCP-NEON-R2 Hosted TEST Validation",
+  "description": "Execute the governed hosted TEST validation contract against the Cloud Run, Neon Postgres, and R2 finalist while preserving the current Python runtime shape and measuring three-provider operational consequences.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-028",
+  "acceptance_criteria": [
+    "Google Cloud, Neon, and Cloudflare TEST identities, TEST credentials, and teardown authority are available without production credential reuse",
+    "The TEST runtime is deployed through Cloud Run with synthetic governed state only and explicit cost guardrails",
+    "Boundary isolation, transaction recovery, portability, privacy-preserving observability, and failure injection pass across all three providers",
+    "Cross-provider latency, egress, quota, trust, identity, secret, incident-routing, and recovery evidence is captured",
+    "The runtime preserves stable Enki consumer and governance contracts without repository shortcuts",
+    "All hosted TEST resources and credentials are revoked or destroyed after the campaign",
+    "Final TEST state reconstructs from governed exports and receipts after teardown"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-16T21:05:00Z"
+}

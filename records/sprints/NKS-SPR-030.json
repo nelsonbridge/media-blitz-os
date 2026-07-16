@@ -1,0 +1,19 @@
+{
+  "sprint_id": "NKS-SPR-030",
+  "sequence": 30,
+  "title": "Hosting Direction and Production-Control Validation Decision Package",
+  "objective": "Assemble the complete hosted TEST evidence, comparative findings, unresolved production-control requirements, operational obligations, migration and rollback consequences, and explicit decision options into an independently reviewable package for the next human hosting-direction decision.",
+  "status": "planned",
+  "work_item_ids": ["BL-030"],
+  "exit_criteria": [
+    "The decision package binds the exact hosted validation and comparison evidence used",
+    "Recommendation and human approval remain separate and no default selection is inferred",
+    "Every unresolved production prerequisite has explicit evidence status and a sequenced validation path",
+    "Migration, rollback, disaster recovery, support, cost, portability, and failure-domain obligations are explicit",
+    "Decision options include select, defer, request more evidence, and reject",
+    "No production infrastructure or production authority is created without a later explicit human production-hosting decision"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-16T21:05:00Z"
+}

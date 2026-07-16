@@ -1,0 +1,20 @@
+{
+  "work_item_id": "BL-029",
+  "title": "Cross-Finalist Comparative Evaluation",
+  "description": "Compare the three hosted TEST campaigns through one evidence-bound scorecard covering governance, security, resilience, latency, egress, cost, portability, operational complexity, recovery, and unresolved production-control implications.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-029",
+  "acceptance_criteria": [
+    "All finalist evidence is normalized to one declared comparison schema without suppressing failed or incomplete tests",
+    "The comparison distinguishes measured hosted TEST evidence from architecture assumptions and provider documentation",
+    "Governance, isolation, failure-domain, recovery, privacy, latency, egress, quota, cost, portability, lock-in, and operator-complexity findings are explicit",
+    "Missing or incomparable evidence remains visible and cannot be converted into a favorable score by default",
+    "The seven unresolved production prerequisites remain separately tracked for every finalist",
+    "At least one recommended disposition is produced with explicit disqualifiers, confidence, limitations, and rollback implications",
+    "The comparative result cannot itself select production hosting without a separate human decision"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-16T21:05:00Z"
+}

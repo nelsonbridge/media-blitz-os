@@ -1,0 +1,20 @@
+{
+  "work_item_id": "BL-027",
+  "title": "CF-NEON-R2 Hosted TEST Validation",
+  "description": "Execute the governed hosted TEST validation contract against the Cloudflare Workers, Neon Postgres, and R2 finalist with explicit cross-provider failure handling and comparable evidence capture.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-027",
+  "acceptance_criteria": [
+    "Cloudflare and Neon TEST identities, TEST credentials, and teardown authority are available without production credential reuse",
+    "The split-provider TEST runtime is provisioned within the authorized cost boundary",
+    "Governed synthetic import preserves canonical and evidence-plane separation across providers",
+    "Boundary isolation, transaction recovery, portability, observability privacy, and cross-provider interruption paths pass",
+    "Cross-provider latency, egress, quota, trust-boundary, and support-routing evidence is captured",
+    "Credential revocation and provider-specific teardown leave no active hosted TEST authority",
+    "Final state reconstructs from governed exports after complete environment teardown"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-16T21:05:00Z"
+}

@@ -1,0 +1,19 @@
+{
+  "sprint_id": "NKS-SPR-026",
+  "sequence": 26,
+  "title": "CF-NATIVE Hosted TEST Validation",
+  "objective": "Execute the complete governed hosted TEST validation program against the Cloudflare-native finalist and capture independently reviewable evidence without production data, production credentials, or production authority.",
+  "status": "blocked",
+  "work_item_ids": ["BL-026"],
+  "exit_criteria": [
+    "Cloudflare TEST identity, TEST credentials, and teardown authority are available and scoped to non-production validation",
+    "The CF-NATIVE finalist completes every ordered validation phase from preflight through teardown and reconstruction",
+    "Hosted boundary isolation, transaction recovery, portability, privacy-preserving observability, failure injection, and quota behavior are evidenced",
+    "No TEST approval, credential, or result becomes production authority",
+    "The hosted TEST environment is destroyed and canonical TEST state remains reconstructable",
+    "All evidence is hash-bound, attributable, and comparable to the later finalist validations"
+  ],
+  "evidence": [],
+  "blocked_reason": "The current GitHub execution surface does not provide Cloudflare TEST identity, TEST credentials, or teardown authority required by the Sprint 25 fail-closed hosted execution gate.",
+  "updated_at": "2026-07-16T21:05:00Z"
+}
