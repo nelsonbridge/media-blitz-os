@@ -1,0 +1,20 @@
+{
+  "work_item_id": "BL-030",
+  "title": "Hosting Direction and Production-Control Validation Decision Package",
+  "description": "Assemble the hosted TEST comparison, unresolved production prerequisites, migration and rollback implications, operational obligations, and explicit human decision options into the next Enki hosting-direction package.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-030",
+  "acceptance_criteria": [
+    "The package binds the exact finalist validation evidence and comparative evaluation used for the decision",
+    "A recommended hosting direction is separated from human approval and includes explicit confidence, limitations, disqualifiers, and accepted risks",
+    "Cloud IAM, production identity federation, managed database row-level isolation, network segmentation, per-tenant production key management, production secrets management, and independent penetration testing each have an explicit validation or unresolved status",
+    "Production-control validation work is sequenced without representing provider capability as configured Enki evidence",
+    "Migration, rollback, disaster recovery, support ownership, cost guardrails, and portability consequences are explicit for the recommended direction",
+    "The decision options allow select, defer, request more evidence, or reject without default approval",
+    "No production deployment occurs until a separate explicit human production-hosting decision is recorded"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-16T21:05:00Z"
+}
