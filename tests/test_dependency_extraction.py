@@ -30,7 +30,19 @@ def test_core_contains_no_platform_or_network_imports():
 
 
 def test_canonical_records_are_open_json_files():
-    record_files = sorted((ROOT / "records").glob("*/*.json"))
+    canonical_collections = [
+        "sources",
+        "artifacts",
+        "proofs",
+        "narratives",
+        "visuals",
+        "publications",
+        "capabilities",
+    ]
+    record_files = []
+    for collection in canonical_collections:
+        record_files.extend(sorted((ROOT / "records" / "canonical" / collection).glob("*.json")))
+
     assert record_files, "no canonical JSON records found"
     for path in record_files:
         text = path.read_text(encoding="utf-8")
