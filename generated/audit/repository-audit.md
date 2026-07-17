@@ -90,6 +90,6 @@
 
 ## Findings
 
-- generated view may be stale: generated/canonical-roadmap.md expected count 36
+- No census, reference-integrity, or generated-view drift issues detected.
 
-Total findings: 1
+Total findings: 0

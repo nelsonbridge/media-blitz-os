@@ -498,4 +498,106 @@ Exit criteria:
 - Decision options include select, defer, request more evidence, and reject
 - No production infrastructure or production authority is created without a later explicit human production-hosting decision
 
-Total sprints: 30
+## Sprint 31 — Canonical Schema and Temporal Authority Hardening
+
+- ID: `NKS-SPR-031`
+- Status: `planned`
+- Objective: Align the canonical record model with the corrected nine-layer architecture by making historical truth, current authority, effective time, recorded time, supersession, revocation, consent, policy validity, and migration semantics explicit across governed record families.
+- Work items: BL-031
+- Evidence records: 0
+
+Exit criteria:
+
+- Canonical record families distinguish historical truth from current authority without rewriting history
+- Recorded, effective, superseded, revoked, consumed, and authority-valid temporal states are explicit where applicable
+- Approval, consent, policy, transition, reconciliation, disclosure, transaction, retention, conflict, and recovery records share compatible temporal semantics
+- Schema evolution and migration preserve exact lineage and deterministic reconstruction
+- Invalid temporal overlap, authority ambiguity, and unsupported supersession fail closed
+- Automated regression tests prove historical and current-authority views remain distinguishable
+
+## Sprint 32 — Governed Retrieval, Projection, and Model Gateway
+
+- ID: `NKS-SPR-032`
+- Status: `planned`
+- Objective: Deliver governed knowledge retrieval, temporal projection, semantic access boundaries, and provider-neutral model-use orchestration without allowing projections or model output to become canonical authority.
+- Work items: BL-032
+- Evidence records: 0
+
+Exit criteria:
+
+- Consumers can query current-authority and historical views through explicit, distinguishable contracts
+- Structured and semantic retrieval preserve tenant, subject, domain, audience, privacy, and purpose boundaries
+- Projection and interpretation outputs remain noncanonical unless promoted through a separate governed operation
+- Model gateway requests are context-bound, provenance-filtered, policy-evaluated, receipted, replayable, and provider-neutral
+- Model output cannot mutate canonical Enki state without a separate authorized transaction
+- Pagination, error, stale-state, denial, replay, and leakage paths are automated and deterministic
+
+## Sprint 33 — Hosted Downstream Consumer Integration
+
+- ID: `NKS-SPR-033`
+- Status: `planned`
+- Objective: Integrate Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity through stable governed Enki consumer contracts while preserving independent product boundaries and stricter human-state protections.
+- Work items: BL-033
+- Evidence records: 0
+
+Exit criteria:
+
+- All three product suites consume Enki through versioned consumer boundaries rather than direct canonical persistence
+- Media Blitz exercises governed source retrieval, package construction, publication-shaped TEST delivery, feedback, and calibration without direct Enki mutation
+- Career Intelligence exercises governed professional-state, evidence, opportunity, and role-fit projections with explicit external-action approval
+- Personal Cognitive Continuity exercises history, preferences, decisions, correction, retraction, consent, privacy, and temporal authority with human controls stricter than generic tenant policy
+- Cross-product purpose, audience, namespace, subject, and authority leakage fail closed
+- All integrations remain TEST-only unless separately authorized for production effects
+
+## Sprint 34 — Multi-Consumer Isolation and Platform Operations
+
+- ID: `NKS-SPR-034`
+- Status: `planned`
+- Objective: Operate multiple independent Enki consumers concurrently and prove workload isolation, purpose limitation, shared-knowledge boundaries, contention handling, telemetry, incident response, portability, and recovery under coordinated TEST load.
+- Work items: BL-034
+- Evidence records: 0
+
+Exit criteria:
+
+- Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity execute concurrently without cross-product authority or data leakage
+- Tenant, namespace, subject, domain, audience, purpose, and execution-context isolation survive concurrent workloads
+- Contention, duplicate work, delayed delivery, queue-shaped pressure, retry, rollback, and recovery preserve exact receipts and canonical authority
+- Privacy-preserving telemetry identifies workload interference and incident conditions without exposing protected payloads
+- One consumer failure cannot widen another consumer's authority or corrupt shared canonical state
+- Portability and recovery exercises reconstruct multi-consumer TEST operation deterministically
+
+## Sprint 35 — Selected Hosting Architecture Production-Control Validation Readiness
+
+- ID: `NKS-SPR-035`
+- Status: `planned`
+- Objective: Prepare the selected hosting direction, or the unresolved shortlist if no selection has been made, for explicit production-control validation by defining exact control tests, evidence requirements, deployment prerequisites, rollback obligations, and stop conditions without manufacturing production evidence.
+- Work items: BL-035
+- Evidence records: 0
+
+Exit criteria:
+
+- Cloud IAM, production identity federation, managed database isolation, network segmentation, per-tenant key management, secrets management, and independent penetration testing each have explicit validation contracts
+- TEST substitutes and production validations remain distinguishable and cannot satisfy each other's gates
+- Selected-hosting control mappings identify provider responsibilities, Enki responsibilities, evidence owners, failure criteria, and rollback paths
+- Unresolved hosting direction does not block provider-neutral control-contract implementation
+- No production deployment is authorized by completion of this sprint
+- A later validation run can fail closed on missing production capability rather than reopening architecture design
+
+## Sprint 36 — Enki Hosted Release Candidate and Deployment Decision
+
+- ID: `NKS-SPR-036`
+- Status: `planned`
+- Objective: Consolidate the hosted validation, canonical architecture, multi-consumer operation, zero-cost envelope, production-control readiness, portability, recovery, limitations, and exact evidence into a final hosted Enki release candidate and explicit human deployment decision package.
+- Work items: BL-036
+- Evidence records: 0
+
+Exit criteria:
+
+- The release candidate binds exact architecture, implementation, hosted TEST, multi-consumer, recovery, portability, performance, and security evidence
+- Software readiness, hosted architecture validation, zero-cost operating envelope, and production deployment readiness are reported as separate conclusions
+- Known limitations, unresolved production controls, support boundaries, runbooks, rollback plans, migration paths, and independent-review requirements are explicit
+- No unresolved or failed evidence is represented as passing
+- The package supports APPROVE, APPROVE WITH CONDITIONS, DEFER, and REJECT dispositions
+- Human deployment authority remains required and is not self-issued by automation or model output
+
+Total sprints: 36

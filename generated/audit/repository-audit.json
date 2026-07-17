@@ -13,10 +13,8 @@
     ".yml": 9
   },
   "file_count": 863,
-  "issue_count": 1,
-  "issues": [
-    "generated view may be stale: generated/canonical-roadmap.md expected count 36"
-  ],
+  "issue_count": 0,
+  "issues": [],
   "readiness": {
     "approval:needed": 12,
     "editorial:ready": 12,
