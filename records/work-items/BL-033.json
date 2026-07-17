@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-033",
+  "title": "Hosted Downstream Consumer Integration",
+  "description": "Integrate Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity through stable governed Enki consumer contracts while preserving independent product boundaries and stricter human-state protections.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-033",
+  "acceptance_criteria": [
+    "All three suites consume Enki through versioned consumer boundaries rather than direct canonical persistence",
+    "Media Blitz exercises governed publication-shaped TEST paths without direct Enki mutation",
+    "Career Intelligence exercises governed professional-state and opportunity projections with explicit external-action approval",
+    "Personal Cognitive Continuity exercises consent, correction, retraction, privacy, and temporal authority with stricter human controls",
+    "Cross-product purpose, audience, namespace, subject, and authority leakage fail closed"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-16T22:00:00Z"
+}
