@@ -108,6 +108,14 @@ Remaining controls:
 3. Add source revision metadata where it improves diagnosis without compromising deterministic output.
 4. Replace the legacy model-feedback generator reference after the governed writer becomes the production path.
 
+## Temporal Authority Hardening
+
+Sprint 31 adds a product-neutral temporal-authority contract that keeps immutable historical truth separate from current authority. Governed records may carry distinct recorded time, effective time, and authority-valid time together with explicit supersession, revocation, consumption, and retraction terminal events.
+
+Current authority is resolved as-of explicit temporal coordinates. Competing current authority, cross-authority supersession, unsupported terminal state, invalid temporal windows, and supersession cycles fail closed. A change in authority never rewrites the historical record that previously existed.
+
+The implementation is in `src/nks/enki/temporal_authority.py`; automated path coverage is declared in `src/nks/application/sprint31_path_manifest.py` and exercised by `tests/test_sprint31_temporal_authority.py`.
+
 ## Transitional Decision
 
 `runtime/STATUS.md` and `docs/master-state-index.md` currently contain useful reconciled summaries, but they are manually maintained. They are therefore Class 3 transitional documents and are not authoritative.
