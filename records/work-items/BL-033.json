@@ -2,7 +2,7 @@
   "work_item_id": "BL-033",
   "title": "Hosted Downstream Consumer Integration",
   "description": "Integrate Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity through stable governed Enki consumer contracts while preserving independent product boundaries and stricter human-state protections.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-033",
   "acceptance_criteria": [
     "All three suites consume Enki through versioned consumer boundaries rather than direct canonical persistence",
@@ -11,8 +11,39 @@
     "Personal Cognitive Continuity exercises consent, correction, retraction, privacy, and temporal authority with stricter human controls",
     "Cross-product purpose, audience, namespace, subject, and authority leakage fail closed"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL33-PR103",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/103",
+      "description": "Implemented all three downstream product integration lanes with TEST-only no-effect delivery and product isolation."
+    },
+    {
+      "evidence_id": "E-BL33-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/3eacd818813dfc95f5c3bbc2cd4d3da5b9ee5a5f",
+      "description": "Merged Sprint 33 implementation and identity hardening."
+    },
+    {
+      "evidence_id": "E-BL33-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29558905343",
+      "description": "CI passed product integration and inherited product-boundary regressions."
+    },
+    {
+      "evidence_id": "E-BL33-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29558905455",
+      "description": "Runtime Coverage passed all declared Sprint 33 paths."
+    },
+    {
+      "evidence_id": "E-BL33-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29558905374",
+      "description": "Work Control Authority passed before completion promotion."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-16T22:00:00Z"
+  "updated_at": "2026-07-17T06:05:00Z"
 }
