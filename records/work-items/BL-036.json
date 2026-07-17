@@ -2,7 +2,7 @@
   "work_item_id": "BL-036",
   "title": "Enki Hosted Release Candidate and Deployment Decision",
   "description": "Consolidate hosted validation, architecture, multi-consumer operation, zero-cost envelope, production-control readiness, portability, recovery, limitations, and exact evidence into a final hosted Enki release candidate and explicit human deployment decision package.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-036",
   "acceptance_criteria": [
     "The release candidate binds exact architecture, hosted TEST, multi-consumer, recovery, portability, performance, and security evidence",
@@ -11,8 +11,14 @@
     "Failed or missing evidence cannot be represented as passing",
     "Only an explicit human decision can authorize deployment"
   ],
-  "evidence": [],
+  "evidence": [
+    {"evidence_id":"E-BL36-PR109","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/109","description":"Sprint 36 implementation and RC2 package."},
+    {"evidence_id":"E-BL36-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/6d5cb06a87578f830b6b5ee1f517d3c01cc562d2","description":"Sprint 36 merge commit."},
+    {"evidence_id":"E-BL36-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29564257640","description":"CI passed."},
+    {"evidence_id":"E-BL36-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29564257620","description":"Runtime Coverage passed."},
+    {"evidence_id":"E-BL36-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29564257655","description":"Work Control Authority passed."}
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-16T22:00:00Z"
+  "updated_at": "2026-07-17T07:55:00Z"
 }
