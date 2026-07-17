@@ -2,7 +2,7 @@
   "work_item_id": "BL-034",
   "title": "Multi-Consumer Isolation and Platform Operations",
   "description": "Run independent Enki consumers concurrently and prove workload isolation, purpose limitation, contention handling, telemetry, incident response, portability, and deterministic recovery.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-034",
   "acceptance_criteria": [
     "Concurrent product-suite workloads cannot leak authority or protected data across consumer boundaries",
@@ -11,8 +11,14 @@
     "Privacy-preserving telemetry detects interference without exposing protected payloads",
     "Multi-consumer state reconstructs deterministically after failure"
   ],
-  "evidence": [],
+  "evidence": [
+    {"evidence_id":"E-BL34-PR105","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/105","description":"Sprint 34 implementation."},
+    {"evidence_id":"E-BL34-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/8a3fb18efa839169058428d9bca4205cac2657b6","description":"Sprint 34 merge commit."},
+    {"evidence_id":"E-BL34-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29562112249","description":"CI passed."},
+    {"evidence_id":"E-BL34-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29562112250","description":"Runtime Coverage passed."},
+    {"evidence_id":"E-BL34-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29562112273","description":"Work Control Authority passed."}
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-16T22:00:00Z"
+  "updated_at": "2026-07-17T07:15:00Z"
 }
