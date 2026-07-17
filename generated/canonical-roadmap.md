@@ -586,10 +586,10 @@ Exit criteria:
 ## Sprint 36 — Enki Hosted Release Candidate and Deployment Decision
 
 - ID: `NKS-SPR-036`
-- Status: `planned`
+- Status: `complete`
 - Objective: Consolidate the hosted validation, canonical architecture, multi-consumer operation, zero-cost envelope, production-control readiness, portability, recovery, limitations, and exact evidence into a final hosted Enki release candidate and explicit human deployment decision package.
 - Work items: BL-036
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 
