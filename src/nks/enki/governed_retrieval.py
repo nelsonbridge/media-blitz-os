@@ -172,10 +172,13 @@ def retrieve_governed_knowledge(
     if not request.tenant_id or not request.subject_id or not request.domain:
         raise RetrievalBoundaryError("tenant, subject, and domain boundaries are required")
 
+    # Apply tenant isolation before temporal reconstruction so another tenant
+    # cannot influence authority conflicts, timeline hashes, cursors, or counts.
     relevant = [
         record
         for record in records
-        if record.envelope.subject_id == request.subject_id
+        if record.tenant_id == request.tenant_id
+        and record.envelope.subject_id == request.subject_id
         and record.envelope.domain == request.domain
     ]
     timeline = TemporalAuthorityTimeline(record.envelope for record in relevant)
