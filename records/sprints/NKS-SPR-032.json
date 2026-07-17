@@ -3,7 +3,7 @@
   "sequence": 32,
   "title": "Governed Retrieval, Projection, and Model Gateway",
   "objective": "Deliver governed knowledge retrieval, temporal projection, semantic access boundaries, and provider-neutral model-use orchestration without allowing projections or model output to become canonical authority.",
-  "status": "planned",
+  "status": "complete",
   "work_item_ids": ["BL-032"],
   "exit_criteria": [
     "Consumers can query current-authority and historical views through explicit, distinguishable contracts",
@@ -13,7 +13,38 @@
     "Model output cannot mutate canonical Enki state without a separate authorized transaction",
     "Pagination, error, stale-state, denial, replay, and leakage paths are automated and deterministic"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S32-PR101",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/101",
+      "description": "Implemented governed current/historical retrieval, semantic and structured access boundaries, deterministic projections, and provider-neutral model gateway execution."
+    },
+    {
+      "evidence_id": "E-S32-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/fd1469c5251e42bb41744865a14259707c9eed51",
+      "description": "Merged the Sprint 32 implementation into sandbox."
+    },
+    {
+      "evidence_id": "E-S32-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29558147016",
+      "description": "CI passed the Sprint 32 implementation and regression suite."
+    },
+    {
+      "evidence_id": "E-S32-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29558146457",
+      "description": "Runtime Coverage passed all declared Sprint 32 retrieval and model-gateway TEST paths."
+    },
+    {
+      "evidence_id": "E-S32-WORK-CONTROL",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29558146472",
+      "description": "Work Control Authority passed before completion promotion."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-16T22:00:00Z"
+  "updated_at": "2026-07-17T05:50:00Z"
 }
