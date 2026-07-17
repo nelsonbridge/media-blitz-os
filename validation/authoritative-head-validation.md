@@ -26,6 +26,18 @@ Before any tests or diagnostics:
 
 Pre-existing workspace changes are out of scope and must not be cleaned, reset, stashed, or incorporated into the validation run.
 
+## Executable runner
+
+Use the repository-owned runner for repeatable authoritative validation:
+
+```bash
+python scripts/validate_authoritative_head.py --repository-root .
+```
+
+The runner fetches `origin/sandbox`, creates a disposable detached worktree at the exact resolved SHA, verifies commit identity and initial cleanliness, executes the credential-free validation matrix below, rejects governed drift, emits a machine-readable JSON report, and removes the temporary worktree when complete.
+
+Use `--keep-worktree` only when an investigator intentionally needs to retain the isolated validation worktree after the run. The runner must never reset, stash, clean, or otherwise alter pre-existing changes in the invoking workspace.
+
 ## Core CI-equivalent validation
 
 Run from the SHA-verified isolated worktree:
