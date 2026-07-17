@@ -1,0 +1,255 @@
+{
+  "architecture_documents": [
+    "architecture/enki/enki-split-cloud-reference-architecture.md",
+    "architecture/enki/enki-canonical-nine-layer-architecture.md"
+  ],
+  "candidate_sha256": "sha256:c443b2ff6eeb00e6682f6c56dc00cd14bdee53940432e1b9d12e9f473c9346b4",
+  "candidate_version": "enki-hosted-1.0-rc2",
+  "conclusions": [
+    {
+      "blockers": [],
+      "conclusion_sha256": "sha256:22a167fc884d9c48579cc6ec89521988d57784eb67d0b94dd13b32f363463c0f",
+      "evidence_ids": [
+        "SPRINT-015",
+        "SPRINT-016",
+        "SPRINT-020",
+        "SPRINT-031",
+        "SPRINT-032",
+        "SPRINT-033",
+        "SPRINT-034",
+        "SPRINT-035"
+      ],
+      "kind": "SOFTWARE_READINESS",
+      "production_claim": false,
+      "statement": "The provider-neutral Enki software, governance, retrieval, model-use, downstream-consumer, multi-consumer, recovery, and production-control-readiness contracts pass repository-local TEST validation.",
+      "status": "PASS_TEST"
+    },
+    {
+      "blockers": [
+        "CF-NATIVE hosted TEST campaign is blocked on provider TEST identity, credentials, and teardown authority.",
+        "CF-NEON-R2 and GCP-NEON-R2 hosted TEST campaigns are not yet executed.",
+        "Cross-finalist comparison and hosting-direction decision packages therefore remain incomplete."
+      ],
+      "conclusion_sha256": "sha256:0a94bd1e79c46bbaf6e364ce013c912055a37bde3a320e80cec7484f3b110764",
+      "evidence_ids": [
+        "ARCH-NINE-LAYER",
+        "ARCH-SPLIT-CLOUD",
+        "SPRINT-024",
+        "SPRINT-025",
+        "SPRINT-026",
+        "SPRINT-027",
+        "SPRINT-028",
+        "SPRINT-029",
+        "SPRINT-030"
+      ],
+      "kind": "HOSTED_ARCHITECTURE_VALIDATION",
+      "production_claim": false,
+      "statement": "The corrected architecture and common hosted validation contract are complete, but no finalist has completed the comparable hosted TEST campaign required to validate a hosting architecture.",
+      "status": "BLOCKED"
+    },
+    {
+      "blockers": [
+        "Repository-local TEST execution is demonstrated at zero external-services cost.",
+        "Actual hosted finalist quota, latency, storage, egress, and teardown behavior have not been measured end to end."
+      ],
+      "conclusion_sha256": "sha256:9a4722a9647b238e959fb2ab84ceda3a157000f72925b7638703ecb1defe9959",
+      "evidence_ids": [
+        "SPRINT-016",
+        "SPRINT-025",
+        "SPRINT-026",
+        "SPRINT-027",
+        "SPRINT-028"
+      ],
+      "kind": "ZERO_COST_OPERATING_ENVELOPE",
+      "production_claim": false,
+      "statement": "The local and CI TEST path remains within the absolute zero-dollar external-services boundary; the actual hosted zero-cost operating envelope remains unvalidated.",
+      "status": "PARTIAL"
+    },
+    {
+      "blockers": [
+        "cloud-iam",
+        "production-identity-federation",
+        "managed-database-row-level-isolation",
+        "network-segmentation",
+        "per-tenant-production-key-management",
+        "production-secrets-management",
+        "independent-penetration-testing"
+      ],
+      "conclusion_sha256": "sha256:27aa884df6cb1b60fbc5de593d541d242d29fe2e32495856c5e0a0d0601238c9",
+      "evidence_ids": [
+        "SPRINT-035",
+        "SPRINT-026",
+        "SPRINT-027",
+        "SPRINT-028"
+      ],
+      "kind": "PRODUCTION_DEPLOYMENT_READINESS",
+      "production_claim": false,
+      "statement": "Production deployment is not ready: all seven physical production controls have validation contracts but lack qualifying production-scope evidence, and no production hosting architecture has been selected.",
+      "status": "BLOCKED"
+    }
+  ],
+  "decision_state": "PENDING_HUMAN_DECISION",
+  "evidence": [
+    {
+      "category": "architecture",
+      "evidence_id": "ARCH-NINE-LAYER",
+      "evidence_sha256": "sha256:f3cff681d330369832a960d52cabce73d327971fedcc161f7eb33688d888c3ae",
+      "qualification": "Corrected product-neutral nine-layer architecture source of truth.",
+      "reference": "architecture/enki/enki-canonical-nine-layer-architecture.md",
+      "status": "complete"
+    },
+    {
+      "category": "architecture",
+      "evidence_id": "ARCH-SPLIT-CLOUD",
+      "evidence_sha256": "sha256:501112ee687a627a3f610ebab3e5b1769f3e27d14edcf308125e12a8fba18f13",
+      "qualification": "Corrected split-cloud reference architecture source of truth.",
+      "reference": "architecture/enki/enki-split-cloud-reference-architecture.md",
+      "status": "complete"
+    },
+    {
+      "category": "hosting-options",
+      "evidence_id": "SPRINT-024",
+      "evidence_sha256": "sha256:297c4fcf91da4f0d56c65d2f787002a033fc7359ded055c9fa86aa35e68f8cb0",
+      "qualification": "Hosting options and split-cloud exploration completed without production approval.",
+      "reference": "records/sprints/NKS-SPR-024.json",
+      "status": "complete"
+    },
+    {
+      "category": "hosted-validation-foundation",
+      "evidence_id": "SPRINT-025",
+      "evidence_sha256": "sha256:fb777e3329c6d40fa1af2b9b3b3cd2e684130a6989255147ce5dba779b70e7fb",
+      "qualification": "Comparable TEST-only validation program established for all three finalists.",
+      "reference": "records/sprints/NKS-SPR-025.json",
+      "status": "complete"
+    },
+    {
+      "category": "hosted-validation",
+      "evidence_id": "SPRINT-026",
+      "evidence_sha256": "sha256:40f2b5f824f549883e09b2ede185514c56909a83dcb975a9a968a63ee09d15a1",
+      "qualification": "CF-NATIVE hosted TEST campaign blocked by unavailable provider TEST identity, credentials, and teardown authority.",
+      "reference": "records/sprints/NKS-SPR-026.json",
+      "status": "blocked"
+    },
+    {
+      "category": "hosted-validation",
+      "evidence_id": "SPRINT-027",
+      "evidence_sha256": "sha256:8e9f305bc7ec21ab064dce4b90fc760473c9e549cd742db054d5e9f7b7386205",
+      "qualification": "CF-NEON-R2 hosted TEST campaign not yet executed.",
+      "reference": "records/sprints/NKS-SPR-027.json",
+      "status": "planned"
+    },
+    {
+      "category": "hosted-validation",
+      "evidence_id": "SPRINT-028",
+      "evidence_sha256": "sha256:b96d9993eda05a1146592d6d019e72387cb9afefbbd25b2b0f93a7c96d7ff7bd",
+      "qualification": "GCP-NEON-R2 hosted TEST campaign not yet executed.",
+      "reference": "records/sprints/NKS-SPR-028.json",
+      "status": "planned"
+    },
+    {
+      "category": "hosting-comparison",
+      "evidence_id": "SPRINT-029",
+      "evidence_sha256": "sha256:a89366c6da7731e6636d952b83959ecbab0dc7604e03113242eab4ffec586554",
+      "qualification": "Cross-finalist comparison cannot complete before hosted TEST campaigns.",
+      "reference": "records/sprints/NKS-SPR-029.json",
+      "status": "planned"
+    },
+    {
+      "category": "hosting-decision",
+      "evidence_id": "SPRINT-030",
+      "evidence_sha256": "sha256:ba3763cbb206f369fc9a374d456c65f602cb0ada37a2ee0e9e7e43a0e843a7a8",
+      "qualification": "Hosting-direction decision package remains pending comparable hosted evidence.",
+      "reference": "records/sprints/NKS-SPR-030.json",
+      "status": "planned"
+    },
+    {
+      "category": "performance",
+      "evidence_id": "SPRINT-015",
+      "evidence_sha256": "sha256:a6d86dbd9c07db7a549cd061f38dd6bb8435e368446bac19ff06bdfa14f03fd8",
+      "qualification": "Repository-local TEST benchmarks exist; they are not production capacity guarantees.",
+      "reference": "records/sprints/NKS-SPR-015.json",
+      "status": "complete"
+    },
+    {
+      "category": "zero-cost-isolation",
+      "evidence_id": "SPRINT-016",
+      "evidence_sha256": "sha256:649fddf14246940ff733147ad3d7ae0aa653ebcf90afad9b53891f12a1ed89a0",
+      "qualification": "Zero-cost repository-local isolation proof completed without paid infrastructure.",
+      "reference": "records/sprints/NKS-SPR-016.json",
+      "status": "complete"
+    },
+    {
+      "category": "recovery",
+      "evidence_id": "SPRINT-020",
+      "evidence_sha256": "sha256:cca9880f3fe92ab1452a99ae5cccef5cdd940ef515f45dbd59981a6b888928a2",
+      "qualification": "Concurrency, contention, and distributed recovery TEST contracts completed.",
+      "reference": "records/sprints/NKS-SPR-020.json",
+      "status": "complete"
+    },
+    {
+      "category": "temporal-authority",
+      "evidence_id": "SPRINT-031",
+      "evidence_sha256": "sha256:2ab318a86e4192978f7df4f8e7f176c6e1614c471a48c5bdf586786f3650a8f1",
+      "qualification": "Historical truth and current authority are temporally separated and fail closed on conflict.",
+      "reference": "records/sprints/NKS-SPR-031.json",
+      "status": "complete"
+    },
+    {
+      "category": "retrieval-model-gateway",
+      "evidence_id": "SPRINT-032",
+      "evidence_sha256": "sha256:55bd2cbaba24845981f58d2af65613a618c42d9d6896d4a26ca4ed9484775102",
+      "qualification": "Governed retrieval, projections, and provider-neutral model gateway completed in TEST.",
+      "reference": "records/sprints/NKS-SPR-032.json",
+      "status": "complete"
+    },
+    {
+      "category": "downstream-consumers",
+      "evidence_id": "SPRINT-033",
+      "evidence_sha256": "sha256:10d8f7f68dacba5f2b65546277b16f3bbfa12e799f5bae456d02c2dbf9a2f137",
+      "qualification": "All three downstream product suites consume Enki through governed TEST-only boundaries.",
+      "reference": "records/sprints/NKS-SPR-033.json",
+      "status": "complete"
+    },
+    {
+      "category": "multi-consumer-operations",
+      "evidence_id": "SPRINT-034",
+      "evidence_sha256": "sha256:e53190c91f909775a902a8b206cf5f4b890c5b3eb7dea5f10b90dcf753f5e3b6",
+      "qualification": "Concurrent multi-consumer isolation, recovery, telemetry, and portability paths completed.",
+      "reference": "records/sprints/NKS-SPR-034.json",
+      "status": "complete"
+    },
+    {
+      "category": "production-control-readiness",
+      "evidence_id": "SPRINT-035",
+      "evidence_sha256": "sha256:2ea3b57772c8fbb7d7b108f33623ccca26001b6500920904c80d383d8c629d66",
+      "qualification": "All seven production controls have explicit validation contracts but no qualifying production validation evidence.",
+      "reference": "records/sprints/NKS-SPR-035.json",
+      "status": "complete"
+    }
+  ],
+  "evidence_baseline_commit": "219bf709b3adae247085f4610bae4fe86059a5f9",
+  "external_services_budget_usd": 0,
+  "package_documents": [
+    "releases/enki-hosted-1.0-rc2/README.md",
+    "releases/enki-hosted-1.0-rc2/readiness-manifest.json",
+    "releases/enki-hosted-1.0-rc2/known-limitations.md",
+    "releases/enki-hosted-1.0-rc2/operating-runbook.md",
+    "releases/enki-hosted-1.0-rc2/rollback-plan.md",
+    "releases/enki-hosted-1.0-rc2/migration-path.md",
+    "releases/enki-hosted-1.0-rc2/support-boundaries.md",
+    "releases/enki-hosted-1.0-rc2/independent-review-checklist.md",
+    "releases/enki-hosted-1.0-rc2/human-deployment-decision-request.md"
+  ],
+  "production_approval": false,
+  "production_deployment_authorized": false,
+  "schema_version": 1,
+  "unresolved_production_controls": [
+    "cloud-iam",
+    "production-identity-federation",
+    "managed-database-row-level-isolation",
+    "network-segmentation",
+    "per-tenant-production-key-management",
+    "production-secrets-management",
+    "independent-penetration-testing"
+  ]
+}

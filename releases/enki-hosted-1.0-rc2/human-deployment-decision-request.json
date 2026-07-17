@@ -1,0 +1,15 @@
+{
+  "candidate_sha256": "sha256:c443b2ff6eeb00e6682f6c56dc00cd14bdee53940432e1b9d12e9f473c9346b4",
+  "candidate_version": "enki-hosted-1.0-rc2",
+  "decision_authority": "HUMAN",
+  "decision_state": "PENDING_HUMAN_DECISION",
+  "request_id": "DECISION-enki-hosted-1.0-rc2",
+  "request_sha256": "sha256:cfb54f4f807c9ae3cbaa49b7cb76edb89ed91f034fee4559f05bfea4e850e6eb",
+  "selected_disposition": null,
+  "supported_dispositions": [
+    "APPROVE",
+    "APPROVE_WITH_CONDITIONS",
+    "DEFER",
+    "REJECT"
+  ]
+}
