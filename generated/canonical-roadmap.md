@@ -722,10 +722,10 @@ Exit criteria:
 ## Sprint 44 — Disaster Recovery, Portability, and Provider Exit
 
 - ID: `NKS-SPR-044`
-- Status: `planned`
+- Status: `complete`
 - Objective: Prove that hosted Enki can be backed up, exported, reconstructed, restored, and migrated without permanent dependence on the selected provider combination or loss of authority semantics.
 - Work items: BL-044
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 
