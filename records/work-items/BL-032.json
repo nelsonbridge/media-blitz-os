@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-032",
+  "title": "Governed Retrieval, Projection, and Model Gateway",
+  "description": "Provide governed current/historical retrieval, projection, semantic access, and provider-neutral model orchestration while preventing projections or model output from becoming canonical authority.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-032",
+  "acceptance_criteria": [
+    "Current-authority and historical queries are explicit and distinguishable",
+    "Retrieval preserves tenant, subject, domain, audience, purpose, privacy, and execution-context boundaries",
+    "Projection and interpretation outputs remain noncanonical absent a separate governed promotion",
+    "Model requests are provenance-filtered, policy-evaluated, receipted, replayable, and provider-neutral",
+    "Model output cannot directly mutate canonical state"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-16T22:00:00Z"
+}
