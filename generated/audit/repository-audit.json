@@ -10,9 +10,9 @@
     ".toml": 1,
     ".xml": 1,
     ".yaml": 1,
-    ".yml": 10
+    ".yml": 9
   },
-  "file_count": 875,
+  "file_count": 874,
   "issue_count": 0,
   "issues": [],
   "readiness": {
@@ -52,7 +52,7 @@
   "test_count": 105,
   "top_level_counts": {
     "(root)": 5,
-    ".github": 11,
+    ".github": 10,
     ".vscode": 1,
     "adapters": 1,
     "architecture": 10,
