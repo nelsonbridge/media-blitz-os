@@ -552,7 +552,41 @@ class MultiConsumerPlatformCoordinator:
                 for item in items
             }
             for future in as_completed(futures):
-                results.append(future.result())
+                item = futures[future]
+                try:
+                    results.append(future.result())
+                except Exception as exc:
+                    attempt = self._rolled_back_attempt(
+                        item,
+                        attempt_number=1,
+                        now=now,
+                        reason_code=type(exc).__name__,
+                    )
+                    self._append_telemetry(
+                        item,
+                        sequence=3,
+                        kind=TelemetryKind.DIAGNOSTIC,
+                        status=TelemetryStatus.DENIED,
+                        metadata={
+                            "operation_family": "multi-consumer",
+                            "terminal_state": "ROLLED_BACK",
+                            "reason_code": type(exc).__name__,
+                            "retry_count": 0,
+                            "adapter_kind": "test-no-effect",
+                        },
+                        now=now,
+                    )
+                    results.append(
+                        MultiConsumerWorkResult.create(
+                            work_id=item.work_id,
+                            suite=item.suite,
+                            terminal_state=PlatformTerminalState.ROLLED_BACK,
+                            attempts=(attempt,),
+                            package_sha256=None,
+                            product_receipt_sha256=None,
+                            exact_retry=False,
+                        )
+                    )
         results.sort(key=lambda item: item.work_id)
 
         canonical_after = self._canonical_fingerprint(items)
