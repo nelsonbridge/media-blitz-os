@@ -36,7 +36,7 @@
 | BL-030 | planned | NKS-SPR-030 | Hosting Direction and Production-Control Validation Decision Package | 0 |
 | BL-031 | complete | NKS-SPR-031 | Canonical Schema and Temporal Authority Hardening | 5 |
 | BL-032 | complete | NKS-SPR-032 | Governed Retrieval, Projection, and Model Gateway | 5 |
-| BL-033 | planned | NKS-SPR-033 | Hosted Downstream Consumer Integration | 0 |
+| BL-033 | complete | NKS-SPR-033 | Hosted Downstream Consumer Integration | 5 |
 | BL-034 | planned | NKS-SPR-034 | Multi-Consumer Isolation and Platform Operations | 0 |
 | BL-035 | planned | NKS-SPR-035 | Selected Hosting Architecture Production-Control Validation Readiness | 0 |
 | BL-036 | planned | NKS-SPR-036 | Enki Hosted Release Candidate and Deployment Decision | 0 |

@@ -4,9 +4,9 @@
 
 ## Census
 
-- Files: 870
+- Files: 875
 - Canonical records: 202
-- Tests: 104
+- Tests: 105
 - Schemas: 18
 
 ## Top-Level File Counts
@@ -14,7 +14,7 @@
 | Area | Files |
 |---|---:|
 | (root) | 5 |
-| .github | 10 |
+| .github | 11 |
 | .vscode | 1 |
 | adapters | 1 |
 | architecture | 10 |
@@ -24,7 +24,7 @@
 | contracts | 7 |
 | corpus | 42 |
 | diagnostics | 2 |
-| docs | 31 |
+| docs | 32 |
 | editorial | 1 |
 | engineering | 1 |
 | evidence | 10 |
@@ -44,9 +44,9 @@
 | schemas | 18 |
 | scripts | 5 |
 | security | 1 |
-| src | 141 |
+| src | 143 |
 | templates | 12 |
-| tests | 112 |
+| tests | 113 |
 | validation | 6 |
 | visuals | 17 |
 | whitepapers | 1 |
