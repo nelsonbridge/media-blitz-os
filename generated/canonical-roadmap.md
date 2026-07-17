@@ -501,10 +501,10 @@ Exit criteria:
 ## Sprint 31 — Canonical Schema and Temporal Authority Hardening
 
 - ID: `NKS-SPR-031`
-- Status: `planned`
+- Status: `complete`
 - Objective: Align the canonical record model with the corrected nine-layer architecture by making historical truth, current authority, effective time, recorded time, supersession, revocation, consent, policy validity, and migration semantics explicit across governed record families.
 - Work items: BL-031
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 
