@@ -600,4 +600,208 @@ Exit criteria:
 - The package supports APPROVE, APPROVE WITH CONDITIONS, DEFER, and REJECT dispositions
 - Human deployment authority remains required and is not self-issued by automation or model output
 
-Total sprints: 36
+## Sprint 37 — Deployment Decision Resolution and Architecture Lock
+
+- ID: `NKS-SPR-037`
+- Status: `blocked`
+- Objective: Convert an explicit human RC2 deployment disposition into a governed architecture baseline, or preserve the pending decision as a fail-closed blocker without inferring a hosting or production choice.
+- Work items: BL-037
+- Evidence records: 0
+
+Exit criteria:
+
+- An explicit human RC2 disposition is bound to the exact candidate hash before any architecture lock
+- APPROVE, APPROVE WITH CONDITIONS, DEFER, and REJECT produce distinguishable governed outcomes
+- No hosting provider or production architecture is inferred from TEST evidence or sprint completion
+- Any approved conditions become explicit prerequisites with owners, evidence requirements, and stop conditions
+- A defer or reject outcome preserves the validated software baseline and historical decision lineage
+- Architecture lock, when authorized, identifies exact provider choices, optional services, responsibility boundaries, and rollback baseline
+
+## Sprint 38 — Infrastructure-as-Code and Reproducible Environment Build
+
+- ID: `NKS-SPR-038`
+- Status: `planned`
+- Objective: Implement the human-authorized hosted architecture as reproducible TEST infrastructure with deterministic creation, verification, teardown, and clean rebuild while preserving the zero-cost boundary until separately changed.
+- Work items: BL-038
+- Evidence records: 0
+
+Exit criteria:
+
+- The selected architecture is represented as versioned infrastructure definitions rather than hidden manual configuration
+- TEST and later production environments have explicit configuration and authority separation
+- Environment creation, verification, teardown, and clean rebuild are automated and deterministic
+- Secrets are referenced through governed bindings and never committed to the repository
+- Infrastructure drift and undeclared provider services fail closed
+- The environment can be destroyed without losing reconstructable governed TEST state
+
+## Sprint 39 — Hosted Identity, Tenancy, and Context Enforcement
+
+- ID: `NKS-SPR-039`
+- Status: `planned`
+- Objective: Move Enki identity, tenant, subject, domain, audience, purpose, and execution-context boundaries into the authorized hosted runtime and validate least-privilege behavior adversarially.
+- Work items: BL-039
+- Evidence records: 0
+
+Exit criteria:
+
+- Hosted authentication and identity resolution bind exact Enki boundary context
+- Cross-tenant, cross-subject, cross-domain, cross-audience, cross-purpose, and TEST-to-PRODUCTION escalation fail closed
+- Scoped credentials, revocation, expiry, rotation, and forged-identity paths are validated
+- Human-state controls remain stricter than generic tenant authorization
+- Hosted denial evidence is privacy-preserving and reconstructable
+- No TEST identity or credential can satisfy a production identity gate
+
+## Sprint 40 — Physical Canonical Persistence and Migration
+
+- ID: `NKS-SPR-040`
+- Status: `planned`
+- Objective: Implement the definitive hosted mapping for canonical structured state and temporal authority, including schema migration, indexes, transactions, reservations, receipts, conflicts, and reconstruction.
+- Work items: BL-040
+- Evidence records: 0
+
+Exit criteria:
+
+- The physical schema preserves historical truth, current authority, recorded time, effective time, and authority-valid time
+- Canonical writes remain reachable only through governed mutation paths
+- Transactions, reservations, receipts, conflicts, and temporal lineage are physically reconstructable
+- Schema migration preserves identifiers, hashes, authority, and historical lineage
+- Cross-tenant physical isolation matches the selected production-control contract
+- Rollback restores the last validated schema and canonical fingerprint
+
+## Sprint 41 — Evidence and Object Plane
+
+- ID: `NKS-SPR-041`
+- Status: `planned`
+- Objective: Implement the hosted evidence, package, manifest, export, backup, and recovery object plane while preserving cryptographic linkage to structured governed state and provider portability.
+- Work items: BL-041
+- Evidence records: 0
+
+Exit criteria:
+
+- Evidence objects and canonical structured state remain distinct but hash-linked
+- Publication, model-use, audit, export, backup, and recovery packages use deterministic manifests
+- Retention, tombstone, archival, and deletion semantics preserve governed history
+- Object corruption, missing objects, manifest tampering, and orphan evidence fail closed
+- Provider-specific object storage does not become canonical authority
+- Portable export and clean-room import reconstruct exact evidence relationships
+
+## Sprint 42 — Hosted Governed Execution Runtime
+
+- ID: `NKS-SPR-042`
+- Status: `planned`
+- Objective: Deploy and validate the complete Enki governed mutation path in the authorized hosted runtime so no canonical mutation can bypass context, authority, policy, provenance, reservation, journaling, receipts, and recovery.
+- Work items: BL-042
+- Evidence records: 0
+
+Exit criteria:
+
+- Hosted requests resolve exact context before authority or mutation evaluation
+- Every canonical mutation passes authority, policy, provenance, reservation, journal, and receipt controls
+- Duplicate, delayed, interrupted, and conflicting operations converge or fail closed
+- Hosted retries cannot duplicate canonical effects or consume authority twice
+- Failure recovery reconstructs exact state and evidence lineage
+- TEST execution remains incapable of production effects unless separately authorized
+
+## Sprint 43 — Hosted Retrieval and Knowledge Access
+
+- ID: `NKS-SPR-043`
+- Status: `planned`
+- Objective: Operationalize current-authority, historical, contextual, structured, semantic, and projection access against the hosted governed state without leaking authority or converting projections into canonical truth.
+- Work items: BL-043
+- Evidence records: 0
+
+Exit criteria:
+
+- Hosted consumers can explicitly request current-authority, historical, and as-of views
+- Tenant, subject, domain, audience, purpose, privacy, and provenance filters are enforced server-side
+- Structured and semantic retrieval remain deterministic within declared contracts
+- Projections and interpretations remain noncanonical absent separate governed promotion
+- Pagination, stale-state, denial, replay, and leakage paths are validated
+- Model access continues through the governed provider-neutral model gateway
+
+## Sprint 44 — Disaster Recovery, Portability, and Provider Exit
+
+- ID: `NKS-SPR-044`
+- Status: `planned`
+- Objective: Prove that hosted Enki can be backed up, exported, reconstructed, restored, and migrated without permanent dependence on the selected provider combination or loss of authority semantics.
+- Work items: BL-044
+- Evidence records: 0
+
+Exit criteria:
+
+- Structured state and object evidence have coordinated backup and recovery procedures
+- Point-in-time and clean-room reconstruction preserve exact canonical fingerprints and receipts
+- Provider outage and provider-exit scenarios have tested recovery paths
+- Exports remain open, deterministic, hash-bound, and independently verifiable
+- Rollback and migration preserve authority, lineage, policy, consent, and temporal semantics
+- Provider loss cannot silently convert projections, caches, or replicas into canonical authority
+
+## Sprint 45 — Production-Control Implementation
+
+- ID: `NKS-SPR-045`
+- Status: `planned`
+- Objective: Implement and validate the seven Sprint 35 production-control contracts against the human-authorized hosted architecture using qualifying production-scope evidence and independent assessment where required.
+- Work items: BL-045
+- Evidence records: 0
+
+Exit criteria:
+
+- Cloud IAM is validated with least-privilege and denial evidence
+- Production identity federation is validated with forged, expired, revoked, and wrong-audience denial paths
+- Managed database row-level isolation and network segmentation are validated in production scope
+- Per-tenant production keys and production secrets management are validated for rotation, revocation, and leakage resistance
+- Independent penetration testing is performed by an authorized independent assessor
+- Every control is classified VALIDATED, PARTIALLY VALIDATED, UNVALIDATED, or EXTERNALLY REQUIRED without self-certification
+
+## Sprint 46 — Operational Observability and Incident Management
+
+- ID: `NKS-SPR-046`
+- Status: `planned`
+- Objective: Provide production-shaped operational visibility, incident reconstruction, health monitoring, alerting, and privacy-preserving diagnostics without exposing protected knowledge or allowing observability to mutate canonical state.
+- Work items: BL-046
+- Evidence records: 0
+
+Exit criteria:
+
+- Metrics, traces, structured logs, and health indicators use bounded metadata and stable correlation identifiers
+- Protected canonical content, secrets, and disallowed personal data never enter telemetry
+- Queue pressure, saturation, latency, failure, retry, recovery, and provider degradation are observable
+- Incident records reconstruct exact operation, authority, evidence, and recovery lineage without widening disclosure
+- Telemetry loss, duplication, ordering gaps, and correlation mismatch are detectable
+- Observability and incident tooling cannot mutate canonical state or authorize recovery effects
+
+## Sprint 47 — Multi-Product Hosted Integration
+
+- ID: `NKS-SPR-047`
+- Status: `planned`
+- Objective: Run Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity concurrently against hosted Enki through stable governed consumer boundaries without cross-product data, purpose, or authority leakage.
+- Work items: BL-047
+- Evidence records: 0
+
+Exit criteria:
+
+- All three product suites use versioned hosted Enki consumer contracts
+- Concurrent hosted workloads preserve tenant, subject, domain, audience, purpose, and product isolation
+- Media Blitz publication paths, Career external-action paths, and Personal Cognitive Continuity human controls remain independently governed
+- One product failure or overload cannot widen another product authority or corrupt canonical state
+- Cross-product observability remains privacy-preserving and attributable
+- No downstream product acquires direct canonical persistence or approval-consumption capability
+
+## Sprint 48 — Enki 1.0 Operational Release and Human Launch Decision
+
+- ID: `NKS-SPR-048`
+- Status: `planned`
+- Objective: Assemble the complete operational evidence package for Enki 1.0, report software, hosted platform, production controls, operations, cost, recovery, portability, and multi-consumer readiness separately, and request an explicit human launch decision.
+- Work items: BL-048
+- Evidence records: 0
+
+Exit criteria:
+
+- The release package binds exact software, architecture, hosting, security, identity, canonical data, evidence, recovery, portability, multi-consumer, operations, and cost evidence
+- Hosted platform readiness and production-control readiness are not inferred from software TEST success
+- Known limitations, accepted findings, support obligations, rollback, migration, and independent-review requirements are explicit
+- Missing, failed, deferred, or conditional evidence remains distinguishable
+- The package supports APPROVE, APPROVE WITH CONDITIONS, DEFER, and REJECT
+- Only explicit human launch authority can authorize operational production launch
+
+Total sprints: 48

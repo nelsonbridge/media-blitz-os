@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-039",
+  "title": "Hosted Identity, Tenancy, and Context Enforcement",
+  "description": "Move Enki identity, tenant, subject, domain, audience, purpose, and execution-context boundaries into the authorized hosted runtime and validate least-privilege behavior adversarially.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-039",
+  "acceptance_criteria": [
+    "Hosted authentication and identity resolution bind exact Enki boundary context",
+    "Cross-tenant, cross-subject, cross-domain, cross-audience, cross-purpose, and TEST-to-PRODUCTION escalation fail closed",
+    "Scoped credentials, revocation, expiry, rotation, and forged-identity paths are validated",
+    "Human-state controls remain stricter than generic tenant authorization",
+    "Hosted denial evidence is privacy-preserving and reconstructable"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-17T08:00:00Z"
+}

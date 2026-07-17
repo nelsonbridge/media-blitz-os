@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-040",
+  "title": "Physical Canonical Persistence and Migration",
+  "description": "Implement the definitive hosted mapping for canonical structured state and temporal authority, including schema migration, indexes, transactions, reservations, receipts, conflicts, and reconstruction.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-040",
+  "acceptance_criteria": [
+    "The physical schema preserves historical truth, current authority, recorded time, effective time, and authority-valid time",
+    "Canonical writes remain reachable only through governed mutation paths",
+    "Transactions, reservations, receipts, conflicts, and temporal lineage are physically reconstructable",
+    "Schema migration preserves identifiers, hashes, authority, and historical lineage",
+    "Cross-tenant physical isolation matches the selected production-control contract"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-17T08:00:00Z"
+}

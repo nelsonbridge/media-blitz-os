@@ -1,0 +1,21 @@
+{
+  "sprint_id": "NKS-SPR-039",
+  "sequence": 39,
+  "title": "Hosted Identity, Tenancy, and Context Enforcement",
+  "objective": "Move Enki identity, tenant, subject, domain, audience, purpose, and execution-context boundaries into the authorized hosted runtime and validate least-privilege behavior adversarially.",
+  "status": "planned",
+  "work_item_ids": [
+    "BL-039"
+  ],
+  "exit_criteria": [
+    "Hosted authentication and identity resolution bind exact Enki boundary context",
+    "Cross-tenant, cross-subject, cross-domain, cross-audience, cross-purpose, and TEST-to-PRODUCTION escalation fail closed",
+    "Scoped credentials, revocation, expiry, rotation, and forged-identity paths are validated",
+    "Human-state controls remain stricter than generic tenant authorization",
+    "Hosted denial evidence is privacy-preserving and reconstructable",
+    "No TEST identity or credential can satisfy a production identity gate"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-17T08:00:00Z"
+}

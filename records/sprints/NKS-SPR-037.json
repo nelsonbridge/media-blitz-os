@@ -1,0 +1,21 @@
+{
+  "sprint_id": "NKS-SPR-037",
+  "sequence": 37,
+  "title": "Deployment Decision Resolution and Architecture Lock",
+  "objective": "Convert an explicit human RC2 deployment disposition into a governed architecture baseline, or preserve the pending decision as a fail-closed blocker without inferring a hosting or production choice.",
+  "status": "blocked",
+  "work_item_ids": [
+    "BL-037"
+  ],
+  "exit_criteria": [
+    "An explicit human RC2 disposition is bound to the exact candidate hash before any architecture lock",
+    "APPROVE, APPROVE WITH CONDITIONS, DEFER, and REJECT produce distinguishable governed outcomes",
+    "No hosting provider or production architecture is inferred from TEST evidence or sprint completion",
+    "Any approved conditions become explicit prerequisites with owners, evidence requirements, and stop conditions",
+    "A defer or reject outcome preserves the validated software baseline and historical decision lineage",
+    "Architecture lock, when authorized, identifies exact provider choices, optional services, responsibility boundaries, and rollback baseline"
+  ],
+  "evidence": [],
+  "blocked_reason": "RC2 deployment decision remains PENDING_HUMAN_DECISION; only explicit human authority can resolve Sprint 37.",
+  "updated_at": "2026-07-17T08:00:00Z"
+}

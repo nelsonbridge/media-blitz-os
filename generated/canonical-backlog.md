@@ -40,5 +40,17 @@
 | BL-034 | complete | NKS-SPR-034 | Multi-Consumer Isolation and Platform Operations | 5 |
 | BL-035 | complete | NKS-SPR-035 | Selected Hosting Architecture Production-Control Validation Readiness | 5 |
 | BL-036 | complete | NKS-SPR-036 | Enki Hosted Release Candidate and Deployment Decision | 5 |
+| BL-037 | blocked | NKS-SPR-037 | Deployment Decision Resolution and Architecture Lock | 0 |
+| BL-038 | planned | NKS-SPR-038 | Infrastructure-as-Code and Reproducible Environment Build | 0 |
+| BL-039 | planned | NKS-SPR-039 | Hosted Identity, Tenancy, and Context Enforcement | 0 |
+| BL-040 | planned | NKS-SPR-040 | Physical Canonical Persistence and Migration | 0 |
+| BL-041 | planned | NKS-SPR-041 | Evidence and Object Plane | 0 |
+| BL-042 | planned | NKS-SPR-042 | Hosted Governed Execution Runtime | 0 |
+| BL-043 | planned | NKS-SPR-043 | Hosted Retrieval and Knowledge Access | 0 |
+| BL-044 | planned | NKS-SPR-044 | Disaster Recovery, Portability, and Provider Exit | 0 |
+| BL-045 | planned | NKS-SPR-045 | Production-Control Implementation | 0 |
+| BL-046 | planned | NKS-SPR-046 | Operational Observability and Incident Management | 0 |
+| BL-047 | planned | NKS-SPR-047 | Multi-Product Hosted Integration | 0 |
+| BL-048 | planned | NKS-SPR-048 | Enki 1.0 Operational Release and Human Launch Decision | 0 |
 
-Total work items: 36
+Total work items: 48

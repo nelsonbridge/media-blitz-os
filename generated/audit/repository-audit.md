@@ -4,8 +4,8 @@
 
 ## Census
 
-- Files: 893
-- Canonical records: 202
+- Files: 917
+- Canonical records: 226
 - Tests: 108
 - Schemas: 18
 
@@ -36,7 +36,7 @@
 | opportunities | 4 |
 | ops | 5 |
 | publishing | 94 |
-| records | 202 |
+| records | 226 |
 | releases | 44 |
 | research | 2 |
 | roadmap | 25 |
@@ -75,8 +75,8 @@
 | reconciliation-findings | 0 |
 | disclosure-receipts | 0 |
 | canonical-reservations | 0 |
-| work-items | 36 |
-| sprints | 36 |
+| work-items | 48 |
+| sprints | 48 |
 | governed-transaction-events | 0 |
 | governed-transaction-receipts | 0 |
 

@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-047",
+  "title": "Multi-Product Hosted Integration",
+  "description": "Run Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity concurrently against hosted Enki through stable governed consumer boundaries without cross-product data, purpose, or authority leakage.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-047",
+  "acceptance_criteria": [
+    "All three product suites use versioned hosted Enki consumer contracts",
+    "Concurrent hosted workloads preserve tenant, subject, domain, audience, purpose, and product isolation",
+    "Media Blitz publication paths, Career external-action paths, and Personal Cognitive Continuity human controls remain independently governed",
+    "One product failure or overload cannot widen another product authority or corrupt canonical state",
+    "Cross-product observability remains privacy-preserving and attributable"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-17T08:00:00Z"
+}
