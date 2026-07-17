@@ -2,7 +2,7 @@
   "work_item_id": "BL-031",
   "title": "Canonical Schema and Temporal Authority Hardening",
   "description": "Harden Enki's canonical schema so historical truth, current authority, temporal validity, supersession, revocation, consent, policy, migration, and recovery semantics remain explicit and reconstructable.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-031",
   "acceptance_criteria": [
     "Historical truth and current authority are represented separately across governed record families",
@@ -11,8 +11,39 @@
     "Schema migration preserves exact lineage and deterministic reconstruction",
     "Regression tests cover authority changes without historical rewriting"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL31-PR99",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/99",
+      "description": "Implemented and tested the complete Sprint 31 temporal-authority contract and path matrix."
+    },
+    {
+      "evidence_id": "E-BL31-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/df347aee4c3c1ead887deb25605085fcf2fbba07",
+      "description": "Merged Sprint 31 implementation."
+    },
+    {
+      "evidence_id": "E-BL31-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29557349760",
+      "description": "CI passed the Sprint 31 regression suite."
+    },
+    {
+      "evidence_id": "E-BL31-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29557349741",
+      "description": "Runtime Coverage passed all declared temporal-authority paths."
+    },
+    {
+      "evidence_id": "E-BL31-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29557349756",
+      "description": "Work Control Authority passed before evidence-bearing completion promotion."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-16T22:00:00Z"
+  "updated_at": "2026-07-17T05:35:00Z"
 }
