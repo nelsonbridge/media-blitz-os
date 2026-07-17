@@ -1,0 +1,33 @@
+name: Fix Sprint 41 Bundle Hash Once
+on:
+  push:
+    branches: [execution/complete-enki-sprint-41]
+permissions:
+  contents: write
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: execution/complete-enki-sprint-41
+      - name: Bind schema version into portable bundle hash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('src/nks/application/evidence_object_plane.py')
+          t=p.read_text(encoding='utf-8')
+          old='p=dict(values); p["bundle_sha256"]=canonical_sha256(p); return cls(**p)'
+          new='p={"schema_version":"enki-object-plane/v1",**dict(values)}; p["bundle_sha256"]=canonical_sha256(p); return cls(**p)'
+          if old not in t: raise SystemExit('portable bundle create line not found')
+          p.write_text(t.replace(old,new,1),encoding='utf-8')
+          PY
+      - name: Self-delete and commit
+        run: |
+          rm .github/workflows/fix-sprint41-bundle-hash-once.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/nks/application/evidence_object_plane.py .github/workflows/fix-sprint41-bundle-hash-once.yml
+          git commit -m 'Bind schema version into portable object bundle hash'
+          git push origin HEAD:execution/complete-enki-sprint-41
