@@ -200,7 +200,7 @@ class HostedDownstreamConsumerService:
             }
         )
         package_payload = {
-            "package_id": f"{suite.value}-HOSTED-{projection.projection_hash.removeprefix('sha256:')[:20]}",
+            "package_id": f"{suite.value}-{intent.value}-{projection.projection_hash.removeprefix('sha256:')[:20]}",
             "suite": suite,
             "output_kind": output_kind,
             "source_request_id": canonical_sha256(retrieval_request),
