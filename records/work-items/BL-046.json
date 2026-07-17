@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-046",
+  "title": "Operational Observability and Incident Management",
+  "description": "Provide production-shaped operational visibility, incident reconstruction, health monitoring, alerting, and privacy-preserving diagnostics without exposing protected knowledge or allowing observability to mutate canonical state.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-046",
+  "acceptance_criteria": [
+    "Metrics, traces, structured logs, and health indicators use bounded metadata and stable correlation identifiers",
+    "Protected canonical content, secrets, and disallowed personal data never enter telemetry",
+    "Queue pressure, saturation, latency, failure, retry, recovery, and provider degradation are observable",
+    "Incident records reconstruct exact operation, authority, evidence, and recovery lineage without widening disclosure",
+    "Telemetry loss, duplication, ordering gaps, and correlation mismatch are detectable"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-17T08:00:00Z"
+}

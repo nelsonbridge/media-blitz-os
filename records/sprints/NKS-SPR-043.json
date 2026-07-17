@@ -1,0 +1,21 @@
+{
+  "sprint_id": "NKS-SPR-043",
+  "sequence": 43,
+  "title": "Hosted Retrieval and Knowledge Access",
+  "objective": "Operationalize current-authority, historical, contextual, structured, semantic, and projection access against the hosted governed state without leaking authority or converting projections into canonical truth.",
+  "status": "planned",
+  "work_item_ids": [
+    "BL-043"
+  ],
+  "exit_criteria": [
+    "Hosted consumers can explicitly request current-authority, historical, and as-of views",
+    "Tenant, subject, domain, audience, purpose, privacy, and provenance filters are enforced server-side",
+    "Structured and semantic retrieval remain deterministic within declared contracts",
+    "Projections and interpretations remain noncanonical absent separate governed promotion",
+    "Pagination, stale-state, denial, replay, and leakage paths are validated",
+    "Model access continues through the governed provider-neutral model gateway"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-17T08:00:00Z"
+}

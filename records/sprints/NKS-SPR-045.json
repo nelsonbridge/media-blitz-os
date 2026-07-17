@@ -1,0 +1,21 @@
+{
+  "sprint_id": "NKS-SPR-045",
+  "sequence": 45,
+  "title": "Production-Control Implementation",
+  "objective": "Implement and validate the seven Sprint 35 production-control contracts against the human-authorized hosted architecture using qualifying production-scope evidence and independent assessment where required.",
+  "status": "planned",
+  "work_item_ids": [
+    "BL-045"
+  ],
+  "exit_criteria": [
+    "Cloud IAM is validated with least-privilege and denial evidence",
+    "Production identity federation is validated with forged, expired, revoked, and wrong-audience denial paths",
+    "Managed database row-level isolation and network segmentation are validated in production scope",
+    "Per-tenant production keys and production secrets management are validated for rotation, revocation, and leakage resistance",
+    "Independent penetration testing is performed by an authorized independent assessor",
+    "Every control is classified VALIDATED, PARTIALLY VALIDATED, UNVALIDATED, or EXTERNALLY REQUIRED without self-certification"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-17T08:00:00Z"
+}

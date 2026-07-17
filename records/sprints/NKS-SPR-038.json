@@ -1,0 +1,21 @@
+{
+  "sprint_id": "NKS-SPR-038",
+  "sequence": 38,
+  "title": "Infrastructure-as-Code and Reproducible Environment Build",
+  "objective": "Implement the human-authorized hosted architecture as reproducible TEST infrastructure with deterministic creation, verification, teardown, and clean rebuild while preserving the zero-cost boundary until separately changed.",
+  "status": "planned",
+  "work_item_ids": [
+    "BL-038"
+  ],
+  "exit_criteria": [
+    "The selected architecture is represented as versioned infrastructure definitions rather than hidden manual configuration",
+    "TEST and later production environments have explicit configuration and authority separation",
+    "Environment creation, verification, teardown, and clean rebuild are automated and deterministic",
+    "Secrets are referenced through governed bindings and never committed to the repository",
+    "Infrastructure drift and undeclared provider services fail closed",
+    "The environment can be destroyed without losing reconstructable governed TEST state"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-17T08:00:00Z"
+}

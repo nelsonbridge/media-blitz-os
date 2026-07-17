@@ -1,0 +1,21 @@
+{
+  "sprint_id": "NKS-SPR-044",
+  "sequence": 44,
+  "title": "Disaster Recovery, Portability, and Provider Exit",
+  "objective": "Prove that hosted Enki can be backed up, exported, reconstructed, restored, and migrated without permanent dependence on the selected provider combination or loss of authority semantics.",
+  "status": "planned",
+  "work_item_ids": [
+    "BL-044"
+  ],
+  "exit_criteria": [
+    "Structured state and object evidence have coordinated backup and recovery procedures",
+    "Point-in-time and clean-room reconstruction preserve exact canonical fingerprints and receipts",
+    "Provider outage and provider-exit scenarios have tested recovery paths",
+    "Exports remain open, deterministic, hash-bound, and independently verifiable",
+    "Rollback and migration preserve authority, lineage, policy, consent, and temporal semantics",
+    "Provider loss cannot silently convert projections, caches, or replicas into canonical authority"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-17T08:00:00Z"
+}

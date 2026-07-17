@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-042",
+  "title": "Hosted Governed Execution Runtime",
+  "description": "Deploy and validate the complete Enki governed mutation path in the authorized hosted runtime so no canonical mutation can bypass context, authority, policy, provenance, reservation, journaling, receipts, and recovery.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-042",
+  "acceptance_criteria": [
+    "Hosted requests resolve exact context before authority or mutation evaluation",
+    "Every canonical mutation passes authority, policy, provenance, reservation, journal, and receipt controls",
+    "Duplicate, delayed, interrupted, and conflicting operations converge or fail closed",
+    "Hosted retries cannot duplicate canonical effects or consume authority twice",
+    "Failure recovery reconstructs exact state and evidence lineage"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-17T08:00:00Z"
+}

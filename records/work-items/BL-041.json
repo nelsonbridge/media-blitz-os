@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-041",
+  "title": "Evidence and Object Plane",
+  "description": "Implement the hosted evidence, package, manifest, export, backup, and recovery object plane while preserving cryptographic linkage to structured governed state and provider portability.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-041",
+  "acceptance_criteria": [
+    "Evidence objects and canonical structured state remain distinct but hash-linked",
+    "Publication, model-use, audit, export, backup, and recovery packages use deterministic manifests",
+    "Retention, tombstone, archival, and deletion semantics preserve governed history",
+    "Object corruption, missing objects, manifest tampering, and orphan evidence fail closed",
+    "Provider-specific object storage does not become canonical authority"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-17T08:00:00Z"
+}
