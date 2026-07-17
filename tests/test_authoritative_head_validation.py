@@ -7,8 +7,11 @@ import pytest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from scripts.validate_authoritative_head import (
+    EXPECTED_WORKFLOW_FILES,
     ValidationError,
     assert_sha_match,
+    assert_workflow_inventory,
+    parse_divergence,
     parse_pytest_summary,
     read_coverage,
     skipped_checks,
@@ -24,6 +27,48 @@ def test_authoritative_sha_mismatch_fails_closed():
 
 def test_authoritative_sha_match_passes():
     assert_sha_match("a" * 40, "a" * 40)
+
+
+def test_parse_divergence_reports_ahead_and_behind_counts():
+    assert parse_divergence("4\t847") == (4, 847)
+
+
+def test_parse_divergence_rejects_unexpected_output():
+    with pytest.raises(ValidationError, match="unexpected git divergence output"):
+        parse_divergence("not-a-count")
+
+
+def test_workflow_inventory_accepts_exact_governed_set(tmp_path: Path):
+    workflow_dir = tmp_path / ".github" / "workflows"
+    workflow_dir.mkdir(parents=True)
+    for name in EXPECTED_WORKFLOW_FILES:
+        (workflow_dir / name).write_text("name: test\n", encoding="utf-8")
+
+    assert assert_workflow_inventory(tmp_path) == EXPECTED_WORKFLOW_FILES
+
+
+def test_workflow_inventory_fails_closed_on_unclassified_workflow(tmp_path: Path):
+    workflow_dir = tmp_path / ".github" / "workflows"
+    workflow_dir.mkdir(parents=True)
+    for name in EXPECTED_WORKFLOW_FILES:
+        (workflow_dir / name).write_text("name: test\n", encoding="utf-8")
+    (workflow_dir / "new-governance-surface.yml").write_text(
+        "name: new\n", encoding="utf-8"
+    )
+
+    with pytest.raises(ValidationError, match="unclassified"):
+        assert_workflow_inventory(tmp_path)
+
+
+def test_workflow_inventory_fails_closed_on_missing_workflow(tmp_path: Path):
+    workflow_dir = tmp_path / ".github" / "workflows"
+    workflow_dir.mkdir(parents=True)
+    retained = sorted(EXPECTED_WORKFLOW_FILES)[1:]
+    for name in retained:
+        (workflow_dir / name).write_text("name: test\n", encoding="utf-8")
+
+    with pytest.raises(ValidationError, match="missing"):
+        assert_workflow_inventory(tmp_path)
 
 
 def test_validation_virtualenv_python_is_inside_disposable_environment(tmp_path: Path):
