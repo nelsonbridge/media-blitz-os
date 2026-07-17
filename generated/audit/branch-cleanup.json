@@ -5,25 +5,25 @@
   ],
   "apply": true,
   "archived": {
-    "main@pre-consolidation": "archive/pre-consolidation/main-32fcfa36605d"
+    "main@pre-consolidation": "archive/pre-consolidation/main-fd1469c5251e"
   },
   "before": [
-    "execution/complete-enki-sprint-32",
+    "governance/promote-sprint-32-completion",
     "main",
     "sandbox"
   ],
   "default_branch_requested": "main",
   "delete_branch_on_merge_requested": true,
   "deleted": [
-    "execution/complete-enki-sprint-32"
+    "governance/promote-sprint-32-completion"
   ],
   "errors": [
     "repository settings: GitHub API 403: Resource not accessible by integration"
   ],
-  "main_current_sha": "fd1469c5251e42bb41744865a14259707c9eed51",
-  "main_previous_sha": "32fcfa36605d7d1af228d887ef7fa02c90028edb",
+  "main_current_sha": "608cd0e993d9ae5894e54023ca85682ebb2d040f",
+  "main_previous_sha": "fd1469c5251e42bb41744865a14259707c9eed51",
   "merged_into": {
-    "execution/complete-enki-sprint-32": "main"
+    "governance/promote-sprint-32-completion": "main"
   },
   "repository": "nelsonbridge/media-blitz-os",
   "settings_updated": false
