@@ -3,7 +3,7 @@
   "sequence": 31,
   "title": "Canonical Schema and Temporal Authority Hardening",
   "objective": "Align the canonical record model with the corrected nine-layer architecture by making historical truth, current authority, effective time, recorded time, supersession, revocation, consent, policy validity, and migration semantics explicit across governed record families.",
-  "status": "planned",
+  "status": "complete",
   "work_item_ids": ["BL-031"],
   "exit_criteria": [
     "Canonical record families distinguish historical truth from current authority without rewriting history",
@@ -13,7 +13,38 @@
     "Invalid temporal overlap, authority ambiguity, and unsupported supersession fail closed",
     "Automated regression tests prove historical and current-authority views remain distinguishable"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S31-PR99",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/99",
+      "description": "Implemented immutable temporal-authority contracts, deterministic as-of resolution, fail-closed ambiguity and supersession checks, governed migration, path manifest, and adversarial regression coverage."
+    },
+    {
+      "evidence_id": "E-S31-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/df347aee4c3c1ead887deb25605085fcf2fbba07",
+      "description": "Merged the Sprint 31 implementation into sandbox."
+    },
+    {
+      "evidence_id": "E-S31-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29557349760",
+      "description": "CI passed the Sprint 31 implementation and regression suite."
+    },
+    {
+      "evidence_id": "E-S31-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29557349741",
+      "description": "Runtime Coverage passed the complete Sprint 31 temporal-authority TEST path matrix."
+    },
+    {
+      "evidence_id": "E-S31-WORK-CONTROL",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29557349756",
+      "description": "Work Control Authority passed before completion promotion."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-17T03:23:00Z"
+  "updated_at": "2026-07-17T05:35:00Z"
 }
