@@ -85,6 +85,8 @@ class TestModelUseDispatcher:
     structurally unable to transmit the package outside the current process.
     """
 
+    __test__ = False
+
     def __init__(self, *, event_writer: WorkflowEventWriter | None = None) -> None:
         self._journal = ModelUseJournal(event_writer)
 
