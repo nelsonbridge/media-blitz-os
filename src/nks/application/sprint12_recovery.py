@@ -301,7 +301,7 @@ def validate_portable_package(archive_path: Path) -> dict[str, Any]:
                 raise ValueError(f"missing required package file: {path_value}")
             data = bundle.read(path_value)
             if len(data) != size:
-                raise ValueError(f"size mismatch: {path_value}")
+                raise ValueError(f"checksum mismatch: {path_value}")
             if _sha256_bytes(data) != digest:
                 raise ValueError(f"checksum mismatch: {path_value}")
 
@@ -525,6 +525,6 @@ def restore_and_reconstruct_recoverable(
     reconstructed = _validate_history_semantics(history)
     _append_event(
         journal_path,
-        RecoveryEvent(operation_id, "reconstruction", "complete", "complete", reconstructed.canonical_fingerprint()),
+        RecoveryEvent(operation_id, "reconstruction", "reconstruction", "complete", reconstructed.canonical_fingerprint()),
     )
     return reconstructed
