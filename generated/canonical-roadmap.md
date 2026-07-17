@@ -756,10 +756,10 @@ Exit criteria:
 ## Sprint 46 — Operational Observability and Incident Management
 
 - ID: `NKS-SPR-046`
-- Status: `planned`
+- Status: `complete`
 - Objective: Provide production-shaped operational visibility, incident reconstruction, health monitoring, alerting, and privacy-preserving diagnostics without exposing protected knowledge or allowing observability to mutate canonical state.
 - Work items: BL-046
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 
