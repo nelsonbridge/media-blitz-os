@@ -552,10 +552,10 @@ Exit criteria:
 ## Sprint 34 — Multi-Consumer Isolation and Platform Operations
 
 - ID: `NKS-SPR-034`
-- Status: `planned`
+- Status: `complete`
 - Objective: Operate multiple independent Enki consumers concurrently and prove workload isolation, purpose limitation, shared-knowledge boundaries, contention handling, telemetry, incident response, portability, and recovery under coordinated TEST load.
 - Work items: BL-034
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 
