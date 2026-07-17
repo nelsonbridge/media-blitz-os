@@ -13,6 +13,7 @@ from scripts.validate_authoritative_head import (
     read_coverage,
     skipped_checks,
     validation_steps,
+    venv_python_path,
 )
 
 
@@ -23,6 +24,18 @@ def test_authoritative_sha_mismatch_fails_closed():
 
 def test_authoritative_sha_match_passes():
     assert_sha_match("a" * 40, "a" * 40)
+
+
+def test_validation_virtualenv_python_is_inside_disposable_environment(tmp_path: Path):
+    python = venv_python_path(tmp_path / "venv")
+
+    assert (tmp_path / "venv") in python.parents
+    if sys.platform == "win32":
+        assert python.name == "python.exe"
+        assert python.parent.name == "Scripts"
+    else:
+        assert python.name == "python"
+        assert python.parent.name == "bin"
 
 
 def test_validation_matrix_contains_required_governed_surfaces():
