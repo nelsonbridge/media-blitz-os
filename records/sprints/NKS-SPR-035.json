@@ -1,0 +1,19 @@
+{
+  "sprint_id": "NKS-SPR-035",
+  "sequence": 35,
+  "title": "Selected Hosting Architecture Production-Control Validation Readiness",
+  "objective": "Prepare the selected hosting direction, or the unresolved shortlist if no selection has been made, for explicit production-control validation by defining exact control tests, evidence requirements, deployment prerequisites, rollback obligations, and stop conditions without manufacturing production evidence.",
+  "status": "planned",
+  "work_item_ids": ["BL-035"],
+  "exit_criteria": [
+    "Cloud IAM, production identity federation, managed database isolation, network segmentation, per-tenant key management, secrets management, and independent penetration testing each have explicit validation contracts",
+    "TEST substitutes and production validations remain distinguishable and cannot satisfy each other's gates",
+    "Selected-hosting control mappings identify provider responsibilities, Enki responsibilities, evidence owners, failure criteria, and rollback paths",
+    "Unresolved hosting direction does not block provider-neutral control-contract implementation",
+    "No production deployment is authorized by completion of this sprint",
+    "A later validation run can fail closed on missing production capability rather than reopening architecture design"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-16T22:00:00Z"
+}
