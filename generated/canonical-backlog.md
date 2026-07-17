@@ -44,7 +44,7 @@
 | BL-038 | planned | NKS-SPR-038 | Infrastructure-as-Code and Reproducible Environment Build | 0 |
 | BL-039 | planned | NKS-SPR-039 | Hosted Identity, Tenancy, and Context Enforcement | 0 |
 | BL-040 | planned | NKS-SPR-040 | Physical Canonical Persistence and Migration | 0 |
-| BL-041 | planned | NKS-SPR-041 | Evidence and Object Plane | 0 |
+| BL-041 | complete | NKS-SPR-041 | Evidence and Object Plane | 5 |
 | BL-042 | planned | NKS-SPR-042 | Hosted Governed Execution Runtime | 0 |
 | BL-043 | planned | NKS-SPR-043 | Hosted Retrieval and Knowledge Access | 0 |
 | BL-044 | complete | NKS-SPR-044 | Disaster Recovery, Portability, and Provider Exit | 5 |

@@ -671,10 +671,10 @@ Exit criteria:
 ## Sprint 41 — Evidence and Object Plane
 
 - ID: `NKS-SPR-041`
-- Status: `planned`
+- Status: `complete`
 - Objective: Implement the hosted evidence, package, manifest, export, backup, and recovery object plane while preserving cryptographic linkage to structured governed state and provider portability.
 - Work items: BL-041
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 
