@@ -2,7 +2,7 @@
   "work_item_id": "BL-035",
   "title": "Selected Hosting Architecture Production-Control Validation Readiness",
   "description": "Define exact production-control validation contracts, evidence requirements, provider responsibility boundaries, rollback obligations, and fail-closed stop conditions without manufacturing production evidence.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-035",
   "acceptance_criteria": [
     "All seven unresolved production controls have explicit validation contracts and evidence requirements",
@@ -11,8 +11,14 @@
     "Provider-neutral control-contract work can proceed before a hosting decision",
     "Missing production capability fails closed rather than reopening architecture design"
   ],
-  "evidence": [],
+  "evidence": [
+    {"evidence_id":"E-BL35-PR107","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/107","description":"Sprint 35 production-control readiness implementation."},
+    {"evidence_id":"E-BL35-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/a4db69f68b44e4923d6861c908d3975c841866a7","description":"Sprint 35 merge commit."},
+    {"evidence_id":"E-BL35-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29563155288","description":"CI passed."},
+    {"evidence_id":"E-BL35-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29563155310","description":"Runtime Coverage passed."},
+    {"evidence_id":"E-BL35-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29563155294","description":"Work Control Authority passed."}
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-16T22:00:00Z"
+  "updated_at": "2026-07-17T07:35:00Z"
 }
