@@ -1,0 +1,19 @@
+{
+  "sprint_id": "NKS-SPR-032",
+  "sequence": 32,
+  "title": "Governed Retrieval, Projection, and Model Gateway",
+  "objective": "Deliver governed knowledge retrieval, temporal projection, semantic access boundaries, and provider-neutral model-use orchestration without allowing projections or model output to become canonical authority.",
+  "status": "planned",
+  "work_item_ids": ["BL-032"],
+  "exit_criteria": [
+    "Consumers can query current-authority and historical views through explicit, distinguishable contracts",
+    "Structured and semantic retrieval preserve tenant, subject, domain, audience, privacy, and purpose boundaries",
+    "Projection and interpretation outputs remain noncanonical unless promoted through a separate governed operation",
+    "Model gateway requests are context-bound, provenance-filtered, policy-evaluated, receipted, replayable, and provider-neutral",
+    "Model output cannot mutate canonical Enki state without a separate authorized transaction",
+    "Pagination, error, stale-state, denial, replay, and leakage paths are automated and deterministic"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-16T22:00:00Z"
+}
