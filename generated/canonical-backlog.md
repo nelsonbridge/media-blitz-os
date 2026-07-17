@@ -39,6 +39,6 @@
 | BL-033 | complete | NKS-SPR-033 | Hosted Downstream Consumer Integration | 5 |
 | BL-034 | complete | NKS-SPR-034 | Multi-Consumer Isolation and Platform Operations | 5 |
 | BL-035 | complete | NKS-SPR-035 | Selected Hosting Architecture Production-Control Validation Readiness | 5 |
-| BL-036 | planned | NKS-SPR-036 | Enki Hosted Release Candidate and Deployment Decision | 0 |
+| BL-036 | complete | NKS-SPR-036 | Enki Hosted Release Candidate and Deployment Decision | 5 |
 
 Total work items: 36
