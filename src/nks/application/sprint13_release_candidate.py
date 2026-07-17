@@ -60,6 +60,11 @@ class ReleaseCandidateStatus(StrEnum):
 def canonical_sha256(value: Any) -> str:
     if isinstance(value, BaseModel):
         value = value.model_dump(mode="json")
+    elif isinstance(value, list):
+        value = [
+            item.model_dump(mode="json") if isinstance(item, BaseModel) else item
+            for item in value
+        ]
     encoded = json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode(
         "utf-8"
     )
