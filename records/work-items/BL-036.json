@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-036",
+  "title": "Enki Hosted Release Candidate and Deployment Decision",
+  "description": "Consolidate hosted validation, architecture, multi-consumer operation, zero-cost envelope, production-control readiness, portability, recovery, limitations, and exact evidence into a final hosted Enki release candidate and explicit human deployment decision package.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-036",
+  "acceptance_criteria": [
+    "The release candidate binds exact architecture, hosted TEST, multi-consumer, recovery, portability, performance, and security evidence",
+    "Software readiness, hosted validation, zero-cost envelope, and production deployment readiness remain separate conclusions",
+    "Known limitations, unresolved controls, runbooks, rollback, migration, support boundaries, and independent-review requirements are explicit",
+    "Failed or missing evidence cannot be represented as passing",
+    "Only an explicit human decision can authorize deployment"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-16T22:00:00Z"
+}
