@@ -2,10 +2,11 @@
 """Validate the exact authoritative remote head in an isolated worktree.
 
 The runner never resets, stashes, cleans, or otherwise mutates the caller's
-working tree. It fetches the configured authoritative branch, creates a
-detached temporary worktree at that exact SHA, executes the credential-free
-repository validation matrix, rejects governed drift, prints a JSON report,
-and removes the temporary worktree unless --keep-worktree is requested.
+working tree or Python environment. It fetches the configured authoritative
+branch, creates a detached temporary worktree plus disposable virtual
+environment, executes the credential-free repository validation matrix,
+rejects governed drift, prints a JSON report, and removes the temporary
+validation environment unless --keep-worktree is requested.
 """
 
 from __future__ import annotations
@@ -78,7 +79,13 @@ def assert_sha_match(authoritative_sha: str, worktree_sha: str) -> None:
         )
 
 
-def validation_steps(python: str = sys.executable) -> list[ValidationStep]:
+def venv_python_path(venv_directory: Path) -> Path:
+    if sys.platform == "win32":
+        return venv_directory / "Scripts" / "python.exe"
+    return venv_directory / "bin" / "python"
+
+
+def validation_steps(python: str) -> list[ValidationStep]:
     """Return the credential-free governed validation matrix in execution order."""
 
     return [
@@ -304,8 +311,9 @@ def validate(
     authoritative_ref = f"{remote}/{branch}"
     authoritative_sha = git_output(repository_root, "rev-parse", authoritative_ref)
 
-    worktree_parent = Path(tempfile.mkdtemp(prefix="enki-authoritative-validation-"))
-    worktree = worktree_parent / "worktree"
+    validation_root = Path(tempfile.mkdtemp(prefix="enki-authoritative-validation-"))
+    worktree = validation_root / "worktree"
+    venv_directory = validation_root / "venv"
     step_results: list[StepResult] = []
     full_pytest_output = ""
 
@@ -323,11 +331,16 @@ def validate(
                 f"{worktree_status}"
             )
 
+        run(
+            (sys.executable, "-m", "venv", str(venv_directory)),
+            cwd=repository_root,
+        )
+        validation_python = str(venv_python_path(venv_directory))
         python_version = run(
-            (sys.executable, "--version"), cwd=worktree
+            (validation_python, "--version"), cwd=worktree
         ).stdout.strip()
 
-        for step in validation_steps(sys.executable):
+        for step in validation_steps(validation_python):
             print(f"\n==> {step.name}")
             result = run(step.argv, cwd=worktree, check=False)
             step_results.append(
@@ -360,6 +373,7 @@ def validate(
             "steps": [asdict(item) for item in step_results],
             "skipped": skipped_checks(),
             "worktree": str(worktree) if keep_worktree else None,
+            "virtual_environment": str(venv_directory) if keep_worktree else None,
         }
     finally:
         if not keep_worktree:
@@ -369,7 +383,7 @@ def validate(
                     cwd=repository_root,
                     check=False,
                 )
-            shutil.rmtree(worktree_parent, ignore_errors=True)
+            shutil.rmtree(validation_root, ignore_errors=True)
 
 
 def main() -> int:
