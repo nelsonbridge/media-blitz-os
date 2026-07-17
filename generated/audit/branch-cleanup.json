@@ -5,28 +5,25 @@
   ],
   "apply": true,
   "archived": {
-    "main@pre-consolidation": "archive/pre-consolidation/main-a4db69f68b44"
+    "main@pre-consolidation": "archive/pre-consolidation/main-6d5cb06a8757"
   },
   "before": [
-    "copilot/analyze-errors-for-fixes",
-    "governance/promote-sprint-35-completion",
+    "governance/promote-sprint-36-completion",
     "main",
     "sandbox"
   ],
   "default_branch_requested": "main",
   "delete_branch_on_merge_requested": true,
   "deleted": [
-    "copilot/analyze-errors-for-fixes",
-    "governance/promote-sprint-35-completion"
+    "governance/promote-sprint-36-completion"
   ],
   "errors": [
     "repository settings: GitHub API 403: Resource not accessible by integration"
   ],
-  "main_current_sha": "219bf709b3adae247085f4610bae4fe86059a5f9",
-  "main_previous_sha": "a4db69f68b44e4923d6861c908d3975c841866a7",
+  "main_current_sha": "9bc8f342a37fcf6d372c5d9e70d17fa3c382d315",
+  "main_previous_sha": "6d5cb06a87578f830b6b5ee1f517d3c01cc562d2",
   "merged_into": {
-    "copilot/analyze-errors-for-fixes": "main",
-    "governance/promote-sprint-35-completion": "main"
+    "governance/promote-sprint-36-completion": "main"
   },
   "repository": "nelsonbridge/media-blitz-os",
   "settings_updated": false
