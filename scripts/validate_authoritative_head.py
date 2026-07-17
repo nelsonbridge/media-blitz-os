@@ -4,9 +4,10 @@
 The runner never resets, stashes, cleans, or otherwise mutates the caller's
 working tree or Python environment. It fetches the configured authoritative
 branch, creates a detached temporary worktree plus disposable virtual
-environment, executes the credential-free repository validation matrix,
-rejects governed drift, prints a JSON report, and removes the temporary
-validation environment unless --keep-worktree is requested.
+environment, verifies the governed workflow inventory, executes the
+credential-free repository validation matrix, rejects governed drift, prints
+a JSON report, and removes the temporary validation environment unless
+--keep-worktree is requested.
 """
 
 from __future__ import annotations
@@ -21,6 +22,20 @@ import tempfile
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Sequence
+
+EXPECTED_WORKFLOW_FILES = frozenset(
+    {
+        "branch-consolidation.yml",
+        "canonicalization-security.yml",
+        "ci.yml",
+        "coverage.yml",
+        "publication-000001-assets.yml",
+        "repository-audit.yml",
+        "runtime-functional-test.yml",
+        "state-authority.yml",
+        "work-control.yml",
+    }
+)
 
 
 @dataclass(frozen=True)
@@ -77,6 +92,39 @@ def assert_sha_match(authoritative_sha: str, worktree_sha: str) -> None:
             "authoritative SHA mismatch: "
             f"remote={authoritative_sha} worktree={worktree_sha}"
         )
+
+
+def parse_divergence(output: str) -> tuple[int, int]:
+    parts = output.split()
+    if len(parts) != 2:
+        raise ValidationError(f"unexpected git divergence output: {output!r}")
+    try:
+        return int(parts[0]), int(parts[1])
+    except ValueError as exc:
+        raise ValidationError(f"unexpected git divergence output: {output!r}") from exc
+
+
+def workflow_inventory(repository_root: Path) -> frozenset[str]:
+    workflows = repository_root / ".github" / "workflows"
+    if not workflows.is_dir():
+        raise ValidationError(".github/workflows directory is missing")
+    return frozenset(
+        path.name
+        for path in workflows.iterdir()
+        if path.is_file() and path.suffix in {".yml", ".yaml"}
+    )
+
+
+def assert_workflow_inventory(repository_root: Path) -> frozenset[str]:
+    actual = workflow_inventory(repository_root)
+    if actual != EXPECTED_WORKFLOW_FILES:
+        missing = sorted(EXPECTED_WORKFLOW_FILES - actual)
+        unclassified = sorted(actual - EXPECTED_WORKFLOW_FILES)
+        raise ValidationError(
+            "workflow inventory changed; update the authoritative validation matrix "
+            f"before proceeding (missing={missing}, unclassified={unclassified})"
+        )
+    return actual
 
 
 def venv_python_path(venv_directory: Path) -> Path:
@@ -310,6 +358,15 @@ def validate(
     run(("git", "fetch", remote, branch), cwd=repository_root)
     authoritative_ref = f"{remote}/{branch}"
     authoritative_sha = git_output(repository_root, "rev-parse", authoritative_ref)
+    ahead, behind = parse_divergence(
+        git_output(
+            repository_root,
+            "rev-list",
+            "--left-right",
+            "--count",
+            f"HEAD...{authoritative_ref}",
+        )
+    )
 
     validation_root = Path(tempfile.mkdtemp(prefix="enki-authoritative-validation-"))
     worktree = validation_root / "worktree"
@@ -330,6 +387,7 @@ def validate(
                 "isolated authoritative worktree is not initially clean: "
                 f"{worktree_status}"
             )
+        workflows = sorted(assert_workflow_inventory(worktree))
 
         run(
             (sys.executable, "-m", "venv", str(venv_directory)),
@@ -359,11 +417,14 @@ def validate(
             "worktree_sha": worktree_sha,
             "sha_match": authoritative_sha == worktree_sha,
             "initial_worktree_status": worktree_status,
+            "workflow_inventory": workflows,
             "python_version": python_version,
             "original_workspace": {
                 "branch": original_branch,
                 "sha": original_sha,
                 "status_short": original_status,
+                "ahead_of_authoritative": ahead,
+                "behind_authoritative": behind,
             },
             "tests_passed": passed,
             "warnings": warnings,
