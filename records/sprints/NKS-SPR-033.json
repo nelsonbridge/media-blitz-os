@@ -3,7 +3,7 @@
   "sequence": 33,
   "title": "Hosted Downstream Consumer Integration",
   "objective": "Integrate Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity through stable governed Enki consumer contracts while preserving independent product boundaries and stricter human-state protections.",
-  "status": "planned",
+  "status": "complete",
   "work_item_ids": ["BL-033"],
   "exit_criteria": [
     "All three product suites consume Enki through versioned consumer boundaries rather than direct canonical persistence",
@@ -13,7 +13,38 @@
     "Cross-product purpose, audience, namespace, subject, and authority leakage fail closed",
     "All integrations remain TEST-only unless separately authorized for production effects"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S33-PR103",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/103",
+      "description": "Implemented TEST-only governed integrations for Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity with stable product boundaries and no direct canonical access."
+    },
+    {
+      "evidence_id": "E-S33-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/3eacd818813dfc95f5c3bbc2cd4d3da5b9ee5a5f",
+      "description": "Merged the Sprint 33 implementation and package-identity correction into sandbox."
+    },
+    {
+      "evidence_id": "E-S33-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29558905343",
+      "description": "CI passed the Sprint 33 integration suite plus inherited product-boundary regressions, including namespace and cross-product authority isolation."
+    },
+    {
+      "evidence_id": "E-S33-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29558905455",
+      "description": "Runtime Coverage passed all declared Sprint 33 TEST paths."
+    },
+    {
+      "evidence_id": "E-S33-WORK-CONTROL",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29558905374",
+      "description": "Work Control Authority passed before evidence-bearing completion promotion."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-16T22:00:00Z"
+  "updated_at": "2026-07-17T06:05:00Z"
 }
