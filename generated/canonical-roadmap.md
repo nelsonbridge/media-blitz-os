@@ -569,10 +569,10 @@ Exit criteria:
 ## Sprint 35 — Selected Hosting Architecture Production-Control Validation Readiness
 
 - ID: `NKS-SPR-035`
-- Status: `planned`
+- Status: `complete`
 - Objective: Prepare the selected hosting direction, or the unresolved shortlist if no selection has been made, for explicit production-control validation by defining exact control tests, evidence requirements, deployment prerequisites, rollback obligations, and stop conditions without manufacturing production evidence.
 - Work items: BL-035
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 
