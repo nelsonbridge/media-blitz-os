@@ -34,5 +34,11 @@
 | BL-028 | planned | NKS-SPR-028 | GCP-NEON-R2 Hosted TEST Validation | 0 |
 | BL-029 | planned | NKS-SPR-029 | Cross-Finalist Comparative Evaluation | 0 |
 | BL-030 | planned | NKS-SPR-030 | Hosting Direction and Production-Control Validation Decision Package | 0 |
+| BL-031 | planned | NKS-SPR-031 | Governed Reasoning and Model Gateway | 0 |
+| BL-032 | planned | NKS-SPR-032 | Media Blitz Hosted Consumer Integration | 0 |
+| BL-033 | planned | NKS-SPR-033 | Career Intelligence Hosted Consumer Integration | 0 |
+| BL-034 | planned | NKS-SPR-034 | Personal Cognitive Continuity Hosted Consumer Integration | 0 |
+| BL-035 | planned | NKS-SPR-035 | Multi-Consumer Isolation and Platform Operations | 0 |
+| BL-036 | planned | NKS-SPR-036 | Enki Hosted Release Candidate and Deployment Decision | 0 |
 
-Total work items: 30
+Total work items: 36

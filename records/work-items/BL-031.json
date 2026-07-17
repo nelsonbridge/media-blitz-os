@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-031",
+  "title": "Governed Reasoning and Model Gateway",
+  "description": "Implement hosted model interaction through governed, provider-neutral contracts with context and policy controls that preserve Enki authority boundaries.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-031",
+  "acceptance_criteria": [
+    "Provider-neutral model contracts exist for request packaging, execution metadata, and output classes",
+    "Context construction includes provenance and policy filtering and rejects unauthorized context expansion",
+    "Every model invocation records deterministic, replayable, and attributable model-use receipts",
+    "Model outputs remain downstream artifacts and cannot mutate canonical state without separate governed authority",
+    "Adversarial tests verify no autonomous canonical mutation and no authority escalation through model output"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-16T23:40:00Z"
+}

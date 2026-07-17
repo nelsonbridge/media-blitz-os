@@ -1,0 +1,19 @@
+{
+  "work_item_id": "BL-036",
+  "title": "Enki Hosted Release Candidate and Deployment Decision",
+  "description": "Assemble the hosted release-candidate evidence package and explicit human deployment decision matrix for Enki.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-036",
+  "acceptance_criteria": [
+    "Hosted architecture validation evidence is hash-bound and attributable",
+    "Zero-cost envelope status is explicitly represented as defined or failed",
+    "Production deployment prerequisites are explicit as ready or blocked with evidence",
+    "Threat model, runbooks, backup/recovery proof, and portability proof are packaged",
+    "Deployment rollback and production cost forecast are independently reviewable",
+    "Human decision state supports approve, approve with conditions, defer, or reject"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-16T23:40:00Z"
+}

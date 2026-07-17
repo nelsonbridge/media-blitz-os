@@ -498,4 +498,101 @@ Exit criteria:
 - Decision options include select, defer, request more evidence, and reject
 - No production infrastructure or production authority is created without a later explicit human production-hosting decision
 
-Total sprints: 30
+## Sprint 31 — Governed Reasoning and Model Gateway
+
+- ID: `NKS-SPR-031`
+- Status: `planned`
+- Objective: Move model interaction from isolated proof paths into hosted architecture through provider-neutral contracts, governed context construction, policy enforcement, and replayable receipts while preserving canonical authority boundaries.
+- Work items: BL-031
+- Evidence records: 0
+
+Exit criteria:
+
+- A hosted model gateway enforces provider-neutral request and response contracts
+- Prompt and context packages are policy-filtered, provenance-aware, and scoped to approved execution context
+- Model-use receipts are deterministic, replayable, and attributable to exact governed requests
+- Model outputs are classified and cannot mutate canonical state without separately governed authority
+- Adversarial tests cover context leakage, policy bypass, unsupported provider responses, and replay integrity
+
+## Sprint 32 — Media Blitz Hosted Consumer Integration
+
+- ID: `NKS-SPR-032`
+- Status: `planned`
+- Objective: Reconnect Media Blitz through the stable Enki consumer boundary so publication-shaped execution, feedback ingestion, and calibration occur as governed consumption without direct canonical mutation.
+- Work items: BL-032
+- Evidence records: 0
+
+Exit criteria:
+
+- Media Blitz uses governed source retrieval and package-generation contracts through the consumer boundary
+- Publication-shaped TEST distribution executes with deterministic receipts and no direct Enki mutation
+- Feedback ingestion, calibration, and provenance paths remain attributable and replayable
+- Consumer boundary tests prove Media Blitz cannot bypass canonical authority or issue ungoverned writes
+- Integration evidence is sufficient for independent review of boundary integrity
+
+## Sprint 33 — Career Intelligence Hosted Consumer Integration
+
+- ID: `NKS-SPR-033`
+- Status: `planned`
+- Objective: Implement the Career Intelligence boundary as governed Enki consumption over professional evidence, market context, and role-fit projections without transferring canonical authority ownership.
+- Work items: BL-033
+- Evidence records: 0
+
+Exit criteria:
+
+- Career Intelligence retrieves professional knowledge state through governed consumer contracts
+- Experience evidence, competency interpretation, and opportunity inputs are attributable and replayable
+- Role-fit and market-context projections are isolated from canonical mutation authority
+- Privacy and human-approval gates are explicit for external action paths
+- Boundary tests prove consumer execution cannot become canonical authority
+
+## Sprint 34 — Personal Cognitive Continuity Hosted Consumer Integration
+
+- ID: `NKS-SPR-034`
+- Status: `planned`
+- Objective: Implement personal cognitive continuity as a hosted consumer lane with strict human-agency, consent, privacy, temporal authority, correction, and reconstruction controls stronger than generic system authority.
+- Work items: BL-034
+- Evidence records: 0
+
+Exit criteria:
+
+- Personal-state history and context changes are reconstructable with temporal authority integrity
+- Correction, retraction, consent, and privacy controls are explicit and fail closed
+- Memory reconstruction preserves lineage and does not fabricate canonical authority
+- Human agency remains stronger than generic platform authority on personal lanes
+- Adversarial tests validate consent revocation, correction flow, and privacy boundary enforcement
+
+## Sprint 35 — Multi-Consumer Isolation and Platform Operations
+
+- ID: `NKS-SPR-035`
+- Status: `planned`
+- Objective: Operate Media Blitz, Career Intelligence, and Personal Cognitive Continuity concurrently while validating tenant and purpose isolation, workload contention behavior, telemetry, incident response, recovery, and portability.
+- Work items: BL-035
+- Evidence records: 0
+
+Exit criteria:
+
+- All three consumer suites execute simultaneously without authority or data leakage
+- Tenant isolation and purpose limitation remain enforced under concurrent workload
+- Queueing, contention, and workload interference are measured and bounded
+- Operational telemetry, incident response, and recovery procedures are evidenced
+- Portability and reconstruction proofs remain valid under multi-consumer execution
+
+## Sprint 36 — Enki Hosted Release Candidate and Deployment Decision
+
+- ID: `NKS-SPR-036`
+- Status: `planned`
+- Objective: Consolidate hosted architecture evidence, zero-cost envelope findings, unresolved production prerequisites, threat model, runbooks, recovery and portability proofs into a release candidate and explicit human deployment decision package.
+- Work items: BL-036
+- Evidence records: 0
+
+Exit criteria:
+
+- A hash-bound hosted release candidate package includes architecture evidence, runbooks, recovery proof, and portability proof
+- Zero-cost operating envelope is explicitly measured and represented as defined or failed
+- Unresolved production prerequisites are explicit with sequenced validation paths
+- Deployment rollback and production cost forecast are independently reviewable
+- Independent review checklist and human deployment decision package are complete
+- Final decision state remains explicit: approve, approve with conditions, defer, or reject
+
+Total sprints: 36

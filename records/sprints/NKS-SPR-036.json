@@ -1,0 +1,19 @@
+{
+  "sprint_id": "NKS-SPR-036",
+  "sequence": 36,
+  "title": "Enki Hosted Release Candidate and Deployment Decision",
+  "objective": "Consolidate hosted architecture evidence, zero-cost envelope findings, unresolved production prerequisites, threat model, runbooks, recovery and portability proofs into a release candidate and explicit human deployment decision package.",
+  "status": "planned",
+  "work_item_ids": ["BL-036"],
+  "exit_criteria": [
+    "A hash-bound hosted release candidate package includes architecture evidence, runbooks, recovery proof, and portability proof",
+    "Zero-cost operating envelope is explicitly measured and represented as defined or failed",
+    "Unresolved production prerequisites are explicit with sequenced validation paths",
+    "Deployment rollback and production cost forecast are independently reviewable",
+    "Independent review checklist and human deployment decision package are complete",
+    "Final decision state remains explicit: approve, approve with conditions, defer, or reject"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-16T23:40:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "sprint_id": "NKS-SPR-032",
+  "sequence": 32,
+  "title": "Media Blitz Hosted Consumer Integration",
+  "objective": "Reconnect Media Blitz through the stable Enki consumer boundary so publication-shaped execution, feedback ingestion, and calibration occur as governed consumption without direct canonical mutation.",
+  "status": "planned",
+  "work_item_ids": ["BL-032"],
+  "exit_criteria": [
+    "Media Blitz uses governed source retrieval and package-generation contracts through the consumer boundary",
+    "Publication-shaped TEST distribution executes with deterministic receipts and no direct Enki mutation",
+    "Feedback ingestion, calibration, and provenance paths remain attributable and replayable",
+    "Consumer boundary tests prove Media Blitz cannot bypass canonical authority or issue ungoverned writes",
+    "Integration evidence is sufficient for independent review of boundary integrity"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-16T23:40:00Z"
+}

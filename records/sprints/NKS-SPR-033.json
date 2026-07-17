@@ -1,0 +1,18 @@
+{
+  "sprint_id": "NKS-SPR-033",
+  "sequence": 33,
+  "title": "Career Intelligence Hosted Consumer Integration",
+  "objective": "Implement the Career Intelligence boundary as governed Enki consumption over professional evidence, market context, and role-fit projections without transferring canonical authority ownership.",
+  "status": "planned",
+  "work_item_ids": ["BL-033"],
+  "exit_criteria": [
+    "Career Intelligence retrieves professional knowledge state through governed consumer contracts",
+    "Experience evidence, competency interpretation, and opportunity inputs are attributable and replayable",
+    "Role-fit and market-context projections are isolated from canonical mutation authority",
+    "Privacy and human-approval gates are explicit for external action paths",
+    "Boundary tests prove consumer execution cannot become canonical authority"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-16T23:40:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-033",
+  "title": "Career Intelligence Hosted Consumer Integration",
+  "description": "Implement Career Intelligence as a hosted consumer with governed evidence retrieval and projection generation boundaries.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-033",
+  "acceptance_criteria": [
+    "Professional knowledge retrieval and interpretation use governed consumer contracts",
+    "Role-fit projections remain derived outputs and do not mutate canonical state",
+    "Market context and opportunity inputs preserve provenance and attribution",
+    "Privacy and human-approval controls gate any external-action lane",
+    "Consumer boundary tests reject authority leakage and direct write attempts"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-16T23:40:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "sprint_id": "NKS-SPR-031",
+  "sequence": 31,
+  "title": "Governed Reasoning and Model Gateway",
+  "objective": "Move model interaction from isolated proof paths into hosted architecture through provider-neutral contracts, governed context construction, policy enforcement, and replayable receipts while preserving canonical authority boundaries.",
+  "status": "planned",
+  "work_item_ids": ["BL-031"],
+  "exit_criteria": [
+    "A hosted model gateway enforces provider-neutral request and response contracts",
+    "Prompt and context packages are policy-filtered, provenance-aware, and scoped to approved execution context",
+    "Model-use receipts are deterministic, replayable, and attributable to exact governed requests",
+    "Model outputs are classified and cannot mutate canonical state without separately governed authority",
+    "Adversarial tests cover context leakage, policy bypass, unsupported provider responses, and replay integrity"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-16T23:40:00Z"
+}

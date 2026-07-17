@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-032",
+  "title": "Media Blitz Hosted Consumer Integration",
+  "description": "Integrate Media Blitz as a hosted Enki consumer through governed retrieval, package, feedback, and calibration boundaries.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-032",
+  "acceptance_criteria": [
+    "Media Blitz reads governed knowledge through consumer contracts only",
+    "Content and visual package flows are receipt-backed and attributable",
+    "Publication-shaped TEST distribution remains non-production and authority-scoped",
+    "Feedback ingestion and calibration preserve provenance and replay safety",
+    "No direct canonical mutation path exists from Media Blitz integration code"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-16T23:40:00Z"
+}

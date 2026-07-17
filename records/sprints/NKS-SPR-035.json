@@ -1,0 +1,18 @@
+{
+  "sprint_id": "NKS-SPR-035",
+  "sequence": 35,
+  "title": "Multi-Consumer Isolation and Platform Operations",
+  "objective": "Operate Media Blitz, Career Intelligence, and Personal Cognitive Continuity concurrently while validating tenant and purpose isolation, workload contention behavior, telemetry, incident response, recovery, and portability.",
+  "status": "planned",
+  "work_item_ids": ["BL-035"],
+  "exit_criteria": [
+    "All three consumer suites execute simultaneously without authority or data leakage",
+    "Tenant isolation and purpose limitation remain enforced under concurrent workload",
+    "Queueing, contention, and workload interference are measured and bounded",
+    "Operational telemetry, incident response, and recovery procedures are evidenced",
+    "Portability and reconstruction proofs remain valid under multi-consumer execution"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-16T23:40:00Z"
+}

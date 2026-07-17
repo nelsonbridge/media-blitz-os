@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-034",
+  "title": "Personal Cognitive Continuity Hosted Consumer Integration",
+  "description": "Integrate the personal continuity lane with elevated consent, privacy, and human-agency controls under hosted consumer boundaries.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-034",
+  "acceptance_criteria": [
+    "Personal-state lifecycle supports history, context transitions, correction, and retraction",
+    "Consent and privacy controls are enforced with fail-closed behavior and explicit receipts",
+    "Temporal authority and memory reconstruction preserve lineage without authority fabrication",
+    "Human decision authority supersedes generic platform defaults for personal lanes",
+    "Boundary and adversarial tests verify privacy and consent protections under replay and recovery"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-16T23:40:00Z"
+}

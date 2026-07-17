@@ -1,0 +1,18 @@
+{
+  "sprint_id": "NKS-SPR-034",
+  "sequence": 34,
+  "title": "Personal Cognitive Continuity Hosted Consumer Integration",
+  "objective": "Implement personal cognitive continuity as a hosted consumer lane with strict human-agency, consent, privacy, temporal authority, correction, and reconstruction controls stronger than generic system authority.",
+  "status": "planned",
+  "work_item_ids": ["BL-034"],
+  "exit_criteria": [
+    "Personal-state history and context changes are reconstructable with temporal authority integrity",
+    "Correction, retraction, consent, and privacy controls are explicit and fail closed",
+    "Memory reconstruction preserves lineage and does not fabricate canonical authority",
+    "Human agency remains stronger than generic platform authority on personal lanes",
+    "Adversarial tests validate consent revocation, correction flow, and privacy boundary enforcement"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-16T23:40:00Z"
+}

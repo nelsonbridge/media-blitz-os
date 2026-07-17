@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-035",
+  "title": "Multi-Consumer Isolation and Platform Operations",
+  "description": "Run all hosted consumer suites concurrently and validate operational isolation, recovery, and portability boundaries.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-035",
+  "acceptance_criteria": [
+    "Concurrent consumer execution preserves authority and data isolation boundaries",
+    "Purpose limitation and tenant boundaries hold under contention and queue pressure",
+    "Operational telemetry provides attributable diagnostics without privacy boundary leakage",
+    "Incident response and recovery paths are exercised and receipted",
+    "Portability and deterministic reconstruction remain valid after multi-consumer stress"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-16T23:40:00Z"
+}
