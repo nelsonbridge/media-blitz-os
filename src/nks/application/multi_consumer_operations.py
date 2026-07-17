@@ -284,6 +284,7 @@ class MultiConsumerPlatformCoordinator:
     ) -> None:
         if max_workers < 1:
             raise ValueError("max_workers must be positive")
+        self._registry = registry
         self._adapter = ThreadSafeNoEffectProductAdapter()
         self._service = HostedDownstreamConsumerService(
             registry=registry,
@@ -392,6 +393,9 @@ class MultiConsumerPlatformCoordinator:
         queue_depth: int,
         now: datetime,
     ) -> MultiConsumerWorkResult:
+        contract = self._registry.get(item.suite)
+        if item.boundary != contract.boundary:
+            raise PermissionError("work item boundary does not match registered product boundary")
         self._append_telemetry(
             item,
             sequence=1,
