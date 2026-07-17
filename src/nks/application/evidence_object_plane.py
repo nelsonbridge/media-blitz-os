@@ -114,7 +114,7 @@ class PortableObjectBundle(BaseModel):
         return self
     @classmethod
     def create(cls,**values:object)->"PortableObjectBundle":
-        p=dict(values); p["bundle_sha256"]=canonical_sha256(p); return cls(**p)
+        p={"schema_version":"enki-object-plane/v1",**dict(values)}; p["bundle_sha256"]=canonical_sha256(p); return cls(**p)
 
 class TestObjectStore:
     """In-memory provider double. Internal provider keys never confer authority."""
