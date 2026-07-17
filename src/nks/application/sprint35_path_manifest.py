@@ -17,6 +17,7 @@ def _path(path_id: str, *, denied: bool = False) -> OperationPathExpectation:
         state_changing=False,
         recovery_strategy=RecoveryStrategy.NONE,
         prohibited_effects=[
+            "production-effect",
             "production-deployment",
             "production-approval",
             "test-evidence-as-production-proof",
