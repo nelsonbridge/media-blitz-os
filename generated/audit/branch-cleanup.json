@@ -5,37 +5,25 @@
   ],
   "apply": true,
   "archived": {
-    "execution/sprint12-ep12-07-11": "archive/branches/execution-sprint12-ep12-07-11-a4c81836bf30",
-    "execution/sprint13-hardening-release-candidate": "archive/branches/execution-sprint13-hardening-release-candidate-be8b399b9ab0",
-    "feature/canonical-record-path": "archive/branches/feature-canonical-record-path-6260cdc8509a",
-    "main@pre-consolidation": "archive/pre-consolidation/main-df47b51e7af2"
+    "main@pre-consolidation": "archive/pre-consolidation/main-eee2c75ae7a3"
   },
   "before": [
-    "copilot/executionsprint12-ep12-07-11",
-    "execution/sprint12-ep12-07-11",
-    "execution/sprint13-hardening-release-candidate",
-    "feature/canonical-record-path",
+    "execution/complete-enki-sprint-31",
     "main",
-    "roadmap/enki-sprints-25-36",
     "sandbox"
   ],
   "default_branch_requested": "main",
   "delete_branch_on_merge_requested": true,
   "deleted": [
-    "copilot/executionsprint12-ep12-07-11",
-    "execution/sprint12-ep12-07-11",
-    "execution/sprint13-hardening-release-candidate",
-    "feature/canonical-record-path",
-    "roadmap/enki-sprints-25-36"
+    "execution/complete-enki-sprint-31"
   ],
   "errors": [
     "repository settings: GitHub API 403: Resource not accessible by integration"
   ],
-  "main_current_sha": "eee2c75ae7a3d4f19471c21a672cbaa587f38d07",
-  "main_previous_sha": "df47b51e7af256a9c3dd909afbe0ced0f21ed16c",
+  "main_current_sha": "df347aee4c3c1ead887deb25605085fcf2fbba07",
+  "main_previous_sha": "eee2c75ae7a3d4f19471c21a672cbaa587f38d07",
   "merged_into": {
-    "copilot/executionsprint12-ep12-07-11": "main",
-    "roadmap/enki-sprints-25-36": "main"
+    "execution/complete-enki-sprint-31": "main"
   },
   "repository": "nelsonbridge/media-blitz-os",
   "settings_updated": false
