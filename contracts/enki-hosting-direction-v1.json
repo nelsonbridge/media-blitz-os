@@ -1,0 +1,28 @@
+{
+  "contract_version": "enki-hosting-direction-v1",
+  "execution_context": "TEST",
+  "human_decision_required": true,
+  "production_approval": false,
+  "production_deployment_authorized": false,
+  "comparative_evaluation_contract": "enki-cross-finalist-evaluation-v1",
+  "expected_finalists": [
+    "CF-NATIVE",
+    "CF-NEON-R2",
+    "GCP-NEON-R2"
+  ],
+  "decision_options": [
+    "SELECT_RECOMMENDED",
+    "DEFER",
+    "REQUEST_MORE_EVIDENCE",
+    "REJECT"
+  ],
+  "required_production_prerequisites": [
+    "cloud-iam",
+    "production-identity-federation",
+    "managed-database-row-level-isolation",
+    "network-segmentation",
+    "per-tenant-production-key-management",
+    "production-secrets-management",
+    "independent-penetration-testing"
+  ]
+}
