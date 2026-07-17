@@ -518,10 +518,10 @@ Exit criteria:
 ## Sprint 32 — Governed Retrieval, Projection, and Model Gateway
 
 - ID: `NKS-SPR-032`
-- Status: `planned`
+- Status: `complete`
 - Objective: Deliver governed knowledge retrieval, temporal projection, semantic access boundaries, and provider-neutral model-use orchestration without allowing projections or model output to become canonical authority.
 - Work items: BL-032
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 
