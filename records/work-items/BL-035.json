@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-035",
+  "title": "Selected Hosting Architecture Production-Control Validation Readiness",
+  "description": "Define exact production-control validation contracts, evidence requirements, provider responsibility boundaries, rollback obligations, and fail-closed stop conditions without manufacturing production evidence.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-035",
+  "acceptance_criteria": [
+    "All seven unresolved production controls have explicit validation contracts and evidence requirements",
+    "TEST substitutes remain distinguishable from production validation and cannot satisfy production gates",
+    "Provider and Enki responsibilities, failure criteria, evidence ownership, and rollback paths are explicit",
+    "Provider-neutral control-contract work can proceed before a hosting decision",
+    "Missing production capability fails closed rather than reopening architecture design"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-16T22:00:00Z"
+}
