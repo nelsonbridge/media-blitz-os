@@ -116,6 +116,14 @@ Current authority is resolved as-of explicit temporal coordinates. Competing cur
 
 The implementation is in `src/nks/enki/temporal_authority.py`; automated path coverage is declared in `src/nks/application/sprint31_path_manifest.py` and exercised by `tests/test_sprint31_temporal_authority.py`.
 
+## Retrieval, Projection, and Model Gateway Authority
+
+Sprint 32 adds product-neutral current-authority and historical retrieval over the temporal-authority model. Retrieval applies tenant, subject, domain, audience, purpose, and privacy boundaries before returning deterministic projections. Semantic and structured retrieval results remain Class 2-like noncanonical views of Class 1 state and cannot establish authority by themselves.
+
+Model-use orchestration is provider-neutral and context-bound. Exact model-use policy packaging precedes dispatch, TEST execution uses a capability-isolated no-effect provider, every accepted invocation is receipted and replayable, and model output is explicitly noncanonical. Any later canonical mutation based on a projection, interpretation, or model output requires a separate governed transaction and matching authority.
+
+The implementation is in `src/nks/enki/governed_retrieval.py` and `src/nks/enki/model_gateway.py`; automated path coverage is declared in `src/nks/application/sprint32_path_manifest.py` and exercised by `tests/test_sprint32_governed_retrieval_model_gateway.py`.
+
 ## Transitional Decision
 
 `runtime/STATUS.md` and `docs/master-state-index.md` currently contain useful reconciled summaries, but they are manually maintained. They are therefore Class 3 transitional documents and are not authoritative.
