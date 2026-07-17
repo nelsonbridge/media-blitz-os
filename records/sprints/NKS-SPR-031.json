@@ -1,0 +1,19 @@
+{
+  "sprint_id": "NKS-SPR-031",
+  "sequence": 31,
+  "title": "Canonical Schema and Temporal Authority Hardening",
+  "objective": "Align the canonical record model with the corrected nine-layer architecture by making historical truth, current authority, effective time, recorded time, supersession, revocation, consent, policy validity, and migration semantics explicit across governed record families.",
+  "status": "planned",
+  "work_item_ids": ["BL-031"],
+  "exit_criteria": [
+    "Canonical record families distinguish historical truth from current authority without rewriting history",
+    "Recorded, effective, superseded, revoked, consumed, and authority-valid temporal states are explicit where applicable",
+    "Approval, consent, policy, transition, reconciliation, disclosure, transaction, retention, conflict, and recovery records share compatible temporal semantics",
+    "Schema evolution and migration preserve exact lineage and deterministic reconstruction",
+    "Invalid temporal overlap, authority ambiguity, and unsupported supersession fail closed",
+    "Automated regression tests prove historical and current-authority views remain distinguishable"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-17T03:23:00Z"
+}

@@ -1,0 +1,19 @@
+{
+  "sprint_id": "NKS-SPR-034",
+  "sequence": 34,
+  "title": "Multi-Consumer Isolation and Platform Operations",
+  "objective": "Operate multiple independent Enki consumers concurrently and prove workload isolation, purpose limitation, shared-knowledge boundaries, contention handling, telemetry, incident response, portability, and recovery under coordinated TEST load.",
+  "status": "planned",
+  "work_item_ids": ["BL-034"],
+  "exit_criteria": [
+    "Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity execute concurrently without cross-product authority or data leakage",
+    "Tenant, namespace, subject, domain, audience, purpose, and execution-context isolation survive concurrent workloads",
+    "Contention, duplicate work, delayed delivery, queue-shaped pressure, retry, rollback, and recovery preserve exact receipts and canonical authority",
+    "Privacy-preserving telemetry identifies workload interference and incident conditions without exposing protected payloads",
+    "One consumer failure cannot widen another consumer's authority or corrupt shared canonical state",
+    "Portability and recovery exercises reconstruct multi-consumer TEST operation deterministically"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-16T22:00:00Z"
+}

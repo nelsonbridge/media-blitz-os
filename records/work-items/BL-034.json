@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-034",
+  "title": "Multi-Consumer Isolation and Platform Operations",
+  "description": "Run independent Enki consumers concurrently and prove workload isolation, purpose limitation, contention handling, telemetry, incident response, portability, and deterministic recovery.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-034",
+  "acceptance_criteria": [
+    "Concurrent product-suite workloads cannot leak authority or protected data across consumer boundaries",
+    "Tenant, namespace, subject, domain, audience, purpose, and execution-context isolation survive contention",
+    "Retry, rollback, duplicate work, delayed delivery, and recovery preserve exact receipts and canonical authority",
+    "Privacy-preserving telemetry detects interference without exposing protected payloads",
+    "Multi-consumer state reconstructs deterministically after failure"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-16T22:00:00Z"
+}

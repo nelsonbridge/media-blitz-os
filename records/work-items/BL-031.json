@@ -1,0 +1,18 @@
+{
+  "work_item_id": "BL-031",
+  "title": "Canonical Schema and Temporal Authority Hardening",
+  "description": "Harden Enki's canonical schema so historical truth, current authority, temporal validity, supersession, revocation, consent, policy, migration, and recovery semantics remain explicit and reconstructable.",
+  "status": "planned",
+  "sprint_id": "NKS-SPR-031",
+  "acceptance_criteria": [
+    "Historical truth and current authority are represented separately across governed record families",
+    "Recorded, effective, superseded, revoked, consumed, and authority-valid time are explicit where applicable",
+    "Temporal ambiguity and unsupported overlap fail closed",
+    "Schema migration preserves exact lineage and deterministic reconstruction",
+    "Regression tests cover authority changes without historical rewriting"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-16T22:00:00Z"
+}
