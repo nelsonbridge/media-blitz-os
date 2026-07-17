@@ -1,0 +1,38 @@
+name: Harden Sprint 34 Consumer Failure Once
+
+on:
+  push:
+    branches:
+      - execution/complete-enki-sprint-34
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: execution/complete-enki-sprint-34
+      - name: Isolate one consumer failure from peer workloads
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('src/nks/application/multi_consumer_operations.py')
+          text = path.read_text(encoding='utf-8')
+          old = '''            for future in as_completed(futures):\n                results.append(future.result())\n        results.sort(key=lambda item: item.work_id)\n'''
+          new = '''            for future in as_completed(futures):\n                item = futures[future]\n                try:\n                    results.append(future.result())\n                except Exception as exc:\n                    attempt = self._rolled_back_attempt(\n                        item,\n                        attempt_number=1,\n                        now=now,\n                        reason_code=type(exc).__name__,\n                    )\n                    self._append_telemetry(\n                        item,\n                        sequence=3,\n                        kind=TelemetryKind.DIAGNOSTIC,\n                        status=TelemetryStatus.DENIED,\n                        metadata={\n                            "operation_family": "multi-consumer",\n                            "terminal_state": "ROLLED_BACK",\n                            "reason_code": type(exc).__name__,\n                            "retry_count": 0,\n                            "adapter_kind": "test-no-effect",\n                        },\n                        now=now,\n                    )\n                    results.append(\n                        MultiConsumerWorkResult.create(\n                            work_id=item.work_id,\n                            suite=item.suite,\n                            terminal_state=PlatformTerminalState.ROLLED_BACK,\n                            attempts=(attempt,),\n                            package_sha256=None,\n                            product_receipt_sha256=None,\n                            exact_retry=False,\n                        )\n                    )\n        results.sort(key=lambda item: item.work_id)\n'''
+          if old not in text:
+              raise SystemExit('expected concurrent result block not found')
+          path.write_text(text.replace(old, new), encoding='utf-8')
+          PY
+      - name: Self-delete and commit
+        run: |
+          rm .github/workflows/harden-sprint34-consumer-failure-once.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/nks/application/multi_consumer_operations.py .github/workflows/harden-sprint34-consumer-failure-once.yml
+          git commit -m 'Isolate failed consumer workload from peers'
+          git push origin HEAD:execution/complete-enki-sprint-34
