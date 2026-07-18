@@ -4,334 +4,384 @@ from datetime import datetime, timezone
 
 import pytest
 
-from nks.application.hosted_downstream_integration import (
-    HostedIntegrationError,
-    ProductConsumer,
+from nks.application.downstream_products import (
+    EXPECTED_AUDIENCE,
+    ProductBoundaryRegistry,
+    ProductConsumerContract,
+    ProductSuite,
 )
-from nks.application.hosted_platform_operations import (
-    HostedOperation,
-    HostedPlatformError,
-    OperationStatus,
+from nks.application.governed_transactions import canonical_sha256
+from nks.application.hosted_downstream_integration import (
+    ConsumerIntent,
+    HumanContinuityControl,
+)
+from nks.application.multi_consumer_operations import (
+    MultiConsumerWorkItem,
+    PlatformIncidentKind,
+    PlatformTerminalState,
+    WorkFailureMode,
 )
 from nks.application.multi_product_hosted_integration import (
     MultiProductHostedIntegration,
     MultiProductIntegrationError,
-    MultiProductOperationSpec,
 )
+from nks.application.privacy_observability import assert_telemetry_safe_serialization
+from nks.enki.governed_retrieval import (
+    GovernedKnowledgeRecord,
+    GovernedRetrievalRequest,
+    PrivacyClass,
+    RetrievalMode,
+    RetrievalView,
+)
+from nks.enki.temporal_authority import TemporalAuthorityEnvelope
 from nks.governance.approvals import ExecutionContext
 from nks.governance.boundaries import BoundaryContext, HumanBoundaryPolicy
 
 
 NOW = datetime(2026, 7, 18, 2, 0, tzinfo=timezone.utc)
+T0 = datetime(2026, 1, 1, tzinfo=timezone.utc)
+
+DOMAINS = {
+    ProductSuite.MEDIA_BLITZ: "content",
+    ProductSuite.CAREER_INTELLIGENCE_PLACEMENT: "professional",
+    ProductSuite.PERSONAL_COGNITIVE_CONTINUITY: "personal",
+}
+PURPOSES = {
+    ProductSuite.MEDIA_BLITZ: "governed-media-production",
+    ProductSuite.CAREER_INTELLIGENCE_PLACEMENT: "career-assistance",
+    ProductSuite.PERSONAL_COGNITIVE_CONTINUITY: "cognitive-continuity",
+}
+OUTPUTS = {
+    ProductSuite.MEDIA_BLITZ: {"publication-package", "distribution-plan"},
+    ProductSuite.CAREER_INTELLIGENCE_PLACEMENT: {"opportunity-view", "application-package"},
+    ProductSuite.PERSONAL_COGNITIVE_CONTINUITY: {"continuity-view", "reflection-package"},
+}
+INTENTS = {
+    ProductSuite.MEDIA_BLITZ: ConsumerIntent.MEDIA_PUBLICATION_PROOF,
+    ProductSuite.CAREER_INTELLIGENCE_PLACEMENT: ConsumerIntent.CAREER_OPPORTUNITY_VIEW,
+    ProductSuite.PERSONAL_COGNITIVE_CONTINUITY: ConsumerIntent.COGNITIVE_CONTINUITY_VIEW,
+}
+TENANTS = {
+    ProductSuite.MEDIA_BLITZ: "TENANT-MEDIA",
+    ProductSuite.CAREER_INTELLIGENCE_PLACEMENT: "TENANT-CAREER",
+    ProductSuite.PERSONAL_COGNITIVE_CONTINUITY: "TENANT-PERSONAL",
+}
+SUBJECTS = {
+    ProductSuite.MEDIA_BLITZ: "SUBJECT-PUBLICATION",
+    ProductSuite.CAREER_INTELLIGENCE_PLACEMENT: "SUBJECT-CAREER",
+    ProductSuite.PERSONAL_COGNITIVE_CONTINUITY: "SUBJECT-PERSON",
+}
 
 
-def media_spec(operation_id: str = "OP-MEDIA") -> MultiProductOperationSpec:
-    return MultiProductOperationSpec(
-        operation_id=operation_id,
-        product=ProductConsumer.MEDIA_BLITZ,
-        tenant_id="TENANT-MEDIA",
-        subject_id="SUBJECT-PUBLICATION-1",
-        subject_type="PUBLICATION",
-        domain="publication-corpus",
-        purpose="publication-planning",
-        state_payload={"status": "draft", "title": "Governed article"},
-        provenance_ids=("PROV-MEDIA-1",),
-        data_classification="INTERNAL",
-        submitted_at=NOW,
-    )
-
-
-def career_spec(operation_id: str = "OP-CAREER") -> MultiProductOperationSpec:
-    return MultiProductOperationSpec(
-        operation_id=operation_id,
-        product=ProductConsumer.CAREER_INTELLIGENCE,
-        tenant_id="TENANT-CAREER",
-        subject_id="SUBJECT-PROFILE-1",
-        subject_type="PROFILE",
-        domain="career-profile",
-        purpose="career-assistance",
-        state_payload={"role": "Enterprise Architect", "status": "active"},
-        provenance_ids=("PROV-CAREER-1",),
-        data_classification="INTERNAL",
-        submitted_at=NOW,
-    )
-
-
-def personal_spec(
-    operation_id: str = "OP-PERSONAL",
-    *,
-    human_policy: HumanBoundaryPolicy | None = None,
-) -> MultiProductOperationSpec:
-    return MultiProductOperationSpec(
-        operation_id=operation_id,
-        product=ProductConsumer.PERSONAL_COGNITIVE_CONTINUITY,
-        tenant_id="TENANT-PERSONAL",
-        subject_id="SUBJECT-PERSON-1",
-        subject_type="PERSON",
-        domain="personal-profile",
-        purpose="personal-continuity",
-        state_payload={"preference": "quiet", "confidence": "high"},
-        provenance_ids=("PROV-PERSONAL-1",),
-        data_classification="RESTRICTED",
-        submitted_at=NOW,
-        human_policy=human_policy,
-    )
-
-
-def consent_policy() -> HumanBoundaryPolicy:
-    return HumanBoundaryPolicy(consent_granted=True, purpose_allowed=True)
-
-
-def execute_all(integration: MultiProductHostedIntegration):
-    media = integration.execute(media_spec())
-    career = integration.execute(career_spec())
-    personal = integration.execute(personal_spec(human_policy=consent_policy()))
-    return media, career, personal
-
-
-def test_all_three_products_execute_through_shared_hosted_contracts_and_report_lineage():
-    integration = MultiProductHostedIntegration()
-
-    media, career, personal = execute_all(integration)
-    report = integration.report(run_id="RUN-47-ALL")
-
-    assert {result.product for result in report.results} == {
-        ProductConsumer.MEDIA_BLITZ,
-        ProductConsumer.CAREER_INTELLIGENCE,
-        ProductConsumer.PERSONAL_COGNITIVE_CONTINUITY,
-    }
-    assert {lineage.product for lineage in report.lineages} == set(report.products)
-    assert media.state_id in integration.consumers[ProductConsumer.MEDIA_BLITZ].reconstruct(media.state_id).state_id
-    assert career.state_id == integration.consumers[ProductConsumer.CAREER_INTELLIGENCE].reconstruct(career.state_id).state_id
-    assert personal.state_id == integration.consumers[ProductConsumer.PERSONAL_COGNITIVE_CONTINUITY].reconstruct(personal.state_id).state_id
-    assert all(lineage.state_ids for lineage in report.lineages)
-    assert all(lineage.provenance_ids for lineage in report.lineages)
-    assert all(lineage.transaction_ids for lineage in report.lineages)
-    assert report.provider_effects == 0
-    assert report.external_effects == 0
-    assert report.report_sha256.startswith("sha256:")
-
-
-def test_cross_product_domain_and_purpose_leakage_fail_before_state_effect():
-    integration = MultiProductHostedIntegration()
-    wrong_domain = media_spec("OP-WRONG-DOMAIN").model_copy(
-        update={"domain": "personal-profile"}
-    )
-    wrong_purpose = career_spec("OP-WRONG-PURPOSE").model_copy(
-        update={"purpose": "personal-continuity"}
-    )
-
-    with pytest.raises(MultiProductIntegrationError, match="domain"):
-        integration.execute(wrong_domain)
-    with pytest.raises(MultiProductIntegrationError, match="purpose"):
-        integration.execute(wrong_purpose)
-
-    assert integration.state_store.all_states() == ()
-    assert integration.platform_runtime.operation_receipts() == ()
-
-
-def test_product_tenants_and_state_lineage_remain_isolated():
-    integration = MultiProductHostedIntegration()
-    media, career, personal = execute_all(integration)
-
-    assert integration.state_store.get("TENANT-MEDIA", media.state_id) is not None
-    assert integration.state_store.get("TENANT-CAREER", media.state_id) is None
-    assert integration.state_store.get("TENANT-PERSONAL", career.state_id) is None
-    assert integration.state_store.get("TENANT-MEDIA", personal.state_id) is None
-
-    media_reconstruction = integration.consumers[ProductConsumer.MEDIA_BLITZ].reconstruct(media.state_id)
-    career_reconstruction = integration.consumers[ProductConsumer.CAREER_INTELLIGENCE].reconstruct(career.state_id)
-    personal_reconstruction = integration.consumers[ProductConsumer.PERSONAL_COGNITIVE_CONTINUITY].reconstruct(personal.state_id)
-    assert media_reconstruction.provenance_ids == ("PROV-MEDIA-1",)
-    assert career_reconstruction.provenance_ids == ("PROV-CAREER-1",)
-    assert personal_reconstruction.provenance_ids == ("PROV-PERSONAL-1",)
-
-
-def test_per_consumer_and_global_contention_are_bounded_across_products():
-    integration = MultiProductHostedIntegration(global_active_limit=2, default_consumer_active_limit=1)
-    boundary = BoundaryContext(
-        namespace_id="NKS-HOSTED-INTEGRATION-TEST",
-        tenant_id="TENANT-MEDIA",
-        subject_id="SUBJECT-PUBLICATION-1",
-        domain="publication-corpus",
-        audience="internal",
+def make_boundary(suite: ProductSuite) -> BoundaryContext:
+    return BoundaryContext(
+        namespace_id="enki",
+        tenant_id=TENANTS[suite],
+        subject_id=SUBJECTS[suite],
+        domain=DOMAINS[suite],
+        audience=EXPECTED_AUDIENCE[suite],
         execution_context=ExecutionContext.TEST,
     )
-    media_one = HostedOperation(
-        operation_id="ACTIVE-MEDIA-1",
-        consumer_id=ProductConsumer.MEDIA_BLITZ.value,
-        purpose="publication-planning",
-        boundary_context=boundary,
-        operation_type="state.create",
-        payload_hash=media_spec().payload_sha256,
-        submitted_at=NOW,
-        data_classification="INTERNAL",
+
+
+def make_contract(suite: ProductSuite) -> ProductConsumerContract:
+    return ProductConsumerContract.create(
+        contract_id=f"SPRINT47-{suite.value}",
+        suite=suite,
+        consumer_contract_version="1.0",
+        boundary=make_boundary(suite),
+        authorization_id=f"AUTH-SPRINT47-{suite.value}",
+        purpose=PURPOSES[suite],
+        permitted_output_kinds=OUTPUTS[suite],
     )
-    media_two = media_one.model_copy(update={"operation_id": "ACTIVE-MEDIA-2"})
-    career = HostedOperation(
-        operation_id="ACTIVE-CAREER-1",
-        consumer_id=ProductConsumer.CAREER_INTELLIGENCE.value,
-        purpose="career-assistance",
-        boundary_context=boundary.model_copy(
-            update={
-                "tenant_id": "TENANT-CAREER",
-                "subject_id": "SUBJECT-PROFILE-1",
-                "domain": "career-profile",
-            }
+
+
+def make_registry() -> tuple[ProductBoundaryRegistry, dict[ProductSuite, ProductConsumerContract]]:
+    contracts = {suite: make_contract(suite) for suite in ProductSuite}
+    return ProductBoundaryRegistry(list(contracts.values())), contracts
+
+
+def make_record(contract: ProductConsumerContract, work_id: str) -> GovernedKnowledgeRecord:
+    content = f"synthetic governed TEST knowledge for {work_id}"
+    envelope = TemporalAuthorityEnvelope(
+        record_id=f"RECORD-{work_id}",
+        subject_id=contract.boundary.subject_id,
+        domain=contract.boundary.domain,
+        authority_class=f"authority-{work_id}",
+        content_hash=canonical_sha256(content),
+        schema_version="1",
+        recorded_at=T0,
+        effective_from=T0,
+        authority_valid_from=T0,
+    )
+    return GovernedKnowledgeRecord(
+        envelope=envelope,
+        tenant_id=contract.boundary.tenant_id,
+        content=content,
+        allowed_audiences=frozenset({contract.boundary.audience}),
+        allowed_purposes=frozenset({contract.purpose}),
+        privacy_class=(
+            PrivacyClass.PRIVATE
+            if contract.suite == ProductSuite.PERSONAL_COGNITIVE_CONTINUITY
+            else PrivacyClass.INTERNAL
         ),
-        operation_type="state.create",
-        payload_hash=career_spec().payload_sha256,
-        submitted_at=NOW,
-        data_classification="INTERNAL",
+        provenance_ids=(f"PROV-{work_id}",),
     )
-    personal = HostedOperation(
-        operation_id="ACTIVE-PERSONAL-1",
-        consumer_id=ProductConsumer.PERSONAL_COGNITIVE_CONTINUITY.value,
-        purpose="personal-continuity",
-        boundary_context=boundary.model_copy(
-            update={
-                "tenant_id": "TENANT-PERSONAL",
-                "subject_id": "SUBJECT-PERSON-1",
-                "domain": "personal-profile",
-            }
+
+
+def make_request(contract: ProductConsumerContract) -> GovernedRetrievalRequest:
+    boundary = contract.boundary
+    return GovernedRetrievalRequest(
+        tenant_id=boundary.tenant_id,
+        subject_id=boundary.subject_id,
+        domain=boundary.domain,
+        audience=boundary.audience,
+        purpose=contract.purpose,
+        query="",
+        mode=RetrievalMode.STRUCTURED,
+        view=RetrievalView.CURRENT,
+        effective_at=NOW,
+        authority_at=NOW,
+        page_size=50,
+    )
+
+
+def human_control() -> HumanContinuityControl:
+    return HumanContinuityControl(
+        policy=HumanBoundaryPolicy(
+            consent_granted=True,
+            purpose_allowed=True,
+            revoked=False,
+            correction_or_retraction_blocked=False,
         ),
-        operation_type="state.create",
-        payload_hash=personal_spec().payload_sha256,
+        explicit_human_authority=True,
+        privacy_acknowledged=True,
+        temporal_authority_acknowledged=True,
+        requested_intent=ConsumerIntent.COGNITIVE_CONTINUITY_VIEW,
+    )
+
+
+def make_work(
+    contract: ProductConsumerContract,
+    *,
+    work_id: str,
+    failure_mode: WorkFailureMode = WorkFailureMode.NONE,
+    contention_key: str | None = None,
+    delay_ms: int = 0,
+    human: HumanContinuityControl | None = None,
+) -> MultiConsumerWorkItem:
+    record = make_record(contract, work_id)
+    return MultiConsumerWorkItem(
+        work_id=work_id,
+        suite=contract.suite,
+        intent=INTENTS[contract.suite],
+        boundary=contract.boundary,
+        records=(record,),
+        retrieval_request=make_request(contract),
         submitted_at=NOW,
-        data_classification="RESTRICTED",
-        contains_raw_sensitive_fields=True,
+        simulated_feedback=("synthetic-zero-response",)
+        if contract.suite == ProductSuite.MEDIA_BLITZ
+        else (),
+        human_control=(
+            human or human_control()
+            if contract.suite == ProductSuite.PERSONAL_COGNITIVE_CONTINUITY
+            else None
+        ),
+        contention_key=contention_key,
+        delay_ms=delay_ms,
+        failure_mode=failure_mode,
     )
 
-    integration.platform_runtime.begin_operation(media_one)
-    with pytest.raises(HostedPlatformError, match="consumer is saturated"):
-        integration.platform_runtime.begin_operation(media_two)
-    integration.platform_runtime.begin_operation(career)
-    with pytest.raises(HostedPlatformError, match="platform is saturated"):
-        integration.platform_runtime.begin_operation(personal)
 
-    integration.platform_runtime.fail_operation(
-        media_one.operation_id,
-        reason="release",
-        occurred_at=NOW,
+def three_product_items(
+    contracts: dict[ProductSuite, ProductConsumerContract],
+    *,
+    career_failure: WorkFailureMode = WorkFailureMode.NONE,
+) -> list[MultiConsumerWorkItem]:
+    return [
+        make_work(
+            contracts[ProductSuite.MEDIA_BLITZ],
+            work_id="MEDIA-47",
+            contention_key="SHARED-PLATFORM",
+            delay_ms=10,
+        ),
+        make_work(
+            contracts[ProductSuite.CAREER_INTELLIGENCE_PLACEMENT],
+            work_id="CAREER-47",
+            failure_mode=career_failure,
+            contention_key="SHARED-PLATFORM",
+            delay_ms=5,
+        ),
+        make_work(
+            contracts[ProductSuite.PERSONAL_COGNITIVE_CONTINUITY],
+            work_id="PCC-47",
+        ),
+    ]
+
+
+def test_all_three_products_execute_through_one_governed_test_surface() -> None:
+    registry, contracts = make_registry()
+    integration = MultiProductHostedIntegration(registry=registry, max_workers=3)
+
+    report, manifest, results, incidents, bundle = integration.execute(
+        run_id="SPRINT47-THREE-PRODUCTS",
+        items=three_product_items(contracts),
+        now=NOW,
     )
-    integration.platform_runtime.fail_operation(
-        career.operation_id,
-        reason="release",
-        occurred_at=NOW,
+
+    assert set(report.suites) == set(ProductSuite)
+    assert {result.suite for result in results} == set(ProductSuite)
+    assert all(result.terminal_state == PlatformTerminalState.COMMITTED for result in results)
+    assert manifest.execution_context == ExecutionContext.TEST
+    assert report.no_canonical_mutation is True
+    assert report.no_external_effect is True
+    assert report.provider_effects == 0
+    assert report.manifest_sha256 == manifest.manifest_sha256
+    assert report.portable_bundle_sha256 == bundle.bundle_sha256
+    assert report.reconstructed_manifest_sha256 == manifest.manifest_sha256
+    assert any(incident.kind == PlatformIncidentKind.CONTENTION for incident in incidents)
+    assert_telemetry_safe_serialization(list(integration.coordinator.telemetry.events))
+
+
+def test_one_product_failure_does_not_widen_or_fail_other_product_authority() -> None:
+    registry, contracts = make_registry()
+    integration = MultiProductHostedIntegration(registry=registry, max_workers=2)
+
+    report, manifest, results, incidents, _ = integration.execute(
+        run_id="SPRINT47-ISOLATED-FAILURE",
+        items=three_product_items(contracts, career_failure=WorkFailureMode.ALWAYS),
+        now=NOW,
     )
-    assert integration.platform_runtime.active_operation_ids() == ()
+
+    by_suite = {result.suite: result for result in results}
+    assert by_suite[ProductSuite.CAREER_INTELLIGENCE_PLACEMENT].terminal_state == PlatformTerminalState.ROLLED_BACK
+    assert by_suite[ProductSuite.MEDIA_BLITZ].terminal_state == PlatformTerminalState.COMMITTED
+    assert by_suite[ProductSuite.PERSONAL_COGNITIVE_CONTINUITY].terminal_state == PlatformTerminalState.COMMITTED
+    assert manifest.no_canonical_mutation is True
+    assert manifest.no_external_effect is True
+    assert report.provider_effects == 0
+    assert any(incident.kind == PlatformIncidentKind.CONSUMER_FAILURE for incident in incidents)
+    assert any(incident.kind == PlatformIncidentKind.QUEUE_PRESSURE for incident in incidents)
 
 
-def test_product_failure_creates_incident_then_retry_and_exact_replay_converge():
-    integration = MultiProductHostedIntegration()
-    spec = career_spec("OP-CAREER-FAIL-RETRY")
-
-    with pytest.raises(RuntimeError, match="injected product integration failure"):
-        integration.execute(spec, inject_failure=True)
-
-    incidents = integration.incidents()
-    assert len(incidents) == 1
-    assert incidents[0].consumer_id == ProductConsumer.CAREER_INTELLIGENCE.value
-    assert incidents[0].error_type == "RuntimeError"
-    assert "injected" not in incidents[0].error_fingerprint
-
-    recovered = integration.execute(spec)
-    replay = integration.exact_replay(spec)
-
-    assert recovered.replayed is False
-    assert replay.replayed is True
-    assert replay.state_id == recovered.state_id
-    assert integration.state_store.all_states().__len__() == 1
-    assert integration.receipt_store.all_receipts().__len__() == 1
-
-
-def test_personal_cognitive_continuity_remains_stricter_during_integrated_failure_and_retry():
-    integration = MultiProductHostedIntegration()
-    denied = personal_spec("OP-PERSONAL-POLICY")
-
-    with pytest.raises(HostedIntegrationError, match="human policy is required"):
-        integration.execute(denied)
-
-    assert len(integration.incidents()) == 1
-    assert integration.state_store.all_states() == ()
-
-    permitted = personal_spec(
-        "OP-PERSONAL-POLICY",
-        human_policy=consent_policy(),
+def test_personal_cognitive_continuity_requires_stricter_human_controls() -> None:
+    registry, contracts = make_registry()
+    integration = MultiProductHostedIntegration(registry=registry, max_workers=3)
+    denied_human = HumanContinuityControl(
+        policy=HumanBoundaryPolicy(
+            consent_granted=False,
+            purpose_allowed=True,
+            revoked=False,
+            correction_or_retraction_blocked=False,
+        ),
+        explicit_human_authority=True,
+        privacy_acknowledged=True,
+        temporal_authority_acknowledged=True,
+        requested_intent=ConsumerIntent.COGNITIVE_CONTINUITY_VIEW,
     )
-    result = integration.execute(permitted)
+    items = three_product_items(contracts)
+    items[2] = make_work(
+        contracts[ProductSuite.PERSONAL_COGNITIVE_CONTINUITY],
+        work_id="PCC-DENIED",
+        human=denied_human,
+    )
 
-    assert result.product == ProductConsumer.PERSONAL_COGNITIVE_CONTINUITY
-    assert result.state_id.startswith("STATE-")
-    assert integration.state_store.get("TENANT-PERSONAL", result.state_id) is not None
+    _, manifest, results, incidents, _ = integration.execute(
+        run_id="SPRINT47-HUMAN-CONTROL",
+        items=items,
+        now=NOW,
+    )
 
-
-def test_integrated_telemetry_is_privacy_preserving_and_product_kpis_are_stable():
-    integration = MultiProductHostedIntegration()
-    execute_all(integration)
-
-    telemetry = integration.platform_runtime.telemetry_events()
-    summary = integration.platform_runtime.telemetry_summary()
-
-    assert len(telemetry) == 3
-    assert all(event.raw_sensitive_fields_persisted is False for event in telemetry)
-    assert all(event.boundary_hash.startswith("sha256:") for event in telemetry)
-    assert summary.completed_operations == 3
-    assert summary.failed_operations == 0
-    assert summary.telemetry_events == 3
-    assert summary.incidents == 0
-    assert set(integration.platform_runtime.consumer_operation_counts()) == {
-        ProductConsumer.MEDIA_BLITZ.value,
-        ProductConsumer.CAREER_INTELLIGENCE.value,
-        ProductConsumer.PERSONAL_COGNITIVE_CONTINUITY.value,
-    }
+    by_suite = {result.suite: result for result in results}
+    assert by_suite[ProductSuite.PERSONAL_COGNITIVE_CONTINUITY].terminal_state == PlatformTerminalState.ROLLED_BACK
+    assert by_suite[ProductSuite.MEDIA_BLITZ].terminal_state == PlatformTerminalState.COMMITTED
+    assert by_suite[ProductSuite.CAREER_INTELLIGENCE_PLACEMENT].terminal_state == PlatformTerminalState.COMMITTED
+    assert manifest.no_canonical_mutation is True
+    assert any(incident.kind == PlatformIncidentKind.CONSUMER_FAILURE for incident in incidents)
 
 
-def test_shared_platform_export_and_recovery_preserve_integrated_operation_evidence():
-    integration = MultiProductHostedIntegration()
-    execute_all(integration)
-    exported = integration.export_platform_state()
-    recovered = integration.recover_platform_runtime()
+def test_missing_product_suite_fails_before_execution() -> None:
+    registry, contracts = make_registry()
+    integration = MultiProductHostedIntegration(registry=registry)
+    items = three_product_items(contracts)[:2]
 
-    assert recovered.export_state() == exported
-    assert recovered.operation_receipts() == integration.platform_runtime.operation_receipts()
-    assert recovered.telemetry_events() == integration.platform_runtime.telemetry_events()
-    assert recovered.incidents() == integration.platform_runtime.incidents()
-    assert recovered.active_operation_ids() == ()
+    with pytest.raises(MultiProductIntegrationError, match="exactly the three governed product suites"):
+        integration.execute(run_id="SPRINT47-MISSING-SUITE", items=items, now=NOW)
 
 
-def test_integrated_report_is_deterministic_and_contains_no_missing_product_lineage():
-    integration = MultiProductHostedIntegration()
-    execute_all(integration)
+def test_report_is_deterministic_for_equivalent_three_product_runs() -> None:
+    registry_a, contracts_a = make_registry()
+    registry_b, contracts_b = make_registry()
+    first = MultiProductHostedIntegration(registry=registry_a, max_workers=3)
+    second = MultiProductHostedIntegration(registry=registry_b, max_workers=3)
 
-    first = integration.report(run_id="RUN-DETERMINISTIC")
-    second = integration.report(run_id="RUN-DETERMINISTIC")
+    first_report, first_manifest, first_results, _, _ = first.execute(
+        run_id="SPRINT47-DETERMINISTIC",
+        items=three_product_items(contracts_a),
+        now=NOW,
+    )
+    second_report, second_manifest, second_results, _, _ = second.execute(
+        run_id="SPRINT47-DETERMINISTIC",
+        items=list(reversed(three_product_items(contracts_b))),
+        now=NOW,
+    )
 
-    assert first == second
-    assert first.report_sha256 == second.report_sha256
-    assert len(first.lineages) == 3
-    for lineage in first.lineages:
-        assert len(lineage.state_ids) >= 1
-        assert len(lineage.state_hashes) == len(lineage.state_ids)
-        assert len(lineage.reconstruction_hashes) == len(lineage.state_ids)
-        assert lineage.lineage_sha256.startswith("sha256:")
+    assert first_manifest.manifest_sha256 == second_manifest.manifest_sha256
+    assert tuple(sorted(item.result_sha256 for item in first_results)) == tuple(
+        sorted(item.result_sha256 for item in second_results)
+    )
+    assert first_report.report_sha256 == second_report.report_sha256
 
 
-def test_integrated_report_includes_product_specific_incident_after_recovery():
-    integration = MultiProductHostedIntegration()
-    integration.execute(media_spec())
-    failed = career_spec("OP-CAREER-INCIDENT")
-    with pytest.raises(RuntimeError):
-        integration.execute(failed, inject_failure=True)
-    integration.execute(failed)
-    integration.execute(personal_spec(human_policy=consent_policy()))
+def test_product_contract_boundary_mismatch_rolls_back_only_that_work_item() -> None:
+    registry, contracts = make_registry()
+    integration = MultiProductHostedIntegration(registry=registry)
+    media = contracts[ProductSuite.MEDIA_BLITZ]
+    wrong_boundary = BoundaryContext(
+        namespace_id=media.boundary.namespace_id,
+        tenant_id="TENANT-WRONG",
+        subject_id=media.boundary.subject_id,
+        domain=media.boundary.domain,
+        audience=media.boundary.audience,
+        execution_context=ExecutionContext.TEST,
+    )
+    bad_media = MultiConsumerWorkItem(
+        work_id="MEDIA-WRONG-TENANT",
+        suite=ProductSuite.MEDIA_BLITZ,
+        intent=ConsumerIntent.MEDIA_PUBLICATION_PROOF,
+        boundary=wrong_boundary,
+        records=(make_record(media, "MEDIA-WRONG-TENANT"),),
+        retrieval_request=GovernedRetrievalRequest(
+            tenant_id=wrong_boundary.tenant_id,
+            subject_id=wrong_boundary.subject_id,
+            domain=wrong_boundary.domain,
+            audience=wrong_boundary.audience,
+            purpose=media.purpose,
+            query="",
+            mode=RetrievalMode.STRUCTURED,
+            view=RetrievalView.CURRENT,
+            effective_at=NOW,
+            authority_at=NOW,
+            page_size=50,
+        ),
+        submitted_at=NOW,
+    )
+    items = [
+        bad_media,
+        make_work(contracts[ProductSuite.CAREER_INTELLIGENCE_PLACEMENT], work_id="CAREER-GOOD"),
+        make_work(contracts[ProductSuite.PERSONAL_COGNITIVE_CONTINUITY], work_id="PCC-GOOD"),
+    ]
 
-    report = integration.report(run_id="RUN-WITH-INCIDENT")
+    _, manifest, results, incidents, _ = integration.execute(
+        run_id="SPRINT47-CROSS-TENANT-DENIAL",
+        items=items,
+        now=NOW,
+    )
 
-    assert len(report.incident_ids) == 1
-    assert report.incident_ids[0].startswith("INCIDENT-")
-    assert set(report.products) == {
-        ProductConsumer.MEDIA_BLITZ,
-        ProductConsumer.CAREER_INTELLIGENCE,
-        ProductConsumer.PERSONAL_COGNITIVE_CONTINUITY,
-    }
+    by_suite = {result.suite: result for result in results}
+    assert by_suite[ProductSuite.MEDIA_BLITZ].terminal_state == PlatformTerminalState.ROLLED_BACK
+    assert by_suite[ProductSuite.CAREER_INTELLIGENCE_PLACEMENT].terminal_state == PlatformTerminalState.COMMITTED
+    assert by_suite[ProductSuite.PERSONAL_COGNITIVE_CONTINUITY].terminal_state == PlatformTerminalState.COMMITTED
+    assert manifest.no_canonical_mutation is True
+    assert manifest.no_external_effect is True
+    assert any(incident.kind == PlatformIncidentKind.CONSUMER_FAILURE for incident in incidents)
