@@ -249,7 +249,7 @@ def _as_of_score(record: GovernedKnowledgeRecord, request: HostedRetrievalReques
     content_tokens = set(re.findall(r"[a-z0-9]+", content))
     if not query_tokens:
         return 0.0
-    return len(query_tokens.intersection(content_tokens)) / len(query_tokens)
+    return len(query_tokens.intersection(content_tokens))
 
 
 def _as_of_cursor_start(cursor: str | None, timeline_hash: str) -> int:
@@ -333,13 +333,13 @@ def _retrieve_as_of_knowledge(
         for score, record in page
     )
     payload = {
-        "request_id": request.request_id,
         "tenant_id": request.context.tenant_id,
         "subject_id": request.context.subject_id,
         "domain": request.context.domain,
-        "view": RetrievalView.CURRENT,
-        "effective_at": request.as_of,
-        "authority_at": request.as_of,
+        "audience": request.context.audience,
+        "purpose": request.context.purpose,
+        "view": RetrievalView.HISTORICAL,
+        "mode": request.mode,
         "timeline_hash": timeline_hash,
         "hits": hits,
         "withheld_count": withheld_count,
