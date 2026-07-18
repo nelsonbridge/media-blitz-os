@@ -2,7 +2,7 @@
   "work_item_id": "BL-040",
   "title": "Physical Canonical Persistence and Migration",
   "description": "Implement the definitive hosted mapping for canonical structured state and temporal authority, including schema migration, indexes, transactions, reservations, receipts, conflicts, and reconstruction.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-040",
   "acceptance_criteria": [
     "The physical schema preserves historical truth, current authority, recorded time, effective time, and authority-valid time",
@@ -11,8 +11,17 @@
     "Schema migration preserves identifiers, hashes, authority, and historical lineage",
     "Cross-tenant physical isolation matches the selected production-control contract"
   ],
-  "evidence": [],
+  "evidence": [
+    {"evidence_id":"E-BL40-SCHEMA-V1","kind":"canonical-record","reference":"infrastructure/enki-hosted-1.0-rc2/canonical-persistence-v1.sql","description":"Physical canonical schema and governed-write boundary."},
+    {"evidence_id":"E-BL40-MIGRATION-V2","kind":"canonical-record","reference":"infrastructure/enki-hosted-1.0-rc2/canonical-persistence-v2-migration.sql","description":"Versioned physical schema migration."},
+    {"evidence_id":"E-BL40-ROLLBACK-V2","kind":"canonical-record","reference":"infrastructure/enki-hosted-1.0-rc2/canonical-persistence-v2-rollback.sql","description":"Versioned physical schema rollback."},
+    {"evidence_id":"E-BL40-PR130","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/130","description":"Sprint 40 implementation."},
+    {"evidence_id":"E-BL40-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/ad75dd908a92127071c1d2041f71d6450cb063b6","description":"Sprint 40 implementation merge."},
+    {"evidence_id":"E-BL40-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29623527985","description":"CI passed."},
+    {"evidence_id":"E-BL40-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29623527974","description":"Runtime Coverage passed."},
+    {"evidence_id":"E-BL40-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29623527970","description":"Work Control Authority passed."}
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-17T08:00:00Z"
+  "updated_at": "2026-07-18T00:42:00Z"
 }

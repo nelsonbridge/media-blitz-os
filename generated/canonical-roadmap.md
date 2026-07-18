@@ -654,10 +654,10 @@ Exit criteria:
 ## Sprint 40 — Physical Canonical Persistence and Migration
 
 - ID: `NKS-SPR-040`
-- Status: `planned`
+- Status: `complete`
 - Objective: Implement the definitive hosted mapping for canonical structured state and temporal authority, including schema migration, indexes, transactions, reservations, receipts, conflicts, and reconstruction.
 - Work items: BL-040
-- Evidence records: 0
+- Evidence records: 8
 
 Exit criteria:
 
