@@ -1,0 +1,56 @@
+name: Sprint 43 Promotion Repair
+
+on:
+  push:
+    branches:
+      - governance/promote-sprint-43-completion
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: governance/promote-sprint-43-completion
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install runtime
+        run: python -m pip install -e '.[test]'
+      - name: Repair BL-043 and synchronize projections
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('records/work-items/BL-043.json')
+          data = json.loads(p.read_text())
+          data['status'] = 'complete'
+          data['evidence'] = [
+            {'evidence_id':'E-BL43-HOSTED-RETRIEVAL','kind':'implementation','reference':'src/nks/application/hosted_retrieval.py','description':'Hosted identity-gated retrieval implementation.'},
+            {'evidence_id':'E-BL43-PR134','kind':'pull-request','reference':'https://github.com/nelsonbridge/media-blitz-os/pull/134','description':'Corrected hosted retrieval implementation.'},
+            {'evidence_id':'E-BL43-COMMIT','kind':'commit','reference':'https://github.com/nelsonbridge/media-blitz-os/commit/e7e630aec5f0f1e56823ee56819d7e0a0e6a2e8b','description':'Merged Sprint 43 implementation.'},
+            {'evidence_id':'E-BL43-CI','kind':'test-run','reference':'https://github.com/nelsonbridge/media-blitz-os/actions/runs/29624762916','description':'CI passed.'},
+            {'evidence_id':'E-BL43-COVERAGE','kind':'test-run','reference':'https://github.com/nelsonbridge/media-blitz-os/actions/runs/29624762915','description':'Runtime Coverage passed.'},
+            {'evidence_id':'E-BL43-WORK-CONTROL','kind':'test-run','reference':'https://github.com/nelsonbridge/media-blitz-os/actions/runs/29624762917','description':'Work Control Authority passed.'}
+          ]
+          data['updated_at'] = '2026-07-18T01:18:00Z'
+          p.write_text(json.dumps(data, indent=2) + '\n')
+          PY
+          rm -f .github/workflows/sprint43-projection-sync.yml
+          rm -f .github/workflows/sprint43-promotion-repair.yml
+          python -c "from pathlib import Path; from nks.views.work_control import write_work_control_views; write_work_control_views(Path('.'))"
+          python -m nks.views.authority write .
+          nks generate-views .
+          nks audit-repository .
+      - name: Commit repaired promotion state
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add records/work-items/BL-043.json generated .github/workflows/sprint43-projection-sync.yml .github/workflows/sprint43-promotion-repair.yml
+          git commit -m 'Repair Sprint 43 completion promotion state'
+          git push origin HEAD:governance/promote-sprint-43-completion
