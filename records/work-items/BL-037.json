@@ -2,7 +2,7 @@
   "work_item_id": "BL-037",
   "title": "Deployment Decision Resolution and Architecture Lock",
   "description": "Convert an explicit human RC2 deployment disposition into a governed architecture baseline, or preserve the pending decision as a fail-closed blocker without inferring a hosting or production choice.",
-  "status": "blocked",
+  "status": "complete",
   "sprint_id": "NKS-SPR-037",
   "acceptance_criteria": [
     "An explicit human RC2 disposition is bound to the exact candidate hash before any architecture lock",
@@ -11,8 +11,17 @@
     "Any approved conditions become explicit prerequisites with owners, evidence requirements, and stop conditions",
     "A defer or reject outcome preserves the validated software baseline and historical decision lineage"
   ],
-  "evidence": [],
-  "blocked_reason": "RC2 deployment decision remains PENDING_HUMAN_DECISION; only explicit human authority can resolve Sprint 37.",
+  "evidence": [
+    {"evidence_id":"E-BL37-HUMAN-DECISION","kind":"human-decision","reference":"https://github.com/nelsonbridge/media-blitz-os/issues/123#issuecomment-5008644257","description":"Exact human APPROVE disposition for the bound RC2 candidate."},
+    {"evidence_id":"E-BL37-DECISION-RECORD","kind":"canonical-record","reference":"releases/enki-hosted-1.0-rc2/human-deployment-decision.json","description":"Governed decision resolution record."},
+    {"evidence_id":"E-BL37-ARCH-LOCK","kind":"canonical-record","reference":"releases/enki-hosted-1.0-rc2/architecture-lock.json","description":"CF-NEON-R2 architecture lock with production and external gates preserved."},
+    {"evidence_id":"E-BL37-PR124","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/124","description":"Sprint 37 implementation."},
+    {"evidence_id":"E-BL37-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/6f5c3b8993c18f7aac28745e4c5f9ea91ef20c76","description":"Sprint 37 implementation merge."},
+    {"evidence_id":"E-BL37-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29622251863","description":"CI passed."},
+    {"evidence_id":"E-BL37-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29622251115","description":"Runtime Coverage passed."},
+    {"evidence_id":"E-BL37-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29622251109","description":"Work Control Authority passed."}
+  ],
+  "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-17T08:00:00Z"
+  "updated_at": "2026-07-18T00:06:00Z"
 }

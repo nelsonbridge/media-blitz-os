@@ -603,10 +603,10 @@ Exit criteria:
 ## Sprint 37 — Deployment Decision Resolution and Architecture Lock
 
 - ID: `NKS-SPR-037`
-- Status: `blocked`
+- Status: `complete`
 - Objective: Convert an explicit human RC2 deployment disposition into a governed architecture baseline, or preserve the pending decision as a fail-closed blocker without inferring a hosting or production choice.
 - Work items: BL-037
-- Evidence records: 0
+- Evidence records: 8
 
 Exit criteria:
 

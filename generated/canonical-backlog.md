@@ -40,7 +40,7 @@
 | BL-034 | complete | NKS-SPR-034 | Multi-Consumer Isolation and Platform Operations | 5 |
 | BL-035 | complete | NKS-SPR-035 | Selected Hosting Architecture Production-Control Validation Readiness | 5 |
 | BL-036 | complete | NKS-SPR-036 | Enki Hosted Release Candidate and Deployment Decision | 5 |
-| BL-037 | blocked | NKS-SPR-037 | Deployment Decision Resolution and Architecture Lock | 0 |
+| BL-037 | complete | NKS-SPR-037 | Deployment Decision Resolution and Architecture Lock | 8 |
 | BL-038 | planned | NKS-SPR-038 | Infrastructure-as-Code and Reproducible Environment Build | 0 |
 | BL-039 | planned | NKS-SPR-039 | Hosted Identity, Tenancy, and Context Enforcement | 0 |
 | BL-040 | planned | NKS-SPR-040 | Physical Canonical Persistence and Migration | 0 |
