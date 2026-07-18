@@ -688,10 +688,10 @@ Exit criteria:
 ## Sprint 42 — Hosted Governed Execution Runtime
 
 - ID: `NKS-SPR-042`
-- Status: `planned`
+- Status: `complete`
 - Objective: Deploy and validate the complete Enki governed mutation path in the authorized hosted runtime so no canonical mutation can bypass context, authority, policy, provenance, reservation, journaling, receipts, and recovery.
 - Work items: BL-042
-- Evidence records: 0
+- Evidence records: 6
 
 Exit criteria:
 
