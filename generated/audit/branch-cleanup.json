@@ -5,10 +5,9 @@
   ],
   "apply": true,
   "archived": {
-    "main@pre-consolidation": "archive/pre-consolidation/main-dc1d38452577"
+    "main@pre-consolidation": "archive/pre-consolidation/main-ad75dd908a92"
   },
   "before": [
-    "execution/sprint40-physical-canonical-persistence",
     "governance/promote-sprint-40-completion",
     "main",
     "sandbox"
@@ -16,16 +15,14 @@
   "default_branch_requested": "main",
   "delete_branch_on_merge_requested": true,
   "deleted": [
-    "execution/sprint40-physical-canonical-persistence",
     "governance/promote-sprint-40-completion"
   ],
   "errors": [
     "repository settings: GitHub API 403: Resource not accessible by integration"
   ],
-  "main_current_sha": "ad75dd908a92127071c1d2041f71d6450cb063b6",
-  "main_previous_sha": "dc1d38452577c2cd53c651034376ab67037c7a0f",
+  "main_current_sha": "94a9ec4b6141cbe6cc0094637b20de7b5541f3cb",
+  "main_previous_sha": "ad75dd908a92127071c1d2041f71d6450cb063b6",
   "merged_into": {
-    "execution/sprint40-physical-canonical-persistence": "main",
     "governance/promote-sprint-40-completion": "main"
   },
   "repository": "nelsonbridge/media-blitz-os",
