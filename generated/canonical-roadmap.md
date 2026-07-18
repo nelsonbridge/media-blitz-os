@@ -773,10 +773,10 @@ Exit criteria:
 ## Sprint 47 — Multi-Product Hosted Integration
 
 - ID: `NKS-SPR-047`
-- Status: `planned`
+- Status: `complete`
 - Objective: Run Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity concurrently against hosted Enki through stable governed consumer boundaries without cross-product data, purpose, or authority leakage.
 - Work items: BL-047
-- Evidence records: 0
+- Evidence records: 5
 
 Exit criteria:
 
