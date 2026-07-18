@@ -3,7 +3,7 @@
   "sequence": 40,
   "title": "Physical Canonical Persistence and Migration",
   "objective": "Implement the definitive hosted mapping for canonical structured state and temporal authority, including schema migration, indexes, transactions, reservations, receipts, conflicts, and reconstruction.",
-  "status": "planned",
+  "status": "complete",
   "work_item_ids": [
     "BL-040"
   ],
@@ -15,7 +15,16 @@
     "Cross-tenant physical isolation matches the selected production-control contract",
     "Rollback restores the last validated schema and canonical fingerprint"
   ],
-  "evidence": [],
+  "evidence": [
+    {"evidence_id":"E-S40-SCHEMA-V1","kind":"canonical-record","reference":"infrastructure/enki-hosted-1.0-rc2/canonical-persistence-v1.sql","description":"Versioned physical canonical schema with tenant-scoped temporal rows, current-authority projection, transaction/reservation/receipt/conflict journals, and governed-write trigger."},
+    {"evidence_id":"E-S40-MIGRATION-V2","kind":"canonical-record","reference":"infrastructure/enki-hosted-1.0-rc2/canonical-persistence-v2-migration.sql","description":"Deterministic V2 temporal and transaction index migration."},
+    {"evidence_id":"E-S40-ROLLBACK-V2","kind":"canonical-record","reference":"infrastructure/enki-hosted-1.0-rc2/canonical-persistence-v2-rollback.sql","description":"Deterministic V2 rollback restoring the prior physical schema fingerprint."},
+    {"evidence_id":"E-S40-PR130","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/130","description":"Implemented governed physical canonical persistence, migration, reconstruction, cross-tenant isolation, and rollback proof."},
+    {"evidence_id":"E-S40-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/ad75dd908a92127071c1d2041f71d6450cb063b6","description":"Merged Sprint 40 physical persistence implementation."},
+    {"evidence_id":"E-S40-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29623527985","description":"CI passed after correcting the TEST authorization fixture window."},
+    {"evidence_id":"E-S40-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29623527974","description":"Runtime Coverage passed for the corrected Sprint 40 implementation."},
+    {"evidence_id":"E-S40-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29623527970","description":"Work Control Authority passed for the corrected Sprint 40 implementation."}
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-17T08:00:00Z"
+  "updated_at": "2026-07-18T00:42:00Z"
 }
