@@ -3,7 +3,7 @@
   "sequence": 43,
   "title": "Hosted Retrieval and Knowledge Access",
   "objective": "Operationalize current-authority, historical, contextual, structured, semantic, and projection access against the hosted governed state without leaking authority or converting projections into canonical truth.",
-  "status": "planned",
+  "status": "complete",
   "work_item_ids": [
     "BL-043"
   ],
@@ -15,7 +15,14 @@
     "Pagination, stale-state, denial, replay, and leakage paths are validated",
     "Model access continues through the governed provider-neutral model gateway"
   ],
-  "evidence": [],
+  "evidence": [
+    {"evidence_id":"E-S43-HOSTED-RETRIEVAL","kind":"implementation","reference":"src/nks/application/hosted_retrieval.py","description":"Hosted identity-gated retrieval service with tenant-scoped physical catalog, explicit current/historical/as-of access, deterministic pagination/search, privacy filtering, stable replay hashes, and provider-neutral model-gateway handoff."},
+    {"evidence_id":"E-S43-PR134","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/134","description":"Implemented and repaired hosted retrieval, historical as-of semantics, stable replay identity scope, and model-gateway context consistency."},
+    {"evidence_id":"E-S43-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/e7e630aec5f0f1e56823ee56819d7e0a0e6a2e8b","description":"Merged corrected Sprint 43 hosted retrieval implementation."},
+    {"evidence_id":"E-S43-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29624762916","description":"CI passed for the final corrected Sprint 43 head."},
+    {"evidence_id":"E-S43-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29624762915","description":"Runtime Coverage passed for the final corrected Sprint 43 head."},
+    {"evidence_id":"E-S43-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29624762917","description":"Work Control Authority passed for the final corrected Sprint 43 head."}
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-17T08:00:00Z"
+  "updated_at": "2026-07-18T01:18:00Z"
 }
