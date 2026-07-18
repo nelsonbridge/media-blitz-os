@@ -73,7 +73,7 @@ export GCP_PROJECT=enki-test
 export GCP_REGION=us-central1
 export GITHUB_REPO=nelsonbridge/media-blitz-os
 
-# Run bootstrap (takes ~2–3 minutes)
+# Run bootstrap (takes ~2-3 minutes)
 ./infrastructure/bootstrap/bootstrap-gcp.sh
 ```
 

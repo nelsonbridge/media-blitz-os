@@ -55,9 +55,12 @@ DEPLOY_WORKFLOW="${GITHUB_REPO}/.github/workflows/terraform.yml@${DEPLOY_BRANCH}
 
 DEPLOYER_ATTRIBUTE_MAPPING=(
   "google.subject=assertion.sub"
+  # actor and repository_owner are not enforced in the condition but are mapped
+  # here for audit trail purposes — they surface in GCP credential audit logs.
   "attribute.actor=assertion.actor"
   "attribute.repository=assertion.repository"
   "attribute.repository_owner=assertion.repository_owner"
+  # ref, event_name, and workflow_ref are the enforced restriction claims.
   "attribute.ref=assertion.ref"
   "attribute.event_name=assertion.event_name"
   "attribute.workflow_ref=assertion.workflow_ref"
@@ -65,10 +68,14 @@ DEPLOYER_ATTRIBUTE_MAPPING=(
 # Join with commas for the gcloud flag
 DEPLOYER_ATTRIBUTE_MAPPING_STR=$(IFS=,; echo "${DEPLOYER_ATTRIBUTE_MAPPING[*]}")
 
-DEPLOYER_CONDITION="assertion.repository == '${GITHUB_REPO}' \
-&& assertion.event_name == 'push' \
-&& assertion.ref == '${DEPLOY_BRANCH}' \
-&& assertion.workflow_ref == '${DEPLOY_WORKFLOW}'"
+DEPLOYER_CONDITION_PARTS=(
+  "assertion.repository == '${GITHUB_REPO}'"
+  "assertion.event_name == 'push'"
+  "assertion.ref == '${DEPLOY_BRANCH}'"
+  "assertion.workflow_ref == '${DEPLOY_WORKFLOW}'"
+)
+# Join with ' && ' for the gcloud --attribute-condition flag
+DEPLOYER_CONDITION=$(IFS=' && '; echo "${DEPLOYER_CONDITION_PARTS[*]}")
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -242,7 +249,11 @@ log "Binding applied."
 log "Step 8 — Granting Terraform permissions to ${SA_EMAIL}…"
 
 TERRAFORM_ROLES=(
-  "roles/editor"                           # bootstrap broad grant — see note above
+  # bootstrap broad grant: roles/editor covers Cloud Run, Cloud SQL, Artifact
+  # Registry, Secret Manager, networking, and GCS.  Replace with resource-
+  # specific roles once the Terraform resource set is stable (see the role
+  # justification comment in Step 8 header above).
+  "roles/editor"
   # roles/iam.securityAdmin and roles/resourcemanager.projectIamAdmin are the
   # only permissions NOT covered by roles/editor that Terraform needs to manage
   # resource-level and project-level IAM bindings.
@@ -258,7 +269,10 @@ for ROLE in "${TERRAFORM_ROLES[@]}"; do
   log "  Granted ${ROLE}"
 done
 
-# Also grant the service account the ability to read its own token (required for impersonation flows)
+# Grant the service account the ability to create its own short-lived tokens.
+# This is required for Workload Identity impersonation flows where the federated
+# identity exchanges the OIDC token for a service account access token.
+log "  Granting roles/iam.serviceAccountTokenCreator (self-binding for impersonation)…"
 gcloud iam service-accounts add-iam-policy-binding "${SA_EMAIL}" \
   --project="${GCP_PROJECT}" \
   --role="roles/iam.serviceAccountTokenCreator" \

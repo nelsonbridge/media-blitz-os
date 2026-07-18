@@ -18,6 +18,10 @@ on:
 # Concurrency is defined per-job below so that PR plans and sandbox applies
 # have independent policies.  No top-level concurrency group is set here.
 
+# Single source of truth for the Terraform version used in both jobs.
+env:
+  TF_VERSION: "~> 1.9.0"
+
 permissions:
   contents: read
   pull-requests: write      # post plan summaries as PR comments
@@ -55,7 +59,7 @@ jobs:
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: "~> 1.9.0"
+          terraform_version: ${{ env.TF_VERSION }}
 
       - name: Terraform fmt check
         working-directory: infrastructure/terraform
@@ -124,7 +128,7 @@ jobs:
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: "~> 1.9.0"
+          terraform_version: ${{ env.TF_VERSION }}
 
       # ------------------------------------------------------------------
       # 4. Initialise with GCS remote backend
