@@ -45,7 +45,7 @@
 | BL-039 | complete | NKS-SPR-039 | Hosted Identity, Tenancy, and Context Enforcement | 6 |
 | BL-040 | complete | NKS-SPR-040 | Physical Canonical Persistence and Migration | 8 |
 | BL-041 | complete | NKS-SPR-041 | Evidence and Object Plane | 5 |
-| BL-042 | planned | NKS-SPR-042 | Hosted Governed Execution Runtime | 0 |
+| BL-042 | complete | NKS-SPR-042 | Hosted Governed Execution Runtime | 6 |
 | BL-043 | planned | NKS-SPR-043 | Hosted Retrieval and Knowledge Access | 0 |
 | BL-044 | complete | NKS-SPR-044 | Disaster Recovery, Portability, and Provider Exit | 5 |
 | BL-045 | planned | NKS-SPR-045 | Production-Control Implementation | 0 |

@@ -3,7 +3,7 @@
   "sequence": 42,
   "title": "Hosted Governed Execution Runtime",
   "objective": "Deploy and validate the complete Enki governed mutation path in the authorized hosted runtime so no canonical mutation can bypass context, authority, policy, provenance, reservation, journaling, receipts, and recovery.",
-  "status": "planned",
+  "status": "complete",
   "work_item_ids": [
     "BL-042"
   ],
@@ -15,7 +15,14 @@
     "Failure recovery reconstructs exact state and evidence lineage",
     "TEST execution remains incapable of production effects unless separately authorized"
   ],
-  "evidence": [],
+  "evidence": [
+    {"evidence_id":"E-S42-MUTATION-POLICY","kind":"canonical-record","reference":"security/enki-hosted-1.0-rc2/hosted-mutation-policy.json","description":"Versioned TEST-only hosted mutation policy binding purpose, provenance, approval authority classes, and production-execution prohibition."},
+    {"evidence_id":"E-S42-PR132","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/132","description":"Implemented hosted governed mutation orchestration, durable approval consumption, interruption recovery, and exact runtime receipts."},
+    {"evidence_id":"E-S42-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/ef6460310c3bba5a1a5b0632e44ca1a69ef89a4b","description":"Merged Sprint 42 governed execution runtime implementation."},
+    {"evidence_id":"E-S42-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29623841150","description":"CI passed for Sprint 42 implementation."},
+    {"evidence_id":"E-S42-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29623841135","description":"Runtime Coverage passed for Sprint 42 implementation."},
+    {"evidence_id":"E-S42-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29623841138","description":"Work Control Authority passed for Sprint 42 implementation."}
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-17T08:00:00Z"
+  "updated_at": "2026-07-18T00:51:00Z"
 }
