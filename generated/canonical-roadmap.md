@@ -620,10 +620,10 @@ Exit criteria:
 ## Sprint 38 — Infrastructure-as-Code and Reproducible Environment Build
 
 - ID: `NKS-SPR-038`
-- Status: `planned`
+- Status: `complete`
 - Objective: Implement the human-authorized hosted architecture as reproducible TEST infrastructure with deterministic creation, verification, teardown, and clean rebuild while preserving the zero-cost boundary until separately changed.
 - Work items: BL-038
-- Evidence records: 0
+- Evidence records: 6
 
 Exit criteria:
 
