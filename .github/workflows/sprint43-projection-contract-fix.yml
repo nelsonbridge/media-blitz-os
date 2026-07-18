@@ -1,0 +1,29 @@
+name: Sprint 43 Projection Contract Fix
+
+on:
+  push:
+    branches:
+      - execution/sprint43-hosted-retrieval
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: execution/sprint43-hosted-retrieval
+          fetch-depth: 0
+      - name: Apply focused patch
+        run: python scripts/patch_sprint43_projection_contract.py
+      - name: Remove temporary patch files
+        run: rm scripts/patch_sprint43_projection_contract.py .github/workflows/sprint43-projection-contract-fix.yml
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/nks/application/hosted_retrieval.py scripts/patch_sprint43_projection_contract.py .github/workflows/sprint43-projection-contract-fix.yml
+          git commit -m "Fix Sprint 43 as-of projection contract"
+          git push origin HEAD:execution/sprint43-hosted-retrieval
