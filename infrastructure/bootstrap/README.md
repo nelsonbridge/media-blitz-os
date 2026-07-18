@@ -16,17 +16,31 @@ bootstrap-gcp.sh
       │
       ├─ Enables GCP APIs
       ├─ Creates Terraform state bucket (GCS)
-      ├─ Creates Workload Identity Pool + OIDC provider
+      ├─ Creates Workload Identity Pool + OIDC provider (deployer)
       ├─ Creates terraform-deployer service account
-      ├─ Binds nelsonbridge/media-blitz-os → service account (WIF)
+      ├─ Binds sandbox push events → deployer account (WIF, narrowed)
       └─ Grants Terraform IAM roles
 
       ▼
-GitHub Actions (PR merge)
+Pull Request (Copilot / any branch)
       │
-      ├─ Authenticates via OIDC token → Workload Identity Federation
-      ├─ Impersonates terraform-deployer service account (keyless)
-      └─ Runs terraform plan / terraform apply
+      ├─ pr-validate job: fmt, init -backend=false, validate
+      ├─ No GCP credentials provided
+      └─ Cannot obtain terraform-deployer identity
+             (WIF condition enforces event_name == push)
+
+      ▼
+You merge → sandbox
+      │
+      ▼
+deploy job (sandbox push)
+      │
+      ├─ Authenticates via OIDC → WIF → terraform-deployer (keyless)
+      ├─ terraform init / validate / plan
+      └─ terraform apply
+             │
+             ▼
+            GCP
 ```
 
 No permanent GCP service-account key is ever stored in GitHub. Google
@@ -63,8 +77,9 @@ export GITHUB_REPO=nelsonbridge/media-blitz-os
 ./infrastructure/bootstrap/bootstrap-gcp.sh
 ```
 
-The script is **idempotent** — re-running it is safe and will skip resources
-that already exist.
+The script is **convergent** — re-running it is safe. Resources are created if
+absent and security controls (uniform access, public-access-prevention,
+versioning, WIF provider configuration) are enforced on every run.
 
 ---
 
@@ -74,11 +89,11 @@ that already exist.
 |---|---|---|
 | 1 | GCP API enablement | 14 prerequisite APIs |
 | 2 | Terraform state bucket | `enki-test-terraform-state` |
-| 3 | State bucket versioning | enabled on bucket above |
+| 3 | State bucket versioning | enabled (always enforced) |
 | 4 | Workload Identity Pool | `github-actions-pool` |
-| 5 | OIDC provider | `github-actions-oidc` |
+| 5 | OIDC provider (deployer) | `github-actions-oidc` |
 | 6 | Terraform service account | `terraform-deployer@enki-test.iam.gserviceaccount.com` |
-| 7 | Repository binding | `attribute.repository == nelsonbridge/media-blitz-os` |
+| 7 | Repository/branch binding | see WIF condition below |
 | 8 | IAM roles | see table below |
 
 ### Terraform service account IAM roles
@@ -111,13 +126,43 @@ No secrets are required — authentication is fully keyless.
 
 ## Security constraints
 
-- The OIDC provider attribute-condition is set to
-  `assertion.repository == 'nelsonbridge/media-blitz-os'`, so only tokens
-  issued for this exact repository are accepted.
-- The WIF binding uses `principalSet://…/attribute.repository/…` (defence in
-  depth: two independent enforcement points).
-- The state bucket uses uniform bucket-level access (no ACLs).
-- No service-account key is ever generated or stored.
+### Deployer WIF trust boundary
+
+The OIDC provider attribute-condition enforces **four independent claims**
+before granting the deployer identity:
+
+| Claim | Required value |
+|---|---|
+| `assertion.repository` | `nelsonbridge/media-blitz-os` |
+| `assertion.event_name` | `push` |
+| `assertion.ref` | `refs/heads/sandbox` |
+| `assertion.workflow_ref` | `nelsonbridge/media-blitz-os/.github/workflows/terraform.yml@refs/heads/sandbox` |
+
+This means:
+
+- **Pull request workflows** cannot obtain the deployer identity
+  (`event_name == pull_request`, not `push`).
+- **Other branches** cannot obtain the deployer identity
+  (`ref` is not `refs/heads/sandbox`).
+- **Other workflow files** cannot obtain the deployer identity
+  (`workflow_ref` must be exactly `terraform.yml` on `sandbox`).
+- **Copilot PRs** are therefore structurally excluded — only the repo owner's
+  merge into sandbox triggers the authority transition.
+
+The WIF binding uses `principalSet://…/attribute.repository/…` as a second,
+independent enforcement point (defence in depth).
+
+### State bucket
+
+- Uniform bucket-level access enforced (no per-object ACLs).
+- Public access prevention set to `enforced`.
+- Versioning enabled.
+- All three controls are re-applied on every bootstrap run (convergent).
+
+### No stored keys
+
+No service-account key is ever generated or stored. Authentication is entirely
+through short-lived OIDC tokens exchanged via Workload Identity Federation.
 
 ---
 
@@ -125,5 +170,6 @@ No secrets are required — authentication is fully keyless.
 
 All Cloud Run, Cloud SQL, Artifact Registry, Secret Manager, networking, and
 application resources are defined in Terraform under `infrastructure/terraform/`
-and applied exclusively through the GitHub Actions workflow in
-`.github/workflows/terraform.yml`.
+and applied exclusively through the `deploy` job in
+`.github/workflows/terraform.yml`, which requires a merge to `sandbox` by the
+repo owner.

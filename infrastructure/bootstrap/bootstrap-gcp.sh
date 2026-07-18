@@ -42,6 +42,34 @@ SA_EMAIL="${SA_NAME}@${GCP_PROJECT}.iam.gserviceaccount.com"
 # GitHub OIDC issuer (fixed by GitHub)
 GITHUB_OIDC_ISSUER="https://token.actions.githubusercontent.com"
 
+# Deployer WIF trust constraints
+# The OIDC provider attribute-condition is intentionally narrow:
+#   - only tokens issued for this exact repository
+#   - only push events (not PR, schedule, workflow_dispatch, etc.)
+#   - only the protected sandbox branch
+#   - only the terraform.yml workflow file on that branch
+# This ensures that Copilot PRs and other branch workflows cannot obtain the
+# deployer identity regardless of what steps they contain.
+DEPLOY_BRANCH="refs/heads/sandbox"
+DEPLOY_WORKFLOW="${GITHUB_REPO}/.github/workflows/terraform.yml@${DEPLOY_BRANCH}"
+
+DEPLOYER_ATTRIBUTE_MAPPING=(
+  "google.subject=assertion.sub"
+  "attribute.actor=assertion.actor"
+  "attribute.repository=assertion.repository"
+  "attribute.repository_owner=assertion.repository_owner"
+  "attribute.ref=assertion.ref"
+  "attribute.event_name=assertion.event_name"
+  "attribute.workflow_ref=assertion.workflow_ref"
+)
+# Join with commas for the gcloud flag
+DEPLOYER_ATTRIBUTE_MAPPING_STR=$(IFS=,; echo "${DEPLOYER_ATTRIBUTE_MAPPING[*]}")
+
+DEPLOYER_CONDITION="assertion.repository == '${GITHUB_REPO}' \
+&& assertion.event_name == 'push' \
+&& assertion.ref == '${DEPLOY_BRANCH}' \
+&& assertion.workflow_ref == '${DEPLOY_WORKFLOW}'"
+
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
@@ -79,19 +107,25 @@ log "APIs enabled."
 # ---------------------------------------------------------------------------
 # 2. Create Terraform state bucket
 # ---------------------------------------------------------------------------
-log "Step 2 — Creating Terraform state bucket: gs://${STATE_BUCKET}"
+log "Step 2 — Ensuring Terraform state bucket exists: gs://${STATE_BUCKET}"
 if ! gsutil ls -b "gs://${STATE_BUCKET}" &>/dev/null; then
   gsutil mb \
     -p "${GCP_PROJECT}" \
     -l "${GCP_REGION}" \
     -b on \
     "gs://${STATE_BUCKET}"
-  # Prevent accidental public exposure of Terraform state (may contain sensitive values)
-  gsutil pap set enforced "gs://${STATE_BUCKET}"
   log "Bucket created."
 else
-  log "Bucket already exists — skipping creation."
+  log "Bucket already exists."
 fi
+
+# Always enforce security controls regardless of whether the bucket was just
+# created or already existed — this makes reruns convergent, not merely
+# non-destructive.
+log "  Enforcing uniform bucket-level access…"
+gsutil uniformbucketlevelaccess set on "gs://${STATE_BUCKET}"
+log "  Enforcing public access prevention…"
+gsutil pap set enforced "gs://${STATE_BUCKET}"
 
 # ---------------------------------------------------------------------------
 # 3. Enable state bucket versioning
@@ -124,9 +158,18 @@ WIF_POOL_NAME=$(gcloud iam workload-identity-pools describe "${WIF_POOL_ID}" \
   --format="value(name)")
 
 # ---------------------------------------------------------------------------
-# 5. Create GitHub OIDC provider inside the pool
+# 5. Create GitHub OIDC provider inside the pool, or update to expected config
+#
+# The attribute-condition restricts the deployer identity to:
+#   - this exact repository
+#   - push events only (not pull_request, schedule, workflow_dispatch, etc.)
+#   - refs/heads/sandbox only
+#   - the terraform.yml workflow file on that branch
+#
+# On rerun, any existing provider is always updated to the expected mapping
+# and condition, making the script convergent rather than merely non-destructive.
 # ---------------------------------------------------------------------------
-log "Step 5 — Creating OIDC provider: ${WIF_PROVIDER_ID}…"
+log "Step 5 — Configuring OIDC provider: ${WIF_PROVIDER_ID}…"
 if ! gcloud iam workload-identity-pools providers describe "${WIF_PROVIDER_ID}" \
      --workload-identity-pool="${WIF_POOL_ID}" \
      --location=global \
@@ -136,12 +179,20 @@ if ! gcloud iam workload-identity-pools providers describe "${WIF_PROVIDER_ID}" 
     --location=global \
     --project="${GCP_PROJECT}" \
     --issuer-uri="${GITHUB_OIDC_ISSUER}" \
-    --attribute-mapping="google.subject=assertion.sub,attribute.actor=assertion.actor,attribute.repository=assertion.repository,attribute.repository_owner=assertion.repository_owner" \
-    --attribute-condition="assertion.repository == '${GITHUB_REPO}'" \
-    --display-name="GitHub Actions OIDC"
+    --attribute-mapping="${DEPLOYER_ATTRIBUTE_MAPPING_STR}" \
+    --attribute-condition="${DEPLOYER_CONDITION}" \
+    --display-name="GitHub Actions OIDC (deployer)"
   log "OIDC provider created."
 else
-  log "OIDC provider already exists — skipping creation."
+  log "OIDC provider already exists — enforcing expected mapping and condition…"
+  gcloud iam workload-identity-pools providers update-oidc "${WIF_PROVIDER_ID}" \
+    --workload-identity-pool="${WIF_POOL_ID}" \
+    --location=global \
+    --project="${GCP_PROJECT}" \
+    --issuer-uri="${GITHUB_OIDC_ISSUER}" \
+    --attribute-mapping="${DEPLOYER_ATTRIBUTE_MAPPING_STR}" \
+    --attribute-condition="${DEPLOYER_CONDITION}"
+  log "OIDC provider configuration enforced."
 fi
 
 # ---------------------------------------------------------------------------
