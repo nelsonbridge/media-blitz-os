@@ -79,7 +79,7 @@ def authorization(
     record: TemporalAuthorityEnvelope,
     *,
     auth_id: str | None = None,
-    expires_at: datetime = T2,
+    expires_at: datetime = T2 + timedelta(hours=1),
     revoked_at: datetime | None = None,
 ) -> PhysicalMutationAuthorization:
     return PhysicalMutationAuthorization(
