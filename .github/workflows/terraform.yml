@@ -1,0 +1,151 @@
+name: Terraform
+
+on:
+  pull_request:
+    branches:
+      - sandbox
+    paths:
+      - 'infrastructure/terraform/**'
+      - '.github/workflows/terraform.yml'
+  push:
+    branches:
+      - sandbox
+    paths:
+      - 'infrastructure/terraform/**'
+      - '.github/workflows/terraform.yml'
+  workflow_dispatch:
+
+# Cancel in-flight runs for the same ref so a fast-follow push doesn't race
+# an in-progress plan/apply from the same PR.
+concurrency:
+  group: terraform-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write      # post terraform plan output as a PR comment
+  id-token: write           # required for OIDC → Workload Identity Federation
+
+jobs:
+  terraform:
+    name: Terraform plan / apply
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    # All values are stored as GitHub Actions Variables (not secrets) because
+    # they contain no sensitive material — authentication is fully keyless via
+    # Workload Identity Federation.
+    env:
+      TF_VAR_project: ${{ vars.GCP_PROJECT }}
+      TF_VAR_region:  ${{ vars.GCP_REGION }}
+
+    steps:
+      # ------------------------------------------------------------------
+      # 1. Source
+      # ------------------------------------------------------------------
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      # ------------------------------------------------------------------
+      # 2. Authenticate to GCP via OIDC → Workload Identity Federation
+      #    No service-account key is stored anywhere.
+      # ------------------------------------------------------------------
+      - name: Authenticate to Google Cloud (OIDC / WIF)
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.GCP_WIF_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+
+      # ------------------------------------------------------------------
+      # 3. Install Terraform
+      # ------------------------------------------------------------------
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "~1.9"
+
+      # ------------------------------------------------------------------
+      # 4. Initialise with GCS remote backend
+      # ------------------------------------------------------------------
+      - name: Terraform init
+        working-directory: infrastructure/terraform
+        run: |
+          terraform init \
+            -backend-config="bucket=${{ vars.TF_STATE_BUCKET }}" \
+            -backend-config="prefix=enki/state"
+
+      # ------------------------------------------------------------------
+      # 5. Validate configuration syntax
+      # ------------------------------------------------------------------
+      - name: Terraform validate
+        working-directory: infrastructure/terraform
+        run: terraform validate
+
+      # ------------------------------------------------------------------
+      # 6. Plan — runs on every push/PR
+      # ------------------------------------------------------------------
+      - name: Terraform plan
+        id: plan
+        working-directory: infrastructure/terraform
+        run: |
+          terraform plan \
+            -out=tfplan \
+            -no-color \
+            -input=false \
+            2>&1 | tee plan.txt
+        continue-on-error: true   # post the output even when plan fails
+
+      # ------------------------------------------------------------------
+      # 7. Post plan output as a PR comment (pull_request events only)
+      # ------------------------------------------------------------------
+      - name: Post plan to pull request
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        env:
+          PLAN_OUTPUT: ${{ steps.plan.outcome }}
+        with:
+          script: |
+            const fs = require('fs');
+            const plan = fs.readFileSync('infrastructure/terraform/plan.txt', 'utf8');
+            const maxLen = 65000;
+            const truncated = plan.length > maxLen
+              ? plan.slice(0, maxLen) + '\n\n… (truncated)'
+              : plan;
+            const outcome = process.env.PLAN_OUTPUT;
+            const body = [
+              `### Terraform Plan — \`${outcome}\``,
+              '',
+              '<details><summary>Show plan</summary>',
+              '',
+              '```hcl',
+              truncated,
+              '```',
+              '',
+              '</details>',
+              '',
+              `*Triggered by: @${{ github.actor }} — workflow: \`${{ github.workflow }}\`*`,
+            ].join('\n');
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
+
+      # Fail the workflow if plan itself failed (after posting the comment)
+      - name: Fail if plan failed
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+
+      # ------------------------------------------------------------------
+      # 8. Apply — only on push to sandbox (i.e. after a PR is merged)
+      # ------------------------------------------------------------------
+      - name: Terraform apply
+        if: github.event_name == 'push' && github.ref == 'refs/heads/sandbox'
+        working-directory: infrastructure/terraform
+        run: |
+          terraform apply \
+            -auto-approve \
+            -input=false \
+            tfplan
