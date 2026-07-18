@@ -63,7 +63,7 @@ jobs:
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: "~1.9"
+        terraform_version: "~> 1.9.0"
 
       # ------------------------------------------------------------------
       # 4. Initialise with GCS remote backend
@@ -108,9 +108,11 @@ jobs:
           script: |
             const fs = require('fs');
             const plan = fs.readFileSync('infrastructure/terraform/plan.txt', 'utf8');
-            const maxLen = 65000;
-            const truncated = plan.length > maxLen
-              ? plan.slice(0, maxLen) + '\n\n… (truncated)'
+            // GitHub's comment body limit is 65,536 characters. Use 65,000 to
+            // leave a 536-character buffer for the markdown formatting wrapper.
+            const MAX_COMMENT_LENGTH = 65000;
+            const truncated = plan.length > MAX_COMMENT_LENGTH
+              ? plan.slice(0, MAX_COMMENT_LENGTH) + '\n\n… (truncated)'
               : plan;
             const outcome = process.env.PLAN_OUTPUT;
             const body = [
@@ -142,7 +144,7 @@ jobs:
       # 8. Apply — only on push to sandbox (i.e. after a PR is merged)
       # ------------------------------------------------------------------
       - name: Terraform apply
-        if: github.event_name == 'push' && github.ref == 'refs/heads/sandbox'
+        if: github.event_name == 'push'
         working-directory: infrastructure/terraform
         run: |
           terraform apply \

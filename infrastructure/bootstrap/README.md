@@ -85,14 +85,9 @@ that already exist.
 
 | Role | Purpose |
 |---|---|
-| `roles/editor` | Broad create/update/delete for managed resources |
-| `roles/iam.securityAdmin` | Manage IAM policies on individual resources |
-| `roles/resourcemanager.projectIamAdmin` | Set project-level IAM bindings |
-| `roles/storage.admin` | Manage GCS (state bucket + application buckets) |
-| `roles/secretmanager.admin` | Manage Secret Manager secrets |
-| `roles/artifactregistry.admin` | Manage Artifact Registry repositories |
-| `roles/run.admin` | Manage Cloud Run services |
-| `roles/cloudsql.admin` | Manage Cloud SQL instances |
+| `roles/editor` | Bootstrap broad grant — create/update/delete for all managed resources (Cloud Run, Cloud SQL, Artifact Registry, Secret Manager, networking, GCS). Replace with resource-specific roles once the Terraform resource set is stable. |
+| `roles/iam.securityAdmin` | Write IAM policies on individual resources (not covered by `roles/editor`) |
+| `roles/resourcemanager.projectIamAdmin` | Write project-level IAM bindings (not covered by `roles/editor`) |
 
 ---
 

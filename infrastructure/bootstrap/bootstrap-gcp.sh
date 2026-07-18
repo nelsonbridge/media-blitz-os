@@ -86,6 +86,8 @@ if ! gsutil ls -b "gs://${STATE_BUCKET}" &>/dev/null; then
     -l "${GCP_REGION}" \
     -b on \
     "gs://${STATE_BUCKET}"
+  # Prevent accidental public exposure of Terraform state (may contain sensitive values)
+  gsutil pap set enforced "gs://${STATE_BUCKET}"
   log "Bucket created."
 else
   log "Bucket already exists — skipping creation."
@@ -171,18 +173,30 @@ log "Binding applied."
 
 # ---------------------------------------------------------------------------
 # 8. Grant minimum Terraform permissions to the service account
+#
+# Role justification:
+#   roles/editor is used here as a bootstrap grant because Terraform must be
+#   able to create, update, and delete the full set of managed resources
+#   (Cloud Run, Cloud SQL, Artifact Registry, Secret Manager, networking,
+#   storage) whose exact shapes are not yet known at bootstrap time.
+#   roles/iam.securityAdmin and roles/resourcemanager.projectIamAdmin are
+#   added separately because roles/editor alone does not grant the ability
+#   to write IAM policies, which Terraform needs for resource-level bindings.
+#
+#   IMPORTANT: Once the Terraform resource set is stable, replace roles/editor
+#   with the minimum resource-specific roles actually required (e.g.
+#   roles/run.developer, roles/cloudsql.client, etc.) and remove this comment.
+#   This tightening should be treated as a follow-on security hardening task.
 # ---------------------------------------------------------------------------
 log "Step 8 — Granting Terraform permissions to ${SA_EMAIL}…"
 
 TERRAFORM_ROLES=(
-  "roles/editor"                    # broad create/update/delete for managed resources
-  "roles/iam.securityAdmin"         # manage IAM policies on resources
-  "roles/resourcemanager.projectIamAdmin"  # set project-level IAM bindings
-  "roles/storage.admin"             # manage GCS (state bucket + application buckets)
-  "roles/secretmanager.admin"       # manage secrets
-  "roles/artifactregistry.admin"    # manage Artifact Registry
-  "roles/run.admin"                 # manage Cloud Run services
-  "roles/cloudsql.admin"            # manage Cloud SQL instances
+  "roles/editor"                           # bootstrap broad grant — see note above
+  # roles/iam.securityAdmin and roles/resourcemanager.projectIamAdmin are the
+  # only permissions NOT covered by roles/editor that Terraform needs to manage
+  # resource-level and project-level IAM bindings.
+  "roles/iam.securityAdmin"                # write IAM policies on individual resources
+  "roles/resourcemanager.projectIamAdmin"  # write project-level IAM bindings
 )
 
 for ROLE in "${TERRAFORM_ROLES[@]}"; do
