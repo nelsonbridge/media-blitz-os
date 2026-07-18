@@ -2,7 +2,7 @@
 
 > Authority class: Class 3 active execution plan. Implementation status is evidenced by canonical records, merged code, generated projections, tests, receipts, and workflow results—not by this document alone.
 
-Last reconciled: 2026-07-12
+Last reconciled: 2026-07-17
 
 ## Purpose
 
@@ -12,8 +12,8 @@ Govern the next implementation sequence for the Nelson Knowledge System while pr
 
 - **Complete** — implemented and evidenced on `sandbox`.
 - **Partial** — useful implementation exists; acceptance criteria remain.
-- **Active** — assigned to the current sprint.
-- **Planned** — sequenced in the eleven-sprint roadmap.
+- **Active** — assigned to the current sprint or immediate execution stream.
+- **Planned** — sequenced for future execution.
 - **Blocked: Human Decision** — engineering is complete enough that explicit human approval is required.
 - **Superseded** — replaced by a later architectural decision.
 
@@ -40,6 +40,7 @@ Govern the next implementation sequence for the Nelson Knowledge System while pr
 | TB-017 Dependency extraction | Partial | Portability design exists; clean-room extraction test remains. |
 | TB-018 Provenance/promotion security | Complete — Sprint 1 boundary | `REAL | SYNTHETIC | REPLAY`, authorization, replay isolation, and failure events are enforced. |
 | TB-019 Runtime validation hardening | Partial | Immediate fail-closed gates exist; transactional promotion and restricted writing remain. |
+| TB-020 Hosted TEST execution control plane | Active | PR #142 prepares a keyless GitHub Actions → WIF → Terraform path. Documentation is being reconciled. Operational proof still requires bootstrap, repository variables, trusted authentication, and an evidenced Terraform apply. |
 
 ## Active Backlog
 
@@ -147,6 +148,21 @@ Acceptance criteria:
 - Release documentation reflects actual system identity: Nelson Knowledge System as implementation, Knowledge Manufacturing / Governed Adaptive Knowledge as architecture, Media Blitz as an application program.
 - A versioned release candidate is produced with known limitations.
 
+### BL-012 — Hosted TEST Infrastructure
+**Status:** Active — documentation and control-plane bootstrap preparation
+
+Acceptance criteria:
+- GCP execution authority is keyless and restricted to the exact trusted `sandbox` Terraform workflow.
+- Pull request validation has no deployer credentials.
+- Terraform state is remote, private, and versioned.
+- Infrastructure applies are serialized and do not cancel in-progress mutations.
+- Documentation distinguishes prepared control-plane code from deployed infrastructure truth.
+- The one-time bootstrap completes successfully under explicit human authority.
+- The five required GitHub Actions variables are configured.
+- The first WIF-authenticated Terraform plan/apply cycle is evidenced.
+- Subsequent TEST resources are introduced incrementally through Terraform.
+- Broad bootstrap IAM is replaced with resource-specific least privilege before STAGE or PROD.
+
 ## Cross-Cutting Backlog
 
 - Detect undeclared status-like files and contradictory narrative claims.
@@ -154,6 +170,8 @@ Acceptance criteria:
 - Add schema versions, migration fixtures, and deprecation policy.
 - Raise coverage expectations for security-critical modules.
 - Normalize repository naming and README system boundaries.
+- Replace TEST bootstrap IAM grants with resource-specific least-privilege roles before STAGE or PROD.
+- Keep infrastructure proposal authority, human approval authority, and cloud execution authority structurally separate.
 - Complete the Agile manuscript evidence and publication package after the first live publication cycle.
 - Consolidate duplicate or placeholder corpus assets before ingestion.
 
@@ -168,6 +186,8 @@ No release may claim production-grade adaptive knowledge until:
 5. one real feedback loop is completed;
 6. every canonical creation is forensically reconstructable;
 7. clean-room portability passes.
+
+No hosted environment may be described as operational solely because Terraform or workflow code exists. Operational infrastructure claims require external execution evidence.
 
 ## Execution Rule
 

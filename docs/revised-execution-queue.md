@@ -3,7 +3,20 @@
 > **Authority class: Class 3 — designated active execution queue for intent.**
 > This file establishes work priority, not implementation truth. Canonical records and regenerated authoritative projections determine current operational state.
 
-Last reconciled: 2026-07-11
+Last reconciled: 2026-07-17
+
+## Current Execution Priority
+
+The immediate infrastructure sequence is:
+
+1. Reconcile documentation for the GCP execution control plane and authority boundary.
+2. Execute the one-time GCP bootstrap under explicit human authority.
+3. Configure the five GitHub Actions variables emitted by the bootstrap.
+4. Merge the trusted bridge into `sandbox` through the authorized human path.
+5. Prove Workload Identity Federation authentication and the first authoritative Terraform plan/apply cycle.
+6. Begin incremental hosted TEST infrastructure packets.
+
+This infrastructure sequence is independent of Publication #1's human review gate and may proceed while publication remains blocked on explicit approval.
 
 ## Q001 — Reconcile Authoritative State
 
@@ -119,12 +132,57 @@ Exit criteria:
 - Differences from synthetic expectations are measured.
 - Governance and classifiers are adjusted without rewriting historical records.
 
+## Q008 — GCP Hosted TEST Execution Control Plane
+
+Status: In progress — structural design prepared in PR #142; documentation reconciliation underway
+
+Prepared controls:
+
+- One-time convergent GCP bootstrap script.
+- GCS Terraform state bucket with uniform access, public access prevention, and versioning.
+- Keyless GitHub OIDC → GCP Workload Identity Federation authentication.
+- Deployer trust restricted to the exact repository, `push` event, `sandbox` ref, and Terraform workflow reference.
+- Pull request Terraform validation with no GCP deployer credentials.
+- Serialized sandbox applies that do not cancel an in-progress infrastructure mutation.
+- Explicitly documented TEST-only broad bootstrap IAM with a least-privilege hardening obligation before STAGE or PROD.
+
+Documentation scope:
+
+- `docs/infrastructure/gcp-execution-control-plane.md`
+- repository `README.md`
+- `docs/master-state-index.md`
+- `docs/revised-execution-queue.md`
+- `infrastructure/bootstrap/README.md`
+
+Remaining before the control plane may be called operational:
+
+1. Documentation changes are merged.
+2. `enki-test` exists with billing attached.
+3. The bootstrap script completes successfully.
+4. The five GitHub Actions variables are configured.
+5. The trusted bridge is merged into `sandbox` through the authorized human path.
+6. WIF authentication succeeds from the exact trusted workflow.
+7. The first authoritative Terraform plan/apply cycle completes successfully.
+
+Exit criteria:
+
+- No permanent GCP service-account key exists in GitHub.
+- PR workflows cannot obtain the deployer identity.
+- The trusted `sandbox` workflow can obtain short-lived deployment authority.
+- Terraform remote state is protected and versioned.
+- At least one evidenced authoritative apply completes.
+- Documentation accurately distinguishes prepared infrastructure from deployed infrastructure.
+
 ## Current Stop Boundary
 
-The next irreversible or preference-bearing action is the human visual-package decision in Issue #8. The system must not infer that decision from successful rendering, automated checks, repository merge, or conversational enthusiasm.
+The next infrastructure milestone is documentation reconciliation. After documentation is merged, the next required human action is execution of the one-time GCP bootstrap.
+
+The next irreversible or preference-bearing publication action remains the human visual-package decision in Issue #8. The system must not infer that decision from successful rendering, automated checks, repository merge, or conversational enthusiasm.
 
 After visual approval, publication still requires a separate explicit canonical approval.
 
+Infrastructure work that does not cross an explicit human authority boundary may continue independently of the publication gate.
+
 ## Stop Rule
 
-Only stop for canonical-integrity risk, irreversible external action requiring approval, or true absence of required data. Adapter degradation queues work and does not halt unrelated execution.
+Only stop for canonical-integrity risk, irreversible external action requiring approval, true absence of required data, or a material infrastructure security ambiguity. Adapter degradation or an unrelated human gate queues that work and does not halt other unblocked execution.

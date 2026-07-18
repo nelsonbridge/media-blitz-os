@@ -1,0 +1,59 @@
+# Git internals
+.git
+.gitignore
+.github
+
+# Python bytecode
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache
+.mypy_cache
+.ruff_cache
+
+# Test and coverage artefacts
+tests/
+coverage.xml
+coverage.json
+.coverage
+
+# Repository records and generated content (not part of the application)
+records/
+generated/
+releases/
+editorial/
+briefings/
+context/
+corpus/
+docs/
+visuals/
+whitepapers/
+research/
+opportunities/
+publishing/
+assets/
+templates/
+diagnostics/
+metrics/
+evidence/
+engineering/
+governance/
+roadmap/
+integrations/
+security/
+ops/
+contracts/
+frameworks/
+
+# Infrastructure definitions (not needed inside the image)
+infrastructure/
+scripts/
+
+# Editor and IDE
+.vscode
+*.swp
+*~
+
+# Documentation
+*.md
