@@ -34,11 +34,23 @@
 | BL-028 | planned | NKS-SPR-028 | GCP-NEON-R2 Hosted TEST Validation | 0 |
 | BL-029 | planned | NKS-SPR-029 | Cross-Finalist Comparative Evaluation | 0 |
 | BL-030 | planned | NKS-SPR-030 | Hosting Direction and Production-Control Validation Decision Package | 0 |
-| BL-031 | planned | NKS-SPR-031 | Governed Reasoning and Model Gateway | 0 |
-| BL-032 | planned | NKS-SPR-032 | Media Blitz Hosted Consumer Integration | 0 |
-| BL-033 | planned | NKS-SPR-033 | Career Intelligence Hosted Consumer Integration | 0 |
-| BL-034 | planned | NKS-SPR-034 | Personal Cognitive Continuity Hosted Consumer Integration | 0 |
-| BL-035 | planned | NKS-SPR-035 | Multi-Consumer Isolation and Platform Operations | 0 |
-| BL-036 | planned | NKS-SPR-036 | Enki Hosted Release Candidate and Deployment Decision | 0 |
+| BL-031 | complete | NKS-SPR-031 | Canonical Schema and Temporal Authority Hardening | 5 |
+| BL-032 | complete | NKS-SPR-032 | Governed Retrieval, Projection, and Model Gateway | 5 |
+| BL-033 | complete | NKS-SPR-033 | Hosted Downstream Consumer Integration | 5 |
+| BL-034 | complete | NKS-SPR-034 | Multi-Consumer Isolation and Platform Operations | 5 |
+| BL-035 | complete | NKS-SPR-035 | Selected Hosting Architecture Production-Control Validation Readiness | 5 |
+| BL-036 | complete | NKS-SPR-036 | Enki Hosted Release Candidate and Deployment Decision | 5 |
+| BL-037 | complete | NKS-SPR-037 | Deployment Decision Resolution and Architecture Lock | 8 |
+| BL-038 | complete | NKS-SPR-038 | Infrastructure-as-Code and Reproducible Environment Build | 6 |
+| BL-039 | complete | NKS-SPR-039 | Hosted Identity, Tenancy, and Context Enforcement | 6 |
+| BL-040 | complete | NKS-SPR-040 | Physical Canonical Persistence and Migration | 8 |
+| BL-041 | complete | NKS-SPR-041 | Evidence and Object Plane | 5 |
+| BL-042 | complete | NKS-SPR-042 | Hosted Governed Execution Runtime | 6 |
+| BL-043 | planned | NKS-SPR-043 | Hosted Retrieval and Knowledge Access | 0 |
+| BL-044 | complete | NKS-SPR-044 | Disaster Recovery, Portability, and Provider Exit | 5 |
+| BL-045 | planned | NKS-SPR-045 | Production-Control Implementation | 0 |
+| BL-046 | complete | NKS-SPR-046 | Operational Observability and Incident Management | 5 |
+| BL-047 | complete | NKS-SPR-047 | Multi-Product Hosted Integration | 5 |
+| BL-048 | planned | NKS-SPR-048 | Enki 1.0 Operational Release and Human Launch Decision | 0 |
 
-Total work items: 36
+Total work items: 48

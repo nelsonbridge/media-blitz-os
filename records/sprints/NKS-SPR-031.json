@@ -1,18 +1,50 @@
 {
   "sprint_id": "NKS-SPR-031",
   "sequence": 31,
-  "title": "Governed Reasoning and Model Gateway",
-  "objective": "Move model interaction from isolated proof paths into hosted architecture through provider-neutral contracts, governed context construction, policy enforcement, and replayable receipts while preserving canonical authority boundaries.",
-  "status": "planned",
+  "title": "Canonical Schema and Temporal Authority Hardening",
+  "objective": "Align the canonical record model with the corrected nine-layer architecture by making historical truth, current authority, effective time, recorded time, supersession, revocation, consent, policy validity, and migration semantics explicit across governed record families.",
+  "status": "complete",
   "work_item_ids": ["BL-031"],
   "exit_criteria": [
-    "A hosted model gateway enforces provider-neutral request and response contracts",
-    "Prompt and context packages are policy-filtered, provenance-aware, and scoped to approved execution context",
-    "Model-use receipts are deterministic, replayable, and attributable to exact governed requests",
-    "Model outputs are classified and cannot mutate canonical state without separately governed authority",
-    "Adversarial tests cover context leakage, policy bypass, unsupported provider responses, and replay integrity"
+    "Canonical record families distinguish historical truth from current authority without rewriting history",
+    "Recorded, effective, superseded, revoked, consumed, and authority-valid temporal states are explicit where applicable",
+    "Approval, consent, policy, transition, reconciliation, disclosure, transaction, retention, conflict, and recovery records share compatible temporal semantics",
+    "Schema evolution and migration preserve exact lineage and deterministic reconstruction",
+    "Invalid temporal overlap, authority ambiguity, and unsupported supersession fail closed",
+    "Automated regression tests prove historical and current-authority views remain distinguishable"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S31-PR99",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/99",
+      "description": "Implemented immutable temporal-authority contracts, deterministic as-of resolution, fail-closed ambiguity and supersession checks, governed migration, path manifest, and adversarial regression coverage."
+    },
+    {
+      "evidence_id": "E-S31-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/df347aee4c3c1ead887deb25605085fcf2fbba07",
+      "description": "Merged the Sprint 31 implementation into sandbox."
+    },
+    {
+      "evidence_id": "E-S31-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29557349760",
+      "description": "CI passed the Sprint 31 implementation and regression suite."
+    },
+    {
+      "evidence_id": "E-S31-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29557349741",
+      "description": "Runtime Coverage passed the complete Sprint 31 temporal-authority TEST path matrix."
+    },
+    {
+      "evidence_id": "E-S31-WORK-CONTROL",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29557349756",
+      "description": "Work Control Authority passed before completion promotion."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-16T23:40:00Z"
+  "updated_at": "2026-07-17T05:35:00Z"
 }

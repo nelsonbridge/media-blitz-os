@@ -1,18 +1,50 @@
 {
   "sprint_id": "NKS-SPR-032",
   "sequence": 32,
-  "title": "Media Blitz Hosted Consumer Integration",
-  "objective": "Reconnect Media Blitz through the stable Enki consumer boundary so publication-shaped execution, feedback ingestion, and calibration occur as governed consumption without direct canonical mutation.",
-  "status": "planned",
+  "title": "Governed Retrieval, Projection, and Model Gateway",
+  "objective": "Deliver governed knowledge retrieval, temporal projection, semantic access boundaries, and provider-neutral model-use orchestration without allowing projections or model output to become canonical authority.",
+  "status": "complete",
   "work_item_ids": ["BL-032"],
   "exit_criteria": [
-    "Media Blitz uses governed source retrieval and package-generation contracts through the consumer boundary",
-    "Publication-shaped TEST distribution executes with deterministic receipts and no direct Enki mutation",
-    "Feedback ingestion, calibration, and provenance paths remain attributable and replayable",
-    "Consumer boundary tests prove Media Blitz cannot bypass canonical authority or issue ungoverned writes",
-    "Integration evidence is sufficient for independent review of boundary integrity"
+    "Consumers can query current-authority and historical views through explicit, distinguishable contracts",
+    "Structured and semantic retrieval preserve tenant, subject, domain, audience, privacy, and purpose boundaries",
+    "Projection and interpretation outputs remain noncanonical unless promoted through a separate governed operation",
+    "Model gateway requests are context-bound, provenance-filtered, policy-evaluated, receipted, replayable, and provider-neutral",
+    "Model output cannot mutate canonical Enki state without a separate authorized transaction",
+    "Pagination, error, stale-state, denial, replay, and leakage paths are automated and deterministic"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S32-PR101",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/101",
+      "description": "Implemented governed current/historical retrieval, semantic and structured access boundaries, deterministic projections, and provider-neutral model gateway execution."
+    },
+    {
+      "evidence_id": "E-S32-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/fd1469c5251e42bb41744865a14259707c9eed51",
+      "description": "Merged the Sprint 32 implementation into sandbox."
+    },
+    {
+      "evidence_id": "E-S32-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29558147016",
+      "description": "CI passed the Sprint 32 implementation and regression suite."
+    },
+    {
+      "evidence_id": "E-S32-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29558146457",
+      "description": "Runtime Coverage passed all declared Sprint 32 retrieval and model-gateway TEST paths."
+    },
+    {
+      "evidence_id": "E-S32-WORK-CONTROL",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29558146472",
+      "description": "Work Control Authority passed before completion promotion."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-16T23:40:00Z"
+  "updated_at": "2026-07-17T05:50:00Z"
 }

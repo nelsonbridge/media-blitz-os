@@ -1,18 +1,49 @@
 {
   "work_item_id": "BL-032",
-  "title": "Media Blitz Hosted Consumer Integration",
-  "description": "Integrate Media Blitz as a hosted Enki consumer through governed retrieval, package, feedback, and calibration boundaries.",
-  "status": "planned",
+  "title": "Governed Retrieval, Projection, and Model Gateway",
+  "description": "Provide governed current/historical retrieval, projection, semantic access, and provider-neutral model orchestration while preventing projections or model output from becoming canonical authority.",
+  "status": "complete",
   "sprint_id": "NKS-SPR-032",
   "acceptance_criteria": [
-    "Media Blitz reads governed knowledge through consumer contracts only",
-    "Content and visual package flows are receipt-backed and attributable",
-    "Publication-shaped TEST distribution remains non-production and authority-scoped",
-    "Feedback ingestion and calibration preserve provenance and replay safety",
-    "No direct canonical mutation path exists from Media Blitz integration code"
+    "Current-authority and historical queries are explicit and distinguishable",
+    "Retrieval preserves tenant, subject, domain, audience, purpose, privacy, and execution-context boundaries",
+    "Projection and interpretation outputs remain noncanonical absent a separate governed promotion",
+    "Model requests are provenance-filtered, policy-evaluated, receipted, replayable, and provider-neutral",
+    "Model output cannot directly mutate canonical state"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-BL32-PR101",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/101",
+      "description": "Implemented and tested the complete Sprint 32 retrieval, projection, and model-gateway path matrix."
+    },
+    {
+      "evidence_id": "E-BL32-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/fd1469c5251e42bb41744865a14259707c9eed51",
+      "description": "Merged Sprint 32 implementation."
+    },
+    {
+      "evidence_id": "E-BL32-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29558147016",
+      "description": "CI passed the Sprint 32 regression suite."
+    },
+    {
+      "evidence_id": "E-BL32-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29558146457",
+      "description": "Runtime Coverage passed all declared Sprint 32 paths."
+    },
+    {
+      "evidence_id": "E-BL32-AUTHORITY",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29558146472",
+      "description": "Work Control Authority passed before evidence-bearing completion promotion."
+    }
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-16T23:40:00Z"
+  "updated_at": "2026-07-17T05:50:00Z"
 }

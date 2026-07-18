@@ -1,0 +1,25 @@
+{
+  "sprint_id": "NKS-SPR-041",
+  "sequence": 41,
+  "title": "Evidence and Object Plane",
+  "objective": "Implement the hosted evidence, package, manifest, export, backup, and recovery object plane while preserving cryptographic linkage to structured governed state and provider portability.",
+  "status": "complete",
+  "work_item_ids": ["BL-041"],
+  "exit_criteria": [
+    "Evidence objects and canonical structured state remain distinct but hash-linked",
+    "Publication, model-use, audit, export, backup, and recovery packages use deterministic manifests",
+    "Retention, tombstone, archival, and deletion semantics preserve governed history",
+    "Object corruption, missing objects, manifest tampering, and orphan evidence fail closed",
+    "Provider-specific object storage does not become canonical authority",
+    "Portable export and clean-room import reconstruct exact evidence relationships"
+  ],
+  "evidence": [
+    {"evidence_id":"E-S41-PR116","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/116","description":"Sprint 41 evidence/object-plane implementation."},
+    {"evidence_id":"E-S41-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/75c770c854a2ab3ddc14b81cf041435855faa8c0","description":"Sprint 41 merge commit."},
+    {"evidence_id":"E-S41-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29566559090","description":"CI passed."},
+    {"evidence_id":"E-S41-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29566559080","description":"Runtime Coverage passed."},
+    {"evidence_id":"E-S41-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29566559078","description":"Work Control Authority passed."}
+  ],
+  "blocked_reason": null,
+  "updated_at": "2026-07-17T10:15:00Z"
+}

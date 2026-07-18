@@ -1,0 +1,21 @@
+{
+  "sprint_id": "NKS-SPR-048",
+  "sequence": 48,
+  "title": "Enki 1.0 Operational Release and Human Launch Decision",
+  "objective": "Assemble the complete operational evidence package for Enki 1.0, report software, hosted platform, production controls, operations, cost, recovery, portability, and multi-consumer readiness separately, and request an explicit human launch decision.",
+  "status": "planned",
+  "work_item_ids": [
+    "BL-048"
+  ],
+  "exit_criteria": [
+    "The release package binds exact software, architecture, hosting, security, identity, canonical data, evidence, recovery, portability, multi-consumer, operations, and cost evidence",
+    "Hosted platform readiness and production-control readiness are not inferred from software TEST success",
+    "Known limitations, accepted findings, support obligations, rollback, migration, and independent-review requirements are explicit",
+    "Missing, failed, deferred, or conditional evidence remains distinguishable",
+    "The package supports APPROVE, APPROVE WITH CONDITIONS, DEFER, and REJECT",
+    "Only explicit human launch authority can authorize operational production launch"
+  ],
+  "evidence": [],
+  "blocked_reason": null,
+  "updated_at": "2026-07-17T08:00:00Z"
+}

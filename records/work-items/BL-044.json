@@ -1,0 +1,24 @@
+{
+  "work_item_id": "BL-044",
+  "title": "Disaster Recovery, Portability, and Provider Exit",
+  "description": "Prove that hosted Enki can be backed up, exported, reconstructed, restored, and migrated without permanent dependence on the selected provider combination or loss of authority semantics.",
+  "status": "complete",
+  "sprint_id": "NKS-SPR-044",
+  "acceptance_criteria": [
+    "Structured state and object evidence have coordinated backup and recovery procedures",
+    "Point-in-time and clean-room reconstruction preserve exact canonical fingerprints and receipts",
+    "Provider outage and provider-exit scenarios have tested recovery paths",
+    "Exports remain open, deterministic, hash-bound, and independently verifiable",
+    "Rollback and migration preserve authority, lineage, policy, consent, and temporal semantics"
+  ],
+  "evidence": [
+    {"evidence_id":"E-BL44-PR114","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/114","description":"Sprint 44 implementation."},
+    {"evidence_id":"E-BL44-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/b7a84a81c6cc446cbbd8700be7acc1e34c5ba506","description":"Sprint 44 merge."},
+    {"evidence_id":"E-BL44-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29565775629","description":"CI passed."},
+    {"evidence_id":"E-BL44-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29565775573","description":"Coverage passed."},
+    {"evidence_id":"E-BL44-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29565775587","description":"Authority passed."}
+  ],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-17T09:10:00Z"
+}

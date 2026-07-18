@@ -1,0 +1,150 @@
+import json
+import sys
+from pathlib import Path
+
+import pytest
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from scripts.validate_authoritative_head import (
+    EXPECTED_WORKFLOW_FILES,
+    ValidationError,
+    assert_sha_match,
+    assert_workflow_inventory,
+    parse_divergence,
+    parse_pytest_summary,
+    read_coverage,
+    skipped_checks,
+    validation_steps,
+    venv_python_path,
+)
+
+
+def test_authoritative_sha_mismatch_fails_closed():
+    with pytest.raises(ValidationError, match="authoritative SHA mismatch"):
+        assert_sha_match("a" * 40, "b" * 40)
+
+
+def test_authoritative_sha_match_passes():
+    assert_sha_match("a" * 40, "a" * 40)
+
+
+def test_parse_divergence_reports_ahead_and_behind_counts():
+    assert parse_divergence("4\t847") == (4, 847)
+
+
+def test_parse_divergence_rejects_unexpected_output():
+    with pytest.raises(ValidationError, match="unexpected git divergence output"):
+        parse_divergence("not-a-count")
+
+
+def test_workflow_inventory_accepts_exact_governed_set(tmp_path: Path):
+    workflow_dir = tmp_path / ".github" / "workflows"
+    workflow_dir.mkdir(parents=True)
+    for name in EXPECTED_WORKFLOW_FILES:
+        (workflow_dir / name).write_text("name: test\n", encoding="utf-8")
+
+    assert assert_workflow_inventory(tmp_path) == EXPECTED_WORKFLOW_FILES
+
+
+def test_workflow_inventory_fails_closed_on_unclassified_workflow(tmp_path: Path):
+    workflow_dir = tmp_path / ".github" / "workflows"
+    workflow_dir.mkdir(parents=True)
+    for name in EXPECTED_WORKFLOW_FILES:
+        (workflow_dir / name).write_text("name: test\n", encoding="utf-8")
+    (workflow_dir / "new-governance-surface.yml").write_text(
+        "name: new\n", encoding="utf-8"
+    )
+
+    with pytest.raises(ValidationError, match="unclassified"):
+        assert_workflow_inventory(tmp_path)
+
+
+def test_workflow_inventory_fails_closed_on_missing_workflow(tmp_path: Path):
+    workflow_dir = tmp_path / ".github" / "workflows"
+    workflow_dir.mkdir(parents=True)
+    retained = sorted(EXPECTED_WORKFLOW_FILES)[1:]
+    for name in retained:
+        (workflow_dir / name).write_text("name: test\n", encoding="utf-8")
+
+    with pytest.raises(ValidationError, match="missing"):
+        assert_workflow_inventory(tmp_path)
+
+
+def test_validation_virtualenv_python_is_inside_disposable_environment(tmp_path: Path):
+    python = venv_python_path(tmp_path / "venv")
+
+    assert (tmp_path / "venv") in python.parents
+    if sys.platform == "win32":
+        assert python.name == "python.exe"
+        assert python.parent.name == "Scripts"
+    else:
+        assert python.name == "python"
+        assert python.parent.name == "bin"
+
+
+def test_validation_matrix_contains_required_governed_surfaces():
+    names = [step.name for step in validation_steps("python")]
+
+    assert names[0] == "install-project-and-tests"
+    assert "generate-release-integrity-evidence" in names
+    assert "full-pytest" in names
+    assert "state-authority-focused-tests" in names
+    assert "work-control-focused-tests" in names
+    assert "canonicalization-security-tests" in names
+    assert "render-publication-assets" in names
+    assert "verify-publication-assets" in names
+    assert "repository-audit-tests" in names
+    assert "branch-consolidation-governance" in names
+    assert names[-1] == "final-governed-drift-check"
+
+
+def test_validation_matrix_preserves_configured_full_pytest_options():
+    full_pytest = next(
+        step for step in validation_steps("python") if step.name == "full-pytest"
+    )
+
+    assert full_pytest.argv == ("python", "-m", "pytest")
+    assert "--no-cov" not in full_pytest.argv
+    assert "-o" not in full_pytest.argv
+
+
+def test_skipped_checks_name_remote_and_authority_boundaries():
+    skipped = {item["name"]: item["reason"] for item in skipped_checks()}
+
+    assert "github-actions-artifact-upload" in skipped
+    assert "repository-audit-auto-commit-push" in skipped
+    assert "branch-consolidation-apply-and-settings" in skipped
+    assert "external-provider-validation" in skipped
+    assert "production-or-human-authority-gates" in skipped
+    assert "remote" in skipped["repository-audit-auto-commit-push"]
+    assert "authorization" in skipped["production-or-human-authority-gates"]
+
+
+def test_parse_pytest_summary_extracts_passes_and_warnings():
+    passed, warnings = parse_pytest_summary(
+        "================ 694 passed, 6 warnings in 12.34s ================"
+    )
+
+    assert passed == 694
+    assert warnings == 6
+
+
+def test_parse_pytest_summary_allows_no_warning_count():
+    passed, warnings = parse_pytest_summary("51 passed in 1.20s")
+
+    assert passed == 51
+    assert warnings == 0
+
+
+def test_read_coverage_uses_machine_readable_total(tmp_path: Path):
+    (tmp_path / "coverage.json").write_text(
+        json.dumps({"totals": {"percent_covered": 88.38}}),
+        encoding="utf-8",
+    )
+
+    assert read_coverage(tmp_path) == 88.38
+
+
+def test_read_coverage_returns_none_when_report_is_absent(tmp_path: Path):
+    assert read_coverage(tmp_path) is None

@@ -1,18 +1,50 @@
 {
   "sprint_id": "NKS-SPR-033",
   "sequence": 33,
-  "title": "Career Intelligence Hosted Consumer Integration",
-  "objective": "Implement the Career Intelligence boundary as governed Enki consumption over professional evidence, market context, and role-fit projections without transferring canonical authority ownership.",
-  "status": "planned",
+  "title": "Hosted Downstream Consumer Integration",
+  "objective": "Integrate Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity through stable governed Enki consumer contracts while preserving independent product boundaries and stricter human-state protections.",
+  "status": "complete",
   "work_item_ids": ["BL-033"],
   "exit_criteria": [
-    "Career Intelligence retrieves professional knowledge state through governed consumer contracts",
-    "Experience evidence, competency interpretation, and opportunity inputs are attributable and replayable",
-    "Role-fit and market-context projections are isolated from canonical mutation authority",
-    "Privacy and human-approval gates are explicit for external action paths",
-    "Boundary tests prove consumer execution cannot become canonical authority"
+    "All three product suites consume Enki through versioned consumer boundaries rather than direct canonical persistence",
+    "Media Blitz exercises governed source retrieval, package construction, publication-shaped TEST delivery, feedback, and calibration without direct Enki mutation",
+    "Career Intelligence exercises governed professional-state, evidence, opportunity, and role-fit projections with explicit external-action approval",
+    "Personal Cognitive Continuity exercises history, preferences, decisions, correction, retraction, consent, privacy, and temporal authority with human controls stricter than generic tenant policy",
+    "Cross-product purpose, audience, namespace, subject, and authority leakage fail closed",
+    "All integrations remain TEST-only unless separately authorized for production effects"
   ],
-  "evidence": [],
+  "evidence": [
+    {
+      "evidence_id": "E-S33-PR103",
+      "kind": "pull-request",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/pull/103",
+      "description": "Implemented TEST-only governed integrations for Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity with stable product boundaries and no direct canonical access."
+    },
+    {
+      "evidence_id": "E-S33-COMMIT",
+      "kind": "commit",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/commit/3eacd818813dfc95f5c3bbc2cd4d3da5b9ee5a5f",
+      "description": "Merged the Sprint 33 implementation and package-identity correction into sandbox."
+    },
+    {
+      "evidence_id": "E-S33-CI",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29558905343",
+      "description": "CI passed the Sprint 33 integration suite plus inherited product-boundary regressions, including namespace and cross-product authority isolation."
+    },
+    {
+      "evidence_id": "E-S33-COVERAGE",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29558905455",
+      "description": "Runtime Coverage passed all declared Sprint 33 TEST paths."
+    },
+    {
+      "evidence_id": "E-S33-WORK-CONTROL",
+      "kind": "test-run",
+      "reference": "https://github.com/nelsonbridge/media-blitz-os/actions/runs/29558905374",
+      "description": "Work Control Authority passed before evidence-bearing completion promotion."
+    }
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-16T23:40:00Z"
+  "updated_at": "2026-07-17T06:05:00Z"
 }

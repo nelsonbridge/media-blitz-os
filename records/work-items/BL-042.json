@@ -1,0 +1,25 @@
+{
+  "work_item_id": "BL-042",
+  "title": "Hosted Governed Execution Runtime",
+  "description": "Deploy and validate the complete Enki governed mutation path in the authorized hosted runtime so no canonical mutation can bypass context, authority, policy, provenance, reservation, journaling, receipts, and recovery.",
+  "status": "complete",
+  "sprint_id": "NKS-SPR-042",
+  "acceptance_criteria": [
+    "Hosted requests resolve exact context before authority or mutation evaluation",
+    "Every canonical mutation passes authority, policy, provenance, reservation, journal, and receipt controls",
+    "Duplicate, delayed, interrupted, and conflicting operations converge or fail closed",
+    "Hosted retries cannot duplicate canonical effects or consume authority twice",
+    "Failure recovery reconstructs exact state and evidence lineage"
+  ],
+  "evidence": [
+    {"evidence_id":"E-BL42-MUTATION-POLICY","kind":"canonical-record","reference":"security/enki-hosted-1.0-rc2/hosted-mutation-policy.json","description":"Versioned hosted mutation policy."},
+    {"evidence_id":"E-BL42-PR132","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/132","description":"Sprint 42 implementation."},
+    {"evidence_id":"E-BL42-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/ef6460310c3bba5a1a5b0632e44ca1a69ef89a4b","description":"Sprint 42 implementation merge."},
+    {"evidence_id":"E-BL42-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29623841150","description":"CI passed."},
+    {"evidence_id":"E-BL42-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29623841135","description":"Runtime Coverage passed."},
+    {"evidence_id":"E-BL42-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29623841138","description":"Work Control Authority passed."}
+  ],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-18T00:51:00Z"
+}

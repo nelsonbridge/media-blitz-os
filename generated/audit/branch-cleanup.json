@@ -5,25 +5,40 @@
   ],
   "apply": true,
   "archived": {
-    "main@pre-consolidation": "archive/pre-consolidation/main-746e206e0e2a"
+    "copilot/enki-hosted-10-rc2-completion": "archive/branches/copilot-enki-hosted-10-rc2-completion-f39ced076885",
+    "governance/normalize-hosted-release-blockers-v2": "archive/branches/governance-normalize-hosted-release-blockers-v2-d872ba49f357",
+    "governance/promote-sprint-43-completion": "archive/branches/governance-promote-sprint-43-completion-00294d971a05",
+    "governance/promote-sprint-47-completion": "archive/branches/governance-promote-sprint-47-completion-994c31ec871e",
+    "main@pre-consolidation": "archive/pre-consolidation/main-42411c6d0621"
   },
   "before": [
-    "governance/promote-enki-sprint-25",
+    "copilot/enki-hosted-10-rc2-completion",
+    "execution/sprint47-multi-product-hosted-integration",
+    "governance/normalize-hosted-release-blockers",
+    "governance/normalize-hosted-release-blockers-v2",
+    "governance/promote-sprint-43-completion",
+    "governance/promote-sprint-47-completion",
     "main",
     "sandbox"
   ],
   "default_branch_requested": "main",
   "delete_branch_on_merge_requested": true,
   "deleted": [
-    "governance/promote-enki-sprint-25"
+    "copilot/enki-hosted-10-rc2-completion",
+    "execution/sprint47-multi-product-hosted-integration",
+    "governance/normalize-hosted-release-blockers",
+    "governance/normalize-hosted-release-blockers-v2",
+    "governance/promote-sprint-43-completion",
+    "governance/promote-sprint-47-completion"
   ],
   "errors": [
     "repository settings: GitHub API 403: Resource not accessible by integration"
   ],
-  "main_current_sha": "df47b51e7af256a9c3dd909afbe0ced0f21ed16c",
-  "main_previous_sha": "746e206e0e2ae0f2a42bed1d2723d11726689d24",
+  "main_current_sha": "06400d28ba74d57135e136e172ae262031e5aa3d",
+  "main_previous_sha": "42411c6d0621fcc5d363325b9bdb87b2c20a16c6",
   "merged_into": {
-    "governance/promote-enki-sprint-25": "main"
+    "execution/sprint47-multi-product-hosted-integration": "main",
+    "governance/normalize-hosted-release-blockers": "main"
   },
   "repository": "nelsonbridge/media-blitz-os",
   "settings_updated": false

@@ -1,0 +1,25 @@
+{
+  "sprint_id": "NKS-SPR-046",
+  "sequence": 46,
+  "title": "Operational Observability and Incident Management",
+  "objective": "Provide production-shaped operational visibility, incident reconstruction, health monitoring, alerting, and privacy-preserving diagnostics without exposing protected knowledge or allowing observability to mutate canonical state.",
+  "status": "complete",
+  "work_item_ids": ["BL-046"],
+  "exit_criteria": [
+    "Metrics, traces, structured logs, and health indicators use bounded metadata and stable correlation identifiers",
+    "Protected canonical content, secrets, and disallowed personal data never enter telemetry",
+    "Queue pressure, saturation, latency, failure, retry, recovery, and provider degradation are observable",
+    "Incident records reconstruct exact operation, authority, evidence, and recovery lineage without widening disclosure",
+    "Telemetry loss, duplication, ordering gaps, and correlation mismatch are detectable",
+    "Observability and incident tooling cannot mutate canonical state or authorize recovery effects"
+  ],
+  "evidence": [
+    {"evidence_id":"E-S46-PR112","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/112","description":"Sprint 46 implementation."},
+    {"evidence_id":"E-S46-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/5f686b56a04e504a7f008fe95b654b8add82199d","description":"Sprint 46 merge commit."},
+    {"evidence_id":"E-S46-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29564973133","description":"CI passed."},
+    {"evidence_id":"E-S46-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29564973205","description":"Runtime Coverage passed."},
+    {"evidence_id":"E-S46-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29564973166","description":"Work Control Authority passed."}
+  ],
+  "blocked_reason": null,
+  "updated_at": "2026-07-17T08:10:00Z"
+}

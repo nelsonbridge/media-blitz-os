@@ -1,0 +1,25 @@
+{
+  "work_item_id": "BL-039",
+  "title": "Hosted Identity, Tenancy, and Context Enforcement",
+  "description": "Move Enki identity, tenant, subject, domain, audience, purpose, and execution-context boundaries into the authorized hosted runtime and validate least-privilege behavior adversarially.",
+  "status": "complete",
+  "sprint_id": "NKS-SPR-039",
+  "acceptance_criteria": [
+    "Hosted authentication and identity resolution bind exact Enki boundary context",
+    "Cross-tenant, cross-subject, cross-domain, cross-audience, cross-purpose, and TEST-to-PRODUCTION escalation fail closed",
+    "Scoped credentials, revocation, expiry, rotation, and forged-identity paths are validated",
+    "Human-state controls remain stricter than generic tenant authorization",
+    "Hosted denial evidence is privacy-preserving and reconstructable"
+  ],
+  "evidence": [
+    {"evidence_id":"E-BL39-IDENTITY-POLICY","kind":"canonical-record","reference":"security/enki-hosted-1.0-rc2/hosted-identity-policy.json","description":"Versioned hosted identity and denial-evidence policy."},
+    {"evidence_id":"E-BL39-PR128","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/128","description":"Sprint 39 implementation."},
+    {"evidence_id":"E-BL39-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/2a424b128368b00eabf7017d3a9560d4d43ae612","description":"Sprint 39 implementation merge."},
+    {"evidence_id":"E-BL39-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29623099879","description":"CI passed."},
+    {"evidence_id":"E-BL39-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29623099882","description":"Runtime Coverage passed."},
+    {"evidence_id":"E-BL39-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29623099893","description":"Work Control Authority passed."}
+  ],
+  "blocked_reason": null,
+  "superseded_by": null,
+  "updated_at": "2026-07-18T00:31:00Z"
+}

@@ -1,19 +1,24 @@
 {
   "work_item_id": "BL-036",
   "title": "Enki Hosted Release Candidate and Deployment Decision",
-  "description": "Assemble the hosted release-candidate evidence package and explicit human deployment decision matrix for Enki.",
-  "status": "planned",
+  "description": "Consolidate hosted validation, architecture, multi-consumer operation, zero-cost envelope, production-control readiness, portability, recovery, limitations, and exact evidence into a final hosted Enki release candidate and explicit human deployment decision package.",
+  "status": "complete",
   "sprint_id": "NKS-SPR-036",
   "acceptance_criteria": [
-    "Hosted architecture validation evidence is hash-bound and attributable",
-    "Zero-cost envelope status is explicitly represented as defined or failed",
-    "Production deployment prerequisites are explicit as ready or blocked with evidence",
-    "Threat model, runbooks, backup/recovery proof, and portability proof are packaged",
-    "Deployment rollback and production cost forecast are independently reviewable",
-    "Human decision state supports approve, approve with conditions, defer, or reject"
+    "The release candidate binds exact architecture, hosted TEST, multi-consumer, recovery, portability, performance, and security evidence",
+    "Software readiness, hosted validation, zero-cost envelope, and production deployment readiness remain separate conclusions",
+    "Known limitations, unresolved controls, runbooks, rollback, migration, support boundaries, and independent-review requirements are explicit",
+    "Failed or missing evidence cannot be represented as passing",
+    "Only an explicit human decision can authorize deployment"
   ],
-  "evidence": [],
+  "evidence": [
+    {"evidence_id":"E-BL36-PR109","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/109","description":"Sprint 36 implementation and RC2 package."},
+    {"evidence_id":"E-BL36-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/6d5cb06a87578f830b6b5ee1f517d3c01cc562d2","description":"Sprint 36 merge commit."},
+    {"evidence_id":"E-BL36-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29564257640","description":"CI passed."},
+    {"evidence_id":"E-BL36-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29564257620","description":"Runtime Coverage passed."},
+    {"evidence_id":"E-BL36-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29564257655","description":"Work Control Authority passed."}
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-16T23:40:00Z"
+  "updated_at": "2026-07-17T07:55:00Z"
 }

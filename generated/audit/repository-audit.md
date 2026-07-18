@@ -4,9 +4,9 @@
 
 ## Census
 
-- Files: 851
-- Canonical records: 190
-- Tests: 102
+- Files: 956
+- Canonical records: 226
+- Tests: 120
 - Schemas: 18
 
 ## Top-Level File Counts
@@ -24,30 +24,31 @@
 | contracts | 7 |
 | corpus | 42 |
 | diagnostics | 2 |
-| docs | 31 |
+| docs | 32 |
 | editorial | 1 |
 | engineering | 1 |
 | evidence | 10 |
 | frameworks | 3 |
 | generated | 21 |
 | governance | 12 |
+| infrastructure | 6 |
 | integrations | 5 |
 | metrics | 6 |
 | opportunities | 4 |
 | ops | 5 |
 | publishing | 94 |
-| records | 190 |
-| releases | 34 |
+| records | 226 |
+| releases | 47 |
 | research | 2 |
 | roadmap | 25 |
 | runtime | 5 |
 | schemas | 18 |
-| scripts | 5 |
-| security | 1 |
-| src | 136 |
+| scripts | 7 |
+| security | 3 |
+| src | 162 |
 | templates | 12 |
-| tests | 110 |
-| validation | 6 |
+| tests | 128 |
+| validation | 7 |
 | visuals | 17 |
 | whitepapers | 1 |
 
@@ -75,8 +76,8 @@
 | reconciliation-findings | 0 |
 | disclosure-receipts | 0 |
 | canonical-reservations | 0 |
-| work-items | 30 |
-| sprints | 30 |
+| work-items | 48 |
+| sprints | 48 |
 | governed-transaction-events | 0 |
 | governed-transaction-receipts | 0 |
 
