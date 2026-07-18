@@ -2,7 +2,7 @@
   "work_item_id": "BL-045",
   "title": "Production-Control Implementation",
   "description": "Implement and validate the seven Sprint 35 production-control contracts against the human-authorized hosted architecture using qualifying production-scope evidence and independent assessment where required.",
-  "status": "planned",
+  "status": "blocked",
   "sprint_id": "NKS-SPR-045",
   "acceptance_criteria": [
     "Cloud IAM is validated with least-privilege and denial evidence",
@@ -12,7 +12,7 @@
     "Independent penetration testing is performed by an authorized independent assessor"
   ],
   "evidence": [],
-  "blocked_reason": null,
+  "blocked_reason": "Sprint 45 requires configured production identity federation, tenant-isolated production persistence, per-tenant production key management, production secrets management, network segmentation, and independent penetration-test evidence. These production-scope capabilities are not available or validated; see GitHub issue #137.",
   "superseded_by": null,
-  "updated_at": "2026-07-17T08:00:00Z"
+  "updated_at": "2026-07-18T02:30:00Z"
 }

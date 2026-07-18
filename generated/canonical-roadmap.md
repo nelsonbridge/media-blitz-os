@@ -739,7 +739,7 @@ Exit criteria:
 ## Sprint 45 — Production-Control Implementation
 
 - ID: `NKS-SPR-045`
-- Status: `planned`
+- Status: `blocked`
 - Objective: Implement and validate the seven Sprint 35 production-control contracts against the human-authorized hosted architecture using qualifying production-scope evidence and independent assessment where required.
 - Work items: BL-045
 - Evidence records: 0
@@ -790,7 +790,7 @@ Exit criteria:
 ## Sprint 48 — Enki 1.0 Operational Release and Human Launch Decision
 
 - ID: `NKS-SPR-048`
-- Status: `planned`
+- Status: `blocked`
 - Objective: Assemble the complete operational evidence package for Enki 1.0, report software, hosted platform, production controls, operations, cost, recovery, portability, and multi-consumer readiness separately, and request an explicit human launch decision.
 - Work items: BL-048
 - Evidence records: 0
