@@ -149,6 +149,7 @@ class OperationalReadinessConclusion(BaseModel):
     @classmethod
     def create(cls, **values: object) -> "OperationalReadinessConclusion":
         payload = dict(values)
+        payload.setdefault("production_launch_authorized", False)
         payload["conclusion_sha256"] = canonical_sha256(payload)
         return cls(**payload)
 
@@ -181,6 +182,9 @@ class HumanLaunchDecisionRequest(BaseModel):
     @classmethod
     def create(cls, **values: object) -> "HumanLaunchDecisionRequest":
         payload = dict(values)
+        payload.setdefault("decision_state", LaunchDecisionState.PENDING_HUMAN_DECISION)
+        payload.setdefault("decision_authority", "HUMAN")
+        payload.setdefault("selected_disposition", None)
         payload["request_sha256"] = canonical_sha256(payload)
         return cls(**payload)
 
@@ -242,6 +246,11 @@ class EnkiOperationalReleasePackage(BaseModel):
     @classmethod
     def create(cls, **values: object) -> "EnkiOperationalReleasePackage":
         payload = dict(values)
+        payload.setdefault("schema_version", 1)
+        payload.setdefault("release_version", OPERATIONAL_RELEASE_VERSION)
+        payload.setdefault("external_services_budget_usd", 0)
+        payload.setdefault("production_launch_authorized", False)
+        payload.setdefault("launch_decision_state", LaunchDecisionState.PENDING_HUMAN_DECISION)
         payload["release_sha256"] = canonical_sha256(payload)
         return cls(**payload)
 
