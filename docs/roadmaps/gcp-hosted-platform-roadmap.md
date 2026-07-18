@@ -15,6 +15,28 @@ Current phase: **Phase 0 — Control Plane Prepared**.
 
 The control plane is not operational until bootstrap execution and a trusted WIF-authenticated Terraform apply are evidenced.
 
+## TEST Execution Issue Chain
+
+The repo-native TEST runway is represented by the following GitHub issues and is intended to execute continuously once dependencies are satisfied:
+
+1. GCP-01 — Issue #143 — TEST Resource Foundation.
+2. GCP-02 — Issue #144 — Enki Container Contract.
+3. GCP-03 — Issue #145 — Governed Build and Artifact Publication.
+4. GCP-04 — Issue #146 — Persistence Decision Lock. **Sole planned human architecture gate.**
+5. GCP-05 — Issue #147 — Hosted Persistence Foundation.
+6. GCP-06 — Issue #148 — Hosted Persistence Adapter and Migration Proof.
+7. GCP-07 — Issue #149 — Cloud Run Runtime Foundation.
+8. GCP-08 — Issue #150 — Enki TEST Application Deployment Pipeline.
+9. GCP-09 — Issue #151 — First Enki Hosted Boot. No human approval gate.
+10. GCP-10 — Issue #152 — Hosted Functional Smoke Suite.
+11. GCP-11 — Issue #153 — Observability and Runtime Identity.
+12. GCP-12 — Issue #154 — Restart, Rollback, Backup, and Recovery Proof.
+13. GCP-13 — Issue #155 — Security and Authority Regression.
+14. GCP-14 — Issue #156 — TEST Drift and State Reconciliation.
+15. GCP-15 — Issue #157 — TEST Completion Gate.
+
+GCP-00 is represented by PR #142 and its required no-op trust proof. GCP-01 begins immediately when that proof succeeds. Outside GCP-04, execution continues automatically unless a genuine external capability failure, failed invariant requiring a consequential decision, or an explicit human-authority boundary is reached.
+
 ## Roadmap
 
 ### Phase 0 — Control Plane Prepared
