@@ -3,7 +3,7 @@
   "sequence": 39,
   "title": "Hosted Identity, Tenancy, and Context Enforcement",
   "objective": "Move Enki identity, tenant, subject, domain, audience, purpose, and execution-context boundaries into the authorized hosted runtime and validate least-privilege behavior adversarially.",
-  "status": "planned",
+  "status": "complete",
   "work_item_ids": [
     "BL-039"
   ],
@@ -15,7 +15,14 @@
     "Hosted denial evidence is privacy-preserving and reconstructable",
     "No TEST identity or credential can satisfy a production identity gate"
   ],
-  "evidence": [],
+  "evidence": [
+    {"evidence_id":"E-S39-IDENTITY-POLICY","kind":"canonical-record","reference":"security/enki-hosted-1.0-rc2/hosted-identity-policy.json","description":"Versioned seven-dimensional hosted identity policy with TEST-only secret reference and privacy-preserving denial schema."},
+    {"evidence_id":"E-S39-PR128","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/128","description":"Implemented hosted identity resolution, scoped credential lifecycle, adversarial boundary enforcement, and human-state strictness."},
+    {"evidence_id":"E-S39-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/2a424b128368b00eabf7017d3a9560d4d43ae612","description":"Merged Sprint 39 hosted identity enforcement implementation."},
+    {"evidence_id":"E-S39-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29623099879","description":"CI passed for Sprint 39 implementation."},
+    {"evidence_id":"E-S39-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29623099882","description":"Runtime Coverage passed for Sprint 39 implementation."},
+    {"evidence_id":"E-S39-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29623099893","description":"Work Control Authority passed for Sprint 39 implementation."}
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-17T08:00:00Z"
+  "updated_at": "2026-07-18T00:31:00Z"
 }
