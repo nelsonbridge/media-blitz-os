@@ -1,0 +1,75 @@
+name: Normalize Hosted Release Blockers
+
+on:
+  push:
+    branches:
+      - governance/normalize-hosted-release-blockers-v2
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: governance/normalize-hosted-release-blockers-v2
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install runtime
+        run: python -m pip install -e ".[test]"
+      - name: Normalize canonical blocker records
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          updates = {
+              "records/sprints/NKS-SPR-045.json": (
+                  "Sprint 45 requires configured production identity federation, tenant-isolated production persistence, per-tenant production key management, production secrets management, network segmentation, and independent penetration-test evidence. These production-scope capabilities are not available or validated; see GitHub issue #137."
+              ),
+              "records/work-items/BL-045.json": (
+                  "Sprint 45 requires configured production identity federation, tenant-isolated production persistence, per-tenant production key management, production secrets management, network segmentation, and independent penetration-test evidence. These production-scope capabilities are not available or validated; see GitHub issue #137."
+              ),
+              "records/sprints/NKS-SPR-048.json": (
+                  "Sprint 48 cannot begin final operational release and the human launch/no-launch decision while Sprint 45 production-control implementation remains blocked and unresolved external capability gates remain open. Final human launch authority must be requested only after all prior blockers are closed."
+              ),
+              "records/work-items/BL-048.json": (
+                  "Sprint 48 cannot begin final operational release and the human launch/no-launch decision while Sprint 45 production-control implementation remains blocked and unresolved external capability gates remain open. Final human launch authority must be requested only after all prior blockers are closed."
+              ),
+          }
+          for path_text, reason in updates.items():
+              path = Path(path_text)
+              payload = json.loads(path.read_text(encoding="utf-8"))
+              payload["status"] = "blocked"
+              payload["blocked_reason"] = reason
+              payload["updated_at"] = "2026-07-18T02:30:00Z"
+              path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+          PY
+      - name: Remove one-shot workflow and trigger before projection generation
+        run: |
+          rm .github/workflows/normalize-hosted-release-blockers.yml
+          rm -f validation/.normalize-hosted-release-blockers-trigger
+      - name: Regenerate work-control projections
+        run: python -c "from pathlib import Path; from nks.views.work_control import write_work_control_views; write_work_control_views(Path('.'))"
+      - name: Regenerate authority manifest
+        run: python -m nks.views.authority write .
+      - name: Regenerate authoritative views
+        run: nks generate-views .
+      - name: Regenerate repository audit
+        run: nks audit-repository .
+      - name: Commit deterministic blocker normalization
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add records/sprints/NKS-SPR-045.json records/work-items/BL-045.json records/sprints/NKS-SPR-048.json records/work-items/BL-048.json generated .github/workflows/normalize-hosted-release-blockers.yml validation/.normalize-hosted-release-blockers-trigger
+          if git diff --cached --quiet; then
+            echo "No blocker normalization changes required"
+            exit 0
+          fi
+          git commit -m "Normalize hosted release blockers [skip ci]"
+          git push origin HEAD:governance/normalize-hosted-release-blockers-v2
