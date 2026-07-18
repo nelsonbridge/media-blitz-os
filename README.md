@@ -38,6 +38,16 @@ Feedback provenance is mandatory and closed to `REAL`, `SYNTHETIC`, and `REPLAY`
 
 See [`docs/canonicalization-security-boundary.md`](docs/canonicalization-security-boundary.md) for the enforced boundary and remaining hardening work.
 
+## Infrastructure Control Plane
+
+GCP is the initial hosted execution substrate. Infrastructure intent is defined in the repository and executed through a narrowly trusted GitHub Actions → Workload Identity Federation → Terraform path.
+
+Pull requests may validate Terraform offline but do not receive the GCP deployer identity. The TEST authority transition occurs only after an authorized merge to `sandbox`, where the exact trusted Terraform workflow may obtain short-lived deployment credentials and perform a serialized plan/apply cycle.
+
+The control plane is currently **prepared but not yet operational**. Operational proof requires successful bootstrap execution, configuration of the required GitHub Actions variables, and a successful trusted WIF-authenticated Terraform run.
+
+See [`docs/infrastructure/gcp-execution-control-plane.md`](docs/infrastructure/gcp-execution-control-plane.md) and [`infrastructure/bootstrap/README.md`](infrastructure/bootstrap/README.md).
+
 ## Current Scope
 
 The initial system supports:
