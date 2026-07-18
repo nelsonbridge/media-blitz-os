@@ -89,7 +89,20 @@ class DeploymentDecisionResolution(BaseModel):
 
     @classmethod
     def create(cls, **values: object) -> "DeploymentDecisionResolution":
-        payload = dict(values)
+        payload = {
+            "schema_version": 1,
+            "request_id": HOSTED_RC2_REQUEST_ID,
+            "request_sha256": HOSTED_RC2_REQUEST_SHA256,
+            "candidate_version": HOSTED_RC2_VERSION,
+            "candidate_sha256": HOSTED_RC2_SHA256,
+            "decision_authority": "HUMAN",
+            "conditions": (),
+            "accepted_risks": (),
+            "evidence_waivers": (),
+            "production_execution_authorized": False,
+            "external_services_budget_usd": 0,
+            **values,
+        }
         payload["resolution_sha256"] = canonical_sha256(payload)
         return cls(**payload)
 
@@ -131,7 +144,21 @@ class ArchitectureLock(BaseModel):
 
     @classmethod
     def create(cls, **values: object) -> "ArchitectureLock":
-        payload = dict(values)
+        payload = {
+            "schema_version": 1,
+            "lock_id": "ARCH-LOCK-enki-hosted-1.0-rc2",
+            "candidate_version": HOSTED_RC2_VERSION,
+            "candidate_sha256": HOSTED_RC2_SHA256,
+            "architecture_id": REFERENCE_ARCHITECTURE_ID,
+            "compute_provider": "Cloudflare Workers",
+            "canonical_store": "Neon Postgres",
+            "object_store": "Cloudflare R2",
+            "optional_services": (),
+            "rollback_candidate_sha256": HOSTED_RC2_SHA256,
+            "production_execution_authorized": False,
+            "external_services_budget_usd": 0,
+            **values,
+        }
         payload["lock_sha256"] = canonical_sha256(payload)
         return cls(**payload)
 
