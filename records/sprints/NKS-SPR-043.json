@@ -3,10 +3,8 @@
   "sequence": 43,
   "title": "Hosted Retrieval and Knowledge Access",
   "objective": "Operationalize current-authority, historical, contextual, structured, semantic, and projection access against the hosted governed state without leaking authority or converting projections into canonical truth.",
-  "status": "planned",
-  "work_item_ids": [
-    "BL-043"
-  ],
+  "status": "complete",
+  "work_item_ids": ["BL-043"],
   "exit_criteria": [
     "Hosted consumers can explicitly request current-authority, historical, and as-of views",
     "Tenant, subject, domain, audience, purpose, privacy, and provenance filters are enforced server-side",
@@ -15,7 +13,14 @@
     "Pagination, stale-state, denial, replay, and leakage paths are validated",
     "Model access continues through the governed provider-neutral model gateway"
   ],
-  "evidence": [],
+  "evidence": [
+    {"evidence_id":"E-S43-HOSTED-RETRIEVAL","kind":"implementation","reference":"src/nks/application/hosted_retrieval.py","description":"Hosted identity-gated retrieval with explicit current, historical, and as-of access plus provider-neutral model-gateway handoff."},
+    {"evidence_id":"E-S43-PR134","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/134","description":"Corrected hosted retrieval implementation."},
+    {"evidence_id":"E-S43-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/e7e630aec5f0f1e56823ee56819d7e0a0e6a2e8b","description":"Merged Sprint 43 implementation."},
+    {"evidence_id":"E-S43-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29624762916","description":"CI passed."},
+    {"evidence_id":"E-S43-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29624762915","description":"Runtime Coverage passed."},
+    {"evidence_id":"E-S43-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29624762917","description":"Work Control Authority passed."}
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-17T08:00:00Z"
+  "updated_at": "2026-07-18T02:45:00Z"
 }
