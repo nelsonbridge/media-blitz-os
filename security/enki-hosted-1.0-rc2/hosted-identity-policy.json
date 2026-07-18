@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "policy_id": "HID-POLICY-enki-hosted-1.0-rc2",
+  "required_dimensions": [
+    "principal",
+    "tenant",
+    "subject",
+    "domain",
+    "audience",
+    "purpose",
+    "execution_context"
+  ],
+  "test_signing_key_reference": "github-actions://ENKI_TEST_IDENTITY_SIGNING_KEY",
+  "production_identity_provider_authorized": false,
+  "production_execution_authorized": false,
+  "denial_evidence_fields": [
+    "credential_id_sha256",
+    "principal_id_sha256",
+    "requested_context_sha256",
+    "action",
+    "outcome",
+    "reason_code",
+    "evaluated_at",
+    "event_sha256"
+  ],
+  "policy_sha256": "sha256:dfc4ee4dec182b790746981aa2b8e7a305efd4708ba24ee41319725d9bd97924"
+}
