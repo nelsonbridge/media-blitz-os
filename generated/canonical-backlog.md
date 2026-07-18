@@ -42,7 +42,7 @@
 | BL-036 | complete | NKS-SPR-036 | Enki Hosted Release Candidate and Deployment Decision | 5 |
 | BL-037 | complete | NKS-SPR-037 | Deployment Decision Resolution and Architecture Lock | 8 |
 | BL-038 | complete | NKS-SPR-038 | Infrastructure-as-Code and Reproducible Environment Build | 6 |
-| BL-039 | planned | NKS-SPR-039 | Hosted Identity, Tenancy, and Context Enforcement | 0 |
+| BL-039 | complete | NKS-SPR-039 | Hosted Identity, Tenancy, and Context Enforcement | 6 |
 | BL-040 | planned | NKS-SPR-040 | Physical Canonical Persistence and Migration | 0 |
 | BL-041 | complete | NKS-SPR-041 | Evidence and Object Plane | 5 |
 | BL-042 | planned | NKS-SPR-042 | Hosted Governed Execution Runtime | 0 |

@@ -2,17 +2,17 @@
   "audit_version": 2,
   "extension_counts": {
     "(none)": 1,
-    ".json": 268,
+    ".json": 269,
     ".md": 360,
     ".png": 12,
-    ".py": 279,
+    ".py": 281,
     ".svg": 8,
     ".toml": 1,
     ".xml": 1,
     ".yaml": 1,
     ".yml": 9
   },
-  "file_count": 940,
+  "file_count": 943,
   "issue_count": 0,
   "issues": [],
   "readiness": {
@@ -49,7 +49,7 @@
   },
   "repository_root": "/home/runner/work/media-blitz-os/media-blitz-os",
   "schema_count": 18,
-  "test_count": 115,
+  "test_count": 116,
   "top_level_counts": {
     "(root)": 5,
     ".github": 10,
@@ -82,10 +82,10 @@
     "runtime": 5,
     "schemas": 18,
     "scripts": 7,
-    "security": 1,
-    "src": 157,
+    "security": 2,
+    "src": 158,
     "templates": 12,
-    "tests": 123,
+    "tests": 124,
     "validation": 7,
     "visuals": 17,
     "whitepapers": 1

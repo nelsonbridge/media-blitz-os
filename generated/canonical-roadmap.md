@@ -637,10 +637,10 @@ Exit criteria:
 ## Sprint 39 — Hosted Identity, Tenancy, and Context Enforcement
 
 - ID: `NKS-SPR-039`
-- Status: `planned`
+- Status: `complete`
 - Objective: Move Enki identity, tenant, subject, domain, audience, purpose, and execution-context boundaries into the authorized hosted runtime and validate least-privilege behavior adversarially.
 - Work items: BL-039
-- Evidence records: 0
+- Evidence records: 6
 
 Exit criteria:
 
