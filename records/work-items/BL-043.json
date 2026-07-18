@@ -2,7 +2,7 @@
   "work_item_id": "BL-043",
   "title": "Hosted Retrieval and Knowledge Access",
   "description": "Operationalize current-authority, historical, contextual, structured, semantic, and projection access against the hosted governed state without leaking authority or converting projections into canonical truth.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-043",
   "acceptance_criteria": [
     "Hosted consumers can explicitly request current-authority, historical, and as-of views",
@@ -11,8 +11,15 @@
     "Projections and interpretations remain noncanonical absent separate governed promotion",
     "Pagination, stale-state, denial, replay, and leakage paths are validated"
   ],
-  "evidence": [],
+  "evidence": [
+    {"evidence_id":"E-BL43-HOSTED-RETRIEVAL","kind":"implementation","reference":"src/nks/application/hosted_retrieval.py","description":"Hosted identity-gated retrieval implementation."},
+    {"evidence_id":"E-BL43-PR134","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/134","description":"Corrected hosted retrieval implementation."},
+    {"evidence_id":"E-BL43-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/e7e630aec5f0f1e56823ee56819d7e0a0e6a2e8b","description":"Merged Sprint 43 implementation."},
+    {"evidence_id":"E-BL43-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29624762916","description":"CI passed."},
+    {"evidence_id":"E-BL43-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29624762915","description":"Runtime Coverage passed."},
+    {"evidence_id":"E-BL43-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29624762917","description":"Work Control Authority passed."}
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-17T08:00:00Z"
+  "updated_at": "2026-07-18T02:45:00Z"
 }
