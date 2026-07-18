@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "package_id": "IAC-PACKAGE-enki-hosted-1.0-rc2",
+  "definition": {
+    "schema_version": 1,
+    "definition_id": "IAC-enki-hosted-1.0-rc2-CF-NEON-R2-TEST",
+    "candidate_version": "enki-hosted-1.0-rc2",
+    "candidate_sha256": "sha256:c443b2ff6eeb00e6682f6c56dc00cd14bdee53940432e1b9d12e9f473c9346b4",
+    "architecture_lock_sha256": "sha256:8b79cdbcafd9080a22471fa12e3a176ee1da9963471fa494b90dca62af0d4813",
+    "architecture_id": "CF-NEON-R2",
+    "environment": "TEST",
+    "resources": [
+      {
+        "resource_id": "cf-workers-test",
+        "provider": "CLOUDFLARE",
+        "service": "WORKERS",
+        "environment": "TEST",
+        "role": "governed compute and edge runtime",
+        "declared": true,
+        "cost_ceiling_usd": 0,
+        "teardown_required": true
+      },
+      {
+        "resource_id": "neon-postgres-test",
+        "provider": "NEON",
+        "service": "POSTGRES",
+        "environment": "TEST",
+        "role": "canonical structured-data system of record",
+        "declared": true,
+        "cost_ceiling_usd": 0,
+        "teardown_required": true
+      },
+      {
+        "resource_id": "cf-r2-test",
+        "provider": "CLOUDFLARE",
+        "service": "R2",
+        "environment": "TEST",
+        "role": "evidence, artifact, export, backup, and recovery object plane",
+        "declared": true,
+        "cost_ceiling_usd": 0,
+        "teardown_required": true
+      }
+    ],
+    "secret_references": [
+      {
+        "binding_id": "cloudflare-account-id",
+        "environment": "TEST",
+        "provider": "CLOUDFLARE",
+        "reference": "github-actions://CLOUDFLARE_ACCOUNT_ID"
+      },
+      {
+        "binding_id": "cloudflare-api-token",
+        "environment": "TEST",
+        "provider": "CLOUDFLARE",
+        "reference": "github-actions://CLOUDFLARE_API_TOKEN"
+      },
+      {
+        "binding_id": "neon-database-url",
+        "environment": "TEST",
+        "provider": "NEON",
+        "reference": "github-actions://NEON_DATABASE_URL"
+      },
+      {
+        "binding_id": "neon-api-key",
+        "environment": "TEST",
+        "provider": "NEON",
+        "reference": "github-actions://NEON_API_KEY"
+      }
+    ],
+    "allowed_services": [
+      "CLOUDFLARE:R2",
+      "CLOUDFLARE:WORKERS",
+      "NEON:POSTGRES"
+    ],
+    "lifecycle_operations": [
+      "PLAN",
+      "CREATE",
+      "VERIFY",
+      "TEARDOWN",
+      "REBUILD"
+    ],
+    "production_execution_authorized": false,
+    "external_services_budget_usd": 0,
+    "definition_sha256": "sha256:8653b4da954ad673ca486117c1085bd2a103310d0250a258892a5918859ae5af"
+  },
+  "environment_policies": [
+    {
+      "environment": "TEST",
+      "provider_execution_enabled": false,
+      "required_authority": "EXTERNAL_TEST_CREDENTIALS_AND_TEARDOWN_AUTHORITY",
+      "external_services_budget_usd": 0,
+      "permits_production_data": false,
+      "permits_production_effects": false
+    },
+    {
+      "environment": "PRODUCTION",
+      "provider_execution_enabled": false,
+      "required_authority": "EXPLICIT_HUMAN_PRODUCTION_AUTHORITY_AND_VALIDATED_PRODUCTION_CONTROLS",
+      "external_services_budget_usd": 0,
+      "permits_production_data": false,
+      "permits_production_effects": false
+    }
+  ],
+  "package_sha256": "sha256:9f782a8e394eb5125a512c213ff83167a0d88a134788ee2712af7ed3e5c275f8"
+}
