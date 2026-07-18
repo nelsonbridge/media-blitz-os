@@ -48,9 +48,9 @@
 | BL-042 | complete | NKS-SPR-042 | Hosted Governed Execution Runtime | 6 |
 | BL-043 | planned | NKS-SPR-043 | Hosted Retrieval and Knowledge Access | 0 |
 | BL-044 | complete | NKS-SPR-044 | Disaster Recovery, Portability, and Provider Exit | 5 |
-| BL-045 | planned | NKS-SPR-045 | Production-Control Implementation | 0 |
+| BL-045 | blocked | NKS-SPR-045 | Production-Control Implementation | 0 |
 | BL-046 | complete | NKS-SPR-046 | Operational Observability and Incident Management | 5 |
 | BL-047 | planned | NKS-SPR-047 | Multi-Product Hosted Integration | 0 |
-| BL-048 | planned | NKS-SPR-048 | Enki 1.0 Operational Release and Human Launch Decision | 0 |
+| BL-048 | blocked | NKS-SPR-048 | Enki 1.0 Operational Release and Human Launch Decision | 0 |
 
 Total work items: 48
