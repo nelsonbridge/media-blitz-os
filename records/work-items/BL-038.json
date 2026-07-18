@@ -2,7 +2,7 @@
   "work_item_id": "BL-038",
   "title": "Infrastructure-as-Code and Reproducible Environment Build",
   "description": "Implement the human-authorized hosted architecture as reproducible TEST infrastructure with deterministic creation, verification, teardown, and clean rebuild while preserving the zero-cost boundary until separately changed.",
-  "status": "planned",
+  "status": "complete",
   "sprint_id": "NKS-SPR-038",
   "acceptance_criteria": [
     "The selected architecture is represented as versioned infrastructure definitions rather than hidden manual configuration",
@@ -11,8 +11,15 @@
     "Secrets are referenced through governed bindings and never committed to the repository",
     "Infrastructure drift and undeclared provider services fail closed"
   ],
-  "evidence": [],
+  "evidence": [
+    {"evidence_id":"E-BL38-IAC-PACKAGE","kind":"canonical-record","reference":"infrastructure/enki-hosted-1.0-rc2/cf-neon-r2-iac.json","description":"Versioned CF-NEON-R2 TEST infrastructure definition and environment-authority package."},
+    {"evidence_id":"E-BL38-PR126","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/126","description":"Sprint 38 implementation."},
+    {"evidence_id":"E-BL38-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/b647c85d92db51f0e3e5e3770377a3abb2236c5f","description":"Sprint 38 implementation merge."},
+    {"evidence_id":"E-BL38-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29622845596","description":"CI passed."},
+    {"evidence_id":"E-BL38-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29622845608","description":"Runtime Coverage passed."},
+    {"evidence_id":"E-BL38-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29622845648","description":"Work Control Authority passed."}
+  ],
   "blocked_reason": null,
   "superseded_by": null,
-  "updated_at": "2026-07-17T08:00:00Z"
+  "updated_at": "2026-07-18T00:23:00Z"
 }
