@@ -90,7 +90,9 @@ def test_release_model_rejects_missing_evidence_domain() -> None:
     release = build_operational_release_package()
     payload = release.model_dump(mode="python")
     payload["evidence"] = tuple(
-        item for item in payload["evidence"] if item.domain != OperationalEvidenceDomain.COST
+        item
+        for item in payload["evidence"]
+        if item["domain"] != OperationalEvidenceDomain.COST
     )
 
     try:
