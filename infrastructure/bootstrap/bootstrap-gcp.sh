@@ -68,14 +68,7 @@ DEPLOYER_ATTRIBUTE_MAPPING=(
 # Join with commas for the gcloud flag
 DEPLOYER_ATTRIBUTE_MAPPING_STR=$(IFS=,; echo "${DEPLOYER_ATTRIBUTE_MAPPING[*]}")
 
-DEPLOYER_CONDITION_PARTS=(
-  "assertion.repository == '${GITHUB_REPO}'"
-  "assertion.event_name == 'push'"
-  "assertion.ref == '${DEPLOY_BRANCH}'"
-  "assertion.workflow_ref == '${DEPLOY_WORKFLOW}'"
-)
-# Join with ' && ' for the gcloud --attribute-condition flag
-DEPLOYER_CONDITION=$(IFS=' && '; echo "${DEPLOYER_CONDITION_PARTS[*]}")
+DEPLOYER_CONDITION="assertion.repository == '${GITHUB_REPO}' && assertion.event_name == 'push' && assertion.ref == '${DEPLOY_BRANCH}' && assertion.workflow_ref == '${DEPLOY_WORKFLOW}'"
 
 # ---------------------------------------------------------------------------
 # Helpers
