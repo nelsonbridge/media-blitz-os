@@ -26,7 +26,7 @@ Repository files do not all carry equal authority.
 
 1. Validated canonical machine records establish operational truth.
 2. Deterministically generated projections under `generated/` provide authoritative human-readable views of that state.
-3. Human-authored plans, explanations, status summaries, and historical ledgers are non-authoritative unless explicitly generated.
+3. Human-authored plans, explanations, status summaries, diagrams, roadmaps, and historical ledgers are non-authoritative unless explicitly generated.
 
 See [`docs/state-authority-model.md`](docs/state-authority-model.md) for precedence, editing rules, and the transitional classification of existing status documents.
 
@@ -46,7 +46,18 @@ Pull requests may validate Terraform offline but do not receive the GCP deployer
 
 The control plane is currently **prepared but not yet operational**. Operational proof requires successful bootstrap execution, configuration of the required GitHub Actions variables, and a successful trusted WIF-authenticated Terraform run.
 
-See [`docs/infrastructure/gcp-execution-control-plane.md`](docs/infrastructure/gcp-execution-control-plane.md) and [`infrastructure/bootstrap/README.md`](infrastructure/bootstrap/README.md).
+See:
+
+- [`docs/infrastructure/gcp-execution-control-plane.md`](docs/infrastructure/gcp-execution-control-plane.md)
+- [`docs/architecture/gcp-test-reference-architecture.md`](docs/architecture/gcp-test-reference-architecture.md)
+- [`docs/roadmaps/gcp-hosted-platform-roadmap.md`](docs/roadmaps/gcp-hosted-platform-roadmap.md)
+- [`infrastructure/bootstrap/README.md`](infrastructure/bootstrap/README.md)
+
+## Documentation Synchronization
+
+Architecture- and roadmap-affecting changes must update the applicable architecture narrative, diagram source, and roadmap in the same change set whenever applicable. Historical alternatives may be retained, but they must not be confused with the selected current path.
+
+See [`docs/governance/architecture-roadmap-synchronization.md`](docs/governance/architecture-roadmap-synchronization.md).
 
 ## Current Scope
 
