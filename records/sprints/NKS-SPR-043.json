@@ -3,10 +3,8 @@
   "sequence": 43,
   "title": "Hosted Retrieval and Knowledge Access",
   "objective": "Operationalize current-authority, historical, contextual, structured, semantic, and projection access against the hosted governed state without leaking authority or converting projections into canonical truth.",
-  "status": "planned",
-  "work_item_ids": [
-    "BL-043"
-  ],
+  "status": "complete",
+  "work_item_ids": ["BL-043"],
   "exit_criteria": [
     "Hosted consumers can explicitly request current-authority, historical, and as-of views",
     "Tenant, subject, domain, audience, purpose, privacy, and provenance filters are enforced server-side",
@@ -15,7 +13,13 @@
     "Pagination, stale-state, denial, replay, and leakage paths are validated",
     "Model access continues through the governed provider-neutral model gateway"
   ],
-  "evidence": [],
+  "evidence": [
+    {"evidence_id":"E-S43-PR134","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/134","description":"Implemented hosted governed retrieval and knowledge access over identity, physical canonical state, temporal retrieval, and the provider-neutral model gateway."},
+    {"evidence_id":"E-S43-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/42411c6d0621fcc5d363325b9bdb87b2c20a16c6","description":"Merged Sprint 43 implementation into sandbox."},
+    {"evidence_id":"E-S43-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29624762916","description":"CI passed on the Sprint 43 implementation head."},
+    {"evidence_id":"E-S43-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29624762915","description":"Runtime Coverage passed on the Sprint 43 implementation head."},
+    {"evidence_id":"E-S43-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29624762917","description":"Work Control Authority passed on the Sprint 43 implementation head."}
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-17T08:00:00Z"
+  "updated_at": "2026-07-18T03:00:00Z"
 }
