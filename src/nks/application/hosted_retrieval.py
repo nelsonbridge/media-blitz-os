@@ -605,7 +605,11 @@ def build_model_gateway_handoff(
             domain=request.context.domain,
             purpose=request.context.purpose,
             audience=ModelUseAudience.INTERNAL_MODEL,
-            required_context={request.context.purpose, request.context.audience},
+            required_context={
+                request.context.purpose,
+                request.context.audience,
+                ModelUseAudience.INTERNAL_MODEL.value,
+            },
             rationale="Include only the exact governed retrieval hit in TEST model use.",
             issued_by=issued_by,
             authority_class=authority_class,
