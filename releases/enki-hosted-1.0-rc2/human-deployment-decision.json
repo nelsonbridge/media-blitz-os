@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "request_id": "DECISION-enki-hosted-1.0-rc2",
+  "request_sha256": "sha256:cfb54f4f807c9ae3cbaa49b7cb76edb89ed91f034fee4559f05bfea4e850e6eb",
+  "candidate_version": "enki-hosted-1.0-rc2",
+  "candidate_sha256": "sha256:c443b2ff6eeb00e6682f6c56dc00cd14bdee53940432e1b9d12e9f473c9346b4",
+  "decision_authority": "HUMAN",
+  "decision_authority_identity": "nelsonbridge",
+  "disposition": "APPROVE",
+  "decision_state": "APPROVED",
+  "conditions": [],
+  "accepted_risks": [],
+  "evidence_waivers": [],
+  "source_reference": "https://github.com/nelsonbridge/media-blitz-os/issues/123#issuecomment-5008644257",
+  "architecture_lock_authorized": true,
+  "production_execution_authorized": false,
+  "external_services_budget_usd": 0,
+  "resolution_sha256": "sha256:cfb15d11968a6c0d0b63d73f8e5d6b1e38d4332cff73794c3361c887eb0e08e0"
+}
