@@ -117,6 +117,7 @@ class ProductionControlStatus(BaseModel):
     @classmethod
     def create(cls, **values: object) -> "ProductionControlStatus":
         payload = dict(values)
+        payload.setdefault("sprint45_reference", "records/sprints/NKS-SPR-045.json")
         payload["status_sha256"] = canonical_sha256(payload)
         return cls(**payload)
 
