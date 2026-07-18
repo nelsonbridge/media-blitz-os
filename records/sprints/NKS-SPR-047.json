@@ -3,10 +3,8 @@
   "sequence": 47,
   "title": "Multi-Product Hosted Integration",
   "objective": "Run Media Blitz, Career Intelligence and Placement, and Personal Cognitive Continuity concurrently against hosted Enki through stable governed consumer boundaries without cross-product data, purpose, or authority leakage.",
-  "status": "planned",
-  "work_item_ids": [
-    "BL-047"
-  ],
+  "status": "complete",
+  "work_item_ids": ["BL-047"],
   "exit_criteria": [
     "All three product suites use versioned hosted Enki consumer contracts",
     "Concurrent hosted workloads preserve tenant, subject, domain, audience, purpose, and product isolation",
@@ -15,7 +13,13 @@
     "Cross-product observability remains privacy-preserving and attributable",
     "No downstream product acquires direct canonical persistence or approval-consumption capability"
   ],
-  "evidence": [],
+  "evidence": [
+    {"evidence_id":"E-S47-PR136","kind":"pull-request","reference":"https://github.com/nelsonbridge/media-blitz-os/pull/136","description":"Implemented corrected multi-product hosted TEST integration over the merged Sprint 33 and Sprint 34 contracts."},
+    {"evidence_id":"E-S47-COMMIT","kind":"commit","reference":"https://github.com/nelsonbridge/media-blitz-os/commit/06400d28ba74d57135e136e172ae262031e5aa3d","description":"Merged corrected Sprint 47 implementation."},
+    {"evidence_id":"E-S47-CI","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29627277758","description":"CI passed on corrected Sprint 47 head."},
+    {"evidence_id":"E-S47-COVERAGE","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29627277777","description":"Runtime Coverage passed on corrected Sprint 47 head."},
+    {"evidence_id":"E-S47-WORK-CONTROL","kind":"test-run","reference":"https://github.com/nelsonbridge/media-blitz-os/actions/runs/29627277824","description":"Work Control Authority passed on corrected Sprint 47 head."}
+  ],
   "blocked_reason": null,
-  "updated_at": "2026-07-17T08:00:00Z"
+  "updated_at": "2026-07-18T02:40:00Z"
 }
