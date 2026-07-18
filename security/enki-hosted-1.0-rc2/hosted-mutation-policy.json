@@ -1,0 +1,18 @@
+{
+  "policy_id": "HOSTED-MUTATION-POLICY-enki-hosted-1.0-rc2",
+  "allowed_purposes": [
+    "reconciliation",
+    "governed-state-write"
+  ],
+  "allowed_provenance_kinds": [
+    "SYNTHETIC",
+    "REPLAY",
+    "REAL_TEST"
+  ],
+  "acceptable_approval_authority_classes": [
+    "HUMAN",
+    "SYSTEM_TEST"
+  ],
+  "production_execution_authorized": false,
+  "policy_sha256": "sha256:3b35fd1ce81e5dc3c98e49a1a0341cc3818bc83460e38ddfe218fc40600e85b3"
+}
