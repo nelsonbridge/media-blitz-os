@@ -1,0 +1,28 @@
+{
+  "contract_version": "enki-cross-finalist-evaluation-v1",
+  "execution_context": "TEST",
+  "external_services_budget_usd": 0,
+  "human_decision_required": true,
+  "expected_finalists": [
+    "CF-NATIVE",
+    "CF-NEON-R2",
+    "GCP-NEON-R2"
+  ],
+  "required_comparison_dimensions": [
+    "security",
+    "governance",
+    "resilience",
+    "performance",
+    "cost",
+    "egress",
+    "portability",
+    "complexity",
+    "recovery",
+    "privacy",
+    "support"
+  ],
+  "incomplete_evidence_policy": {
+    "winner_option_id_must_be_null": true,
+    "recommendation_must_include": "DEFER"
+  }
+}
