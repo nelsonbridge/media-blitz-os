@@ -131,6 +131,8 @@ class BoundaryEnvelope(BaseModel):
 class TestBoundarySigner:
     """Disposable TEST-only signer using per-tenant local keys."""
 
+    __test__ = False
+
     def __init__(self, tenant_keys: dict[str, bytes]) -> None:
         if not tenant_keys or any(not key for key in tenant_keys.values()):
             raise ValueError("non-empty TEST keys are required")

@@ -107,6 +107,8 @@ class RecoveryReceipt(BaseModel):
         p=dict(values); p["receipt_sha256"]=canonical_sha256(p); return cls(**p)
 
 class TestProviderDouble:
+    __test__ = False
+
     def __init__(self, provider_id: str) -> None:
         self.provider_id=provider_id; self.available=True
         self.state: dict[str, StateRecord]={}; self.objects: dict[str, ObjectRecord]={}; self.noncanonical: dict[str, NonCanonicalArtifact]={}

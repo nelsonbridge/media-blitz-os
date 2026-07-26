@@ -118,6 +118,9 @@ class PortableObjectBundle(BaseModel):
 
 class TestObjectStore:
     """In-memory provider double. Internal provider keys never confer authority."""
+
+    __test__ = False
+
     def __init__(self,provider_id:str)->None:
         self.provider_id=provider_id; self.objects:dict[str,EvidenceObject]={}; self.content:dict[str,str]={}
         self.manifests:dict[str,PackageManifest]={}; self.lifecycle:dict[str,list[LifecycleEvent]]={}

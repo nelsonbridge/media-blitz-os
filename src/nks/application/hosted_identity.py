@@ -249,6 +249,8 @@ class HostedIdentityPolicy(BaseModel):
 class TestHostedIdentityAuthority:
     """Rotatable TEST-only signing authority for hosted identity adversarial proof."""
 
+    __test__ = False
+
     def __init__(self, *, key_id: str, key: bytes) -> None:
         if not key_id or not key:
             raise ValueError("non-empty TEST signing key identity and bytes are required")
