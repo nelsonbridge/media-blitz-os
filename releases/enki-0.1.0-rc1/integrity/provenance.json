@@ -1,21 +1,21 @@
 {
-  "attestation_sha256": "sha256:4d74efd3ebd0867339e11023848ccd77d22193972ab08a3a4ecba0c3bbc89b8e",
+  "attestation_sha256": "sha256:fea7484973ce90ac8665bd70bb9a0069cc589c1e2c997f7c7cf1541a2c92f89e",
   "candidate_sha256": "sha256:96fe1533369a3d64d6914ff5eaa849babea4e874eb6fd843bf988ad693541bd5",
   "candidate_source_commit_sha": "cb84fbc8eef6096e8a707e1b922dfa2eddb23e51",
   "dependency_sha256": "sha256:a45475d07722071535c7ee6cd1fc4c5640f674a852993e508b903bdff8b30a3a",
   "evidence_file_hashes": {
     "dependency-inventory.json": "sha256:135dbea5eba59de7a8864592faeb329d1789beb87853051a0fd3029aabbfffd2",
-    "sbom.json": "sha256:11a19046191dfeeb2af328aa9caa183a7b9b7ae3fdcfd2ef7373f00f99d33274",
-    "supply-chain-attestation.json": "sha256:b3255111dc0457f7a965087713caa2057a1f48c1ee3c7c8c05abd25592021e47",
-    "workflow-inventory.json": "sha256:3f62adbf7338a49668f09a2634d879110aa1c5461b89e4b9689c27acfa64ce5b"
+    "sbom.json": "sha256:1f3f872eadde02add8dbb05abe2fbc278464c8798a9a33b9199a4b5d021bede1",
+    "supply-chain-attestation.json": "sha256:051f4314d908cdc3a6e6780884a63c319d05dddea1bead2a12b8e69f2ed97e20",
+    "workflow-inventory.json": "sha256:7068544e091127bae4eb2deb420bb24ddfebd712270602b27f23b1bc65a51d37"
   },
   "execution_context": "TEST",
   "external_effect": false,
   "human_release_decision_issued": false,
-  "inventory_sha256": "sha256:618a6f5c18cc5dce553f6dbd9fae85fdc5a3e9422f0de587387a37f3dcceb906",
+  "inventory_sha256": "sha256:06a29560f0565f78decf9293da2e89a6ecd67cca9d3ba5c4f4f949de29c0052c",
   "production_credentials_used": false,
-  "sbom_sha256": "sha256:5d9f796ba2ad15d55d772899985e8f376f695804b6c474429c33622086894e99",
+  "sbom_sha256": "sha256:01c089b78f904ae9c19670812e8787235e50b52fd5bf2b7de792f6d627930f65",
   "schema_version": "1.0",
   "verifier_source_commit_sha": "8161b23b2e883278f25f3539ee3e392b8eb04033",
-  "workflow_sha256": "sha256:54c5a72ec67df8214525b0ff8892e1026c411442719725e5dd5b72aedcd37ed7"
+  "workflow_sha256": "sha256:222cd9e958d9f53610af1eb274e62d00563dc80e71f511bdc87728f5ff5211fd"
 }
