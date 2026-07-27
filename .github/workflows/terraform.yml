@@ -1,0 +1,170 @@
+name: Terraform
+
+on:
+  pull_request:
+    branches:
+      - sandbox
+    paths:
+      - 'infrastructure/terraform/**'
+      - '.github/workflows/terraform.yml'
+  push:
+    branches:
+      - sandbox
+    paths:
+      - 'infrastructure/terraform/**'
+      - '.github/workflows/terraform.yml'
+  workflow_dispatch:
+
+# Concurrency is defined per-job below so that PR plans and sandbox applies
+# have independent policies.  No top-level concurrency group is set here.
+
+# Single source of truth for the Terraform version used in both jobs.
+env:
+  TF_VERSION: "~> 1.9.0"
+
+permissions:
+  contents: read
+  pull-requests: write      # post plan summaries as PR comments
+  id-token: write           # required for OIDC → Workload Identity Federation
+
+jobs:
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # Job 1 — PR validation (no GCP credentials)
+  #
+  # Runs on pull_request events only.  No cloud credentials are provided;
+  # the WIF trust policy (which constrains access to push events on
+  # refs/heads/sandbox) additionally prevents PR workflows from obtaining
+  # the deployer identity even if this step were bypassed.
+  #
+  # Verifies: formatting, syntax, and offline initialisation.
+  # The authoritative plan runs after merge (see deploy job below).
+  # ─────────────────────────────────────────────────────────────────────────
+  pr-validate:
+    name: Terraform validate (PR)
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    # Cancel superseded runs for the same PR branch so a fast-follow push
+    # does not queue behind an already-obsolete plan.
+    concurrency:
+      group: terraform-pr-${{ github.ref }}
+      cancel-in-progress: true
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+
+      - name: Terraform fmt check
+        working-directory: infrastructure/terraform
+        run: terraform fmt -check -recursive
+
+      - name: Terraform init (no backend)
+        working-directory: infrastructure/terraform
+        run: terraform init -backend=false
+
+      - name: Terraform validate
+        working-directory: infrastructure/terraform
+        run: terraform validate
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # Job 2 — Authoritative plan + apply (sandbox only)
+  #
+  # Runs only on push to sandbox, i.e. after the repo owner merges a PR.
+  # Authenticates to GCP via OIDC → Workload Identity Federation.
+  # The WIF trust policy additionally enforces:
+  #   - event_name == push
+  #   - ref        == refs/heads/sandbox
+  #   - workflow_ref == …/terraform.yml@refs/heads/sandbox
+  # so that no other workflow or branch can impersonate the deployer identity.
+  #
+  # cancel-in-progress: false serialises applies — a second sandbox push
+  # will queue rather than interrupt a GCP resource mutation already running.
+  # ─────────────────────────────────────────────────────────────────────────
+  deploy:
+    name: Terraform apply (sandbox)
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    # Serialise sandbox applies.  Never cancel an apply in progress.
+    concurrency:
+      group: terraform-deploy-sandbox
+      cancel-in-progress: false
+
+    env:
+      TF_VAR_project: ${{ vars.GCP_PROJECT }}
+      TF_VAR_region:  ${{ vars.GCP_REGION }}
+
+    steps:
+      # ------------------------------------------------------------------
+      # 1. Source
+      # ------------------------------------------------------------------
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      # ------------------------------------------------------------------
+      # 2. Authenticate to GCP via OIDC → Workload Identity Federation
+      #    No service-account key is stored anywhere.
+      #    The WIF trust policy restricts this token to this exact
+      #    repository, event, branch, and workflow file.
+      # ------------------------------------------------------------------
+      - name: Authenticate to Google Cloud (OIDC / WIF)
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.GCP_WIF_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+
+      # ------------------------------------------------------------------
+      # 3. Install Terraform
+      # ------------------------------------------------------------------
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+
+      # ------------------------------------------------------------------
+      # 4. Initialise with GCS remote backend
+      # ------------------------------------------------------------------
+      - name: Terraform init
+        working-directory: infrastructure/terraform
+        run: |
+          terraform init \
+            -backend-config="bucket=${{ vars.TF_STATE_BUCKET }}" \
+            -backend-config="prefix=enki/state"
+
+      # ------------------------------------------------------------------
+      # 5. Validate configuration syntax
+      # ------------------------------------------------------------------
+      - name: Terraform validate
+        working-directory: infrastructure/terraform
+        run: terraform validate
+
+      # ------------------------------------------------------------------
+      # 6. Authoritative plan
+      # ------------------------------------------------------------------
+      - name: Terraform plan
+        working-directory: infrastructure/terraform
+        run: |
+          terraform plan \
+            -out=tfplan \
+            -no-color \
+            -input=false
+
+      # ------------------------------------------------------------------
+      # 7. Apply — only reached after the plan step succeeds
+      # ------------------------------------------------------------------
+      - name: Terraform apply
+        working-directory: infrastructure/terraform
+        run: |
+          terraform apply \
+            -auto-approve \
+            -input=false \
+            tfplan

@@ -1,0 +1,196 @@
+name: Publish
+
+# Governed container build and Artifact Registry publication pipeline (GCP-03).
+#
+# Flow:
+#   source commit
+#     → governed validation (tests + release-integrity)
+#     → container build (identity metadata baked in via ARG)
+#     → Artifact Registry push
+#     → immutable SHA-256 digest captured
+#     → deployment candidate provenance emitted
+#
+# Authority model:
+#   - The WIF trust condition for GCP_AR_SA is enforced in the WIF pool:
+#       event_name == push
+#       ref        == refs/heads/sandbox
+#       workflow_ref == …/publish.yml@refs/heads/sandbox
+#   - Deployment references image@sha256:... only.  :latest is never used.
+#   - Failed validation prevents publication.
+
+on:
+  push:
+    branches:
+      - sandbox
+    paths:
+      - 'src/**'
+      - 'Dockerfile'
+      - '.dockerignore'
+      - 'pyproject.toml'
+      - '.github/workflows/publish.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write    # required for OIDC → Workload Identity Federation
+
+env:
+  REGISTRY:   ${{ vars.GCP_REGION }}-docker.pkg.dev
+  IMAGE_BASE: ${{ vars.GCP_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT }}/enki-containers/nks
+
+jobs:
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # Job 1 — Governed validation
+  #
+  # Full test suite + release-integrity verification must pass before any
+  # build artefact is produced.  A failed invariant here prevents publication.
+  # ─────────────────────────────────────────────────────────────────────────
+  validate:
+    name: Governed validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install package and test dependencies
+        run: pip install --no-cache-dir ".[test]"
+
+      - name: Run test suite
+        run: python3 -m pytest tests/ -q
+
+      - name: Verify release integrity
+        run: |
+          python3 scripts/verify_release_integrity.py \
+            --release-directory releases/enki-0.1.0-rc1 \
+            --expected-source-commit cb84fbc8eef6096e8a707e1b922dfa2eddb23e51
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # Job 2 — Build and publish
+  #
+  # Runs only after governed validation passes.
+  # Authenticates to GCP via OIDC → WIF using the Artifact Registry publisher
+  # service account (GCP_AR_SA) created in GCP-01.
+  # ─────────────────────────────────────────────────────────────────────────
+  build-push:
+    name: Build and publish
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    outputs:
+      image_digest: ${{ steps.push.outputs.digest }}
+      image_ref:    ${{ steps.push.outputs.image_ref }}
+
+    steps:
+      # ------------------------------------------------------------------
+      # 1. Source
+      # ------------------------------------------------------------------
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      # ------------------------------------------------------------------
+      # 2. Authenticate to GCP via OIDC → WIF
+      #    The publisher service account (GCP_AR_SA) has write access to
+      #    the Artifact Registry repository only.  It cannot administer
+      #    infrastructure or impersonate the terraform-deployer.
+      # ------------------------------------------------------------------
+      - name: Authenticate to Google Cloud (OIDC / WIF)
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.GCP_WIF_PROVIDER }}
+          service_account:            ${{ vars.GCP_AR_SA }}
+
+      # ------------------------------------------------------------------
+      # 3. Configure Docker credential helper for Artifact Registry
+      # ------------------------------------------------------------------
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker ${{ env.REGISTRY }} --quiet
+
+      # ------------------------------------------------------------------
+      # 4. Derive build-time identity metadata
+      # ------------------------------------------------------------------
+      - name: Set build metadata
+        id: meta
+        run: |
+          echo "git_commit=${{ github.sha }}"                     >> "$GITHUB_OUTPUT"
+          echo "build_timestamp=$(date -u +%Y-%m-%dT%H:%M:%SZ)"  >> "$GITHUB_OUTPUT"
+          # Release ID tracks the canonical release package in releases/
+          echo "release_id=enki-0.1.0-rc1"                       >> "$GITHUB_OUTPUT"
+
+      # ------------------------------------------------------------------
+      # 5. Build image
+      #    Build-time identity metadata is baked in via ARG → ENV so the
+      #    running container can answer identity questions without secrets.
+      # ------------------------------------------------------------------
+      - name: Build image
+        run: |
+          docker build \
+            --build-arg NKS_GIT_COMMIT="${{ github.sha }}" \
+            --build-arg NKS_BUILD_TIMESTAMP="${{ steps.meta.outputs.build_timestamp }}" \
+            --build-arg NKS_RELEASE_ID="${{ steps.meta.outputs.release_id }}" \
+            --tag "${{ env.IMAGE_BASE }}:${{ github.sha }}" \
+            .
+
+      # ------------------------------------------------------------------
+      # 6. Push and capture the immutable SHA-256 digest.
+      #    Deployment authority is always expressed as image@sha256:…,
+      #    never as a mutable tag such as :latest.
+      # ------------------------------------------------------------------
+      - name: Push image and capture digest
+        id: push
+        run: |
+          docker push "${{ env.IMAGE_BASE }}:${{ github.sha }}"
+          digest=$(
+            docker inspect \
+              --format='{{index .RepoDigests 0}}' \
+              "${{ env.IMAGE_BASE }}:${{ github.sha }}" \
+            | sed 's/.*@//'
+          )
+          image_ref="${{ env.IMAGE_BASE }}@${digest}"
+          echo "digest=${digest}"       >> "$GITHUB_OUTPUT"
+          echo "image_ref=${image_ref}" >> "$GITHUB_OUTPUT"
+          echo "Deployment candidate: ${image_ref}"
+
+      # ------------------------------------------------------------------
+      # 7. Emit build provenance
+      #    Records the causal chain: source commit → release → digest.
+      #    Uploaded as a workflow artifact for audit and downstream use.
+      # ------------------------------------------------------------------
+      - name: Emit build provenance
+        run: |
+          cat > provenance.json << 'PROVEOF'
+          {}
+          PROVEOF
+          # Write actual values via Python to avoid shell quoting issues.
+          python3 - << 'PYEOF'
+          import json, os
+          provenance = {
+              "service":          "nks",
+              "source_commit":    os.environ["GITHUB_SHA"],
+              "release_id":       "${{ steps.meta.outputs.release_id }}",
+              "build_timestamp":  "${{ steps.meta.outputs.build_timestamp }}",
+              "image_digest":     "${{ steps.push.outputs.digest }}",
+              "image_ref":        "${{ steps.push.outputs.image_ref }}",
+              "environment":      "TEST",
+              "workflow":         os.environ.get("GITHUB_WORKFLOW", ""),
+              "run_id":           os.environ.get("GITHUB_RUN_ID", ""),
+          }
+          with open("provenance.json", "w") as f:
+              json.dump(provenance, f, indent=2, sort_keys=True)
+          print(json.dumps(provenance, indent=2, sort_keys=True))
+          PYEOF
+
+      - name: Upload provenance artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-provenance-${{ github.sha }}
+          path: provenance.json
+          retention-days: 90
