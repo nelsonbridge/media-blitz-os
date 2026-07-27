@@ -146,6 +146,38 @@
       "version": "v4"
     },
     {
+      "name": "actions/checkout",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/terraform.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/checkout@v4"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v4"
+    },
+    {
+      "name": "actions/checkout",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/terraform.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "actions/checkout@v4"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v4"
+    },
+    {
       "name": "actions/setup-python",
       "properties": [
         {
@@ -370,6 +402,54 @@
       "version": "v4"
     },
     {
+      "name": "google-github-actions/auth",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/terraform.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "google-github-actions/auth@v2"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v2"
+    },
+    {
+      "name": "hashicorp/setup-terraform",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/terraform.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "hashicorp/setup-terraform@v3"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v3"
+    },
+    {
+      "name": "hashicorp/setup-terraform",
+      "properties": [
+        {
+          "name": "enki:workflow",
+          "value": ".github/workflows/terraform.yml"
+        },
+        {
+          "name": "enki:reference",
+          "value": "hashicorp/setup-terraform@v3"
+        }
+      ],
+      "scope": "required",
+      "type": "application",
+      "version": "v3"
+    },
+    {
       "name": "hatchling",
       "properties": [
         {
@@ -479,11 +559,11 @@
       },
       {
         "name": "enki:inventory-sha256",
-        "value": "sha256:618a6f5c18cc5dce553f6dbd9fae85fdc5a3e9422f0de587387a37f3dcceb906"
+        "value": "sha256:06a29560f0565f78decf9293da2e89a6ecd67cca9d3ba5c4f4f949de29c0052c"
       }
     ]
   },
-  "serialNumber": "urn:sha256:618a6f5c18cc5dce553f6dbd9fae85fdc5a3e9422f0de587387a37f3dcceb906",
+  "serialNumber": "urn:sha256:06a29560f0565f78decf9293da2e89a6ecd67cca9d3ba5c4f4f949de29c0052c",
   "specVersion": "1.5",
   "version": 1
 }
