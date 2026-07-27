@@ -146,6 +146,41 @@
       "local": false,
       "reference": "actions/checkout@v4",
       "revision": "v4",
+      "workflow_path": ".github/workflows/terraform.yml"
+    },
+    {
+      "action": "actions/checkout",
+      "local": false,
+      "reference": "actions/checkout@v4",
+      "revision": "v4",
+      "workflow_path": ".github/workflows/terraform.yml"
+    },
+    {
+      "action": "google-github-actions/auth",
+      "local": false,
+      "reference": "google-github-actions/auth@v2",
+      "revision": "v2",
+      "workflow_path": ".github/workflows/terraform.yml"
+    },
+    {
+      "action": "hashicorp/setup-terraform",
+      "local": false,
+      "reference": "hashicorp/setup-terraform@v3",
+      "revision": "v3",
+      "workflow_path": ".github/workflows/terraform.yml"
+    },
+    {
+      "action": "hashicorp/setup-terraform",
+      "local": false,
+      "reference": "hashicorp/setup-terraform@v3",
+      "revision": "v3",
+      "workflow_path": ".github/workflows/terraform.yml"
+    },
+    {
+      "action": "actions/checkout",
+      "local": false,
+      "reference": "actions/checkout@v4",
+      "revision": "v4",
       "workflow_path": ".github/workflows/work-control.yml"
     },
     {
@@ -163,5 +198,5 @@
       "workflow_path": ".github/workflows/work-control.yml"
     }
   ],
-  "workflow_sha256": "sha256:54c5a72ec67df8214525b0ff8892e1026c411442719725e5dd5b72aedcd37ed7"
+  "workflow_sha256": "sha256:222cd9e958d9f53610af1eb274e62d00563dc80e71f511bdc87728f5ff5211fd"
 }
