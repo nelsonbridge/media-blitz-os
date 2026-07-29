@@ -1,8 +1,9 @@
 from pathlib import Path
 
 from nks.adapters.manual_delivery import ManualPublicationAdapter
-from nks.adapters.retry import RetryingPublicationAdapter
+from nks.adapters.retry import RetryingEventRepository, RetryingPublicationAdapter
 from nks.domain.delivery import PublicationPayload
+from nks.ports.repositories import EventRepository
 from typer.testing import CliRunner
 from nks.cli.main import app
 
@@ -33,6 +34,46 @@ def test_retrying_publication_adapter_retries(tmp_path: Path):
     receipt = adapter.prepare(payload)
 
     assert receipt.publication_id == "NKS-PUB-000001"
+
+
+def test_retrying_event_repository_retries_and_lists_events(tmp_path: Path):
+    class FailingRepository(EventRepository):
+        def __init__(self) -> None:
+            self.events = []
+            self.append_calls = 0
+
+        def append(self, event):
+            self.append_calls += 1
+            if self.append_calls < 2:
+                raise RuntimeError("transient failure")
+            self.events.append(event)
+
+        def list(self):
+            return list(self.events)
+
+    repo = RetryingEventRepository(FailingRepository(), max_attempts=3)
+    event = object()
+    repo.append(event)
+
+    assert repo.list() == [event]
+
+
+def test_retrying_event_repository_raises_after_exhausting_retries():
+    class FailingRepository(EventRepository):
+        def append(self, event):
+            raise RuntimeError("persistent failure")
+
+        def list(self):
+            return []
+
+    repo = RetryingEventRepository(FailingRepository(), max_attempts=2)
+
+    try:
+        repo.append(object())
+    except RuntimeError as exc:
+        assert str(exc) == "persistent failure"
+    else:
+        raise AssertionError("expected retry adapter to raise")
 
 
 def test_runtime_status_cli_command(tmp_path: Path):

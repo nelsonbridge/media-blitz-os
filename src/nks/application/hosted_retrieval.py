@@ -359,6 +359,19 @@ class HostedKnowledgeCatalog:
         self._connection: sqlite3.Connection = persistence.connection
         self._connection.executescript(HOSTED_RETRIEVAL_CATALOG_SQL)
         self._connection.commit()
+        self._closed = False
+
+    def __del__(self) -> None:
+        try:
+            self.close()
+        except Exception:
+            pass
+
+    def close(self) -> None:
+        if self._closed:
+            return
+        self._closed = True
+        self._connection.close()
 
     def register(self, entry: HostedCatalogEntry) -> None:
         canonical = self._connection.execute(

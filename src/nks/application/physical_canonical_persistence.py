@@ -349,6 +349,13 @@ class SQLiteCanonicalPersistence:
         self._connection = connection
         self._connection.row_factory = sqlite3.Row
         self._connection.execute("PRAGMA foreign_keys = ON")
+        self._closed = False
+
+    def __del__(self) -> None:
+        try:
+            self.close()
+        except Exception:
+            pass
 
     @classmethod
     def memory(cls) -> "SQLiteCanonicalPersistence":
@@ -361,7 +368,15 @@ class SQLiteCanonicalPersistence:
     @property
     def connection(self) -> sqlite3.Connection:
         """Exposed for forensic TEST inspection, not as a governed mutation path."""
+        if self._closed:
+            raise RuntimeError("physical persistence connection is closed")
         return self._connection
+
+    def close(self) -> None:
+        if self._closed:
+            return
+        self._connection.close()
+        self._closed = True
 
     @staticmethod
     def _iso(value: datetime | None) -> str | None:

@@ -145,3 +145,33 @@ def test_empty_credential_is_rejected():
     adapter, _, _ = publisher(Response(201, {}), credential="")
     with pytest.raises(PermissionError):
         adapter.publish(request(), dry_run=False)
+
+
+def test_sensitive_fields_in_vendor_payload_are_redacted_before_dispatch():
+    class SensitiveMapper(Mapper):
+        def map_request(self, request):
+            return {
+                "channel": request.channel,
+                "metadata": {
+                    "access_token": "secret-value",
+                    "note": "visible",
+                },
+                "credential": "should-not-leak",
+                "nested": {"password": "also-secret"},
+            }
+
+    response = Response(201, {"id": "external-1", "status": "scheduled"})
+    transport = Transport(response)
+    credentials = Credentials("credential-value")
+    adapter = JsonHttpSocialPublisher(
+        transport=transport,
+        credentials=credentials,
+        mapper=SensitiveMapper(),
+    )
+
+    adapter.publish(request(), dry_run=False)
+
+    assert transport.calls[0]["payload"]["metadata"]["access_token"] == "[REDACTED]"
+    assert transport.calls[0]["payload"]["metadata"]["note"] == "visible"
+    assert transport.calls[0]["payload"]["credential"] == "[REDACTED]"
+    assert transport.calls[0]["payload"]["nested"]["password"] == "[REDACTED]"

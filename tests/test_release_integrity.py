@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
+import stat
 from pathlib import Path
 
 import pytest
@@ -28,9 +30,14 @@ SOURCE_COMMIT = "cb84fbc8eef6096e8a707e1b922dfa2eddb23e51"
 
 def _copy_verification_root(tmp_path: Path) -> Path:
     root = tmp_path / "repository"
-    root.mkdir()
+    root.mkdir(parents=True)
     shutil.copy2(ROOT / "pyproject.toml", root / "pyproject.toml")
-    shutil.copytree(ROOT / ".github", root / ".github")
+    shutil.copytree(ROOT / ".github", root / ".github", copy_function=shutil.copyfile)
+    for item in (root / ".github").rglob("*"):
+        if item.is_file():
+            os.chmod(item, stat.S_IRUSR | stat.S_IWUSR)
+        elif item.is_dir():
+            os.chmod(item, stat.S_IRUSR | stat.S_IWUSR | stat.S_IXUSR)
     (root / "releases").mkdir()
     shutil.copytree(ROOT / RELEASE_RELATIVE, root / RELEASE_RELATIVE)
     return root
@@ -184,8 +191,7 @@ def test_source_candidate_and_loop_receipt_tampering_fail_closed(tmp_path: Path)
     assert candidate_tamper.valid is False
     assert "invalid-candidate" in _codes(candidate_tamper)
 
-    shutil.rmtree(root)
-    root = _copy_verification_root(tmp_path)
+    root = _copy_verification_root(tmp_path / "fresh")
     release = root / RELEASE_RELATIVE
     receipt_path = release / "publication-loop-receipt.json"
     receipt = json.loads(receipt_path.read_text(encoding="utf-8"))

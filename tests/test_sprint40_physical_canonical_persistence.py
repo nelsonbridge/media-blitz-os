@@ -105,6 +105,16 @@ def test_repository_sql_artifacts_match_executable_schema_contracts():
     assert ROLLBACK_V2_PATH.read_text(encoding="utf-8").strip() == SCHEMA_V2_ROLLBACK_SQL
 
 
+def test_close_releases_sqlite_connection() -> None:
+    persistence = SQLiteCanonicalPersistence.memory()
+    persistence.initialize_v1(applied_at=T0)
+
+    persistence.close()
+
+    with pytest.raises(RuntimeError, match="closed"):
+        persistence.connection
+
+
 def test_governed_write_physically_preserves_all_temporal_authority_coordinates():
     persistence = store()
     record = envelope()

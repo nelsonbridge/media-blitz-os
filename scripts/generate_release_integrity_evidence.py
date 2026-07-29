@@ -14,7 +14,7 @@ from nks.application.release_integrity import verify_release_integrity
 
 def _write_json(path: Path, payload: object) -> str:
     rendered = json.dumps(payload, indent=2, sort_keys=True) + "\n"
-    path.write_text(rendered, encoding="utf-8")
+    path.write_text(rendered, encoding="utf-8", newline="\n")
     return "sha256:" + hashlib.sha256(rendered.encode("utf-8")).hexdigest()
 
 

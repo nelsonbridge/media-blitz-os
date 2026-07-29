@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from copy import deepcopy
 from datetime import datetime, timezone
 from typing import Any, Protocol
 
@@ -48,6 +49,18 @@ class SocialVendorMapper(Protocol):
 class JsonHttpSocialPublisher:
     """Transport adapter that keeps vendor mapping and credentials replaceable."""
 
+    _SENSITIVE_KEYS = {
+        "access_token",
+        "authorization",
+        "api_key",
+        "apikey",
+        "credential",
+        "token",
+        "password",
+        "secret",
+        "cookie",
+    }
+
     def __init__(
         self,
         *,
@@ -61,6 +74,22 @@ class JsonHttpSocialPublisher:
         self._mapper = mapper
         self._timeout_seconds = timeout_seconds
 
+    @classmethod
+    def _redact_sensitive_fields(cls, value: object) -> object:
+        if isinstance(value, dict):
+            return {
+                key: ("[REDACTED]" if cls._is_sensitive_key(key) else cls._redact_sensitive_fields(item))
+                for key, item in value.items()
+            }
+        if isinstance(value, list):
+            return [cls._redact_sensitive_fields(item) for item in value]
+        return value
+
+    @classmethod
+    def _is_sensitive_key(cls, key: str) -> bool:
+        normalized = key.lower().replace("-", "_").replace(" ", "_")
+        return any(marker in normalized for marker in cls._SENSITIVE_KEYS)
+
     def publish(
         self,
         request: SocialPublicationRequest,
@@ -68,6 +97,7 @@ class JsonHttpSocialPublisher:
         dry_run: bool,
     ) -> SocialPublicationResult:
         vendor_payload = self._mapper.map_request(request)
+        redacted_payload = self._redact_sensitive_fields(deepcopy(vendor_payload))
         if dry_run:
             return SocialPublicationResult(
                 success=True,
@@ -95,7 +125,7 @@ class JsonHttpSocialPublisher:
                 "Content-Type": "application/json",
                 "Idempotency-Key": request.idempotency_key,
             },
-            payload=vendor_payload,
+            payload=redacted_payload,
             timeout_seconds=self._timeout_seconds,
         )
 

@@ -226,3 +226,21 @@ def test_generated_and_canonical_receipt_difference_is_conflict(tmp_path: Path) 
     assert report.status == ForensicStatus.CONFLICT
     assert report.reconstructable is False
     assert "generated and canonical receipts differ" in report.issues
+
+
+def test_malformed_generated_receipt_is_reported_as_conflict(tmp_path: Path) -> None:
+    receipt = _execute_complete_transaction(tmp_path)
+    generated_path = (
+        tmp_path
+        / "generated"
+        / "model-feedback"
+        / receipt.receipt_id
+        / "receipt.json"
+    )
+    generated_path.write_text("{not valid json", encoding="utf-8")
+
+    report = reconstruct_model_use(tmp_path, "TX-1")
+
+    assert report.status == ForensicStatus.CONFLICT
+    assert report.reconstructable is False
+    assert "generated model-use output is invalid" in report.issues

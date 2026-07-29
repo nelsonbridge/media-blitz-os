@@ -47,10 +47,22 @@ T0 = datetime(2026, 7, 18, 0, 0, tzinfo=timezone.utc)
 T1 = T0 + timedelta(hours=1)
 T2 = T1 + timedelta(hours=1)
 
+_OPEN_STORES: list[SQLiteCanonicalPersistence] = []
+
+
+@pytest.fixture(autouse=True)
+def _cleanup_stores() -> None:
+    _OPEN_STORES.clear()
+    yield
+    for store in list(_OPEN_STORES):
+        store.close()
+    _OPEN_STORES.clear()
+
 
 def persistence() -> SQLiteCanonicalPersistence:
     store = SQLiteCanonicalPersistence.memory()
     store.initialize_v1(applied_at=T0 - timedelta(hours=1))
+    _OPEN_STORES.append(store)
     return store
 
 

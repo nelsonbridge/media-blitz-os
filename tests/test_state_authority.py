@@ -48,6 +48,43 @@ def test_written_manifest_verifies_when_projection_paths_exist(tmp_path: Path) -
     assert verify_authority_manifest(tmp_path) == []
 
 
+def test_verification_detects_invalid_manifest_payload(tmp_path: Path) -> None:
+    manifest_path = tmp_path / "generated" / "state-authority-manifest.json"
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
+    manifest_path.write_text("{invalid json\n", encoding="utf-8")
+
+    violations = verify_authority_manifest(tmp_path)
+
+    assert f"invalid generated authority manifest: {MANIFEST_PATH}" in violations
+
+
+def test_verification_detects_incomplete_output_family(tmp_path: Path) -> None:
+    _write_required_projection_paths(tmp_path)
+    output = tmp_path / "generated" / "model-feedback" / "MFR-1"
+    output.mkdir(parents=True, exist_ok=True)
+    (output / "payload.json").write_text("{}\n", encoding="utf-8")
+    write_authority_manifest(tmp_path)
+
+    violations = verify_authority_manifest(tmp_path)
+
+    assert (
+        "incomplete Class 2 output family member: "
+        "generated/model-feedback/MFR-1/receipt.json"
+    ) in violations
+
+
+def test_verification_detects_non_directory_family_members(tmp_path: Path) -> None:
+    _write_required_projection_paths(tmp_path)
+    output = tmp_path / "generated" / "model-feedback"
+    output.mkdir(parents=True, exist_ok=True)
+    (output / "not-a-directory").write_text("{}\n", encoding="utf-8")
+    write_authority_manifest(tmp_path)
+
+    violations = verify_authority_manifest(tmp_path)
+
+    assert any("Class 2 output family member is not a directory" in violation for violation in violations)
+
+
 def test_optional_output_family_may_be_absent(tmp_path: Path) -> None:
     _write_required_projection_paths(tmp_path)
     write_authority_manifest(tmp_path)

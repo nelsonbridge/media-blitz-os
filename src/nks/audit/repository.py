@@ -86,6 +86,10 @@ def _read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _relpath(path: Path, root: Path) -> str:
+    return path.relative_to(root).as_posix()
+
+
 def _record_identifier(path: Path, records_root: Path, record: dict) -> str | None:
     relative = path.relative_to(records_root)
     collection = relative.parts[0] if len(relative.parts) > 1 else ""
@@ -108,21 +112,22 @@ def _record_index(root: Path) -> tuple[dict[str, dict], list[str]]:
         return records, ["records directory is missing"]
 
     for path in sorted(records_root.rglob("*.json")):
+        relative = _relpath(path, root)
         try:
             record = _read_json(path)
         except (json.JSONDecodeError, OSError) as exc:
-            issues.append(f"invalid JSON: {path.relative_to(root)} ({exc})")
+            issues.append(f"invalid JSON: {relative} ({exc})")
             continue
         record_id = _record_identifier(path, records_root, record)
         if not record_id:
-            issues.append(f"record missing identifier: {path.relative_to(root)}")
+            issues.append(f"record missing identifier: {relative}")
             continue
         if record_id in records:
             issues.append(
                 f"duplicate record id: {record_id} "
-                f"({records[record_id]['path']}, {path.relative_to(root)})"
+                f"({records[record_id]['path']}, {relative})"
             )
-        records[record_id] = {"path": str(path.relative_to(root)), "data": record}
+        records[record_id] = {"path": relative, "data": record}
     return records, issues
 
 

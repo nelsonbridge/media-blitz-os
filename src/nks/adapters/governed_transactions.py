@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 from nks.application.governed_transactions import (
@@ -26,7 +27,8 @@ class JsonGovernedTransactionRepository:
 
     @staticmethod
     def _safe_identifier(value: str) -> str:
-        return value.replace("/", "_").replace("\\", "_")
+        # Keep identifiers filesystem-safe across platforms (notably Windows).
+        return re.sub(r'[<>:"/\\|?*]', "_", value)
 
     @staticmethod
     def _serialize(record: GovernedTransactionEvent | GovernedTransactionReceipt) -> str:

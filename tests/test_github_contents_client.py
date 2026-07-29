@@ -91,3 +91,14 @@ def test_permission_and_timeout_are_classified():
     transport.fail_with = TimeoutError("temporary")
     with pytest.raises(GitHubRetryableError):
         client.list_paths("records/")
+
+
+def test_path_traversal_is_rejected_before_transport_is_used():
+    transport = FakeTransport()
+    client = GitHubContentsClient(transport)
+
+    with pytest.raises(ValueError, match="relative"):
+        client.read_text("../outside.json")
+
+    with pytest.raises(ValueError, match="relative"):
+        client.write_text("/absolute/path.json", "content", "message")

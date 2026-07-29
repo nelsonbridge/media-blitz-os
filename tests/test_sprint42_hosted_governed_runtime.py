@@ -41,6 +41,17 @@ ROOT = Path(__file__).resolve().parents[1]
 POLICY_PATH = ROOT / "security/enki-hosted-1.0-rc2/hosted-mutation-policy.json"
 NOW = datetime(2026, 7, 18, 1, 0, tzinfo=timezone.utc)
 
+_OPEN_STORES: list[SQLiteCanonicalPersistence] = []
+
+
+@pytest.fixture(autouse=True)
+def _cleanup_stores() -> None:
+    _OPEN_STORES.clear()
+    yield
+    for store in list(_OPEN_STORES):
+        store.close()
+    _OPEN_STORES.clear()
+
 
 def policy() -> HostedMutationPolicy:
     return HostedMutationPolicy(**json.loads(POLICY_PATH.read_text(encoding="utf-8")))
@@ -49,6 +60,7 @@ def policy() -> HostedMutationPolicy:
 def persistence() -> SQLiteCanonicalPersistence:
     store = SQLiteCanonicalPersistence.memory()
     store.initialize_v1(applied_at=NOW - timedelta(hours=1))
+    _OPEN_STORES.append(store)
     return store
 
 
