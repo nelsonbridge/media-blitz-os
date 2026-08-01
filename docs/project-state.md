@@ -2,10 +2,12 @@
 
 > **Authority class: Class 3 — historical project ledger.**
 > This document preserves an early infrastructure snapshot from 2026-07-09. It is not a current inventory of implemented runtime capabilities and must not be used to determine operational state. See `docs/state-authority-model.md`.
+>
+> **Working title:** This snapshot refers to the system as "Media Blitz OS" and "Nelson Knowledge System," which were early working titles. The authoritative current system identity is **Project Enki**. Historical names below are preserved as evidence of the state recorded at that time.
 
 Last updated: 2026-07-09
 
-## System Name
+## System Name at Time of Record
 
 Media Blitz OS / Nelson Knowledge System
 
@@ -32,40 +34,9 @@ Build a zero-dollar, durable executive knowledge and publishing operating system
 
 ## Completed GitHub Artifacts at Time of Record
 
-- Repository located: `nelsonbridge/media-blitz-os`.
+- Repository located at the legacy slug `nelsonbridge/media-blitz-os`.
 - Default branch: `sandbox`.
 - README exists and defines repository purpose.
 - Project state ledger created.
 
 This list is intentionally preserved as historical evidence of the repository's early state. It is not an exhaustive description of the current runtime.
-
-## Active Sprint at Time of Record
-
-Sprint 1: Infrastructure Hardening
-
-## Sprint 1 Goals
-
-1. Establish durable project state.
-2. Establish execution queue.
-3. Define OS execution protocol.
-4. Define artifact schemas.
-5. Define publication templates.
-6. Define sync/failsafe model between Drive and GitHub.
-7. Harden runtime validation and state transition boundaries.
-
-## Current Blockers at Time of Record
-
-- Google Drive write access has been intermittent at runtime, despite previously demonstrated successful writes and elevated user permissions.
-
-## Active Failsafe at Time of Record
-
-If Google Drive writes are unavailable:
-
-1. Continue creating artifacts in GitHub.
-2. Mark them `Ready to Sync`.
-3. Notify the user on the configured watch schedule.
-4. Sync artifacts to Drive when Drive write capability is restored.
-
-## Execution Rule
-
-When the user says `Execute`, continue building until the sprint is complete or a genuine blocker is encountered. Do not stop merely to summarize or restate the plan.
