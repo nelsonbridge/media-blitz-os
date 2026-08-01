@@ -1,6 +1,6 @@
 # Execution Queue
 
-This queue tracks artifacts and technical work that need to be created, updated, synchronized, reviewed, tested, or published.
+This queue tracks artifacts and technical work for Project Enki that need to be created, updated, synchronized, reviewed, tested, or published.
 
 ## Status Values
 
@@ -17,7 +17,7 @@ This queue tracks artifacts and technical work that need to be created, updated,
 
 | ID | Artifact | Type | Target Surface | Status | Notes |
 |---|---|---|---|---|---|
-| EQ-0001 | Media Blitz Charter | Governance Document | GitHub + Google Drive | Written to GitHub | Strategic north-star document. |
+| EQ-0001 | Enki Charter | Governance Document | GitHub + Google Drive | Written to GitHub | Strategic north-star document. |
 | EQ-0002 | OS Constitution | Governance Document | GitHub + Google Drive | Written to GitHub | Defines assistant execution behavior and system rules. |
 | EQ-0003 | Medium Article Template | Template | GitHub + Google Drive | Written to GitHub | Canonical long-form structure. |
 | EQ-0004 | LinkedIn Post Template | Template | GitHub + Google Drive | Written to GitHub | Executive distribution format. |
