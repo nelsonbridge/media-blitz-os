@@ -18,6 +18,12 @@ The following legacy parent-system forms are prohibited in current-authority sur
 
 The legacy repository slug `nelsonbridge/media-blitz-os` may appear only where required to reference the repository before its administrative rename, or inside explicitly historical and audit evidence.
 
+## Administrative Rename Dependency
+
+Content, governance, package, runtime, and navigation identity can be reconciled within the repository. Renaming the GitHub repository itself is a separate administrative action. Until that rename is completed, immutable evidence URLs, schema identifiers, and exact URL fixtures may retain the live legacy slug under explicit test exceptions.
+
+After the administrative rename, rerun the identity audit and remove exceptions that are no longer required. Historical receipts and provenance-bearing evidence must remain reconstructable rather than being rewritten solely to erase the former URL.
+
 ## Retention Rule
 
 Historical records must not be rewritten merely to erase an earlier name. Legacy terms may remain when all of the following are true:
