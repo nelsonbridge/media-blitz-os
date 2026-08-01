@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Defines the metadata structure for visual artifacts within the Nelson Knowledge System.
+Defines the metadata structure for visual artifacts within the Project Enki.
 
 Visual artifacts are first-class corpus derivatives. They must be traceable to source material, proof posture, canonical artifacts, narrative arc status, publication package, and distribution channel.
 

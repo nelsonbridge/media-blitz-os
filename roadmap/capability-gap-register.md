@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Track the highest-value capability gaps preventing the Nelson Knowledge System from maturing from V1 governed knowledge manufacturing into V2 self-assessing platform behavior.
+Track the highest-value capability gaps preventing the Project Enki from maturing from V1 governed knowledge manufacturing into V2 self-assessing platform behavior.
 
 ## Scoring
 

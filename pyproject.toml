@@ -3,9 +3,9 @@ requires = ["hatchling>=1.25"]
 build-backend = "hatchling.build"
 
 [project]
-name = "nelson-knowledge-system"
+name = "project-enki"
 version = "0.1.0"
-description = "Portable runtime for the Nelson Knowledge System"
+description = "Project Enki: governed knowledge manufacturing, coherence, lineage, and authority runtime"
 requires-python = ">=3.11"
 dependencies = [
   "pydantic>=2.8,<3",
@@ -20,6 +20,7 @@ test = [
 ]
 
 [project.scripts]
+enki = "nks.cli.root:app"
 nks = "nks.cli.root:app"
 
 [tool.hatch.build.targets.wheel]

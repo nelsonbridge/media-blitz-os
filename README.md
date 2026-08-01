@@ -1,20 +1,36 @@
-# Media Blitz OS
+# Project Enki: The Coherence Engine
 
-Media Blitz OS is the version-controlled architecture repository for the adaptive knowledge, publishing, and career-opportunity system being built around the Nelson body of work.
+Project Enki is a governed knowledge coherence engine that preserves, reconciles, and responsibly applies professional and organizational intelligence across Person-Objects and their linked contexts.
 
-## Purpose
+## What Enki Is
 
-This repository contains the machine, not merely the media output.
+**Guardian of**:
+- **Coherence** — maintaining alignment between observed behavior, stated objectives, evidence, and decision patterns
+- **Intelligence** — synthesizing voluntary contributions of knowledge, context, and authority to inform better reasoning
+- **Evolution** — tracking longitudinal development through evidence-backed reconciliation, not universal maturity scores
 
-Google Drive remains the working editorial environment. GitHub holds the durable architecture:
+Enki is **not** a psychological assessment, universal maturity score, or behavioral oracle. It remains evidence-driven, authority-bound, approval-gated, and designed to serve Person-Object evolution without replacing human judgment.
 
-- system charter
-- execution protocols
-- validation rules
-- schemas
-- templates
-- taxonomies
-- future automation logic
+## Repository Structure
+
+This repository contains the version-controlled architecture for Project Enki:
+
+- system charter and execution protocols
+- validation rules and governance boundaries
+- schemas and data contracts
+- canonical records and audit trails
+- proof and evidence linkage
+- product consumer boundaries
+- infrastructure definitions
+- deployment and runtime specifications
+
+Google Drive is the working editorial environment for drafts and active documents. GitHub holds the durable architecture: machine declarations, not media outputs.
+
+## Downstream Products
+
+**Media Blitz** is a Medium-first publishing and career-opportunity strategy product that consumes Enki through a stable, governed consumer boundary. Media Blitz manufactures publication packages but has no direct canonical repository access and cannot authorize core mutations.
+
+Additional downstream consumers include Career Intelligence & Placement and Personal Cognitive Continuity, each bounded through the same governed contract model.
 
 ## Operating Principle
 
@@ -58,4 +74,4 @@ Present operating budget: `$0.00` plus existing tools and free-tier services.
 
 ## Initial Status
 
-Repository initialized July 2026 as the external version-controlled foundation for the Media Blitz OS and its broader Adaptive Knowledge Architecture.
+Repository initialized July 2026 as the external version-controlled foundation for Project Enki and its governed downstream products.

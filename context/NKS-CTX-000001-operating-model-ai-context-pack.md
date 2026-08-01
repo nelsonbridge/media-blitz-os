@@ -2,11 +2,11 @@
 
 ## Purpose
 
-Provide durable AI context for future reasoning about the Nelson Knowledge System without re-deriving the architecture from conversation history.
+Provide durable AI context for future reasoning about the Project Enki without re-deriving the architecture from conversation history.
 
 ## Core Identity
 
-The Nelson Knowledge System is a knowledge manufacturing system.
+The Project Enki is a knowledge manufacturing system.
 
 It is not a publishing calendar, content machine, note archive, or media workflow.
 

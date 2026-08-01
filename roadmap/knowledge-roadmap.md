@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The Knowledge Roadmap governs what the Nelson Knowledge System should mature next.
+The Knowledge Roadmap governs what the Project Enki should mature next.
 
 It prevents the system from merely processing whatever source is nearest. Instead, it directs extraction toward strategic knowledge capabilities.
 

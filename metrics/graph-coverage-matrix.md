@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Measure how completely the Nelson Knowledge System's major capability clusters are represented in graph records.
+Measure how completely the Project Enki's major capability clusters are represented in graph records.
 
 ## Coverage Dimensions
 

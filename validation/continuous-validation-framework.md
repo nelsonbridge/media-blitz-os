@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Define validation gates that keep the Nelson Knowledge System coherent as it manufactures more knowledge.
+Define validation gates that keep the Project Enki coherent as it manufactures more knowledge.
 
 ## Core Principle
 

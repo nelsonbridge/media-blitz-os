@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Track the current health of the Nelson Knowledge System corpus using the Corpus Health Model.
+Track the current health of the Project Enki corpus using the Corpus Health Model.
 
 Reference: `metrics/corpus-health-model.md`
 

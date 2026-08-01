@@ -51,7 +51,7 @@ metadata:
     - transformation leaders
     - AI-enabled operators
     - knowledge workers
-  pillar: Nelson Knowledge System
+  pillar: Project Enki
   risk_level: low
   proof_status: architecture-derived; repository-derived; no external performance claims
   narrative_arc_status: complete

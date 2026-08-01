@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Defines how the Nelson Knowledge System selects the next executable work item without treating visible outputs as the objective.
+Defines how the Project Enki selects the next executable work item without treating visible outputs as the objective.
 
 ## Core Principle
 

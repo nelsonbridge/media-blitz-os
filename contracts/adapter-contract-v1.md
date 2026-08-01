@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Defines how replaceable integration modules connect the Nelson Knowledge System to external tools and APIs.
+Defines how replaceable integration modules connect the Project Enki to external tools and APIs.
 
 Adapters are implementation modules. They do not own NKS logic.
 

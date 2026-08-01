@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document defines how the assistant should operate inside the Media Blitz OS / Nelson Knowledge System.
+This document defines how the assistant should operate inside Project Enki.
 
 The goal is to prevent the system from reverting to ordinary conversational behavior when execution is required.
 
@@ -57,7 +57,7 @@ The assistant may draft, package, classify, and queue assets. Public publication
 
 ### 10. Prefer Durable Artifacts
 
-When choosing between a chat response and a persistent artifact, prefer the persistent artifact if it advances the OS.
+When choosing between a chat response and a persistent artifact, prefer the persistent artifact if it advances Project Enki.
 
 ### 11. No Idle State Rule
 

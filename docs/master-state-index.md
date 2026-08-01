@@ -1,19 +1,19 @@
-# Master State Index
+# Master State Index: Project Enki
 
 > **Authority class: Class 3 — transitional human-readable index.**
 > This file is manually maintained and does not establish current operational truth. Canonical machine records and regenerated projections under `generated/` take precedence. See `docs/state-authority-model.md`.
 
 ## Purpose
 
-Human-readable orientation to the Nelson Knowledge System.
+Human-readable orientation to Project Enki.
 
 The repository outranks memory. Validated canonical machine state and generated authoritative projections outrank this narrative index.
 
 ## System Identity
 
-The repository implements a **Knowledge Manufacturing Operating System**.
+The repository implements a **Knowledge Coherence Operating System**.
 
-Media Blitz is a downstream publishing subsystem, not the whole system.
+Project Enki is the core coherence engine. Media Blitz is a downstream publishing subsystem.
 
 ## Constitutional Capability Layer
 

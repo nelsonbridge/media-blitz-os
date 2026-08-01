@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Measure whether the Nelson Knowledge System corpus is becoming more coherent, reusable, proof-bounded, and strategically useful.
+Measure whether the Project Enki corpus is becoming more coherent, reusable, proof-bounded, and strategically useful.
 
 Corpus health is not the same as corpus size.
 

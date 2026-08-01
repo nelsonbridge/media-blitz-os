@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Defines how the Nelson Knowledge System continuously manufactures reusable knowledge from source material without defaulting to publication.
+Defines how the Project Enki continuously manufactures reusable knowledge from source material without defaulting to publication.
 
 ## Core Principle
 

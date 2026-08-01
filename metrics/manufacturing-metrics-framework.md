@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Measure the operating performance of the Nelson Knowledge System without confusing throughput with value.
+Measure the operating performance of the Project Enki without confusing throughput with value.
 
 ## Core Principle
 

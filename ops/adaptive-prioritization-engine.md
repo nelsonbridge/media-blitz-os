@@ -4,7 +4,7 @@
 
 Convert static backlog execution into gap-driven platform improvement.
 
-The engine selects work based on the current health of the Nelson Knowledge System, not on the nearest visible output.
+The engine selects work based on the current health of the Project Enki, not on the nearest visible output.
 
 ## Core Principle
 

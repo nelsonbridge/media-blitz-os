@@ -4,7 +4,7 @@
 > This document does not establish canonical implementation state. Canonical records and generated projections remain authoritative.
 
 - Assessment date: 2026-07-13
-- Repository: `nelsonbridge/media-blitz-os`
+- Repository: current Project Enki GitHub repository; the repository slug was still awaiting administrative rename at the time of assessment
 - Assessed branch baseline: `sandbox`
 - Proposed refactor branch: `agent/enki-core-refactor`
 
