@@ -1,4 +1,4 @@
-"""Repository audit capabilities for the Nelson Knowledge System."""
+"""Repository audit capabilities for Project Enki."""
 
 from nks.audit import repository as _repository
 
