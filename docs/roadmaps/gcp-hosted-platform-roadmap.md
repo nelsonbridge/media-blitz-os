@@ -1,7 +1,7 @@
 # GCP Hosted Platform Roadmap
 
 > **Authority class: Class 3 — hosted-platform roadmap.**
-> This document establishes intended sequencing and milestone criteria. It does not establish implementation truth. Completion requires merged implementation and the appropriate workflow, deployment, or external-system evidence.
+> This document establishes intended GCP sequencing and milestone criteria. It does not establish implementation truth, and it does not supersede the RC2 architecture lock. Completion requires merged implementation and the appropriate workflow, deployment, or external-system evidence.
 
 ## Purpose
 
@@ -10,6 +10,8 @@ Define the staged path from repository-prepared GCP infrastructure control to a 
 ## Current Position
 
 As of 2026-07-17, PR #142 prepares the initial GitHub-to-GCP execution control plane and its documentation.
+
+The current selected hosted release baseline remains `CF-NEON-R2` under `releases/enki-hosted-1.0-rc2/architecture-lock.json`. This roadmap should therefore be read as a retained GCP execution path and control-plane plan, not as the repository's higher-authority architecture-selection record.
 
 Current phase: **Phase 0 — Control Plane Prepared**.
 

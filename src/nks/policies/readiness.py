@@ -20,11 +20,15 @@ class ValidationResult:
     failures: tuple[str, ...]
 
 
+def _coerce_text(value: str | None) -> str:
+    return value.strip() if isinstance(value, str) and value is not None else ""
+
+
 def validate_source_lineage(source: SourceRecord | None) -> ValidationResult:
     failures: list[str] = []
     if source is None:
         failures.append("source record is missing")
-    elif not source.source_location.strip():
+    elif not _coerce_text(source.source_location):
         failures.append("source location is missing")
     return ValidationResult(not failures, tuple(failures))
 
@@ -53,7 +57,7 @@ def validate_narrative_arc(narrative: NarrativeRecord | None) -> ValidationResul
         "consequence",
         "invitation",
     ):
-        if not getattr(narrative, field).strip():
+        if not _coerce_text(getattr(narrative, field)):
             failures.append(f"narrative segment missing: {field}")
     if narrative.gate_status not in {GateStatus.READY, GateStatus.APPROVED}:
         failures.append(f"narrative gate is {narrative.gate_status}")

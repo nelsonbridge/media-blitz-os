@@ -66,3 +66,41 @@ def test_user_approval_is_mandatory():
     result = validate_publication_readiness(publication, source, proof, narrative, visual)
     assert not result.passed
     assert "user approval is needed" in result.failures
+
+
+def test_none_source_location_is_reported_as_missing():
+    _, proof, narrative, visual, publication = valid_records()
+    source = SourceRecord.model_construct(
+        id="SRC",
+        title="Source",
+        status=RecordStatus.APPROVED,
+        source_type="fixture",
+        source_location=None,
+    )
+
+    result = validate_publication_readiness(publication, source, proof, narrative, visual)
+
+    assert not result.passed
+    assert "source location is missing" in result.failures
+
+
+def test_none_narrative_field_is_reported_as_missing():
+    source, proof, _, visual, publication = valid_records()
+    narrative = NarrativeRecord.model_construct(
+        id="NAR",
+        title="Narrative",
+        artifact_id="ART",
+        recognition=None,
+        reframe="r",
+        framework="f",
+        proof="p",
+        application="a",
+        consequence="c",
+        invitation="i",
+        gate_status=GateStatus.READY,
+    )
+
+    result = validate_publication_readiness(publication, source, proof, narrative, visual)
+
+    assert not result.passed
+    assert "narrative segment missing: recognition" in result.failures

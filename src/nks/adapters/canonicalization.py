@@ -5,6 +5,8 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from pathlib import Path
 
+from pydantic import ValidationError
+
 from nks.domain.canonicalization import (
     CanonicalTargetReservation,
     ReservationStatus,
@@ -44,9 +46,14 @@ class JsonCanonicalSourceStore:
         path = self._reservation_path(source_id)
         if not path.exists():
             return None
-        return CanonicalTargetReservation.model_validate_json(
-            path.read_text(encoding="utf-8")
-        )
+        try:
+            return CanonicalTargetReservation.model_validate_json(
+                path.read_text(encoding="utf-8")
+            )
+        except ValidationError as exc:
+            raise CanonicalStoreConflictError(
+                f"invalid reservation at {path}"
+            ) from exc
 
     def reserve(
         self, reservation: CanonicalTargetReservation
@@ -58,9 +65,14 @@ class JsonCanonicalSourceStore:
                 handle.write(serialized)
             return reservation
         except FileExistsError:
-            existing = CanonicalTargetReservation.model_validate_json(
-                path.read_text(encoding="utf-8")
-            )
+            try:
+                existing = CanonicalTargetReservation.model_validate_json(
+                    path.read_text(encoding="utf-8")
+                )
+            except ValidationError as exc:
+                raise CanonicalStoreConflictError(
+                    f"invalid reservation at {path}"
+                ) from exc
             if (
                 existing.target_source_id == reservation.target_source_id
                 and existing.idempotency_key == reservation.idempotency_key

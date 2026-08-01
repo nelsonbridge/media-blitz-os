@@ -1,15 +1,17 @@
 # ENKI GCP TEST Reference Architecture
 
 > **Authority class: Class 3 — architecture documentation.**
-> This document records the selected initial hosted TEST topology and authority flow. It does not prove that the depicted GCP resources have been provisioned or validated.
+> This document records a prepared GCP TEST reference topology and authority flow. It does not prove that the depicted GCP resources have been provisioned or validated, and it does not supersede the RC2 architecture lock.
 
 ## Status
 
-Selected initial hosted path: **GCP TEST**.
+Current selected hosted release baseline: **CF-NEON-R2**, as locked by `releases/enki-hosted-1.0-rc2/architecture-lock.json`.
+
+This document remains a retained GCP TEST reference path prepared in repository for the GitHub-to-GCP control plane and related TEST sequencing.
 
 Current state: **prepared in repository, pending bootstrap execution and operational proof**.
 
-The earlier Cloudflare-native and Cloudflare/Neon/R2 architectures remain retained reference alternatives. They are not the selected initial TEST implementation path.
+The earlier Cloudflare-native and Cloudflare/Neon/R2 architectures remain part of the repository's hosted-decision lineage. This GCP document is also retained as reference material; none of these narrative diagrams override the architecture lock or canonical decision artifacts.
 
 ## Control-Plane Architecture
 

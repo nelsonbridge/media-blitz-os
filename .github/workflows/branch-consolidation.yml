@@ -1,4 +1,4 @@
-name: Branch Consolidation
+name: Branch Consolidation Governance
 
 on:
   workflow_dispatch:
@@ -44,36 +44,23 @@ jobs:
           print("Branch cleanup governance verified")
           PY
 
-      - name: Consolidate branches
+      - name: Produce branch cleanup dry-run report
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python scripts/cleanup_branches.py \
             --repository "$GITHUB_REPOSITORY" \
-            --apply \
             --report generated/audit/branch-cleanup.json
 
-      - name: Verify resulting branch set
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Assert dry-run mode
         run: |
           python - <<'PY'
           import json
-          import os
-          from urllib.request import Request, urlopen
+          from pathlib import Path
 
-          request = Request(
-              f"https://api.github.com/repos/{os.environ['GITHUB_REPOSITORY']}/branches?per_page=100",
-              headers={
-                  "Accept": "application/vnd.github+json",
-                  "Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}",
-                  "X-GitHub-Api-Version": "2022-11-28",
-              },
-          )
-          with urlopen(request, timeout=30) as response:
-              branches = sorted(item["name"] for item in json.load(response))
-          assert branches == ["main", "sandbox"], branches
-          print("Verified branches:", branches)
+          report = json.loads(Path("generated/audit/branch-cleanup.json").read_text(encoding="utf-8"))
+          assert report["apply"] is False, report
+          print("Verified dry-run branch cleanup governance report")
           PY
 
       - name: Commit cleanup report

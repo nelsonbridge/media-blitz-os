@@ -43,14 +43,11 @@ class CleanupReport:
     apply: bool
     before: list[str]
     after: list[str]
+    requested_branches: list[str]
+    already_absent: list[str]
     deleted: list[str]
     archived: dict[str, str]
     merged_into: dict[str, str]
-    main_previous_sha: str | None
-    main_current_sha: str | None
-    default_branch_requested: str
-    delete_branch_on_merge_requested: bool
-    settings_updated: bool
     errors: list[str]
 
 
@@ -124,26 +121,9 @@ class GitHubClient:
         )
         return not (isinstance(response, dict) and response.get("status") == 422)
 
-    def update_branch(
-        self, repository: str, branch: str, sha: str, *, force: bool
-    ) -> None:
-        encoded = quote(branch, safe="")
-        self.request(
-            "PATCH",
-            f"/repos/{repository}/git/refs/heads/{encoded}",
-            {"sha": sha, "force": force},
-        )
-
     def delete_branch(self, repository: str, branch: str) -> None:
         encoded = quote(branch, safe="")
         self.request("DELETE", f"/repos/{repository}/git/refs/heads/{encoded}")
-
-    def update_repository_settings(self, repository: str) -> None:
-        self.request(
-            "PATCH",
-            f"/repos/{repository}",
-            {"default_branch": "main", "delete_branch_on_merge": True},
-        )
 
 
 def archive_tag(branch: str, sha: str) -> str:
@@ -166,6 +146,21 @@ def validate_final_branches(branches: list[str]) -> None:
         )
 
 
+def normalize_requested_branches(branches: list[str]) -> list[str]:
+    normalized: list[str] = []
+    seen: set[str] = set()
+    for branch in branches:
+        name = branch.strip()
+        if not name:
+            continue
+        if name in PROTECTED_BRANCHES:
+            raise RuntimeError(f"Refusing to delete protected branch: {name}")
+        if name not in seen:
+            normalized.append(name)
+            seen.add(name)
+    return normalized
+
+
 def write_report(path: Path, report: CleanupReport) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
@@ -180,6 +175,7 @@ def run_cleanup(
     *,
     apply: bool,
     report_path: Path | None,
+    requested_branches: list[str] | None = None,
 ) -> CleanupReport:
     branches = client.list_branches(repository)
     by_name = {branch.name: branch for branch in branches}
@@ -188,42 +184,28 @@ def run_cleanup(
     archived: dict[str, str] = {}
     merged_into: dict[str, str] = {}
     deleted: list[str] = []
+    already_absent: list[str] = []
+    requested = normalize_requested_branches(requested_branches or [])
 
     sandbox = by_name.get("sandbox")
     if sandbox is None:
         raise RuntimeError("sandbox branch does not exist")
 
-    previous_main = by_name.get("main")
-    main_previous_sha = previous_main.sha if previous_main else None
+    if "main" not in by_name:
+        raise RuntimeError("main branch does not exist")
+    if apply and not requested:
+        raise RuntimeError("--apply requires at least one explicit --branch value")
 
-    if apply:
-        if previous_main is None:
-            client.create_ref(repository, "refs/heads/main", sandbox.sha)
-        elif previous_main.sha != sandbox.sha:
-            preservation_tag = f"archive/pre-consolidation/main-{previous_main.sha[:12]}"
-            client.create_ref(
-                repository,
-                f"refs/tags/{preservation_tag}",
-                previous_main.sha,
-            )
-            archived["main@pre-consolidation"] = preservation_tag
-            client.update_branch(repository, "main", sandbox.sha, force=True)
-
-        try:
-            client.update_repository_settings(repository)
-            settings_updated = True
-        except GitHubApiError as exc:
-            settings_updated = False
-            errors.append(f"repository settings: {exc}")
-    else:
-        settings_updated = False
-
-    # Refresh after main creation/alignment so merge checks use the canonical tip.
-    working = client.list_branches(repository) if apply else branches
+    working = branches
     current = {branch.name: branch for branch in working}
+    candidate_names = requested or [
+        branch.name for branch in working if branch.name not in PROTECTED_BRANCHES
+    ]
 
-    for branch in working:
-        if branch.name in PROTECTED_BRANCHES:
+    for candidate_name in candidate_names:
+        branch = current.get(candidate_name)
+        if branch is None:
+            already_absent.append(candidate_name)
             continue
 
         statuses: dict[str, str] = {}
@@ -257,20 +239,16 @@ def run_cleanup(
     if apply:
         validate_final_branches([branch.name for branch in after_records])
 
-    final_main = next((branch for branch in after_records if branch.name == "main"), None)
     report = CleanupReport(
         repository=repository,
         apply=apply,
         before=before,
         after=after,
+        requested_branches=requested,
+        already_absent=sorted(already_absent),
         deleted=sorted(deleted),
         archived=dict(sorted(archived.items())),
         merged_into=dict(sorted(merged_into.items())),
-        main_previous_sha=main_previous_sha,
-        main_current_sha=final_main.sha if final_main else None,
-        default_branch_requested="main",
-        delete_branch_on_merge_requested=True,
-        settings_updated=settings_updated,
         errors=errors,
     )
     if report_path is not None:
@@ -289,6 +267,12 @@ def parse_args() -> argparse.Namespace:
         "--token",
         default=os.environ.get("GITHUB_TOKEN"),
         help="GitHub token; defaults to GITHUB_TOKEN",
+    )
+    parser.add_argument(
+        "--branch",
+        action="append",
+        default=[],
+        help="Exact branch name to evaluate or delete; repeat as needed",
     )
     parser.add_argument("--apply", action="store_true", help="Apply destructive cleanup")
     parser.add_argument("--report", type=Path, help="Write JSON cleanup report")
@@ -309,6 +293,7 @@ def main() -> int:
         args.repository,
         apply=args.apply,
         report_path=args.report,
+        requested_branches=args.branch,
     )
     print(json.dumps(asdict(report), indent=2, sort_keys=True))
     return 0

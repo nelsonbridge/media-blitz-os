@@ -6,6 +6,7 @@ import pytest
 from pydantic import ValidationError
 
 from nks.application.governed_transactions import canonical_sha256
+from nks.application.enki_model_use_policy import model_use_context_sha256
 from nks.application.hosted_identity import (
     HostedBoundaryContext,
     HostedIdentityService,
@@ -19,6 +20,7 @@ from nks.application.hosted_retrieval import (
     HostedRetrievalRequest,
     HostedRetrievalService,
     HostedRetrievalView,
+    _retrieve_as_of_knowledge,
     build_model_gateway_handoff,
 )
 from nks.application.physical_canonical_persistence import (
@@ -26,6 +28,7 @@ from nks.application.physical_canonical_persistence import (
     SQLiteCanonicalPersistence,
 )
 from nks.enki.governed_retrieval import (
+    GovernedKnowledgeRecord,
     PrivacyClass,
     RetrievalMode,
     StaleKnowledgeStateError,
@@ -36,6 +39,7 @@ from nks.enki.model_gateway import (
     execute_model_gateway,
 )
 from nks.enki.temporal_authority import (
+    TemporalAuthorityConflict,
     TemporalAuthorityDisposition,
     TemporalAuthorityEnvelope,
 )
@@ -585,4 +589,308 @@ def test_model_handoff_cannot_claim_canonical_mutation_or_direct_dispatch():
     payload["canonical_mutation_authorized"] = True
 
     with pytest.raises(ValidationError):
+        HostedModelGatewayHandoff(**payload)
+
+
+def test_catalog_entry_rejects_duplicate_lists_and_invalid_metadata_hash():
+    with pytest.raises(ValidationError, match="allowed audiences must be unique"):
+        HostedCatalogEntry.create(
+            tenant_id="TENANT-A",
+            record_id="R-DUP-AUD",
+            content="content",
+            allowed_audiences=("assistant", "assistant"),
+            allowed_purposes=("career-assistance",),
+            privacy_class=PrivacyClass.INTERNAL,
+            provenance_ids=("PROV-1",),
+        )
+
+    with pytest.raises(ValidationError, match="allowed purposes must be unique"):
+        HostedCatalogEntry.create(
+            tenant_id="TENANT-A",
+            record_id="R-DUP-PUR",
+            content="content",
+            allowed_audiences=("assistant",),
+            allowed_purposes=("career-assistance", "career-assistance"),
+            privacy_class=PrivacyClass.INTERNAL,
+            provenance_ids=("PROV-1",),
+        )
+
+    with pytest.raises(ValidationError, match="provenance identifiers must be unique"):
+        HostedCatalogEntry.create(
+            tenant_id="TENANT-A",
+            record_id="R-DUP-PROV",
+            content="content",
+            allowed_audiences=("assistant",),
+            allowed_purposes=("career-assistance",),
+            privacy_class=PrivacyClass.INTERNAL,
+            provenance_ids=("PROV-1", "PROV-1"),
+        )
+
+    valid = catalog_entry("TENANT-A", "R-HASH", "content")
+    payload = valid.model_dump(mode="python")
+    payload["metadata_sha256"] = "sha256:" + ("0" * 64)
+    with pytest.raises(ValidationError, match="hosted catalog metadata hash is invalid"):
+        HostedCatalogEntry(**payload)
+
+
+def test_retrieval_request_validation_fails_closed_for_invalid_time_combinations():
+    ctx = context()
+    non_test_ctx = HostedBoundaryContext(
+        **{
+            **ctx.model_dump(mode="python"),
+            "execution_context": ExecutionContext.PRODUCTION,
+        }
+    )
+    base_payload = retrieval_request(ctx=ctx).model_dump(mode="python")
+    base_payload["context"] = non_test_ctx
+    with pytest.raises(ValidationError, match="must be TEST-scoped"):
+        HostedRetrievalRequest(**base_payload)
+
+    with pytest.raises(ValidationError, match="requires an explicit as_of time"):
+        retrieval_request(view=HostedRetrievalView.AS_OF, as_of=None)
+
+    with pytest.raises(ValidationError, match="cannot mix explicit effective/authority times"):
+        as_of_payload = retrieval_request(
+            view=HostedRetrievalView.AS_OF,
+            as_of=T1,
+        ).model_dump(mode="python")
+        as_of_payload["effective_at"] = T1
+        HostedRetrievalRequest(**as_of_payload)
+
+    with pytest.raises(ValidationError, match="as_of is valid only for AS_OF retrieval"):
+        retrieval_request(view=HostedRetrievalView.CURRENT_AUTHORITY, as_of=T1)
+
+    with pytest.raises(ValidationError, match="require effective and authority times"):
+        retrieval_request(
+            view=HostedRetrievalView.CURRENT_AUTHORITY,
+            effective_at=None,
+            authority_at=T1,
+        )
+
+
+def test_as_of_cursor_and_state_validation_fail_closed():
+    service, store, authority, _ = service_with_authority()
+    record = envelope("R1", "deterministic content", authority_class="AUTH-R1")
+    add_record(service, store, "TENANT-A", record, "deterministic content", transaction_id="TX-1")
+    ctx = context()
+    cred = credential(authority, ctx)
+
+    first = service.retrieve(
+        retrieval_request(
+            request_id="RET-ASOF-BASE",
+            ctx=ctx,
+            view=HostedRetrievalView.AS_OF,
+            as_of=T1,
+            page_size=1,
+        ),
+        credential=cred,
+    )
+
+    with pytest.raises(StaleKnowledgeStateError, match="invalid retrieval cursor"):
+        service.retrieve(
+            retrieval_request(
+                request_id="RET-ASOF-CURSOR-INVALID",
+                ctx=ctx,
+                view=HostedRetrievalView.AS_OF,
+                as_of=T1,
+                cursor="not-a-cursor",
+            ),
+            credential=cred,
+        )
+
+    with pytest.raises(StaleKnowledgeStateError, match="retrieval cursor is stale"):
+        service.retrieve(
+            retrieval_request(
+                request_id="RET-ASOF-CURSOR-NEG",
+                ctx=ctx,
+                view=HostedRetrievalView.AS_OF,
+                as_of=T1,
+                cursor="sha256:1",
+            ),
+            credential=cred,
+        )
+
+    with pytest.raises(StaleKnowledgeStateError, match="retrieval state is stale"):
+        service.retrieve(
+            retrieval_request(
+                request_id="RET-ASOF-STALE-HASH",
+                ctx=ctx,
+                view=HostedRetrievalView.AS_OF,
+                as_of=T1,
+                expected_timeline_hash="sha256:" + ("f" * 64),
+            ),
+            credential=cred,
+        )
+
+
+def test_as_of_conflict_withheld_and_semantic_empty_query_tokens():
+    _, _, authority, _ = service_with_authority()
+    current = envelope(
+        "R1",
+        "governed architecture",
+        authority_class="AUTH-SHARED",
+        authority_valid_to=T2,
+    )
+    conflicting = envelope(
+        "R2",
+        "governed architecture",
+        authority_class="AUTH-SHARED",
+        recorded_at=T1,
+        effective_from=T1,
+        authority_valid_from=T1,
+    )
+    conflict_records = (
+        GovernedKnowledgeRecord(
+            envelope=current,
+            tenant_id="TENANT-A",
+            content="governed architecture",
+            allowed_audiences=frozenset({"assistant"}),
+            allowed_purposes=frozenset({"career-assistance"}),
+            privacy_class=PrivacyClass.INTERNAL,
+            provenance_ids=("PROV-R1",),
+        ),
+        GovernedKnowledgeRecord(
+            envelope=conflicting,
+            tenant_id="TENANT-A",
+            content="governed architecture",
+            allowed_audiences=frozenset({"assistant"}),
+            allowed_purposes=frozenset({"career-assistance"}),
+            privacy_class=PrivacyClass.INTERNAL,
+            provenance_ids=("PROV-R2",),
+        ),
+    )
+    ctx = context()
+
+    with pytest.raises(TemporalAuthorityConflict):
+        _retrieve_as_of_knowledge(
+            conflict_records,
+            retrieval_request(
+                request_id="RET-ASOF-CONFLICT",
+                ctx=ctx,
+                view=HostedRetrievalView.AS_OF,
+                as_of=T1 + timedelta(minutes=1),
+            ),
+        )
+
+    service, store, _, _ = service_with_authority()
+    restricted = envelope("R3", "secret", authority_class="AUTH-R3")
+    allowed = envelope("R4", "governed architecture", authority_class="AUTH-R4")
+    add_record(
+        service,
+        store,
+        "TENANT-A",
+        restricted,
+        "secret",
+        transaction_id="TX-R3",
+        privacy=PrivacyClass.RESTRICTED,
+    )
+    add_record(service, store, "TENANT-A", allowed, "governed architecture", transaction_id="TX-R4")
+    cred = credential(authority, ctx)
+
+    as_of = service.retrieve(
+        retrieval_request(
+            request_id="RET-ASOF-SEMANTIC",
+            ctx=ctx,
+            view=HostedRetrievalView.AS_OF,
+            as_of=T0 + timedelta(minutes=30),
+            mode=RetrievalMode.SEMANTIC,
+            query="!!!",
+        ),
+        credential=cred,
+    )
+    assert as_of.projection.withheld_count >= 1
+    assert [hit.record_id for hit in as_of.projection.hits] == []
+
+
+def test_identity_boundary_mismatch_and_result_hash_validation():
+    service, store, authority, _ = service_with_authority()
+    record = envelope("R1", "content")
+    add_record(service, store, "TENANT-A", record, "content", transaction_id="TX-1")
+    ctx = context()
+    cred = credential(authority, ctx)
+
+    class _BoundaryMismatch:
+        def __init__(self, boundary: str) -> None:
+            self.boundary = boundary
+
+    original_require = service._identity_service.require
+    service._identity_service.require = lambda *args, **kwargs: _BoundaryMismatch(
+        "mismatched-boundary"
+    )
+    try:
+        with pytest.raises(HostedRetrievalError, match="hosted retrieval denied") as mismatch:
+            service.retrieve(retrieval_request(ctx=ctx), credential=cred)
+        assert mismatch.value.reason_code == "IDENTITY_BOUNDARY_MISMATCH"
+    finally:
+        service._identity_service.require = original_require
+
+    result = service.retrieve(retrieval_request(ctx=ctx), credential=cred)
+    result_payload = result.model_dump(mode="python")
+    result_payload["projection"] = result.projection.model_copy(update={"canonical": True})
+    with pytest.raises(ValidationError, match="retrieval projections cannot be canonical"):
+        type(result)(**result_payload)
+
+    result_payload = result.model_dump(mode="python")
+    result_payload["result_sha256"] = "sha256:" + ("0" * 64)
+    with pytest.raises(ValidationError, match="result hash is invalid"):
+        type(result)(**result_payload)
+
+
+def test_catalog_close_is_idempotent_and_del_swallows_close_errors():
+    service, _, _, _ = service_with_authority()
+    catalog = service.catalog
+
+    catalog.close()
+    catalog.close()
+
+    class _Boom:
+        def close(self) -> None:
+            raise RuntimeError("boom")
+
+    catalog._connection = _Boom()
+    catalog._closed = False
+    catalog.__del__()
+
+
+def test_model_handoff_enforces_request_id_scope_and_test_context():
+    service, store, authority, _ = service_with_authority()
+    record = envelope("R1", "governed model context")
+    add_record(service, store, "TENANT-A", record, "governed model context", transaction_id="TX-MODEL")
+    ctx = context()
+    req = retrieval_request(ctx=ctx)
+    result = service.retrieve(req, credential=credential(authority, ctx))
+
+    with pytest.raises(HostedRetrievalError, match="hosted retrieval denied") as mismatch:
+        build_model_gateway_handoff(
+            result,
+            retrieval_request(request_id="OTHER", ctx=ctx),
+            subject_type="ORGANIZATION",
+            issued_by="PRINCIPAL-A",
+            authority_class="HOSTED-TEST-IDENTITY",
+        )
+    assert mismatch.value.reason_code == "RESULT_REQUEST_MISMATCH"
+
+    handoff = build_model_gateway_handoff(
+        result,
+        req,
+        subject_type="ORGANIZATION",
+        issued_by="PRINCIPAL-A",
+        authority_class="HOSTED-TEST-IDENTITY",
+    )
+    payload = handoff.model_dump(mode="python")
+    model_use_request = handoff.gateway_request.model_use_request.model_copy(
+        update={"execution_context": ExecutionContext.PRODUCTION}
+    )
+    payload["gateway_request"] = handoff.gateway_request.model_copy(
+        update={
+            "model_use_request": model_use_request,
+            "expected_context_sha256": model_use_context_sha256(model_use_request),
+        }
+    )
+    with pytest.raises(ValidationError, match="must remain TEST-scoped"):
+        HostedModelGatewayHandoff(**payload)
+
+    payload = handoff.model_dump(mode="python")
+    payload["handoff_sha256"] = "sha256:" + ("0" * 64)
+    with pytest.raises(ValidationError, match="handoff hash is invalid"):
         HostedModelGatewayHandoff(**payload)
