@@ -16,45 +16,83 @@ LEGACY_REPOSITORY_SLUG = "nelsonbridge/media-blitz-os"
 # These surfaces preserve historical truth, source language, generated evidence,
 # or product-scoped Media Blitz records. They may contain legacy terminology but
 # must not be used as current parent-system authority.
-ALLOWED_LEGACY_PREFIXES = (
+ALLOWED_PARENT_PREFIXES = (
     "corpus/",
     "publishing/",
     "records/",
     "generated/",
     "docs/audits/",
+    "docs/execution-snapshots/",
+    "runtime/reports/",
 )
-ALLOWED_LEGACY_FILES = {
+ALLOWED_PARENT_FILES = {
     "docs/project-state.md",
     "docs/canonical-records-context.md",
     "docs/chatgpt-handover.md",
+    "docs/governance/project-enki-identity-policy.md",
+    "tests/test_project_identity.py",
+}
+
+# Until the GitHub repository itself is administratively renamed, immutable
+# evidence URLs, schema identifiers, and exact URL fixtures may retain the live
+# legacy slug. This exception is deliberately narrower than the identity rule.
+ALLOWED_SLUG_PREFIXES = (
+    "releases/",
+    "schemas/",
+    "generated/",
+    "docs/audits/",
+    "docs/execution-snapshots/",
+    "runtime/reports/",
+)
+ALLOWED_SLUG_FILES = {
+    "docs/project-state.md",
+    "docs/chatgpt-handover.md",
+    "docs/governance/project-enki-identity-policy.md",
+    "tests/test_project_identity.py",
+    "tests/test_sprint37_deployment_decision_resolution.py",
 }
 
 
-def _iter_current_authority_text_files() -> list[Path]:
+def _iter_text_files() -> list[Path]:
     paths: list[Path] = []
     for path in ROOT.rglob("*"):
         if not path.is_file() or path.suffix.lower() not in TEXT_SUFFIXES:
             continue
-        relative = path.relative_to(ROOT).as_posix()
         if any(part in {".git", ".venv", "__pycache__"} for part in path.parts):
-            continue
-        if relative in ALLOWED_LEGACY_FILES:
-            continue
-        if relative.startswith(ALLOWED_LEGACY_PREFIXES):
             continue
         paths.append(path)
     return sorted(paths)
 
 
+def _is_allowed(relative: str, *, files: set[str], prefixes: tuple[str, ...]) -> bool:
+    return relative in files or relative.startswith(prefixes)
+
+
 def test_current_authority_uses_project_enki_identity() -> None:
     violations: list[str] = []
-    for path in _iter_current_authority_text_files():
+    for path in _iter_text_files():
         relative = path.relative_to(ROOT).as_posix()
         text = path.read_text(encoding="utf-8", errors="ignore")
-        for legacy in LEGACY_PARENT_IDENTITIES:
-            if legacy in text:
-                violations.append(f"{relative}: contains legacy parent identity {legacy!r}")
-        if LEGACY_REPOSITORY_SLUG in text:
+
+        if not _is_allowed(
+            relative,
+            files=ALLOWED_PARENT_FILES,
+            prefixes=ALLOWED_PARENT_PREFIXES,
+        ):
+            for legacy in LEGACY_PARENT_IDENTITIES:
+                if legacy in text:
+                    violations.append(
+                        f"{relative}: contains legacy parent identity {legacy!r}"
+                    )
+
+        if (
+            LEGACY_REPOSITORY_SLUG in text
+            and not _is_allowed(
+                relative,
+                files=ALLOWED_SLUG_FILES,
+                prefixes=ALLOWED_SLUG_PREFIXES,
+            )
+        ):
             violations.append(
                 f"{relative}: hard-codes legacy repository slug; use a relative link or an explicit historical exception"
             )
