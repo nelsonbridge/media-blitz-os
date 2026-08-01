@@ -34,11 +34,13 @@ ALLOWED_PARENT_FILES = {
 }
 
 # Until the GitHub repository itself is administratively renamed, immutable
-# evidence URLs, schema identifiers, and exact URL fixtures may retain the live
-# legacy slug. This exception is deliberately narrower than the identity rule.
+# evidence URLs, schema identifiers, canonical work-control records, and exact
+# URL fixtures may retain the live legacy slug. This exception is deliberately
+# narrower than the parent-identity rule.
 ALLOWED_SLUG_PREFIXES = (
     "releases/",
     "schemas/",
+    "records/",
     "generated/",
     "docs/audits/",
     "docs/execution-snapshots/",
