@@ -1,4 +1,4 @@
-"""Runtime state report models for the Nelson Knowledge System."""
+"""Runtime state report models for Project Enki."""
 
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ class RuntimeStatusReport:
 
     def summary(self) -> str:
         lines = [
-            "Runtime Status Summary",
+            "Project Enki Runtime Status Summary",
             "",
             f"Total record types: {len(self.record_counts)}",
             f"Total canonical records: {sum(self.record_counts.values())}",
