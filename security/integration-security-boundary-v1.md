@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Defines the security posture for integrating the Nelson Knowledge System with external publishing, storage, visual, analytics, and automation systems.
+Defines the security posture for integrating the Project Enki with external publishing, storage, visual, analytics, and automation systems.
 
 ## Core Principle
 

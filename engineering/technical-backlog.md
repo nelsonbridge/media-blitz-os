@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Tracks engineering work required to turn the Nelson Knowledge System from a governed knowledge platform into an increasingly automated operating platform.
+Tracks engineering work required to turn the Project Enki from a governed knowledge platform into an increasingly automated operating platform.
 
 ## Priority Scale
 

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Defines the stable NKS-owned payload for moving approved publication assets from the Nelson Knowledge System into any publishing adapter or external distribution engine.
+Defines the stable NKS-owned payload for moving approved publication assets from the Project Enki into any publishing adapter or external distribution engine.
 
 External systems must adapt to this contract. The NKS core must not adapt its internal model to external vendor assumptions.
 

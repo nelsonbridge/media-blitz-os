@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The Internal Coherence Engine determines whether a knowledge artifact strengthens the Nelson Knowledge System or merely adds more stored material.
+The Internal Coherence Engine determines whether a knowledge artifact strengthens the Project Enki or merely adds more stored material.
 
 It exists to prevent the corpus from becoming a prettier archive.
 

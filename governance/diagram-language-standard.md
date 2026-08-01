@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Creates a shared visual grammar for Nelson Knowledge System diagrams.
+Creates a shared visual grammar for Project Enki diagrams.
 
 The goal is recognizability, clarity, and executive usability. Diagrams should look like they come from the same operating architecture even when they represent different topics.
 

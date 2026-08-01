@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document records the currently available execution ecosystem around the Nelson Knowledge System and defines how each capability may be used without becoming a domain dependency.
+This document records the currently available execution ecosystem around the Project Enki and defines how each capability may be used without becoming a domain dependency.
 
 The inventory must be reassessed periodically because connector and plugin capabilities are not static.
 
