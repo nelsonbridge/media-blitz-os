@@ -1,4 +1,4 @@
-"""Runtime state report models for the Nelson Knowledge System."""
+"""Runtime state report models for Project Enki."""
 
 from __future__ import annotations
 

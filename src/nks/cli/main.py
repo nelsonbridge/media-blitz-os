@@ -1,4 +1,4 @@
-"""Command-line entry point for the portable NKS runtime."""
+"""Project Enki command-line interface and runtime operations."""
 
 from __future__ import annotations
 
@@ -24,7 +24,7 @@ from nks.domain.models import GateStatus, PublicationRecord, VisualPackageRecord
 from nks.views.health import render_corpus_health_dashboard
 from nks.views.markdown import write_generated_views
 
-app = typer.Typer(help="Nelson Knowledge System runtime")
+app = typer.Typer(help="Project Enki: Governed knowledge coherence engine")
 
 
 @app.command()
@@ -191,7 +191,7 @@ def import_state(
     destination_root: Path = typer.Argument(...),
     replace: bool = typer.Option(False, help="Replace a non-empty destination."),
 ) -> None:
-    """Import and verify a portable NKS state bundle."""
+    """Import and verify a portable Enki state bundle."""
     manifest = import_portable_state(
         archive_path,
         destination_root,

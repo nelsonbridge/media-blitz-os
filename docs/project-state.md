@@ -2,6 +2,8 @@
 
 > **Authority class: Class 3 — historical project ledger.**
 > This document preserves an early infrastructure snapshot from 2026-07-09. It is not a current inventory of implemented runtime capabilities and must not be used to determine operational state. See `docs/state-authority-model.md`.
+>
+> **Working title**: This snapshot refers to the system as "Media Blitz OS," which was the initial working title. The canonical system identity is now **Project Enki**. See `docs/state-authority-model.md` for authority classification.
 
 Last updated: 2026-07-09
 

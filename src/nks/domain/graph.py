@@ -1,4 +1,4 @@
-"""Knowledge graph domain models for the Nelson Knowledge System."""
+"""Knowledge graph domain models for Project Enki."""
 
 from __future__ import annotations
 

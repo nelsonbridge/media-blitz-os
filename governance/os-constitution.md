@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document defines how the assistant should operate inside the Media Blitz OS / Nelson Knowledge System.
+This document defines how the assistant should operate inside Project Enki.
 
 The goal is to prevent the system from reverting to ordinary conversational behavior when execution is required.
 

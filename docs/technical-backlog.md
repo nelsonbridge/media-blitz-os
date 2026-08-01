@@ -6,7 +6,7 @@ Last reconciled: 2026-07-12
 
 ## Purpose
 
-Govern the next implementation sequence for the Nelson Knowledge System while preserving portability, explicit authority, human agency, reconstructable lineage, and platform-neutral domain logic.
+Govern the next implementation sequence for Project Enki while preserving portability, explicit authority, human agency, reconstructable lineage, and platform-neutral domain logic.
 
 ## Status Vocabulary
 

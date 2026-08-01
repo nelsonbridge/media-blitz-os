@@ -1,4 +1,4 @@
-"""Platform-neutral domain models for the Nelson Knowledge System."""
+"""Platform-neutral domain models for Project Enki."""
 
 from __future__ import annotations
 

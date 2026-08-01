@@ -1,4 +1,4 @@
-"""Corpus health domain models for the Nelson Knowledge System."""
+"""Corpus health domain models for Project Enki."""
 
 from __future__ import annotations
 

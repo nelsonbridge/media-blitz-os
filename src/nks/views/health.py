@@ -1,4 +1,4 @@
-"""Health dashboard generation for the Nelson Knowledge System."""
+"""Health dashboard generation for Project Enki."""
 
 from __future__ import annotations
 

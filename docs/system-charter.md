@@ -1,23 +1,22 @@
-# System Charter
+# System Charter: Project Enki
 
 ## Mission
 
-Build a zero-budget adaptive knowledge architecture that converts conversations, evidence, operational history, and intellectual development into durable public and private assets.
+Build a zero-budget governed knowledge coherence engine that preserves, validates, compounds, and responsibly applies professional and organizational knowledge across Person-Objects and linked contexts.
 
-The system exists to support:
+The engine exists to support:
 
-- executive career opportunity generation
-- Medium-first publication strategy
-- long-term intellectual property creation
-- evidence-backed thought leadership
+- executive career opportunity generation (via Media Blitz product)
+- knowledge synthesis and longitudinal reconciliation
+- evidence-backed intelligence without universal maturity scores
 - repeatable knowledge governance
 - adaptive learning without unmanaged drift
 
 ## Vision
 
-The Media Blitz OS begins as a publishing and career-opportunity engine, but is designed to become a broader Adaptive Knowledge Architecture.
+Project Enki begins as a coherence kernel and governance architecture. Its long-term function is to preserve, classify, validate, reconcile, evolve, and apply knowledge across domains while maintaining traceable ancestry from observation to framework.
 
-Its long-term function is to preserve, classify, validate, evolve, and publish knowledge across domains while maintaining traceable ancestry from observation to framework.
+Media Blitz is one downstream consumer product that uses Enki's coherence engine for Medium-first publication and career-opportunity strategy.
 
 ## Core Distinction
 
