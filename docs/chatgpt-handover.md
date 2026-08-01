@@ -8,15 +8,15 @@
 
 ## Authoritative Current State
 
-- Remote live branches are exactly:
-  - `main` at `378a2abb851dfa28f463ff38a5b84f28ab883f83`
-  - `sandbox` at `6ebc031c81b8665979ad6fcb9be6e8de5a372c75`
+- Remote live branch names are exactly `main` and `sandbox`.
+- `main` was verified at `378a2abb851dfa28f463ff38a5b84f28ab883f83` for this handover snapshot.
+- The `sandbox` baseline immediately before publication of this handover was `6ebc031c81b8665979ad6fcb9be6e8de5a372c75`. Because publishing or updating this file advances `sandbox`, query the remote branch before relying on an exact current tip.
 - Preserved archive tags for retired branch tips include:
   - `archive/branches/ep-12-handoff-835518c33dda`
   - `archive/branches/ep-12-handoff-1ebd3bb000f6`
   - `archive/branches/copilot-restore-canonical-identity-fb4cdb043d24`
-- Open pull requests: `0`
-- Open issues: `19`
+- Open pull requests at the handover snapshot: `0`
+- Open issues at the handover snapshot: `19`
 
 ## Completed Work
 
