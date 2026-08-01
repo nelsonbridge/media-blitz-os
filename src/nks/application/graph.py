@@ -1,4 +1,4 @@
-"""Graph and audit builders for the Nelson Knowledge System."""
+"""Graph and audit builders for Project Enki."""
 
 from __future__ import annotations
 
