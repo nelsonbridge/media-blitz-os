@@ -361,7 +361,6 @@ def test_receipt_contract_rejects_false_terminal_claims() -> None:
             recovery_strategy=RecoveryStrategy.NONE,
             recorded_at=plan.requested_at,
         )
-
     with pytest.raises(ValueError, match="cannot claim an output"):
         GovernedTransactionReceipt(
             receipt_id="GTR-TX-1",
@@ -375,3 +374,9 @@ def test_receipt_contract_rejects_false_terminal_claims() -> None:
             output_sha256=_hash("impossible"),
             recorded_at=plan.requested_at,
         )
+
+
+def test_journal_file_names_normalize_windows_reserved_characters() -> None:
+    assert JsonGovernedTransactionRepository._safe_identifier(
+        'TX:<bad>|name?*"/\\'
+    ) == "TX__bad__name_____"
