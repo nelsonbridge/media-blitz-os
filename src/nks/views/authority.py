@@ -119,7 +119,8 @@ def verify_authority_manifest(repository_root: Path) -> list[str]:
                 path = directory / filename
                 if not path.exists():
                     violations.append(
-                        f"incomplete Class 2 output family member: {path.relative_to(repository_root)}"
+                        "incomplete Class 2 output family member: "
+                        f"{path.relative_to(repository_root).as_posix()}"
                     )
 
     return violations
