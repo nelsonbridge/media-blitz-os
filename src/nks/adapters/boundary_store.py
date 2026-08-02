@@ -31,7 +31,7 @@ class _JsonBoundaryStore:
             if resolved.startswith("\\\\?\\"):
                 return resolved
             if resolved.startswith("\\\\"):
-                return f"\\\\?\\UNC\\{resolved.lstrip('\\')}"
+                return "\\\\?\\UNC\\" + resolved.lstrip("\\")
             return f"\\\\?\\{resolved}"
         return resolved
 
