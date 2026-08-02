@@ -14,7 +14,7 @@ from nks.governance.boundaries import BoundaryContext
 class _JsonBoundaryStore:
     def __init__(self, root: Path) -> None:
         self._root = root.resolve()
-        self._root.mkdir(parents=True, exist_ok=True)
+        os.makedirs(self._io_path(self._root), exist_ok=True)
 
     @staticmethod
     def _record_token(record_id: str) -> str:
@@ -23,24 +23,42 @@ class _JsonBoundaryStore:
     def _path(self, boundary: BoundaryContext, record_id: str) -> Path:
         raise NotImplementedError
 
+    @staticmethod
+    def _io_path(path: Path) -> str:
+        """Return a Windows extended-length path without changing store layout."""
+        resolved = str(path.resolve())
+        if os.name == "nt":
+            if resolved.startswith("\\\\?\\"):
+                return resolved
+            if resolved.startswith("\\\\"):
+                return "\\\\?\\UNC\\" + resolved.lstrip("\\")
+            return f"\\\\?\\{resolved}"
+        return resolved
+
     def put(self, record: BoundaryRecord) -> BoundaryRecord:
         path = self._path(record.boundary, record.record_id)
-        path.parent.mkdir(parents=True, exist_ok=True)
-        if path.exists():
-            existing = BoundaryRecord.model_validate_json(path.read_text(encoding="utf-8"))
+        os.makedirs(self._io_path(path.parent), exist_ok=True)
+        io_path = self._io_path(path)
+        if os.path.exists(io_path):
+            with open(io_path, encoding="utf-8") as handle:
+                existing = BoundaryRecord.model_validate_json(handle.read())
             if existing != record:
                 raise BoundaryConflict("immutable boundary record conflict")
             return existing
 
         payload = record.model_dump_json(indent=2)
-        fd, temporary = tempfile.mkstemp(prefix=".boundary-", suffix=".tmp", dir=path.parent)
+        fd, temporary = tempfile.mkstemp(
+            prefix=".boundary-",
+            suffix=".tmp",
+            dir=self._io_path(path.parent),
+        )
         try:
             with os.fdopen(fd, "w", encoding="utf-8") as handle:
                 handle.write(payload)
                 handle.write("\n")
                 handle.flush()
                 os.fsync(handle.fileno())
-            os.replace(temporary, path)
+            os.replace(temporary, io_path)
         finally:
             if os.path.exists(temporary):
                 os.unlink(temporary)
@@ -48,16 +66,25 @@ class _JsonBoundaryStore:
 
     def get(self, boundary: BoundaryContext, record_id: str) -> BoundaryRecord | None:
         path = self._path(boundary, record_id)
-        if not path.exists():
+        io_path = self._io_path(path)
+        if not os.path.exists(io_path):
             return None
-        record = BoundaryRecord.model_validate_json(path.read_text(encoding="utf-8"))
+        with open(io_path, encoding="utf-8") as handle:
+            record = BoundaryRecord.model_validate_json(handle.read())
         if record.boundary != boundary:
             return None
         return record
 
     def count(self, boundary: BoundaryContext) -> int:
         directory = self._path(boundary, "count-placeholder").parent
-        return len(list(directory.glob("*.json"))) if directory.exists() else 0
+        io_directory = self._io_path(directory)
+        if not os.path.isdir(io_directory):
+            return 0
+        with os.scandir(io_directory) as entries:
+            return sum(
+                entry.is_file() and entry.name.endswith(".json")
+                for entry in entries
+            )
 
 
 class SharedLogicalBoundaryStore(_JsonBoundaryStore):
