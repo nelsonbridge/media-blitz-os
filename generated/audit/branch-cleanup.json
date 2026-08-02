@@ -4,25 +4,19 @@
     "sandbox"
   ],
   "apply": true,
-  "archived": {
-    "agent/project-enki-identity-completion": "archive/branches/agent-project-enki-identity-completion-084faa3a161f",
-    "main@pre-consolidation": "archive/pre-consolidation/main-378a2abb851d"
-  },
+  "archived": {},
   "before": [
-    "agent/project-enki-identity-completion",
     "main",
     "sandbox"
   ],
   "default_branch_requested": "main",
   "delete_branch_on_merge_requested": true,
-  "deleted": [
-    "agent/project-enki-identity-completion"
-  ],
+  "deleted": [],
   "errors": [
     "repository settings: GitHub API 403: Resource not accessible by integration"
   ],
-  "main_current_sha": "1898049c740b5ad556e93827873bc44f2c917299",
-  "main_previous_sha": "378a2abb851dfa28f463ff38a5b84f28ab883f83",
+  "main_current_sha": "7c0d56f3013d69051a7009917fe407d5f264b0da",
+  "main_previous_sha": "7c0d56f3013d69051a7009917fe407d5f264b0da",
   "merged_into": {},
   "repository": "nelsonbridge/media-blitz-os",
   "settings_updated": false
