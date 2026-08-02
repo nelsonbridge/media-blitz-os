@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Prevents the Nelson Knowledge System from treating a temporary, misunderstood, or newly resolved tool limitation as a system blocker.
+Prevents the Project Enki from treating a temporary, misunderstood, or newly resolved tool limitation as a system blocker.
 
 Connected capabilities can change between sessions. Tool names, function scope, permissions, observability, and execution surfaces must be verified at the point of use.
 

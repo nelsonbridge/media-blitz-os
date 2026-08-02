@@ -103,7 +103,7 @@ Completed:
 
 Active gate:
 
-- [Issue #8 — Review Publication 000001 visual package](https://github.com/nelsonbridge/media-blitz-os/issues/8)
+- Issue #8 — Review Publication 000001 visual package.
 
 Exit criteria:
 

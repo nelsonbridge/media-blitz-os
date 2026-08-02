@@ -2,7 +2,7 @@
 
 ## Decision
 
-GitHub may host the Nelson Knowledge System runtime temporarily, but no platform may become the domain architecture.
+GitHub may host the Project Enki runtime temporarily, but no platform may become the domain architecture.
 
 The runtime must remain portable and modular.
 

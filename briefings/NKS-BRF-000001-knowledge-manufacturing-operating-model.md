@@ -6,7 +6,7 @@ Knowledge Manufacturing Operating Model
 
 ## Purpose
 
-Explain the Nelson Knowledge System as a capability platform, not a publishing workflow.
+Explain the Project Enki as a capability platform, not a publishing workflow.
 
 ## Executive Thesis
 

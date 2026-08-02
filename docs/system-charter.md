@@ -1,75 +1,69 @@
-# System Charter
+# System Charter: Project Enki
 
 ## Mission
 
-Build a zero-budget adaptive knowledge architecture that converts conversations, evidence, operational history, and intellectual development into durable public and private assets.
+Build a zero-budget governed knowledge coherence engine that preserves, validates, compounds, and responsibly applies professional and organizational knowledge across Person-Objects and linked contexts.
 
-The system exists to support:
+The engine exists to support:
 
-- executive career opportunity generation
-- Medium-first publication strategy
+- executive career opportunity generation through governed downstream products
+- knowledge synthesis and longitudinal reconciliation
+- evidence-backed intelligence without universal maturity scores
 - long-term intellectual property creation
-- evidence-backed thought leadership
 - repeatable knowledge governance
 - adaptive learning without unmanaged drift
 
 ## Vision
 
-The Media Blitz OS begins as a publishing and career-opportunity engine, but is designed to become a broader Adaptive Knowledge Architecture.
+Project Enki begins as a coherence kernel and governance architecture. Its long-term function is to preserve, classify, validate, reconcile, evolve, and apply knowledge across domains while maintaining traceable ancestry from observation to framework.
 
-Its long-term function is to preserve, classify, validate, evolve, and publish knowledge across domains while maintaining traceable ancestry from observation to framework.
+Media Blitz is one downstream consumer product that uses Enki's coherence engine for Medium-first publication and career-opportunity strategy.
 
 ## Core Distinction
 
 This is not a content calendar.
 
-This is a system for converting experience into increasingly abstract, transferable, and evidence-backed knowledge.
+This is a governed system for converting experience, evidence, observation, and source artifacts into increasingly coherent, transferable, and reusable knowledge.
 
 ## Source of Truth Model
 
 Google Drive is the working environment for drafts, spreadsheets, living editorial operations, and active documents.
 
-GitHub is the version-controlled architecture repository for schemas, protocols, templates, and governance logic.
+GitHub is the version-controlled architecture repository for schemas, protocols, templates, governance logic, canonical records, and evidence-backed state.
 
 ## Governing Principle
 
-We are not optimizing for virality.
+Enki preserves the distinction between historical truth and current authority. It records where knowledge originated, when it was valid, what changed, why it changed, and which interpretation presently governs downstream use.
 
-We are optimizing for inevitability: a coherent body of work that makes the value proposition progressively harder to ignore.
+Downstream products consume governed knowledge. They do not define or replace the Enki core.
 
 ## Success Measures
 
 Primary success signals include:
 
-- recruiter inbound quality
-- executive opportunity relevance
-- article-to-conversation conversion
+- provenance completeness
+- authority clarity
+- reconstruction fidelity
+- controlled knowledge evolution
 - framework reuse
-- signal recurrence across domains
 - evidence accumulation
-- reduced publishing friction
-- increased clarity of public positioning
+- reduced decision and publishing friction
+- increased clarity of downstream outputs
 
-Secondary signals include:
-
-- followers
-- impressions
-- engagement
-- shares
-
-These are useful, but not controlling.
+Product-specific measures, such as recruiter inbound quality, publication conversion, impressions, or engagement, remain valid within the products that own them but do not define Enki's core success.
 
 ## Failure Modes
 
 The system fails if it becomes:
 
-- performative content production
 - unvalidated drift
-- political noise without strategic value
 - unsupported claims
 - disconnected assets
+- overwritten history
+- ambiguous authority
 - a manual copy-paste burden
 - a replacement for judgment rather than an amplifier of it
+- a downstream product masquerading as the parent knowledge system
 
 ## Strategic Constraint
 

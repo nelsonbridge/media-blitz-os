@@ -6,13 +6,13 @@ Accepted.
 
 ## Context
 
-The Nelson Knowledge System must integrate with external publishing, storage, visual, analytics, and automation tools while preserving modularity and long-term negotiating leverage.
+The Project Enki must integrate with external publishing, storage, visual, analytics, and automation tools while preserving modularity and long-term negotiating leverage.
 
 Free/open-source packages still represent buy decisions. Their capital cost may be zero, but their architectural cost can become high if the system couples directly to their data models, workflow assumptions, approval models, or security boundaries.
 
 ## Decision
 
-The Nelson Knowledge System will own its interface contracts.
+The Project Enki will own its interface contracts.
 
 External products may be used, forked, hosted, replaced, or bypassed, but they shall not own:
 

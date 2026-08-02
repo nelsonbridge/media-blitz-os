@@ -6,7 +6,7 @@ Last reconciled: 2026-07-17
 
 ## Purpose
 
-Govern the next implementation sequence for the Nelson Knowledge System while preserving portability, explicit authority, human agency, reconstructable lineage, and platform-neutral domain logic.
+Govern the next implementation sequence for Project Enki while preserving portability, explicit authority, human agency, reconstructable lineage, and platform-neutral domain logic.
 
 ## Status Vocabulary
 
@@ -145,7 +145,7 @@ Acceptance criteria:
 Acceptance criteria:
 - At least one complete observation-to-publication-to-real-feedback-to-governed-evolution loop is recorded.
 - Security, authority, portability, and model-behavior regression suites pass.
-- Release documentation reflects actual system identity: Nelson Knowledge System as implementation, Knowledge Manufacturing / Governed Adaptive Knowledge as architecture, Media Blitz as an application program.
+- Release documentation reflects actual system identity: Project Enki as the governed knowledge system, Knowledge Manufacturing / Governed Adaptive Knowledge as architectural capabilities, and Media Blitz as a downstream application program.
 - A versioned release candidate is produced with known limitations.
 
 ### BL-012 — Hosted TEST Infrastructure

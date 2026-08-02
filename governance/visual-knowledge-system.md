@@ -2,13 +2,13 @@
 
 ## Purpose
 
-The Visual Knowledge System is the visual manufacturing layer of the Nelson Knowledge System. It exists because the system is no longer only producing written content. It is manufacturing reusable intellectual property from source material, proof, canonical artifacts, narrative structure, and visual evidence.
+The Visual Knowledge System is the visual manufacturing layer of the Project Enki. It exists because the system is no longer only producing written content. It is manufacturing reusable intellectual property from source material, proof, canonical artifacts, narrative structure, and visual evidence.
 
 Visuals are not decorative add-ons. They are first-class knowledge artifacts that explain, prove, compress, and distribute the core architecture of an idea.
 
 ## Why This Exists
 
-The Nelson Knowledge System began as a publishing and media strategy, then evolved into a knowledge manufacturing system. That evolution created a missing layer: every canonical artifact needs a visual expression that can be used across Medium, LinkedIn, X, Instagram, Pinterest, presentations, whitepapers, and executive conversations.
+The Project Enki began as a publishing and media strategy, then evolved into a knowledge manufacturing system. That evolution created a missing layer: every canonical artifact needs a visual expression that can be used across Medium, LinkedIn, X, Instagram, Pinterest, presentations, whitepapers, and executive conversations.
 
 Executive audiences often understand systems faster through architecture diagrams, capability maps, operating models, and proof graphics than through prose alone. Therefore, visual artifacts must be governed with the same rigor as written artifacts.
 
@@ -120,4 +120,4 @@ Each flagship publication should produce:
 
 ## Current Status
 
-The Visual Knowledge System is now a required subsystem of the Nelson Knowledge System. Existing publication candidates must receive visual packages before public release.
+The Visual Knowledge System is now a required subsystem of the Project Enki. Existing publication candidates must receive visual packages before public release.

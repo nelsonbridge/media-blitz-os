@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Defines the required gate sequence before any Nelson Knowledge System asset may move toward public release.
+Defines the required gate sequence before any Project Enki asset may move toward public release.
 
 ## Required Gate Sequence
 

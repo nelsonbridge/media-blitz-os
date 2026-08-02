@@ -4,7 +4,7 @@
 
 The Opportunity Engine evaluates what each canonical artifact can become.
 
-It prevents the Nelson Knowledge System from treating publication as the default or highest-value output.
+It prevents the Project Enki from treating publication as the default or highest-value output.
 
 ## Core Principle
 

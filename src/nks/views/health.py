@@ -1,4 +1,4 @@
-"""Health dashboard generation for the Nelson Knowledge System."""
+"""Health dashboard generation for Project Enki."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from nks.application.health import build_corpus_health
 def render_corpus_health_dashboard(root: Path) -> str:
     health = build_corpus_health(root)
     lines = [
-        "# Corpus Health Dashboard",
+        "# Project Enki Corpus Health Dashboard",
         "",
         "> Generated from corpus health metrics and audit signals. Do not edit manually.",
         "",

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The Knowledge Graph makes the Nelson Knowledge System traversable.
+The Knowledge Graph makes the Project Enki traversable.
 
 The corpus should not merely contain artifacts. It should understand how source material, proof, artifacts, visuals, contracts, outputs, opportunities, and feedback relate.
 

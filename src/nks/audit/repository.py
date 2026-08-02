@@ -111,18 +111,23 @@ def _record_index(root: Path) -> tuple[dict[str, dict], list[str]]:
         try:
             record = _read_json(path)
         except (json.JSONDecodeError, OSError) as exc:
-            issues.append(f"invalid JSON: {path.relative_to(root)} ({exc})")
+            issues.append(f"invalid JSON: {path.relative_to(root).as_posix()} ({exc})")
             continue
         record_id = _record_identifier(path, records_root, record)
         if not record_id:
-            issues.append(f"record missing identifier: {path.relative_to(root)}")
+            issues.append(
+                f"record missing identifier: {path.relative_to(root).as_posix()}"
+            )
             continue
         if record_id in records:
             issues.append(
                 f"duplicate record id: {record_id} "
-                f"({records[record_id]['path']}, {path.relative_to(root)})"
+                f"({records[record_id]['path']}, {path.relative_to(root).as_posix()})"
             )
-        records[record_id] = {"path": str(path.relative_to(root)), "data": record}
+        records[record_id] = {
+            "path": path.relative_to(root).as_posix(),
+            "data": record,
+        }
     return records, issues
 
 

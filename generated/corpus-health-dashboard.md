@@ -1,4 +1,4 @@
-# Corpus Health Dashboard
+# Project Enki Corpus Health Dashboard
 
 > Generated from corpus health metrics and audit signals. Do not edit manually.
 

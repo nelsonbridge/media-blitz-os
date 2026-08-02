@@ -468,7 +468,7 @@
   ],
   "metadata": {
     "component": {
-      "name": "nelson-knowledge-system",
+      "name": "project-enki",
       "type": "application",
       "version": "0.1.0"
     },
@@ -479,11 +479,11 @@
       },
       {
         "name": "enki:inventory-sha256",
-        "value": "sha256:618a6f5c18cc5dce553f6dbd9fae85fdc5a3e9422f0de587387a37f3dcceb906"
+        "value": "sha256:9fd1d675b290e00d99a24fd03a3d36ea92c65ff4d76bbb599c955b54bae69b78"
       }
     ]
   },
-  "serialNumber": "urn:sha256:618a6f5c18cc5dce553f6dbd9fae85fdc5a3e9422f0de587387a37f3dcceb906",
+  "serialNumber": "urn:sha256:9fd1d675b290e00d99a24fd03a3d36ea92c65ff4d76bbb599c955b54bae69b78",
   "specVersion": "1.5",
   "version": 1
 }

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Define the capability maturation path for the Nelson Knowledge System as an adaptive knowledge manufacturing platform.
+Define the capability maturation path for the Project Enki as an adaptive knowledge manufacturing platform.
 
 This roadmap measures platform growth, not artifact volume or publication count.
 

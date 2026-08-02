@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Define how canonical Nelson Knowledge System concepts are expressed when passing through external tools, repositories, documents, or publishing surfaces.
+Define how canonical Project Enki concepts are expressed when passing through external tools, repositories, documents, or publishing surfaces.
 
 This layer protects the corpus from being rewritten merely because a target system has vocabulary constraints.
 

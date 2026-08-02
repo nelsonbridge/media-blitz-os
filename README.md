@@ -1,20 +1,36 @@
-# Media Blitz OS
+# Project Enki: The Coherence Engine
 
-Media Blitz OS is the version-controlled architecture repository for the adaptive knowledge, publishing, and career-opportunity system being built around the Nelson body of work.
+Project Enki is a governed knowledge coherence engine that preserves, reconciles, and responsibly applies professional and organizational intelligence across Person-Objects and their linked contexts.
 
-## Purpose
+## What Enki Is
 
-This repository contains the machine, not merely the media output.
+**Guardian of**:
+- **Coherence** — maintaining alignment between observed behavior, stated objectives, evidence, and decision patterns
+- **Intelligence** — synthesizing voluntary contributions of knowledge, context, and authority to inform better reasoning
+- **Evolution** — tracking longitudinal development through evidence-backed reconciliation, not universal maturity scores
 
-Google Drive remains the working editorial environment. GitHub holds the durable architecture:
+Enki is **not** a psychological assessment, universal maturity score, or behavioral oracle. It remains evidence-driven, authority-bound, approval-gated, and designed to serve Person-Object evolution without replacing human judgment.
 
-- system charter
-- execution protocols
-- validation rules
-- schemas
-- templates
-- taxonomies
-- future automation logic
+## Repository Structure
+
+This repository contains the version-controlled architecture for Project Enki:
+
+- system charter and execution protocols
+- validation rules and governance boundaries
+- schemas and data contracts
+- canonical records and audit trails
+- proof and evidence linkage
+- product consumer boundaries
+- infrastructure definitions
+- deployment and runtime specifications
+
+Google Drive is the working editorial environment for drafts and active documents. GitHub holds the durable architecture: machine declarations, not media outputs.
+
+## Downstream Products
+
+**Media Blitz** is a Medium-first publishing and career-opportunity strategy product that consumes Enki through a stable, governed consumer boundary. Media Blitz manufactures publication packages but has no direct canonical repository access and cannot authorize core mutations.
+
+Additional downstream consumers include Career Intelligence & Placement and Personal Cognitive Continuity, each bounded through the same governed contract model.
 
 ## Operating Principle
 
@@ -26,7 +42,7 @@ Repository files do not all carry equal authority.
 
 1. Validated canonical machine records establish operational truth.
 2. Deterministically generated projections under `generated/` provide authoritative human-readable views of that state.
-3. Human-authored plans, explanations, status summaries, diagrams, roadmaps, and historical ledgers are non-authoritative unless explicitly generated.
+3. Human-authored plans, explanations, status summaries, and historical ledgers are non-authoritative unless explicitly generated.
 
 See [`docs/state-authority-model.md`](docs/state-authority-model.md) for precedence, editing rules, and the transitional classification of existing status documents.
 
@@ -37,27 +53,6 @@ Ingestion may create evidence candidates. Only an explicitly authorized promotio
 Feedback provenance is mandatory and closed to `REAL`, `SYNTHETIC`, and `REPLAY`. Missing provenance fails closed; replay output is forcibly marked `REPLAY`; synthetic and replay records cannot be promoted as factual sources; and rejected promotion or validation attempts leave append-only workflow events.
 
 See [`docs/canonicalization-security-boundary.md`](docs/canonicalization-security-boundary.md) for the enforced boundary and remaining hardening work.
-
-## Infrastructure Control Plane
-
-GCP is the initial hosted execution substrate. Infrastructure intent is defined in the repository and executed through a narrowly trusted GitHub Actions → Workload Identity Federation → Terraform path.
-
-Pull requests may validate Terraform offline but do not receive the GCP deployer identity. The TEST authority transition occurs only after an authorized merge to `sandbox`, where the exact trusted Terraform workflow may obtain short-lived deployment credentials and perform a serialized plan/apply cycle.
-
-The control plane is currently **prepared but not yet operational**. Operational proof requires successful bootstrap execution, configuration of the required GitHub Actions variables, and a successful trusted WIF-authenticated Terraform run.
-
-See:
-
-- [`docs/infrastructure/gcp-execution-control-plane.md`](docs/infrastructure/gcp-execution-control-plane.md)
-- [`docs/architecture/gcp-test-reference-architecture.md`](docs/architecture/gcp-test-reference-architecture.md)
-- [`docs/roadmaps/gcp-hosted-platform-roadmap.md`](docs/roadmaps/gcp-hosted-platform-roadmap.md)
-- [`infrastructure/bootstrap/README.md`](infrastructure/bootstrap/README.md)
-
-## Documentation Synchronization
-
-Architecture- and roadmap-affecting changes must update the applicable architecture narrative, diagram source, and roadmap in the same change set whenever applicable. Historical alternatives may be retained, but they must not be confused with the selected current path.
-
-See [`docs/governance/architecture-roadmap-synchronization.md`](docs/governance/architecture-roadmap-synchronization.md).
 
 ## Current Scope
 
@@ -79,4 +74,4 @@ Present operating budget: `$0.00` plus existing tools and free-tier services.
 
 ## Initial Status
 
-Repository initialized July 2026 as the external version-controlled foundation for the Media Blitz OS and its broader Adaptive Knowledge Architecture.
+Repository initialized July 2026 as the external version-controlled foundation for Project Enki and its governed downstream products.

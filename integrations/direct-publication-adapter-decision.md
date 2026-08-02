@@ -6,7 +6,7 @@
 
 ## Decision
 
-The Nelson Knowledge System will use a layered publication strategy:
+The Project Enki will use a layered publication strategy:
 
 1. **Manual Publication Adapter** — production-safe default and universal fallback.
 2. **TryPost Adapter Trial** — first broader social-distribution technical validation.

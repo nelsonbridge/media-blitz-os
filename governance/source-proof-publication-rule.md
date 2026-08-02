@@ -4,7 +4,7 @@
 
 This rule defines the correct operating sequence for corpus construction and public release.
 
-The Nelson Knowledge System must not treat publication as the next step after drafting. The correct sequence is:
+The Project Enki must not treat publication as the next step after drafting. The correct sequence is:
 
 ```text
 Source
