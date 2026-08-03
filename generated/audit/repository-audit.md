@@ -4,7 +4,7 @@
 
 ## Census
 
-- Files: 999
+- Files: 1000
 - Canonical records: 226
 - Tests: 129
 - Schemas: 18
@@ -13,7 +13,7 @@
 
 | Area | Files |
 |---|---:|
-| (root) | 7 |
+| (root) | 8 |
 | .github | 12 |
 | .vscode | 1 |
 | adapters | 1 |
