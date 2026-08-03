@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Consolidate a GitHub repository to main and sandbox branches.
+"""Audit or explicitly delete non-authoritative GitHub branches.
 
-Unique nonmerged branch tips are preserved as lightweight archive tags before
-branch deletion. The tool is dry-run by default and writes a deterministic JSON
-report when requested.
+The tool is non-destructive by default. Destructive execution requires every
+branch to be named explicitly with ``--branch``. It never moves ``main`` or
+``sandbox`` and never changes repository settings. Unique branch tips are
+preserved as lightweight archive tags before deletion.
 """
 
 from __future__ import annotations
@@ -13,7 +14,7 @@ import json
 import os
 import re
 import sys
-from dataclasses import dataclass, asdict
+from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError
@@ -41,16 +42,14 @@ class BranchRecord:
 class CleanupReport:
     repository: str
     apply: bool
+    requested: list[str]
     before: list[str]
     after: list[str]
     deleted: list[str]
+    already_absent: list[str]
     archived: dict[str, str]
     merged_into: dict[str, str]
-    main_previous_sha: str | None
-    main_current_sha: str | None
-    default_branch_requested: str
-    delete_branch_on_merge_requested: bool
-    settings_updated: bool
+    protected_unchanged: bool
     errors: list[str]
 
 
@@ -124,26 +123,9 @@ class GitHubClient:
         )
         return not (isinstance(response, dict) and response.get("status") == 422)
 
-    def update_branch(
-        self, repository: str, branch: str, sha: str, *, force: bool
-    ) -> None:
-        encoded = quote(branch, safe="")
-        self.request(
-            "PATCH",
-            f"/repos/{repository}/git/refs/heads/{encoded}",
-            {"sha": sha, "force": force},
-        )
-
     def delete_branch(self, repository: str, branch: str) -> None:
         encoded = quote(branch, safe="")
         self.request("DELETE", f"/repos/{repository}/git/refs/heads/{encoded}")
-
-    def update_repository_settings(self, repository: str) -> None:
-        self.request(
-            "PATCH",
-            f"/repos/{repository}",
-            {"default_branch": "main", "delete_branch_on_merge": True},
-        )
 
 
 def archive_tag(branch: str, sha: str) -> str:
@@ -166,6 +148,16 @@ def validate_final_branches(branches: list[str]) -> None:
         )
 
 
+def validate_requested_branches(branches: list[str]) -> list[str]:
+    requested = sorted(set(branches))
+    protected = sorted(set(requested).intersection(PROTECTED_BRANCHES))
+    if protected:
+        raise RuntimeError(
+            "Protected branches cannot be cleanup targets: " + ", ".join(protected)
+        )
+    return requested
+
+
 def write_report(path: Path, report: CleanupReport) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
@@ -178,99 +170,91 @@ def run_cleanup(
     client: GitHubClient,
     repository: str,
     *,
+    branches: list[str] | None,
     apply: bool,
     report_path: Path | None,
 ) -> CleanupReport:
-    branches = client.list_branches(repository)
-    by_name = {branch.name: branch for branch in branches}
+    records = client.list_branches(repository)
+    by_name = {branch.name: branch for branch in records}
     before = sorted(by_name)
-    errors: list[str] = []
+    unapproved = sorted(set(before).difference(PROTECTED_BRANCHES))
+
+    supplied = list(branches or [])
+    if apply and not supplied:
+        raise RuntimeError(
+            "Destructive cleanup requires at least one explicit --branch value"
+        )
+
+    requested = validate_requested_branches(supplied if supplied else unapproved)
+    already_absent = sorted(branch for branch in requested if branch not in by_name)
+    live_requested = sorted(branch for branch in requested if branch in by_name)
+
+    if apply:
+        projected = sorted(set(before).difference(live_requested))
+        # Preflight before any mutation. The caller must explicitly name every
+        # non-authoritative live branch, preventing partial cleanup.
+        validate_final_branches(projected)
+
     archived: dict[str, str] = {}
     merged_into: dict[str, str] = {}
     deleted: list[str] = []
+    errors: list[str] = []
 
-    sandbox = by_name.get("sandbox")
-    if sandbox is None:
-        raise RuntimeError("sandbox branch does not exist")
+    protected_before = {
+        name: by_name[name].sha for name in PROTECTED_BRANCHES if name in by_name
+    }
 
-    previous_main = by_name.get("main")
-    main_previous_sha = previous_main.sha if previous_main else None
-
-    if apply:
-        if previous_main is None:
-            client.create_ref(repository, "refs/heads/main", sandbox.sha)
-        elif previous_main.sha != sandbox.sha:
-            preservation_tag = f"archive/pre-consolidation/main-{previous_main.sha[:12]}"
-            client.create_ref(
-                repository,
-                f"refs/tags/{preservation_tag}",
-                previous_main.sha,
-            )
-            archived["main@pre-consolidation"] = preservation_tag
-            client.update_branch(repository, "main", sandbox.sha, force=True)
-
-        try:
-            client.update_repository_settings(repository)
-            settings_updated = True
-        except GitHubApiError as exc:
-            settings_updated = False
-            errors.append(f"repository settings: {exc}")
-    else:
-        settings_updated = False
-
-    # Refresh after main creation/alignment so merge checks use the canonical tip.
-    working = client.list_branches(repository) if apply else branches
-    current = {branch.name: branch for branch in working}
-
-    for branch in working:
-        if branch.name in PROTECTED_BRANCHES:
-            continue
-
+    for branch_name in live_requested:
+        branch = by_name[branch_name]
         statuses: dict[str, str] = {}
         for target in PROTECTED_BRANCHES:
-            if target not in current:
+            if target not in by_name:
                 continue
             try:
                 statuses[target] = client.compare_status(
                     repository,
-                    branch.name,
+                    branch_name,
                     target,
                 )
             except GitHubApiError as exc:
-                errors.append(f"compare {branch.name} to {target}: {exc}")
+                errors.append(f"compare {branch_name} to {target}: {exc}")
 
         target = merged_target(statuses)
         if target is not None:
-            merged_into[branch.name] = target
+            merged_into[branch_name] = target
         else:
-            tag = archive_tag(branch.name, branch.sha)
-            archived[branch.name] = tag
+            tag = archive_tag(branch_name, branch.sha)
+            archived[branch_name] = tag
             if apply:
                 client.create_ref(repository, f"refs/tags/{tag}", branch.sha)
 
         if apply:
-            client.delete_branch(repository, branch.name)
-        deleted.append(branch.name)
+            client.delete_branch(repository, branch_name)
+            deleted.append(branch_name)
 
-    after_records = client.list_branches(repository) if apply else working
-    after = sorted(branch.name for branch in after_records if branch.name in PROTECTED_BRANCHES)
+    after_records = client.list_branches(repository) if apply else records
+    after = sorted(branch.name for branch in after_records)
     if apply:
-        validate_final_branches([branch.name for branch in after_records])
+        validate_final_branches(after)
 
-    final_main = next((branch for branch in after_records if branch.name == "main"), None)
+    after_by_name = {branch.name: branch.sha for branch in after_records}
+    protected_unchanged = all(
+        after_by_name.get(name) == sha for name, sha in protected_before.items()
+    )
+    if not protected_unchanged:
+        raise RuntimeError("Protected branch tips changed during cleanup")
+
     report = CleanupReport(
         repository=repository,
         apply=apply,
+        requested=requested,
         before=before,
         after=after,
         deleted=sorted(deleted),
+        already_absent=already_absent,
         archived=dict(sorted(archived.items())),
         merged_into=dict(sorted(merged_into.items())),
-        main_previous_sha=main_previous_sha,
-        main_current_sha=final_main.sha if final_main else None,
-        default_branch_requested="main",
-        delete_branch_on_merge_requested=True,
-        settings_updated=settings_updated,
+        protected_unchanged=protected_unchanged,
         errors=errors,
     )
     if report_path is not None:
@@ -290,7 +274,13 @@ def parse_args() -> argparse.Namespace:
         default=os.environ.get("GITHUB_TOKEN"),
         help="GitHub token; defaults to GITHUB_TOKEN",
     )
-    parser.add_argument("--apply", action="store_true", help="Apply destructive cleanup")
+    parser.add_argument(
+        "--branch",
+        action="append",
+        default=[],
+        help="Exact branch to delete; repeat for each branch",
+    )
+    parser.add_argument("--apply", action="store_true", help="Apply explicit cleanup")
     parser.add_argument("--report", type=Path, help="Write JSON cleanup report")
     return parser.parse_args()
 
@@ -304,12 +294,18 @@ def main() -> int:
         print("--token or GITHUB_TOKEN is required", file=sys.stderr)
         return 2
 
-    report = run_cleanup(
-        GitHubClient(args.token),
-        args.repository,
-        apply=args.apply,
-        report_path=args.report,
-    )
+    try:
+        report = run_cleanup(
+            GitHubClient(args.token),
+            args.repository,
+            branches=args.branch,
+            apply=args.apply,
+            report_path=args.report,
+        )
+    except RuntimeError as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
+
     print(json.dumps(asdict(report), indent=2, sort_keys=True))
     return 0
 
