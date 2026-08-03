@@ -1,0 +1,23 @@
+# Project Enki repository text must have deterministic bytes across operating systems.
+# Git may detect text automatically, but governed source, evidence, configuration,
+# and workflow formats are always checked out with LF line endings.
+* text=auto
+
+*.md text eol=lf
+*.json text eol=lf
+*.py text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.toml text eol=lf
+*.tf text eol=lf
+*.hcl text eol=lf
+*.sh text eol=lf
+*.sql text eol=lf
+*.svg text eol=lf
+*.xml text eol=lf
+*.txt text eol=lf
+
+# Release candidates and integrity evidence are raw-byte hashed. Preserve LF
+# regardless of contributor or runner platform so valid artifacts do not appear
+# substituted merely because of Windows checkout translation.
+releases/** text eol=lf
