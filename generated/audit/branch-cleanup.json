@@ -4,18 +4,24 @@
     "sandbox"
   ],
   "apply": true,
-  "archived": {},
+  "archived": {
+    "main@pre-consolidation": "archive/pre-consolidation/main-7c0d56f3013d",
+    "validation/repository-wide-remediation": "archive/branches/validation-repository-wide-remediation-36200d15dcd4"
+  },
   "before": [
     "main",
-    "sandbox"
+    "sandbox",
+    "validation/repository-wide-remediation"
   ],
   "default_branch_requested": "main",
   "delete_branch_on_merge_requested": true,
-  "deleted": [],
+  "deleted": [
+    "validation/repository-wide-remediation"
+  ],
   "errors": [
     "repository settings: GitHub API 403: Resource not accessible by integration"
   ],
-  "main_current_sha": "7c0d56f3013d69051a7009917fe407d5f264b0da",
+  "main_current_sha": "2b978d65787dd7a7b8db9f191aba6e73285559c8",
   "main_previous_sha": "7c0d56f3013d69051a7009917fe407d5f264b0da",
   "merged_into": {},
   "repository": "nelsonbridge/media-blitz-os",
