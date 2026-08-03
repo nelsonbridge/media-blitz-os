@@ -14,6 +14,8 @@ import json
 import os
 import re
 import sys
+import time
+from collections.abc import Callable
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
@@ -23,6 +25,8 @@ from urllib.request import Request, urlopen
 
 API_ROOT = "https://api.github.com"
 PROTECTED_BRANCHES = ("main", "sandbox")
+POST_DELETE_ATTEMPTS = 8
+POST_DELETE_DELAY_SECONDS = 1.0
 
 
 class GitHubApiError(RuntimeError):
@@ -158,6 +162,37 @@ def validate_requested_branches(branches: list[str]) -> list[str]:
     return requested
 
 
+def wait_for_final_branch_records(
+    client: GitHubClient,
+    repository: str,
+    *,
+    attempts: int = POST_DELETE_ATTEMPTS,
+    delay_seconds: float = POST_DELETE_DELAY_SECONDS,
+    sleep: Callable[[float], None] = time.sleep,
+) -> list[BranchRecord]:
+    """Reconcile GitHub's eventually consistent branch-list response.
+
+    Ref deletion is authoritative when the DELETE request succeeds, but the
+    branches listing can briefly return the deleted ref. Poll a bounded number
+    of times and preserve fail-closed behavior if the invariant never settles.
+    """
+
+    if attempts < 1:
+        raise ValueError("attempts must be at least 1")
+
+    records: list[BranchRecord] = []
+    for attempt in range(attempts):
+        records = client.list_branches(repository)
+        names = sorted(branch.name for branch in records)
+        if names == sorted(PROTECTED_BRANCHES):
+            return records
+        if attempt + 1 < attempts:
+            sleep(delay_seconds)
+
+    validate_final_branches(sorted(branch.name for branch in records))
+    return records
+
+
 def write_report(path: Path, report: CleanupReport) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
@@ -173,6 +208,9 @@ def run_cleanup(
     branches: list[str] | None,
     apply: bool,
     report_path: Path | None,
+    settle_attempts: int = POST_DELETE_ATTEMPTS,
+    settle_delay_seconds: float = POST_DELETE_DELAY_SECONDS,
+    sleep: Callable[[float], None] = time.sleep,
 ) -> CleanupReport:
     records = client.list_branches(repository)
     by_name = {branch.name: branch for branch in records}
@@ -232,10 +270,18 @@ def run_cleanup(
             client.delete_branch(repository, branch_name)
             deleted.append(branch_name)
 
-    after_records = client.list_branches(repository) if apply else records
+    after_records = (
+        wait_for_final_branch_records(
+            client,
+            repository,
+            attempts=settle_attempts,
+            delay_seconds=settle_delay_seconds,
+            sleep=sleep,
+        )
+        if apply
+        else records
+    )
     after = sorted(branch.name for branch in after_records)
-    if apply:
-        validate_final_branches(after)
 
     after_by_name = {branch.name: branch.sha for branch in after_records}
     protected_unchanged = all(
