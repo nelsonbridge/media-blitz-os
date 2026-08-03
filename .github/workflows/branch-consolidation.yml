@@ -1,87 +1,44 @@
-name: Branch Consolidation
+name: Branch Consolidation Audit
 
 on:
   workflow_dispatch:
-  pull_request:
-    branches: [sandbox]
-    types: [closed]
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: branch-consolidation
+  group: branch-consolidation-audit
   cancel-in-progress: false
 
 jobs:
-  consolidate:
-    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
+  audit:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out complete repository history
+      - name: Check out repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
           ref: sandbox
-          persist-credentials: true
+          persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Verify cleanup governance
-        run: |
-          python - <<'PY'
-          from scripts.cleanup_branches import archive_tag, merged_target, validate_final_branches
+      - name: Run branch-cleanup guardrail tests
+        run: python -m pytest tests/test_branch_cleanup.py --no-cov
 
-          assert archive_tag("execution/complete-enki-sprint-14", "abcdef1234567890") == (
-              "archive/branches/execution-complete-enki-sprint-14-abcdef123456"
-          )
-          assert merged_target({"main": "diverged", "sandbox": "ahead"}) == "sandbox"
-          assert merged_target({"main": "identical", "sandbox": "behind"}) == "main"
-          validate_final_branches(["sandbox", "main"])
-          print("Branch cleanup governance verified")
-          PY
-
-      - name: Consolidate branches
+      - name: Produce non-destructive branch audit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python scripts/cleanup_branches.py \
             --repository "$GITHUB_REPOSITORY" \
-            --apply \
             --report generated/audit/branch-cleanup.json
 
-      - name: Verify resulting branch set
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          python - <<'PY'
-          import json
-          import os
-          from urllib.request import Request, urlopen
-
-          request = Request(
-              f"https://api.github.com/repos/{os.environ['GITHUB_REPOSITORY']}/branches?per_page=100",
-              headers={
-                  "Accept": "application/vnd.github+json",
-                  "Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}",
-                  "X-GitHub-Api-Version": "2022-11-28",
-              },
-          )
-          with urlopen(request, timeout=30) as response:
-              branches = sorted(item["name"] for item in json.load(response))
-          assert branches == ["main", "sandbox"], branches
-          print("Verified branches:", branches)
-          PY
-
-      - name: Commit cleanup report
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generated/audit/branch-cleanup.json
-          if ! git diff --cached --quiet; then
-            git commit -m "Record two-branch repository consolidation [skip ci]"
-            git push origin HEAD:sandbox
-          fi
+      - name: Upload branch audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: branch-consolidation-audit
+          path: generated/audit/branch-cleanup.json
+          if-no-files-found: error
