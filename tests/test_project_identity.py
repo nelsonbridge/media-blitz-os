@@ -34,9 +34,11 @@ ALLOWED_PARENT_FILES = {
 }
 
 # Until the GitHub repository itself is administratively renamed, immutable
-# evidence URLs, schema identifiers, canonical work-control records, and exact
-# URL fixtures may retain the live legacy slug. This exception is deliberately
-# narrower than the parent-identity rule.
+# evidence URLs, schema identifiers, canonical work-control records, exact URL
+# fixtures, and live repository-scoped trust bindings may retain the current
+# legacy slug. The three GCP/bootstrap files below must match GitHub metadata for
+# Workload Identity Federation to function; remove them immediately after the
+# administrative repository rename and trust-boundary migration are verified.
 ALLOWED_SLUG_PREFIXES = (
     "releases/",
     "schemas/",
@@ -50,6 +52,9 @@ ALLOWED_SLUG_FILES = {
     "docs/project-state.md",
     "docs/chatgpt-handover.md",
     "docs/governance/project-enki-identity-policy.md",
+    "docs/infrastructure/gcp-execution-control-plane.md",
+    "infrastructure/bootstrap/README.md",
+    "infrastructure/bootstrap/bootstrap-gcp.sh",
     "tests/test_project_identity.py",
     "tests/test_sprint37_deployment_decision_resolution.py",
 }
