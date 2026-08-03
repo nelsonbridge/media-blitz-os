@@ -14,6 +14,7 @@ from scripts.cleanup_branches import (
     run_cleanup,
     validate_final_branches,
     validate_requested_branches,
+    wait_for_final_branch_records,
 )
 
 
@@ -23,14 +24,21 @@ class FakeGitHubClient:
         branches: list[BranchRecord],
         *,
         comparisons: dict[tuple[str, str], str] | None = None,
+        stale_reads_after_delete: int = 0,
     ) -> None:
         self.branches = {branch.name: branch for branch in branches}
         self.comparisons = comparisons or {}
         self.created_refs: list[tuple[str, str]] = []
         self.deleted_branches: list[str] = []
+        self.stale_reads_after_delete = stale_reads_after_delete
+        self._stale_snapshot: list[BranchRecord] | None = None
+        self._stale_reads_remaining = 0
 
     def list_branches(self, repository: str) -> list[BranchRecord]:
         del repository
+        if self._stale_reads_remaining and self._stale_snapshot is not None:
+            self._stale_reads_remaining -= 1
+            return list(self._stale_snapshot)
         return sorted(self.branches.values(), key=lambda item: item.name)
 
     def compare_status(self, repository: str, base: str, head: str) -> str:
@@ -44,6 +52,8 @@ class FakeGitHubClient:
 
     def delete_branch(self, repository: str, branch: str) -> None:
         del repository
+        self._stale_snapshot = sorted(self.branches.values(), key=lambda item: item.name)
+        self._stale_reads_remaining = self.stale_reads_after_delete
         self.deleted_branches.append(branch)
         self.branches.pop(branch)
 
@@ -76,6 +86,43 @@ def test_extra_branch_violates_cleanup_invariant() -> None:
 def test_protected_branches_cannot_be_requested() -> None:
     with pytest.raises(RuntimeError, match="Protected branches"):
         validate_requested_branches(["feature/x", "main"])
+
+
+def test_wait_for_final_branch_records_reconciles_stale_listing() -> None:
+    client = FakeGitHubClient(
+        _branches("main", "sandbox", "feature/x"),
+        stale_reads_after_delete=2,
+    )
+    client.delete_branch("owner/repo", "feature/x")
+    sleeps: list[float] = []
+
+    records = wait_for_final_branch_records(
+        client,
+        "owner/repo",
+        attempts=3,
+        delay_seconds=0.25,
+        sleep=sleeps.append,
+    )
+
+    assert [record.name for record in records] == ["main", "sandbox"]
+    assert sleeps == [0.25, 0.25]
+
+
+def test_wait_for_final_branch_records_remains_fail_closed() -> None:
+    client = FakeGitHubClient(
+        _branches("main", "sandbox", "feature/x"),
+        stale_reads_after_delete=3,
+    )
+    client.delete_branch("owner/repo", "feature/x")
+
+    with pytest.raises(RuntimeError, match="expected only main and sandbox"):
+        wait_for_final_branch_records(
+            client,
+            "owner/repo",
+            attempts=2,
+            delay_seconds=0,
+            sleep=lambda _: None,
+        )
 
 
 def test_apply_requires_explicit_branch_names() -> None:
@@ -133,6 +180,29 @@ def test_unmerged_tip_is_archived_before_explicit_deletion() -> None:
         ("refs/tags/archive/branches/feature-x-000000000000", feature_sha)
     ]
     assert {name: client.branches[name].sha for name in protected} == protected
+
+
+def test_apply_reconciles_eventually_consistent_branch_listing() -> None:
+    client = FakeGitHubClient(
+        _branches("main", "sandbox", "feature/x"),
+        stale_reads_after_delete=2,
+    )
+    sleeps: list[float] = []
+
+    report = run_cleanup(
+        client,
+        "owner/repo",
+        branches=["feature/x"],
+        apply=True,
+        report_path=None,
+        settle_attempts=3,
+        settle_delay_seconds=0.5,
+        sleep=sleeps.append,
+    )
+
+    assert report.after == ["main", "sandbox"]
+    assert report.deleted == ["feature/x"]
+    assert sleeps == [0.5, 0.5]
 
 
 def test_merged_tip_is_deleted_without_redundant_archive() -> None:
