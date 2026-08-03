@@ -4,14 +4,15 @@
 
 - Repository: `nelsonbridge/media-blitz-os`, pending administrative rename to the Project Enki repository slug.
 - Date: `2026-08-02` local / `2026-08-03` UTC.
-- Current goal: continue Project Enki execution without losing branch, architecture, hosting, issue, identity, or release-integrity governance alignment.
+- Current goal: continue Project Enki execution without losing branch, architecture, hosting, issue, identity, release-integrity, or branch-governance alignment.
 
 ## Authoritative Current State
 
-- The only approved persistent branches are `main` and `sandbox`.
-- `main` was independently verified at `2b978d65787dd7a7b8db9f191aba6e73285559c8` immediately before the final branch-governance cleanup cycle.
-- Do not rely on a hand-written `sandbox` SHA. Publishing this handover and merging validation work advances `sandbox`; query GitHub before using an exact tip as authority.
-- Temporary validation branches must be removed after merge. The branch-governance workflow is responsible only for the exact merged PR head and must never move either protected branch.
+- The only approved and live persistent branches are `main` and `sandbox`.
+- `main` is `2b978d65787dd7a7b8db9f191aba6e73285559c8` and remained unchanged throughout the final cleanup proof.
+- `sandbox` was `08f2c867f0fe70c0af65faf832de6b5228eaad44` immediately before this handover update. Publishing this file advances `sandbox`; query GitHub before using an exact current tip as authority.
+- Open pull requests were independently verified at `0` immediately before this handover update.
+- Temporary validation branches were deleted after merge by the corrected branch-governance workflow.
 - Preserved archive tags for retired branch tips include:
   - `archive/branches/ep-12-handoff-835518c33dda`
   - `archive/branches/ep-12-handoff-1ebd3bb000f6`
@@ -28,8 +29,8 @@
 - Completed and merged PR `#165`, establishing **Project Enki** as the authoritative parent-system identity across current documentation, governance, package metadata, runtime surfaces, generated projections, and release-integrity records.
 - Preserved **Media Blitz** as a governed downstream publishing and career-opportunity product rather than rewriting valid product-scoped records.
 - Added automated identity regression enforcement distinguishing current authority from historical truth.
-- Completed repository-wide validation and remediation through PRs `#168` and `#169`.
-- Corrected Windows filesystem portability, line-ending determinism, stale release-integrity evidence, current-authority identity exceptions, and branch-governance behavior.
+- Completed repository-wide validation and remediation through PRs `#168`, `#169`, `#170`, and `#171`.
+- Corrected Windows filesystem portability, line-ending determinism, stale release-integrity evidence, current-authority identity exceptions, destructive branch-consolidation behavior, missing workflow dependencies, and post-delete eventual-consistency handling.
 
 ## Repository-Wide Validation Evidence
 
@@ -51,13 +52,16 @@ PR `#168` validated the integrated repository before the final branch-governance
 
 ### Final branch-governance baseline
 
-After expanding the cleanup guardrails and tests, PR `#169` validated the current code and governance surface:
+PR `#171` validated the final code and governance surface after post-delete reconciliation was added:
 
-- Linux, Python `3.11.15`: `867` tests passed.
+- Linux, Python `3.11.15`: `870` tests passed.
 - Exact branch-aware coverage: `88.2547661374364%` (`88.25%` reported).
 - Linux, Python `3.12`: Runtime Coverage passed.
-- State Authority, Work Control Authority, Canonicalization Security, Publication Assets, CI, and Runtime Coverage all passed on the final validation head.
-- The focused branch-cleanup suite now covers explicit-target enforcement, protected-branch rejection, complete preflight, archive-before-delete behavior, merged-tip handling, dry-run immutability, absent-target recording, and protected-tip preservation.
+- Work Control Authority, CI, and Runtime Coverage passed on the final validation head.
+- The focused branch-cleanup suite contains `14` tests covering explicit-target enforcement, protected-branch rejection, complete preflight, archive-before-delete behavior, merged-tip handling, dry-run immutability, absent-target recording, protected-tip preservation, eventual-consistency reconciliation, and bounded fail-closed behavior.
+- Post-merge Branch Consolidation run `#77` completed successfully and deleted only `validation/branch-cleanup-consistency`.
+- Final branch verification returned exactly `main` and `sandbox`.
+- Final comparison confirmed `main` remained at `2b978d65787dd7a7b8db9f191aba6e73285559c8`.
 
 ## Branch Governance Authority
 
@@ -75,9 +79,13 @@ The branch cleanup path is now fail-closed:
 - The script verifies both protected branch SHAs remain unchanged.
 - The standing workflow handles only the exact head branch of a merged PR into `sandbox`.
 - Manual workflow execution is audit-only and produces no deletion.
+- The workflow installs its own governed test dependencies before running guardrails.
 - Branch-governance evidence is written to the GitHub Actions run summary and logs.
+- After successful ref deletion, the script performs bounded polling because GitHub's branches-list endpoint can briefly return a deleted ref. The invariant remains fail-closed if the branch set does not converge within the bounded window.
 
 Historical note: the prior workflow did force-align `main` to `sandbox`. That behavior was discovered during top-to-bottom validation and removed. Preserve this as historical truth; do not describe the old workflow as having always been non-destructive.
+
+Historical note: PR `#170` proved that GitHub accepted and completed the exact branch deletion, but its first post-delete list response was stale. The workflow therefore reported a false negative even though the remote branch was gone. PR `#171` corrected that observation boundary without weakening the invariant.
 
 ## Project Identity Authority
 
