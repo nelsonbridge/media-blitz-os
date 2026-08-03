@@ -1,18 +1,23 @@
-name: Branch Consolidation Audit
+name: Branch Consolidation
 
 on:
   workflow_dispatch:
+  pull_request:
+    branches: [sandbox]
+    types: [closed]
 
-permissions:
-  contents: read
+permissions: {}
 
 concurrency:
-  group: branch-consolidation-audit
+  group: branch-consolidation
   cancel-in-progress: false
 
 jobs:
   audit:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -40,5 +45,55 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: branch-consolidation-audit
+          path: generated/audit/branch-cleanup.json
+          if-no-files-found: error
+
+  cleanup-merged-head:
+    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out authoritative sandbox
+        uses: actions/checkout@v4
+        with:
+          ref: sandbox
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run branch-cleanup guardrail tests
+        run: python -m pytest tests/test_branch_cleanup.py --no-cov
+
+      - name: Delete only the explicitly merged head branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGED_HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          python scripts/cleanup_branches.py \
+            --repository "$GITHUB_REPOSITORY" \
+            --branch "$MERGED_HEAD_BRANCH" \
+            --apply \
+            --report generated/audit/branch-cleanup.json
+
+      - name: Verify protected branches were unchanged
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = json.loads(Path("generated/audit/branch-cleanup.json").read_text())
+          assert report["after"] == ["main", "sandbox"], report
+          assert report["protected_unchanged"] is True, report
+          print("Verified explicit cleanup without protected-branch movement")
+          PY
+
+      - name: Upload cleanup evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: branch-consolidation-cleanup
           path: generated/audit/branch-cleanup.json
           if-no-files-found: error
