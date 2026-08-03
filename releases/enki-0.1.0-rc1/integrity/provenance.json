@@ -1,21 +1,21 @@
 {
-  "attestation_sha256": "sha256:6287f9f64f49e239b58421a16a49524d6317671d2276d6647d449386e307301f",
+  "attestation_sha256": "sha256:aaea2e6f28f0d2db5e46c7f1502be03dda466c13d6f504b9d237fce1cf3d4b58",
   "candidate_sha256": "sha256:96fe1533369a3d64d6914ff5eaa849babea4e874eb6fd843bf988ad693541bd5",
   "candidate_source_commit_sha": "cb84fbc8eef6096e8a707e1b922dfa2eddb23e51",
   "dependency_sha256": "sha256:a45475d07722071535c7ee6cd1fc4c5640f674a852993e508b903bdff8b30a3a",
   "evidence_file_hashes": {
     "dependency-inventory.json": "sha256:e649a022266af2b1c1522191169824467f8beac5b870dd27039a877cfae3c869",
-    "sbom.json": "sha256:acb08df02530ccffc32a1fdeab6880b23bbe3d0efc17acf264e5451a96091cfa",
-    "supply-chain-attestation.json": "sha256:8355a9cf6a7949fe6d38910243ec55f7d1a17888aacd97ac2e3ad8e2eee8031a",
-    "workflow-inventory.json": "sha256:3f62adbf7338a49668f09a2634d879110aa1c5461b89e4b9689c27acfa64ce5b"
+    "sbom.json": "sha256:34a801e620cc24edaf2c850b5f2593fd08e64664c3d5f9a67c8ea3ec20eacd80",
+    "supply-chain-attestation.json": "sha256:03ba276bc2cc393d734cfcda8d7912cd4f2b0f2d25beac628c70f076b7133c36",
+    "workflow-inventory.json": "sha256:72a7be6c79b4ff94e0de5d8e5ba424a1aec2e6bc4b29bb3cd39160cf006d81ff"
   },
   "execution_context": "TEST",
   "external_effect": false,
   "human_release_decision_issued": false,
-  "inventory_sha256": "sha256:9fd1d675b290e00d99a24fd03a3d36ea92c65ff4d76bbb599c955b54bae69b78",
+  "inventory_sha256": "sha256:2a646b7b70a1e97413c9d92bf76bc154dafcc3e7ec017e2dd5de99c21bebe701",
   "production_credentials_used": false,
-  "sbom_sha256": "sha256:55a3fd5bad53d9a1dedb706bfe7316bf449fbe866edb2d5dc2b411eb58f8b0d0",
+  "sbom_sha256": "sha256:69a7a44e881ec0243dbc38b733e2389699adafc67999d6e418e9ac75b39f5064",
   "schema_version": "1.0",
   "verifier_source_commit_sha": "8161b23b2e883278f25f3539ee3e392b8eb04033",
-  "workflow_sha256": "sha256:54c5a72ec67df8214525b0ff8892e1026c411442719725e5dd5b72aedcd37ed7"
+  "workflow_sha256": "sha256:41c6143dc806428621ee6e6d817e95f16f6ed1b45c0bbcd93faf7d80dfbb1282"
 }
