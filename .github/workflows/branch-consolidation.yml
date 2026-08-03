@@ -51,7 +51,7 @@ jobs:
               --report generated/audit/branch-cleanup.json
           fi
 
-      - name: Verify governed result
+      - name: Verify and publish governed result
         env:
           EVENT_NAME: ${{ github.event_name }}
         run: |
@@ -60,7 +60,8 @@ jobs:
           import os
           from pathlib import Path
 
-          report = json.loads(Path("generated/audit/branch-cleanup.json").read_text())
+          path = Path("generated/audit/branch-cleanup.json")
+          report = json.loads(path.read_text())
           assert report["protected_unchanged"] is True, report
           if os.environ["EVENT_NAME"] == "workflow_dispatch":
               assert report["apply"] is False, report
@@ -68,11 +69,8 @@ jobs:
           else:
               assert report["after"] == ["main", "sandbox"], report
           print("Verified governed branch result")
+          with Path(os.environ["GITHUB_STEP_SUMMARY"]).open("a", encoding="utf-8") as summary:
+              summary.write("## Branch governance evidence\n\n```json\n")
+              summary.write(json.dumps(report, indent=2, sort_keys=True))
+              summary.write("\n```\n")
           PY
-
-      - name: Upload branch-governance evidence
-        uses: actions/upload-artifact@v4
-        with:
-          name: branch-consolidation-evidence
-          path: generated/audit/branch-cleanup.json
-          if-no-files-found: error
